@@ -1,0 +1,68 @@
+#!/usr/bin/env sh
+
+# bar settings
+yabai -m config status_bar                   on
+yabai -m config status_bar_text_font         "Helvetica Neue:Bold:12.0"
+yabai -m config status_bar_icon_font         "FontAwesome:Regular:12.0"
+yabai -m config status_bar_background_color  0xff202020
+yabai -m config status_bar_foreground_color  0xffa8a8a8
+yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
+yabai -m config status_bar_power_icon_strip  🔋 ⚡
+yabai -m config status_bar_space_icon        x
+yabai -m config status_bar_clock_icon        🕒
+
+# global settings
+yabai -m config mouse_follows_focus          off
+yabai -m config focus_follows_mouse          autoraise
+yabai -m config window_placement             second_child
+yabai -m config window_topmost               on
+yabai -m config window_opacity               on
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.95
+yabai -m config window_opacity_duration      0.0
+yabai -m config window_shadow                float
+yabai -m config window_border                on
+yabai -m config window_border_placement      inset
+yabai -m config window_border_width          1
+yabai -m config window_border_radius         3
+yabai -m config active_window_border_topmost off
+yabai -m config active_window_border_color   0xff775759
+yabai -m config normal_window_border_color   0xff202020
+yabai -m config insert_window_border_color   0xff202020
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 on
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+
+# Space labels
+yabai -m space 1 --label "Primary"
+yabai -m space 2 --label "Comms"
+yabai -m space 3 --label "Tools"
+yabai -m space 4 --label "Media"
+yabai -m space 5 --label "Social"
+yabai -m space 6 --label "Float"
+yabai -m space 7 --label "Secondary"
+
+# general space settings
+yabai -m config layout                       bsp
+yabai -m config --space 6 layout             float
+yabai -m config top_padding                  0
+yabai -m config bottom_padding               0
+yabai -m config left_padding                 0
+yabai -m config right_padding                0
+yabai -m config window_gap                   2
+
+yabai -m rule --add app=Notion space=1
+yabai -m rule --add app=Firefox space=2
+yabai -m rule --add app=WebStorm space=3
+yabai -m rule --add app="Sublime Text" space=3
+yabai -m rule --add app=iTerm2 space=3
+yabai -m rule --add app="Widget Builder for EverWeb" space=3
+yabai -m rule --add app=EverWeb space=4
+yabai -m rule --add app=Brave space=5
+yabai -m rule --add app=Telegram space=6
+
+
+
+echo "yabai configuration loaded.."

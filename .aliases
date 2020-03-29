@@ -1,0 +1,53 @@
+
+# Brew commands
+alias binstall="brew install";
+alias cinstall="brew cask install";
+alias bsearch="brew search";
+alias binfo="brew info";
+
+
+# Abbreviations
+alias r="ranger";
+alias ka="killall";
+alias g="git";
+
+alias ls="gls -hG --color=auto --group-directories-first";
+alias grep="grep --color=auto";
+alias fgrep="fgrep --color=auto";
+alias egrep="egrep --color=auto";
+alias mv="mv -i";
+alias rm="rm -i";
+alias cp="cp -i";
+alias mkd="mkdir -pv";
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd ..";
+alias ...="cd ../..";
+alias ....="cd ../../..";
+alias .....="cd ../../../..";
+
+# Shortcuts
+alias pr="cd ~/Documents/Tech/Projects"
+
+# Internet
+alias yt="youtube-dl --add-metadata -ic" # Download video
+alias yta="youtube-dl --add-metadata -icx" # Download audio
+
+
+# Get week number
+alias week='date +%V'
+
+###
+# macOs
+###
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"

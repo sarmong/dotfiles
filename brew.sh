@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Install Brew Packages
+
+# basic
+brew install cask
+brew install coreutils
+brew install python
+brew install git
+brew install bash-completion@2
+brew install neofetch
+
+# cli utils
+brew install tree
+brew install exiftool
+brew install ffmpeg
+brew install imagemagick
+brew install speedtest-cli
+brew install youtube-dl
+
+# terminal-based apps
+brew install bitwarden-cli
+brew install cmus
+brew install joplin
+brew install htop  # show processes
+brew install neovim
+brew install ranger
+
+# other
+brew install coreutils
+brew install inetutils
+
+# taps
+brew install mongodb/brew/mongodb-community
+brew install koekeishiya/formulae/skhd
+brew install koekeishiya/formulae/yabai
+
+# Install MacOS Applications
+brew cask install eloston-chromium  # ungoogled-chromium
+brew cask install brave-browser
+brew cask install firefox
+brew cask install thunderbird
+
+brew cask install bitwarden
+brew cask install gramps
+brew cask install libreoffice
+brew cask install mongodb
+brew cask install stretchly
+
+brew cask install joplin
+brew cask install notion
+
+brew cask install sublime-text
+brew cask install vscodium
+brew cask install iterm2
+
+brew cask install djview
+brew cask install virtualbox
+brew cask install gimp
+brew cask install vlc
+brew cask install musescore
+brew cask install vienna
