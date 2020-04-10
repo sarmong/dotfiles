@@ -1,0 +1,5 @@
+screencapture -x ~/.local/screensaver/screensaver.png
+
+convert ~/.local/screensaver/screensaver.png -paint 1 -swirl 360 ~/.local/screensaver/screensaver.png
+
+/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine
