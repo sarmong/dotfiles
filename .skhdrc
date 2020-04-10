@@ -64,16 +64,16 @@ alt - r : yabai -m space --rotate 90
 shift + alt - 0 : yabai -m space --balance
 
 # Increase
-shift + alt - a : yabai -m window --resize left:-20:0
-shift + alt - s : yabai -m window --resize bottom:0:20
-shift + alt - w : yabai -m window --resize top:0:-20
-shift + alt - d : yabai -m window --resize right:20:0
+shift + alt - a : yabai -m window --resize left:-40:0
+shift + alt - s : yabai -m window --resize bottom:0:40
+shift + alt - w : yabai -m window --resize top:0:-40
+shift + alt - d : yabai -m window --resize right:40:0
 
 # decrease window size
-ctrl + alt - a : yabai -m window --resize left:20:0
-ctrl + alt - s : yabai -m window --resize bottom:0:-20
-ctrl + alt - w : yabai -m window --resize top:0:20
-ctrl + alt - d : yabai -m window --resize right:-20:0
+ctrl + alt - a : yabai -m window --resize left:40:0
+ctrl + alt - s : yabai -m window --resize bottom:0:-40
+ctrl + alt - w : yabai -m window --resize top:0:40
+ctrl + alt - d : yabai -m window --resize right:-40:0
 
 ##############################################
 # Toggling
