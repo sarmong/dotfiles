@@ -1,3 +1,5 @@
+export LC_ALL=en_US.UTF-8
+
 # if [ -d "$HOME/Documents/Android/adb-fastboot/platform-tools" ] ; then
 #  export PATH="$HOME/Documents/Android/adb-fastboot/platform-tools:$PATH"
 # fi
@@ -6,8 +8,9 @@
 #export PATH=${PATH}:/usr/local/mysql/bin/
 
 export PATH="$HOME/bin:$PATH";
+export PATH="/usr/local/sbin:$PATH";
 
-shopt -s cdspell  #accepts errors in cd dirs
+shopt -s cdspell  #accepts typing errors in cd dirs
 shopt -s histappend  # infinite history
 
 #Git auto-complete
