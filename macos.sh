@@ -40,6 +40,8 @@ defaults write NSGlobalDomain _HIHideMenuBar -bool true
 # show battery percentage in menu bar
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
