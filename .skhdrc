@@ -21,9 +21,10 @@ ctrl + alt - k : yabai -m window --warp north
 ctrl + alt - l : yabai -m window --warp east
 
 # fast focus
-ctrl + alt - x : yabai -m space --focus recent
-ctrl + alt - z : yabai -m space --focus prev
-ctrl + alt - c : yabai -m space --focus next
+alt - x : yabai -m space --focus recent
+alt - z : yabai -m space --focus prev
+alt - c : yabai -m space --focus next
+
 alt - 1 : yabai -m space --focus 1
 alt - 2 : yabai -m space --focus 2
 alt - 3 : yabai -m space --focus 3
@@ -103,7 +104,7 @@ shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
 # lock screen
 # alt - z : /System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine
-alt - z : ~/bin/screensaver
+ctrl + alt - z : ~/bin/screensaver
 
 # open terminal
 alt - return : open -n /Applications/Alacritty.app
