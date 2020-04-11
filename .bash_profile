@@ -9,9 +9,11 @@ export LC_ALL=en_US.UTF-8
 
 export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
+export EDITOR="vim";
 
 shopt -s cdspell  #accepts typing errors in cd dirs
 shopt -s histappend  # infinite history
+shopt -s autocd
 
 #Git auto-complete
 if [ -f ~/.git-completion.bash ]; then
