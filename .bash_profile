@@ -10,6 +10,7 @@ export LC_ALL=en_US.UTF-8
 export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export EDITOR="vim";
+export HISTCONTROL=ignoreboth:erasedups;
 
 shopt -s cdspell  #accepts typing errors in cd dirs
 shopt -s histappend  # infinite history
