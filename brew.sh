@@ -9,6 +9,8 @@ brew install python
 brew install git
 brew install bash-completion@2
 brew install neofetch
+brew install bash
+echo /usr/local/bin/bash|sudo tee -a /etc/shells;chsh -s /usr/local/bin/bash # this changes the default shell to the latest version of bash
 
 brew tap zegervdv/zathura
 brew install zathura
