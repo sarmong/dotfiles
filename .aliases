@@ -10,8 +10,9 @@ alias binfo="brew info";
 alias r="ranger";
 alias ka="killall";
 alias g="git";
+alias gs="git status";
 
-alias ls="gls -hG --color=auto --group-directories-first";
+alias ls="gls -hGF --color=auto --group-directories-first";
 alias la="ls -A";
 alias grep="grep --color=auto";
 alias fgrep="fgrep --color=auto";
