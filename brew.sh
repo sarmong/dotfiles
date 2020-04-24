@@ -29,6 +29,9 @@ brew install youtube-dl
 # terminal-based apps
 brew install bitwarden-cli
 brew install cmus
+pip3 install cmus-osx
+touch ~/.config/cmus/rc
+cmus-osx install
 brew install joplin
 brew install htop  # show processes
 brew install neovim
