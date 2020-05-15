@@ -45,6 +45,8 @@ brew install inetutils
 brew install mongodb/brew/mongodb-community
 brew install koekeishiya/formulae/skhd
 brew install koekeishiya/formulae/yabai
+brew install somdoron/formulae/spacebar
+brew services start spacebar
 
 # Install MacOS Applications
 brew cask install eloston-chromium  # ungoogled-chromium
