@@ -26,6 +26,7 @@ brew install ffmpeg
 brew install imagemagick
 brew install speedtest-cli
 brew install youtube-dl
+npm install -g trash-cli
 
 # terminal-based apps
 brew install bitwarden-cli
