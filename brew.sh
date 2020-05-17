@@ -3,6 +3,7 @@
 # Install Brew Packages
 
 # basic
+brew install node
 brew install cask
 brew install coreutils
 brew install python
