@@ -73,3 +73,6 @@ brew cask install gimp
 brew cask install vlc
 brew cask install musescore
 brew cask install vienna
+
+brew cask install ueli
+brew cask install apple-juice
