@@ -1,22 +1,19 @@
 #!/bin/bash
 
-withext=$(basename "$1")
+withext="$(basename "$1")"
 
-echo $withext
 widgetname=${withext%.*}
-widgetname=${widgetname//\ /\\\ }
 
-echo $widgetname
 if [[ -d ~/Documents/Work/EverWeb/My\ Widgets/"$widgetname" ]]; then
-  echo "exists"
+  echo "Directory exists"
 else 
-  echo "doesnt"
+  echo "Creating directory"
  mkdir ~/Documents/Work/EverWeb/My\ Widgets/"$widgetname"
 fi;
 
 zip -rj "$widgetname.ewwdgt.zip" ~/Library/Application\ Support/EverWeb/Widgets/"$widgetname.ewwdgt"
 
-#cp ~/Library/Application\ Support/EverWeb/Widgets/$widgetname.ewwdgt.zip ~/Documents/Work/EverWeb/My\ Widgets/$widgetname/
-#cp ~/Library/Application\ Support/EverWeb/Widgets/$widgetname.ewwdgt.zip ~/Dropbox/EverWeb\ Widgets\ Development/Widgets\ -\ Ready\ To\ Test/
+cp ~/Library/Application\ Support/EverWeb/Widgets/"$widgetname.ewwdgt.zip" ~/Documents/Work/EverWeb/My\ Widgets/"$widgetname"/
+cp ~/Library/Application\ Support/EverWeb/Widgets/"$widgetname.ewwdgt.zip" ~/Dropbox/EverWeb\ Widgets\ Development/Widgets\ -\ Ready\ To\ Test/
 
-#rm ~/Library/Application\ Support/EverWeb/Widgets/$widgetname.ewwdgt.zip
+rm ~/Library/Application\ Support/EverWeb/Widgets/"$widgetname.ewwdgt.zip"
