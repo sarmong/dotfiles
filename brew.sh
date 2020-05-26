@@ -19,6 +19,11 @@ brew install zathura-pdf-poppler
 mkdir -p $(brew --prefix zathura)/lib/zathura
 ln -s $(brew --prefix zathura-pdf-poppler)/libpdf-poppler.dylib $(brew --prefix zathura)/lib/zathura/libpdf-poppler.dylib
 
+
+# fonts
+brew tap homebrew/cask-fonts
+brew cask install font-fira-code
+
 # cli utils
 brew install tree
 brew install exiftool
