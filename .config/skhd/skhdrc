@@ -107,7 +107,7 @@ shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 ctrl + alt - z : ~/bin/screensaver
 
 # open terminal
-alt - return : open -n /Applications/Alacritty.app
+alt - return : open ~
 
 cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
