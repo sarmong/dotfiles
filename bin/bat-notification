@@ -1,8 +1,8 @@
 batlvl=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 power=$(pmset -g batt | grep -Eo "(Battery|AC) Power")
 
-if [[ $batlvl < 30 ]] && [[ "$power" == "Battery Power"  ]] ; then
-  /usr/local/bin/terminal-notifier -title 'Low battery' -message 'Please, charge your battery' -sound default; 
-elif [[ $batlvl > 75 ]] && [[ "$power" == "AC Power" ]]; then
-  /usr/local/bin/terminal-notifier -title 'Charged' -message 'Please, remove the charger' -sound default;
+if [ $batlvl -lt 30 ] && [ "$power" = "Battery Power" ] ; then
+  /usr/local/bin/terminal-notifier -title 'Low battery' -message 'Charge the battery' -sound default; 
+elif [ $batlvl -gt 75 ] && [ "$power" = "AC Power" ]; then
+  /usr/local/bin/terminal-notifier -title 'Charged' -message 'Remove the charger' -sound default;
 fi
