@@ -123,7 +123,7 @@ handle_image() {
     ## rendered from vector graphics. If the conversion program allows
     ## specifying only one dimension while keeping the aspect ratio, the width
     ## will be used.
-    local DEFAULT_SIZE="1920x1080"
+    local DEFAULT_SIZE="400x200"
 
     local mimetype="${1}"
     case "${mimetype}" in
@@ -307,8 +307,6 @@ handle_mime() {
                 --force -- "${FILE_PATH}" && exit 5
             env COLORTERM=8bit bat --color=always --style="plain" \
                 -- "${FILE_PATH}" && exit 5
-            pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}"\
-                -- "${FILE_PATH}" && exit 5
             exit 2;;
 
         ## DjVu
@@ -340,9 +338,9 @@ handle_fallback() {
 
 
 MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE_PATH}" )"
-if [[ "${PV_IMAGE_ENABLED}" == 'True' ]]; then
-    handle_image "${MIMETYPE}"
-fi
+# if [[ "${PV_IMAGE_ENABLED}" == 'True' ]]; then
+#     handle_image "${MIMETYPE}"
+# fi
 handle_extension
 handle_mime "${MIMETYPE}"
 handle_fallback
