@@ -26,6 +26,7 @@ brew cask install font-fira-code
 
 # cli utils
 brew install tree
+brew install bat
 brew install exiftool
 brew install ffmpeg
 brew install imagemagick
