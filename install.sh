@@ -35,6 +35,9 @@ curl "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-co
 # Download HomeBrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
+# opt out of ganalytics
+brew analytics off
+
 # # Run the Homebrew Script
 # ./brew.sh
 
