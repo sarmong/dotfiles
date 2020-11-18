@@ -13,20 +13,20 @@ fi
 homedir=$1
 
 # dotfiles directory
-dotfiledir=${homedir}/dotfiles
+dotfiledir="${homedir}/dotfiles"
 
 # list of files/folders to symlink in ${homedir}
-files="bash_profile bashrc bash_prompt aliases private"
+files="bash_profile bashrc bash_prompt aliases vimrc inputrc config/kitty/kitty.conf config/ranger/rc.conf config/ranger/rifle.conf config/ranger/scope.sh config/skhd/skhdrc config/spacebar/spacebarrc config/yabai/yabairc"
 
 # change to the dotfiles directory
 echo "Changing to the ${dotfiledir} directory"
-cd ${dotfiledir}
+cd "${dotfiledir}" || exit
 echo "...done"
 
 # create symlinks (will overwrite old dotfiles)
 for file in ${files}; do
     echo "Creating symlink to $file in home directory."
-    ln -sf ${dotfiledir}/.${file} ${homedir}/.${file}
+    ln -sf "${dotfiledir}/.${file}" "${homedir}/.${file}"
 done
 
 # Download Git Auto-Completion
@@ -39,10 +39,9 @@ curl "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-co
 brew analytics off
 
 # # Run the Homebrew Script
-# ./brew.sh
+./brew.sh
 
-# # Run the Sublime Script
-# ./sublime.sh
-
-# # Set MacOS Settings
-# ./macos.sh
+if [[ "$(uname)" == "Darwin" ]]; then 
+# Set MacOS Settings
+./macos.sh
+fi
