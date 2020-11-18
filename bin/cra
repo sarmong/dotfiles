@@ -1,0 +1,12 @@
+dir=$(pwd)
+
+
+npx create-react-app "$dir/$1" 
+rm -rf "$dir/$1/public/favicon.ico" "$dir/$1/public/manifest.json" "$dir/$1/public/robots.txt"
+find . -name 'logo*' -exec rm -r {} \;
+rm -rf "$dir/$1/src/App.test.js" "$dir/$1/src/logo.svg" "$dir/$1/src/reportWebVitals.js" "$dir/$1/src/setupTests.js"
+
+echo "$dir/$1/src/index.js"
+
+sed -i="" "/reportWebVitals/d" "$dir/$1/src/index.js"
+sed -i="" "/\/\//d" "$dir/$1/src/index.js"
