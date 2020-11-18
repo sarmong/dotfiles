@@ -12,7 +12,8 @@ set background=dark
 " This is used to make bg not disappear. Taken from kitty #108
 let &t_ut=''
 
-" If you open this file in Vim, it'll be syntax highlighted for you.
+" set swapfiles dir
+set directory^=$HOME/.vim/tmp//
 
 " Vim is based on Vi. Setting `nocompatible` switches from the default
 " Vi-compatibility mode and enables useful Vim functionality. This
