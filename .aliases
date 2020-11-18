@@ -22,7 +22,16 @@ alias rm="rm -i";
 alias cp="cp -i";
 alias mkd="mkdir -pv";
 
-alias code="code & exit"
+mcd() {
+  mkdir -pv $1; cd $1;
+}
+
+# alias code="code $1 & exit"
+
+vs() { 
+  code $1; exit;
+}
+
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd ..";
