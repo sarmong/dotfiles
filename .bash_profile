@@ -1,12 +1,15 @@
 export LC_ALL=en_US.UTF-8
 
-# if [ -d "$HOME/Documents/Android/adb-fastboot/platform-tools" ] ; then
-#  export PATH="$HOME/Documents/Android/adb-fastboot/platform-tools:$PATH"
-# fi
+ if [ -d "$HOME/Documents/android/adb-fastboot/platform-tools" ] ; then
+  export PATH="$HOME/Documents/android/adb-fastboot/platform-tools:$PATH"
+ fi
 
 # export JAVA_HOME=$(/usr/libexec/java_home)
 #export PATH=${PATH}:/usr/local/mysql/bin/
 
+eval "$(lua $HOME/bin/z.lua --init bash enhanced once)"
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh 
+# export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export EDITOR="vim";
@@ -15,6 +18,8 @@ export HISTCONTROL=ignoreboth:erasedups;
 shopt -s cdspell  #accepts typing errors in cd dirs
 shopt -s histappend  # infinite history
 shopt -s autocd
+
+set -o vi # sets vim mode
 
 #Git auto-complete
 if [ -f ~/.git-completion.bash ]; then
@@ -94,3 +99,14 @@ fi;
 
 # # git prompth
 # source ~/.git-prompt.sh
+
+##
+# Your previous /Users/michael/.bash_profile file was backed up as /Users/michael/.bash_profile.macports-saved_2020-05-30_at_16:23:02
+##
+
+# MacPorts Installer addition on 2020-05-30_at_16:23:02: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+export PATH="$HOME/.cargo/bin:$PATH"
