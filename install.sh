@@ -29,6 +29,13 @@ for file in ${files}; do
     ln -sf "${dotfiledir}/.${file}" "${homedir}/.${file}"
 done
 
+# create symlinks for bin
+for file in "$dotfiledir"/bin/*; do
+  filename=$(basename "$file")
+  echo "Creating symlink to $filename in ~/bin."
+  ln -sf "${dotfiledir}/bin/${filename}" "${homedir}/bin/${filename}"
+done
+
 # Download Git Auto-Completion
 curl "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash" > ${homedir}/.git-completion.bash
 
@@ -42,6 +49,7 @@ brew analytics off
 ./brew.sh
 
 if [[ "$(uname)" == "Darwin" ]]; then 
+  echo "Setting MacOS defaults"
 # Set MacOS Settings
-./macos.sh
+ ./macos.sh
 fi
