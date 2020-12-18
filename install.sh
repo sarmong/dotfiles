@@ -39,14 +39,17 @@ done
 # Download Git Auto-Completion
 curl "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash" > ${homedir}/.git-completion.bash
 
-# Download HomeBrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# Install Vim Plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# opt out of ganalytics
-brew analytics off
+
+# Download HomeBrew
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# brew analytics off
 
 # # Run the Homebrew Script
-./brew.sh
+# ./brew.sh
 
 if [[ "$(uname)" == "Darwin" ]]; then 
   echo "Setting MacOS defaults"
