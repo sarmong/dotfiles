@@ -1,0 +1,13 @@
+#!/bin/sh
+
+battery="/sys/class/power_supply/BAT0"
+
+capacity=$(cat "$battery"/capacity)
+status=$(cat "$battery"/status)
+
+[ "$status" = "Discharging" ] && [ "$capacity" -le 25 ] && warn="❗"
+
+capacity=$(echo $capacity | sed 's/$/%/')
+status=$(echo $status | sed 's/Discharging/🔋/' | sed 's/Charging/⚡/' | sed 's/Unknown//')
+
+echo $status $capacity $warn
