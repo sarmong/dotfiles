@@ -1,0 +1,7 @@
+#!/bin/sh
+
+touch ~/dotfiles/bin/"$1"
+chmod +x ~/dotfiles/bin/"$1"
+ln -s ~/dotfiles/bin/"$1" ~/bin/"$1"
+echo "#!/bin/sh" > ~/bin/"$1"
+vim ~/bin/"$1"
