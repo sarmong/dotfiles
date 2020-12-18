@@ -10,7 +10,8 @@ export LC_ALL=en_US.UTF-8
 eval "$(lua $HOME/bin/z.lua --init bash enhanced once)"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh 
 # export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
-export PATH="$HOME/bin:$PATH";
+export PATH="$HOME/bin:$PATH:$HOME/.local/bin";
+export PATH="$PATH:$HOME/.local/bin";
 export PATH="/usr/local/sbin:$PATH";
 export EDITOR="vim";
 export HISTCONTROL=ignoreboth:erasedups;
@@ -93,7 +94,6 @@ fi;
 # export INPUTRC=~/.inputrc
 
 
-
 # # git completion
 # source ~/.git-completion.bash
 
@@ -110,3 +110,7 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export XDG_CONFIG_HOME=/home/***REMOVED***/.config
+export PATH=$PATH:/home/***REMOVED***/.***REMOVED***/multitool/bin
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
