@@ -71,6 +71,9 @@ sudo apt install espeak
 
 # Install Applications
 
+sudo apt install flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 # sudo apt install eloston-chromium  # ungoogled-chromium
 sudo snap install brave
 sudo apt install thunderbird
