@@ -114,3 +114,5 @@ export XDG_CONFIG_HOME=/home//.config
 export PATH=$PATH:/home///multitool/bin
 
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+export PROMPT_COMMAND="pwd > /tmp/whereami"
+export TERMINAL="kitty"
