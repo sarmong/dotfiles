@@ -116,3 +116,4 @@ export PATH=$PATH:/home/***REMOVED***/.***REMOVED***/multitool/bin
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 export TERMINAL="kitty"
+export BROWSER=firefox
