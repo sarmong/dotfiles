@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ -z "$1" ]; then
+  echo "No arguments provided"
+  exit 1
+fi
+
 touch ~/dotfiles/bin/"$1"
 chmod +x ~/dotfiles/bin/"$1"
 ln -s ~/dotfiles/bin/"$1" ~/bin/"$1"
