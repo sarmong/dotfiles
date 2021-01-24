@@ -21,3 +21,10 @@ sudo chmod a+rw /sys/class/backlight/intel_backlight/brightness
 # sudo apt-get install libx11-dev
 # cd ; make
 # link file
+
+# install fonts
+sudo add-apt-repository universe
+sudo apt install fonts-firacode
+sudo apt install sxhkd
+sudo apt install redshift
+https://wiki.archlinux.org/index.php/redshift
