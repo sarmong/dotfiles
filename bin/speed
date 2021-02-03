@@ -1,17 +1,12 @@
 speedtest=$(speedtest)
 
-downloadSpeed=$(echo $speedtest | grep -Eo "Download: \d+.\d+ Mbit/s") 
-uploadSpeed=$(echo $speedtest | grep -Eo "Upload: \d+.\d+ Mbit/s")
+downloadSpeed=$(echo "$speedtest" | grep "Download:" | awk '{print $2}' | cut -d'.' -f1)
 
 error=$(echo $speedtest | grep -Eo "Cannot retrieve speedtest configuration")
 
-HOME="/Users/michael"
+if [ -n "$error" ]; then
+  echo "Err"
+  exit 0
+fi
 
-echo $(date +"%d.%m.%Y %H:%M:%S") >> $HOME/Desktop/speetest.txt
-echo $downloadSpeed >> $HOME/Desktop/speetest.txt
-echo $uploadSpeed >> $HOME/Desktop/speetest.txt
-echo $error >> $HOME/Desktop/speetest.txt
-echo "------------------" >> $HOME/Desktop/speetest.txt
-echo "" >> $HOME/Desktop/speetest.txt
-
-echo "Command successful"
+echo "$downloadSpeed Mbit/s"
