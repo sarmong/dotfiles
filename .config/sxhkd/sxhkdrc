@@ -7,8 +7,14 @@ super + Return
 super + shift + f
   firefox
 
+super + shift + v
+  kitty nvim ~/Nextcloud/Vault/index.md
+
 super + d
-  rofi -combi-modi window,drun,ssh -theme solarized -font "hack 10" -show combi -monitor -1
+  rofi -combi-modi window,drun,ssh -show combi -monitor -1 
+
+super + shift + e
+  rofi -show power-menu -location 1 -yoffset 30 -xoffset 10 -width 15 -columns 1 -lines 6 -modi power-menu:~/bin/rofi/rofi-power-menu
 
 super + shift + d
   i3-dmenu-desktop
@@ -19,12 +25,12 @@ shift + Alt_L
 alt + Shift_L
   xkblayout-state -s +1
 
-super + shift + Escape 
-  pkill -USR1 -x sxhkd
+# super + shift + Escape 
+#   pkill -USR1 -x sxhkd
 
 #---BSPWM Bindings
 # Quit bspwm
-super + shift + q
+super + shift + Escape
   prompt "Are you sure you would like to quit this Xsession" "bspc quit"
 
 # Restart bspwm
@@ -33,7 +39,7 @@ super + shift + r
   # $HOME/.config/bspwm/bspwmrc
 
 # close and kill
-super + {_,shift + }w
+super + {_,shift + }q
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -90,7 +96,7 @@ ctrl + alt + shift + {h,j,k,l}
 
 # Move a floating window
 super + {Left,Right,Up,Down}
-  bspc node -v {-20 0,0 20,0 -20,20 0}
+  bspc node -v {-20 0,20 0,0 -20,0 20}
 
 #---System Control---#
 # super + shift + {r, s}
