@@ -109,3 +109,4 @@ sudo apt install lua5.2
 sudo apt install feh
 sudo apt install trash-cli
 sudo apt install flameshot
+sudo apt install goldendict
