@@ -4,7 +4,7 @@ bspc rule -r "*"
 
 ###---Autostart---###
 xrandr --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1 --primary --mode 1366x768 --pos 1920x312 --rotate normal --output HDMI-2 --off
-compton & 
+picom --experimental-backend & 
 killall nm-applet
 nm-applet &
 killall sxhkd
@@ -14,11 +14,15 @@ $HOME/.config/polybar/launch.sh > /dev/null 2>&1 &
 feh --bg-fill /home//Pictures/wallpaper.jpeg &
 pkill nextcloud
 flatpak run com.nextcloud.desktopclient.nextcloud > /dev/null 2>&1 & 
-setxkbmap "us, ru" -option caps:escape
+setxkbmap "us, ru" -option caps:ctrl_modifier
+xmodmap -e "keycode 135 = Super_R"
+killall xcape 2>/dev/null ; xcape -e 'Caps_Lock=Escape'
 xsetroot -cursor_name left_ptr
+touchegg &
 
-bspc monitor eDP-1 -d 5 6 7 8 9 0
-bspc monitor HDMI-1 -d 1 2 3 4 
+bspc monitor eDP-1 -d 1 2 3 4 5 6
+bspc monitor HDMI-1 -d 7 8 9 0
+bspc wm --reorder-monitors eDP-1 HDMI-1
 
 bspc config automatic_scheme alternate> /dev/null 2>&1 & 
 
@@ -30,3 +34,8 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc config click_to_focus true
+
+bspc config pointer_modifier Mod4
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
