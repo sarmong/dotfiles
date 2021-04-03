@@ -41,6 +41,7 @@ sudo apt install autojump
 sudo apt install watch
 sudo apt install scrot
 sudo apt install xclip
+sudo apt install tlp powertop xbacklight
 
 # sudo apt install cheat
 sudo apt install tldr
