@@ -3,7 +3,8 @@
 bspc rule -r "*"
 
 ###---Autostart---###
-xrandr --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1 --primary --mode 1366x768 --pos 1920x312 --rotate normal --output HDMI-2 --off
+xrandr --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 1366x0 --rotate normal --output eDP-1 --primary --mode 1366x768 --pos 0x304 --rotate normal --output HDMI-2 --off
+# xrandr --output DP-1 --off --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1 --primary --mode 1366x768 --pos 1920x312 --rotate normal --output HDMI-2 --off
 picom --experimental-backend & 
 killall nm-applet
 nm-applet &
@@ -11,18 +12,23 @@ killall sxhkd
 pgrep -x sxhkd > /dev/null || sxhkd &
 killall polybar
 $HOME/.config/polybar/launch.sh > /dev/null 2>&1 & 
-feh --bg-fill /home/***REMOVED***/Pictures/wallpaper.jpeg &
+feh --bg-fill /home/***REMOVED***/Pictures/wp3.jpg &
 pkill nextcloud
 flatpak run com.nextcloud.desktopclient.nextcloud > /dev/null 2>&1 & 
-setxkbmap "us, ru" -option caps:ctrl_modifier
-xmodmap -e "keycode 135 = Super_R"
+ka setxkbmap
+setxkbmap "us, ru" -option caps:ctrl_modifier -option altwin:swap_alt_win -option altwin:alt_super_win
+xmodmap -e "keycode 135 = Alt_R"
 killall xcape 2>/dev/null ; xcape -e 'Caps_Lock=Escape'
 xsetroot -cursor_name left_ptr
 touchegg &
+kitty
 
-bspc monitor eDP-1 -d 1 2 3 4 5 6
-bspc monitor HDMI-1 -d 7 8 9 0
-bspc wm --reorder-monitors eDP-1 HDMI-1
+# for WebStorm to work correctly
+wmname LG3D
+
+bspc monitor HDMI-1 -d 1 2 3 4 5 6
+bspc monitor eDP-1 -d 7 8 9 0
+bspc wm --reorder-monitors HDMI-1 eDP-1 
 
 bspc config automatic_scheme alternate> /dev/null 2>&1 & 
 
@@ -32,6 +38,7 @@ bspc config window_gap          12
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
+bspc config single_monocle true
 
 bspc config click_to_focus true
 
