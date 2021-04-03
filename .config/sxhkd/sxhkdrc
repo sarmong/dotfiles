@@ -50,6 +50,9 @@ super + m
 super + g
 	bspc node -s biggest.window
 
+super + f
+  bspc node -t \~fullscreen
+
 #
 # focus/swap
 #
