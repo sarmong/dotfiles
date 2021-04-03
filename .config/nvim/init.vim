@@ -7,6 +7,13 @@ Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 
+Plug 'easymotion/vim-easymotion' " Easy Movement
+Plug 'metakirby5/codi.vim' " Interactive virtual text
+Plug 'Yggdroot/indentLine' " Pretty indented lines
+Plug 'airblade/vim-gitgutter' " Git code line change icons
+Plug 'ap/vim-css-color' " Visual display hexcode colors in vim
+
+
 call plug#end()
 
 let g:vimwiki_list = [{'path': '~/Nextcloud/Vault',
@@ -16,6 +23,8 @@ let g:vimwiki_list = [{'path': '~/Nextcloud/Vault',
 
 nnoremap <leader>n :NERDTreeToggle<CR>
 
+nnoremap <esc><esc> :silent! nohls<cr>
+
 color gruvbox
 set background=dark
 
@@ -24,6 +33,11 @@ let &t_ut=''
 
 " set swapfiles dir
 set directory^=$HOME/.vim/tmp//
+
+" Following lines fix issue that indentLine plugin breaks links in vimwiki
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', '*.wiki', '*.md']
+let g:indentLine_fileTypeExclude = ['vimwiki']
+let g:indentLine_bufTypeExclude = ['help', 'terminal', 'vimwiki']
 
 " Vim is based on Vi. Setting `nocompatible` switches from the default
 " Vi-compatibility mode and enables useful Vim functionality. This
