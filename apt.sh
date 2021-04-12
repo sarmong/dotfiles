@@ -42,11 +42,15 @@ sudo apt install watch
 sudo apt install scrot
 sudo apt install xclip
 sudo apt install tlp powertop xbacklight
+# install ripgrep
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+sudo dpkg -i ripgrep_12.1.1_amd64.de
 
 # sudo apt install cheat
 sudo apt install tldr
 sudo apt install shellcheck
 # sudo apt install checkbashisms
+npm i -g yarn
 
 # terminal-based apps
 # sudo apt install bitwarden-cli
