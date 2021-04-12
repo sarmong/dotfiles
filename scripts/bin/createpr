@@ -13,7 +13,7 @@ title="$ticket - $1"
 
 body="https://***REMOVED***-education.atlassian.net/browse/$ticket"
 
-reviewers='lykhatskyi,ykorcheviy-***REMOVED***,atykhan-***REMOVED***,apovzun-***REMOVED***' 
+reviewers='lykhatskyi,ykorcheviy-***REMOVED***,atykhan-***REMOVED***' 
 
 assignee='***REMOVED***ha-***REMOVED***'
 
