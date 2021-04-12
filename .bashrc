@@ -8,3 +8,8 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export _JAVA_AWT_WM_NONREPARENTING=1
+export PATH=$HOME/.config/nvcode/utils/bin:$PATH
+
+export RUSTUP_HOME=$XDG_CONFIG_HOME/rust/rustup
+export CARGO_HOME=$XDG_CONFIG_HOME/rust/cargo
+source "/home//.config/rust/cargo/env"
