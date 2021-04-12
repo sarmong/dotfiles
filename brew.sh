@@ -39,6 +39,7 @@ brew install fd
 brew install fzf
 brew install gnu-sed ggrep
 brew install watch
+brew install stow
 
 brew install cheat
 brew install tldr
