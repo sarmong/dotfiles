@@ -13,7 +13,7 @@ title="$ticket - $1"
 
 body="https:/-education.atlassian.net/browse/$ticket"
 
-reviewers=',,,' 
+reviewers=',,' 
 
 assignee='m'
 
