@@ -45,6 +45,7 @@ sudo apt install tlp powertop xbacklight
 # install ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
 sudo dpkg -i ripgrep_12.1.1_amd64.de
+sudo apt istall stow
 
 # sudo apt install cheat
 sudo apt install tldr
