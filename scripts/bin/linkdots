@@ -1,0 +1,4 @@
+#!/bin/sh
+for dir in ./*; do
+    [ -d "$dir" ] && stow $(basename "$dir")
+done
