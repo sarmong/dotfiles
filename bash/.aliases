@@ -43,7 +43,9 @@ alias .....="cd ../../../..";
 alias pr="cd ~/Documents/Tech/Projects"
 alias dox="cd ~/Documents"
 alias dls="cd ~/Downloads"
-alias widgets="cd ~/Library/Application\ Support/EverWeb/Widgets"
+alias hub="cd ~/Documents/ss/invicta/ckla-hub"
+alias core="cd ~/Documents/ss/invicta/ckla-core"
+alias ckla="cd ~/Documents/ss/invicta/ca-ckla-***REMOVED***-com-website"
 
 # Internet
 alias yt="youtube-dl --add-metadata -ic" # Download video
