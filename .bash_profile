@@ -7,7 +7,8 @@ export LC_ALL=en_US.UTF-8
 # export JAVA_HOME=$(/usr/libexec/java_home)
 #export PATH=${PATH}:/usr/local/mysql/bin/
 
-eval "$(lua $HOME/bin/z.lua --init bash enhanced once)"
+. /usr/share/autojump/autojump.sh
+eval "$(lua $HOME/bin/z.lua --init bash enhanced once echo)"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh 
 # export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="$HOME/bin:$PATH:$HOME/.local/bin";
@@ -117,3 +118,4 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 export TERMINAL="kitty"
 export BROWSER=firefox
+source "/home/***REMOVED***/.config/rust/cargo/env"
