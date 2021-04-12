@@ -1,8 +1,0 @@
-./.gitignore
-./.git
-./readme.md
-./apt.sh
-./brew.sh
-./install.sh
-./macos.sh
-./twm.sh
