@@ -13,7 +13,7 @@ title="$ticket - $1"
 
 body="https://amplify-education.atlassian.net/browse/$ticket"
 
-reviewers='lykhatskyi,ykorcheviy-amplify,atykhan-amplify,apovzun-amplify' 
+reviewers='lykhatskyi,ykorcheviy-amplify,atykhan-amplify' 
 
 assignee='mreksha-amplify'
 
