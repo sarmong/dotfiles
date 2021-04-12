@@ -1,4 +1,8 @@
+" TODO there is a more contemporary version of this file
+" TODO Also some of it is redundant
 packadd quickscope
+
+luafile ~/.config/nvim/lua/settings.lua
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
