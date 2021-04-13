@@ -1,0 +1,16 @@
+#!/bin/sh
+
+Darwin="bash kitty nvim ranger scripts skhd spacebar vim yabai"
+
+Linux="bash bspwm i3 kitty nvim polybar ranger scripts sxhkd vim"
+
+if [ "$(uname)" = "Darwin" ]; then
+    for dir in ${Darwin}; do
+        stow -v --ignore=".DS_Store" "$(basename "$dir")"
+    done
+elif [ "$(uname)" = "Linux" ]; then
+    for dir in ${Linux}; do
+        stow -v --ignore=".DS_Store" "$(basename "$dir")"
+    done
+fi
+
