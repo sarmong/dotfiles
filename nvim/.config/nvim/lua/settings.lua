@@ -43,6 +43,7 @@ vim.cmd('set undofile') -- persistent undo
 vim.cmd('set wrap') -- wrap lines -- wrap lines -- wrap lines
 vim.cmd('set ignorecase') -- case insensitive search
 vim.cmd('set smartcase') -- search becomes case sensitive if contains any capital letters
+vim.cmd('set scrolloff = 2') -- padding of 2 lines when scrolling
 
 
 vim.cmd('nmap Q <Nop>') -- 'Q' in normal mode enters Ex mode. You almost never want this.
