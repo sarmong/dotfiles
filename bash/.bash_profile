@@ -111,7 +111,7 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
-export XDG_CONFIG_HOME=/home/***REMOVED***/.config
+export XDG_CONFIG_HOME=~/.config
 export PATH=$PATH:/home/***REMOVED***/.***REMOVED***/multitool/bin
 
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
