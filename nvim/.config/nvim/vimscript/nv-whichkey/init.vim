@@ -164,7 +164,7 @@ let g:which_key_map.g = {
       \ 'name' : '+git' ,
       \ 'b' : [':GitBlameToggle'                   , 'blame'],
       \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'd' : [':Git diff'                         , 'diff'],
+      \ 'd' : [':Gvdiffsplit'                         , 'diff'],
       \ 'j' : [':NextHunk'                         , 'next hunk'],
       \ 'k' : [':PrevHunk'                         , 'prev hunk'],
       \ 'l' : [':Git log'                          , 'log'],
