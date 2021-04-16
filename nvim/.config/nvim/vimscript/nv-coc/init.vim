@@ -26,7 +26,10 @@ endif
 
 " let g:coc_node_path = "$XDG_CONFIG_HOME/nvm/versions/node/v14.16.0/bin/node"
 
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-sh', 'coc-tsserver', 'coc-snippets' ]
+let g:coc_global_extensions = ['coc-json', 'coc-css', 'coc-eslint', 'coc-stylelintplus', 'coc-prettier', 'coc-sh', 'coc-tsserver', 'coc-snippets', 'coc-lua', 'coc-vimlsp', 'coc-markdownlint']
+
+" add @ as a keyword for scss
+autocmd FileType scss setl iskeyword+=@-@
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
