@@ -3,9 +3,10 @@ local actions = require('telescope.actions')
 ------------------------------
 -- '--color=never',
 require('telescope').load_extension('media_files')
+require('telescope').load_extension('project')
 require('telescope').setup {
     defaults = {
-        vimgrep_arguments = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
+		vimgrep_arguments = {'rg', '--hidden', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
         prompt_position = "top",
         prompt_prefix = " ",
         selection_caret = " ",
@@ -16,7 +17,7 @@ require('telescope').setup {
         layout_strategy = "horizontal",
         layout_defaults = {horizontal = {mirror = false}, vertical = {mirror = false}},
         file_sorter = require'telescope.sorters'.get_fuzzy_file,
-        file_ignore_patterns = {'node_modules'},
+        file_ignore_patterns = {'node_modules', '.git'},
         generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
         shorten_path = true,
         winblend = 0,
@@ -43,7 +44,7 @@ require('telescope').setup {
                 -- To disable a keymap, put [map] = false
                 -- So, to not map "<C-n>", just put
                 -- ["<c-x>"] = false,
-                ["<esc>"] = actions.close,
+                ["<c-n>"] = actions.close,
 
                 -- Otherwise, just set the mapping to the function that you want it to be.
                 -- ["<C-i>"] = actions.select_horizontal,
