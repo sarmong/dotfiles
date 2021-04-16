@@ -22,24 +22,22 @@ autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
-let g:which_key_map['/'] = 'comment toggle'
 let g:which_key_map[';'] = [ ':Dashboard'                                      , 'home screen' ]
 let g:which_key_map[','] = [ '<Plug>(emmet-expand-abbr)'                       , 'expand tags' ]
 let g:which_key_map['"'] = [ '<Plug>PeekupOpen'                                , 'registers' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'find current file' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
-let g:which_key_map['f'] = [ ':Telescope find_files'                           , 'find files' ]
+let g:which_key_map['f'] = [ ':Telescope find_files hidden=true'               , 'find files' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['M'] = [ ':MarkdownPreviewToggle'                          , 'markdown preview']
-let g:which_key_map['H'] = [ ':let @/ = ""'                                    , 'no highlight' ]
-let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'ranger' ]
+" let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'ranger' ]
 let g:which_key_map['*'] = [ ':DogeGenerate'                                   , 'documentation generator' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree' ]
 " TODO create entire treesitter section
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
-" TODO play nice with status line
-let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
+" TODO fix
+" let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
 
 " Group mappings
 
@@ -67,7 +65,6 @@ let g:which_key_map['.'] = {
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
       \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-      \ 'h' : [':let @/ = ""'            , 'remove search highlight'],
       \ 'i' : [':IndentBlanklineToggle'  , 'toggle indent lines'],
       \ 'n' : [':set nonumber!'          , 'line-numbers'],
       \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'surround'],
@@ -98,15 +95,6 @@ let g:which_key_map.c = {
       \ 'a' : ['<Plug>(coc-codeaction-selected)'  , 'code action selected'],
       \ 'c' : ['<Plug>(coc-codeaction)'           , 'code action'],
       \ 'q' : ['<Plug>(coc-fix-current)'          , 'quick fix'],
-      \ }
-
-" D is for database
-let g:which_key_map.D = {
-      \ 'name' : '+database' ,
-      \ 'u' : ['DBUIToggle '        , 'db ui toggle'],
-      \ 'f' : ['DBUIFindBuffer'     , 'db find buffer'],
-      \ 'r' : ['DBUIRenameBuffer'   , 'db rename buffer'],
-      \ 'l' : ['DBUILastQueryInfo'  , 'db last query'],
       \ }
 
 " F is for fold
@@ -150,6 +138,7 @@ let g:which_key_map.s = {
       \ 'r' : [':Telescope registers'                   , 'registers'],
       \ 'w' : [':Telescope file_browser'                , 'buf_fuz_find'],
       \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
+      \ 'p' : [':Telescope project'                 , 'projects'],
       \ }
 
 " S is for Session
@@ -164,16 +153,16 @@ let g:which_key_map.g = {
       \ 'name' : '+git' ,
       \ 'b' : [':GitBlameToggle'                   , 'blame'],
       \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'd' : [':Gvdiffsplit'                         , 'diff'],
+      \ 'd' : [':Gvdiffsplit'                      , 'diff'],
       \ 'j' : [':NextHunk'                         , 'next hunk'],
       \ 'k' : [':PrevHunk'                         , 'prev hunk'],
       \ 'l' : [':Git log'                          , 'log'],
-      \ 'p' : [':PreviewHunk'                      , 'preview hunk'],
+      \ 'p' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
       \ 'r' : [':ResetHunk'                        , 'reset hunk'],
       \ 'R' : [':ResetBuffer'                      , 'reset buffer'],
-      \ 's' : [':StageHunk'                        , 'stage hunk'],
+      \ 's' : ['<Plug>(GitGutterStageHunk)'        , 'stage hunk'],
       \ 'S' : [':Gstatus'                          , 'status'],
-      \ 'u' : [':UndoStageHunk'                    , 'undo stage hunk'],
+      \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo stage hunk'],
       \ }
       " \ 'n' : [':Neogit'                           , 'neogit'],
 
