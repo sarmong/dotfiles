@@ -51,18 +51,20 @@ return require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-media-files.nvim'
+    use 'nvim-telescope/telescope-project.nvim'
 
     -- Explorer
     use 'kyazdani42/nvim-tree.lua'
+   -- use 'preservim/nerdtree' 
 
     -- Color
     use 'christianchiarulli/nvcode-color-schemes.vim'
-    use 'norcalli/nvim-colorizer.lua'
+    use { 'norcalli/nvim-colorizer.lua', config = function() require'nv-colorizer' end}
     use 'sheerun/vim-polyglot'
 
     -- Git
-    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use 'f-person/git-blame.nvim'
+	use 'airblade/vim-gitgutter'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
 
