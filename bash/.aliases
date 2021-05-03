@@ -46,6 +46,7 @@ alias dls="cd ~/Downloads"
 alias hub="cd ~/Documents/ss/invicta/ckla-hub"
 alias core="cd ~/Documents/ss/invicta/ckla-core"
 alias ckla="cd ~/Documents/ss/invicta/ca-ckla-***REMOVED***-com-website"
+alias stream="cd ~/Documents/ss/invicta/de-student-stream"
 
 # Internet
 alias yt="youtube-dl --add-metadata -ic" # Download video
