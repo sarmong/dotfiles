@@ -1,5 +1,6 @@
 # TODO
 
+- add git config
 - set up locksreen [for second monitor](https://www.reddit.com/r/unixporn/comments/3358vu/i3lock_unixpornworthy_lock_screen/)
 - Set up `picom` (forks)
 - Set up aliases https://www.youtube.com/watch?v=rjCvxTJ8Te4
@@ -31,6 +32,7 @@
 
 ## VIM TODO
 
+- show all results in telescope (now showing only the ones that fit the screen)
 - setup vimwiki
   - fix mardown checkboxes and crossed lines
   - alt + tab to change buffers?
