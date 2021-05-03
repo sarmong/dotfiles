@@ -2,7 +2,7 @@
 
 Darwin="bash kitty nvim ranger scripts skhd spacebar vim yabai"
 
-Linux="bash bspwm i3 kitty nvim polybar ranger scripts sxhkd vim"
+Linux="bash bspwm awesome i3 kitty nvim polybar ranger scripts sxhkd vim"
 
 if [ "$(uname)" = "Darwin" ]; then
     for dir in ${Darwin}; do
