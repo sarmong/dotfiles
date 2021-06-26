@@ -48,6 +48,8 @@ return require('packer').startup(function(use)
     -- Status Line and Bufferline
     use 'glepnir/galaxyline.nvim'
     use 'romgrk/barbar.nvim'
+    
+    use 'junegunn/fzf.vim'
 
     -- Telescope
     use 'nvim-lua/popup.nvim'
