@@ -20,6 +20,7 @@ sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x2
 # basic
 sudo apt install i3
 sudo apt install i3blocks
+sudo apt install i3lock-fancy
 
 ## install nvm
 sudo apt install neofetch
@@ -46,6 +47,7 @@ sudo apt install tlp powertop xbacklight
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
 sudo dpkg -i ripgrep_12.1.1_amd64.de
 sudo apt istall stow
+brew install thefuck
 
 # sudo apt install cheat
 sudo apt install tldr
