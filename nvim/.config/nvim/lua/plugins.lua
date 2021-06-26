@@ -22,6 +22,9 @@ return require('packer').startup(function(use)
     -- use 'vimwiki/vimwiki'
     --
     use 'chaoren/vim-wordmotion'
+    use 'mg979/vim-visual-multi'
+    use 'godlygeek/tabular'
+    use 'plasticboy/vim-markdown'
 
        -- Autocomplete
     -- use 'hrsh7th/nvim-compe' -- apparantly non needed with coc
