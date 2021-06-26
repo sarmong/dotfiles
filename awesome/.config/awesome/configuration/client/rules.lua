@@ -49,7 +49,7 @@ awful.rules.rules = {
     rule_any = { class = { 'PanGPUI' }},
     properties = {
       placement = awful.placement.centered,
-      ontop = true,
+      ontop = false,
       floating = true,
 	  skip_decoration = true
     }
@@ -58,7 +58,7 @@ awful.rules.rules = {
     rule_any = { name = { 'GlobalProtect' }},
     properties = {
       placement = awful.placement.top_right,
-      ontop = true,
+      ontop = false,
       floating = true,
 	  skip_decoration = true
     }

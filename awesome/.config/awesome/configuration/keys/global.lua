@@ -14,8 +14,6 @@ local globalKeys =
   -- Tag browsing
   awful.key({modkey}, 'w', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
   awful.key({modkey}, 's', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
-  awful.key({altkey, 'Control'}, 'Up', awful.tag.viewprev, {description = 'view previous', group = 'tag'}),
-  awful.key({altkey, 'Control'}, 'Down', awful.tag.viewnext, {description = 'view next', group = 'tag'}),
   awful.key({modkey}, 'Escape', awful.tag.history.restore, {description = 'go back', group = 'tag'}),
   -- Default client focus
   awful.key(
@@ -50,33 +48,17 @@ local globalKeys =
     end,
     {description = 'Show main menu', group = 'awesome'}
   ),
-    awful.key(
-      {modkey, 'Shift'},
-      'e',
-      function() 
-        awful.spawn('rofi -show power-menu -location 1 -yoffset 30 -xoffset 10 -width 15 -columns 1 -lines 6 -modi power-menu:~/bin/rofi/rofi-power-menu')
-        end,
-      {description = 'Power Menu', group = 'awesome'}
-    ),
-  -- awful.key(
-  --   {modkey, 'Shift'},
-  --   'r',
-  --   function()
-  --     awful.spawn('reboot')
-  --   end,
-  --   {description = 'Reboot Computer', group = 'awesome'}
-  -- ),
-  -- awful.key(
-  --   {modkey, 'Shift'},
-  --   's',
-  --   function()
-  --     awful.spawn('shutdown now')
-  --   end,
-  --   {description = 'Shutdown Computer', group = 'awesome'}
-  -- ),
+    -- awful.key(
+    --   {modkey, 'Shift'},
+    --   'e',
+    --   function() 
+    --     awful.spawn('rofi -show power-menu -location 1 -yoffset 30 -xoffset 10 -width 15 -columns 1 -lines 6 -modi power-menu:~/bin/rofi/rofi-power-menu')
+    --     end,
+    --   {description = 'Power Menu', group = 'awesome'}
+    -- ),
   awful.key(
     {modkey, 'Shift'},
-    'l',
+    'e',
     function()
       _G.exit_screen_show()
     end,
@@ -84,7 +66,7 @@ local globalKeys =
   ),
   awful.key({modkey}, 'u', awful.client.urgent.jumpto, {description = 'jump to urgent client', group = 'client'}),
   awful.key(
-    {altkey},
+    {modkey},
     'Tab',
     function()
       --awful.client.focus.history.previous()
@@ -96,7 +78,7 @@ local globalKeys =
     {description = 'Switch to next window', group = 'client'}
   ),
   awful.key(
-    {altkey, 'Shift'},
+    {modkey, 'Shift'},
     'Tab',
     function()
       --awful.client.focus.history.previous()
@@ -108,14 +90,6 @@ local globalKeys =
     {description = 'Switch to previous window', group = 'client'}
   ),
   -- Programms
-  awful.key(
-    {modkey},
-    'l',
-    function()
-      awful.spawn(apps.default.lock)
-    end,
-    {description = 'Lock the screen', group = 'awesome'}
-  ),
   awful.key(
     {},
     'Print',
@@ -254,7 +228,7 @@ local globalKeys =
     {description = 'dropdown application', group = 'launcher'}
   ),
   -- Widgets popups
-  --[[awful.key(
+  awful.key(
     {altkey},
     'h',
     function()
@@ -273,7 +247,7 @@ local globalKeys =
       end
     end,
     {description = 'Show weather', group = 'widgets'}
-  ),--]]
+  ),
   -- Brightness
   awful.key(
     {},

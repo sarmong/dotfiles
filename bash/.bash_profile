@@ -4,6 +4,8 @@ export LC_ALL=en_US.UTF-8
   export PATH="$HOME/Documents/android/adb-fastboot/platform-tools:$PATH"
  fi
 
+eval $(thefuck --alias)
+
 # export JAVA_HOME=$(/usr/libexec/java_home)
 #export PATH=${PATH}:/usr/local/mysql/bin/
 
