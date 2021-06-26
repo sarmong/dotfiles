@@ -33,9 +33,6 @@
 ## VIM TODO
 
 - show all results in telescope (now showing only the ones that fit the screen)
-- setup vimwiki
-  - fix mardown checkboxes and crossed lines
-  - alt + tab to change buffers?
 - telescope show hidden files
 - show full bufer path2
 - C-Q to quit vim completely
@@ -68,3 +65,4 @@ Plug 'morhetz/gruvbox'
 Plug 'easymotion/vim-easymotion' " Easy Movement
 Plug 'Yggdroot/indentLine' " Pretty indented lines
 Plug 'ap/vim-css-color' " Visual display hexcode colors in vim
+https://github.com/neoclide/coc-jest

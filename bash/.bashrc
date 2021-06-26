@@ -9,6 +9,7 @@ export NVM_DIR="$HOME/.config/nvm"
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$HOME/.config/nvcode/utils/bin:$PATH
+export PATH=$PATH:~/.emacs.d/bin
 
 export RUSTUP_HOME=$XDG_CONFIG_HOME/rust/rustup
 export CARGO_HOME=$XDG_CONFIG_HOME/rust/cargo
