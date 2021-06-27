@@ -1,27 +1,22 @@
 # TODO
 
-- add git config
 - set up locksreen [for second monitor](https://www.reddit.com/r/unixporn/comments/3358vu/i3lock_unixpornworthy_lock_screen/)
-- Set up `picom` (forks)
 - Set up aliases https://www.youtube.com/watch?v=rjCvxTJ8Te4
 - set up ranger
 - set up script to move between personal and work profiles (default browser etc)
 - blue light blocker
 - infinality font patches from eye strain
-- set up taskwarrior server
 - fix z.lua / autojump
 - when hdmi disconnected - remove display
 - fix hibernation
 - lockscreen on close
 - https://askubuntu.com/questions/359144/mac-os-x-like-built-in-dictionary-in-ubuntu
 - [Global Protect Linux](https://live.paloaltonetworks.com/t5/general-topics/global-protect-new-linux-ui/td-p/304425#)
-- set up polybar
 - reminders to charge battery
 - pass
 - set up zsh
 - Look into st and dwm
 - clipboard manager
-- pastvu
 - https://github.com/mwh/dragon
 - volume controls
 - jira cli https://github.com/go-jira/jira
@@ -32,8 +27,6 @@
 
 ## VIM TODO
 
-- show all results in telescope (now showing only the ones that fit the screen)
-- telescope show hidden files
 - show full bufer path2
 - C-Q to quit vim completely
 - quit vim when nvimtree is the last window
@@ -48,7 +41,6 @@
 - learn all plugins i have
 - move config files to use packer config option
 - colorhoghlight dsoesn't work after undo
-- vim language server https://github.com/iamcco/vim-language-server
 - lua ls https://github.com/josa42/coc-lua
 - close dashboard buffer after open
 - easily resize window

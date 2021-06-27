@@ -6,6 +6,10 @@ export LC_ALL=en_US.UTF-8
 
 eval $(thefuck --alias)
 
+# fzf hotkeys https://wiki.archlinux.org/title/Fzf
+source /usr/share/fzf/completion.bash
+source /usr/share/fzf/key-bindings.bash
+
 # export JAVA_HOME=$(/usr/libexec/java_home)
 #export PATH=${PATH}:/usr/local/mysql/bin/
 
