@@ -49,6 +49,7 @@ return require('packer').startup(function(use)
     use 'glepnir/galaxyline.nvim'
     use 'romgrk/barbar.nvim'
     
+    use 'junegunn/fzf'
     use 'junegunn/fzf.vim'
 
     -- Telescope
