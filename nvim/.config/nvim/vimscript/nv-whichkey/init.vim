@@ -27,7 +27,7 @@ let g:which_key_map[','] = [ '<Plug>(emmet-expand-abbr)'                       ,
 let g:which_key_map['"'] = [ '<Plug>PeekupOpen'                                , 'registers' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'find current file' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
-let g:which_key_map['f'] = [ ':Telescope find_files hidden=true'               , 'find files' ]
+let g:which_key_map['f'] = [ ':GFiles'                                         , 'find files' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['M'] = [ ':MarkdownPreviewToggle'                          , 'markdown preview']
 " let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'ranger' ]
@@ -122,23 +122,35 @@ let g:which_key_map.m = {
     \ }
 
 " s is for search powered by telescope
+" let g:which_key_map.s = {
+"       \ 'name' : '+search' ,
+"       \ '.' : [':Telescope filetypes'                   , 'filetypes'],
+"       \ 'B' : [':Telescope git_branches'                , 'git branches'],
+"       \ 'd' : [':Telescope lsp_document_diagnostics'    , 'document_diagnostics'],
+"       \ 'D' : [':Telescope lsp_workspace_diagnostics'   , 'workspace_diagnostics'],
+"       \ 'f' : [':Telescope find_files'                  , 'files'],
+"       \ 'h' : [':Telescope command_history'             , 'history'],
+"       \ 'i' : [':Telescope media_files'                 , 'media files'],
+"       \ 'm' : [':Telescope marks'                       , 'marks'],
+"       \ 'M' : [':Telescope man_pages'                   , 'man_pages'],
+"       \ 'o' : [':Telescope vim_options'                 , 'vim_options'],
+"       \ 't' : [':Telescope live_grep'                   , 'text'],
+"       \ 'r' : [':Telescope registers'                   , 'registers'],
+"       \ 'w' : [':Telescope file_browser'                , 'buf_fuz_find'],
+"       \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
+"       \ 'p' : [':Telescope project'                 , 'projects'],
+"       \ }
+
 let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '.' : [':Telescope filetypes'                   , 'filetypes'],
-      \ 'B' : [':Telescope git_branches'                , 'git branches'],
-      \ 'd' : [':Telescope lsp_document_diagnostics'    , 'document_diagnostics'],
-      \ 'D' : [':Telescope lsp_workspace_diagnostics'   , 'workspace_diagnostics'],
-      \ 'f' : [':Telescope find_files'                  , 'files'],
-      \ 'h' : [':Telescope command_history'             , 'history'],
-      \ 'i' : [':Telescope media_files'                 , 'media files'],
-      \ 'm' : [':Telescope marks'                       , 'marks'],
-      \ 'M' : [':Telescope man_pages'                   , 'man_pages'],
-      \ 'o' : [':Telescope vim_options'                 , 'vim_options'],
-      \ 't' : [':Telescope live_grep'                   , 'text'],
-      \ 'r' : [':Telescope registers'                   , 'registers'],
-      \ 'w' : [':Telescope file_browser'                , 'buf_fuz_find'],
-      \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
-      \ 'p' : [':Telescope project'                 , 'projects'],
+        \  'name'  :  '+search'      ,
+        \  '.'     :  [':Filetypes'  ,  'filetypes'],
+        \  'd'     :  [':GFiles?'    ,  'diff (git status)'],
+        \  'b'     :  [':Buffers'    ,  'buffers'],
+        \  't'     :  [':Rg'         ,  'text'],
+        \  '/'     :  [':BLines'     ,  'current       buffer'],
+        \  'c'     :  [':Commits'    ,  'commits'],
+        \  'p'     :  [':Commands'   ,  'commands'],
+        \  'h'     :  [':Helptags'   ,  'help'],
       \ }
 
 " S is for Session
