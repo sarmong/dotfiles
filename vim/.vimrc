@@ -13,6 +13,11 @@ set background=dark
 " This is used to make bg not disappear. Taken from kitty #108
 let &t_ut=''
 
+" With this option, `:find` command searches recursively in all dirs
+set path+=**
+" Display all matching files when tab complete
+set wildmenu
+
 " set swapfiles dir
 set directory^=$HOME/.vim/tmp//
 
