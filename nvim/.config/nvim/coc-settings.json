@@ -1,5 +1,5 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["scss", "css", "vim", "lua", "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "vim"],
+  "coc.preferences.formatOnSaveFiletypes": ["scss", "css", "vim", "lua", "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "vim", "markdown"],
 "Lua.runtime.version": "Lua 5.2",
   "lua.trace.server": "verbose",
   "Lua.diagnostics.globals": ["vim"]
