@@ -19,6 +19,12 @@ return require('packer').startup(function(use)
 
     use 'neoclide/coc.nvim'
     use {'dsznajder/vscode-es7-javascript-react-snippets', run = 'yarn install --frozen-lockfile && yarn compile'}
+    use {'iamcco/coc-vimlsp', run = 'yarn install --frozen-lockfile'}
+    use {'neoclide/coc-tsserver', run = 'yarn install --frozen-lockfile'}
+    use {'bmatcuk/coc-stylelintplus', run = 'yarn install --frozen-lockfile'}
+    use {'neoclide/coc-snippets', run = 'yarn install --frozen-lockfile'}
+    -- use {'neoclide/coc-tsserver', run = 'yarn install --frozen-lockfile'}
+    -- use {'neoclide/coc-tsserver', run = 'yarn install --frozen-lockfile'}
     -- use 'vimwiki/vimwiki'
     --
     use 'chaoren/vim-wordmotion'

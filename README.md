@@ -27,6 +27,7 @@
 
 ## VIM TODO
 
+- [russian layout](https://habr.com/ru/post/98393/)
 - show full bufer path2
 - C-Q to quit vim completely
 - quit vim when nvimtree is the last window
@@ -57,4 +58,5 @@ Plug 'morhetz/gruvbox'
 Plug 'easymotion/vim-easymotion' " Easy Movement
 Plug 'Yggdroot/indentLine' " Pretty indented lines
 Plug 'ap/vim-css-color' " Visual display hexcode colors in vim
+vim-surround
 https://github.com/neoclide/coc-jest
