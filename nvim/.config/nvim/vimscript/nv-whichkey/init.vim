@@ -146,6 +146,7 @@ let g:which_key_map.s = {
         \  '.'     :  [':Filetypes'  ,  'filetypes'],
         \  'd'     :  [':GFiles?'    ,  'diff (git status)'],
         \  'b'     :  [':Buffers'    ,  'buffers'],
+        \  'B'     :  [':GBranches'  ,  'git branches'],
         \  't'     :  [':Rg'         ,  'text'],
         \  '/'     :  [':BLines'     ,  'current       buffer'],
         \  'c'     :  [':Commits'    ,  'commits'],
