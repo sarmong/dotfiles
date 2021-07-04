@@ -21,3 +21,14 @@ dd = diff --dirstat --find-copies --find-renames --histogram --color
 
 [url "https://"]
 	insteadOf = git://
+
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL
+
+[user]
+	email = ***REMOVED***ha@***REMOVED***.com
+	name = michael
