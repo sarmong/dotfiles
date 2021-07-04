@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
     use {'neoclide/coc-snippets', run = 'yarn install --frozen-lockfile'}
 
     use {'josa42/coc-lua', run = 'yarn install --frozen-lockfile'}
+    use {'josa42/coc-sh', run = 'yarn install --frozen-lockfile'}
     use {'neoclide/coc-git', run = 'yarn install --frozen-lockfile'}
     use {'neoclide/coc-prettier', run = 'yarn install --frozen-lockfile'}
     use {'neoclide/coc-eslint', run = 'yarn install --frozen-lockfile'}
