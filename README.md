@@ -28,9 +28,7 @@
 ## VIM TODO
 
 - [russian layout](https://habr.com/ru/post/98393/)
-- show full bufer path2
 - C-Q to quit vim completely
-- quit vim when nvimtree is the last window
 - fix wordmotion
 - fix swap files
 - Swap 0 and ^
