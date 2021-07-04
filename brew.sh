@@ -37,6 +37,7 @@ npm install -g trash-cli
 brew install autojump
 brew install fd
 brew install fzf
+brew install ripgrep
 brew install gnu-sed ggrep
 brew install watch
 brew install stow

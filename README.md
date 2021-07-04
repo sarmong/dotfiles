@@ -42,7 +42,6 @@
 - learn all plugins i have
 - move config files to use packer config option
 - colorhoghlight dsoesn't work after undo
-- lua ls https://github.com/josa42/coc-lua
 - close dashboard buffer after open
 - easily resize window
 
