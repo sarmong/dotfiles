@@ -38,14 +38,12 @@ sudo apt install speedtest-cli
 sudo apt install youtube-dl
 sudo apt install autojump
 # sudo apt install fd
-# sudo apt install fzf
+brew install fzf
 sudo apt install watch
 sudo apt install scrot
 sudo apt install xclip
 sudo apt install tlp powertop xbacklight
-# install ripgrep
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
-sudo dpkg -i ripgrep_12.1.1_amd64.de
+brew install rigpgrep
 sudo apt istall stow
 brew install thefuck
 
