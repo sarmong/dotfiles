@@ -68,6 +68,7 @@ return require('packer').startup(function(use)
     
     use 'junegunn/fzf'
     use 'junegunn/fzf.vim'
+    use 'stsewd/fzf-checkout.vim'
 
     -- Telescope
     use 'nvim-lua/popup.nvim'
