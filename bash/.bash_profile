@@ -10,6 +10,11 @@ eval $(thefuck --alias)
 source /usr/share/fzf/completion.bash
 source /usr/share/fzf/key-bindings.bash
 
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --require-git -g='!.git/**/*''
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
 # export JAVA_HOME=$(/usr/libexec/java_home)
 #export PATH=${PATH}:/usr/local/mysql/bin/
 
