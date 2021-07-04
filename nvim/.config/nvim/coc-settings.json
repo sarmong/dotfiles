@@ -1,6 +1,27 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["scss", "css", "vim", "lua", "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "vim", "markdown"],
-"Lua.runtime.version": "Lua 5.2",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "scss",
+    "css",
+    "vim",
+    "lua",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "vim",
+    "markdown"
+  ],
+  "Lua.runtime.version": "Lua 5.2",
   "lua.trace.server": "verbose",
-  "Lua.diagnostics.globals": ["vim"]
+  "Lua.diagnostics.globals": ["vim"],
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }
