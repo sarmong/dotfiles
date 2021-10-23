@@ -89,6 +89,9 @@ local globalKeys =
     end,
     {description = 'Switch to previous window', group = 'client'}
   ),
+  -- Go to next/prev screen
+  awful.key({ modkey}, "e", function () awful.screen.focus_relative(1) end),
+  awful.key({ modkey, 'Shift'}, "e", function () awful.screen.focus_relative(-1) end),
   -- Programms
   awful.key(
     {},
@@ -371,7 +374,7 @@ local globalKeys =
   ),
   -- File Manager
   awful.key(
-    {modkey},
+    {modkey, 'Control'},
     'e',
     function()
       awful.util.spawn(apps.default.files)
