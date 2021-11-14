@@ -19,4 +19,4 @@ xsetroot -cursor_name left_ptr # remove x-shaped cursor when no windows open
 xset r rate 250 45 # start cursor movement after 250ms and at 45 lines per second
 # touchegg &
 kitty
-
+copyq &
