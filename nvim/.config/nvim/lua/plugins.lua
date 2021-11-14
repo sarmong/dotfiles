@@ -22,11 +22,13 @@ return require('packer').startup(function(use)
     use {'neoclide/coc-tsserver', run = 'yarn install --frozen-lockfile'}
     use {'bmatcuk/coc-stylelintplus', run = 'yarn install --frozen-lockfile'}
     use {'neoclide/coc-snippets', run = 'yarn install --frozen-lockfile'}
+    use {'rescript-lang/vim-rescript'}
 
     use {'josa42/coc-lua', run = 'yarn install --frozen-lockfile'}
     use {'josa42/coc-sh', run = 'yarn install --frozen-lockfile'}
     use {'neoclide/coc-git', run = 'yarn install --frozen-lockfile'}
-    use {'neoclide/coc-prettier', run = 'yarn install --frozen-lockfile'}
+    -- use {'neoclide/coc-prettier', run = 'yarn install --frozen-lockfile'}
+    use {'neoclide/coc-rls', run = 'yarn install --frozen-lockfile'}
     use {'neoclide/coc-eslint', run = 'yarn install --frozen-lockfile'}
     use {'iamcco/coc-vimlsp', run = 'yarn install --frozen-lockfile'}
     use {'josa42/coc-sh', run = 'yarn install --frozen-lockfile'}
@@ -35,8 +37,11 @@ return require('packer').startup(function(use)
     use {'neoclide/coc-css', run = 'yarn install --frozen-lockfile'}
     use {'dsznajder/vscode-es7-javascript-react-snippets', run = 'yarn install --frozen-lockfile && yarn compile'}
     use {'rafamadriz/friendly-snippets', run = 'yarn install --frozen-lockfile'}
+
+    use 'sbdchd/neoformat'
     
     -- use 'vimwiki/vimwiki'
+    use 'vim-test/vim-test'
     --
     use 'chaoren/vim-wordmotion'
     use 'mg979/vim-visual-multi'
