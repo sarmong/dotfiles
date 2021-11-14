@@ -47,6 +47,7 @@ brew install rigpgrep
 sudo apt istall stow
 brew install thefuck
 sudo apt install httpie
+sudo apt install copyq
 
 # sudo apt install cheat
 sudo apt install tldr

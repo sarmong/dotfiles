@@ -57,6 +57,14 @@ local globalKeys =
     --   {description = 'Power Menu', group = 'awesome'}
     -- ),
   awful.key(
+    {modkey, 'Control'},
+    'c',
+    function()
+      awful.spawn('copyq menu')
+    end,
+    {description = 'Open clipboard menu', group = 'awesome'}
+  ),
+  awful.key(
     {modkey, 'Shift'},
     'e',
     function()
