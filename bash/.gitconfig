@@ -5,6 +5,7 @@
   ca = commit -am
   s = status
   cm = commit -m
+  cam = commit --amend --no-edit
   l = log --all --graph --decorate --oneline
 
   unstage = reset HEAD --
@@ -29,6 +30,8 @@ dd = diff --dirstat --find-copies --find-renames --histogram --color
 [mergetool "vimdiff"]
   cmd = nvim -d $BASE $LOCAL
 
-[user]
-	email = m@
-	name = michael
+[include]
+    path = ~/git-personal.conf
+[includeIf "gitdir:~/Documents/code/"]
+    path = ~/git-work.conf
+
