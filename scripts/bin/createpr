@@ -7,17 +7,15 @@ fi
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 
-ticket=$(echo "$branch" | grep -P '\/?([A-Z]{2,5}-\d{2,5})_*' | grep -Po '[A-Z]{2,5}-\d{2,5}')
+ticket=$(echo "$branch" | grep -P '\/?([A-Za-z]{2,5}-\d{1,5})_*' | grep -Po '[A-Za-z]{2,5}-\d{2,5}')
 
 title="$ticket - $1"
 
 body="https://***REMOVED***-education.atlassian.net/browse/$ticket"
 
-reviewers=',-***REMOVED***,-***REMOVED***,,-***REMOVED***' 
-
 assignee='***REMOVED***ha-***REMOVED***'
 
-printf "PR title is:\n$title\n\nPR body is:\n$body\n\nReviewers are:\n$reviewers\n\nAssignee is:\n$assignee\n\n\nIs everything correct?\n"
+printf "PR title is:\n$title\n\nPR body is:\n$body\n\nAssignee is:\n$assignee\n\n\nIs everything correct?\n"
 
 echo -n "Y/n: "
 read -r
@@ -29,4 +27,4 @@ if [ "$REPLY" = "n" ] || [ "$REPLY" = "N" ]; then
 fi
 
 echo 'Creating pull request...'
-gh pr create --title "$title" --body "$body" --reviewer $reviewers --assignee $assignee
+gh pr create --title "$title" --body "$body" --assignee $assignee $2
