@@ -30,7 +30,7 @@ sudo apt install zathura
 # cli utils
 sudo apt install tree
 # sudo apt install broot
-# sudo apt install bat
+brew install bat
 sudo apt install exiftool
 sudo apt install ffmpeg
 sudo apt install imagemagick
