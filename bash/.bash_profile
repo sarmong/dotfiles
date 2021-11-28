@@ -28,9 +28,11 @@ fi
 
 export PROMPT_COMMAND=enter_directory
 
-# fzf hotkeys https://wiki.archlinux.org/title/Fzf
-source /usr/share/fzf/completion.bash
-source /usr/share/fzf/key-bindings.bash
+if [ -d /usr/share/fzf ]; then
+    # fzf hotkeys https://wiki.archlinux.org/title/Fzf
+    source /usr/share/fzf/completion.bash
+    source /usr/share/fzf/key-bindings.bash
+fi
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND="rg --files --hidden --require-git -g='!.git/**/*'"
@@ -40,7 +42,9 @@ fi
 # export JAVA_HOME=$(/usr/libexec/java_home)
 #export PATH=${PATH}:/usr/local/mysql/bin/
 
-. /usr/share/autojump/autojump.sh
+if [ -d /usr/share/autojump ]; then
+    . /usr/share/autojump/autojump.sh
+fi
 eval "$(lua $HOME/bin/z.lua --init bash enhanced once echo)"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh 
 # export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
@@ -145,13 +149,6 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export XDG_CONFIG_HOME=~/.config
-export PATH=$PATH:/home/***REMOVED***/.***REMOVED***/multitool/bin
-
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-# export PROMPT_COMMAND="pwd > /tmp/whereami"
-export TERMINAL="kitty"
-export BROWSER=firefox
-source "/home/***REMOVED***/.config/rust/cargo/env"
 
 
 ## Set custom MANPAGER
@@ -167,3 +164,18 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # "nvim" as manpager
 # export MANPAGER="nvim -c 'set ft=man' -"
+
+if [[ "$(uname)" -ne "Darwin" ]]; then 
+    export PATH=$PATH:/home/***REMOVED***/.***REMOVED***/multitool/bin
+
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+    source "/home/***REMOVED***/.config/rust/cargo/env"
+fi
+
+# export PROMPT_COMMAND="pwd > /tmp/whereami"
+export TERMINAL="kitty"
+export BROWSER=firefox
+
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
