@@ -47,6 +47,7 @@ return require('packer').startup(function(use)
     use 'mg979/vim-visual-multi'
     use 'godlygeek/tabular'
     use 'plasticboy/vim-markdown'
+    use {'raghur/vim-ghost', run = ':GhostInstall'}
 
        -- Autocomplete
     -- use 'hrsh7th/nvim-compe' -- apparantly non needed with coc
