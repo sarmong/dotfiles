@@ -41,6 +41,7 @@ brew install ripgrep
 brew install gnu-sed ggrep
 brew install watch
 brew install stow
+brew install thefuck
 
 brew install cheat
 brew install tldr
