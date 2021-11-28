@@ -14,5 +14,10 @@ export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 export RUSTUP_HOME=$XDG_CONFIG_HOME/rust/rustup
 export CARGO_HOME=$XDG_CONFIG_HOME/rust/cargo
-source "/home//.config/rust/cargo/env"
-export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+
+if  [ type "$mkcert" &> /dev/null ] ; then
+    export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

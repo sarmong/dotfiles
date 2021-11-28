@@ -20,7 +20,6 @@ alias fgrep="fgrep --color=auto";
 alias egrep="egrep --color=auto";
 alias mv="mv -i";
 alias rm="rm -i";
-alias cp="cp -i";
 alias mkd="mkdir -pv";
 
 mcd() {
