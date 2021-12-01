@@ -31,7 +31,7 @@ dd = diff --dirstat --find-copies --find-renames --histogram --color
   cmd = nvim -d $BASE $LOCAL
 
 [include]
-    path = ~/git-personal.conf
+    path = ~/.config/git/git-personal.conf
 [includeIf "gitdir:~/Documents/code/"]
-    path = ~/git-work.conf
+    path = ~/.config/git/git-work.conf
 

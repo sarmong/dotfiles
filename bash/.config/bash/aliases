@@ -1,3 +1,4 @@
+eval $(thefuck --alias)
 
 # Brew commands
 alias binstall="brew install";
@@ -33,6 +34,7 @@ vs() {
 }
 
 alias open="xdg-open"
+alias o="xdg-open"
 
 alias v="nvim"
 alias fo="fzf | xargs xdg-open"
@@ -55,6 +57,7 @@ alias stream="cd ~/Documents/code/de-student-stream"
 alias home="cd ~/Documents/code/teacher-home"
 alias terra="cd ~/Documents/code/terraform-config"
 alias avatar="cd ~/Documents/code/avatar-builder"
+alias amp="cd ~/Documents/code"
 
 # Internet
 alias yt="youtube-dl --add-metadata -ic" # Download video
