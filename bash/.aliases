@@ -48,10 +48,13 @@ alias .....="cd ../../../..";
 alias pr="cd ~/Documents/Tech/Projects"
 alias dox="cd ~/Documents"
 alias dls="cd ~/Downloads"
-alias hub="cd ~/Documents/ss/invicta/ckla-hub"
-alias core="cd ~/Documents/ss/invicta/ckla-core"
-alias ckla="cd ~/Documents/ss/invicta/ca-ckla-***REMOVED***-com-website"
-alias stream="cd ~/Documents/ss/invicta/de-student-stream"
+alias hub="cd ~/Documents/code/***REMOVED***/ckla-hub"
+alias core="cd ~/Documents/code/***REMOVED***/ckla-core"
+alias ckla="cd ~/Documents/code/***REMOVED***/ca-ckla-***REMOVED***-com-website"
+alias stream="cd ~/Documents/code/***REMOVED***/de-student-stream"
+alias home="cd ~/Documents/code/***REMOVED***/teacher-home"
+alias terra="cd ~/Documents/code/***REMOVED***/terraform-config"
+alias avatar="cd ~/Documents/code/***REMOVED***/avatar-builder"
 
 # Internet
 alias yt="youtube-dl --add-metadata -ic" # Download video
