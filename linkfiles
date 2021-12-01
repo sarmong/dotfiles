@@ -1,8 +1,8 @@
 #!/bin/sh
 
-Darwin="bash kitty nvim ranger scripts skhd spacebar vim yabai alacritty"
+Darwin="bash git kitty nvim ranger scripts skhd spacebar vim yabai alacritty"
 
-Linux="bash bspwm awesome i3 kitty nvim polybar ranger scripts sxhkd vim alacritty"
+Linux="bash git bspwm awesome i3 kitty nvim polybar ranger scripts sxhkd vim alacritty"
 
 if [ "$(uname)" = "Darwin" ]; then
     for dir in ${Darwin}; do
