@@ -1,16 +1,20 @@
-export LC_ALL=en_US.UTF-8
 
  if [ -d "$HOME/Documents/android/adb-fastboot/platform-tools" ] ; then
   export PATH="$HOME/Documents/android/adb-fastboot/platform-tools:$PATH"
  fi
 
-eval $(thefuck --alias)
+# NVM settings
+# ===========
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 # https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory
 # Run 'nvm use' automatically every time there's 
 # a .nvmrc file in the directory. Also, revert to default 
 # version when entering a directory without .nvmrc
-#
+
 enter_directory() {
     if [[ $PWD == $PREV_PWD ]]; then
         return
@@ -28,47 +32,34 @@ enter_directory() {
 
 export PROMPT_COMMAND=enter_directory
 
-if [ -d /usr/share/fzf ]; then
-    # fzf hotkeys https://wiki.archlinux.org/title/Fzf
-    source /usr/share/fzf/completion.bash
-    source /usr/share/fzf/key-bindings.bash
-fi
-
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND="rg --files --hidden --require-git -g='!.git/**/*'"
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
-
-# export JAVA_HOME=$(/usr/libexec/java_home)
-#export PATH=${PATH}:/usr/local/mysql/bin/
-
-if [ -d /usr/share/autojump ]; then
-    . /usr/share/autojump/autojump.sh
-fi
-eval "$(lua $HOME/bin/z.lua --init bash enhanced once echo)"
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export XDG_CONFIG_HOME=~/.config
 # export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="$HOME/bin:$PATH:$HOME/.local/bin";
-export PATH="$PATH:$HOME/.local/bin";
 export PATH="/usr/local/sbin:$PATH";
+export PATH=$PATH:~/.emacs.d/bin
+export INPUTRC=$XDG_CONFIG_HOME/bash/inputrc
 export EDITOR="vim";
 export HISTCONTROL=ignoreboth:erasedups;
+# export HISTCONTROL=ignoreboth:erasedups:ignorespace
+export HISTSIZE=100000
+export HISTFILESIZE=1000000
+export TERMINAL="kitty"
+export BROWSER=firefox
 
-shopt -s cdspell  #accepts typing errors in cd dirs
-shopt -s histappend  # infinite history
-shopt -s autocd
 
-set -o vi # sets vim mode
+# Fixes issues with Java application(Webstorm) in tiling WM
+export _JAVA_AWT_WM_NONREPARENTING=1
 
-#Git auto-complete
-if [ -f ~/.git-completion.bash ]; then
-    source ~/.git-completion.bash
-fi
+# Rust
+# ===============
 
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-  [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+export RUSTUP_HOME=$XDG_CONFIG_HOME/rust/rustup
+export CARGO_HOME=$XDG_CONFIG_HOME/rust/cargo
+
+export PATH="$HOME/.cargo/bin:$PATH"
+source "$XDG_CONFIG_HOME/rust/cargo/env"
 
 # Add tab completion for many Bash commands
 if which brew &> /dev/null && [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
@@ -79,86 +70,8 @@ elif [ -f /etc/bash_completion ]; then
   source /etc/bash_completion;
 fi;
 
-# # ~/.bashrc
-
-# # If not running interactively, don't do anything
-# [[ $- != *i* ]] && return
-
-# if [ -f /etc/bashrc ]; then
-#         . /etc/bashrc
-# fi
-
-# if [ -f /etc/bash_completion ]; then
-#     . /etc/bash_completion
-# fi
-
-# [ -z "$PS1" ] && return
-
-# if [[ ${EUID} == 0 ]] ; then
-# PS1='\[\e[01;31m\]\h\[\e[01;34m\] \W \$\[\e[00m\] '
-# else
-# PROMPT_COMMAND='__git_ps1 "\[\e[01;32m\]\u@\h\[\e[01;34m\] \W\[\e[00m\]" " \\\$ "'
-# fi
-
-# export EDITOR=vim
-
-# export HISTSIZE=100000
-# export HISTFILESIZE=1000000
-# HISTCONTROL=ignoreboth:erasedups:ignorespace
-# shopt -s histappend
-# PROMPT_COMMAND="history -a; history -c; history -r;$PROMPT_COMMAND"
-
-# # less colors
-# export LESSOPEN='|pygmentize -f terminal256 -g -P style=monokai %s'
-# export LESS='-R'
-
-# # man pages in colores
-# man() {
-#     LESS_TERMCAP_md=$'\e[01;31m' \
-#     LESS_TERMCAP_me=$'\e[0m' \
-#     LESS_TERMCAP_se=$'\e[0m' \
-#     LESS_TERMCAP_so=$'\e[01;44;33m' \
-#     LESS_TERMCAP_ue=$'\e[0m' \
-#     LESS_TERMCAP_us=$'\e[01;32m' \
-#     command man "$@"
-# }
-
-# export LC_ALL=en_US.UTF-8
-# export LANG=en_US.UTF-8
-
-
-
-# # import input rc for bash history
-# export INPUTRC=~/.inputrc
-
-
-# # git completion
-# source ~/.git-completion.bash
-
-# # git prompth
-# source ~/.git-prompt.sh
-
-##
-# Your previous /Users/michael/.bash_profile file was backed up as /Users/michael/.bash_profile.macports-saved_2020-05-30_at_16:23:02
-##
-
-# MacPorts Installer addition on 2020-05-30_at_16:23:02: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-
-export PATH="$HOME/.cargo/bin:$PATH"
-export XDG_CONFIG_HOME=~/.config
-
-export PATH=$PATH:/home/***REMOVED***/.***REMOVED***/multitool/bin
-
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-# export PROMPT_COMMAND="pwd > /tmp/whereami"
-export TERMINAL="kitty"
-export BROWSER=brave-browser
-source "/home/***REMOVED***/.config/rust/cargo/env"
-
-## Set custom MANPAGER
+# Set custom MANPAGER
+# ==================
 
 # fixes formatting issues
 export MANROFFOPT="-c"
@@ -172,17 +85,17 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # "nvim" as manpager
 # export MANPAGER="nvim -c 'set ft=man' -"
 
-if [[ "$(uname)" -ne "Darwin" ]]; then 
+if [[ "$(uname)" != "Darwin" ]]; then 
     export PATH=$PATH:/home/***REMOVED***/.***REMOVED***/multitool/bin
 
+    export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-    source "/home/***REMOVED***/.config/rust/cargo/env"
 fi
 
-# export PROMPT_COMMAND="pwd > /tmp/whereami"
-export TERMINAL="kitty"
-export BROWSER=firefox
-
+# RVM
+# ===============
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
