@@ -1,7 +1,6 @@
-
- if [ -d "$HOME/Documents/android/adb-fastboot/platform-tools" ] ; then
-  export PATH="$HOME/Documents/android/adb-fastboot/platform-tools:$PATH"
- fi
+if [ -d "$HOME/Documents/android/adb-fastboot/platform-tools" ] ; then
+ export PATH="$HOME/Documents/android/adb-fastboot/platform-tools:$PATH"
+fi
 
 # NVM settings
 # ===========
@@ -98,4 +97,9 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+
+if [ "$(uname)" == "Darwin" ]; then
+  source ~/.bashrc;
+fi
 

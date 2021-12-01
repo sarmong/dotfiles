@@ -3,7 +3,7 @@
 [[ $- == *i* ]] || return
 
 # Source other config files
-[ -n "$PS1" ] && source ~/.bash_profile;
+[ -n "$PS1" ]  && [ "$(uname)" != "Darwin" ] && source ~/.bash_profile;
 
 for file in "$XDG_CONFIG_HOME"/bash/{path,bash_prompt,exports,aliases,functions,extra}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
