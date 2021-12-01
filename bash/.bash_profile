@@ -12,18 +12,18 @@ eval $(thefuck --alias)
 # version when entering a directory without .nvmrc
 #
 enter_directory() {
-if [[ $PWD == $PREV_PWD ]]; then
-    return
-fi
+    if [[ $PWD == $PREV_PWD ]]; then
+        return
+    fi
 
-PREV_PWD=$PWD
-if [[ -f ".nvmrc" ]]; then
-    nvm use
-    NVM_DIRTY=true
-elif [[ $NVM_DIRTY = true ]]; then
-    nvm use default
-    NVM_DIRTY=false
-fi
+    PREV_PWD=$PWD
+    if [[ -f ".nvmrc" ]]; then
+        nvm use
+        NVM_DIRTY=true
+    elif [[ $NVM_DIRTY = true ]]; then
+        nvm use default
+        NVM_DIRTY=false
+    fi
 }
 
 export PROMPT_COMMAND=enter_directory
@@ -150,6 +150,13 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export XDG_CONFIG_HOME=~/.config
 
+export PATH=$PATH:/home///multitool/bin
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+# export PROMPT_COMMAND="pwd > /tmp/whereami"
+export TERMINAL="kitty"
+export BROWSER=brave-browser
+source "/home//.config/rust/cargo/env"
 
 ## Set custom MANPAGER
 
