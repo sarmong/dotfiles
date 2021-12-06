@@ -21,6 +21,8 @@ shopt -s autocd # cd just by typing dir name
 # Git auto-complete
 if [ -f "$XDG_CONFIG_HOME"/bash/git-completion.bash ]; then
     source "$XDG_CONFIG_HOME"/bash/git-completion.bash
+    # complete for g alias
+    __git_complete g __git_main
 fi
 
 if [ -f "$XDG_CONFIG_HOME"/bash/git-prompt.bash ]; then
