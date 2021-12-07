@@ -35,7 +35,7 @@ sudo apt install exiftool
 sudo apt install ffmpeg
 sudo apt install imagemagick
 sudo apt install speedtest-cli
-sudo apt install youtube-dl
+brew install youtube-dl
 sudo apt install autojump
 # sudo apt install fd
 brew install fzf
