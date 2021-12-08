@@ -38,15 +38,16 @@ return require('packer').startup(function(use)
     -- Might be needed for LSP
     -- use {'rafamadriz/friendly-snippets', run = 'yarn install --frozen-lockfile'}
     -- use 'hrsh7th/nvim-cmp' - might be needed without coc. Integrate with autopairs 
-
-    use 'sbdchd/neoformat'
+    -- use 'sbdchd/neoformat' -- format isntead of prettier (support other languages too)
     
+    -- Try out
     -- use 'vimwiki/vimwiki'
-    use 'vim-test/vim-test'
-    --
+    -- use 'vim-test/vim-test'
+    -- use 'godlygeek/tabular'
+    -- use 'junegunn/goyo.vim'
+
     use 'chaoren/vim-wordmotion'
     use 'mg979/vim-visual-multi'
-    use 'godlygeek/tabular'
     use 'plasticboy/vim-markdown'
     use {'raghur/vim-ghost', run = ':GhostInstall'}
 
@@ -59,7 +60,7 @@ return require('packer').startup(function(use)
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'p00f/nvim-ts-rainbow'
-    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+    use { 'lukas-reineke/indent-blankline.nvim' }
     use 'nvim-treesitter/playground'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'windwp/nvim-ts-autotag'
@@ -80,8 +81,6 @@ return require('packer').startup(function(use)
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-media-files.nvim'
     use 'nvim-telescope/telescope-project.nvim'
-
-   -- use 'preservim/nerdtree' 
 
     -- Color
     use 'christianchiarulli/nvcode-color-schemes.vim'
@@ -110,7 +109,6 @@ return require('packer').startup(function(use)
     use 'metakirby5/codi.vim'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
     use 'voldikss/vim-floaterm'
-    use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
     use 'MattesGroeger/vim-bookmarks'
     use 'mbbill/undotree'
