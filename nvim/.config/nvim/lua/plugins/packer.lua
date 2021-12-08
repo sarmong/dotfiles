@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
         'kyazdani42/nvim-tree.lua',
         requires = { 'kyazdani42/nvim-web-devicons' }
     }
+    use { 'tpope/vim-commentary' }
 
 
     use 'neoclide/coc.nvim'
@@ -109,7 +110,6 @@ return require('packer').startup(function(use)
     use 'metakirby5/codi.vim'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
     use 'voldikss/vim-floaterm'
-    use 'terrortylor/nvim-comment'
     use 'monaqa/dial.nvim'
     use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
