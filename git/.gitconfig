@@ -30,8 +30,11 @@ dd = diff --dirstat --find-copies --find-renames --histogram --color
 [mergetool "vimdiff"]
   cmd = nvim -d $BASE $LOCAL
 
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+
 [include]
     path = ~/.config/git/git-personal.conf
-[includeIf "gitdir:~/Documents/code/***REMOVED***/"]
+[includeIf "gitdir:~/Documents/work/"]
     path = ~/.config/git/git-work.conf
-
