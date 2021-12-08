@@ -110,7 +110,6 @@ return require('packer').startup(function(use)
     use 'metakirby5/codi.vim'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
     use 'voldikss/vim-floaterm'
-    use 'monaqa/dial.nvim'
     use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
     use 'MattesGroeger/vim-bookmarks'
