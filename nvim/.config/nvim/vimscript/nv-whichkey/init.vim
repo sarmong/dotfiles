@@ -27,6 +27,7 @@ let g:which_key_map[','] = [ '<Plug>(emmet-expand-abbr)'                       ,
 let g:which_key_map['"'] = [ '<Plug>PeekupOpen'                                , 'registers' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'find current file' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
+let g:which_key_map['/'] = [ '<Plug>CommentaryLine'                            , 'explorer' ]
 let g:which_key_map['f'] = [ ':Files'                                          , 'find files' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['M'] = [ ':MarkdownPreviewToggle'                          , 'markdown preview']
