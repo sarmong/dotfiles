@@ -11,9 +11,10 @@ require('nv-galaxyline')
 
 require('plugins.packer')
 require('plugins.autopairs')
+require('plugins.barbar')
+
 require('nv-nvimtree')
 require('nv-treesitter')
-require('nv-barbar')
 require('nv-emmet')
 require('nv-quickscope')
 require('nv-comment')
