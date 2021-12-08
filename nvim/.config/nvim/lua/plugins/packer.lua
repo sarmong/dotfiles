@@ -17,26 +17,18 @@ return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use 'wbthomason/packer.nvim'
 
+
+    use 'windwp/nvim-autopairs'
+
+
     use 'neoclide/coc.nvim'
-    use {'iamcco/coc-vimlsp', run = 'yarn install --frozen-lockfile'}
-    use {'neoclide/coc-tsserver', run = 'yarn install --frozen-lockfile'}
-    use {'bmatcuk/coc-stylelintplus', run = 'yarn install --frozen-lockfile'}
-    use {'neoclide/coc-snippets', run = 'yarn install --frozen-lockfile'}
     use {'rescript-lang/vim-rescript'}
 
-    use {'josa42/coc-lua', run = 'yarn install --frozen-lockfile'}
-    use {'josa42/coc-sh', run = 'yarn install --frozen-lockfile'}
-    use {'neoclide/coc-git', run = 'yarn install --frozen-lockfile'}
-    -- use {'neoclide/coc-prettier', run = 'yarn install --frozen-lockfile'}
-    use {'neoclide/coc-rls', run = 'yarn install --frozen-lockfile'}
-    use {'neoclide/coc-eslint', run = 'yarn install --frozen-lockfile'}
-    use {'iamcco/coc-vimlsp', run = 'yarn install --frozen-lockfile'}
-    use {'josa42/coc-sh', run = 'yarn install --frozen-lockfile'}
-    use {'fannheyward/coc-markdownlint', run = 'yarn install --frozen-lockfile'}
-    use {'neoclide/coc-json', run = 'yarn install --frozen-lockfile'}
-    use {'neoclide/coc-css', run = 'yarn install --frozen-lockfile'}
     use {'dsznajder/vscode-es7-javascript-react-snippets', run = 'yarn install --frozen-lockfile && yarn compile'}
-    use {'rafamadriz/friendly-snippets', run = 'yarn install --frozen-lockfile'}
+
+    -- Might be needed for LSP
+    -- use {'rafamadriz/friendly-snippets', run = 'yarn install --frozen-lockfile'}
+    -- use 'hrsh7th/nvim-cmp' - might be needed without coc. Integrate with autopairs 
 
     use 'sbdchd/neoformat'
     
@@ -50,7 +42,6 @@ return require('packer').startup(function(use)
     use {'raghur/vim-ghost', run = ':GhostInstall'}
 
        -- Autocomplete
-    -- use 'hrsh7th/nvim-compe' -- apparantly non needed with coc
     use 'mattn/emmet-vim'
     use 'hrsh7th/vim-vsnip'
     use "rafamadriz/friendly-snippets"
@@ -119,7 +110,6 @@ return require('packer').startup(function(use)
     use 'junegunn/goyo.vim'
     use 'andymass/vim-matchup'
     use 'MattesGroeger/vim-bookmarks'
-    use 'windwp/nvim-autopairs'
     use 'mbbill/undotree'
 
     -- Documentation Generator

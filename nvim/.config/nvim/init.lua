@@ -1,8 +1,7 @@
 -- General mappings
-require('plugins')
 require('nv-utils')
 -- check if coc formats on save
--- require('nv-autocommands')
+-- require('autocommands')
 require('settings')
 require('keymappings')
 require('colorscheme')
@@ -10,13 +9,13 @@ require('nv-galaxyline')
 
 -- Plugins
 
--- require('nv-compe') -- apparantly non needed with coc
+require('plugins.packer')
+require('plugins.autopairs')
 require('nv-nvimtree')
 require('nv-treesitter')
 require('nv-barbar')
 require('nv-emmet')
 require('nv-quickscope')
-require('nv-autopairs')
 require('nv-comment')
 require('nv-rnvimr')
 -- require('nv-telescope')
