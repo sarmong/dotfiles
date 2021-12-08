@@ -8,7 +8,7 @@ killall sxhkd
     killall polybar
     $HOME/.config/polybar/launch.sh > /dev/null 2>&1 & 
 fi
-feh --bg-fill /home//Pictures/wp4.png &
+feh --bg-fill $HOME/Pictures/wp4.png &
 pkill nextcloud
 flatpak run com.nextcloud.desktopclient.nextcloud > /dev/null 2>&1 & 
 killall setxkbmap

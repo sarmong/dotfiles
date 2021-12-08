@@ -11,9 +11,9 @@ ticket=$(echo "$branch" | grep -P '\/?([A-Za-z]{2,5}-\d{1,5})_*' | grep -Po '[A-
 
 title="$ticket - $1"
 
-body="https:/-education.atlassian.net/browse/$ticket"
+body="https://$WORK_JIRA/browse/$ticket"
 
-assignee='m'
+assignee=$WORK_GH
 
 printf "PR title is:\n$title\n\nPR body is:\n$body\n\nAssignee is:\n$assignee\n\n\nIs everything correct?\n"
 

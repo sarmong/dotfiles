@@ -2,6 +2,7 @@ if [ -d "$HOME/Documents/android/adb-fastboot/platform-tools" ] ; then
  export PATH="$HOME/Documents/android/adb-fastboot/platform-tools:$PATH"
 fi
 
+
 # NVM settings
 # ===========
 export NVM_DIR="$HOME/.config/nvm"
@@ -39,6 +40,7 @@ export PATH="$HOME/bin:$PATH:$HOME/.local/bin";
 export PATH="/usr/local/sbin:$PATH";
 export PATH=$PATH:~/.emacs.d/bin
 export INPUTRC=$XDG_CONFIG_HOME/bash/inputrc
+source "$XDG_CONFIG_HOME/bash/.env"
 export EDITOR="vim";
 export HISTCONTROL=ignoreboth:erasedups;
 # export HISTCONTROL=ignoreboth:erasedups:ignorespace
@@ -85,7 +87,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # export MANPAGER="nvim -c 'set ft=man' -"
 
 if [[ "$(uname)" != "Darwin" ]]; then 
-    export PATH=$PATH:/home///multitool/bin
+    export PATH=$PATH:$HOME//multitool/bin
 
     export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)

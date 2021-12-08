@@ -69,6 +69,9 @@ require'nvim-tree'.setup({
     filters = {
         dotfiles = true,
     },
+    update_focused_file = {
+        enable = true
+    },
     view = {
         -- @TODO check why doesn't work
         auto_resize = true,
