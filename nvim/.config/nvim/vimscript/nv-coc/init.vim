@@ -30,7 +30,7 @@ let g:coc_global_extensions = [
     \ 'coc-json', 'coc-css', 'coc-sh', 'coc-tsserver', 'coc-lua', 
     \ 'coc-vimlsp', 'coc-markdownlint', 'coc-rls', 'coc-json', 'coc-java',
     \ 'coc-eslint', 'coc-stylelintplus', 'coc-prettier', 'coc-stylelint',
-    \ 'coc-snippets', 'friendly-snippets', 'HTMLSnippets', 'es7-react-js-snippets',
+    \ 'coc-snippets', 'friendly-snippets', 'HTMLSnippets',
     \ 'coc-git',
     \ ]
 
