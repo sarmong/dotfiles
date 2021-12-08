@@ -391,21 +391,21 @@ local globalKeys =
   ),
  -- Change keyboard layout
    awful.key(
-	{'Shift'},
-    'Alt_L',
+	{modkey, 'Shift'},
+    'l',
     function()
       awful.spawn('xkblayout-state -s +1')
     end,
     {description = 'filebrowser', group = 'hotkeys'}
-  ),
-   awful.key(
-	{'Mod1'},
-	    'Shift_L',
-	    function()
-	      awful.spawn('xkblayout-state -s +1')
-	    end,
-	    {description = 'filebrowser', group = 'hotkeys'}
-	  )
+  )
+	--    awful.key(
+	-- {'Mod1'},
+	--     'Shift_L',
+	--     function()
+	--       awful.spawn('xkblayout-state -s +1')
+	--     end,
+	--     {description = 'filebrowser', group = 'hotkeys'}
+	--   )
 
   -- Emoji Picker
   -- awful.key(
