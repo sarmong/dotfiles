@@ -17,8 +17,11 @@ return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use 'wbthomason/packer.nvim'
 
-
     use 'windwp/nvim-autopairs'
+    use {
+      'romgrk/barbar.nvim',
+      requires = {'kyazdani42/nvim-web-devicons'}
+    }
 
 
     use 'neoclide/coc.nvim'
@@ -56,12 +59,10 @@ return require('packer').startup(function(use)
     use 'windwp/nvim-ts-autotag'
 
     -- Icons
-    use 'kyazdani42/nvim-web-devicons'
     use 'ryanoasis/vim-devicons'
 
     -- Status Line and Bufferline
     use 'glepnir/galaxyline.nvim'
-    use 'romgrk/barbar.nvim'
     
     use 'junegunn/fzf'
     use 'junegunn/fzf.vim'
