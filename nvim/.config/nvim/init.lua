@@ -30,7 +30,6 @@ require('nv-dashboard')
 require('nv-nvim-dap')
 require('nv-indentline')
 require('nv-bookmark')
-require('nv-doge')
 
 
 -- Which Key (Hope to replace with Lua plugin someday)

@@ -115,9 +115,6 @@ return require('packer').startup(function(use)
     use 'MattesGroeger/vim-bookmarks'
     use 'mbbill/undotree'
 
-    -- Documentation Generator
-    use {'kkoomen/vim-doge', run = ':call doge#install()'}
-
     -- TODO put this back when stable for indent lines
     -- vim.g.indent_blankline_space_char = ''
     -- use 'b3nj5m1n/kommentary'
