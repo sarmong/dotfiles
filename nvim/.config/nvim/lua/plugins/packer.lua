@@ -13,6 +13,7 @@ end
 -- require('packer').init({display = {non_interactive = true}})
 require('packer').init({display = {auto_clean = false}})
 
+-- @TODO - use config option of 'use'
 return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use 'wbthomason/packer.nvim'
@@ -20,7 +21,11 @@ return require('packer').startup(function(use)
     use 'windwp/nvim-autopairs'
     use {
       'romgrk/barbar.nvim',
-      requires = {'kyazdani42/nvim-web-devicons'}
+      requires = { 'kyazdani42/nvim-web-devicons' }
+    }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = { 'kyazdani42/nvim-web-devicons' }
     }
 
 
@@ -75,8 +80,6 @@ return require('packer').startup(function(use)
     use 'nvim-telescope/telescope-media-files.nvim'
     use 'nvim-telescope/telescope-project.nvim'
 
-    -- Explorer
-    use 'kyazdani42/nvim-tree.lua'
    -- use 'preservim/nerdtree' 
 
     -- Color
