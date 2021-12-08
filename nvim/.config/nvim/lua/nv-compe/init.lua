@@ -33,6 +33,7 @@ require'compe'.setup {
     }
 }
 
+-- @TODO - steal icons
 -- 
 -- 
 -- 
