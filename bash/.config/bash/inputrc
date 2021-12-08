@@ -40,3 +40,7 @@ set convert-meta off
 "\e[3;3~": kill-word
 
 set colored-stats on
+
+set show-mode-in-prompt on
+set vi-ins-mode-string \1\e[34;1m\2i \1\e[0m\2
+set vi-cmd-mode-string \1\e[33;1m\2n \1\e[0m\2
