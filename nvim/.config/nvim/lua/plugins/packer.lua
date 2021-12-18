@@ -57,6 +57,8 @@ return require('packer').startup(function(use)
 
     use { 'lukas-reineke/indent-blankline.nvim' }
 
+    use 'f-person/git-blame.nvim' -- consider using zivyangll/git-blame.vim to show at the bottom
+
     -- use { 'norcalli/nvim-colorizer.lua' }
 
     -------------
@@ -71,6 +73,13 @@ return require('packer').startup(function(use)
     -- use {'rafamadriz/friendly-snippets', run = 'yarn install --frozen-lockfile'}
     -- use 'hrsh7th/nvim-cmp' - might be needed without coc. Integrate with autopairs 
     -- use 'sbdchd/neoformat' -- format isntead of prettier (support other languages too)
+    -- use {
+    --   'lewis6991/gitsigns.nvim', -- git lines on the left
+    --   requires = {
+    --    'nvim-lua/plenary.nvim'
+    --   },
+    --   -- tag = 'release' -- To use the latest release
+    -- }
     
     -- Try out
     -- use 'vimwiki/vimwiki'
@@ -112,7 +121,6 @@ return require('packer').startup(function(use)
     use 'sheerun/vim-polyglot'
 
     -- Git
-    use 'f-person/git-blame.nvim'
 	use 'airblade/vim-gitgutter'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
