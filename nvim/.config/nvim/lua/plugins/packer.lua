@@ -110,15 +110,14 @@ return require('packer').startup(function(use)
     use 'stsewd/fzf-checkout.vim'
 
     -- Telescope
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use 'nvim-telescope/telescope-media-files.nvim'
-    use 'nvim-telescope/telescope-project.nvim'
+    -- use 'nvim-lua/popup.nvim'
+    -- use 'nvim-lua/plenary.nvim'
+    -- use 'nvim-telescope/telescope.nvim'
+    -- use 'nvim-telescope/telescope-media-files.nvim'
+    -- use 'nvim-telescope/telescope-project.nvim'
 
     -- Color
     use 'christianchiarulli/nvcode-color-schemes.vim'
-    use 'sheerun/vim-polyglot'
 
     -- Git
 	use 'airblade/vim-gitgutter'
