@@ -13,32 +13,48 @@ end
 -- require('packer').init({display = {non_interactive = true}})
 require('packer').init({display = {auto_clean = false}})
 
+local commits = {
+    packer = "851c62c5ecd3b5adc91665feda8f977e104162a5",
+    autopairs = "04cd1779f81e9d50d5a116c5dccd054b275bd191",
+    barbar = "6e638309efcad2f308eb9c5eaccf6f62b794bbab",
+    nvim_tree = "0aec64d56c9448a039408228d410a01c41125d48",
+    which_key = "312c386ee0eafc925c27869d2be9c11ebdb807eb",
+    toggleterm = "265bbff68fbb8b2a5fb011272ec469850254ec9f",
+    wordmotion = "02e32fcb062553a8293992411677e12cacccb09d",
+    visual_multi = "e20908963d9b0114e5da1eacbc516e4b09cf5803",
+    lualine = "3a17c8f05aae1f148b8af595b46fea18b74d0573",
+    indent_blankline = "0f8df7e43f0cae4c44e0e8383436ad602f333419"
+}
+
 -- @TODO - use config option of 'use'
 return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
-    use 'wbthomason/packer.nvim'
+    use {'wbthomason/packer.nvim', commit = commits.packer}
 
-    use 'windwp/nvim-autopairs'
+    use {'windwp/nvim-autopairs', commit = commits.autopairs}
     use {
       'romgrk/barbar.nvim',
+      commit = commits.barbar,
       requires = { 'kyazdani42/nvim-web-devicons' }
     }
     use {
         'kyazdani42/nvim-tree.lua',
+        commit = commits.nvim_tree,
         requires = { 'kyazdani42/nvim-web-devicons' }
     }
     use { 'tpope/vim-commentary' }
 
-    use { 'folke/which-key.nvim' }
+    use { 'folke/which-key.nvim', commit = commits.which_key }
 
-    use { "akinsho/toggleterm.nvim" }
+    use { "akinsho/toggleterm.nvim", commit = commits.toggleterm }
 
-    use 'chaoren/vim-wordmotion'
+    use { 'chaoren/vim-wordmotion', commit = commits.wordmotion }
 
-    use 'mg979/vim-visual-multi'
+    use { 'mg979/vim-visual-multi', commit =  commits.visual_multi }
 
     use {
       'nvim-lualine/lualine.nvim',
+      commit = commits.lualine,
       requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
 
@@ -55,7 +71,7 @@ return require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons' },
     }
 
-    use { 'lukas-reineke/indent-blankline.nvim' }
+    use { 'lukas-reineke/indent-blankline.nvim', commit = commits.indent_blankline }
 
     use 'f-person/git-blame.nvim' -- consider using zivyangll/git-blame.vim to show at the bottom
 
