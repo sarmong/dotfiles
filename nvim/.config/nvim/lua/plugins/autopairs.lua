@@ -7,9 +7,5 @@ npairs.setup({
 
 npairs.add_rule()
 npairs.add_rules({
-    -- JS arrow function
-    Rule('%(.*%)%s*%=>$', ' {  }', { 'typescript', 'typescriptreact', 'javascript' })
-        :use_regex(true)
-        :set_end_pair_length(2),
     Rule("{/*","*/", { "javascript", "typescript", "typescriptreact" })
 })
