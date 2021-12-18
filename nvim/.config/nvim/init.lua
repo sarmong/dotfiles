@@ -20,6 +20,7 @@ require('plugins.quick-scope')
 require('plugins.matchup')
 require('plugins.alpha')
 require('plugins.indent-blankline')
+-- require('plugins.colorizer')
 
 require('nv-treesitter')
 -- require('nv-telescope')

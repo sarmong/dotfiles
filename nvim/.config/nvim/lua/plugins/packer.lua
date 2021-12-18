@@ -57,6 +57,8 @@ return require('packer').startup(function(use)
 
     use { 'lukas-reineke/indent-blankline.nvim' }
 
+    -- use { 'norcalli/nvim-colorizer.lua' }
+
     -------------
 
 
@@ -106,7 +108,6 @@ return require('packer').startup(function(use)
 
     -- Color
     use 'christianchiarulli/nvcode-color-schemes.vim'
-    use { 'norcalli/nvim-colorizer.lua', config = function() require'nv-colorizer' end}
     use 'sheerun/vim-polyglot'
 
     -- Git
