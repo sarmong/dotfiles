@@ -1,5 +1,6 @@
 local wk = require("which-key");
 local terminals = require("plugins.toggleterm")
+local gitblame = require("plugins.gitblame")
 
 vim.opt.timeoutlen = 700
 
@@ -142,7 +143,7 @@ local mappings = {
     -- Git
     g = {
         name = "git",
-        b = { ':GitBlameToggle<cr>', 'blame' },
+        b = { gitblame.toggle, 'blame' },
         B = { ':GBrowse<cr>', 'browse' },
         d = { ':Gvdiffsplit<cr>', 'diff' },
         j = { ':NextHunk<cr>', 'next hunk' },
