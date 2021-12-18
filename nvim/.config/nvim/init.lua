@@ -14,6 +14,7 @@ require('plugins.autopairs')
 require('plugins.barbar')
 require('plugins.nvim-tree')
 require('plugins.vim-commentary')
+require('plugins.which-key')
 
 require('nv-treesitter')
 require('nv-emmet')
@@ -32,8 +33,6 @@ require('nv-indentline')
 require('nv-bookmark')
 
 
--- Which Key (Hope to replace with Lua plugin someday)
-vim.cmd('source ~/.config/nvim/vimscript/nv-whichkey/init.vim')
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
 
 vim.cmd('source ~/.config/nvim/vimscript/nv-coc/init.vim')
