@@ -21,10 +21,10 @@ require('plugins.matchup')
 require('plugins.alpha')
 require('plugins.indent-blankline')
 -- require('plugins.colorizer')
+require('plugins.gitblame')
 
 require('nv-treesitter')
 -- require('nv-telescope')
-require('nv-gitblame')
 
 
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
