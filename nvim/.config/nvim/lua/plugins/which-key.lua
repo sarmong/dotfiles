@@ -188,27 +188,6 @@ local mappings = {
         r = { terminals.toggle_ranger, 'ranger' },
         g = { terminals.toggle_git, 'git' },
     },
-
-    ['.'] = {
-        name = 'emmet',
-
-        [','] = { '<Plug>(emmet-expand-abbr)<cr>', 'expand abbr' },
-        [';'] = { '<plug>(emmet-expand-word)<cr>', 'expand word' },
-        u = { '<plug>(emmet-update-tag)<cr>', 'update tag' },
-        d = { '<plug>(emmet-balance-tag-inward)<cr>', 'balance tag in' },
-        D = { '<plug>(emmet-balance-tag-outward)<cr>', 'balance tag out' },
-        n = { '<plug>(emmet-move-next)<cr>', 'move next' },
-        N = { '<plug>(emmet-move-prev)<cr>', 'move prev' },
-        i = { '<plug>(emmet-image-size)<cr>', 'image size' },
-        ['/'] = { '<plug>(emmet-toggle-comment)<cr>', 'toggle comment' },
-        j = { '<plug>(emmet-split-join-tag)<cr>', 'split join tag' },
-        k = { '<plug>(emmet-remove-tag)<cr>', 'remove tag' },
-        a = { '<plug>(emmet-anchorize-url)<cr>', 'anchorize url' },
-        A = { '<plug>(emmet-anchorize-summary)<cr>', 'anchorize summary' },
-        m = { '<plug>(emmet-merge-lines)<cr>', 'merge lines' },
-        c = { '<plug>(emmet-code-pretty)<cr>', 'code pretty' },
-}
-
 }
 
 wk.register(mappings, { prefix = "<leader>"})

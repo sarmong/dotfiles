@@ -20,7 +20,6 @@ require('plugins.quick-scope')
 require('plugins.matchup')
 
 require('nv-treesitter')
-require('nv-emmet')
 -- require('nv-telescope')
 require('nv-gitblame')
 require('nv-dashboard')
