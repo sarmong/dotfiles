@@ -69,7 +69,6 @@ return require('packer').startup(function(use)
     -- use 'godlygeek/tabular'
     -- use 'junegunn/goyo.vim'
     -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
-    -- use 'mattn/emmet-vim' -- have commands set up in which key
     -- use 'ryanoasis/vim-devicons' -- maybe use them instead
     -- use 'kevinhwang91/nvim-bqf' -- after learning quickfix
 
