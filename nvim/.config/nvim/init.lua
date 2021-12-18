@@ -18,11 +18,12 @@ require('plugins.toggleterm')
 require('plugins.lualine')
 require('plugins.quick-scope')
 require('plugins.matchup')
+require('plugins.alpha')
 
 require('nv-treesitter')
 -- require('nv-telescope')
 require('nv-gitblame')
-require('nv-dashboard')
+-- require('nv-dashboard')
 require('nv-indentline')
 require('nv-bookmark')
 

@@ -50,6 +50,11 @@ return require('packer').startup(function(use)
 
     use 'andymass/vim-matchup' -- looks nice, but perhaps not that essential
 
+    use {
+        'goolord/alpha-nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' },
+    }
+
     -------------
 
 
@@ -113,7 +118,7 @@ return require('packer').startup(function(use)
     use 'mattn/vim-gist'
 
     -- General Plugins
-    use 'ChristianChiarulli/dashboard-nvim'
+    -- use 'ChristianChiarulli/dashboard-nvim'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
     use 'MattesGroeger/vim-bookmarks'
     use 'mbbill/undotree'
