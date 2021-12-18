@@ -29,6 +29,11 @@ return require('packer').startup(function(use)
     }
     use { 'tpope/vim-commentary' }
 
+    use { 'folke/which-key.nvim' }
+
+
+    -------------
+
 
     use 'neoclide/coc.nvim'
     use {'rescript-lang/vim-rescript'}
@@ -102,7 +107,6 @@ return require('packer').startup(function(use)
     use 'phaazon/hop.nvim'
 
     -- General Plugins
-    use 'liuchengxu/vim-which-key'
     use 'kevinhwang91/nvim-bqf'
     use 'airblade/vim-rooter'
     use 'ChristianChiarulli/dashboard-nvim'
