@@ -27,20 +27,23 @@
 
 ## VIM TODO
 
+- !!! don't use vim commands in which key - export lua function as a wrapper from plugin file
+- handle registers
+  - see what whickey offers
+  - don't save every yank to a main registry
+- lock plugins to a specific commit / tag (see lunarvim)
+- set up stylua
+- set up null-ls
 - [russian layout](https://habr.com/ru/post/98393/)
 - C-Q to quit vim completely
-- fix wordmotion
 - fix swap files
-- Swap 0 and ^
 - https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome
 - check out nvim gui clients
 - https://learnvimscriptthehardway.stevelosh.com/
 - learn es7 snippets
 - colorschemes
-- learn all plugins i have
 - move config files to use packer config option
 - colorhoghlight dsoesn't work after undo
-- close dashboard buffer after open
 - easily resize window
 
 - check out new new plugins
