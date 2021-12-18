@@ -80,6 +80,7 @@ return require('packer').startup(function(use)
     -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
     -- use 'ryanoasis/vim-devicons' -- maybe use them instead
     -- use 'kevinhwang91/nvim-bqf' -- after learning quickfix
+    -- use 'MattesGroeger/vim-bookmarks'
 
     use 'plasticboy/vim-markdown'
 
@@ -122,7 +123,6 @@ return require('packer').startup(function(use)
     -- General Plugins
     -- use 'ChristianChiarulli/dashboard-nvim'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
-    use 'MattesGroeger/vim-bookmarks'
     use 'mbbill/undotree'
 
     -- use 'b3nj5m1n/kommentary'
