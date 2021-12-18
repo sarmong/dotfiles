@@ -42,6 +42,9 @@ brew install gnu-sed ggrep
 brew install watch
 brew install stow
 brew install thefuck
+brew install jesseduffield/lazynpm/lazynpm
+brew install tig
+brew install jesseduffield/lazygit/lazygit
 
 brew install cheat
 brew install tldr

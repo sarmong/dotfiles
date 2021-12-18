@@ -68,6 +68,9 @@ sudo apt install ledger
 sudo apt install calcurse
 sudo apt install timewarrior
 sudo apt install taskwarrior
+brew install jesseduffield/lazynpm/lazynpm
+brew install tig
+brew install jesseduffield/lazygit/lazygit
 
 # fun
 sudo apt install cmatrix
