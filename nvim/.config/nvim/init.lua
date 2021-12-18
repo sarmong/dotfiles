@@ -25,8 +25,6 @@ require('plugins.indent-blankline')
 require('nv-treesitter')
 -- require('nv-telescope')
 require('nv-gitblame')
--- require('nv-dashboard')
-require('nv-bookmark')
 
 
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
