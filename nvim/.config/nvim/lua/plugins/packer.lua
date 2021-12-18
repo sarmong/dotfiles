@@ -33,7 +33,9 @@ return require('packer').startup(function(use)
 
     use { "akinsho/toggleterm.nvim" }
 
+    use 'chaoren/vim-wordmotion'
 
+    use 'mg979/vim-visual-multi'
     -------------
 
 
@@ -52,14 +54,13 @@ return require('packer').startup(function(use)
     -- use 'vim-test/vim-test'
     -- use 'godlygeek/tabular'
     -- use 'junegunn/goyo.vim'
+    -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
+    -- use 'mattn/emmet-vim' -- have commands set up in which key
+    -- use 'ryanoasis/vim-devicons' -- maybe use them instead
 
-    use 'chaoren/vim-wordmotion'
-    use 'mg979/vim-visual-multi'
     use 'plasticboy/vim-markdown'
-    use {'raghur/vim-ghost', run = ':GhostInstall'}
 
        -- Autocomplete
-    use 'mattn/emmet-vim'
     use 'hrsh7th/vim-vsnip'
     use "rafamadriz/friendly-snippets"
     use 'ChristianChiarulli/html-snippets'
@@ -71,9 +72,6 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/playground'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'windwp/nvim-ts-autotag'
-
-    -- Icons
-    use 'ryanoasis/vim-devicons'
 
     -- Status Line and Bufferline
     use 'glepnir/galaxyline.nvim'
