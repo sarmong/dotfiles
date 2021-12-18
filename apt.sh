@@ -21,6 +21,7 @@ sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x2
 sudo apt install i3
 sudo apt install i3blocks
 sudo apt install i3lock-fancy
+brew install neovim
 
 ## install nvm
 sudo apt install neofetch

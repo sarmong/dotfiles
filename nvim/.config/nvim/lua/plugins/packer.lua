@@ -80,7 +80,7 @@ return require('packer').startup(function(use)
     -------------
 
 
-    use 'neoclide/coc.nvim'
+    use {'neoclide/coc.nvim',  branch = "release" }
     use {'rescript-lang/vim-rescript'}
 
     use {'dsznajder/vscode-es7-javascript-react-snippets', run = 'yarn install --frozen-lockfile && yarn compile'}
