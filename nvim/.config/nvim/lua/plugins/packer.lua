@@ -36,6 +36,11 @@ return require('packer').startup(function(use)
     use 'chaoren/vim-wordmotion'
 
     use 'mg979/vim-visual-multi'
+
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
     -------------
 
 
@@ -73,9 +78,6 @@ return require('packer').startup(function(use)
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'windwp/nvim-ts-autotag'
 
-    -- Status Line and Bufferline
-    use 'glepnir/galaxyline.nvim'
-    
     use 'junegunn/fzf'
     use 'junegunn/fzf.vim'
     use 'stsewd/fzf-checkout.vim'
