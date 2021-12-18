@@ -45,6 +45,9 @@ return require('packer').startup(function(use)
     use 'airblade/vim-rooter' -- automagically switches root directory
 
     use 'metakirby5/codi.vim'
+
+    use 'unblevable/quick-scope'
+
     -------------
 
 
@@ -107,9 +110,6 @@ return require('packer').startup(function(use)
 
     -- Easily Create Gists
     use 'mattn/vim-gist'
-
-    -- Navigation
-    use 'unblevable/quick-scope' -- hop may replace you
 
     -- General Plugins
     use 'ChristianChiarulli/dashboard-nvim'
