@@ -5,7 +5,6 @@ require('nv-utils')
 require('settings')
 require('keymappings')
 require('colorscheme')
-require('nv-galaxyline')
 
 -- Plugins
 
@@ -16,6 +15,7 @@ require('plugins.nvim-tree')
 require('plugins.vim-commentary')
 require('plugins.which-key')
 require('plugins.toggleterm')
+require('plugins.lualine')
 
 require('nv-treesitter')
 require('nv-emmet')
