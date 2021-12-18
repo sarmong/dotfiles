@@ -29,7 +29,7 @@
 
 - !!! don't use vim commands in which key - export lua function as a wrapper from plugin file
 - handle registers
-  - see what whickey offers
+  - see what whickey offers or use junegunn/vim-peekaboo
   - don't save every yank to a main registry
 - lock plugins to a specific commit / tag (see lunarvim)
 - set up stylua
@@ -47,33 +47,21 @@
 - easily resize window
 
 - check out new new plugins
-  - tpope/vim-eunuch - Vim sugar for the UNIX shell commands
-  - junegunn/vim-peekaboo
-  - tpope/vim-repeat
-  - ntpeters/vim-better-whitespace
-  - pechorin/any-jump.vim -- seems good
+  - pechorin/any-jump.vim -- search trough definitions. Does not needed with coc gd, maybe will be needed with native lsp
   - norcalli/nvim_utils - some functions
   - gennaro-tedesco/nvim-jqx - json search
   - turbio/bracey.vim - html css live reload
-  - kevinhwang91/rnvimr - ranger
-  - nacro90/numb.nvim - peek into line
+  - nacro90/numb.nvim - peek into line at number
   - TimUntersberger/neogit
-  - glepnir/dashboard-nvim - change to this
-  - mhinz/vim-startify - isntead of dashboard
-  - norcalli/snippets.nvim - check snippet functionnality in coc
   - SirVer/ultisnips - VERy popular snippets plugin
   - honza/vim-snippets - popular snippetns plugin
-  - use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'} barbar alt
-  - kshenoy/vim-signature -- seems to be good alt to bookmarks
+  - akinsho/nvim-bufferline.lua - barbar alternative
   - https://github.com/godlygeek/vim-files/blob/master/plugin/vsearch.vim - visual mode search
   - cohama/lexima.vim - Auto close parentheses and repeat by dot dot dot...
   - brooth/far.vim - Search and replace. Not actively maintained. Look for smth else
   - psliwka/vim-smoothie - smooth scrolling
-  - \* moll/vim-bbye - close buffers in a better way?
   - Plug 'tomasr/molokai'
   - Plug 'morhetz/gruvbox'
-  - Plug 'easymotion/vim-easymotion' " Easy Movement
-  - Plug 'Yggdroot/indentLine' " Pretty indented lines
   - Plug 'ap/vim-css-color' " Visual display hexcode colors in vim
   - vim-surround
   - https://github.com/neoclide/coc-jest
