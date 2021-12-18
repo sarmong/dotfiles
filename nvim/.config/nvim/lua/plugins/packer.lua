@@ -41,6 +41,10 @@ return require('packer').startup(function(use)
       'nvim-lualine/lualine.nvim',
       requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
+
+    use 'airblade/vim-rooter' -- automagically switches root directory
+
+    use 'metakirby5/codi.vim'
     -------------
 
 
@@ -62,6 +66,7 @@ return require('packer').startup(function(use)
     -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
     -- use 'mattn/emmet-vim' -- have commands set up in which key
     -- use 'ryanoasis/vim-devicons' -- maybe use them instead
+    -- use 'kevinhwang91/nvim-bqf' -- after learning quickfix
 
     use 'plasticboy/vim-markdown'
 
@@ -102,24 +107,18 @@ return require('packer').startup(function(use)
 
     -- Easily Create Gists
     use 'mattn/vim-gist'
-    use 'mattn/webapi-vim'
 
     -- Navigation
     use 'unblevable/quick-scope' -- hop may replace you
     use 'phaazon/hop.nvim'
 
     -- General Plugins
-    use 'kevinhwang91/nvim-bqf'
-    use 'airblade/vim-rooter'
     use 'ChristianChiarulli/dashboard-nvim'
-    use 'metakirby5/codi.vim'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
     use 'andymass/vim-matchup'
     use 'MattesGroeger/vim-bookmarks'
     use 'mbbill/undotree'
 
-    -- TODO put this back when stable for indent lines
-    -- vim.g.indent_blankline_space_char = ''
     -- use 'b3nj5m1n/kommentary'
     -- use {
     --     'glacambre/firenvim',
