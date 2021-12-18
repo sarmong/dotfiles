@@ -48,6 +48,8 @@ return require('packer').startup(function(use)
 
     use 'unblevable/quick-scope'
 
+    use 'andymass/vim-matchup' -- looks nice, but perhaps not that essential
+
     -------------
 
 
@@ -114,7 +116,6 @@ return require('packer').startup(function(use)
     -- General Plugins
     use 'ChristianChiarulli/dashboard-nvim'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
-    use 'andymass/vim-matchup'
     use 'MattesGroeger/vim-bookmarks'
     use 'mbbill/undotree'
 
