@@ -9,6 +9,9 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+## this exposes homebrew version of node as main and can be switched to using `nvm use system`
+export PATH="/home/linuxbrew/.linuxbrew/opt/node@16/bin:$PATH"
+
 
 # https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory
 # Run 'nvm use' automatically every time there's 
@@ -25,7 +28,7 @@ enter_directory() {
         nvm use
         NVM_DIRTY=true
     elif [[ $NVM_DIRTY = true ]]; then
-        nvm use default
+        nvm use system
         NVM_DIRTY=false
     fi
 }
@@ -47,7 +50,7 @@ export HISTCONTROL=ignoreboth:erasedups;
 export HISTSIZE=100000
 export HISTFILESIZE=1000000
 export TERMINAL="kitty"
-export BROWSER=firefox
+export BROWSER=brave-browser
 
 
 # Fixes issues with Java application(Webstorm) in tiling WM

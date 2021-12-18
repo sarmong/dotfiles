@@ -23,7 +23,10 @@ sudo apt install i3blocks
 sudo apt install i3lock-fancy
 brew install neovim
 
+## install system version of node
+brew install node@16
 ## install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 sudo apt install neofetch
 
 sudo apt install zathura
