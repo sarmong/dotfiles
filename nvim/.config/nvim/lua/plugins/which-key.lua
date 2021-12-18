@@ -1,4 +1,5 @@
 local wk = require("which-key");
+local terminals = require("plugins.toggleterm")
 
 vim.opt.timeoutlen = 700
 
@@ -179,15 +180,13 @@ local mappings = {
     -- Terminal
     t = {
         name = "terminal",
-        [';'] = { ':FloatermNew --wintype=normal --height=6<cr>', 'terminal' },
-        f = { ':FloatermNew fzf<cr>', 'fzf' },
-        n = { ':FloatermNew node<cr>', 'node' },
-        t = { ':FloatermToggle --wintype=normal<cr>', 'toggle' },
-        y = { ':FloatermNew ytop<cr>', 'ytop' },
-        u = { ':FloatermNew ncdu<cr>', 'ncdu' },
-        r = { ':FloatermNew ranger<cr>', 'ranger' },
-        m = { ':FloatermNew lazynpm<cr>', 'npm' },
-        g = { ':FloatermNew lazygit<cr>', 'git' },
+        t = { terminals.toggle_hor, 'toggle' },
+        v = { terminals.toggle_vert, 'vertical' },
+        f = { terminals.toggle_float, 'float' },
+        n = { terminals.toggle_node, 'node' },
+        m = { terminals.toggle_npm, 'npm' },
+        r = { terminals.toggle_ranger, 'ranger' },
+        g = { terminals.toggle_git, 'git' },
     },
 
     ['.'] = {

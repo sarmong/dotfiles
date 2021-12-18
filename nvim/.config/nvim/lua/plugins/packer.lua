@@ -31,6 +31,8 @@ return require('packer').startup(function(use)
 
     use { 'folke/which-key.nvim' }
 
+    use { "akinsho/toggleterm.nvim" }
+
 
     -------------
 
@@ -112,7 +114,6 @@ return require('packer').startup(function(use)
     use 'ChristianChiarulli/dashboard-nvim'
     use 'metakirby5/codi.vim'
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
-    use 'voldikss/vim-floaterm'
     use 'andymass/vim-matchup'
     use 'MattesGroeger/vim-bookmarks'
     use 'mbbill/undotree'
