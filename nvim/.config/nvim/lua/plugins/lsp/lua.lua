@@ -1,14 +1,14 @@
-local default_config = require('plugins.lsp.lspconfig')
-local lspconfig = require('lspconfig')
+local configs = require 'plugins.lsp.lspconfig'
+local lsp_install = require('plugins.lsp.lsp-install')
+
+lsp_install('sumneko_lua')
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-lspconfig.sumneko_lua.setup {
-    on_attach = default_config.on_attach,
-    flags = default_config.flags,
-    settings = {
+configs.server_opt['sumneko_lua'] = function ()
+    configs.default_opt.settings = {
         Lua = {
           runtime = {
             -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
@@ -29,5 +29,5 @@ lspconfig.sumneko_lua.setup {
             enable = false,
           },
         },
-      },
-    }
+      }
+end
