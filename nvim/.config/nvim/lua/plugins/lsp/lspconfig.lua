@@ -32,10 +32,16 @@ end
 
 
 
-return {
+local default_opt = {
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
-    }
+    },
 }
 
+local server_opt = {}
+
+return {
+    default_opt = default_opt,
+    server_opt = server_opt
+}
