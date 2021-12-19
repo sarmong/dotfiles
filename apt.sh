@@ -132,3 +132,4 @@ nvm use system
 npm i -g typescript typescript-language-server
 brew install lua-language-server
 brew install hashicorp/tap/terraform-ls
+npm install -g @fsouza/prettierd

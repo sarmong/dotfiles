@@ -27,6 +27,7 @@ local commits = {
     lspconfig = "0f72e5468e510429d5f14b73c93fb528ead1fdaa",
     lsp_installer = "70a64ed1774fe3db10aa747f08657b341227a4e5",
     cmp = "b11f8bbee3d7ba5190b043e23bd6f5b9cb82382c",
+    null_ls = "80e1c2942f70bfdf16886a64692f274ef7356010"
 }
 
 -- @TODO - use config option of 'use'
@@ -89,6 +90,11 @@ return require('packer').startup(function(use)
     use  'hrsh7th/cmp-buffer'
     use  'hrsh7th/cmp-path'
     use  'hrsh7th/cmp-cmdline'
+
+    use { 'jose-elias-alvarez/null-ls.nvim',
+        commit = commits.null_ls,
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
 
     -------------
 
