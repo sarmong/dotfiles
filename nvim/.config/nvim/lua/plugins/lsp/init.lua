@@ -1,6 +1,8 @@
 require('plugins.lsp.ts')
 require('plugins.lsp.lua')
 
+require('plugins.lsp.cmp')
+
 local lsp_installer = require "nvim-lsp-installer"
 local configs = require 'plugins.lsp.lspconfig'
 
