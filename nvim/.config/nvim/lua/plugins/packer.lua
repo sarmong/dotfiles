@@ -23,7 +23,8 @@ local commits = {
     wordmotion = "02e32fcb062553a8293992411677e12cacccb09d",
     visual_multi = "e20908963d9b0114e5da1eacbc516e4b09cf5803",
     lualine = "3a17c8f05aae1f148b8af595b46fea18b74d0573",
-    indent_blankline = "0f8df7e43f0cae4c44e0e8383436ad602f333419"
+    indent_blankline = "0f8df7e43f0cae4c44e0e8383436ad602f333419",
+    lspconfig = "0f72e5468e510429d5f14b73c93fb528ead1fdaa"
 }
 
 -- @TODO - use config option of 'use'
@@ -77,10 +78,12 @@ return require('packer').startup(function(use)
 
     -- use { 'norcalli/nvim-colorizer.lua' }
 
+    -- LSP
+
+    use {'neovim/nvim-lspconfig', commit = commits.lspconfig}
+
     -------------
 
-
-    use {'neoclide/coc.nvim',  branch = "release" }
     use {'rescript-lang/vim-rescript'}
 
     use {'dsznajder/vscode-es7-javascript-react-snippets', run = 'yarn install --frozen-lockfile && yarn compile'}
