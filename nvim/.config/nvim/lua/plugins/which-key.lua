@@ -179,25 +179,25 @@ local mappings = {
     l = { ":SessionLoad<cr>", "load session" },
   },
 
-    -- Terminal
-    t = {
-        name = "terminal",
-        t = { terminals.toggle_hor, 'toggle' },
-        v = { terminals.toggle_vert, 'vertical' },
-        f = { terminals.toggle_float, 'float' },
-        n = { terminals.toggle_node, 'node' },
-        m = { terminals.toggle_npm, 'npm' },
-        r = { terminals.toggle_ranger, 'ranger' },
-        g = { terminals.toggle_git, 'git' },
-    },
+  -- Terminal
+  t = {
+    name = "terminal",
+    t = { terminals.toggle_hor, "toggle" },
+    v = { terminals.toggle_vert, "vertical" },
+    f = { terminals.toggle_float, "float" },
+    n = { terminals.toggle_node, "node" },
+    m = { terminals.toggle_npm, "npm" },
+    r = { terminals.toggle_ranger, "ranger" },
+    g = { terminals.toggle_git, "git" },
+  },
 
-    -- LSP
-    l = {
-        name = "LSP",
-        f = { lsp_fns.format, 'format' },
-        e = { lsp_fns.enable_format_on_save, 'enable format on save' },
-        d = { lsp_fns.disable_format_on_save, 'disable format on save'}
-    }
+  -- LSP
+  l = {
+    name = "LSP",
+    f = { lsp_fns.format, "format" },
+    e = { lsp_fns.enable_format_on_save, "enable format on save" },
+    d = { lsp_fns.disable_format_on_save, "disable format on save" },
+  },
 }
 
 wk.register(mappings, { prefix = "<leader>" })
