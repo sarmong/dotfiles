@@ -27,6 +27,8 @@
 
 ## VIM TODO
 
+- set up correct keymappings to lsp
+- set up snippets
 - !!! don't use vim commands in which key - export lua function as a wrapper from plugin file
 - handle registers
   - see what whickey offers or use junegunn/vim-peekaboo
