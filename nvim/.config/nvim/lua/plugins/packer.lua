@@ -24,7 +24,8 @@ local commits = {
     visual_multi = "e20908963d9b0114e5da1eacbc516e4b09cf5803",
     lualine = "3a17c8f05aae1f148b8af595b46fea18b74d0573",
     indent_blankline = "0f8df7e43f0cae4c44e0e8383436ad602f333419",
-    lspconfig = "0f72e5468e510429d5f14b73c93fb528ead1fdaa"
+    lspconfig = "0f72e5468e510429d5f14b73c93fb528ead1fdaa",
+    lsp_installer = "70a64ed1774fe3db10aa747f08657b341227a4e5"
 }
 
 -- @TODO - use config option of 'use'
@@ -81,6 +82,7 @@ return require('packer').startup(function(use)
     -- LSP
 
     use {'neovim/nvim-lspconfig', commit = commits.lspconfig}
+    use { 'williamboman/nvim-lsp-installer', commit = commits.lsp_installer }
 
     -------------
 
