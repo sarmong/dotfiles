@@ -32,6 +32,7 @@
 - set up correct keymappings to lsp
 - set up snippets
 - add barbar to which key
+- show .config folders even if dotfiles are hidden in nvimtree
 - set up correct keymappings to lsp
 - set up snippets
 - !!! don't use vim commands in which key - export lua function as a wrapper from plugin file
