@@ -1,3 +1,3 @@
-local lsp_install = require('plugins.lsp.lsp-install')
+local lsp_install = require("plugins.lsp.lsp-install")
 
-lsp_install('tsserver')
+lsp_install("tsserver")

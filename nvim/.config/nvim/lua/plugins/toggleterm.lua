@@ -1,6 +1,6 @@
-local Terminal  = require('toggleterm.terminal').Terminal
+local Terminal = require("toggleterm.terminal").Terminal
 
-require("toggleterm").setup{
+require("toggleterm").setup({
   -- size can be a number or function which is passed the current terminal
   size = function(term)
     if term.direction == "horizontal" then
@@ -17,7 +17,7 @@ require("toggleterm").setup{
   start_in_insert = true,
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   persist_size = true,
-  direction = 'horizontal', -- vertical | horizontal | window | float
+  direction = "horizontal", -- vertical | horizontal | window | float
   close_on_exit = true, -- close the terminal window when the process exits
   shell = vim.o.shell, -- change the default shell
   -- This field is only relevant if direction is set to 'float'
@@ -26,35 +26,40 @@ require("toggleterm").setup{
     -- see :h nvim_open_win for details on borders however
     -- the 'curved' border is a custom border type
     -- not natively supported but implemented in this plugin.
-    border = 'single', -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+    border = "single", -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
     width = 120,
     height = 27,
     winblend = 3,
     highlights = {
       border = "Normal",
       background = "Normal",
-    }
-  }
-}
+    },
+  },
+})
 
 local function on_term_open(term)
-    vim.cmd("startinsert!")
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+  vim.cmd("startinsert!")
+  vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
 end
 
 local function toggle_term(cmd, count, direction)
-    local app_term = Terminal:new({ cmd = cmd, direction = direction or 'float', count = count or 33, on_open = on_term_open });
-    return function() app_term:toggle(); end;
+  local app_term = Terminal:new({
+    cmd = cmd,
+    direction = direction or "float",
+    count = count or 33,
+    on_open = on_term_open,
+  })
+  return function()
+    app_term:toggle()
+  end
 end
 
-
 return {
-    toggle_hor= toggle_term(nil, 1, 'horizontal'),
-    toggle_vert = toggle_term(nil, 2, 'vertical'),
-    toggle_float = toggle_term(nil, 3),
-    toggle_git = toggle_term('lazygit', 4),
-    toggle_npm = toggle_term('lazynpm', 5),
-    toggle_node = toggle_term('node', 6),
-    toggle_ranger = toggle_term('ranger', 7)
+  toggle_hor = toggle_term(nil, 1, "horizontal"),
+  toggle_vert = toggle_term(nil, 2, "vertical"),
+  toggle_float = toggle_term(nil, 3),
+  toggle_git = toggle_term("lazygit", 4),
+  toggle_npm = toggle_term("lazynpm", 5),
+  toggle_node = toggle_term("node", 6),
+  toggle_ranger = toggle_term("ranger", 7),
 }
-

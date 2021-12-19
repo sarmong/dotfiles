@@ -50,7 +50,7 @@ export HISTCONTROL=ignoreboth:erasedups;
 export HISTSIZE=100000
 export HISTFILESIZE=1000000
 export TERMINAL="kitty"
-export BROWSER=brave-browser
+export BROWSER=firefox
 
 
 # Fixes issues with Java application(Webstorm) in tiling WM
