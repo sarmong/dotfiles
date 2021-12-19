@@ -1,31 +1,29 @@
-vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
-vim.g.mapleader = ' '
+vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
+vim.g.mapleader = " "
 
 -- better window movement
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true})
-
+vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
 
 -- save doc using Ctrl+s. If this doesn't work add this two lines to bash_profile: (or just the second)
 -- bind -r '\C-s'
 -- stty -ixon
-vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', {silent = true})
-vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>', {silent = true})
-vim.api.nvim_set_keymap('v', '<C-s>', '<Esc>:w<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { silent = true })
+vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>", { silent = true })
+vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:w<CR>", { silent = true })
 
 -- enter command mode
-vim.api.nvim_set_keymap('n', '<C-P>', ':', {silent = true})
-vim.api.nvim_set_keymap('i', '<C-P>', ':', {silent = true})
-vim.api.nvim_set_keymap('v', '<C-P>', ':', {silent = true})
-
+vim.api.nvim_set_keymap("n", "<C-P>", ":", { silent = true })
+vim.api.nvim_set_keymap("i", "<C-P>", ":", { silent = true })
+vim.api.nvim_set_keymap("v", "<C-P>", ":", { silent = true })
 
 -- start fzf
-vim.api.nvim_set_keymap('n', '<C-p>', ':GFiles<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<C-p>", ":GFiles<CR>", { silent = true })
 
 -- turn off search highlights until next search
-vim.api.nvim_set_keymap('n', '<esc><esc>', ':noh<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<esc><esc>", ":noh<CR>", { noremap = true, silent = true })
 
 -- TODO fix this
 -- Terminal window navigation
@@ -51,13 +49,13 @@ vim.cmd([[
 ]])
 
 -- better indenting
-vim.api.nvim_set_keymap('v', '<', '<gv', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})
+vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 
 -- I hate escape
-vim.api.nvim_set_keymap('i', 'jk', '<ESC>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', 'kj', '<ESC>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "kj", "<ESC>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
 
 -- Tab switch buffer
 -- managed by barbar
@@ -65,12 +63,12 @@ vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
 
 -- Move selected line / block of text in visual mode
-vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
+vim.api.nvim_set_keymap("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
 
 -- Better nav for omnicomplete
-vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')
-vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
+vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')
+vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
 -- vim.cmd('inoremap <expr> <TAB> (\"\\<C-n>\")')
 -- vim.cmd('inoremap <expr> <S-TAB> (\"\\<C-p>\")')
 
