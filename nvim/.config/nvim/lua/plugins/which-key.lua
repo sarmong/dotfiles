@@ -1,6 +1,7 @@
 local wk = require("which-key");
 local terminals = require("plugins.toggleterm")
 local gitblame = require("plugins.gitblame")
+local lsp_fns = require("plugins.lsp.functions")
 
 vim.opt.timeoutlen = 700
 
@@ -189,6 +190,14 @@ local mappings = {
         r = { terminals.toggle_ranger, 'ranger' },
         g = { terminals.toggle_git, 'git' },
     },
+
+    -- LSP
+    l = {
+        name = "LSP",
+        f = { lsp_fns.format, 'format' },
+        e = { lsp_fns.enable_format_on_save, 'enable format on save' },
+        d = { lsp_fns.disable_format_on_save, 'disable format on save'}
+    }
 }
 
 wk.register(mappings, { prefix = "<leader>"})
