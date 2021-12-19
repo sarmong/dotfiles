@@ -25,7 +25,8 @@ local commits = {
     lualine = "3a17c8f05aae1f148b8af595b46fea18b74d0573",
     indent_blankline = "0f8df7e43f0cae4c44e0e8383436ad602f333419",
     lspconfig = "0f72e5468e510429d5f14b73c93fb528ead1fdaa",
-    lsp_installer = "70a64ed1774fe3db10aa747f08657b341227a4e5"
+    lsp_installer = "70a64ed1774fe3db10aa747f08657b341227a4e5",
+    cmp = "b11f8bbee3d7ba5190b043e23bd6f5b9cb82382c",
 }
 
 -- @TODO - use config option of 'use'
@@ -83,6 +84,11 @@ return require('packer').startup(function(use)
 
     use {'neovim/nvim-lspconfig', commit = commits.lspconfig}
     use { 'williamboman/nvim-lsp-installer', commit = commits.lsp_installer }
+    use { 'hrsh7th/nvim-cmp', commit = commits.cmp } --  Integrate with autopairs
+    use  'hrsh7th/cmp-nvim-lsp'
+    use  'hrsh7th/cmp-buffer'
+    use  'hrsh7th/cmp-path'
+    use  'hrsh7th/cmp-cmdline'
 
     -------------
 
@@ -92,7 +98,6 @@ return require('packer').startup(function(use)
 
     -- Might be needed for LSP
     -- use {'rafamadriz/friendly-snippets', run = 'yarn install --frozen-lockfile'}
-    -- use 'hrsh7th/nvim-cmp' - might be needed without coc. Integrate with autopairs 
     -- use 'sbdchd/neoformat' -- format isntead of prettier (support other languages too)
     -- use {
     --   'lewis6991/gitsigns.nvim', -- git lines on the left
