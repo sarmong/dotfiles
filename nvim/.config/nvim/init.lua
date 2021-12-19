@@ -23,12 +23,15 @@ require('plugins.indent-blankline')
 -- require('plugins.colorizer')
 require('plugins.gitblame')
 
+-- LSP
+require('plugins.lsp')
+
 require('nv-treesitter')
 -- require('nv-telescope')
 
 
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
 
-vim.cmd('source ~/.config/nvim/vimscript/nv-coc/init.vim')
+-- vim.cmd('source ~/.config/nvim/vimscript/nv-coc/init.vim')
 vim.cmd('source ~/.config/nvim/vimscript/gitgutter/init.vim')
 vim.cmd('source ~/.config/nvim/vimscript/fzf/init.vim')
