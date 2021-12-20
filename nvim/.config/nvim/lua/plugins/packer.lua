@@ -30,6 +30,11 @@ local commits = {
   luasnip = "6bcd3bb65ebb3e82afb460587590a80350eba1a1",
   cmp_luasnip = "7bd2612533db6863381193df83f9934b373b21e1",
   null_ls = "80e1c2942f70bfdf16886a64692f274ef7356010",
+  treesitter = "c9db4324351576d55e6a34d29a571843eff68ac3",
+  ts_commentstring = "097df33c9ef5bbd3828105e4bee99965b758dc3f",
+  ts_autotag = "0ceb4ef342bf1fdbb082ad4fa1fcfd0f864e1cba",
+  ts_refactor = "a21ed4d294d2da5472ce5b70385d7871c4518a1e",
+  ts_rainbow = "54ee09f540935c604c9a3d4aed83b7f5314f2caa",
 }
 
 -- @TODO - use config option of 'use'
@@ -108,11 +113,11 @@ return require("packer").startup(function(use)
   })
 
   -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-  use("p00f/nvim-ts-rainbow") -- rainbow parantheses
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("windwp/nvim-ts-autotag")
-  use("nvim-treesitter/nvim-treesitter-refactor")
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", commit = commits.treesitter })
+  use({ "p00f/nvim-ts-rainbow", commit = commits.ts_rainbow }) -- rainbow parantheses
+  use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = commits.ts_commentstring })
+  use({ "windwp/nvim-ts-autotag", commit = commits.ts_autotag })
+  use({ "nvim-treesitter/nvim-treesitter-refactor", commit = commits.ts_refactor })
 
   -------------
 
