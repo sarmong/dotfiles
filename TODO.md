@@ -27,10 +27,9 @@
 
 ## VIM TODO
 
+- disable lualine for nvimtree buffer
 - show .config folders even if dotfiles are hidden in nvimtree
-- set up snippets
 - add barbar to which key
-- set up correct keymappings to lsp
 - !!! don't use vim commands in which key - export lua function as a wrapper from plugin file
 - handle registers
   - see what whickey offers or use junegunn/vim-peekaboo

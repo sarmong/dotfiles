@@ -107,6 +107,13 @@ return require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   })
 
+  -- Treesitter
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+  use("p00f/nvim-ts-rainbow") -- rainbow parantheses
+  use("JoosepAlviste/nvim-ts-context-commentstring")
+  use("windwp/nvim-ts-autotag")
+  use("nvim-treesitter/nvim-treesitter-refactor")
+
   -------------
 
   use({ "rescript-lang/vim-rescript" })
@@ -131,13 +138,6 @@ return require("packer").startup(function(use)
   -- use 'MattesGroeger/vim-bookmarks'
 
   use("plasticboy/vim-markdown")
-
-  -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-  use("p00f/nvim-ts-rainbow")
-  use("nvim-treesitter/playground")
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("windwp/nvim-ts-autotag")
 
   use("junegunn/fzf")
   use("junegunn/fzf.vim")
