@@ -1,4 +1,9 @@
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<Space>",
+  "<NOP>",
+  { noremap = true, silent = true }
+)
 vim.g.mapleader = " "
 
 -- better window movement
@@ -23,7 +28,12 @@ vim.api.nvim_set_keymap("v", "<C-P>", ":", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-p>", ":GFiles<CR>", { silent = true })
 
 -- turn off search highlights until next search
-vim.api.nvim_set_keymap("n", "<esc><esc>", ":noh<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<esc><esc>",
+  ":noh<CR>",
+  { noremap = true, silent = true }
+)
 
 -- TODO fix this
 -- Terminal window navigation
@@ -63,8 +73,18 @@ vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
 
 -- Move selected line / block of text in visual mode
-vim.api.nvim_set_keymap("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "x",
+  "K",
+  ":move '<-2<CR>gv-gv",
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "x",
+  "J",
+  ":move '>+1<CR>gv-gv",
+  { noremap = true, silent = true }
+)
 
 -- Better nav for omnicomplete
 vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')

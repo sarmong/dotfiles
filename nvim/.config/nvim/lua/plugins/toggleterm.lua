@@ -39,7 +39,13 @@ require("toggleterm").setup({
 
 local function on_term_open(term)
   vim.cmd("startinsert!")
-  vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+  vim.api.nvim_buf_set_keymap(
+    term.bufnr,
+    "n",
+    "q",
+    "<cmd>close<CR>",
+    { noremap = true, silent = true }
+  )
 end
 
 local function toggle_term(cmd, count, direction)
