@@ -27,6 +27,8 @@ local commits = {
   lspconfig = "0f72e5468e510429d5f14b73c93fb528ead1fdaa",
   lsp_installer = "70a64ed1774fe3db10aa747f08657b341227a4e5",
   cmp = "b11f8bbee3d7ba5190b043e23bd6f5b9cb82382c",
+  luasnip = "6bcd3bb65ebb3e82afb460587590a80350eba1a1",
+  cmp_luasnip = "7bd2612533db6863381193df83f9934b373b21e1",
   null_ls = "80e1c2942f70bfdf16886a64692f274ef7356010",
 }
 
@@ -85,11 +87,19 @@ return require("packer").startup(function(use)
 
   use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
   use({ "williamboman/nvim-lsp-installer", commit = commits.lsp_installer })
-  use({ "hrsh7th/nvim-cmp", commit = commits.cmp }) --  Integrate with autopairs
+  use({ "hrsh7th/nvim-cmp", commit = commits.cmp }) -- @TODO Integrate with autopairs
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-buffer")
   use("hrsh7th/cmp-path")
   use("hrsh7th/cmp-cmdline")
+
+  -- Snippets
+  use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
+  use({ "saadparwaiz1/cmp_luasnip", commit = commits.cmp_luasnip })
+
+  use("rafamadriz/friendly-snippets")
+  use("ChristianChiarulli/html-snippets")
+  use({ "dsznajder/vscode-es7-javascript-react-snippets", run = "yarn install --frozen-lockfile && yarn compile" })
 
   use({
     "jose-elias-alvarez/null-ls.nvim",
@@ -101,11 +111,7 @@ return require("packer").startup(function(use)
 
   use({ "rescript-lang/vim-rescript" })
 
-  use({ "dsznajder/vscode-es7-javascript-react-snippets", run = "yarn install --frozen-lockfile && yarn compile" })
-
   -- Might be needed for LSP
-  -- use {'rafamadriz/friendly-snippets', run = 'yarn install --frozen-lockfile'}
-  -- use 'sbdchd/neoformat' -- format isntead of prettier (support other languages too)
   -- use {
   --   'lewis6991/gitsigns.nvim', -- git lines on the left
   --   requires = {
@@ -125,11 +131,6 @@ return require("packer").startup(function(use)
   -- use 'MattesGroeger/vim-bookmarks'
 
   use("plasticboy/vim-markdown")
-
-  -- Autocomplete
-  use("hrsh7th/vim-vsnip")
-  use("rafamadriz/friendly-snippets")
-  use("ChristianChiarulli/html-snippets")
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
