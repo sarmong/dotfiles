@@ -56,7 +56,6 @@
   - turbio/bracey.vim - html css live reload
   - nacro90/numb.nvim - peek into line at number
   - TimUntersberger/neogit
-  - SirVer/ultisnips - VERy popular snippets plugin
   - honza/vim-snippets - popular snippetns plugin
   - akinsho/nvim-bufferline.lua - barbar alternative
   - https://github.com/godlygeek/vim-files/blob/master/plugin/vsearch.vim - visual mode search
