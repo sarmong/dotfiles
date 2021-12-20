@@ -23,7 +23,10 @@ require("telescope").setup({
     selection_strategy = "reset",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
-    layout_defaults = { horizontal = { mirror = false }, vertical = { mirror = false } },
+    layout_defaults = {
+      horizontal = { mirror = false },
+      vertical = { mirror = false },
+    },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
     file_ignore_patterns = { "node_modules", ".git" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,

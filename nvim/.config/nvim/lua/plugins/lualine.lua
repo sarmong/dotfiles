@@ -29,13 +29,15 @@ require("lualine").setup({
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { {
-      "mode",
-      fmt = function()
-        return " "
-      end,
-      padding = 0,
-    } },
+    lualine_a = {
+      {
+        "mode",
+        fmt = function()
+          return " "
+        end,
+        padding = 0,
+      },
+    },
     lualine_b = {
       { "branch", icon = " " },
       {
@@ -51,7 +53,12 @@ require("lualine").setup({
         sources = { "coc" },
         -- displays diagnostics from defined severity
         sections = { "error", "warn", "info", "hint" },
-        symbols = { error = "  ", warn = "  ", info = "  ", hint = "  " },
+        symbols = {
+          error = "  ",
+          warn = "  ",
+          info = "  ",
+          hint = "  ",
+        },
         diagnostics_color = {
           -- Same values like general color option can be used here.
           error = { fg = colors.error_red }, -- changes diagnostic's error color

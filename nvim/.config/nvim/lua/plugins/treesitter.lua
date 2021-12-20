@@ -20,7 +20,10 @@ require("nvim-treesitter.configs").setup({
   },
   -- @TODO this plugins integrades with commentary by default.
   -- And only with gc. That's why it does'nt work with custom mappings
-  context_commentstring = { enable = true, config = { javascriptreact = { style_element = "{/*%s*/}" } } },
+  context_commentstring = {
+    enable = true,
+    config = { javascriptreact = { style_element = "{/*%s*/}" } },
+  },
   -- @TODO I don't use other features from this module.
   -- consider finding separate smaller plugin for hightlight definitions (perhaps with native lsp)
   refactor = {
