@@ -29,19 +29,14 @@
 
 - add barbar to which key
 - show .config folders even if dotfiles are hidden in nvimtree
-- set up correct keymappings to lsp
 - set up snippets
 - add barbar to which key
-- show .config folders even if dotfiles are hidden in nvimtree
 - set up correct keymappings to lsp
-- set up snippets
 - !!! don't use vim commands in which key - export lua function as a wrapper from plugin file
 - handle registers
   - see what whickey offers or use junegunn/vim-peekaboo
   - don't save every yank to a main registry
 - lock plugins to a specific commit / tag (see lunarvim)
-- set up stylua
-- set up null-ls
 - [russian layout](https://habr.com/ru/post/98393/)
 - C-Q to quit vim completely
 - fix swap files
