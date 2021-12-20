@@ -194,9 +194,16 @@ local mappings = {
   -- LSP
   l = {
     name = "LSP",
-    f = { lsp_fns.format, "format" },
+    F = { lsp_fns.format, "format" },
     e = { lsp_fns.enable_format_on_save, "enable format on save" },
     d = { lsp_fns.disable_format_on_save, "disable format on save" },
+    t = { lsp_fns.go_to_type_definition, "go to type definition" },
+    r = { lsp_fns.rename, "rename" },
+    a = { lsp_fns.code_action, "action" },
+    f = { lsp_fns.open_float, "open float" },
+    q = { lsp_fns.set_loc_list, "set loc list" },
+    v = { lsp_fns.enable_virtual_text, "virtual text on" },
+    V = { lsp_fns.disable_virtual_text, "virtual text off" },
   },
 }
 
