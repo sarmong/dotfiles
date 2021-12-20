@@ -22,11 +22,11 @@ require("plugins.alpha")
 require("plugins.indent-blankline")
 -- require('plugins.colorizer')
 require("plugins.gitblame")
+require("plugins.treesitter")
 
 -- LSP
 require("plugins.lsp")
 
-require("nv-treesitter")
 -- require('nv-telescope')
 
 vim.cmd("source ~/.config/nvim/vimscript/functions.vim")
