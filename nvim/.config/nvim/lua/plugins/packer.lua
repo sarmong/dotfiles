@@ -4,7 +4,9 @@ local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+  execute(
+    "!git clone https://github.com/wbthomason/packer.nvim " .. install_path
+  )
   execute("packadd packer.nvim")
 end
 
@@ -82,7 +84,10 @@ return require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons" },
   })
 
-  use({ "lukas-reineke/indent-blankline.nvim", commit = commits.indent_blankline })
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    commit = commits.indent_blankline,
+  })
 
   use("f-person/git-blame.nvim") -- consider using zivyangll/git-blame.vim to show at the bottom
 
@@ -104,7 +109,10 @@ return require("packer").startup(function(use)
 
   use("rafamadriz/friendly-snippets")
   use("ChristianChiarulli/html-snippets")
-  use({ "dsznajder/vscode-es7-javascript-react-snippets", run = "yarn install --frozen-lockfile && yarn compile" })
+  use({
+    "dsznajder/vscode-es7-javascript-react-snippets",
+    run = "yarn install --frozen-lockfile && yarn compile",
+  })
 
   use({
     "jose-elias-alvarez/null-ls.nvim",
@@ -113,11 +121,21 @@ return require("packer").startup(function(use)
   })
 
   -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", commit = commits.treesitter })
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    commit = commits.treesitter,
+  })
   use({ "p00f/nvim-ts-rainbow", commit = commits.ts_rainbow }) -- rainbow parantheses
-  use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = commits.ts_commentstring })
+  use({
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    commit = commits.ts_commentstring,
+  })
   use({ "windwp/nvim-ts-autotag", commit = commits.ts_autotag })
-  use({ "nvim-treesitter/nvim-treesitter-refactor", commit = commits.ts_refactor })
+  use({
+    "nvim-treesitter/nvim-treesitter-refactor",
+    commit = commits.ts_refactor,
+  })
 
   -------------
 

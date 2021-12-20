@@ -6,7 +6,11 @@ vim.g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git at
 vim.g.nvim_tree_highlight_opened_files = 1 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
 vim.g.nvim_tree_group_empty = 1 --  0 by default, compact folders that only contain a single folder into one node in the file tree
 vim.g.nvim_tree_quit_on_open = 0 -- 0 by default, closes the tree when you open a file
-vim.g.nvim_tree_special_files = { ["README.md"] = 1, ["Makefile"] = 1, ["package.json"] = 1 } -- List of filenames that gets highlighted with NvimTreeSpecialFile
+vim.g.nvim_tree_special_files = {
+  ["README.md"] = 1,
+  ["Makefile"] = 1,
+  ["package.json"] = 1,
+} -- List of filenames that gets highlighted with NvimTreeSpecialFile
 
 vim.g.nvim_tree_icons = {
   default = "",
