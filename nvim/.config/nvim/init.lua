@@ -31,4 +31,4 @@ require("plugins.lsp")
 
 vim.cmd("source ~/.config/nvim/vimscript/functions.vim")
 
--- vim.cmd('source ~/.config/nvim/vimscript/nv-coc/init.vim')
+-- vim.cmd('source ~/.config/nvim/vimscript/coc/init.vim')
