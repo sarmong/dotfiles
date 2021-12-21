@@ -1,7 +1,5 @@
 -- General mappings
 require("nv-utils")
--- check if coc formats on save
--- require('autocommands')
 require("settings")
 require("keymappings")
 require("colorscheme")
