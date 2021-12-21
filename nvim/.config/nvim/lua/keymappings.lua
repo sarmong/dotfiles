@@ -31,6 +31,7 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
+-- @TODO transform to lua functions
 -- Terminal window navigation
 vim.cmd([[
   tnoremap <C-h> <C-\><C-N><C-w>h
@@ -41,7 +42,6 @@ vim.cmd([[
   inoremap <C-j> <C-\><C-N><C-w>j
   inoremap <C-k> <C-\><C-N><C-w>k
   inoremap <C-l> <C-\><C-N><C-w>l
-  tnoremap <Esc> <C-\><C-n>
 ]])
 
 -- @TODO fix this - interferes with visual-multi plugin

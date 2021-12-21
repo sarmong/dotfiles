@@ -37,12 +37,13 @@ require("toggleterm").setup({
   },
 })
 
+-- @TODO add this to setup function and update the plugins once the pr is merged
 local function on_term_open(term)
   vim.cmd("startinsert!")
   vim.api.nvim_buf_set_keymap(
     term.bufnr,
-    "n",
-    "q",
+    "t",
+    "<esc><esc>",
     "<cmd>close<CR>",
     { noremap = true, silent = true }
   )
