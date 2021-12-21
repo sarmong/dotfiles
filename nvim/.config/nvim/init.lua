@@ -27,7 +27,7 @@ require("plugins.treesitter")
 -- LSP
 require("plugins.lsp")
 
--- require('nv-telescope')
+-- require('plugins.archive.telescope')
 
 vim.cmd("source ~/.config/nvim/vimscript/functions.vim")
 
