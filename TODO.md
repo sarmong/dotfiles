@@ -27,6 +27,10 @@
 
 ## VIM TODO
 
+- conside some more "normal" keymappings from [mswin.vim](https://github.com/vim/vim/blob/master/runtime/mswin.vim)
+- use pcall to check if module exists
+- fzf navigate with c-j c-k
+- fzf don't search filenames when searching text
 - fix cmp completion to be as good as coc
 - set up git plugins
 - add barbar to which key
@@ -68,3 +72,5 @@
   - Plug 'ap/vim-css-color' " Visual display hexcode colors in vim
   - vim-surround
   - https://github.com/neoclide/coc-jest
+  - goyo
+  - dap
