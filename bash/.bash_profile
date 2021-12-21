@@ -10,7 +10,8 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ## this exposes homebrew version of node as main and can be switched to using `nvm use system`
-export PATH="/home/linuxbrew/.linuxbrew/opt/node@16/bin:$PATH"
+## this has to come last in the path, so that nvm version has higher priority
+export PATH=$PATH:"/home/linuxbrew/.linuxbrew/opt/node@16/bin"
 
 
 # https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory
