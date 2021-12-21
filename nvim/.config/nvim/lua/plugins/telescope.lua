@@ -1,11 +1,12 @@
+local telescope = require("telescope")
 local actions = require("telescope.actions")
--- Global remapping
-------------------------------
--- '--color=never',
-require("telescope").load_extension("media_files")
-require("telescope").load_extension("project")
-require("telescope").setup({
+local sorters = require("telescope.sorters")
+local previewers = require("telescope.previewers")
+
+telescope.setup({
   defaults = {
+    sorting_strategy = "descending",
+    selection_strategy = "reset",
     vimgrep_arguments = {
       "rg",
       "--hidden",
@@ -20,16 +21,14 @@ require("telescope").setup({
     selection_caret = " ",
     entry_prefix = "  ",
     initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "ascending",
     layout_strategy = "horizontal",
     layout_defaults = {
       horizontal = { mirror = false },
       vertical = { mirror = false },
     },
-    file_sorter = require("telescope.sorters").get_fuzzy_file,
+    file_sorter = sorters.get_fuzzy_file,
     file_ignore_patterns = { "node_modules", ".git" },
-    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+    generic_sorter = sorters.get_generic_fuzzy_sorter,
     shorten_path = true,
     winblend = 0,
     width = 0.75,
@@ -41,12 +40,12 @@ require("telescope").setup({
     color_devicons = true,
     use_less = true,
     set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    file_previewer = previewers.vim_buffer_cat.new,
+    grep_previewer = previewers.vim_buffer_vimgrep.new,
+    qflist_previewer = previewers.vim_buffer_qflist.new,
 
     -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+    buffer_previewer_maker = previewers.buffer_previewer_maker,
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,
@@ -55,7 +54,7 @@ require("telescope").setup({
         -- To disable a keymap, put [map] = false
         -- So, to not map "<C-n>", just put
         -- ["<c-x>"] = false,
-        ["<c-n>"] = actions.close,
+        ["<esc><esc>"] = actions.close,
 
         -- Otherwise, just set the mapping to the function that you want it to be.
         -- ["<C-i>"] = actions.select_horizontal,
@@ -70,6 +69,7 @@ require("telescope").setup({
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        ["<esc><esc>"] = actions.close,
         -- ["<C-i>"] = my_cool_custom_action,
       },
     },
@@ -81,5 +81,16 @@ require("telescope").setup({
       filetypes = { "png", "webp", "jpg", "jpeg" },
       find_cmd = "rg", -- find command (defaults to `fd`)
     },
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    },
   },
 })
+
+telescope.load_extension("media_files")
+telescope.load_extension("project")
+telescope.load_extension("fzf")

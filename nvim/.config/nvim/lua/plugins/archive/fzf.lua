@@ -9,8 +9,12 @@ vim.api.nvim_set_var("fzf_action", {
 
 -- this makes :Rg not search filenames
 -- https://github.com/junegunn/fzf.vim/issues/346#issuecomment-288483704
+-- vim.cmd(
+--   [[command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)]]
+-- )
+
 vim.cmd(
-  [[command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)]]
+  "command! -bang -nargs=* Rg call fzf#vim#rg(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)"
 )
 
 vim.cmd(
