@@ -140,9 +140,19 @@ return require("packer").startup(function(use)
     commit = commits.ts_refactor,
   })
 
-  use({ "junegunn/fzf", commit = commits.fzf })
-  use({ "junegunn/fzf.vim", commit = commits.fzf_vim })
-  use({ "stsewd/fzf-checkout.vim", commit = commits.fzf_checkout })
+  -- use({ "junegunn/fzf", commit = commits.fzf })
+  -- use({ "junegunn/fzf.vim", commit = commits.fzf_vim })
+  -- use({ "stsewd/fzf-checkout.vim", commit = commits.fzf_checkout })
+
+  use({
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-media-files.nvim",
+      "nvim-telescope/telescope-project.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    },
+  })
 
   -------------
 
@@ -168,13 +178,6 @@ return require("packer").startup(function(use)
   -- use 'MattesGroeger/vim-bookmarks'
 
   use("plasticboy/vim-markdown")
-
-  -- Telescope
-  -- use 'nvim-lua/popup.nvim'
-  -- use 'nvim-lua/plenary.nvim'
-  -- use 'nvim-telescope/telescope.nvim'
-  -- use 'nvim-telescope/telescope-media-files.nvim'
-  -- use 'nvim-telescope/telescope-project.nvim'
 
   -- Color
   use("christianchiarulli/nvcode-color-schemes.vim")
