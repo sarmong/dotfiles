@@ -27,6 +27,8 @@
 
 ## VIM TODO
 
+- fix cmp completion to be as good as coc
+- set up git plugins
 - add barbar to which key
 - disable lualine for nvimtree buffer
 - show .config folders even if dotfiles are hidden in nvimtree
