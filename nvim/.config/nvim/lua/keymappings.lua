@@ -1,3 +1,4 @@
+-- Unmap space and set leader key to space
 vim.api.nvim_set_keymap(
   "n",
   "<Space>",
@@ -19,11 +20,6 @@ vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { silent = true })
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>", { silent = true })
 vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:w<CR>", { silent = true })
 
--- enter command mode
-vim.api.nvim_set_keymap("n", "<C-P>", ":", { silent = true })
-vim.api.nvim_set_keymap("i", "<C-P>", ":", { silent = true })
-vim.api.nvim_set_keymap("v", "<C-P>", ":", { silent = true })
-
 -- start fzf
 vim.api.nvim_set_keymap("n", "<C-p>", ":GFiles<CR>", { silent = true })
 
@@ -35,7 +31,6 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
--- TODO fix this
 -- Terminal window navigation
 vim.cmd([[
   tnoremap <C-h> <C-\><C-N><C-w>h
@@ -49,7 +44,7 @@ vim.cmd([[
   tnoremap <Esc> <C-\><C-n>
 ]])
 
--- TODO fix this
+-- @TODO fix this - interferes with visual-multi plugin
 -- resize with arrows
 vim.cmd([[
   nnoremap <silent> <C-Up>    :resize -2<CR>
@@ -62,15 +57,10 @@ vim.cmd([[
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 
--- I hate escape
+-- Not sure if I need this.
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "kj", "<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
-
--- Tab switch buffer
--- managed by barbar
--- vim.api.nvim_set_keymap('n', '<TAB>', ':bnext<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
 
 -- Move selected line / block of text in visual mode
 vim.api.nvim_set_keymap(
@@ -85,16 +75,3 @@ vim.api.nvim_set_keymap(
   ":move '>+1<CR>gv-gv",
   { noremap = true, silent = true }
 )
-
--- Better nav for omnicomplete
-vim.cmd('inoremap <expr> <c-j> ("\\<C-n>")')
-vim.cmd('inoremap <expr> <c-k> ("\\<C-p>")')
--- vim.cmd('inoremap <expr> <TAB> (\"\\<C-n>\")')
--- vim.cmd('inoremap <expr> <S-TAB> (\"\\<C-p>\")')
-
--- vim.cmd([[
--- map p <Plug>(miniyank-autoput)
--- map P <Plug>(miniyank-autoPut)
--- map <leader>n <Plug>(miniyank-cycle)
--- map <leader>N <Plug>(miniyank-cycleback)
--- ]])
