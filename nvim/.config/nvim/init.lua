@@ -22,6 +22,7 @@ require("plugins.indent-blankline")
 require("plugins.gitblame")
 require("plugins.treesitter")
 require("plugins.gitgutter")
+require("plugins.fzf")
 
 -- LSP
 require("plugins.lsp")
@@ -31,4 +32,3 @@ require("plugins.lsp")
 vim.cmd("source ~/.config/nvim/vimscript/functions.vim")
 
 -- vim.cmd('source ~/.config/nvim/vimscript/nv-coc/init.vim')
-vim.cmd("source ~/.config/nvim/vimscript/fzf/init.vim")
