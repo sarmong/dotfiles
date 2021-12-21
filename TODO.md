@@ -53,6 +53,7 @@
 - move config files to use packer config option
 - colorhoghlight dsoesn't work after undo
 - easily resize window
+- create install script
 
 - check out new new plugins
   - pechorin/any-jump.vim -- search trough definitions. Does not needed with coc gd, maybe will be needed with native lsp
