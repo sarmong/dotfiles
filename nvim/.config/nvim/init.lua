@@ -1,5 +1,4 @@
 -- General mappings
-require("nv-utils")
 require("settings")
 require("keymappings")
 require("colorscheme")
@@ -26,7 +25,5 @@ require("plugins.telescope")
 
 -- LSP
 require("plugins.lsp")
-
-vim.cmd("source ~/.config/nvim/vimscript/functions.vim")
 
 -- vim.cmd('source ~/.config/nvim/vimscript/coc/init.vim')
