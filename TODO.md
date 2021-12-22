@@ -16,17 +16,15 @@
 - pass
 - set up zsh
 - Look into st and dwm
-- clipboard manager
 - https://github.com/mwh/dragon
 - volume controls
-- jira cli https://github.com/go-jira/jira
-- change bash prompt (to indicate vim mode)
 - kitty scratchpad
 - better fonts https://aswinmohan.me/posts/better-fonts-on-linux/
 - fix ctrl-s hang https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
 
 ## VIM TODO
 
+- search dotfiles in telescope
 - conside some more "normal" keymappings from [mswin.vim](https://github.com/vim/vim/blob/master/runtime/mswin.vim)
 - use pcall to check if module exists
 - fzf navigate with c-j c-k
@@ -41,12 +39,10 @@
 - handle registers
   - see what whickey offers or use junegunn/vim-peekaboo
   - don't save every yank to a main registry
-- lock plugins to a specific commit / tag (see lunarvim)
 - [russian layout](https://habr.com/ru/post/98393/)
 - C-Q to quit vim completely
 - fix swap files
 - https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome
-- check out nvim gui clients
 - https://learnvimscriptthehardway.stevelosh.com/
 - learn es7 snippets
 - colorschemes
@@ -75,3 +71,9 @@
   - https://github.com/neoclide/coc-jest
   - goyo
   - dap
+  - nvim-orgmode/orgmode
+  - ruifm/gitlinker.nvim
+  - tanvirtin/vgit.nvim
+  - TimUntersberger/neogit
+  - sindrets/diffview.nvim
+  - szw/vim-maximizer
