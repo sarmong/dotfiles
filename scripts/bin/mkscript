@@ -7,6 +7,6 @@ fi
 
 touch ~/dotfiles/scripts/bin/"$1"
 chmod +x ~/dotfiles/scripts/bin/"$1"
-ln -s ~/dotfiles//scripts/bin/"$1" ~/bin/"$1"
+~/dotfiles/linkfiles
 echo "#!/bin/sh" > ~/bin/"$1"
 nvim ~/bin/"$1"
