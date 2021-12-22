@@ -1,6 +1,7 @@
 local wk = require("which-key")
 local terminals = require("plugins.toggleterm")
-local gitblame = require("plugins.gitblame")
+local gitblame = require("plugins.git").gitblame
+local gitsigns = require("plugins.git").gitsigns
 local lsp_fns = require("plugins.lsp.functions")
 
 vim.opt.timeoutlen = 700
@@ -167,17 +168,18 @@ local mappings = {
   g = {
     name = "git",
     b = { gitblame.toggle, "blame" },
-    B = { ":GBrowse<cr>", "browse" },
-    d = { ":Gvdiffsplit<cr>", "diff" },
-    j = { ":NextHunk<cr>", "next hunk" },
-    k = { ":PrevHunk<cr>", "prev hunk" },
-    l = { ":Git log<cr>", "log" },
-    p = { "<Plug>(GitGutterPreviewHunk)<cr>", "preview hunk" },
-    r = { ":ResetHunk<cr>", "reset hunk" },
-    R = { ":ResetBuffer<cr>", "reset buffer" },
-    s = { "<Plug>(GitGutterStageHunk)<cr>", "stage hunk" },
-    S = { ":Gstatus<cr>", "status" },
-    u = { "<Plug>(GitGutterUndoHunk)<cr>", "undo stage hunk" },
+    B = { ":GBrowse<cr>", "browse" }, --rhubarb
+    d = { ":Gvdiffsplit<cr>", "diff" }, -- fugitive
+    j = { gitsigns.next_hunk, "next hunk" }, --functions.vim
+    k = { gitsigns.prev_hunk, "prev hunk" },
+    l = { ":Git log<cr>", "log" }, --fugitive ?
+    r = { gitsigns.reset_hunk, "reset hunk" },
+    R = { gitsigns.reset_buffer, "reset buffer" },
+    s = { gitsigns.stage_hunk, "stage hunk" },
+    S = { ":Gstatus<cr>", "status" }, -- fugitive
+    u = { gitsigns.undo_stage_hunk, "undo stage hunk" },
+    w = { gitsigns.toggle_word_diff, "toggle word diff" },
+    p = { gitsigns.preview_hunk, "preview_hunk" },
   },
 
   -- Gist
