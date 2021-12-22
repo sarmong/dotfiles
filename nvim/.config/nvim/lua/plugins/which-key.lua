@@ -70,7 +70,7 @@ local mappings = {
   ["/"] = { "<Plug>CommentaryLine<cr>", "comment" },
   e = { ":NvimTreeToggle<cr>", "filetree" },
   -- f = { ":Files<cr>", "find files" },
-  f = { ":Telescope find_files<cr>", "find files" },
+  f = { ":Telescope find_files hidden=true<cr>", "find files" },
   M = { ":MarkdownPreviewToggle", "markdown preview" },
   u = { ":UndotreeToggle", "undo tree" },
   -- TODO create entire treesitter section
@@ -135,7 +135,7 @@ local mappings = {
       ":Telescope diagnostics<cr>",
       "workspace_diagnostics",
     },
-    f = { ":Telescope find_files<cr>", "files" },
+    f = { ":Telescope find_files hidden=true<cr>", "files" },
     h = { ":Telescope command_history<cr>", "history" },
     i = { ":Telescope media_files<cr>", "media files" },
     m = { ":Telescope marks<cr>", "marks" },
