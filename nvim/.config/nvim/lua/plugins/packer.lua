@@ -164,34 +164,24 @@ return require("packer").startup(function(use)
     },
   })
 
-  -- Try out
-  -- use 'vimwiki/vimwiki'
-  -- use 'vim-test/vim-test'
-  -- use 'godlygeek/tabular'
-  -- use 'junegunn/goyo.vim'
-  -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
-  -- use 'ryanoasis/vim-devicons' -- maybe use them instead
-  -- use 'kevinhwang91/nvim-bqf' -- after learning quickfix
-  -- use 'MattesGroeger/vim-bookmarks'
+  -------------
 
   use("plasticboy/vim-markdown")
 
   -- Color
   use("christianchiarulli/nvcode-color-schemes.vim")
 
-  -- Git
-  use("airblade/vim-gitgutter")
-  use("tpope/vim-fugitive")
-  use("tpope/vim-rhubarb")
-
-  -- Easily Create Gists
-  use("mattn/vim-gist")
-
   -- General Plugins
-  -- use 'ChristianChiarulli/dashboard-nvim'
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
   use("mbbill/undotree")
 
+  -- Try out
+  -- use 'vim-test/vim-test'
+  -- use 'godlygeek/tabular'
+  -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
+  -- use 'ryanoasis/vim-devicons' -- maybe use them instead
+  -- use 'kevinhwang91/nvim-bqf' -- after learning quickfix
+  -- use 'MattesGroeger/vim-bookmarks'
   -- use 'b3nj5m1n/kommentary'
   -- use {
   --     'glacambre/firenvim',
