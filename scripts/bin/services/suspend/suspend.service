@@ -1,0 +1,9 @@
+[Unit]
+Description=Run user script after suspend
+
+[Service]
+Type=oneshot
+ExecStart=/home//bin/services/suspend/suspend.sh
+
+[Install]
+WantedBy=multi-user.target
