@@ -1,7 +1,7 @@
 local fns = {}
 
 fns.format = function()
-  vim.api.nvim_command("lua vim.lsp.buf.formatting_sync(nil, 1000)")
+  vim.lsp.buf.formatting_sync(nil, 1000)
   print("Formatted")
 end
 
@@ -18,23 +18,23 @@ fns.disable_format_on_save = function()
 end
 
 fns.go_to_type_definition = function()
-  vim.api.nvim_command("lua vim.lsp.buf.type_definition()")
+  vim.lsp.buf.type_definition()
 end
 
 fns.rename = function()
-  vim.api.nvim_command("lua vim.lsp.buf.rename()")
+  vim.lsp.buf.rename()
 end
 
 fns.code_action = function()
-  vim.api.nvim_command("lua vim.lsp.buf.code_action()")
+  vim.lsp.buf.code_action()
 end
 
 fns.open_float = function()
-  vim.api.nvim_command("lua vim.diagnostic.open_float()")
+  vim.diagnostic.open_float()
 end
 
 fns.set_loc_list = function()
-  vim.api.nvim_command("lua vim.diagnostic.setlocklist()")
+  vim.diagnostic.setlocklist()
 end
 
 fns.enable_virtual_text = function()
