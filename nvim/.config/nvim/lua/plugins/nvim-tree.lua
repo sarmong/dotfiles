@@ -1,4 +1,5 @@
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
+local nvim_tree = require("nvim-tree")
 
 vim.g.nvim_tree_indent_markers = 1 --"0 by default, this option shows indent markers when folders are open
 vim.g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git attributes (can be used without the icons).
@@ -64,7 +65,7 @@ local keymappings = {
   { key = "s", cb = tree_cb("system_open") },
 }
 
-require("nvim-tree").setup({
+nvim_tree.setup({
   -- @TODO check why netrw is not opening (maybe because of startup plugin)
   disable_netrw = false,
   hijack_netrw = false,
@@ -93,3 +94,9 @@ require("nvim-tree").setup({
     },
   },
 })
+
+return {
+  toggle = function()
+    nvim_tree.toggle()
+  end,
+}
