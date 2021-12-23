@@ -4,6 +4,8 @@ local git = require("plugins.git").git
 local gitsigns = require("plugins.git").gitsigns
 local github = require("plugins.git").github
 local lsp_fns = require("plugins.lsp.functions")
+local alpha = require("plugins.alpha")
+local nvim_tree = require("plugins.nvim-tree")
 
 vim.opt.timeoutlen = 700
 
@@ -67,10 +69,9 @@ wk.setup({
 })
 
 local mappings = {
-  [";"] = { ":Dashboard", "home screen" },
+  [";"] = { alpha.open_home_page, "home screen" },
   ["/"] = { "<Plug>CommentaryLine<cr>", "comment" },
-  e = { ":NvimTreeToggle<cr>", "filetree" },
-  -- f = { ":Files<cr>", "find files" },
+  e = { nvim_tree.toggle, "filetree" },
   f = { ":Telescope find_files hidden=true<cr>", "find files" },
   M = { ":MarkdownPreviewToggle", "markdown preview" },
   u = { ":UndotreeToggle", "undo tree" },
@@ -117,16 +118,6 @@ local mappings = {
   -- Search
   s = {
     name = "search",
-    -- ["."] = { ":Filetypes<cr>", "filetypes" },
-    -- d = { ":GFiles?<cr>", "diff (git status)" },
-    -- b = { ":Buffers<cr>", "buffers" },
-    -- B = { ":GBranches<cr>", "git branches" },
-    -- t = { ":Rg<cr>", "text" },
-    -- ["/"] = { ":BLines<cr>", "current buffer" },
-    -- c = { ":Commits<cr>", "commits" },
-    -- p = { ":Commands<cr>", "commands" },
-    -- h = { ":Helptags<cr>", "help" },
-
     B = { ":Telescope git_branches<cr>", "git branches" },
     d = {
       ":Telescope diagnostics bufnr=0<cr>",
@@ -195,13 +186,6 @@ local mappings = {
     p = { ":Gist -P<cr>", "post public gist " },
     P = { ":Gist -p<cr>", "post private gist " },
     a = { ":Gist -a<cr>", "post gist anon" },
-  },
-
-  -- Session
-  S = {
-    name = "session",
-    s = { ":SessionSave<cr>", "save session" },
-    l = { ":SessionLoad<cr>", "load session" },
   },
 
   -- Terminal
