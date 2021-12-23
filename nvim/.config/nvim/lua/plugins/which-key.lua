@@ -1,7 +1,8 @@
 local wk = require("which-key")
 local terminals = require("plugins.toggleterm")
-local gitblame = require("plugins.git").gitblame
+local git = require("plugins.git").git
 local gitsigns = require("plugins.git").gitsigns
+local github = require("plugins.git").github
 local lsp_fns = require("plugins.lsp.functions")
 
 vim.opt.timeoutlen = 700
@@ -167,16 +168,16 @@ local mappings = {
   -- Git
   g = {
     name = "git",
-    b = { gitblame.toggle, "blame" },
-    B = { ":GBrowse<cr>", "browse" }, --rhubarb
-    d = { ":Gvdiffsplit<cr>", "diff" }, -- fugitive
+    b = { git.toggle_blame, "blame" },
+    B = { github.open_file, "browse" },
+    d = { git.open_diff_vsplit, "diff" },
     j = { gitsigns.next_hunk, "next hunk" }, --functions.vim
     k = { gitsigns.prev_hunk, "prev hunk" },
-    l = { ":Git log<cr>", "log" }, --fugitive ?
+    l = { git.show_log, "log" }, --fugitive ?
     r = { gitsigns.reset_hunk, "reset hunk" },
     R = { gitsigns.reset_buffer, "reset buffer" },
     s = { gitsigns.stage_hunk, "stage hunk" },
-    S = { ":Gstatus<cr>", "status" }, -- fugitive
+    S = { git.show_status, "status" }, -- fugitive
     u = { gitsigns.undo_stage_hunk, "undo stage hunk" },
     w = { gitsigns.toggle_word_diff, "toggle word diff" },
     p = { gitsigns.preview_hunk, "preview_hunk" },
