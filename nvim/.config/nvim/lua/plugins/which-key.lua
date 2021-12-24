@@ -6,6 +6,7 @@ local github = require("plugins.git").github
 local lsp_fns = require("plugins.lsp.functions")
 local alpha = require("plugins.alpha")
 local nvim_tree = require("plugins.nvim-tree")
+local buffer = require("plugins.barbar")
 
 vim.opt.timeoutlen = 700
 
@@ -96,13 +97,18 @@ local mappings = {
   -- Buffer
   b = {
     name = "buffer",
-    [">"] = { ":BufferMoveNext<cr>", "move next" },
-    ["<"] = { ":BufferMovePrevious<cr>", "move prev" },
-    b = { ":BufferPick<cr>", "pick buffer" },
-    d = { ":BufferClose<cr>", "delete-buffer" },
-    n = { ":bnext<cr>", "next-buffer" },
-    p = { ":bprevious<cr>", "previous-buffer" },
-    ["?"] = { ":Buffers<cr>", "fzf-buffer" },
+    -- close
+    c = {
+      name = "close",
+      c = { buffer.close_all_but_current, "all but current" },
+      p = { buffer.close_all_but_pinned, "all but pinned" },
+      l = { buffer.close_all_to_the_left, "all to the left" },
+      r = { buffer.close_all_to_the_right, "all to the right" },
+    },
+    o = {
+      name = "order",
+      d = { buffer.order_by_directory, "by directory" },
+    },
   },
 
   -- CoC
