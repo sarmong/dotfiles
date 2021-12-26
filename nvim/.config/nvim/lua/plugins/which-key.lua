@@ -74,10 +74,10 @@ local mappings = {
   ["/"] = { "<Plug>CommentaryLine<cr>", "comment" },
   e = { nvim_tree.toggle, "filetree" },
   f = { ":Telescope find_files hidden=true<cr>", "find files" },
-  M = { ":MarkdownPreviewToggle", "markdown preview" },
-  u = { ":UndotreeToggle", "undo tree" },
+  M = { ":MarkdownPreviewToggle<cr>", "markdown preview" },
+  u = { ":UndotreeToggle<cr>", "undo tree" },
   -- TODO create entire treesitter section
-  T = { ":TSHighlightCapturesUnderCursor", "treesitter highlight" },
+  T = { ":TSHighlightCapturesUnderCursor<cr>", "treesitter highlight" },
   h = { "<C-W>s", "split below" },
   v = { "<C-W>v", "split right" },
 
