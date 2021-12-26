@@ -14,7 +14,6 @@ cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applicatio
 # Update the path to the kitty icon in the kitty.desktop file
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 
-
 # Install sudo apt Packages
 
 # basic
@@ -62,7 +61,7 @@ npm i -g yarn
 # terminal-based apps
 # sudo apt install bitwarden-cli
 sudo apt install cmus
-sudo apt install htop  # show processes
+sudo apt install htop # show processes
 sudo apt install neovim
 sudo apt install newsboat
 sudo apt install ranger
@@ -125,7 +124,6 @@ sudo apt install feh
 sudo apt install trash-cli
 sudo apt install flameshot
 sudo apt install goldendict
-
 
 # LSPs
 nvm use system
