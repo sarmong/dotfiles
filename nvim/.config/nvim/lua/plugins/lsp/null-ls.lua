@@ -9,6 +9,8 @@ null_ls.setup({
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.diagnostics.stylelint,
     null_ls.builtins.completion.spell,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.formatting.shfmt,
   },
   on_attach = function(client)
     if client.resolved_capabilities.document_formatting then

@@ -137,3 +137,4 @@ brew install hashicorp/tap/terraform-ls
 npm install -g @fsouza/prettierd
 npm install -g stylelint
 brew install stylua
+brew install shfmt
