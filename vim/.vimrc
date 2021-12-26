@@ -3,7 +3,7 @@ call plug#begin()
 
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
