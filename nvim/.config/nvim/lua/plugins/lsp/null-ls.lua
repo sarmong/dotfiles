@@ -15,6 +15,8 @@ null_ls.setup({
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.shfmt,
 
+    null_ls.builtins.diagnostics.markdownlint,
+
     null_ls.builtins.completion.spell,
   },
   on_attach = function(client)
