@@ -92,8 +92,6 @@ return require("packer").startup(function(use)
     commit = commits.indent_blankline,
   })
 
-  use("f-person/git-blame.nvim") -- consider using zivyangll/git-blame.vim to show at the bottom
-
   -- use { 'norcalli/nvim-colorizer.lua' }
 
   -- LSP
@@ -105,6 +103,8 @@ return require("packer").startup(function(use)
   use("hrsh7th/cmp-buffer")
   use("hrsh7th/cmp-path")
   use("hrsh7th/cmp-cmdline")
+  use("ray-x/cmp-treesitter")
+  use("hrsh7th/cmp-nvim-lua")
 
   -- Snippets
   use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
@@ -154,47 +154,36 @@ return require("packer").startup(function(use)
     },
   })
 
+  -- Git
+  use("tpope/vim-fugitive")
+  use("tpope/vim-rhubarb")
+  use("f-person/git-blame.nvim") -- consider using zivyangll/git-blame.vim to show at the bottom
+  use("mattn/vim-gist")
+  use({
+    "lewis6991/gitsigns.nvim", -- git lines on the left
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
+
   -------------
-
-  use({ "rescript-lang/vim-rescript" })
-
-  -- Might be needed for LSP
-  -- use {
-  --   'lewis6991/gitsigns.nvim', -- git lines on the left
-  --   requires = {
-  --    'nvim-lua/plenary.nvim'
-  --   },
-  --   -- tag = 'release' -- To use the latest release
-  -- }
-
-  -- Try out
-  -- use 'vimwiki/vimwiki'
-  -- use 'vim-test/vim-test'
-  -- use 'godlygeek/tabular'
-  -- use 'junegunn/goyo.vim'
-  -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
-  -- use 'ryanoasis/vim-devicons' -- maybe use them instead
-  -- use 'kevinhwang91/nvim-bqf' -- after learning quickfix
-  -- use 'MattesGroeger/vim-bookmarks'
 
   use("plasticboy/vim-markdown")
 
   -- Color
   use("christianchiarulli/nvcode-color-schemes.vim")
 
-  -- Git
-  use("airblade/vim-gitgutter")
-  use("tpope/vim-fugitive")
-  use("tpope/vim-rhubarb")
-
-  -- Easily Create Gists
-  use("mattn/vim-gist")
-
   -- General Plugins
-  -- use 'ChristianChiarulli/dashboard-nvim'
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
   use("mbbill/undotree")
 
+  -- Try out
+  -- use 'vim-test/vim-test'
+  -- use 'godlygeek/tabular'
+  -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
+  -- use 'ryanoasis/vim-devicons' -- maybe use them instead
+  -- use 'kevinhwang91/nvim-bqf' -- after learning quickfix
+  -- use 'MattesGroeger/vim-bookmarks'
   -- use 'b3nj5m1n/kommentary'
   -- use {
   --     'glacambre/firenvim',

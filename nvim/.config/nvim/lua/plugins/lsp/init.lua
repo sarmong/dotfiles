@@ -1,5 +1,6 @@
 require("plugins.lsp.ts")
 require("plugins.lsp.lua")
+require("plugins.lsp.css")
 
 require("plugins.lsp.cmp")
 require("plugins.lsp.null-ls")
