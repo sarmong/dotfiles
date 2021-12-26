@@ -1,5 +1,4 @@
 -- General mappings
-require("nv-utils")
 require("settings")
 require("keymappings")
 require("colorscheme")
@@ -19,15 +18,12 @@ require("plugins.matchup")
 require("plugins.alpha")
 require("plugins.indent-blankline")
 -- require('plugins.colorizer')
-require("plugins.gitblame")
 require("plugins.treesitter")
-require("plugins.gitgutter")
+require("plugins.git")
 require("plugins.telescope")
 -- require("plugins.fzf")
 
 -- LSP
 require("plugins.lsp")
-
-vim.cmd("source ~/.config/nvim/vimscript/functions.vim")
 
 -- vim.cmd('source ~/.config/nvim/vimscript/coc/init.vim')
