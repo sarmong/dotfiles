@@ -136,3 +136,4 @@ npm install -g @fsouza/prettierd
 npm install -g stylelint
 brew install stylua
 brew install shfmt
+brew install markdownlint-cli
