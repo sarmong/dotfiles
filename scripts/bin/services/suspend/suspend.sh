@@ -9,4 +9,6 @@
 
 # exit 0
 
-sudo sh -c 'echo XHC > /proc/acpi/wakeup'
+if grep XHC /proc/acpi/wakeup | grep enable > /dev/null; then
+  sudo sh -c 'echo XHC > /proc/acpi/wakeup'
+fi
