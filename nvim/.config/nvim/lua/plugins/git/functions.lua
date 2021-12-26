@@ -1,6 +1,6 @@
 local gitsigns = require("gitsigns")
 
-local gitsigns = {
+local gsigns = {
   next_hunk = function()
     gitsigns.next_hunk()
   end,
@@ -83,7 +83,7 @@ local git = {
 }
 
 return {
-  gitsigns = gitsigns,
+  gitsigns = gsigns,
   github = github,
   git = git,
 }
