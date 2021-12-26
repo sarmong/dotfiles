@@ -53,9 +53,9 @@ return require("packer").startup(function(use)
     commit = commits.barbar,
     requires = { "kyazdani42/nvim-web-devicons" },
   })
+  -- @TODO update to main once #878 is merged
   use({
-    "kyazdani42/nvim-tree.lua",
-    commit = commits.nvim_tree,
+    "sarmong/nvim-tree.lua",
     requires = { "kyazdani42/nvim-web-devicons" },
   })
   use({ "tpope/vim-commentary" })
