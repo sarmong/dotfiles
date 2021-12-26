@@ -73,6 +73,7 @@ nvim_tree.setup({
   auto_close = true,
   filters = {
     dotfiles = true,
+    exclude = { ".config" },
   },
   update_focused_file = {
     enable = true,
