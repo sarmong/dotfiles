@@ -5,21 +5,18 @@
 - set up ranger
 - set up script to move between personal and work profiles (default browser etc)
 - blue light blocker
-- infinality font patches from eye strain
 - fix z.lua / autojump
 - when hdmi disconnected - remove display
 - fix hibernation
 - lockscreen on close
 - https://askubuntu.com/questions/359144/mac-os-x-like-built-in-dictionary-in-ubuntu
-- [Global Protect Linux](https://live.paloaltonetworks.com/t5/general-topics/global-protect-new-linux-ui/td-p/304425#)
 - reminders to charge battery
 - pass
-- set up zsh
-- Look into st and dwm
 - https://github.com/mwh/dragon
 - volume controls
 - kitty scratchpad
 - better fonts https://aswinmohan.me/posts/better-fonts-on-linux/
+- infinality font patches from eye strain
 - fix ctrl-s hang https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
 
 ## VIM TODO
@@ -29,17 +26,13 @@
 - use pcall to check if module exists
 - fix cmp completion to be as good as coc
 - disable lualine for nvimtree buffer
-- show .config folders even if dotfiles are hidden in nvimtree
 - handle registers
   - see what whickey offers or use junegunn/vim-peekaboo
   - don't save every yank to a main registry
 - [russian layout](https://habr.com/ru/post/98393/)
 - fix swap files
-- https://learnvimscriptthehardway.stevelosh.com/
-- learn es7 snippets
 - colorschemes
 - move config files to use packer config option
-- colorhoghlight dsoesn't work after undo
 - easily resize window
 - create install script
 
