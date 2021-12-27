@@ -62,7 +62,10 @@ return require("packer").startup(function(use)
 
   use({ "folke/which-key.nvim", commit = commits.which_key })
 
-  use({ "akinsho/toggleterm.nvim", commit = commits.toggleterm })
+  use({
+    "sarmong/toggleterm.nvim",
+    -- commit = commits.toggleterm
+  })
 
   use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
 
@@ -97,7 +100,7 @@ return require("packer").startup(function(use)
   -- LSP
 
   use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
-  use({ "williamboman/nvim-lsp-installer", commit = commits.lsp_installer })
+  use({ "sarmong/nvim-lsp-installer" })
   use({ "hrsh7th/nvim-cmp", commit = commits.cmp }) -- @TODO Integrate with autopairs
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-buffer")
