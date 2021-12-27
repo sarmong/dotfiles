@@ -1,5 +1,17 @@
 local Terminal = require("toggleterm.terminal").Terminal
 
+-- @TODO add this to setup function and update the plugins once the pr is merged
+local function on_term_open(term)
+  vim.cmd("startinsert!")
+  vim.api.nvim_buf_set_keymap(
+    term.bufnr,
+    "t",
+    "<esc><esc>",
+    "<cmd>close<CR>",
+    { noremap = true, silent = true }
+  )
+end
+
 require("toggleterm").setup({
   -- size can be a number or function which is passed the current terminal
   size = function(term)
@@ -10,6 +22,7 @@ require("toggleterm").setup({
     end
   end,
   open_mapping = [[<F1>]],
+  on_open = on_term_open,
   hide_numbers = true, -- hide the number column in toggleterm buffers
   shade_filetypes = {},
   shade_terminals = true,
@@ -36,18 +49,6 @@ require("toggleterm").setup({
     },
   },
 })
-
--- @TODO add this to setup function and update the plugins once the pr is merged
-local function on_term_open(term)
-  vim.cmd("startinsert!")
-  vim.api.nvim_buf_set_keymap(
-    term.bufnr,
-    "t",
-    "<esc><esc>",
-    "<cmd>close<CR>",
-    { noremap = true, silent = true }
-  )
-end
 
 local function toggle_term(cmd, count, direction)
   local app_term = Terminal:new({
