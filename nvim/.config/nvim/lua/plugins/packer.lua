@@ -168,8 +168,6 @@ return require("packer").startup(function(use)
 
   -------------
 
-  use("plasticboy/vim-markdown")
-
   -- Color
   use("christianchiarulli/nvcode-color-schemes.vim")
 
