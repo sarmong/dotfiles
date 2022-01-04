@@ -1,3 +1,5 @@
+local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+
 require("nvim-treesitter.configs").setup({
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
@@ -36,11 +38,9 @@ vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 -- disabled by default
 vim.o.foldenable = false
 
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-
 parser_configs.markdown = {
   install_info = {
-    url = "https://github.com/ikatyang/tree-sitter-markdown",
+    url = "https://github.com/MDeiml/tree-sitter-markdown",
     files = { "src/parser.c", "src/scanner.cc" },
   },
   filetype = "markdown",
