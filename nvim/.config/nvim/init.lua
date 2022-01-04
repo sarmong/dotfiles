@@ -22,6 +22,7 @@ require("plugins.treesitter")
 require("plugins.git")
 require("plugins.telescope")
 -- require("plugins.fzf")
+require("plugins.bqf")
 
 -- LSP
 require("plugins.lsp")
