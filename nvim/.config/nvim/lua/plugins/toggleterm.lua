@@ -1,6 +1,5 @@
 local Terminal = require("toggleterm.terminal").Terminal
 
--- @TODO add this to setup function and update the plugins once the pr is merged
 local function on_term_open(term)
   vim.cmd("startinsert!")
   vim.api.nvim_buf_set_keymap(

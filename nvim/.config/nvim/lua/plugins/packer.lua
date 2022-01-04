@@ -63,8 +63,8 @@ return require("packer").startup(function(use)
   use({ "folke/which-key.nvim", commit = commits.which_key })
 
   use({
-    "sarmong/toggleterm.nvim",
-    -- commit = commits.toggleterm
+    "akinsho/toggleterm.nvim",
+    commit = commits.toggleterm,
   })
 
   use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
