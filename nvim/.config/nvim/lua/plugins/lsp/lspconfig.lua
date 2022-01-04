@@ -33,4 +33,5 @@ local server_opt = {}
 return {
   default_opt = default_opt,
   server_opt = server_opt,
+  on_attach = on_attach,
 }
