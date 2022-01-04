@@ -23,6 +23,7 @@ require("plugins.git")
 require("plugins.telescope")
 -- require("plugins.fzf")
 require("plugins.bqf")
+require("plugins.visual-multi")
 
 -- LSP
 require("plugins.lsp")
