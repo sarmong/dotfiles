@@ -2,6 +2,12 @@ if [ -d "$HOME/Documents/android/adb-fastboot/platform-tools" ] ; then
  export PATH="$HOME/Documents/android/adb-fastboot/platform-tools:$PATH"
 fi
 
+if [[ "$(uname)" != "Darwin" ]]; then 
+    export PATH=$PATH:$HOME//multitool/bin
+
+    export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
 
 # NVM settings
 # ===========
@@ -9,10 +15,9 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-## this exposes homebrew version of node as main and can be switched to using `nvm use system`
+## this enables usage of globally installed npm packages regardless of nvm
 ## this has to come last in the path, so that nvm version has higher priority
 export PATH=$PATH:"/home/linuxbrew/.linuxbrew/opt/node@16/bin"
-
 
 # https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory
 # Run 'nvm use' automatically every time there's 
@@ -89,13 +94,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # "nvim" as manpager
 # export MANPAGER="nvim -c 'set ft=man' -"
-
-if [[ "$(uname)" != "Darwin" ]]; then 
-    export PATH=$PATH:$HOME//multitool/bin
-
-    export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
-    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-fi
 
 # RVM
 # ===============
