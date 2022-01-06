@@ -10,4 +10,6 @@ configs.server_opt["tsserver"] = function()
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
+
+  configs.default_opt.single_file_support = true
 end
