@@ -1,9 +1,4 @@
-require("plugins.lsp.servers.ts")
-require("plugins.lsp.servers.lua")
-require("plugins.lsp.servers.css")
-require("plugins.lsp.servers.bash")
-
-require("plugins.lsp.servers.null-ls")
+require("plugins.lsp.servers")
 
 require("plugins.lsp.cmp")
 
