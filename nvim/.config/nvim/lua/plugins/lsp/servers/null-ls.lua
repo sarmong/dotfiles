@@ -6,8 +6,8 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua,
 
     null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.formatting.stylelint,
-    null_ls.builtins.diagnostics.stylelint,
+    -- null_ls.builtins.formatting.stylelint,
+    -- null_ls.builtins.diagnostics.stylelint,
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.code_actions.eslint,
 
@@ -15,9 +15,9 @@ null_ls.setup({
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.shfmt,
 
-    null_ls.builtins.diagnostics.markdownlint,
+    -- null_ls.builtins.diagnostics.markdownlint,
 
-    null_ls.builtins.completion.spell,
+    -- null_ls.builtins.completion.spell,
   },
   on_attach = function(client)
     if client.resolved_capabilities.document_formatting then

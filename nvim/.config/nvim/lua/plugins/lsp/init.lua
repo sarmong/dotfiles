@@ -1,10 +1,11 @@
-require("plugins.lsp.ts")
-require("plugins.lsp.lua")
-require("plugins.lsp.css")
-require("plugins.lsp.bash")
+require("plugins.lsp.servers.ts")
+require("plugins.lsp.servers.lua")
+require("plugins.lsp.servers.css")
+require("plugins.lsp.servers.bash")
+
+require("plugins.lsp.servers.null-ls")
 
 require("plugins.lsp.cmp")
-require("plugins.lsp.null-ls")
 
 local lsp_installer = require("nvim-lsp-installer")
 local configs = require("plugins.lsp.lspconfig")
