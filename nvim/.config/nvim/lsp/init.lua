@@ -1,10 +1,10 @@
-require("plugins.lsp.servers")
+require("lsp.servers")
 
-require("plugins.lsp.cmp")
+require("lsp.cmp")
 
 local lsp_installer = require("nvim-lsp-installer")
-local configs = require("plugins.lsp.lspconfig")
-local lsp_fns = require("plugins.lsp.functions")
+local configs = require("lsp.lspconfig")
+local lsp_fns = require("lsp.functions")
 
 lsp_installer.on_server_ready(function(server)
   -- Use the server's custom settings, if they exist, otherwise default to the default options
