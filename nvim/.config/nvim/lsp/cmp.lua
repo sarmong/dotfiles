@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-require("plugins.lsp.snippets")
+require("lsp.snippets")
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))

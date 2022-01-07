@@ -1,5 +1,5 @@
 local null_ls = require("null-ls")
-local lsp_fns = require("plugins.lsp.functions")
+local lsp_fns = require("lsp.functions")
 
 null_ls.setup({
   sources = {

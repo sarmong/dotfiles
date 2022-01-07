@@ -6,9 +6,7 @@ fns.format = function()
 end
 
 fns.enable_format_on_save = function()
-  vim.cmd(
-    "autocmd BufWritePre <buffer> lua require('plugins.lsp.functions').format()"
-  )
+  vim.cmd("autocmd BufWritePre <buffer> lua require('lsp.functions').format()")
   print("Enabled formatting on save")
 end
 
