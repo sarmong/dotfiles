@@ -27,7 +27,7 @@ local commits = {
   lualine = "3a17c8f05aae1f148b8af595b46fea18b74d0573",
   indent_blankline = "0f8df7e43f0cae4c44e0e8383436ad602f333419",
   lspconfig = "1aa05163361331e881c6130781c01d93b63f9232",
-  lsp_installer = "5957e7a29005c286eaf2cc619e826cfd980eb5ff",
+  lsp_installer = "2e81b1d86f90c8a05d7f875599818612bd68e1a7",
   cmp = "b11f8bbee3d7ba5190b043e23bd6f5b9cb82382c",
   luasnip = "6bcd3bb65ebb3e82afb460587590a80350eba1a1",
   cmp_luasnip = "7bd2612533db6863381193df83f9934b373b21e1",
@@ -100,7 +100,7 @@ return require("packer").startup(function(use)
   -- LSP
 
   use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
-  use({ "sarmong/nvim-lsp-installer" })
+  use({ "williamboman/nvim-lsp-installer", commit = commits.lsp_installer })
   use({ "hrsh7th/nvim-cmp", commit = commits.cmp }) -- @TODO Integrate with autopairs
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-buffer")
