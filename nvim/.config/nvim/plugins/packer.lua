@@ -174,6 +174,11 @@ return require("packer").startup(function(use)
 
   use({ "plasticboy/vim-markdown" })
 
+  use({
+    "nvim-neorg/neorg",
+    requires = "nvim-lua/plenary.nvim",
+  })
+
   -------------
 
   -- Color
