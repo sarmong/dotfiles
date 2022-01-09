@@ -20,6 +20,7 @@ require("plugins.autopairs")
 require("plugins.visual-multi")
 
 require("plugins.vim-markdown")
+require("plugins.neorg")
 
 -- require('plugins.colorizer')
 -- require("plugins.fzf")
