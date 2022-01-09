@@ -20,8 +20,10 @@ vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { silent = true })
 vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>", { silent = true })
 vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:w<CR>", { silent = true })
 
--- start fzf
-vim.api.nvim_set_keymap("n", "<C-p>", ":GFiles<CR>", { silent = true })
+vim.api.nvim_set_keymap("i", "<C-u>", "<esc>viwUea", { silent = true })
+
+vim.api.nvim_set_keymap("n", "H", "^", { silent = true })
+vim.api.nvim_set_keymap("n", "L", "$", { silent = true })
 
 -- turn off search highlights until next search
 vim.api.nvim_set_keymap(
