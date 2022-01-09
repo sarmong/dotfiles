@@ -50,3 +50,4 @@ vim.cmd("set scrolloff=2") -- padding of 2 lines when scrolling
 vim.cmd("nmap Q <Nop>") -- 'Q' in normal mode enters Ex mode. You almost never want this.
 
 -- vim.cmd("vim.g.markdown_fenced_languages = ['js=javascript']")
+vim.cmd("set conceallevel=3")
