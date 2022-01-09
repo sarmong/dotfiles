@@ -11,6 +11,7 @@ fns.enable_format_on_save = function()
 end
 
 fns.disable_format_on_save = function()
+  -- @TODO - this might disable all autocommands, beware
   vim.cmd("autocmd! BufWritePre <buffer>")
   print("Disabled formatting on save")
 end
