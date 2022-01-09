@@ -142,6 +142,7 @@ return require("packer").startup(function(use)
     "nvim-treesitter/nvim-treesitter-refactor",
     commit = commits.ts_refactor,
   })
+  use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
 
   -- use({ "junegunn/fzf", commit = commits.fzf })
   -- use({ "junegunn/fzf.vim", commit = commits.fzf_vim })
