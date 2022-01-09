@@ -19,6 +19,8 @@ require("plugins.quick-scope")
 require("plugins.autopairs")
 require("plugins.visual-multi")
 
+require("plugins.vim-markdown")
+
 -- require('plugins.colorizer')
 -- require("plugins.fzf")
 -- vim.cmd('source ~/.config/nvim/vimscript/coc/init.vim')
