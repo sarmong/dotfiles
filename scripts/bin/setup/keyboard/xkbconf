@@ -13,7 +13,7 @@ xkb_keymap {
     key <AC10> { [ colon, semicolon ] };
     # swap tilde and backtick
     key <TLDE> { [ asciitilde, grave ] };
-    replace key <CAPS> { [ Control_L ] };
     replace key <LCTL> { [ Caps_Lock ] };
+    replace key <CAPS> { [ Control_L ] };
   };
 };
