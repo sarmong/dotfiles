@@ -1,0 +1,15 @@
+xkb_keymap {
+  xkb_keycodes  { include "evdev+aliases(qwerty)"	};
+  xkb_types     { include "complete"	};
+  xkb_compat    { include "complete"	};
+  xkb_geometry  { include "pc(pc105)"	};
+
+  xkb_symbols "my"   {
+    # see /usr/share/X11/xkb/symbols
+    include "pc+us+ru:2+inet(evdev)"
+    include "altwin(alt_super_win)"
+    include "altwin(swap_alt_win)"
+    # will still produce capslock keysym
+    include "capslock(ctrl_modifier)"
+  };
+};
