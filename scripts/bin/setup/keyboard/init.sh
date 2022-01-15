@@ -22,3 +22,4 @@ xset r rate 250 45
 ## For some guides see
 # https://habr.com/ru/post/222285/
 # https://wiki.archlinux.org/title/X_keyboard_extension
+# https://unixforum.org/viewtopic.php?t=49203
