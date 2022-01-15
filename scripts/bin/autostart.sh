@@ -11,12 +11,9 @@ fi
 feh --bg-fill $HOME/Pictures/wp4.png &
 pkill nextcloud
 flatpak run com.nextcloud.desktopclient.nextcloud > /dev/null 2>&1 & 
-killall setxkbmap
-setxkbmap "us, ru" -option caps:ctrl_modifier -option altwin:swap_alt_win -option altwin:alt_super_win
-xmodmap -e "keycode 135 = Alt_R"
-killall xcape 2>/dev/null ; xcape -e 'Caps_Lock=Escape'
 xsetroot -cursor_name left_ptr # remove x-shaped cursor when no windows open
-xset r rate 250 45 # start cursor movement after 250ms and at 45 lines per second
+
+./setup/keyboard/init.sh
 # touchegg &
 kitty
 copyq &
