@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-xkbcomp ./xkbconf "$DISPLAY"
+xkbcomp "$(dirname "$0")"/xkbconf "$DISPLAY"
 
-## Set Caps_Lock to be Escape when tapped shortly with 1000ms timeout
+## Set Left Control (beware that we swapped control and caps on the previous line) to be Escape when tapped shortly with 1000ms timeout
 killall xcape 2>/dev/null
-xcape -t 1000 -e 'Caps_Lock=Escape'
+xcape -t 1000 -e 'Control_L=Escape'
 
 ## Start cursor movement after 250ms and at 45 lines per second
 xset r rate 250 45
