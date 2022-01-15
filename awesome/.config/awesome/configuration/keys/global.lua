@@ -203,17 +203,8 @@ local globalKeys = awful.util.table.join(
 	end, { description = "filebrowser", group = "hotkeys" }),
 	-- Change keyboard layout
 	awful.key({ modkey, "Shift" }, "l", function()
-		awful.spawn("xkblayout-state -s +1")
+		awful.spawn(os.getenv("HOME") .. "/bin/setup/keyboard/switch-layout.sh")
 	end, { description = "filebrowser", group = "hotkeys" })
-	--    awful.key(
-	-- {'Mod1'},
-	--     'Shift_L',
-	--     function()
-	--       awful.spawn('xkblayout-state -s +1')
-	--     end,
-	--     {description = 'filebrowser', group = 'hotkeys'}
-	--   )
-
 	-- Emoji Picker
 	-- awful.key(
 	--   {modkey},
