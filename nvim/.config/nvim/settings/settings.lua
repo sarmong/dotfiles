@@ -6,7 +6,7 @@ vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
 vim.cmd("set inccommand=split") -- Make substitution work in realtime
 vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.o.title = true -- shows window title
-vim.o.titlestring = "%<%F%=%l/%L: - nvim" -- directory path in title
+vim.o.titlestring = "%{split(getcwd(), '/')[-1]}" -- shown only current directory in title
 vim.wo.wrap = false -- Display long lines as just one line
 vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with theses keys
 vim.cmd("syntax on") -- move to next line with theses keys
