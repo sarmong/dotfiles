@@ -19,7 +19,7 @@ local commits = {
   packer = "851c62c5ecd3b5adc91665feda8f977e104162a5",
   autopairs = "04cd1779f81e9d50d5a116c5dccd054b275bd191",
   barbar = "6e638309efcad2f308eb9c5eaccf6f62b794bbab",
-  nvim_tree = "0aec64d56c9448a039408228d410a01c41125d48",
+  nvim_tree = "2dfed89af7724f9e71d2fdbe3cde791a93e9b9e0",
   which_key = "312c386ee0eafc925c27869d2be9c11ebdb807eb",
   toggleterm = "265bbff68fbb8b2a5fb011272ec469850254ec9f",
   wordmotion = "02e32fcb062553a8293992411677e12cacccb09d",
@@ -55,8 +55,9 @@ return require("packer").startup(function(use)
   })
   -- @TODO update to main once #878 is merged
   use({
-    "sarmong/nvim-tree.lua",
+    "kyazdani42/nvim-tree.lua",
     requires = { "kyazdani42/nvim-web-devicons" },
+    commit = commits.nvim_tree,
   })
   use({ "tpope/vim-commentary" })
 
