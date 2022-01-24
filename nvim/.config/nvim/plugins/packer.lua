@@ -41,6 +41,7 @@ local commits = {
   fzf_vim = "d6aa21476b2854694e6aa7b0941b8992a906c5ec",
   fzf_checkout = "4d5ecae74460de8fed4f743f6bd53c4c31d32797",
   matchup = "97ffd1a2068049e812ddfd04b182f6a93c2c0394",
+  spectre = "4a4cf2c981b077055ef7725959d13007e366ba23",
 }
 
 -- @TODO - use config option of 'use'
@@ -95,6 +96,12 @@ return require("packer").startup(function(use)
   use({
     "lukas-reineke/indent-blankline.nvim",
     commit = commits.indent_blankline,
+  })
+
+  use({
+    "windwp/nvim-spectre",
+    commit = commits.spectre,
+    require = "nvim-lua/plenary.nvim",
   })
 
   -- use { 'norcalli/nvim-colorizer.lua' }
