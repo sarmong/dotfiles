@@ -7,6 +7,7 @@ local lsp_fns = require("lsp.functions")
 local alpha = require("plugins.alpha")
 local nvim_tree = require("plugins.nvim-tree")
 local buffer = require("plugins.barbar")
+local spectre = require("plugins.spectre")
 
 vim.opt.timeoutlen = 700
 
@@ -151,7 +152,12 @@ local mappings = {
     M = { ":Telescope man_pages<cr>", "man_pages" },
     o = { ":Telescope vim_options<cr>", "vim_options" },
     t = { ":Telescope live_grep<cr>", "text" },
-    r = { ":Telescope registers<cr>", "registers" },
+    r = {
+      name = "replace",
+      s = { spectre.search, "search and replace" },
+      w = { spectre.search_word, "search and replace word" },
+    },
+    R = { ":Telescope registers<cr>", "registers" },
     w = { ":Telescope file_browser<cr>", "buf_fuz_find" },
     u = { ":Telescope colorscheme<cr>", "colorschemes" },
     p = { ":Telescope project<cr>", "projects" },
@@ -233,4 +239,5 @@ local mappings = {
   },
 }
 
-wk.register(mappings, { prefix = "<leader>" })
+wk.register(mappings, { prefix = "<leader>", mode = "n" })
+wk.register(mappings, { prefix = "<leader>", mode = "v" })
