@@ -16,6 +16,9 @@ sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x2
 
 # Install sudo apt Packages
 
+## Blueman is a GUI for bluez
+sudo apt install blueman bluez bluetooth
+
 # basic
 sudo apt install i3
 sudo apt install i3blocks
