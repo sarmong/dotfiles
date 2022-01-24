@@ -40,6 +40,7 @@ local commits = {
   fzf = "176ee6910ffe40d9007ff9bc1b2720e3d729c48a",
   fzf_vim = "d6aa21476b2854694e6aa7b0941b8992a906c5ec",
   fzf_checkout = "4d5ecae74460de8fed4f743f6bd53c4c31d32797",
+  matchup = "97ffd1a2068049e812ddfd04b182f6a93c2c0394",
 }
 
 -- @TODO - use config option of 'use'
@@ -84,7 +85,7 @@ return require("packer").startup(function(use)
 
   use("unblevable/quick-scope")
 
-  use("andymass/vim-matchup") -- looks nice, but perhaps not that essential
+  use({ "andymass/vim-matchup", commit = commits.matchup }) -- looks nice, but perhaps not that essential
 
   use({
     "goolord/alpha-nvim",
