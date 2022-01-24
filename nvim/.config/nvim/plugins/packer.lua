@@ -175,6 +175,9 @@ return require("packer").startup(function(use)
 
   use({ "plasticboy/vim-markdown" })
 
+  -- completion for neovim lua api
+  use("folke/lua-dev.nvim")
+
   use({
     "nvim-neorg/neorg",
     requires = "nvim-lua/plenary.nvim",
