@@ -78,7 +78,7 @@ local git = {
   end,
 
   show_status = function()
-    vim.api.nvim_command("Gstatus") -- fugitive
+    vim.api.nvim_command("Git") -- fugitive
   end,
 }
 
