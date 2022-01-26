@@ -16,3 +16,5 @@ copyq &
 
 ./setup/keyboard/init.sh
 ./setup/screenlayout/monitor-on-top.sh
+
+bluetooth on
