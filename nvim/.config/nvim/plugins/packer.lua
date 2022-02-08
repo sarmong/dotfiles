@@ -127,6 +127,7 @@ return require("packer").startup(function(use)
   use({
     "dsznajder/vscode-es7-javascript-react-snippets",
     run = "yarn install --frozen-lockfile && yarn compile",
+    commit = "2a6a1ffac598d7f5b4097d06c4190c5bcced99d9",
   })
 
   use({
