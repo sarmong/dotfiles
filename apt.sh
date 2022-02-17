@@ -24,6 +24,8 @@ sudo apt install i3
 sudo apt install i3blocks
 sudo apt install i3lock-fancy
 brew install neovim
+sudo apt install fonts-firacode
+sudo apt install gh
 
 ## install system version of node
 brew install node@16
@@ -49,6 +51,8 @@ sudo apt install watch
 sudo apt install scrot
 sudo apt install xclip
 sudo apt install tlp powertop xbacklight
+sudo apt install xcape
+sudo apt install xdotool
 brew install rigpgrep
 sudo apt istall stow
 brew install thefuck
@@ -65,9 +69,9 @@ npm i -g yarn
 # sudo apt install bitwarden-cli
 sudo apt install cmus
 sudo apt install htop # show processes
-sudo apt install neovim
 sudo apt install newsboat
 sudo apt install ranger
+sudo apt install rofi
 sudo apt install ddgr
 # sudo apt install gnu-typist
 sudo apt install ledger
@@ -77,6 +81,7 @@ sudo apt install taskwarrior
 brew install jesseduffield/lazynpm/lazynpm
 brew install tig
 brew install jesseduffield/lazygit/lazygit
+sudo apt install pass
 
 # fun
 sudo apt install cmatrix
@@ -88,11 +93,20 @@ sudo apt install espeak
 
 # Install Applications
 
+sudo apt install arandr
+sudo apt install kazam
+sudo apt install lxappearance
+sudo apt install safeeyes
+sudo apt install screenkey
+sudo apt install stardict
+sudo apt install tint2
+sudo apt install zeal
 sudo apt install flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # sudo apt install eloston-chromium  # ungoogled-chromium
-sudo snap install brave
+# sudo snap install brave
+sudo apt install brave-browser
 sudo apt install thunderbird
 sudo snap install nextcloud
 #sudo apt install obsidian
