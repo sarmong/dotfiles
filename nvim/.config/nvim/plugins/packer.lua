@@ -195,7 +195,10 @@ return require("packer").startup(function(use)
   -------------
 
   -- Color
-  use("christianchiarulli/nvcode-color-schemes.vim")
+  -- use("christianchiarulli/nvcode-color-schemes.vim")
+  use({ "AlphaTechnolog/onedarker.nvim" })
+  use("navarasu/onedark.nvim")
+  use("folke/tokyonight.nvim")
 
   -- General Plugins
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
