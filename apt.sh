@@ -1,148 +1,83 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-# execute brew
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+### --- Install installers --- ###
 
-# install kitty
+## Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# @TODO check if this line needed
+# eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+## flatpak
+sudo apt install flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+### --- Install packages --- ###
+
+sudo apt install blueman bluez bluetooth # Blueman is a GUI for bluez
+
+### --- Main system setup --- ###
+
+sudo apt install awesome
+# sudo apt install i3
+# sudo apt install i3blocks
+sudo apt install i3lock-fancy
+sudo apt install arandr
+sudo apt install lxappearance
+# flatpak install flathub com.github.Eloston.UngoogledChromium
+sudo apt install brave-browser
+sudo apt install trash-cli
+sudo apt istall stow
+sudo apt install ranger
+sudo apt install rofi
+# sudo apt install tint2
+sudo apt install copyq
+
+sudo apt install feh
+sudo apt install flameshot
+
+## kitty installation
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-
-# Create a symbolic link to add kitty to PATH (assuming ~/.local/bin is in
-# your PATH)
+# Create a symbolic link to add kitty to PATH (assuming ~/.local/bin is in your PATH)
 ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
 # Place the kitty.desktop file somewhere it can be found by the OS
 cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
 # Update the path to the kitty icon in the kitty.desktop file
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 
-# Install sudo apt Packages
-
-## Blueman is a GUI for bluez
-sudo apt install blueman bluez bluetooth
-
-# basic
-sudo apt install i3
-sudo apt install i3blocks
-sudo apt install i3lock-fancy
-brew install neovim
-sudo apt install fonts-firacode
-sudo apt install gh
-
-## install system version of node
-brew install node@16
-## install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-sudo apt install neofetch
-
-sudo apt install zathura
-
-# cli utils
-sudo apt install tree
-# sudo apt install broot
-brew install bat
-sudo apt install exiftool
-sudo apt install ffmpeg
-sudo apt install imagemagick
-sudo apt install speedtest-cli
-brew install youtube-dl
-sudo apt install autojump
-# sudo apt install fd
-brew install fzf
-sudo apt install watch
-sudo apt install scrot
+# @TODO check if needed
 sudo apt install xclip
 sudo apt install tlp powertop xbacklight
 sudo apt install xcape
 sudo apt install xdotool
-brew install rigpgrep
-sudo apt istall stow
-brew install thefuck
-sudo apt install httpie
-sudo apt install copyq
 
-# sudo apt install cheat
-sudo apt install tldr
-sudo apt install shellcheck
-# sudo apt install checkbashisms
+### --- Programming tools --- ###
+brew install neovim
+sudo apt install fonts-firacode
+
+## Install system version of node
+brew install node@16
+## Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 npm i -g yarn
-
-# terminal-based apps
-# sudo apt install bitwarden-cli
-sudo apt install cmus
-sudo apt install htop # show processes
-sudo apt install newsboat
-sudo apt install ranger
-sudo apt install rofi
-sudo apt install ddgr
-# sudo apt install gnu-typist
-sudo apt install ledger
-sudo apt install calcurse
-sudo apt install timewarrior
-sudo apt install taskwarrior
+sudo apt install gh
+sudo apt install httpie
+flatpak install flathub com.getpostman.Postman
 brew install jesseduffield/lazynpm/lazynpm
 brew install tig
 brew install jesseduffield/lazygit/lazygit
-sudo apt install pass
-
-# fun
-sudo apt install cmatrix
-sudo apt install figlet
-sudo apt install espeak
-
-# other
-# sudo apt install inetutils
-
-# Install Applications
-
-sudo apt install arandr
-sudo apt install kazam
-sudo apt install lxappearance
-sudo apt install safeeyes
-sudo apt install screenkey
-sudo apt install stardict
-sudo apt install tint2
-sudo apt install zeal
-sudo apt install flatpak
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-# sudo apt install eloston-chromium  # ungoogled-chromium
-# sudo snap install brave
-sudo apt install brave-browser
-sudo apt install thunderbird
-sudo snap install nextcloud
-#sudo apt install obsidian
-sudo snap install skype
-sudo snap install slack --classic
-sudo snap install zoom-client
-# sudo apt install spotify
-sudo apt install telegram
-
-# sudo apt install bitwarden
-# sudo apt install gramps
-# sudo apt install stretchly
+sudo apt install zeal # Documentation browser
 
 sudo snap install sublime-text --classic
+## VSCodium
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/vscodium-archive-keyring.gpg
 echo 'deb [signed-by=/etc/apt/trusted.gpg.d/vscodium-archive-keyring.gpg] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
 sudo apt update
 sudo apt install codium
 
-sudo apt install djview
-sudo apt install virtualbox
-sudo apt install gimp
-sudo apt install mpv
-sudo apt install vlc
-sudo apt install musescore
-sudo apt install vienna
+sudo apt install tldr
+sudo apt install shellcheck
 
-sudo apt install kitty
-
-sudo apt install lua5.2
-sudo apt install feh
-sudo apt install trash-cli
-sudo apt install flameshot
-sudo apt install goldendict
-
-# LSPs
+## LSPs
 nvm use system
 npm i -g typescript typescript-language-server
 brew install lua-language-server
@@ -154,3 +89,76 @@ npm install -g stylelint
 brew install stylua
 brew install shfmt
 brew install markdownlint-cli
+
+###############################################
+
+sudo apt install zathura
+
+### --- Useful CLI utils --- ###
+
+sudo apt install tree
+sudo apt install exiftool
+sudo apt install ffmpeg
+sudo apt install imagemagick
+sudo apt install speedtest-cli
+sudo apt install autojump
+sudo apt install watch
+sudo apt install htop
+sudo apt install scrot
+brew install fzf
+brew install fd
+brew install broot
+brew install bat
+brew install youtube-dl
+brew install rigpgrep
+brew install thefuck
+
+## TUIs
+sudo apt install pass
+# sudo apt install cmus
+# sudo apt install newsboat
+# brew install ddgr # duckduckgo from terminal
+# sudo apt install gnu-typist
+# sudo apt install ledger
+# sudo apt install calcurse
+# sudo apt install timewarrior
+# sudo apt install taskwarrior
+# brew install inetutils
+
+### --- Install Applications --- ###
+
+sudo apt install kazam
+sudo apt install safeeyes
+sudo apt install screenkey
+sudo apt install stardict
+sudo apt install goldendict
+sudo apt install thunderbird
+sudo snap install skype
+sudo snap install slack --classic
+sudo snap install zoom-client
+flatpak install flathub org.telegram.desktop
+flatpak install flathub com.nextcloud.desktopclient.nextcloud
+# sudo apt install spotify
+
+# sudo apt install bitwarden
+# sudo apt install gramps
+# sudo apt install stretchly
+
+sudo apt install djview
+# sudo apt install virtualbox
+# sudo apt install gimp
+sudo apt install mpv
+# sudo apt install vlc
+# sudo apt install musescore
+
+## fun
+sudo apt install neofetch
+# sudo apt install cmatrix
+# sudo apt install figlet
+# sudo apt install espeak
+
+echo "Now manually build the following apps: "
+echo "dragon, jgmenu, keyd, picom"
+
+## @TODO check if used
+# sudo apt install lua5.2
