@@ -178,7 +178,6 @@ aptinst exiftool
 aptinst ffmpeg
 aptinst imagemagick
 aptinst speedtest-cli
-aptinst autojump
 aptinst watch
 aptinst htop
 aptinst scrot
@@ -238,6 +237,3 @@ alert "FINISHED"
 
 echo "Now manually build the following apps: "
 echo "dragon, jgmenu, keyd, picom"
-
-## @TODO check if used
-# aptinst lua5.2
