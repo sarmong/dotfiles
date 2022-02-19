@@ -1,36 +1,39 @@
+#!/usr/bin/env bash
+
 eval $(thefuck --alias)
 
 # Brew commands
-alias binstall="brew install";
-alias cinstall="brew cask install";
-alias bsearch="brew search";
-alias binfo="brew info";
-
+alias binstall="brew install"
+alias cinstall="brew cask install"
+alias bsearch="brew search"
+alias binfo="brew info"
 
 # Abbreviations
-alias r="ranger";
-alias ka="killall";
-alias g="git";
-alias gs="git status";
+alias r="ranger"
+alias ka="killall"
+alias g="git"
+alias gs="git status"
 alias gcob='git branch | fzf | xargs git checkout'
 
 [ $(uname) == 'Darwin' ] && alias ls="gls -hGF --color=auto --group-directories-first" || alias ls="ls -hGF --color=auto --group-directories-first"
-alias la="ls -A";
-alias grep="grep --color=auto";
-alias fgrep="fgrep --color=auto";
-alias egrep="egrep --color=auto";
-alias mv="mv -i";
-alias rm="rm -i";
-alias mkd="mkdir -pv";
+alias la="ls -A"
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias mv="mv -i"
+alias rm="rm -i"
+alias mkd="mkdir -pv"
 
 mcd() {
-  mkdir -pv $1; cd $1;
+	mkdir -pv $1
+	cd $1
 }
 
 # alias code="code $1 & exit"
 
-vs() { 
-  code $1; exit;
+vs() {
+	code $1
+	exit
 }
 
 alias open="xdg-open"
@@ -39,12 +42,11 @@ alias o="xdg-open"
 alias v="nvim"
 alias fo="fzf | xargs xdg-open"
 
-
 # Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd ..";
-alias ...="cd ../..";
-alias ....="cd ../../..";
-alias .....="cd ../../../..";
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 # Shortcuts
 alias pr="cd ~/Documents/Tech/Projects"
@@ -52,7 +54,7 @@ alias dox="cd ~/Documents"
 alias dls="cd ~/Downloads"
 
 # Internet
-alias yt="youtube-dl --add-metadata -ic" # Download video
+alias yt="youtube-dl --add-metadata -ic"   # Download video
 alias yta="youtube-dl --add-metadata -icx" # Download audio
 alias weather="curl wttr.in"
 
@@ -63,7 +65,7 @@ alias week='date +%V'
 # macOs
 ###
 
-alias yabairestart='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"';
+alias yabairestart='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
 
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
