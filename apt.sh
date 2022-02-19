@@ -206,7 +206,6 @@ aptinst kazam
 aptinst safeeyes
 aptinst screenkey
 aptinst redshift
-aptinst stardict
 aptinst goldendict
 aptinst thunderbird
 sudo snap install skype
