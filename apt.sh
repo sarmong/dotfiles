@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-green='\033[0;32m'
+green='\e[0;32m'
 
 alias aptinst="sudo apt install --yes"
 alias brewinst="brew install"
@@ -9,7 +9,7 @@ alias flatinst="flatpak install flathub -y"
 sudo apt update && sudo apt upgrade
 
 echo "-----------------------------------------------------------------"
-printf "\n\n\n\n%s REPOS UPDATED AND PACKAGES UPGRADED\n\n\n\n" "$green"
+echo "$green REPOS UPDATED AND PACKAGES UPGRADED"
 echo "-----------------------------------------------------------------"
 
 ### --- Essentials --- ###
@@ -31,7 +31,7 @@ sudo apt install --reinstall ca-certificates # this fixes tsl error with flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "-----------------------------------------------------------------"
-printf "\n\n\n\n%s INSTALLED INSTALLERS\n\n\n\n" "$green"
+echo "$green INSTALLED INSTALLERS"
 echo "-----------------------------------------------------------------"
 
 ### --- Install packages --- ###
@@ -81,7 +81,7 @@ aptinst xcape
 aptinst xdotool
 
 echo "-----------------------------------------------------------------"
-printf "\n\n\n\n%s INSTALLED MAIN SYSTEM SETUP\n\n\n\n" "$green"
+echo "$green INSTALLED MAIN SYSTEM SETUP"
 echo "-----------------------------------------------------------------"
 
 ### --- Programming tools --- ###
@@ -130,7 +130,7 @@ brewinst shfmt
 brewinst markdownlint-cli
 
 echo "-----------------------------------------------------------------"
-printf "\n\n\n\n%s INSTALLED PROGRAMMING TOOLS\n\n\n\n" "$green"
+echo "$green INSTALLED PROGRAMMING TOOLS"
 echo "-----------------------------------------------------------------"
 
 ###############################################
@@ -200,7 +200,7 @@ aptinst neofetch
 # aptinst espeak
 
 echo "-----------------------------------------------------------------"
-printf "\n\n\n\n%s FINISHED\n\n\n\n" "$green"
+echo "$green FINISHED"
 echo "-----------------------------------------------------------------"
 
 echo "Now manually build the following apps: "
