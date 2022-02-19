@@ -66,6 +66,8 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) # put brew into PATH
 # aptinst build-essential
 
 ## flatpak
+sudo add-apt-repository ppa:alexlarsson/flatpak
+sudo apt update
 aptinst flatpak
 sudo apt install --reinstall ca-certificates # this fixes tsl error with flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
