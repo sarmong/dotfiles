@@ -188,6 +188,7 @@ brewinst bat
 brewinst youtube-dl
 brewinst ripgrep
 brewinst thefuck
+brewinst zoxide
 
 ## TUIs
 aptinst pass
