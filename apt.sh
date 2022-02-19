@@ -1,10 +1,16 @@
 #!/usr/bin/env sh
 
+green='\033[0;32m'
+
 alias aptinst="sudo apt install --yes"
 alias brewinst="brew install"
 alias flatinst="flatpak install flathub -y"
 
 sudo apt update && sudo apt upgrade
+
+echo "-----------------------------------------------------------------"
+printf "\n\n\n\n%s REPOS UPDATED AND PACKAGES UPGRADED\n\n\n\n" "$green"
+echo "-----------------------------------------------------------------"
 
 ### --- Essentials --- ###
 aptinst curl
@@ -24,6 +30,10 @@ aptinst flatpak
 sudo apt install --reinstall ca-certificates # this fixes tsl error with flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
+echo "-----------------------------------------------------------------"
+printf "\n\n\n\n%s INSTALLED INSTALLERS\n\n\n\n" "$green"
+echo "-----------------------------------------------------------------"
+
 ### --- Install packages --- ###
 
 aptinst blueman bluez bluetooth # Blueman is a GUI for bluez
@@ -36,7 +46,7 @@ aptinst awesome
 aptinst i3lock-fancy
 aptinst arandr
 aptinst lxappearance
-# flatinst com.github.Eloston.UngoogledChromium
+flatinst com.github.Eloston.UngoogledChromium
 
 ## Brave browser
 sudo apt install apt-transport-https curl
@@ -53,6 +63,7 @@ aptinst rofi
 aptinst copyq
 
 aptinst feh
+aptinst zathura
 aptinst flameshot
 
 ## kitty installation
@@ -64,11 +75,14 @@ cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applicatio
 # Update the path to the kitty icon in the kitty.desktop file
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 
-# @TODO check if needed
 aptinst xclip
 aptinst tlp powertop xbacklight
 aptinst xcape
 aptinst xdotool
+
+echo "-----------------------------------------------------------------"
+printf "\n\n\n\n%s INSTALLED MAIN SYSTEM SETUP\n\n\n\n" "$green"
+echo "-----------------------------------------------------------------"
 
 ### --- Programming tools --- ###
 ## needed for treesitter
@@ -115,9 +129,11 @@ brewinst stylua
 brewinst shfmt
 brewinst markdownlint-cli
 
-###############################################
+echo "-----------------------------------------------------------------"
+printf "\n\n\n\n%s INSTALLED PROGRAMMING TOOLS\n\n\n\n" "$green"
+echo "-----------------------------------------------------------------"
 
-aptinst zathura
+###############################################
 
 ### --- Useful CLI utils --- ###
 
@@ -182,6 +198,10 @@ aptinst neofetch
 # aptinst cmatrix
 # aptinst figlet
 # aptinst espeak
+
+echo "-----------------------------------------------------------------"
+printf "\n\n\n\n%s FINISHED\n\n\n\n" "$green"
+echo "-----------------------------------------------------------------"
 
 echo "Now manually build the following apps: "
 echo "dragon, jgmenu, keyd, picom"
