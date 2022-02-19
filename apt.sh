@@ -1,16 +1,56 @@
 #!/usr/bin/env sh
 
+# https://stackoverflow.com/questions/16843382/colored-shell-script-output-library
+red='\e[0;31m'
 green='\e[0;32m'
+bi_cyan='\e[1;96m'
+nocol='\e[0m' # Text Reset
 
-alias aptinst="sudo apt install --yes"
-alias brewinst="brew install"
-alias flatinst="flatpak install flathub -y"
+# @TODO combine into one function
+aptinst() {
+	input="$1"
+	echo "$green Installing $bi_cyan $input $nocol ..."
+	sudo apt-get install --yes "$input" 1>/dev/null
+	if [ $? -gt 0 ]; then
+		echo "$red An error occured"
+		exit 1
+	fi
+
+	echo "$green Successfully installed $bi_cyan $input $nocol"
+}
+
+flatinst() {
+	input="$1"
+	echo "$green Installing $bi_cyan $input $nocol ..."
+	flatpak install flathub -y "$input" 1>/dev/null
+	if [ $? -gt 0 ]; then
+		echo "$red An error occured"
+		exit 1
+	fi
+
+	echo "$green Successfully installed $bi_cyan $input $nocol"
+}
+
+brewinst() {
+	input="$1"
+	echo "$green Installing $bi_cyan $input $nocol ..."
+	brew install "$input" 1>/dev/null
+	if [ $? -gt 0 ]; then
+		echo "$red An error occured"
+		exit 1
+	fi
+
+	echo "$green Successfully installed $bi_cyan $input $nocol"
+}
+
+alert() {
+	echo "$green -----------------------------------------------------------------"
+	echo "$1"
+	echo "-----------------------------------------------------------------$nocol"
+}
 
 sudo apt update && sudo apt upgrade
-
-echo "-----------------------------------------------------------------"
-echo "$green REPOS UPDATED AND PACKAGES UPGRADED"
-echo "-----------------------------------------------------------------"
+alert "REPOS UPDATED AND PACKAGES UPGRADED"
 
 ### --- Essentials --- ###
 aptinst curl
@@ -30,9 +70,7 @@ aptinst flatpak
 sudo apt install --reinstall ca-certificates # this fixes tsl error with flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo "-----------------------------------------------------------------"
-echo "$green INSTALLED INSTALLERS"
-echo "-----------------------------------------------------------------"
+alert "INSTALLED INSTALLERS"
 
 ### --- Install packages --- ###
 
@@ -80,9 +118,7 @@ aptinst tlp powertop xbacklight
 aptinst xcape
 aptinst xdotool
 
-echo "-----------------------------------------------------------------"
-echo "$green INSTALLED MAIN SYSTEM SETUP"
-echo "-----------------------------------------------------------------"
+alert "INSTALLED MAIN SYSTEM SETUP"
 
 ### --- Programming tools --- ###
 ## needed for treesitter
@@ -129,9 +165,7 @@ brewinst stylua
 brewinst shfmt
 brewinst markdownlint-cli
 
-echo "-----------------------------------------------------------------"
-echo "$green INSTALLED PROGRAMMING TOOLS"
-echo "-----------------------------------------------------------------"
+alert "INSTALLED PROGRAMMING TOOLS"
 
 ###############################################
 
@@ -199,9 +233,7 @@ aptinst neofetch
 # aptinst figlet
 # aptinst espeak
 
-echo "-----------------------------------------------------------------"
-echo "$green FINISHED"
-echo "-----------------------------------------------------------------"
+alert "FINISHED"
 
 echo "Now manually build the following apps: "
 echo "dragon, jgmenu, keyd, picom"
