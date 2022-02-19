@@ -5,6 +5,6 @@ package.path = config_dir
   .. "/?/init.lua;"
   .. package.path
 
-require("settings")
 require("plugins")
+require("settings")
 require("lsp")
