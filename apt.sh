@@ -185,7 +185,7 @@ brewinst fd
 brewinst broot
 brewinst bat
 brewinst youtube-dl
-brewinst rigpgrep
+brewinst ripgrep
 brewinst thefuck
 
 ## TUIs
