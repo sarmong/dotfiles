@@ -186,6 +186,7 @@ brewinst fd
 brewinst broot
 brewinst bat
 brewinst youtube-dl
+brewinst yt-dlp
 brewinst ripgrep
 brewinst thefuck
 brewinst zoxide
