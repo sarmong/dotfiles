@@ -13,6 +13,13 @@ table.insert(library, "/usr/share/nvim/runtime/lua/lsp")
 table.insert(library, "/usr/share/awesome/lib")
 
 configs.server_opt["sumneko_lua"] = function()
+  -- disable formatting with sumneko_lua, so that null-ls will handle it
+  configs.default_opt.on_attach = function(client)
+    configs.on_attach()
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
+
   configs.default_opt.settings = {
     Lua = {
       runtime = {
