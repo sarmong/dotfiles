@@ -58,6 +58,7 @@ export HISTSIZE=100000
 export HISTFILESIZE=1000000
 export TERMINAL="kitty"
 export BROWSER=firefox
+export PAGER=less
 
 # Fixes issues with Java application(Webstorm) in tiling WM
 export _JAVA_AWT_WM_NONREPARENTING=1
