@@ -53,9 +53,12 @@ sudo apt update && sudo apt upgrade
 alert "REPOS UPDATED AND PACKAGES UPGRADED"
 
 ### --- Essentials --- ###
+aptinst git
 aptinst curl
 aptinst vim
-aptinst git
+## Install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ### --- Install installers --- ###
 
