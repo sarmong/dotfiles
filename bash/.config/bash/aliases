@@ -8,6 +8,9 @@ alias cinstall="brew cask install"
 alias bsearch="brew search"
 alias binfo="brew info"
 
+# Apt commands
+alias update="sudo apt update && sudo apt upgrade && brew update && brew upgrade"
+
 # Abbreviations
 alias r="ranger"
 alias ka="killall"
@@ -23,17 +26,12 @@ alias egrep="egrep --color=auto"
 alias mv="mv -i"
 alias rm="rm -i"
 alias mkd="mkdir -pv"
+alias untar="tar -zxvf"
+alias sha="shasum -a 256" # check the checksum of a file
 
 mcd() {
-	mkdir -pv $1
-	cd $1
-}
-
-# alias code="code $1 & exit"
-
-vs() {
-	code $1
-	exit
+	mkdir -pv "$1"
+	cd "$1"
 }
 
 alias open="xdg-open"
@@ -42,7 +40,7 @@ alias o="xdg-open"
 alias v="nvim"
 alias fo="fzf | xargs xdg-open"
 
-# Easier navigation: .., ..., ...., ....., ~ and -
+# Easier navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -53,12 +51,16 @@ alias pr="cd ~/Documents/Tech/Projects"
 alias dox="cd ~/Documents"
 alias dls="cd ~/Downloads"
 
-# Internet
-alias yt="youtube-dl --add-metadata -ic"   # Download video
-alias yta="youtube-dl --add-metadata -icx" # Download audio
-alias weather="curl wttr.in"
+alias yt="yt-dlp"          # Download video
+alias yta="yt-dlp -f 'ba'" # Download audio
+play() {
+	mpv "$1" &
+	disown
+}
 
-# Get week number
+# Might be useful
+alias weather="curl wttr.in"
+alias myip="curl ipinfo.io/ip"
 alias week='date +%V'
 
 ###
