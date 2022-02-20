@@ -1,4 +1,5 @@
 local spawn = require("awful.spawn")
+local awful = require("awful")
 local app = require("configuration.apps").default.quake
 
 local quake_id = "notnil"
@@ -12,6 +13,7 @@ end
 
 function open_quake()
   quake_client.hidden = false
+  awful.client.focus.byidx(quake_id)
 end
 
 function close_quake()
