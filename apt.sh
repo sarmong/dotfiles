@@ -89,7 +89,8 @@ aptinst awesome
 aptinst i3lock-fancy
 aptinst arandr
 aptinst lxappearance
-flatinst com.github.Eloston.UngoogledChromium
+# flatinst com.github.Eloston.UngoogledChromium
+aptinst chromium-browser
 
 ## Brave browser
 aptinst apt-transport-https curl
