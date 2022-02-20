@@ -11,6 +11,9 @@ done
 
 # Settings
 # ===========
+
+stty -ixon # Disables C-s hang
+
 set -o vi # set vim mode
 
 shopt -s cdspell    #accepts typing errors in cd dirs
