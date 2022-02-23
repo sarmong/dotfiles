@@ -106,3 +106,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 if [ "$(uname)" == "Darwin" ]; then
 	source ~/.bashrc
 fi
+
+if [ -n "$BASH_VERSION" ] && [ -n "$PS1" ] && [ -z $BASHRC_LOADED ]; then
+	source ~/.bashrc
+fi
