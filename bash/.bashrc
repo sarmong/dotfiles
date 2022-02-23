@@ -2,6 +2,8 @@
 # If not running interactive shell, don't do anything
 [[ $- == *i* ]] || return
 
+export BASHRC_LOADED=true
+
 # Source other config files
 [ -n "$PS1" ] && [ "$(uname)" != "Darwin" ] && source ~/.bash_profile
 
