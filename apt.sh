@@ -185,6 +185,7 @@ aptinst speedtest-cli
 aptinst watch
 aptinst htop
 aptinst scrot
+aptinst colordiff
 brewinst fzf
 brewinst fd
 brewinst broot
