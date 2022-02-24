@@ -219,7 +219,11 @@ sudo snap install skype
 sudo snap install slack --classic
 sudo snap install zoom-client
 flatinst org.telegram.desktop
-flatinst com.nextcloud.desktopclient.nextcloud
+
+sudo add-apt-repository ppa:nextcloud-devs/client
+sudo apt-get update
+aptinst nextcloud-client
+
 # aptinst spotify
 
 # aptinst bitwarden
