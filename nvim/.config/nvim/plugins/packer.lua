@@ -124,6 +124,8 @@ return require("packer").startup(function(use)
   use("ray-x/cmp-treesitter")
   use("hrsh7th/cmp-nvim-lua")
 
+  use("iloginow/vim-stylus")
+
   -- Snippets
   use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
   use({ "saadparwaiz1/cmp_luasnip", commit = commits.cmp_luasnip })
