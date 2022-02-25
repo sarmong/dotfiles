@@ -80,6 +80,7 @@ alert "INSTALLED INSTALLERS"
 ### --- Install packages --- ###
 
 aptinst blueman bluez bluetooth # Blueman is a GUI for bluez
+aptinst pavucontrol             # Pulse Audio Volume Control GUI
 
 ### --- Main system setup --- ###
 
