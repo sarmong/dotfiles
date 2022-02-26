@@ -14,6 +14,8 @@ xsetroot -cursor_name left_ptr # remove x-shaped cursor when no windows open
 kitty
 copyq &
 
+udiskie &
+
 ./setup/keyboard/init.sh
 ./setup/screenlayout/monitor-on-top.sh
 
