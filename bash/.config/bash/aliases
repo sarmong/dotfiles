@@ -10,6 +10,9 @@ alias binfo="brew info"
 
 # Apt commands
 alias update="sudo apt update && sudo apt upgrade && brew update && brew upgrade"
+alias aptinst="sudo apt install"
+alias aptsearch="apt search"
+alias aptremove="sudo apt remove"
 
 # Abbreviations
 alias r="ranger"
