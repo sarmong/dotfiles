@@ -81,6 +81,7 @@ alert "INSTALLED INSTALLERS"
 
 aptinst blueman bluez bluetooth # Blueman is a GUI for bluez
 aptinst pavucontrol             # Pulse Audio Volume Control GUI
+aptinst udiskie                 # Automounts external drives
 
 ### --- Main system setup --- ###
 
