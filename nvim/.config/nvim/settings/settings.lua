@@ -51,3 +51,8 @@ vim.cmd("nmap Q <Nop>") -- 'Q' in normal mode enters Ex mode. You almost never w
 
 -- vim.cmd("vim.g.markdown_fenced_languages = ['js=javascript']")
 vim.cmd("set conceallevel=3")
+
+-- set cyrillic letters for normal mode
+vim.cmd(
+  "set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+)
