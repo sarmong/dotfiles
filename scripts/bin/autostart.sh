@@ -12,8 +12,7 @@ xsetroot -cursor_name left_ptr # remove x-shaped cursor when no windows open
 
 compton &
 
-# touchegg &
-kitty
+touchegg &
 copyq &
 
 udiskie &
@@ -23,3 +22,5 @@ pasystray &
 ./setup/screenlayout/monitor-on-top.sh
 
 bluetooth on
+
+kitty

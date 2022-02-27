@@ -111,6 +111,10 @@ aptinst rofi
 # aptinst tint2
 aptinst copyq
 
+sudo add-apt-repository ppa:touchegg/stable
+sudo apt update
+aptinst touchegg
+
 aptinst feh
 aptinst zathura
 aptinst flameshot
