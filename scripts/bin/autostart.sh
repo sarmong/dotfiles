@@ -18,8 +18,8 @@ copyq &
 udiskie &
 pasystray &
 
-./setup/keyboard/init.sh
-./setup/screenlayout/monitor-on-top.sh
+~/bin/setup/keyboard/init.sh
+~/bin/setup/screenlayout/monitor-on-top.sh
 
 bluetooth on
 
