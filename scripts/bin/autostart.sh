@@ -10,6 +10,8 @@ pkill nextcloud
 flatpak run com.nextcloud.desktopclient.nextcloud >/dev/null 2>&1 &
 xsetroot -cursor_name left_ptr # remove x-shaped cursor when no windows open
 
+compton &
+
 # touchegg &
 kitty
 copyq &
