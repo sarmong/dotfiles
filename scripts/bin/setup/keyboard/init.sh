@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-../../services/keyd/init.sh
+~/bin/services/keyd/init.sh
 
 setxkbmap "us,ru"
 
