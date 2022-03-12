@@ -2,6 +2,9 @@
 
 ~/bin/services/keyd/init.sh
 
+# Wait for keyd service to restart
+sleep 1
+
 setxkbmap "us,ru"
 
 ## Start cursor movement after 250ms and at 45 lines per second
