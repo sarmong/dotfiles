@@ -3,7 +3,7 @@ Description=Run user script after suspend
 
 [Service]
 Type=oneshot
-ExecStart=/home//bin/services/suspend/suspend.sh
+ExecStart=/etc/systemd/system/suspend.sh
 
 [Install]
 WantedBy=multi-user.target
