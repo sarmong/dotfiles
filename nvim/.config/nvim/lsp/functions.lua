@@ -7,6 +7,7 @@ end
 
 fns.enable_format_on_save = function()
   -- disable format on save to not have doubles
+  -- @TODO - wrap in augroup
   vim.cmd("autocmd! BufWritePre <buffer>")
   vim.cmd("autocmd BufWritePre <buffer> lua require('lsp.functions').format()")
   print("Enabled formatting on save")
