@@ -12,10 +12,16 @@ xsetroot -cursor_name left_ptr # remove x-shaped cursor when no windows open
 
 compton &
 
+killall touchegg
 touchegg &
+
+killall copyq
 copyq &
 
+killall udiskie
 udiskie &
+
+killall pasystray
 pasystray &
 
 ~/bin/setup/keyboard/init.sh
