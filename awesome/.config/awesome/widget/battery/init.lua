@@ -32,7 +32,7 @@ local widget = wibox.widget({
 	layout = wibox.layout.fixed.horizontal,
 })
 
-local widget_button = clickable_container(wibox.container.margin(widget, dpi(14), dpi(14), 4, 4))
+local widget_button = clickable_container(wibox.container.margin(widget, dpi(1), dpi(1), 7, 7))
 widget_button:buttons(gears.table.join(awful.button({}, 1, nil, function()
 	awful.spawn("xfce4-power-manager-settings")
 end)))
