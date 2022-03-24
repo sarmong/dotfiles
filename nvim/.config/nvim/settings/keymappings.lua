@@ -1,74 +1,57 @@
+local function map(mode, lhs, rhs, opts)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 -- Unmap space and set leader key to space
-vim.api.nvim_set_keymap(
-  "n",
-  "<Space>",
-  "<NOP>",
-  { noremap = true, silent = true }
-)
+map("n", "<Space>", "<NOP>", { silent = true })
 vim.g.mapleader = " "
 
 -- better window movement
-vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { silent = true })
-vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { silent = true })
-vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { silent = true })
-vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
+map("n", "<C-h>", "<C-w>h", { silent = true })
+map("n", "<C-j>", "<C-w>j", { silent = true })
+map("n", "<C-k>", "<C-w>k", { silent = true })
+map("n", "<C-l>", "<C-w>l", { silent = true })
 
 -- save doc using Ctrl+s. If this doesn't work add this two lines to bash_profile: (or just the second)
 -- bind -r '\C-s'
 -- stty -ixon
-vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { silent = true })
-vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:w<CR>", { silent = true })
-vim.api.nvim_set_keymap("v", "<C-s>", "<Esc>:w<CR>", { silent = true })
+map("n", "<C-s>", ":w<CR>", { silent = true })
+map("i", "<C-s>", "<Esc>:w<CR>", { silent = true })
+map("v", "<C-s>", "<Esc>:w<CR>", { silent = true })
 
-vim.api.nvim_set_keymap("i", "<C-u>", "<esc>viwUea", { silent = true })
+map("i", "<C-u>", "<esc>viwUea", { silent = true })
 
-vim.api.nvim_set_keymap("n", "H", "^", { silent = true })
-vim.api.nvim_set_keymap("n", "L", "$", { silent = true })
+map("n", "H", "^", { silent = true })
+map("n", "L", "$", { silent = true })
 
 -- turn off search highlights until next search
-vim.api.nvim_set_keymap(
-  "n",
-  "<esc><esc>",
-  ":noh<CR>",
-  { noremap = true, silent = true }
-)
+map("n", "<esc><esc>", ":noh<CR>", { silent = true })
 
--- @TODO transform to lua functions
 -- Terminal window navigation
-vim.cmd([[
-  tnoremap <C-h> <C-\><C-N><C-w>h
-  tnoremap <C-j> <C-\><C-N><C-w>j
-  tnoremap <C-k> <C-\><C-N><C-w>k
-  tnoremap <C-l> <C-\><C-N><C-w>l
-  inoremap <C-h> <C-\><C-N><C-w>h
-  inoremap <C-j> <C-\><C-N><C-w>j
-  inoremap <C-k> <C-\><C-N><C-w>k
-  inoremap <C-l> <C-\><C-N><C-w>l
-]])
+map("t", "<C-h>", "<C-\\><C-N><C-w>h")
+map("t", "<C-j>", "<C-\\><C-N><C-w>j")
+map("t", "<C-k>", "<C-\\><C-N><C-w>k")
+map("t", "<C-l>", "<C-\\><C-N><C-w>l")
+map("i", "<C-h>", "<C-\\><C-N><C-w>h")
+map("i", "<C-j>", "<C-\\><C-N><C-w>j")
+map("i", "<C-k>", "<C-\\><C-N><C-w>k")
+map("i", "<C-l>", "<C-\\><C-N><C-w>l")
 
 -- @TODO fix this - interferes with visual-multi plugin
 -- resize with arrows
-vim.cmd([[
-  nnoremap <silent> <C-Up>    :resize -2<CR>
-  nnoremap <silent> <C-Down>  :resize +2<CR>
-  nnoremap <silent> <C-Left>  :vertical resize -2<CR>
-  nnoremap <silent> <C-Right> :vertical resize +2<CR>
-]])
+map("n", "<C-Up>", ":resize -2<CR>")
+map("n", "<C-Down>", ":resize +2<CR>")
+map("n", "<C-Left>", ":vertical resize -2<CR>")
+map("n", "<C-Right>", ":vertical resize +2<CR>")
 
 -- better indenting
-vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
+map("v", "<", "<gv", { noremap = true, silent = true })
+map("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Move selected line / block of text in visual mode
-vim.api.nvim_set_keymap(
-  "x",
-  "K",
-  ":move '<-2<CR>gv-gv",
-  { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-  "x",
-  "J",
-  ":move '>+1<CR>gv-gv",
-  { noremap = true, silent = true }
-)
+map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
+map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
