@@ -9,6 +9,7 @@ local mat_icon_button = require("widget.material.icon-button")
 local mat_icon = require("widget.material.icon")
 local dpi = require("beautiful").xresources.apply_dpi
 local icons = require("theme.icons")
+local battery_widget = require("widget.battery")
 
 -- Titus - Horizontal Tray
 local systray = wibox.widget.systray()
@@ -96,6 +97,7 @@ local TopPanel = function(s)
 			layout = wibox.layout.fixed.horizontal,
 			wibox.container.margin(systray, dpi(3), dpi(3), dpi(6), dpi(3)),
 			-- Layout box
+      battery_widget,
 			LayoutBox(s),
 			-- Clock
 			clock_widget,
