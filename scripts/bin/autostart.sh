@@ -24,4 +24,7 @@ udiskie &
 ~/bin/setup/keyboard/init.sh
 ~/bin/setup/screenlayout/monitor-on-top.sh
 
+killall redshift
+redshift
+
 # bluetooth on
