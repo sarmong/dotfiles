@@ -41,15 +41,17 @@ local globalKeys = awful.util.table.join(
   awful.key({ modkey }, "h", function()
     awful.client.focus.byidx(-1)
   end, { description = "Focus previous by index", group = "client" }),
+
+  -- Launchers
   awful.key({ modkey }, "e", function()
     awful.spawn("rofi -combi-modi window,drun -show combi -modi combi")
-  end, { description = "Main menu", group = "awesome" }),
+  end, { description = "Rofi launcher", group = "awesome" }),
   awful.key({ altkey }, "space", function()
     awful.spawn("rofi -combi-modi window,drun -show combi -modi combi")
-  end, { description = "Show main menu", group = "awesome" }),
+  end, { description = "Rofi launcher", group = "awesome" }),
   awful.key({ modkey }, "d", function()
     awful.spawn("dmenu_run")
-  end, { description = "Main menu", group = "awesome" }),
+  end, { description = "dmenu launcher", group = "awesome" }),
   -- awful.key(
   --   {modkey, 'Shift'},
   --   'e',
@@ -173,17 +175,6 @@ local globalKeys = awful.util.table.join(
   awful.key({ modkey }, "z", function()
     _G.toggle_quake()
   end, { description = "dropdown application", group = "launcher" }),
-  -- Widgets popups
-  awful.key({ altkey }, "h", function()
-    if beautiful.fs then
-      beautiful.fs.show(7)
-    end
-  end, { description = "Show filesystem", group = "widgets" }),
-  awful.key({ altkey }, "w", function()
-    if beautiful.weather then
-      beautiful.weather.show(7)
-    end
-  end, { description = "Show weather", group = "widgets" }),
 
   -- Brightness
   awful.key({}, "XF86MonBrightnessUp", function()
@@ -226,21 +217,9 @@ local globalKeys = awful.util.table.join(
     { description = "Open default program for tag/workspace", group = "tag" }
   ),
   -- Custom hotkeys
-  -- vfio integration
-  awful.key({ "Control", altkey }, "space", function()
-    awful.util.spawn_with_shell("vm-attach attach")
-  end),
-  -- Lutris hotkey
-  awful.key({ modkey }, "g", function()
-    awful.util.spawn_with_shell("lutris")
-  end),
   -- System Monitor hotkey
   awful.key({ modkey }, "m", function()
     awful.util.spawn_with_shell("mate-system-monitor")
-  end),
-  -- Kill VLC
-  awful.key({ modkey }, "v", function()
-    awful.util.spawn_with_shell("killall -9 vlc")
   end),
   -- File Manager
   awful.key({ modkey, "Control" }, "e", function()
