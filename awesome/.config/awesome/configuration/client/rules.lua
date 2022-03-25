@@ -46,7 +46,7 @@ awful.rules.rules = {
 		},
 	},
 	{
-		rule_any = { class = { "PanGPUI" } },
+		rule_any = { class = { "Pavucontrol" }, name = { "pulsemixer" } },
 		properties = {
 			placement = awful.placement.centered,
 			ontop = false,
@@ -55,27 +55,10 @@ awful.rules.rules = {
 		},
 	},
 	{
-		rule_any = { name = { "GlobalProtect" } },
+    -- Event Tester is xev
+		rule_any = { name = { "dragon", "Event Tester" } },
 		properties = {
 			placement = awful.placement.top_right,
-			ontop = false,
-			floating = true,
-			skip_decoration = true,
-		},
-	},
-	{
-		rule_any = { name = { "dragon" } },
-		properties = {
-			placement = awful.placement.top_right,
-			ontop = true,
-			floating = true,
-			skip_decoration = true,
-		},
-	},
-	{
-		rule_any = { class = { "Pavucontrol" } },
-		properties = {
-			placement = awful.placement.centered,
 			ontop = true,
 			floating = true,
 			skip_decoration = true,
