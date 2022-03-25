@@ -197,6 +197,16 @@ local globalKeys = awful.util.table.join(
   awful.key({}, "XF86AudioPlay", function()
     awful.spawn("playerctl play-pause")
   end, { description = "Play/Pause audio", group = "hotkeys" }),
+  awful.key({}, "KP_End", function()
+    awful.spawn("playerctl previous")
+  end, { description = "Previous track", group = "hotkeys" }),
+  awful.key({}, "KP_Down", function()
+    awful.spawn("playerctl play-pause")
+  end, { description = "Play/Pause audio", group = "hotkeys" }),
+  awful.key({}, "KP_Next", function()
+    awful.spawn("playerctl next")
+  end, { description = "Next track", group = "hotkeys" }),
+
   -- Screen management
   awful.key(
     { modkey },
