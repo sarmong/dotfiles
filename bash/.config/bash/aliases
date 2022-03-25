@@ -39,6 +39,7 @@ mcd() {
 
 alias open="xdg-open"
 alias o="xdg-open"
+alias copy="xclip -sel clipboard"
 
 alias v="nvim"
 alias fo="fzf | xargs xdg-open"
