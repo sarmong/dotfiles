@@ -41,12 +41,15 @@ local globalKeys = awful.util.table.join(
   awful.key({ modkey }, "h", function()
     awful.client.focus.byidx(-1)
   end, { description = "Focus previous by index", group = "client" }),
-  awful.key({ modkey }, "d", function()
+  awful.key({ modkey }, "e", function()
     awful.spawn("rofi -combi-modi window,drun -show combi -modi combi")
   end, { description = "Main menu", group = "awesome" }),
   awful.key({ altkey }, "space", function()
     awful.spawn("rofi -combi-modi window,drun -show combi -modi combi")
   end, { description = "Show main menu", group = "awesome" }),
+  awful.key({ modkey }, "d", function()
+    awful.spawn("dmenu_run")
+  end, { description = "Main menu", group = "awesome" }),
   -- awful.key(
   --   {modkey, 'Shift'},
   --   'e',
