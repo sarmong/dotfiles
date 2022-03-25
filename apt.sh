@@ -96,6 +96,7 @@ alert "INSTALLED INSTALLERS"
 
 aptinst blueman bluez bluetooth # Blueman is a GUI for bluez
 
+aptinst pnmixer     # Volume System Tray
 aptinst pulsemixer  # Pulse Audio TUI
 aptinst pavucontrol # Pulse Audio Volume Control GUI
 aptinst pasystray   # Pulse Audio System Tray
