@@ -43,6 +43,18 @@ brewinst() {
 	echo "$green Successfully installed $bi_cyan $input $nocol"
 }
 
+pacinst() {
+	input="$1"
+	echo "$green Installing $bi_cyan $input $nocol ..."
+	pacstall -IP "$input" 1>/dev/null
+	if [ $? -gt 0 ]; then
+		echo "$red An error occured"
+		exit 1
+	fi
+
+	echo "$green Successfully installed $bi_cyan $input $nocol"
+}
+
 alert() {
 	echo "$green -----------------------------------------------------------------"
 	echo "$1"
@@ -61,6 +73,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ### --- Install installers --- ###
+
+## Pacstall
+sudo bash -c "$(curl -fsSL https://git.io/JsADh || wget -q https://git.io/JsADh -O -)"
 
 ## Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -121,6 +136,8 @@ aptinst touchegg
 aptinst feh
 aptinst zathura
 aptinst flameshot
+
+pacinst alacritty
 
 ## kitty installation
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
