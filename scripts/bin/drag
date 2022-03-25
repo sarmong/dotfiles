@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+echo "$(find $HOME -type f -not -path '*/.*' | dmenu -i -l 25)" | xargs dragon
