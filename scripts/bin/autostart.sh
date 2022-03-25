@@ -21,9 +21,6 @@ copyq &
 killall udiskie
 udiskie &
 
-killall pasystray
-pasystray &
-
 ~/bin/setup/keyboard/init.sh
 ~/bin/setup/screenlayout/monitor-on-top.sh
 
