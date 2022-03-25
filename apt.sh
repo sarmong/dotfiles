@@ -112,6 +112,7 @@ aptinst awesome
 aptinst i3lock-fancy
 aptinst arandr
 aptinst lxappearance
+aptinst xfce3-power-manager
 # flatinst com.github.Eloston.UngoogledChromium
 aptinst chromium-browser
 
