@@ -199,13 +199,16 @@ local globalKeys = awful.util.table.join(
   end, { description = "Play/Pause audio", group = "hotkeys" }),
   awful.key({}, "KP_End", function()
     awful.spawn("playerctl previous")
-  end, { description = "Previous track", group = "hotkeys" }),
+  end, { description = "1 -Previous track", group = "hotkeys" }),
   awful.key({}, "KP_Down", function()
-    awful.spawn("playerctl play-pause")
-  end, { description = "Play/Pause audio", group = "hotkeys" }),
+    awful.spawn("playerctl --player=spotify play-pause")
+  end, { description = "2 - Play/Pause spotify", group = "hotkeys" }),
+  awful.key({}, "KP_Begin", function()
+    awful.spawn("playerctl --player=firefox play-pause")
+  end, { description = "5 - Play/Pause firefox", group = "hotkeys" }),
   awful.key({}, "KP_Next", function()
     awful.spawn("playerctl next")
-  end, { description = "Next track", group = "hotkeys" }),
+  end, { description = "3 - Next track", group = "hotkeys" }),
 
   -- Screen management
   awful.key(
