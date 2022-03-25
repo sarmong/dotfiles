@@ -63,4 +63,13 @@ awful.rules.rules = {
 			skip_decoration = true,
 		},
 	},
+	{
+		rule_any = { name = { "dragon" } },
+		properties = {
+			placement = awful.placement.top_right,
+			ontop = true,
+			floating = true,
+			skip_decoration = true,
+		},
+	},
 }
