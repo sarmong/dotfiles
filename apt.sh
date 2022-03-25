@@ -152,8 +152,10 @@ sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x2
 
 aptinst xclip
 aptinst tlp powertop xbacklight
+aptinst brightnessctl
 aptinst xcape
 aptinst xdotool
+aptinst playerctl
 
 alert "INSTALLED MAIN SYSTEM SETUP"
 

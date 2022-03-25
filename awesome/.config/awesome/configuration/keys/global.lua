@@ -168,6 +168,7 @@ local globalKeys = awful.util.table.join(
       c:raise()
     end
   end, { description = "restore minimized", group = "client" }),
+
   -- Dropdown application
   awful.key({ modkey }, "z", function()
     _G.toggle_quake()
@@ -195,22 +196,16 @@ local globalKeys = awful.util.table.join(
   -- Volume control
   awful.key({}, "XF86AudioRaiseVolume", function()
     awful.spawn("pulsemixer --change-volume +5")
-  end, { description = "volume up", group = "hotkeys" }),
+  end, { description = "Volume up", group = "hotkeys" }),
   awful.key({}, "XF86AudioLowerVolume", function()
     awful.spawn("pulsemixer --change-volume -5")
-  end, { description = "volume down", group = "hotkeys" }),
+  end, { description = "Volume down", group = "hotkeys" }),
   awful.key({}, "XF86AudioMute", function()
     awful.spawn("pulsemixer --toggle-mute")
-  end, { description = "toggle mute", group = "hotkeys" }),
-  awful.key({}, "XF86AudioNext", function()
-    --
-  end, { description = "toggle mute", group = "hotkeys" }),
-  awful.key({}, "XF86PowerDown", function()
-    --
-  end, { description = "toggle mute", group = "hotkeys" }),
-  awful.key({}, "XF86PowerOff", function()
-    _G.exit_screen_show()
-  end, { description = "toggle mute", group = "hotkeys" }),
+  end, { description = "Toggle mute", group = "hotkeys" }),
+  awful.key({}, "XF86AudioPlay", function()
+    awful.spawn("playerctl play-pause")
+  end, { description = "Play/Pause audio", group = "hotkeys" }),
   -- Screen management
   awful.key(
     { modkey },
