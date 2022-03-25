@@ -1,10 +1,10 @@
-picom &
 if [ "$DESKTOP_SESSION" = 'bspwm' ]; then
 	killall sxhkd
 	pgrep -x sxhkd >/dev/null || sxhkd &
 	killall polybar
 	$HOME/.config/polybar/launch.sh >/dev/null 2>&1 &
 fi
+
 feh --bg-fill $HOME/Pictures/wp4.png &
 pkill nextcloud
 flatpak run com.nextcloud.desktopclient.nextcloud >/dev/null 2>&1 &
@@ -24,6 +24,4 @@ udiskie &
 ~/bin/setup/keyboard/init.sh
 ~/bin/setup/screenlayout/monitor-on-top.sh
 
-bluetooth on
-
-kitty
+# bluetooth on
