@@ -114,6 +114,7 @@ aptinst i3lock-fancy
 aptinst arandr
 aptinst lxappearance
 aptinst xfce3-power-manager
+aptinst mate-system-monitor
 # flatinst com.github.Eloston.UngoogledChromium
 aptinst chromium-browser
 
