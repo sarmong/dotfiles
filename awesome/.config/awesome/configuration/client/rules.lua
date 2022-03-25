@@ -72,4 +72,13 @@ awful.rules.rules = {
 			skip_decoration = true,
 		},
 	},
+	{
+		rule_any = { class = { "Pavucontrol" } },
+		properties = {
+			placement = awful.placement.centered,
+			ontop = true,
+			floating = true,
+			skip_decoration = true,
+		},
+	},
 }
