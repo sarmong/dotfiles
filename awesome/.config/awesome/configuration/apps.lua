@@ -28,19 +28,10 @@ return {
 	},
 	-- List of apps to start once on start-up
 	run_on_start_up = {
-		-- 'compton --config ' .. filesystem.get_configuration_dir() .. '/configuration/compton.conf',
 		"nm-applet --indicator", -- wifi
 		"pnmixer", -- shows an audiocontrol applet in systray when installed.
-		--'blueberry-tray', -- Bluetooth tray icon
-		"numlockx on", -- enable numlock
 		"/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)", -- credential manager
-		"xfce4-power-manager", -- Power manager
-		"flameshot",
-		-- 'feh --randomize --bg-fill ~/.wallpapers/*',
-		-- '/usr/bin/variety',
+		"xfce4-power-manager",
 		"~/bin/autostart.sh",
-		-- Add applications that need to be killed between reloads
-		-- to avoid multipled instances, inside the awspawn script
-		"~/.config/awesome/configuration/awspawn", -- Spawn "dirty" apps that can linger between sessions
 	},
 }
