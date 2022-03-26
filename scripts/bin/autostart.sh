@@ -7,7 +7,7 @@ fi
 
 feh --bg-fill $HOME/Pictures/wp4.png &
 pkill nextcloud
-flatpak run com.nextcloud.desktopclient.nextcloud >/dev/null 2>&1 &
+nextcloud
 xsetroot -cursor_name left_ptr # remove x-shaped cursor when no windows open
 
 compton &
