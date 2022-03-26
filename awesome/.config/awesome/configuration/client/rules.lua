@@ -33,18 +33,12 @@ awful.rules.rules = {
   {
     rule_any = {
       type = { "dialog" },
-      class = { "Wicd-client.py", "calendar.google.com" },
     },
     properties = {
       placement = awful.placement.centered,
       ontop = true,
       floating = true,
       drawBackdrop = true,
-      shape = function()
-        return function(cr, w, h)
-          gears.shape.rounded_rect(cr, w, h, 8)
-        end
-      end,
       skip_decoration = true,
     },
   },
