@@ -22,9 +22,9 @@ theme.background.hue_800 = "#192933"
 theme.background.hue_900 = "#121e25"
 
 local awesome_overrides = function(theme)
-	--
+  --
 end
 return {
-	theme = theme,
-	awesome_overrides = awesome_overrides,
+  theme = theme,
+  awesome_overrides = awesome_overrides,
 }
