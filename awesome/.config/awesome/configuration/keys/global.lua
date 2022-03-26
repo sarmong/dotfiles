@@ -51,19 +51,19 @@ local globalKeys = awful.util.table.join(
   end, { description = "Focus client to the right", group = "client" }),
 
   -- Swap clients
-  -- @TODO consider using global_bydirection to swapacross screens
+  -- @TODO consider using global_bydirection to swap across screens
   awful.key({ modkey, "Shift" }, "h", function()
     awful.client.swap.bydirection("left")
-  end, { description = "Focus previous by index", group = "client" }),
+  end, { description = "Swap with client to the left", group = "client" }),
   awful.key({ modkey, "Shift" }, "j", function()
     awful.client.swap.bydirection("down")
-  end, { description = "Focus previous by index", group = "client" }),
+  end, { description = "Swap with client below", group = "client" }),
   awful.key({ modkey, "Shift" }, "k", function()
     awful.client.swap.bydirection("up")
-  end, { description = "Focus previous by index", group = "client" }),
+  end, { description = "Swap with client above", group = "client" }),
   awful.key({ modkey, "Shift" }, "l", function()
     awful.client.swap.bydirection("right")
-  end, { description = "Focus previous by index", group = "client" }),
+  end, { description = "Swap with client to the right", group = "client" }),
 
   -- Launchers
   awful.key({ modkey }, "e", function()
