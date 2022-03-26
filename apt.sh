@@ -107,7 +107,7 @@ aptinst compton
 
 ### --- Main system setup --- ###
 
-aptinst awesome
+pacinst awesome-git
 # aptinst i3
 # aptinst i3blocks
 aptinst i3lock-fancy
