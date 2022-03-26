@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+playerctl metadata -f '{{xesam:url}}' | xclip -sel c
