@@ -34,13 +34,21 @@ local globalKeys = awful.util.table.join(
     awful.tag.history.restore,
     { description = "go back", group = "tag" }
   ),
-  -- Default client focus
-  awful.key({ modkey }, "l", function()
-    awful.client.focus.byidx(1)
-  end, { description = "Focus next by index", group = "client" }),
+
+  -- Focus clients
+  -- @TODO consider using global_bydirection to focus across screens
   awful.key({ modkey }, "h", function()
-    awful.client.focus.byidx(-1)
-  end, { description = "Focus previous by index", group = "client" }),
+    awful.client.focus.bydirection("left")
+  end, { description = "Focus client to the left", group = "client" }),
+  awful.key({ modkey }, "j", function()
+    awful.client.focus.bydirection("down")
+  end, { description = "Focus client below", group = "client" }),
+  awful.key({ modkey }, "k", function()
+    awful.client.focus.bydirection("up")
+  end, { description = "Focus client above", group = "client" }),
+  awful.key({ modkey }, "l", function()
+    awful.client.focus.bydirection("right")
+  end, { description = "Focus client to the right", group = "client" }),
 
   -- Swap clients
   -- @TODO consider using global_bydirection to swapacross screens
