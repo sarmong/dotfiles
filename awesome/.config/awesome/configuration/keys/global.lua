@@ -42,6 +42,21 @@ local globalKeys = awful.util.table.join(
     awful.client.focus.byidx(-1)
   end, { description = "Focus previous by index", group = "client" }),
 
+  -- Swap clients
+  -- @TODO consider using global_bydirection to swapacross screens
+  awful.key({ modkey, "Shift" }, "h", function()
+    awful.client.swap.bydirection("left")
+  end, { description = "Focus previous by index", group = "client" }),
+  awful.key({ modkey, "Shift" }, "j", function()
+    awful.client.swap.bydirection("down")
+  end, { description = "Focus previous by index", group = "client" }),
+  awful.key({ modkey, "Shift" }, "k", function()
+    awful.client.swap.bydirection("up")
+  end, { description = "Focus previous by index", group = "client" }),
+  awful.key({ modkey, "Shift" }, "l", function()
+    awful.client.swap.bydirection("right")
+  end, { description = "Focus previous by index", group = "client" }),
+
   -- Launchers
   awful.key({ modkey }, "e", function()
     awful.spawn("rofi -combi-modi window,drun -show combi -modi combi")
