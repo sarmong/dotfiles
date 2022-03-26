@@ -31,11 +31,23 @@ awful.rules.rules = {
   },
   -- Titlebars
   {
-    rule_any = {
-      type = { "dialog" },
+    rule = {
+      type = "dialog",
     },
     properties = {
       placement = awful.placement.centered,
+      ontop = true,
+      floating = true,
+      drawBackdrop = true,
+      skip_decoration = true,
+    },
+  },
+  {
+    rule = {
+      type = "utility",
+    },
+    properties = {
+      placement = awful.placement.top_right,
       ontop = true,
       floating = true,
       drawBackdrop = true,
