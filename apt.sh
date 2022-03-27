@@ -229,6 +229,7 @@ brewinst yt-dlp
 brewinst ripgrep
 brewinst thefuck
 brewinst zoxide
+aptinst atool
 
 ## TUIs
 aptinst pass
