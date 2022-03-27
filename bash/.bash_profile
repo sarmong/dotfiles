@@ -56,7 +56,7 @@ export HISTCONTROL=ignoreboth:erasedups
 # export HISTCONTROL=ignoreboth:erasedups:ignorespace
 export HISTSIZE=100000
 export HISTFILESIZE=1000000
-export TERMINAL="kitty"
+export TERMINAL="alacritty"
 export BROWSER=firefox
 export PAGER=less
 
