@@ -55,7 +55,7 @@ awful.rules.rules = {
     },
   },
   {
-    rule_any = { class = { "Pavucontrol" }, name = { "pulsemixer" } },
+    rule_any = { class = { "Pavucontrol", "feh" }, name = { "pulsemixer" } },
     properties = {
       placement = awful.placement.centered,
       ontop = false,
