@@ -59,3 +59,6 @@ vim.cmd("set conceallevel=3")
 vim.cmd(
   "set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 )
+
+-- Send WINdow CHanged signal to resize nvim properly when runnin alacritty -e nvim
+vim.cmd("autocmd VimEnter * :silent exec '!kill -s SIGWINCH $PPID'")
