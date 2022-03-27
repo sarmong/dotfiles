@@ -138,6 +138,7 @@ aptinst touchegg
 
 aptinst feh
 aptinst zathura
+aptinst zathura-djvu
 aptinst flameshot
 
 pacinst alacritty
@@ -230,6 +231,7 @@ brewinst ripgrep
 brewinst thefuck
 brewinst zoxide
 aptinst atool
+brewinst massren
 
 ## TUIs
 aptinst pass
