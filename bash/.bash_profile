@@ -50,7 +50,7 @@ export PATH="$HOME/bin:$PATH:$HOME/.local/bin"
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:~/.emacs.d/bin
 export INPUTRC=$XDG_CONFIG_HOME/bash/inputrc
-source "$XDG_CONFIG_HOME/bash/.env"
+[[ -f "$XDG_CONFIG_HOME/bash/.env" ]] && source "$XDG_CONFIG_HOME/bash/.env"
 export EDITOR="vim"
 export HISTCONTROL=ignoreboth:erasedups
 # export HISTCONTROL=ignoreboth:erasedups:ignorespace
