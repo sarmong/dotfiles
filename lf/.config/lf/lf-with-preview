@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# This is a wrapper script for lf that allows it to create image previews with
+# ueberzug. This works in concert with the lf configuration file and the
+# lf-cleaner script.
+set -e
+
+cleanup() {
+	exec 3>&-
+	rm "$FIFO_UEBERZUG"
+}
+
+if [ -n "$DISPLAY" ]; then
+	[ ! -d "$HOME/.cache/lf" ] && mkdir -p "$HOME/.cache/lf"
+	export FIFO_UEBERZUG="${TMPDIR:-/tmp}/lf-ueberzug-$$"
+
+	mkfifo "$FIFO_UEBERZUG"
+	ueberzug layer -s <"$FIFO_UEBERZUG" &
+	exec 3>"$FIFO_UEBERZUG"
+	trap cleanup EXIT
+	# trap cleanup HUP INT QUIT TERM PWR EXIT
+
+	lf "$@" 3>&-
+else
+	exec lf "$@"
+fi
