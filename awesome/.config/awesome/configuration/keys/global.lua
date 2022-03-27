@@ -35,6 +35,12 @@ local globalKeys = awful.util.table.join(
     { description = "go back", group = "tag" }
   ),
 
+  awful.key({ modkey, "Shift" }, "h", function()
+    if client.focus then
+      client.focus.minimized = true
+    end
+  end, { description = "Minimize a client", group = "launcher" }),
+
   -- Focus clients
   -- @TODO consider using global_bydirection to focus across screens
   awful.key({ modkey }, "h", function()
@@ -123,6 +129,7 @@ local globalKeys = awful.util.table.join(
     description = "Mark an area and screenshot it 10 seconds later (clipboard)",
     group = "screenshots (clipboard)",
   }),
+
   awful.key({ modkey }, "c", function()
     awful.util.spawn(apps.default.editor)
   end, { description = "Open a text/code editor", group = "launcher" }),
