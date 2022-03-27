@@ -5,8 +5,11 @@ local altkey = require("configuration.keys.mod").altKey
 
 local clientKeys = awful.util.table.join(
   awful.key({ modkey }, "f", function(c)
-    c.fullscreen = not c.fullscreen
-    c:raise()
+    c.floating = not c.floating
+    awful.placement.centered(c)
+  end, { description = "toggle fullscreen", group = "client" }),
+  awful.key({ modkey, "Shift" }, "f", function(c)
+    c.maximized = not c.maximized
   end, { description = "toggle fullscreen", group = "client" }),
   awful.key({ modkey }, "q", function(c)
     c:kill()
