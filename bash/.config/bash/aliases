@@ -16,6 +16,7 @@ alias aptremove="sudo apt remove"
 
 # Abbreviations
 alias r="ranger"
+alias lf="lfcd"
 alias ka="killall"
 alias g="git"
 alias gs="git status"
