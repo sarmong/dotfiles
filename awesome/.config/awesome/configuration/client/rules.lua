@@ -31,8 +31,9 @@ awful.rules.rules = {
   },
   -- Titlebars
   {
-    rule = {
-      type = "dialog",
+    rule_any = {
+      type = { "dialog" },
+      class = { "Ulauncher" },
     },
     properties = {
       placement = awful.placement.centered,
@@ -40,6 +41,7 @@ awful.rules.rules = {
       floating = true,
       drawBackdrop = true,
       skip_decoration = true,
+      border_width = 0,
     },
   },
   {
