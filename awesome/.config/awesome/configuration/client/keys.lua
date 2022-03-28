@@ -8,9 +8,13 @@ local clientKeys = awful.util.table.join(
     c.floating = not c.floating
     awful.placement.centered(c)
     c:raise()
-  end, { description = "toggle fullscreen", group = "client" }),
+  end, { description = "toggle float", group = "client" }),
   awful.key({ modkey }, "f", function(c)
     c.maximized = not c.maximized
+    c:raise()
+  end, { description = "toggle fullscreen", group = "client" }),
+  awful.key({ modkey, "Shift" }, "s", function(c)
+    c.sticky = not c.sticky
     c:raise()
   end, { description = "toggle fullscreen", group = "client" }),
   awful.key({ modkey }, "q", function(c)
