@@ -131,8 +131,11 @@ local globalKeys = awful.util.table.join(
   }),
 
   awful.key({ modkey }, "c", function()
-    awful.util.spawn(apps.default.editor)
-  end, { description = "Open a text/code editor", group = "launcher" }),
+    awful.spawn.with_shell(apps.default.config)
+  end, { description = "Open dotfiles", group = "launcher" }),
+  awful.key({ modkey }, "n", function()
+    awful.spawn.with_shell(apps.default.notes)
+  end, { description = "Open notes", group = "launcher" }),
   awful.key({ modkey }, "b", function()
     awful.util.spawn(apps.default.browser)
   end, { description = "Open a browser", group = "launcher" }),
