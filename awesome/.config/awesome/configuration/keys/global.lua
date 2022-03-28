@@ -35,7 +35,7 @@ local globalKeys = awful.util.table.join(
     { description = "go back", group = "tag" }
   ),
 
-  awful.key({ modkey, "Shift" }, "h", function()
+  awful.key({ modkey, "Control" }, "h", function()
     if client.focus then
       client.focus.minimized = true
     end
@@ -195,7 +195,7 @@ local globalKeys = awful.util.table.join(
   awful.key({ modkey, "Shift" }, "space", function()
     awful.layout.inc(-1)
   end, { description = "Select previous", group = "layout" }),
-  awful.key({ modkey, "Shift" }, "n", function()
+  awful.key({ modkey, "Control" }, "n", function()
     local c = awful.client.restore()
     -- Focus restored client
     if c then
