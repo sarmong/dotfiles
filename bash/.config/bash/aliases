@@ -32,6 +32,7 @@ alias rm="rm -i"
 alias mkd="mkdir -pv"
 alias untar="tar -zxvf"
 alias sha="shasum -a 256" # check the checksum of a file
+alias diff="colordiff"
 
 mcd() {
 	mkdir -pv "$1"
