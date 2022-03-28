@@ -20,11 +20,13 @@ return {
     quake = "kitty",
     screenshot = "flameshot gui",
     browser = "brave-browser",
-    editor = "kitty nvim", -- gui text editor
     social = "discord",
     game = rofi_command,
     files = "nautilus",
     music = rofi_command,
+    editor = "alacritty -e bash -lc nvim",
+    notes = "alacritty --working-directory ~/Nextcloud/Vault -e bash -lc nvim",
+    config = "alacritty --working-directory ~/dotfiles -e bash -lc nvim",
   },
   -- List of apps to start once on start-up
   run_on_start_up = {
