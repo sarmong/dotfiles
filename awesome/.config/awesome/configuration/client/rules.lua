@@ -54,6 +54,7 @@ awful.rules.rules = {
       floating = true,
       drawBackdrop = true,
       skip_decoration = true,
+      sticky = true,
     },
   },
   {
@@ -73,6 +74,7 @@ awful.rules.rules = {
       ontop = true,
       floating = true,
       skip_decoration = true,
+      sticky = true,
     },
   },
 }
