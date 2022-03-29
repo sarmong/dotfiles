@@ -81,6 +81,9 @@ local globalKeys = awful.util.table.join(
   awful.key({ modkey }, "d", function()
     awful.spawn("dmenu_run")
   end, { description = "dmenu launcher", group = "awesome" }),
+  awful.key({ modkey }, "b", function()
+    awful.spawn.with_shell("bookmarks ~/dotfiles/personal/bookmarks.txt")
+  end, { description = "bookmark selector", group = "awesome" }),
   -- awful.key(
   --   {modkey, 'Shift'},
   --   'e',
@@ -136,9 +139,6 @@ local globalKeys = awful.util.table.join(
   awful.key({ modkey }, "n", function()
     awful.spawn.with_shell(apps.default.notes)
   end, { description = "Open notes", group = "launcher" }),
-  awful.key({ modkey }, "b", function()
-    awful.util.spawn(apps.default.browser)
-  end, { description = "Open a browser", group = "launcher" }),
   -- Standard program
   awful.key({ modkey }, "Return", function()
     awful.spawn(apps.default.terminal)
