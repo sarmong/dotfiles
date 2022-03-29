@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+sudo service keyd restart
+
+# Wait for keyd service to restart
+sleep 1
+
+~/bin/setup/keyboard/init.sh
