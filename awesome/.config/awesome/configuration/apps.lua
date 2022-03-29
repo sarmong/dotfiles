@@ -30,10 +30,27 @@ return {
   },
   -- List of apps to start once on start-up
   run_on_start_up = {
-    "nm-applet --indicator", -- wifi
-    "pnmixer", -- shows an audiocontrol applet in systray when installed.
+    -- @TODO find out what the hell is this
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)", -- credential manager
-    "xfce4-power-manager",
-    "~/bin/autostart.sh",
+
+    -- Essentials
+    "nm-applet --indicator", -- network tray
+    "pnmixer", -- audiocontrol tray
+    "xfce4-power-manager", -- power manager tray
+    "udiskie", -- mounts drives automatically
+    "compton",
+
+    -- Applications
+    "nextcloud",
+    "touchegg",
+    "copyq",
+    "redshift",
+
+    -- Configuration
+    "feh --bg-fill $HOME/Pictures/wp.png &",
+    "~/bin/setup/keyboard/init.sh",
+    "~/bin/setup/screenlayout/monitor-on-top.sh",
+    -- @TODO turn on bluetooth depending on whether keyboard is connected
+    -- "bluetooth off",
   },
 }
