@@ -5,13 +5,15 @@ local awful = require("awful")
 local apps = require("configuration.apps")
 
 local function run_once(cmd)
-  local findme = cmd
+  local base_command = cmd
+  -- trims all arguments from a command to find it in processes
   local firstspace = cmd:find(" ")
   if firstspace then
-    findme = cmd:sub(0, firstspace - 1)
+    base_command = cmd:sub(0, firstspace - 1)
   end
+
   awful.spawn.with_shell(
-    string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd)
+    string.format("pgrep -u $USER -x %s > /dev/null || (%s)", base_command, cmd)
   )
 end
 
