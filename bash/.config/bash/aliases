@@ -33,6 +33,9 @@ alias mkd="mkdir -pv"
 alias untar="tar -zxvf"
 alias sha="shasum -a 256" # check the checksum of a file
 alias diff="colordiff"
+pdfman() {
+	man -t "$1" | ps2pdf - | zathura -
+}
 
 mcd() {
 	mkdir -pv "$1"
