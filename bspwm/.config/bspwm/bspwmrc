@@ -1,7 +1,7 @@
 #!/bin/sh 
 
 # bspc rule -r "*"
-$HOME/bin/autostart.sh
+$HOME/.config/bspwm/autostart.sh
 ###---Autostart---###
 
 # for WebStorm to work correctly
