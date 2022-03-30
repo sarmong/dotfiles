@@ -77,6 +77,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ## Pacstall
 sudo bash -c "$(curl -fsSL https://git.io/JsADh || wget -q https://git.io/JsADh -O -)"
 
+pacstall -A https://raw.githubusercontent.com/sarmong/pacstall-sarmong/master
+
 ## Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) # put brew into PATH
@@ -128,7 +130,7 @@ aptinst brave-browser
 aptinst trash-cli
 aptinst stow
 aptinst ranger
-aptinst rofi
+pacinst rofi
 # aptinst tint2
 aptinst copyq
 
@@ -158,6 +160,7 @@ aptinst brightnessctl
 aptinst xcape
 aptinst xdotool
 aptinst playerctl
+pacinst keyd
 
 alert "INSTALLED MAIN SYSTEM SETUP"
 
@@ -232,6 +235,8 @@ brewinst thefuck
 brewinst zoxide
 aptinst atool
 brewinst massren
+pacinst dragon-drop
+pacinst handlr-bin
 
 ## TUIs
 aptinst pass
