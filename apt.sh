@@ -258,9 +258,9 @@ aptinst screenkey
 aptinst redshift
 aptinst goldendict
 aptinst thunderbird
-sudo snap install skype
-sudo snap install slack --classic
-sudo snap install zoom-client
+pacinst skype-deb
+pacinst slack-deb
+pacisnt zoom-deb
 flatinst org.telegram.desktop
 
 sudo add-apt-repository ppa:nextcloud-devs/client
