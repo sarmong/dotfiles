@@ -168,7 +168,7 @@ alert "INSTALLED MAIN SYSTEM SETUP"
 ## needed for treesitter
 aptinst gcc
 aptinst g++
-brewinst neovim
+pacinst neovim
 sudo add-apt-repository universe
 aptinst fonts-firacode
 
