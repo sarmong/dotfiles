@@ -2,4 +2,4 @@
 
 file=$(find "$HOME" -type f -not -path '*/.*' | dmenu -i -l 25)
 
-dragon "$file"
+dragon-drop "$file"
