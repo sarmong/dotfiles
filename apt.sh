@@ -105,7 +105,7 @@ aptinst pasystray   # Pulse Audio System Tray
 aptinst pamix       # Pulse Audio TUI
 
 aptinst udiskie # Automounts external drives
-aptinst compton
+pacstall picom
 
 ### --- Main system setup --- ###
 

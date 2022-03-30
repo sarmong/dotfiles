@@ -38,7 +38,7 @@ return {
     "pnmixer", -- audiocontrol tray
     "xfce4-power-manager", -- power manager tray
     "udiskie", -- mounts drives automatically
-    "compton",
+    "picom",
 
     -- Applications
     "nextcloud",
