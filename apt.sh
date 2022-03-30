@@ -173,8 +173,7 @@ sudo add-apt-repository universe
 aptinst fonts-firacode
 
 ## Install system version of node
-brewinst node@16
-PATH="/home/linuxbrew/.linuxbrew/opt/node@16/bin:$PATH"
+pacstall nodejs-lts-deb
 ## Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 npm i -g yarn
@@ -186,7 +185,6 @@ brewinst jesseduffield/lazygit/lazygit
 brewinst gh
 aptinst zeal # Documentation browser
 
-sudo snap install sublime-text --classic
 ## VSCodium
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/vscodium-archive-keyring.gpg
 echo 'deb [signed-by=/etc/apt/trusted.gpg.d/vscodium-archive-keyring.gpg] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list

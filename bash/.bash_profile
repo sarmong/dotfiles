@@ -3,18 +3,11 @@ if [ -d "$HOME/Documents/android/adb-fastboot/platform-tools" ]; then
 fi
 
 if [[ "$(uname)" != "Darwin" ]]; then
-	export PATH=$PATH:$HOME//multitool/bin
-
 	export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 	eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
 
-## this enables usage of globally installed npm packages regardless of nvm
-## this has to come before nvm in the path, so that nvm version has higher priority
-export PATH=$PATH:"/home/linuxbrew/.linuxbrew/opt/node@16/bin"
-
 # NVM settings
-## This has to come after system version of node (from brew) is in the path
 # ===========
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
