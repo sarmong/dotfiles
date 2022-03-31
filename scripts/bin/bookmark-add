@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+url=$(xclip -o -sel clip)
+
+regex='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
+if [[ $url =~ $regex ]]; then
+	title=$(echo '' | dmenu -p "Enter bookmark title: ")
+	echo "$title - $url" >>~/Nextcloud/Documents/bookmarks.txt
+else
+	notify-send "Didn't save bookmark, link not valid"
+fi
