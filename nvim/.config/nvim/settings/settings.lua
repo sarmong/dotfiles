@@ -62,3 +62,14 @@ vim.cmd(
 
 -- Send WINdow CHanged signal to resize nvim properly when runnin alacritty -e nvim
 vim.cmd("autocmd VimEnter * :silent exec '!kill -s SIGWINCH $PPID'")
+
+vim.api.nvim_exec(
+  [[
+augroup rasi_ft
+  au!
+  autocmd BufNewFile,BufRead *.rasi set syntax=css
+augroup END
+
+]],
+  false
+)
