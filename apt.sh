@@ -118,7 +118,7 @@ aptinst lxappearance
 aptinst xfce3-power-manager
 aptinst mate-system-monitor
 # flatinst com.github.Eloston.UngoogledChromium
-aptinst chromium-browser
+flatpak install flathub org.chromium.Chromium
 
 ## Brave browser
 aptinst apt-transport-https curl
@@ -179,11 +179,15 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 npm i -g yarn
 aptinst httpie
 flatinst com.getpostman.Postman
-brewinst jesseduffield/lazynpm/lazynpm
-brewinst tig
-brewinst jesseduffield/lazygit/lazygit
-brewinst gh
+pacinst lazynpm-bin
+pacinst lazygit-bin
+pacstall tig
 aptinst zeal # Documentation browser
+
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
+sudo apt update
+sudo apt install gh
 
 ## VSCodium
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/vscodium-archive-keyring.gpg
@@ -222,15 +226,13 @@ aptinst watch
 aptinst htop
 aptinst scrot
 aptinst colordiff
-brewinst fzf
-brewinst fd
-brewinst broot
-brewinst bat
-brewinst youtube-dl
-brewinst yt-dlp
-brewinst ripgrep
-brewinst thefuck
-brewinst zoxide
+pacinst fzf-bin
+pacinst fd-deb
+pacinst bat-deb
+pacinst yt-dlp-bin
+pacinst ripgrep-deb
+aptinst thefuck
+curl -sS https://webinstall.dev/zoxide | bash
 aptinst atool
 brewinst massren
 pacinst dragon-drop
@@ -269,6 +271,7 @@ curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt update
 aptinst spotify-client
+aptinst anki
 
 # aptinst bitwarden
 # aptinst gramps
