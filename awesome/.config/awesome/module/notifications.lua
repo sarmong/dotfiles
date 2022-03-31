@@ -18,6 +18,7 @@ naughty.config.defaults.icon_size = dpi(32)
 naughty.config.defaults.shape = gears.shape.rounded_rect
 naughty.config.defaults.border_width = 0
 naughty.config.defaults.hover_timeout = nil
+naughty.config.defaults.max_width = 500
 
 -- Error handling
 if _G.awesome.startup_errors then
