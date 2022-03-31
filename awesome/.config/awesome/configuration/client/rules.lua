@@ -55,6 +55,7 @@ awful.rules.rules = {
       drawBackdrop = true,
       skip_decoration = true,
       sticky = true,
+      border_width = 0,
     },
   },
   {
