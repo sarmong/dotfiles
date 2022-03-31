@@ -82,7 +82,7 @@ local globalKeys = awful.util.table.join(
     awful.spawn("dmenu_run")
   end, { description = "dmenu launcher", group = "awesome" }),
   awful.key({ modkey }, "b", function()
-    awful.spawn.with_shell("bookmarks ~/dotfiles/personal/bookmarks.txt")
+    awful.spawn.with_shell("bookmarks ~/Nextcloud/Documents/bookmarks.txt")
   end, { description = "bookmark selector", group = "awesome" }),
   -- awful.key(
   --   {modkey, 'Shift'},
