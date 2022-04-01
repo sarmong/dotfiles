@@ -68,6 +68,16 @@ awful.rules.rules = {
     },
   },
   {
+    rule = { instance = "Telegram" },
+    except = { name = "Telegram*" },
+    properties = {
+      placement = awful.placement.centered,
+      ontop = false,
+      floating = true,
+      skip_decoration = true,
+    },
+  },
+  {
     -- Event Tester is xev
     rule_any = { name = { "dragon", "Event Tester" } },
     properties = {
