@@ -117,6 +117,7 @@ aptinst arandr
 aptinst lxappearance
 aptinst xfce3-power-manager
 aptinst mate-system-monitor
+pacinst xkblayout-state-git
 # flatinst com.github.Eloston.UngoogledChromium
 flatpak install flathub org.chromium.Chromium
 
