@@ -280,7 +280,7 @@ aptinst anki
 aptinst djview
 # aptinst virtualbox
 # aptinst gimp
-aptinst mpv
+pacinst mpv
 # aptinst vlc
 # aptinst musescore
 
