@@ -73,13 +73,13 @@ local globalKeys = awful.util.table.join(
 
   -- Launchers
   awful.key({ modkey }, "e", function()
-    awful.spawn("rofi -combi-modi window,drun -show combi -modi combi")
+    awful.spawn("rofi -show drun")
   end, { description = "Rofi launcher", group = "awesome" }),
   awful.key({ altkey }, "space", function()
     awful.spawn("rofi -combi-modi window,drun -show combi -modi combi")
   end, { description = "Rofi launcher", group = "awesome" }),
   awful.key({ modkey }, "d", function()
-    awful.spawn("dmenu_run")
+    awful.spawn("dmenu_run", false)
   end, { description = "dmenu launcher", group = "awesome" }),
   awful.key({ modkey }, "b", function()
     awful.spawn.with_shell("bookmarks ~/Nextcloud/Documents/bookmarks.txt")
