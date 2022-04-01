@@ -1,3 +1,5 @@
-currentDate=`date "+ %H:%M"`
+#!/bin/sh
 
-/usr/local/bin/terminal-notifier -title 'Reminder' -message "$currentDate" -sound submarine
+currentDate=$(date "+ %H:%M")
+
+notify-send -title 'Reminder' -message "$currentDate" -sound submarine
