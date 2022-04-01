@@ -131,6 +131,7 @@ aptinst trash-cli
 aptinst stow
 aptinst ranger
 pacinst rofi
+pacinst rofi-calc
 # aptinst tint2
 aptinst copyq
 
