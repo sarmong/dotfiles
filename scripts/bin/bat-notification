@@ -1,24 +1,23 @@
 #!/bin/sh
 
-if [ $(uname) = "Darwin" ]; then
-  batlvl=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
-  power=$(pmset -g batt | grep -Eo "(Battery|AC) Power")
-  
-  if [ $batlvl -lt 30 ] && [ "$power" = "Battery Power" ] ; then
-    /usr/local/bin/terminal-notifier -title 'Low battery' -message 'Charge the battery' -sound default; 
-  elif [ $batlvl -gt 75 ] && [ "$power" = "AC Power" ]; then
-    /usr/local/bin/terminal-notifier -title 'Charged' -message 'Remove the charger' -sound default;
-  fi
+if [ "$(uname)" = "Linux" ]; then
 
-elif [ "$(uname)" = "Linux" ]; then
-  batlvl=$(cat /sys/class/power_supply/BAT0/capacity)
-  status=$(cat /sys/class/power_supply/BAT0/status)
+	batlvl=$(cat /sys/class/power_supply/BAT0/capacity)
+	status=$(cat /sys/class/power_supply/BAT0/status)
 
-  if [ $batlvl -lt 30 ] && [ "$status" = "Discharging" ] ; then
-    /usr/bin/notify-send "Charge your battery"
-  elif [ "$status" = "Full" ]; then
-    /usr/bin/notify-send "Battery charged"
-  fi
+	if [ "$batlvl" -lt 30 ] && [ "$status" = "Discharging" ]; then
+		/usr/bin/notify-send "Charge your battery"
+	fi
+
+elif [ "$(uname)" = "Darwin" ]; then
+
+	batlvl=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
+	power=$(pmset -g batt | grep -Eo "(Battery|AC) Power")
+
+	if [ "$batlvl" -lt 30 ] && [ "$power" = "Battery Power" ]; then
+		/usr/local/bin/terminal-notifier -title 'Low battery' -message 'Charge the battery' -sound default
+	elif [ "$batlvl" -gt 75 ] && [ "$power" = "AC Power" ]; then
+		/usr/local/bin/terminal-notifier -title 'Charged' -message 'Remove the charger' -sound default
+	fi
 
 fi
-

@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-xkblayout-state -s +1
+xkblayout-state set +1

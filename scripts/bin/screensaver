@@ -1,5 +1,18 @@
-screencapture -x ~/.local/screensaver/screensaver.png
+#!/bin/sh
 
-convert ~/.local/screensaver/screensaver.png -paint 1 -swirl 360 ~/.local/screensaver/screensaver.png
+if [ "$(uname)" = "Linux" ]; then
 
-/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine
+	scrot /tmp/screensaver.png
+	convert /tmp/screensaver.png -paint 1 -swirl 360 ~/Pictures/lock.png -gravity center -composite -matte /tmp/screensaver.png
+
+	playerctl pause
+
+	i3lock -fe -i /tmp/screensaver.png
+
+elif [ "$(uname)" = "Darwin" ]; then
+
+	screencapture -x ~/.local/screensaver/screensaver.png
+	convert ~/.local/screensaver/screensaver.png -paint 1 -swirl 360 ~/.local/screensaver/screensaver.png
+
+	/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine
+fi
