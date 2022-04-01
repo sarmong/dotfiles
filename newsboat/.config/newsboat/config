@@ -6,7 +6,7 @@ freshrss-passwordfile "~/.config/newsboat/pw"
 #show-read-feeds no
 auto-reload no
 
-# external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
 bind-key j down
 bind-key k up
@@ -32,7 +32,7 @@ color listfocus black yellow standout bold
 color listnormal_unread blue default
 color listfocus_unread yellow default bold
 color info red black bold
-color article cyan default 
+color article cyan default
 
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black
@@ -50,7 +50,8 @@ highlight article ":.*\\(embedded flash\\)$" magenta default
 browser linkhandler
 macro , open-in-browser
 macro t set browser "qndl" ; open-in-browser ; set browser linkhandler
-macro a set browser "tsp youtube-dl --add-metadata -xic -f bestaudio/best" ; open-in-browser ; set browser linkhandler
+macro i set browser "feh" ; open-in-browser ; set browser linkhandler
+macro a set browser "tsp yt-dlp --embed-metadata -xic -f bestaudio/best" ; open-in-browser ; set browser linkhandler
 macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
 macro w set browser "lynx" ; open-in-browser ; set browser linkhandler
 macro d set browser "dmenuhandler" ; open-in-browser ; set browser linkhandler
@@ -58,4 +59,3 @@ macro c set browser "echo %u | xclip -r -sel c" ; open-in-browser ; set browser 
 macro C set browser "youtube-viewer --comments=%u" ; open-in-browser ; set browser linkhandler
 macro p set browser "peertubetorrent %u 480" ; open-in-browser ; set browser linkhandler
 macro P set browser "peertubetorrent %u 1080" ; open-in-browser ; set browser linkhandler
-
