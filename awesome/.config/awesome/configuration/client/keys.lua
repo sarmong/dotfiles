@@ -15,7 +15,7 @@ local clientKeys = awful.util.table.join(
   end, { description = "toggle fullscreen", group = "client" }),
   awful.key({ modkey, "Shift" }, "s", function(c)
     c.sticky = not c.sticky
-    c:raise()
+    c.ontop = not c.ontop
   end, { description = "toggle fullscreen", group = "client" }),
   awful.key({ modkey }, "q", function(c)
     c:kill()
