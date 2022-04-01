@@ -1,7 +1,7 @@
-@theme "~/.config/rofi/themes/gruvbox-dark-hard.rasi"
+@theme "~/.config/rofi/themes/blue.rasi"
 
 configuration {
-	modi: "run,drun,window,combi";
+	/* modi: "run,drun,window,combi"; */
 	font: "mono 12";
 	location: 0;
 	yoffset: 0;
@@ -20,7 +20,7 @@ configuration {
 /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*	drun-categories: ;*/
 /*	drun-show-actions: false;*/
-/*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
+	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
 /*	drun-url-launcher: "xdg-open";*/
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
@@ -60,7 +60,7 @@ configuration {
 /*	display-windowcd: ;*/
 /*	display-run: ;*/
 /*	display-ssh: ;*/
-/*	display-drun: ;*/
+	display-drun: "Apps: ";
 /*	display-combi: ;*/
 /*	display-keys: ;*/
 /*	display-filebrowser: ;*/
