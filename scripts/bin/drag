@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-file=$(find "$HOME" -type f -not -path '*/.*' | dmenu -i -l 25)
+file=$(find "$HOME" -type f -not -path '*/.*' -not -path "*/node_modules/*" | dmenu -i -l 25)
 
 dragon-drop "$file"
