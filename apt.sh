@@ -260,7 +260,7 @@ aptinst screenkey
 aptinst redshift
 aptinst goldendict
 aptinst thunderbird
-pacinst skype-deb
+flatinst com.skype.Client
 pacinst slack-deb
 pacisnt zoom-deb
 flatinst org.telegram.desktop
