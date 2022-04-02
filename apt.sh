@@ -232,6 +232,7 @@ pacinst fzf-bin
 pacinst fd-deb
 pacinst bat-deb
 pacinst yt-dlp-bin
+pacinst ytfzf
 pacinst ripgrep-deb
 aptinst thefuck
 curl -sS https://webinstall.dev/zoxide | bash
