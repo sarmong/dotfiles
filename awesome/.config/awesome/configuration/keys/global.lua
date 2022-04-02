@@ -239,6 +239,9 @@ local globalKeys = awful.util.table.join(
   awful.key({}, "KP_Begin", function()
     awful.spawn("playerctl --player=firefox play-pause")
   end, { description = "5 - Play/Pause firefox", group = "hotkeys" }),
+  awful.key({}, "KP_Up", function()
+    awful.spawn("playerctl --player=mpv play-pause")
+  end, { description = "8 - Play/Pause mpv", group = "hotkeys" }),
   awful.key({}, "KP_Next", function()
     awful.spawn("playerctl next")
   end, { description = "3 - Next track", group = "hotkeys" }),
