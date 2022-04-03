@@ -115,7 +115,8 @@ pacinst awesome-git
 aptinst i3lock-fancy
 aptinst arandr
 aptinst lxappearance
-aptinst xfce3-power-manager
+aptinst xfce4-power-manager
+aptinst network-manager-gnome network-manager-openvpn-gnome
 aptinst mate-system-monitor
 pacinst xkblayout-state-git
 # flatinst com.github.Eloston.UngoogledChromium
@@ -258,7 +259,7 @@ aptinst pass
 aptinst kazam
 aptinst safeeyes
 aptinst screenkey
-aptinst redshift
+aptinst redshift redshift-gtk
 aptinst goldendict
 aptinst thunderbird
 flatinst com.skype.Client
@@ -294,6 +295,3 @@ aptinst neofetch
 # aptinst espeak
 
 alert "FINISHED"
-
-echo "Now manually build the following apps: "
-echo "dragon, jgmenu, keyd, picom"
