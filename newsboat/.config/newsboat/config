@@ -6,7 +6,7 @@ freshrss-passwordfile "~/.config/newsboat/pw"
 #show-read-feeds no
 auto-reload no
 
-external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+external-url-viewer "urlscan -dc -r 'dmenuhandler {}'"
 
 bind-key j down
 bind-key k up
