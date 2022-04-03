@@ -1,16 +1,18 @@
-#!/bin/bash
+#!/bin/sh
 
 # Feed this script a link and it will give dmenu
 # some choice programs to use to open it.
 # feed="${1:-$(printf "%s" | dmenu -p 'Paste URL or file path')}"
 
-feed=$(xclip -o -sel clip)
+feed="$1"
 
-options="Copy URL\\nsxiv\\nsetbg\\nPDF\\nbrowser\\nlynx\\nvim\\nmpv\\nmpv loop\\nmpv float\\nqueue download\\nqueue yt-dlp\\nqueue yt-dlp audio"
+options="default\\nCopy URL\\nfeh\\nsetbg\\nPDF\\nbrowser\\nlynx\\nvim\\nmpv\\nmpv loop\\nmpv float\\nqueue download\\nqueue yt-dlp\\nqueue yt-dlp audio"
 
 choice="$(printf "$options" | dmenu -i -p "Open it with?")"
 
 case "$choice" in
+
+"default") linkhandler "$feed" ;;
 
 "Copy URL") echo "$feed" | xclip -selection clipboard ;;
 
@@ -28,7 +30,7 @@ mpv) setsid -f mpv -quiet "$feed" >/dev/null 2>&1 ;;
 
 PDF) zathura "$feed" >/dev/null 2>&1 ;;
 
-sxiv) feh >/dev/null 2>&1 ;;
+feh) feh "$feed" >/dev/null 2>&1 ;;
 
 vim) curl -sL "$feed" >"/tmp/$(echo "$feed" | sed "s/.*\///;s/%20/ /g")" && setsid -f "$TERMINAL" -e "$EDITOR" "/tmp/$(echo "$feed" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 ;;
 
