@@ -24,9 +24,9 @@ return {
     game = rofi_command,
     files = "nautilus",
     music = rofi_command,
-    editor = "alacritty -e bash -lc nvim",
-    notes = "alacritty --working-directory ~/Nextcloud/Vault -e bash -lc nvim",
-    config = "alacritty --working-directory ~/dotfiles -e bash -lc nvim",
+    editor = "alacritty -e nvim",
+    notes = "alacritty --working-directory ~/Nextcloud/Vault -e nvim",
+    config = "alacritty --working-directory ~/dotfiles -e nvim",
   },
   -- List of apps to start once on start-up
   run_on_start_up = {
