@@ -6,3 +6,4 @@ ranger/.config/ranger/history
 .env
 git-work.conf
 newsboat/.config/newsboat/pw
+newsboat/.config/newsboat/urls
