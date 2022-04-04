@@ -84,14 +84,14 @@ local globalKeys = awful.util.table.join(
   awful.key({ modkey }, "b", function()
     awful.spawn.with_shell("bookmarks ~/Nextcloud/Documents/bookmarks.txt")
   end, { description = "bookmark selector", group = "awesome" }),
-  -- awful.key(
-  --   {modkey, 'Shift'},
-  --   'e',
-  --   function()
-  --     awful.spawn('rofi -show power-menu -location 1 -yoffset 30 -xoffset 10 -width 15 -columns 1 -lines 6 -modi power-menu:~/bin/rofi/rofi-power-menu')
-  --     end,
-  --   {description = 'Power Menu', group = 'awesome'}
-  -- ),
+  awful.key({ modkey }, "c", function()
+    awful.spawn.with_shell("")
+  end, { description = "Open dotfiles", group = "launcher" }),
+  awful.key({ modkey, "Shift" }, "d", function()
+    awful.spawn.with_shell(
+      "rofi -show power-menu -location 1 -yoffset 30 -xoffset 10 -width 15 -columns 1 -lines 6 -modi power-menu:~/bin/rofi/rofi-power-menu"
+    )
+  end, { description = "Power Menu", group = "awesome" }),
   awful.key({ modkey, "Control" }, "c", function()
     awful.spawn("copyq menu")
   end, { description = "Open clipboard menu", group = "awesome" }),
@@ -133,7 +133,7 @@ local globalKeys = awful.util.table.join(
     group = "screenshots (clipboard)",
   }),
 
-  awful.key({ modkey }, "c", function()
+  awful.key({ modkey, "Shift" }, "c", function()
     awful.spawn.with_shell(apps.default.config)
   end, { description = "Open dotfiles", group = "launcher" }),
   awful.key({ modkey }, "n", function()
