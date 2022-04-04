@@ -266,10 +266,6 @@ local globalKeys = awful.util.table.join(
     { description = "Open default program for tag/workspace", group = "tag" }
   ),
   -- Custom hotkeys
-  -- System Monitor hotkey
-  awful.key({ modkey }, "m", function()
-    awful.util.spawn_with_shell("mate-system-monitor")
-  end),
   -- File Manager
   awful.key({ modkey, "Control" }, "e", function()
     awful.util.spawn(apps.default.files)
