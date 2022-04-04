@@ -134,6 +134,7 @@ aptinst stow
 aptinst ranger
 pacinst rofi
 pacinst rofi-calc
+brewinst qalc # needed for rofi-calc. Brew has newer version
 # aptinst tint2
 aptinst copyq
 
