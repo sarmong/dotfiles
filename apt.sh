@@ -144,7 +144,6 @@ pacinst alacritty
 aptinst xclip
 aptinst tlp powertop
 aptinst brightnessctl
-aptinst xcape
 aptinst xdotool
 aptinst playerctl
 pacinst keyd
