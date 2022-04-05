@@ -85,7 +85,7 @@ local globalKeys = awful.util.table.join(
     awful.spawn.with_shell("bookmarks ~/Nextcloud/Documents/bookmarks.txt")
   end, { description = "bookmark selector", group = "awesome" }),
   awful.key({ modkey }, "c", function()
-    awful.spawn.with_shell("")
+    awful.spawn.with_shell("rofi -show calc")
   end, { description = "Open dotfiles", group = "launcher" }),
   awful.key({ modkey, "Shift" }, "d", function()
     awful.spawn.with_shell(
