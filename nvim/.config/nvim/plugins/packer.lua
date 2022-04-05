@@ -191,6 +191,7 @@ return require("packer").startup(function(use)
   use({ "kevinhwang91/nvim-bqf" })
 
   use({ "plasticboy/vim-markdown" })
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
 
   -- completion for neovim lua api
   use("folke/lua-dev.nvim")
@@ -211,7 +212,6 @@ return require("packer").startup(function(use)
   use("folke/tokyonight.nvim")
 
   -- General Plugins
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
   use("mbbill/undotree")
 
   -- Try out
