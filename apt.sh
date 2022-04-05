@@ -68,9 +68,6 @@ alert "REPOS UPDATED AND PACKAGES UPGRADED"
 aptinst git
 aptinst curl
 aptinst vim
-## Install vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ### --- Install installers --- ###
 
@@ -105,13 +102,11 @@ aptinst pasystray   # Pulse Audio System Tray
 aptinst pamix       # Pulse Audio TUI
 
 aptinst udiskie # Automounts external drives
-pacstall picom
+pacinst picom
 
 ### --- Main system setup --- ###
 
 pacinst awesome-git
-# aptinst i3
-# aptinst i3blocks
 aptinst i3lock-fancy
 aptinst arandr
 aptinst lxappearance
@@ -119,7 +114,6 @@ aptinst xfce4-power-manager
 aptinst network-manager-gnome network-manager-openvpn-gnome
 aptinst mate-system-monitor
 pacinst xkblayout-state-git
-# flatinst com.github.Eloston.UngoogledChromium
 flatpak install flathub org.chromium.Chromium
 
 ## Brave browser
@@ -131,11 +125,9 @@ aptinst brave-browser
 
 aptinst trash-cli
 aptinst stow
-aptinst ranger
 pacinst rofi
 pacinst rofi-calc
-brewinst qalc # needed for rofi-calc. Brew has newer version
-# aptinst tint2
+brewinst libqalculate # needed for rofi-calc. Brew has newer version
 aptinst copyq
 
 sudo add-apt-repository ppa:touchegg/stable
@@ -149,17 +141,8 @@ aptinst flameshot
 
 pacinst alacritty
 
-## kitty installation
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-# Create a symbolic link to add kitty to PATH (assuming ~/.local/bin is in your PATH)
-mkdir ~/.local/bin && ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
-# Place the kitty.desktop file somewhere it can be found by the OS
-cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
-# Update the path to the kitty icon in the kitty.desktop file
-sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
-
 aptinst xclip
-aptinst tlp powertop xbacklight
+aptinst tlp powertop
 aptinst brightnessctl
 aptinst xcape
 aptinst xdotool
@@ -185,13 +168,13 @@ aptinst httpie
 flatinst com.getpostman.Postman
 pacinst lazynpm-bin
 pacinst lazygit-bin
-pacstall tig
+pacinst tig
 aptinst zeal # Documentation browser
 
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
 sudo apt update
-sudo apt install gh
+aptinst gh
 
 ## VSCodium
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/vscodium-archive-keyring.gpg
@@ -245,8 +228,8 @@ pacinst handlr-bin
 
 ## TUIs
 aptinst pass
+pacinst newsboat
 # aptinst cmus
-# aptinst newsboat
 # brewinst ddgr # duckduckgo from terminal
 # aptinst gnu-typist
 # aptinst ledger
@@ -259,7 +242,6 @@ aptinst pass
 
 aptinst kazam
 aptinst safeeyes
-aptinst screenkey
 aptinst redshift redshift-gtk
 aptinst goldendict
 aptinst thunderbird
@@ -286,10 +268,8 @@ aptinst djview
 # aptinst virtualbox
 # aptinst gimp
 pacinst mpv
-# aptinst vlc
 # aptinst musescore
 
-## fun
 aptinst neofetch
 # aptinst cmatrix
 # aptinst figlet
