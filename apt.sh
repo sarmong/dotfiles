@@ -249,6 +249,7 @@ flatinst com.skype.Client
 pacinst slack-deb
 pacisnt zoom-deb
 flatinst org.telegram.desktop
+aptinst qbittorrent
 
 sudo add-apt-repository ppa:nextcloud-devs/client
 sudo apt-get update
