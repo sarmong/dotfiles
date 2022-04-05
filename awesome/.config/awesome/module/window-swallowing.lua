@@ -19,7 +19,6 @@ local function copy_size(c, parent_client)
 end
 
 local function check_resize_client(c)
-  naughty.notify({ title = c.class })
   if c.child_resize then
     copy_size(c.child_resize, c)
   end
