@@ -46,14 +46,18 @@ cmd extract ${{
 	[ $ans = "y" ] && aunpack $fx
 }}
 
-cmd delete ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
-	set -f
-	printf "%s\n\t" "$fx"
-	printf "delete?[y/N]"
-	read ans
-	[ $ans = "y" ] && rm -rf -- $fx
-}}
+# cmd delete ${{
+# 	clear; tput cup $(($(tput lines)/3)); tput bold
+# 	set -f
+# 	printf "%s\n\t" "$fx"
+# 	printf "delete?[y/N]"
+# 	read ans
+# 	[ $ans = "y" ] && rm -rf -- $fx
+# }}
+
+# cmd delete %rm -ri $fx
+
+# cmd trash %mv -bi $fx ~/Documents/air/Users/michael/.Trash
 
 cmd trash %trash $fx
 
@@ -87,7 +91,8 @@ map <c-f> $lf -remote "send $id select '$(fzf)'"
 map J $lf -remote "send $id cd $(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf)"
 map gh
 map gg top
-map D trash
+map D delete
+map T trash
 map E extract
 map C copyto
 map M moveto
@@ -97,7 +102,7 @@ map <c-s> set hidden!
 map <enter> shell
 map x $$f
 map X !$f
-map o &mimeopen $f
+map o $xdg-open $f
 map O $mimeopen --ask $f
 map gr $dragon $f
 
