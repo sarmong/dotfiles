@@ -48,9 +48,10 @@ alert "REPOS UPDATED AND PACKAGES UPGRADED"
 ### --- Essentials --- ###
 pacinst git
 pacinst curl wget
-pacinst vim
+pacinst vim neovim
 pacinst stow
 pacinst openssh
+pacinst man-db
 
 ### --- Install packages --- ###
 
@@ -60,6 +61,7 @@ pacinst xorg-server
 pacinst xorg-setxkbmap xorg-xinit xorg-xev xorg-xkill xorg-xprop xorg-xrandr xorg-xset xorg-xinit
 
 pacinst lightdm lightdm-slick-greeter
+~/bin/services/lightdm/init.sh
 
 yayinst awesome-git
 yayinst i3lock-fancy-git
@@ -78,8 +80,12 @@ pacinst otf-font-awesome
 pacinst ttf-font-awesome
 yayinst nerd-fonts-fira-code
 
+pacinst ttf-linux-libertine ttf-inconsolata
+pacman -S noto-fonts #includes two above #includes two above
+
 ## Keyboard
 yayinst keyd-git
+~/bin/services/keyd/init.sh
 yayinst xkblayout-state-git
 
 ## Audio
@@ -162,8 +168,6 @@ alert "INSTALLED MAIN SYSTEM SETUP"
 ###############################################
 
 ### --- Programming tools --- ###
-pacinst neovim
-
 ## Install system version of node
 pacstall nodejs-lts-gallium
 ## Install nvm
