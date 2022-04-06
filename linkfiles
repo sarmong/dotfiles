@@ -1,15 +1,21 @@
 #!/bin/sh
 
+existing_files=".bash_logout .bashrc .bash_profile"
+
+for file in ${existing_files}; do
+	mv "$HOME/$file" "$HOME/$file-old"
+done
+
 Darwin="bash git kitty nvim ranger lf scripts skhd spacebar vim yabai alacritty newsboat"
 
 Linux="bash git bspwm awesome i3 kitty nvim polybar ranger scripts sxhkd vim alacritty newsboat rofi lf touchegg picom mpv"
 
 if [ "$(uname)" = "Darwin" ]; then
 	for dir in ${Darwin}; do
-		stow -v --ignore=".DS_Store" "$(basename "$dir")"
+		stow -v --ignore=".DS_Store" --target="$HOME" "$(basename "$dir")"
 	done
 elif [ "$(uname)" = "Linux" ]; then
 	for dir in ${Linux}; do
-		stow -v --ignore=".DS_Store" "$(basename "$dir")"
+		stow -v --ignore=".DS_Store" --target="$HOME" "$(basename "$dir")"
 	done
 fi
