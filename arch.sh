@@ -7,33 +7,33 @@ bi_cyan='\e[1;96m'
 nocol='\e[0m' # Text Reset
 
 pacinst() {
-	input="$1"
-	echo "$green Installing $bi_cyan $input $nocol ..."
-	sudo pacman -S --noconfirm "$input" 1>/dev/null
-	if [ $? -gt 0 ]; then
-		echo "$red An error occured"
-		exit 1
-	fi
+  input="$1"
+  echo "$green Installing $bi_cyan $input $nocol ..."
+  sudo pacman -S --noconfirm "$input" 1>/dev/null
+  if [ $? -gt 0 ]; then
+    echo "$red An error occured"
+    exit 1
+  fi
 
-	echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 yayinst() {
-	input="$1"
-	echo "$green Installing $bi_cyan $input $nocol ..."
-	paru -S --noconfirm "$input" 1>/dev/null
-	if [ $? -gt 0 ]; then
-		echo "$red An error occured"
-		exit 1
-	fi
+  input="$1"
+  echo "$green Installing $bi_cyan $input $nocol ..."
+  paru -S --noconfirm "$input" 1>/dev/null
+  if [ $? -gt 0 ]; then
+    echo "$red An error occured"
+    exit 1
+  fi
 
-	echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 alert() {
-	echo "$green -----------------------------------------------------------------"
-	echo "$1"
-	echo "-----------------------------------------------------------------$nocol"
+  echo "$green -----------------------------------------------------------------"
+  echo "$1"
+  echo "-----------------------------------------------------------------$nocol"
 }
 
 pacman -Syyyu
@@ -50,7 +50,7 @@ pacinst git
 pacinst curl wget
 pacinst vim neovim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 pacinst stow
 pacinst openssh
 pacinst man-db
@@ -91,10 +91,11 @@ yayinst keyd-git
 yayinst xkblayout-state-git
 
 ## Audio
+pacinst pulseaudio  # Main package
 yayinst pnmixer     # Volume System Tray
 pacinst pulsemixer  # Pulse Audio TUI
 pacinst pavucontrol # Pulse Audio Volume Control GUI
-pacinst pamixer     # Pulse Audio TUI
+pacinst pamixer     # Pulse Audio CLI
 pacinst playerctl
 
 pacinst blueman bluez # Blueman is a GUI for bluez
@@ -172,7 +173,6 @@ alert "INSTALLED MAIN SYSTEM SETUP"
 ### --- Programming tools --- ###
 ## Install system version of node
 pacinst nodejs-lts-gallium
-## Install nvm
 yayinst nvm
 npm i -g yarn
 pacinst httpie
