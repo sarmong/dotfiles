@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-sudo service keyd restart
+sudo systemctl restart keyd
 
 # Wait for keyd service to restart
 sleep 1
