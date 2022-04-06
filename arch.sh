@@ -76,14 +76,10 @@ yayinst gtk-theme-arc-gruvbox-git
 pacinst python-qdarkstyle # provides a dark Qt theme.
 
 ## Fonts
-pacinst noto-fonts-emoji
-yayinst nerd-fonts-mononoki
+pacinst noto-fonts
 pacinst otf-font-awesome
-pacinst ttf-font-awesome
-yayinst nerd-fonts-fira-code
-
-pacinst ttf-linux-libertine ttf-inconsolata
-pacman -S noto-fonts #includes two above #includes two above
+yayinst nerd-fonts-complete
+pacinst font-manager
 
 ## Keyboard
 yayinst keyd-git
