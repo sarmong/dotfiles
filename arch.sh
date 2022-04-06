@@ -73,7 +73,9 @@ pacinst arandr
 ## Themes
 pacinst lxappearance
 yayinst gtk-theme-arc-gruvbox-git
-pacinst python-qdarkstyle # provides a dark Qt theme.
+pacinst papirus-icon-theme
+pacinst qt5ct
+yayinst adwaita-qt
 
 ## Fonts
 pacinst noto-fonts
