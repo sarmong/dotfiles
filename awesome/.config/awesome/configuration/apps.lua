@@ -25,8 +25,8 @@ return {
     files = "nautilus",
     music = rofi_command,
     editor = "alacritty -e nvim",
-    notes = "alacritty --working-directory ~/Nextcloud/Vault -e nvim",
-    config = "alacritty --working-directory ~/dotfiles -e nvim",
+    notes = "alacritty --working-directory ~/docs/nextcloud/Vault -e nvim",
+    config = "alacritty --working-directory ~/docs/dotfiles -e nvim",
   },
   -- List of apps to start once on start-up
   run_on_start_up = {
