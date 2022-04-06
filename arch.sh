@@ -36,7 +36,7 @@ alert() {
 	echo "-----------------------------------------------------------------$nocol"
 }
 
-pacman -Syu
+pacman -Syyyu
 
 sudo pacman -S --needed base-devel
 git clone https://aur.archlinux.org/paru.git
@@ -50,6 +50,7 @@ pacinst git
 pacinst curl wget
 pacinst vim
 pacinst stow
+pacinst openssh
 
 ### --- Install packages --- ###
 
@@ -161,8 +162,6 @@ alert "INSTALLED MAIN SYSTEM SETUP"
 ###############################################
 
 ### --- Programming tools --- ###
-## needed for treesitter
-pacinst gcc
 pacinst neovim
 
 ## Install system version of node
