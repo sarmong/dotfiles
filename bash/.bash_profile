@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 
-export XDG_CONFIG_HOME=~/.config
+## ~/ cleanup
+## See wiki for details - https://wiki.archlinux.org/title/XDG_Base_Directory
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.local/cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export LESSHISTFILE="-" # removes lesshist file
+# export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrs"
+export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
+export GOPATH="$XDG_DATA_HOME/go"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
+
 export PATH="$HOME/bin:$PATH:$HOME/.local/bin"
-export INPUTRC=$XDG_CONFIG_HOME/bash/inputrc
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=100000
 export HISTFILESIZE=1000000
@@ -27,7 +40,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # NVM settings
 # ============
 ## Might need for Ubuntu
-# export NVM_DIR="$HOME/.config/nvm"
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
