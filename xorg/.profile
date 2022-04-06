@@ -1,3 +1,1 @@
-#!/bin/sh
-
-[ -f ~/.bash_profile ] && . ~/.bash_profile
+[ -f "$HOME/.bash_profile" ] && . "$HOME/.bash_profile"
