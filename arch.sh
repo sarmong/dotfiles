@@ -49,6 +49,8 @@ alert "REPOS UPDATED AND PACKAGES UPGRADED"
 pacinst git
 pacinst curl wget
 pacinst vim neovim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 pacinst stow
 pacinst openssh
 pacinst man-db
