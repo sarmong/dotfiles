@@ -174,7 +174,7 @@ alert "INSTALLED MAIN SYSTEM SETUP"
 ## Install system version of node
 pacinst nodejs-lts-gallium
 yayinst nvm
-npm i -g yarn
+sudo npm i -g yarn
 pacinst httpie
 yayinst postman-bin
 yayinst lazynpm
@@ -190,13 +190,13 @@ pacinst tldr
 pacinst shellcheck
 
 ## LSPs
-npm i -g typescript typescript-language-server
+sudo npm i -g typescript typescript-language-server
 pacinst lua-language-server
 yayinst terraform-ls
 
 ## Formatters
-npm install -g @fsouza/prettierd
-npm install -g stylelint
+sudo npm install -g @fsouza/prettierd
+sudo npm install -g stylelint
 pacinst stylua
 pacinst shfmt
 yayinst nodejs-markdownlint-cli
