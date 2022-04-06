@@ -97,3 +97,5 @@ set showcmd
 
 " set cyrillic letters for normal mode
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+command SudaWrite :execute ':silent w !sudo tee % > /dev/null' | :edit!
