@@ -9,7 +9,7 @@ nocol='\e[0m' # Text Reset
 pacinst() {
 	input="$1"
 	echo "$green Installing $bi_cyan $input $nocol ..."
-	pacman -S "$input" 1>/dev/null
+	sudo pacman -S --noconfirm "$input" 1>/dev/null
 	if [ $? -gt 0 ]; then
 		echo "$red An error occured"
 		exit 1
@@ -21,7 +21,7 @@ pacinst() {
 yayinst() {
 	input="$1"
 	echo "$green Installing $bi_cyan $input $nocol ..."
-	paru -S "$input" 1>/dev/null
+	paru -S --noconfirm "$input" 1>/dev/null
 	if [ $? -gt 0 ]; then
 		echo "$red An error occured"
 		exit 1
@@ -108,7 +108,7 @@ pacinst mate-system-monitor
 pacinst udiskie # Automounts external drives
 
 yayinst spacefm
-pacinst lf
+yayinst lf
 pacinst ueberzug
 
 pacinst trash-cli
@@ -157,7 +157,7 @@ pacinst thefuck
 pacinst zoxide
 yayinst atool
 pacinst unrar unzip
-yayinst massren
+# yayinst massren
 yayinst dragon-drop
 yayinst handlr-bin
 pacinst neofetch
@@ -171,18 +171,18 @@ alert "INSTALLED MAIN SYSTEM SETUP"
 
 ### --- Programming tools --- ###
 ## Install system version of node
-pacstall nodejs-lts-gallium
+pacinst nodejs-lts-gallium
 ## Install nvm
 yayinst nvm
 npm i -g yarn
 pacinst httpie
 yayinst postman-bin
-yayinst lazynpm-bin
+yayinst lazynpm
 pacinst lazygit
 pacinst tig
 yayinst zeal # Documentation browser
 
-sudo apt install github-cli
+pacinst github-cli
 
 yayinst vscodium-bin
 
@@ -207,7 +207,7 @@ alert "INSTALLED PROGRAMMING TOOLS"
 
 yayinst safeeyes
 pacinst redshift
-yayinst redshift-gtk
+# yayinst redshift-gtk
 
 pacinst firefox
 yayinst brave-bin
@@ -217,7 +217,7 @@ yayinst kazam
 yayinst goldendict-git
 yayinst skypeforlinux-stable-bin
 yayinst slack-desktop
-yayisnt zoom-deb
+yayisnt zoom
 pacinst telegram-desktop
 pacinst qbittorrent
 
