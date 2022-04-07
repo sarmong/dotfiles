@@ -30,9 +30,6 @@ return {
   },
   -- List of apps to start once on start-up
   run_on_start_up = {
-    -- @TODO find out what the hell is this
-    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)", -- credential manager
-
     -- Essentials
     "nm-applet --indicator", -- network tray
     "pnmixer", -- audiocontrol tray
@@ -50,6 +47,7 @@ return {
     "feh --bg-fill $HOME/Pictures/wp.png &",
     "~/bin/setup/keyboard/init.sh",
     "~/bin/setup/screenlayout/monitor-on-top.sh",
+    "unclutter",
     -- @TODO turn on bluetooth depending on whether keyboard is connected
     -- "bluetooth off",
   },

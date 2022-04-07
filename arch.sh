@@ -144,7 +144,7 @@ pacinst imagemagick
 pacinst jq
 pacinst tree
 pacinst speedtest-cli
-pacinst htop
+pacinst bottom
 pacinst colordiff
 pacinst fzf
 pacinst fd
@@ -161,6 +161,7 @@ yayinst dragon-drop
 yayinst handlr-bin
 pacinst neofetch
 pacinst xdotool
+pacinst unclutter
 
 pacinst pass
 
