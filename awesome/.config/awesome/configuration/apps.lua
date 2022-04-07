@@ -44,7 +44,7 @@ return {
     "redshift",
 
     -- Configuration
-    "feh --bg-fill $HOME/Pictures/wp.png &",
+    "feh --bg-fill $XDG_PICTURES_DIR/wallpaper.png &",
     "~/bin/setup/keyboard/init.sh",
     "~/bin/setup/screenlayout/monitor-on-top.sh",
     "unclutter",
