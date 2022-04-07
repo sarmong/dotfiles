@@ -59,7 +59,10 @@ awful.rules.rules = {
     },
   },
   {
-    rule_any = { class = { "Pavucontrol", "feh" }, name = { "pulsemixer" } },
+    rule_any = {
+      class = { "Pavucontrol", "Nm-connection-editor", "feh" },
+      name = { "pulsemixer" },
+    },
     properties = {
       placement = awful.placement.centered,
       ontop = false,
