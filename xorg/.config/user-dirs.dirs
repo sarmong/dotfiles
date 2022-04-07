@@ -1,0 +1,22 @@
+## Dirs are defined twice:
+## first one for other apps to use,
+## second one for sourcing from .bash_profile
+
+XDG_DOCUMENTS_DIR="$HOME/docs"
+XDG_DOWNLOAD_DIR="$HOME/dls"
+XDG_DESKTOP_DIR="$HOME/desktop"
+XDG_PICTURES_DIR="$HOME/media/pics"
+XDG_MUSIC_DIR="$HOME/media/music"
+XDG_VIDEOS_DIR="$HOME/media/videos"
+XDG_PUBLICSHARE_DIR="$HOME/docs/public"
+XDG_TEMPLATES_DIR="$HOME/docs/templates"
+
+export XDG_DOCUMENTS_DIR="$HOME/docs"
+export XDG_DOWNLOAD_DIR="$HOME/dls"
+export XDG_DESKTOP_DIR="$HOME/desktop"
+export XDG_PICTURES_DIR="$HOME/media/pics"
+export XDG_MUSIC_DIR="$HOME/media/music"
+export XDG_VIDEOS_DIR="$HOME/media/videos"
+export XDG_PUBLICSHARE_DIR="$HOME/docs/public"
+export XDG_TEMPLATES_DIR="$HOME/docs/templates"
+export XDG_DOTFILES_DIR="$HOME/docs/dotfiles"
