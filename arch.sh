@@ -124,6 +124,7 @@ yayinst touchegg
 pacinst feh
 pacinst perl-image-exiftool
 pacinst zathura zathura-pdf-mupdf zathura-djvu
+pacinst pandoc
 pacinst flameshot
 pacinst scrot
 pacinst mpv
