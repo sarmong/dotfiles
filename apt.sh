@@ -8,57 +8,57 @@ nocol='\e[0m' # Text Reset
 
 # @TODO combine into one function
 aptinst() {
-	input="$1"
-	echo "$green Installing $bi_cyan $input $nocol ..."
-	sudo apt-get install --yes "$input" 1>/dev/null
-	if [ $? -gt 0 ]; then
-		echo "$red An error occured"
-		exit 1
-	fi
+  input="$*"
+  echo "$green Installing $bi_cyan $input $nocol ..."
+  sudo apt-get install --yes $input 1>/dev/null
+  if [ $? -gt 0 ]; then
+    echo "$red An error occured"
+    exit 1
+  fi
 
-	echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 flatinst() {
-	input="$1"
-	echo "$green Installing $bi_cyan $input $nocol ..."
-	flatpak install flathub -y "$input" 1>/dev/null
-	if [ $? -gt 0 ]; then
-		echo "$red An error occured"
-		exit 1
-	fi
+  input="$*"
+  echo "$green Installing $bi_cyan $input $nocol ..."
+  flatpak install flathub -y $input 1>/dev/null
+  if [ $? -gt 0 ]; then
+    echo "$red An error occured"
+    exit 1
+  fi
 
-	echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 brewinst() {
-	input="$1"
-	echo "$green Installing $bi_cyan $input $nocol ..."
-	brew install "$input" 1>/dev/null
-	if [ $? -gt 0 ]; then
-		echo "$red An error occured"
-		exit 1
-	fi
+  input="$1"
+  echo "$green Installing $bi_cyan $input $nocol ..."
+  brew install "$input" 1>/dev/null
+  if [ $? -gt 0 ]; then
+    echo "$red An error occured"
+    exit 1
+  fi
 
-	echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 pacinst() {
-	input="$1"
-	echo "$green Installing $bi_cyan $input $nocol ..."
-	pacstall -IP "$input" 1>/dev/null
-	if [ $? -gt 0 ]; then
-		echo "$red An error occured"
-		exit 1
-	fi
+  input="$1"
+  echo "$green Installing $bi_cyan $input $nocol ..."
+  pacstall -IP "$input" 1>/dev/null
+  if [ $? -gt 0 ]; then
+    echo "$red An error occured"
+    exit 1
+  fi
 
-	echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 alert() {
-	echo "$green -----------------------------------------------------------------"
-	echo "$1"
-	echo "-----------------------------------------------------------------$nocol"
+  echo "$green -----------------------------------------------------------------"
+  echo "$1"
+  echo "-----------------------------------------------------------------$nocol"
 }
 
 sudo apt update && sudo apt upgrade
