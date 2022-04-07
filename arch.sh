@@ -63,7 +63,7 @@ pacinst xorg-server
 pacinst xorg-setxkbmap xorg-xinit xorg-xev xorg-xkill xorg-xprop xorg-xrandr xorg-xset xorg-xinit
 
 pacinst lightdm lightdm-slick-greeter
-~/bin/services/lightdm/init.sh
+"$XDG_BIN_DIR"/services/lightdm/init.sh
 
 yayinst awesome-git
 yayinst i3lock-fancy-git
@@ -85,7 +85,7 @@ pacinst font-manager
 
 ## Keyboard
 yayinst keyd-git
-~/bin/services/keyd/init.sh
+"$XDG_BIN_DIR"/services/keyd/init.sh
 yayinst xkblayout-state-git
 
 ## Audio

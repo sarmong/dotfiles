@@ -1,6 +1,6 @@
 #!/bin/sh
 
-commands_list=$(find "$HOME/bin/" -maxdepth 1 -not -type d | xargs -L 1 basename)
+commands_list=$(find "$XDG_BIN_DIR/" -maxdepth 1 -not -type d | xargs -L 1 basename)
 
 command=$(echo "$commands_list" | dmenu -l 7 -p "Command to run: ")
 
