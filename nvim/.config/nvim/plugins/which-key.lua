@@ -115,7 +115,6 @@ local mappings = {
   -- Config
   c = {
     name = "config",
-    d = { ":e ~/dotfiles/TODO.md<cr>", "dotfles" },
     v = { ":e $MYVIMRC<cr>", "nvim config" },
     s = {
       ":source $MYVIMRC<cr>:echo 'Loaded config'<cr>",

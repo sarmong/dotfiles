@@ -1,0 +1,7 @@
+#!/bin/sh
+
+NEW="$1"
+WALLPAPER=$XDG_PICTURES_DIR/wallpaper.png
+
+convert "$NEW" "$WALLPAPER"
+feh --bg-fill "$WALLPAPER"

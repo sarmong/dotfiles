@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+  echo "No arguments provided"
+  exit 1
+fi
+
+file="$XDG_BIN_DIR"/"$1"
+
+touch "$file"
+chmod +x "$file"
+
+echo "#!/bin/sh" >"$file"
+nvim "$file"

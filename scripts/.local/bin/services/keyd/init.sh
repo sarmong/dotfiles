@@ -2,7 +2,7 @@
 
 [ -f /etc/keyd/default.conf ] && sudo rm /etc/keyd/default.conf
 
-sudo ln -s ~/bin/services/keyd/default.conf /etc/keyd/
+sudo ln -s "$XDG_BIN_DIR"/services/keyd/default.conf /etc/keyd/
 
 sudo systemctl enable keyd
-~/bin/services/keyd/restart-keyd
+"$XDG_BIN_DIR"/services/keyd/restart-keyd
