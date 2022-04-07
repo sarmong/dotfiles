@@ -7,9 +7,9 @@ bi_cyan='\e[1;96m'
 nocol='\e[0m' # Text Reset
 
 pacinst() {
-  input="$1"
+  input="$*"
   echo "$green Installing $bi_cyan $input $nocol ..."
-  sudo pacman -S --noconfirm "$input" 1>/dev/null
+  sudo pacman -S --noconfirm $input 1>/dev/null
   if [ $? -gt 0 ]; then
     echo "$red An error occured"
     exit 1
@@ -19,9 +19,9 @@ pacinst() {
 }
 
 yayinst() {
-  input="$1"
+  input="$*"
   echo "$green Installing $bi_cyan $input $nocol ..."
-  paru -S --noconfirm "$input" 1>/dev/null
+  paru -S --noconfirm $input 1>/dev/null
   if [ $? -gt 0 ]; then
     echo "$red An error occured"
     exit 1
