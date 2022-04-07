@@ -36,12 +36,13 @@ alias untar="tar -zxvf"
 alias sha="shasum -a 256" # check the checksum of a file
 alias diff="colordiff"
 pdfman() {
-	man -t "$1" | ps2pdf - | zathura -
+  man -Tpdf "$1" | zathura -
+  # man -t "$1" | ps2pdf - | zathura -
 }
 
 mcd() {
-	mkdir -pv "$1"
-	cd "$1"
+  mkdir -pv "$1"
+  cd "$1"
 }
 
 alias open="xdg-open"
@@ -65,8 +66,8 @@ alias dls="cd ~/Downloads"
 alias yt="yt-dlp"          # Download video
 alias yta="yt-dlp -f 'ba'" # Download audio
 play() {
-	mpv "$1" &
-	disown
+  mpv "$1" &
+  disown
 }
 
 # Might be useful
