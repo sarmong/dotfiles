@@ -89,7 +89,7 @@ local globalKeys = awful.util.table.join(
   end, { description = "Open dotfiles", group = "launcher" }),
   awful.key({ modkey, "Shift" }, "d", function()
     awful.spawn.with_shell(
-      "rofi -show power-menu -location 1 -yoffset 30 -xoffset 10 -width 15 -columns 1 -lines 6 -modi power-menu:~/bin/rofi/rofi-power-menu"
+      "rofi -show power-menu -location 1 -yoffset 30 -xoffset 10 -width 15 -columns 1 -lines 6 -modi power-menu:$XDG_BIN_DIR/rofi/rofi-power-menu"
     )
   end, { description = "Power Menu", group = "awesome" }),
   awful.key({ modkey, "Control" }, "c", function()
@@ -272,7 +272,7 @@ local globalKeys = awful.util.table.join(
   end, { description = "filebrowser", group = "hotkeys" }),
   -- Change keyboard layout
   awful.key({ modkey }, "/", function()
-    awful.spawn(os.getenv("HOME") .. "/bin/setup/keyboard/switch-layout.sh")
+    awful.spawn.with_shell("$XDG_BIN_DIR/setup/keyboard/switch-layout.sh")
   end, { description = "Change keyboard layout", group = "hotkeys" })
   -- Emoji Picker
   -- awful.key(

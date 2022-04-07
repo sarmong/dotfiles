@@ -45,8 +45,8 @@ return {
 
     -- Configuration
     "feh --bg-fill $XDG_PICTURES_DIR/wallpaper.png &",
-    "~/bin/setup/keyboard/init.sh",
-    "~/bin/setup/screenlayout/monitor-on-top.sh",
+    "$XDG_BIN_DIR/setup/keyboard/init.sh",
+    "$XDG_BIN_DIR/setup/screenlayout/monitor-on-top.sh",
     "unclutter",
     -- @TODO turn on bluetooth depending on whether keyboard is connected
     -- "bluetooth off",

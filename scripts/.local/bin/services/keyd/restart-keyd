@@ -5,4 +5,4 @@ sudo systemctl restart keyd
 # Wait for keyd service to restart
 sleep 1
 
-~/bin/setup/keyboard/init.sh
+"$XDG_BIN_DIR"/setup/keyboard/init.sh
