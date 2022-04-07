@@ -106,7 +106,7 @@ pacinst mate-system-monitor
 pacinst bottom
 pacinst udiskie # Automounts external drives
 
-yayinst spacefm
+pacinst caja
 yayinst lf
 pacinst ueberzug
 
