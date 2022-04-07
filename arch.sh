@@ -99,8 +99,7 @@ pacinst playerctl
 pacinst blueman bluez # Blueman is a GUI for bluez
 
 pacinst network-manager-applet
-
-# pacinst gnome-keyring
+pacinst gnome-keyring # Should start systemd service automatically
 
 pacinst xfce4-power-manager
 pacinst mate-system-monitor
