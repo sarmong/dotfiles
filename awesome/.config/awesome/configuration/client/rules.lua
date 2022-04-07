@@ -60,7 +60,12 @@ awful.rules.rules = {
   },
   {
     rule_any = {
-      class = { "Pavucontrol", "Nm-connection-editor", "feh" },
+      class = {
+        "Pavucontrol",
+        "Nm-connection-editor",
+        "Xfce4-power-manager-settings",
+        "feh",
+      },
       name = { "pulsemixer" },
     },
     properties = {
