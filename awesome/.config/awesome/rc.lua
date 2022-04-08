@@ -18,7 +18,7 @@ require("module.decorate-client")
 --require('module.backdrop')
 require("module.exit-screen")
 require("module.quake-terminal")
-require("module.window-swallowing")
+-- require("module.window-swallowing")
 
 -- Setup all configurations
 require("configuration.client")
