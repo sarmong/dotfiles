@@ -32,7 +32,7 @@ return {
   run_on_start_up = {
     -- Essentials
     "nm-applet --indicator", -- network tray
-    "pnmixer", -- audiocontrol tray
+    "volctl", -- audiocontrol tray
     "xfce4-power-manager", -- power manager tray
     "udiskie", -- mounts drives automatically
     "picom",
