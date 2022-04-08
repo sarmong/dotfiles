@@ -6,7 +6,7 @@ require("neorg").setup({
     ["core.norg.dirman"] = { -- Manage your directories with Neorg
       config = {
         workspaces = {
-          my_workspace = "~/Nextcloud/Vault",
+          my_workspace = "$XDG_NC_DIR/Vault",
         },
       },
     },

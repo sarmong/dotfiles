@@ -6,7 +6,7 @@ regex='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]
 if [[ $url =~ $regex ]]; then
 	title=$(echo '' | dmenu -p "Enter bookmark title: ")
 	[ -z "$title" ] && exit 1
-	echo "$title - $url" >>~/Nextcloud/Documents/bookmarks.txt
+	echo "$title - $url" >>"$XDG_NC_DIR"/Documents/bookmarks.txt
 else
 	notify-send "Didn't save bookmark, link not valid"
 fi
