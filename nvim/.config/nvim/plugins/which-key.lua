@@ -8,6 +8,7 @@ local alpha = require("plugins.alpha")
 local nvim_tree = require("plugins.nvim-tree")
 local buffer = require("plugins.barbar")
 local spectre = require("plugins.spectre")
+local colorizer = require("plugins.colorizer")
 
 vim.opt.timeoutlen = 700
 
@@ -85,7 +86,7 @@ local mappings = {
   -- Actions
   a = {
     name = "actions",
-    c = { ":ColorizerToggle<cr>", "colorizer" },
+    c = { colorizer.toggle, "colorizer" },
     i = { ":IndentBlanklineToggle<cr>", "toggle indent lines" },
     n = { ":set nonumber!<cr>", "line-numbers" },
     -- @TODO fix
