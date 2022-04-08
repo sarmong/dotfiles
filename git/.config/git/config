@@ -1,4 +1,6 @@
 # This is Git's per-user configuration file.
+[init]
+	defaultBranch = master
 [alias]
   co = checkout
   br = branch
