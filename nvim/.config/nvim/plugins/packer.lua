@@ -90,9 +90,11 @@ return require("packer").startup(function(use)
     "windwp/nvim-spectre",
     commit = commits.spectre,
     require = "nvim-lua/plenary.nvim",
-  })
+  }) -- search and replace
 
-  -- use { 'norcalli/nvim-colorizer.lua' }
+  use({ "psliwka/vim-smoothie" }) -- smooth scrolling
+
+  use({ "norcalli/nvim-colorizer.lua" })
 
   -- LSP
 

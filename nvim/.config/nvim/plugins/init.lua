@@ -23,6 +23,6 @@ require("plugins.spectre")
 require("plugins.vim-markdown")
 require("plugins.neorg")
 
--- require('plugins.colorizer')
+require("plugins.colorizer")
 -- require("plugins.fzf")
 -- vim.cmd('source ~/.config/nvim/vimscript/coc/init.vim')
