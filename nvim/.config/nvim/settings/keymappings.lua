@@ -55,3 +55,22 @@ map("v", ">", ">gv", { noremap = true, silent = true })
 -- Move selected line / block of text in visual mode
 map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
 map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+
+-- When pressing * in visual mode - search for the selected text, and not the word
+vim.api.nvim_exec(
+  [[
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  " Use this line instead of the above to match matches spanning across lines
+  "let @/ = '\V' . substitute(escape(@@, '\'), '\_s\+', '\\_s\\+', 'g')
+  call histadd('/', substitute(@/, '[?/]', '\="\\%d".char2nr(submatch(0))', 'g'))
+  let @@ = temp
+endfunction
+
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>/<CR>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>?<CR>
+]],
+  false
+)
