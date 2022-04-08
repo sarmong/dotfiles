@@ -17,7 +17,6 @@ alias aptremove="sudo apt remove"
 alias p="sudo pacman"
 
 # Abbreviations
-alias r="ranger"
 alias lf="lfcd"
 alias ka="killall"
 alias g="git"
@@ -51,17 +50,13 @@ alias copy="xclip -sel clipboard"
 
 alias v="nvim"
 alias fo="fzf | xargs xdg-open"
+alias nb="newsboat"
 
 # Easier navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-
-# Shortcuts
-alias pr="cd ~/Documents/Tech/Projects"
-alias dox="cd ~/Documents"
-alias dls="cd ~/Downloads"
 
 alias yt="yt-dlp"          # Download video
 alias yta="yt-dlp -f 'ba'" # Download audio
