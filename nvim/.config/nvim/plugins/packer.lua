@@ -38,6 +38,7 @@ return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim", commit = commits.packer })
 
   use({ "windwp/nvim-autopairs", commit = commits.autopairs })
+  use({ "tpope/vim-surround" })
   use({
     "romgrk/barbar.nvim",
     commit = commits.barbar,
