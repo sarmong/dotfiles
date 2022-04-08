@@ -90,7 +90,7 @@ yayinst xkblayout-state-git
 
 ## Audio
 pacinst pulseaudio  # Main package
-yayinst pnmixer     # Volume System Tray
+yayinst volctl      # Volume System Tray
 pacinst pulsemixer  # Pulse Audio TUI
 pacinst pavucontrol # Pulse Audio Volume Control GUI
 pacinst pamixer     # Pulse Audio CLI
