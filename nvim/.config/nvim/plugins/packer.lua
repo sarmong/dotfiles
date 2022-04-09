@@ -25,9 +25,6 @@ local commits = {
   ts_autotag = "0ceb4ef342bf1fdbb082ad4fa1fcfd0f864e1cba",
   ts_refactor = "a21ed4d294d2da5472ce5b70385d7871c4518a1e",
   ts_rainbow = "54ee09f540935c604c9a3d4aed83b7f5314f2caa",
-  fzf = "176ee6910ffe40d9007ff9bc1b2720e3d729c48a",
-  fzf_vim = "d6aa21476b2854694e6aa7b0941b8992a906c5ec",
-  fzf_checkout = "4d5ecae74460de8fed4f743f6bd53c4c31d32797",
   matchup = "97ffd1a2068049e812ddfd04b182f6a93c2c0394",
   spectre = "4a4cf2c981b077055ef7725959d13007e366ba23",
 }
@@ -145,10 +142,6 @@ return require("packer").startup(function(use)
     commit = commits.ts_refactor,
   })
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
-
-  -- use({ "junegunn/fzf", commit = commits.fzf })
-  -- use({ "junegunn/fzf.vim", commit = commits.fzf_vim })
-  -- use({ "stsewd/fzf-checkout.vim", commit = commits.fzf_checkout })
 
   use({
     "nvim-telescope/telescope.nvim",
