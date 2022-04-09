@@ -19,7 +19,4 @@ require("plugins.autopairs")
 require("plugins.visual-multi")
 require("plugins.spectre")
 
--- require("plugins.neorg")
-
 require("plugins.colorizer")
--- vim.cmd('source ~/.config/nvim/vimscript/coc/init.vim')
