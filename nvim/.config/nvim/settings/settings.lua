@@ -64,12 +64,23 @@ vim.cmd(
 vim.cmd("autocmd VimEnter * :silent exec '!kill -s SIGWINCH $PPID'")
 
 vim.api.nvim_exec(
-  [[ augroup rasi_ft au! autocmd BufNewFile,BufRead *.rasi set syntax=css augroup END ]],
+  [[
+augroup rasi_ft
+  au!
+  autocmd BufNewFile,BufRead *.rasi set syntax=css
+augroup END
+
+]],
   false
 )
 
 -- Don't list quickfix list in buffers
 vim.api.nvim_exec(
-  [[ augroup qf autocmd! autocmd FileType qf set nobuflisted augroup END ]],
+  [[
+augroup qf
+    autocmd!
+    autocmd FileType qf set nobuflisted
+augroup END
+]],
   false
 )
