@@ -203,7 +203,7 @@ key_bindings:
   - { key: L, mods: Shift, mode: Vi|~Search, action: Last }
 
   # (Windows, Linux, and BSD only)
-  - { key: V, mods: Control, mode: ~Vi, action: Paste }
+  # - { key: V, mods: Control, mode: ~Vi, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
   - { key: Key0, mods: Control, action: ResetFontSize }
 
