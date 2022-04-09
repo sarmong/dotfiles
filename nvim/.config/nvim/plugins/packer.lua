@@ -30,7 +30,7 @@ local commits = {
   lsp_installer = "918ef1d4484d703e42424292399d19e36aab436f",
   cmp = "3192a0c57837c1ec5bf298e4f3ec984c7d2d60c0",
   luasnip = "69cb81cf7490666890545fef905d31a414edc15b",
-  cmp_luasnip = "7bd2612533db6863381193df83f9934b373b21e1",
+  cmp_luasnip = "b10829736542e7cc9291e60bab134df1273165c9",
   null_ls = "80e1c2942f70bfdf16886a64692f274ef7356010",
   treesitter = "c9db4324351576d55e6a34d29a571843eff68ac3",
   ts_commentstring = "097df33c9ef5bbd3828105e4bee99965b758dc3f",
@@ -66,16 +66,22 @@ packer.startup(function(use)
   use({ "windwp/nvim-autopairs", commit = commits.autopairs })
   use({ "tpope/vim-surround" })
   use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
-  use("unblevable/quick-scope")
+  use({ "unblevable/quick-scope" })
   use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
   use({ "airblade/vim-rooter" }) -- automagically switches root directory
-  use({ "lambdalisue/suda.vim" })
+  use({ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } })
   use({
     "lukas-reineke/indent-blankline.nvim",
     commit = commits.indent_blankline,
   })
   use({ "psliwka/vim-smoothie" }) -- smooth scrolling
-  use({ "kevinhwang91/nvim-bqf" })
+  use({
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    config = function()
+      require("plugins.bqf")
+    end,
+  })
   use({ "mbbill/undotree" })
 
   ------------------
@@ -106,7 +112,7 @@ packer.startup(function(use)
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
   })
-  use({ "metakirby5/codi.vim" })
+  use({ "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } })
 
   -- Git
   use({ "tpope/vim-fugitive" })
@@ -126,9 +132,22 @@ packer.startup(function(use)
   use({ "folke/lua-dev.nvim" }) -- completion for neovim lua api
 
   -- Other language features --
-  use({ "norcalli/nvim-colorizer.lua" })
-  use({ "plasticboy/vim-markdown" })
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
+  use({
+    "norcalli/nvim-colorizer.lua",
+    ft = { "javascript", "typescript", "css", "scss" },
+  })
+  use({
+    "plasticboy/vim-markdown",
+    ft = "markdown",
+    config = function()
+      require("plugins.vim-markdown")
+    end,
+  })
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
+  })
 
   -- Treesitter --
   use({
