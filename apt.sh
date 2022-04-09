@@ -9,56 +9,56 @@ nocol='\e[0m' # Text Reset
 # @TODO combine into one function
 aptinst() {
   input="$*"
-  echo "$green Installing $bi_cyan $input $nocol ..."
+  echo -e "$green Installing $bi_cyan $input $nocol ..."
   sudo apt-get install --yes $input 1>/dev/null
   if [ $? -gt 0 ]; then
-    echo "$red An error occured"
+    echo -e "$red An error occured"
     exit 1
   fi
 
-  echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo -e "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 flatinst() {
   input="$*"
-  echo "$green Installing $bi_cyan $input $nocol ..."
+  echo -e "$green Installing $bi_cyan $input $nocol ..."
   flatpak install flathub -y $input 1>/dev/null
   if [ $? -gt 0 ]; then
-    echo "$red An error occured"
+    echo -e "$red An error occured"
     exit 1
   fi
 
-  echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo -e "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 brewinst() {
   input="$1"
-  echo "$green Installing $bi_cyan $input $nocol ..."
+  echo -e "$green Installing $bi_cyan $input $nocol ..."
   brew install "$input" 1>/dev/null
   if [ $? -gt 0 ]; then
-    echo "$red An error occured"
+    echo -e "$red An error occured"
     exit 1
   fi
 
-  echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo -e "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 pacinst() {
   input="$1"
-  echo "$green Installing $bi_cyan $input $nocol ..."
+  echo -e "$green Installing $bi_cyan $input $nocol ..."
   pacstall -IP "$input" 1>/dev/null
   if [ $? -gt 0 ]; then
-    echo "$red An error occured"
+    echo -e "$red An error occured"
     exit 1
   fi
 
-  echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo -e "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 alert() {
-  echo "$green -----------------------------------------------------------------"
-  echo "$1"
-  echo "-----------------------------------------------------------------$nocol"
+  echo -e "$green -----------------------------------------------------------------"
+  echo -e "$1"
+  echo -e "-----------------------------------------------------------------$nocol"
 }
 
 sudo apt update && sudo apt upgrade
