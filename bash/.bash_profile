@@ -83,13 +83,6 @@ export CARGO_HOME=$XDG_CONFIG_HOME/rust/cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 [ -f "$XDG_CONFIG_HOME/rust/cargo/env" ] && source "$XDG_CONFIG_HOME/rust/cargo/env"
 
-# RVM
-# ===============
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # ============
 # ============
 
