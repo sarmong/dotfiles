@@ -11,7 +11,6 @@ require("plugins.lualine")
 require("plugins.which-key")
 require("plugins.toggleterm")
 
-require("plugins.bqf")
 require("plugins.matchup")
 require("plugins.alpha")
 require("plugins.indent-blankline")
@@ -20,7 +19,6 @@ require("plugins.autopairs")
 require("plugins.visual-multi")
 require("plugins.spectre")
 
-require("plugins.vim-markdown")
 -- require("plugins.neorg")
 
 require("plugins.colorizer")
