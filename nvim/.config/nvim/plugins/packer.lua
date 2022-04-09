@@ -1,7 +1,19 @@
--- vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+-- Bootstrap packer
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  })
+end
 
--- require('packer').init({display = {non_interactive = true}})
-require("packer").init({ display = { auto_clean = false } })
+local packer = require("packer")
+packer.init()
 
 local commits = {
   packer = "4dedd3b08f8c6e3f84afbce0c23b66320cd2a8f2",
@@ -29,103 +41,96 @@ local commits = {
   spectre = "4a4cf2c981b077055ef7725959d13007e366ba23",
 }
 
-return require("packer").startup(function(use)
+packer.startup(function(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim", commit = commits.packer })
 
-  use({ "windwp/nvim-autopairs", commit = commits.autopairs })
-  use({ "tpope/vim-surround" })
-  use({
-    "romgrk/barbar.nvim",
-    commit = commits.barbar,
-    requires = { "kyazdani42/nvim-web-devicons" },
-  })
-  -- @TODO update to main once #878 is merged
-  use({
-    "kyazdani42/nvim-tree.lua",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    commit = commits.nvim_tree,
-  })
-  use({ "tpope/vim-commentary" })
-
   use({ "folke/which-key.nvim", commit = commits.which_key })
-
   use({
-    "akinsho/toggleterm.nvim",
-    commit = commits.toggleterm,
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-media-files.nvim",
+      "nvim-telescope/telescope-project.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    },
   })
-
-  use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
-
-  use({ "mg979/vim-visual-multi", commit = commits.visual_multi })
-
   use({
     "nvim-lualine/lualine.nvim",
     commit = commits.lualine,
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
 
-  use("airblade/vim-rooter") -- automagically switches root directory
+  -- Quality of life improvements --
 
-  use("metakirby5/codi.vim")
-
+  use({ "windwp/nvim-autopairs", commit = commits.autopairs })
+  use({ "tpope/vim-surround" })
+  use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
   use("unblevable/quick-scope")
-
-  use({ "andymass/vim-matchup", commit = commits.matchup }) -- looks nice, but perhaps not that essential
-
-  use({
-    "goolord/alpha-nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-  })
-
+  use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
+  use({ "airblade/vim-rooter" }) -- automagically switches root directory
+  use({ "lambdalisue/suda.vim" })
   use({
     "lukas-reineke/indent-blankline.nvim",
     commit = commits.indent_blankline,
   })
+  use({ "psliwka/vim-smoothie" }) -- smooth scrolling
+  use({ "kevinhwang91/nvim-bqf" })
+  use({ "mbbill/undotree" })
 
+  ------------------
+  -- IDE features --
+  ------------------
+  use({
+    "romgrk/barbar.nvim",
+    commit = commits.barbar,
+    requires = { "kyazdani42/nvim-web-devicons" },
+  })
+  use({
+    "kyazdani42/nvim-tree.lua",
+    requires = { "kyazdani42/nvim-web-devicons" },
+    commit = commits.nvim_tree,
+  })
+  use({
+    "akinsho/toggleterm.nvim",
+    commit = commits.toggleterm,
+  })
+  use({ "mg979/vim-visual-multi", commit = commits.visual_multi })
   use({
     "windwp/nvim-spectre",
     commit = commits.spectre,
     require = "nvim-lua/plenary.nvim",
   }) -- search and replace
+  use({ "tpope/vim-commentary" })
+  use({
+    "goolord/alpha-nvim",
+    requires = { "kyazdani42/nvim-web-devicons" },
+  })
+  use({ "metakirby5/codi.vim" })
 
-  use({ "psliwka/vim-smoothie" }) -- smooth scrolling
+  -- Git
+  use({ "tpope/vim-fugitive" })
+  use({ "tpope/vim-rhubarb" })
+  use({ "f-person/git-blame.nvim" }) -- consider using zivyangll/git-blame.vim to show at the bottom
+  use({ "mattn/vim-gist" })
+  use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }) -- git lines on the left
 
-  use({ "norcalli/nvim-colorizer.lua" })
-
-  -- LSP
-
+  -- LSP --
   use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
   use({ "williamboman/nvim-lsp-installer", commit = commits.lsp_installer })
-  use({ "hrsh7th/nvim-cmp", commit = commits.cmp }) -- @TODO Integrate with autopairs
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-buffer")
-  use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-cmdline")
-  use("ray-x/cmp-treesitter")
-  use("hrsh7th/cmp-nvim-lua")
-
-  use("iloginow/vim-stylus")
-
-  -- Snippets
-  use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
-  use({ "saadparwaiz1/cmp_luasnip", commit = commits.cmp_luasnip })
-
-  use("rafamadriz/friendly-snippets")
-  use("ChristianChiarulli/html-snippets")
-  use({
-    "dsznajder/vscode-es7-javascript-react-snippets",
-    run = "yarn install --frozen-lockfile && yarn compile",
-    commit = "2a6a1ffac598d7f5b4097d06c4190c5bcced99d9",
-  })
-
   use({
     "jose-elias-alvarez/null-ls.nvim",
     commit = commits.null_ls,
     requires = { "nvim-lua/plenary.nvim" },
   })
+  use({ "folke/lua-dev.nvim" }) -- completion for neovim lua api
 
-  -- Treesitter
+  -- Other language features --
+  use({ "norcalli/nvim-colorizer.lua" })
+  use({ "plasticboy/vim-markdown" })
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
+
+  -- Treesitter --
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -143,67 +148,33 @@ return require("packer").startup(function(use)
   })
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
 
+  -- Completion --
+  use({ "hrsh7th/nvim-cmp", commit = commits.cmp }) -- @TODO Integrate with autopairs
+  use({ "hrsh7th/cmp-nvim-lsp" })
+  use({ "hrsh7th/cmp-buffer" })
+  use({ "hrsh7th/cmp-path" })
+  use({ "hrsh7th/cmp-cmdline" })
+  use({ "ray-x/cmp-treesitter" })
+  -- @TODO check how it relates to lua-dev
+  use({ "hrsh7th/cmp-nvim-lua" }) -- completion for neovim lua api
+  -- Snippets --
+  use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
+  use({ "saadparwaiz1/cmp_luasnip", commit = commits.cmp_luasnip })
+
+  use({ "rafamadriz/friendly-snippets" })
+  use({ "ChristianChiarulli/html-snippets" })
   use({
-    "nvim-telescope/telescope.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-media-files.nvim",
-      "nvim-telescope/telescope-project.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-    },
+    "dsznajder/vscode-es7-javascript-react-snippets",
+    run = "yarn install --frozen-lockfile && yarn compile",
+    commit = "2a6a1ffac598d7f5b4097d06c4190c5bcced99d9",
   })
-
-  -- Git
-  use("tpope/vim-fugitive")
-  use("tpope/vim-rhubarb")
-  use("f-person/git-blame.nvim") -- consider using zivyangll/git-blame.vim to show at the bottom
-  use("mattn/vim-gist")
-  use({
-    "lewis6991/gitsigns.nvim", -- git lines on the left
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-  })
-
-  use({ "kevinhwang91/nvim-bqf" })
-
-  use({ "plasticboy/vim-markdown" })
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
-
-  -- completion for neovim lua api
-  use("folke/lua-dev.nvim")
-
-  use({
-    "nvim-neorg/neorg",
-    requires = "nvim-lua/plenary.nvim",
-  })
-
-  use({ "lambdalisue/suda.vim" })
-
-  -------------
 
   -- Color
-  -- use("christianchiarulli/nvcode-color-schemes.vim")
   use({ "AlphaTechnolog/onedarker.nvim" })
-  use("navarasu/onedark.nvim")
-  use("folke/tokyonight.nvim")
+  use({ "navarasu/onedark.nvim" })
+  use({ "folke/tokyonight.nvim" })
+  -- use("christianchiarulli/nvcode-color-schemes.vim")
 
-  -- General Plugins
-  use("mbbill/undotree")
-
-  -- Try out
-  -- use 'vim-test/vim-test'
-  -- use 'godlygeek/tabular'
-  -- use {'raghur/vim-ghost', run = ':GhostInstall'} -- nice for codepen etc.
-  -- use 'ryanoasis/vim-devicons' -- maybe use them instead
-  -- use 'MattesGroeger/vim-bookmarks'
-  -- use 'b3nj5m1n/kommentary'
-  -- use {
-  --     'glacambre/firenvim',
-  --     run = function()
-  --         vim.fn['firenvim#install'](1)
-  --     end
-  -- }
   if packer_bootstrap then
     require("packer").sync()
   end
