@@ -123,16 +123,6 @@ local mappings = {
     },
   },
 
-  -- CoC
-  -- c = {
-  --   name = "CoC",
-  --   r = { "<Plug>(coc-rename)<cr>", "rename" },
-  --   f = { "<Plug>(coc-format-selected)<cr>", "format" },
-  --   a = { "<Plug>(coc-codeaction-selected)<cr>", "code action selected" },
-  --   c = { "<Plug>(coc-codeaction)<cr>", "code action" },
-  --   q = { "<Plug>(coc-fix-current)<cr>", "quick fix" },
-  -- },
-
   -- Search
   s = {
     name = "search",

@@ -132,10 +132,7 @@ packer.startup(function(use)
   use({ "folke/lua-dev.nvim" }) -- completion for neovim lua api
 
   -- Other language features --
-  use({
-    "norcalli/nvim-colorizer.lua",
-    ft = { "javascript", "typescript", "css", "scss" },
-  })
+  use({ "norcalli/nvim-colorizer.lua" })
   use({
     "plasticboy/vim-markdown",
     ft = "markdown",
