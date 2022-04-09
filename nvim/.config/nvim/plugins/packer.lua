@@ -4,11 +4,11 @@
 require("packer").init({ display = { auto_clean = false } })
 
 local commits = {
-  packer = "851c62c5ecd3b5adc91665feda8f977e104162a5",
-  autopairs = "04cd1779f81e9d50d5a116c5dccd054b275bd191",
-  barbar = "6e638309efcad2f308eb9c5eaccf6f62b794bbab",
+  packer = "4dedd3b08f8c6e3f84afbce0c23b66320cd2a8f2",
+  autopairs = "06535b1f1aefc98df464d180efa693bb696736c4",
+  barbar = "be65945626fb6bf6058cae61d5176d156f923c11",
   nvim_tree = "6eebc10ed8f97aae29a2ef9561ce2d922c668639",
-  which_key = "312c386ee0eafc925c27869d2be9c11ebdb807eb",
+  which_key = "a3c19ec5754debb7bf38a8404e36a9287b282430",
   toggleterm = "265bbff68fbb8b2a5fb011272ec469850254ec9f",
   wordmotion = "02e32fcb062553a8293992411677e12cacccb09d",
   visual_multi = "e20908963d9b0114e5da1eacbc516e4b09cf5803",
@@ -32,7 +32,6 @@ local commits = {
   spectre = "4a4cf2c981b077055ef7725959d13007e366ba23",
 }
 
--- @TODO - use config option of 'use'
 return require("packer").startup(function(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim", commit = commits.packer })
