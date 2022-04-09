@@ -6,7 +6,6 @@ vim.g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git at
 -- @TODO Check why not working
 vim.g.nvim_tree_highlight_opened_files = 1 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
 vim.g.nvim_tree_group_empty = 1 --  0 by default, compact folders that only contain a single folder into one node in the file tree
-vim.g.nvim_tree_quit_on_open = 0 -- 0 by default, closes the tree when you open a file
 vim.g.nvim_tree_special_files = {
   ["README.md"] = 1,
   ["Makefile"] = 1,
@@ -39,9 +38,8 @@ local keymappings = {
   { key = "v", cb = tree_cb("vsplit") },
   { key = "s", cb = tree_cb("split") },
   { key = { "h", "<BS>", "<S-CR>" }, cb = tree_cb("close_node") },
-  -- @TODO doesn't work
   { key = "<Tab>", cb = tree_cb("preview") },
-  { key = "I", cb = tree_cb("toggle_ignored") },
+  { key = "I", cb = tree_cb("toggle_git_ignored") },
   { key = "H", cb = tree_cb("toggle_dotfiles") },
   { key = "R", cb = tree_cb("refresh") },
   { key = "a", cb = tree_cb("create") },
@@ -60,27 +58,27 @@ local keymappings = {
   { key = "P", cb = tree_cb("parent_node") },
   { key = "y", cb = tree_cb("copy_name") },
   { key = "Y", cb = tree_cb("copy_path") },
-  { key = "g?", cb = tree_cb("toggle_help") },
-  -- @TODO change to use file viewer
+  { key = "?", cb = tree_cb("toggle_help") },
+  { key = "W", action = "collapse_all" },
   { key = "s", cb = tree_cb("system_open") },
+  { key = "S", cb = tree_cb("search_node") },
+  { key = ".", cb = tree_cb("run_file_command") },
+  { key = "K", cb = tree_cb("toggle_file_info") },
 }
 
 nvim_tree.setup({
-  -- @TODO check why netrw is not opening (maybe because of startup plugin)
   disable_netrw = false,
   hijack_netrw = false,
   hijack_cursor = true,
   auto_close = true,
   filters = {
     dotfiles = true,
-    exclude = { ".config" },
+    exclude = { ".config", ".local" },
   },
   update_focused_file = {
     enable = true,
   },
   view = {
-    -- @TODO check why doesn't work
-    auto_resize = true,
     mappings = {
       list = keymappings,
     },
@@ -95,6 +93,12 @@ nvim_tree.setup({
     },
   },
 })
+
+-- Close vim if nvim-tree is the last buffer
+vim.api.nvim_exec(
+  [[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]],
+  false
+)
 
 return {
   toggle = function()
