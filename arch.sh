@@ -8,32 +8,32 @@ nocol='\e[0m' # Text Reset
 
 pacinst() {
   input="$*"
-  echo "$green Installing $bi_cyan $input $nocol ..."
+  echo -e "$green Installing $bi_cyan $input $nocol ..."
   sudo pacman -S --noconfirm $input 1>/dev/null
   if [ $? -gt 0 ]; then
-    echo "$red An error occured"
+    echo -e "$red An error occured"
     exit 1
   fi
 
-  echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo -e "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 yayinst() {
   input="$*"
-  echo "$green Installing $bi_cyan $input $nocol ..."
+  echo -e "$green Installing $bi_cyan $input $nocol ..."
   paru -S --noconfirm $input 1>/dev/null
   if [ $? -gt 0 ]; then
-    echo "$red An error occured"
+    echo -e "$red An error occured"
     exit 1
   fi
 
-  echo "$green Successfully installed $bi_cyan $input $nocol"
+  echo -e "$green Successfully installed $bi_cyan $input $nocol"
 }
 
 alert() {
-  echo "$green -----------------------------------------------------------------"
-  echo "$1"
-  echo "-----------------------------------------------------------------$nocol"
+  echo -e "$green -----------------------------------------------------------------"
+  echo -e "$1"
+  echo -e "-----------------------------------------------------------------$nocol"
 }
 
 pacman -Syyyu
