@@ -159,6 +159,8 @@ pacinst unrar unzip
 # yayinst massren
 yayinst dragon-drop
 yayinst handlr-bin
+pacinst perl-file-mimeinfo
+yayinst selectdefaultapplication-git
 pacinst neofetch
 pacinst xdotool
 pacinst unclutter
@@ -195,6 +197,7 @@ yayinst terraform-ls
 
 ## Formatters
 sudo npm install -g @fsouza/prettierd
+sudo npm install -g eslint
 sudo npm install -g stylelint
 pacinst stylua
 pacinst shfmt
