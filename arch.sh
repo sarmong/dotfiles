@@ -54,6 +54,7 @@ curl -fLo "$XDG_DATA_HOME"/vim/autoload/plug.vim --create-dirs \
 pacinst stow
 pacinst openssh
 pacinst man-db man-pages
+pacinst mlocate
 
 ### --- Install packages --- ###
 
