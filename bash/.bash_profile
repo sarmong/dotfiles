@@ -9,6 +9,7 @@ source "$XDG_CONFIG_HOME/user-dirs.dirs"
 
 export LESSHISTFILE="-" # removes lesshist file
 # export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrs"
 export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
