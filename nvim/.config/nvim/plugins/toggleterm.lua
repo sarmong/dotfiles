@@ -68,5 +68,5 @@ return {
   toggle_git = toggle_term("lazygit", 4),
   toggle_npm = toggle_term("lazynpm", 5),
   toggle_node = toggle_term("node", 6),
-  toggle_ranger = toggle_term("ranger", 7),
+  toggle_ranger = toggle_term("lf", 7),
 }
