@@ -6,21 +6,23 @@
 set -e
 
 cleanup() {
-	exec 3>&-
-	rm "$FIFO_UEBERZUG"
+  exec 3>&-
+  rm "$FIFO_UEBERZUG"
 }
 
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}"
+
 if [ -n "$DISPLAY" ]; then
-	[ ! -d "$HOME/.cache/lf" ] && mkdir -p "$HOME/.cache/lf"
-	export FIFO_UEBERZUG="${TMPDIR:-/tmp}/lf-ueberzug-$$"
+  [ ! -d "$cache_dir/lf" ] && mkdir -p "$cache_dir/lf"
+  export FIFO_UEBERZUG="${TMPDIR:-/tmp}/lf-ueberzug-$$"
 
-	mkfifo "$FIFO_UEBERZUG"
-	ueberzug layer -s <"$FIFO_UEBERZUG" &
-	exec 3>"$FIFO_UEBERZUG"
-	trap cleanup EXIT
-	# trap cleanup HUP INT QUIT TERM PWR EXIT
+  mkfifo "$FIFO_UEBERZUG"
+  ueberzug layer -s <"$FIFO_UEBERZUG" &
+  exec 3>"$FIFO_UEBERZUG"
+  trap cleanup EXIT
+  # trap cleanup HUP INT QUIT TERM PWR EXIT
 
-	lf "$@" 3>&-
+  lf "$@" 3>&-
 else
-	exec lf "$@"
+  exec lf "$@"
 fi
