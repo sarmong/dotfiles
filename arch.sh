@@ -55,6 +55,8 @@ pacinst stow
 pacinst openssh
 pacinst man-db man-pages
 pacinst mlocate
+pacinst dash
+ln -sfT /bin/dash /bin/sh
 
 ### --- Install packages --- ###
 
