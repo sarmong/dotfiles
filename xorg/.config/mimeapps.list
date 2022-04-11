@@ -51,3 +51,4 @@ image/x-portable-pixmap=feh.desktop
 image/gif=feh.desktop
 image/webp=feh.desktop
 inode/directory=caja-folder-handler.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
