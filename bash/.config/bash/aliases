@@ -25,6 +25,7 @@ alias gcob='git branch | fzf | xargs git checkout'
 
 [ $(uname) == 'Darwin' ] && alias ls="gls -hGF --color=auto --group-directories-first" || alias ls="ls -hGF --color=auto --group-directories-first"
 alias la="ls -A"
+alias ll="ls -Al"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
