@@ -58,6 +58,9 @@ pacinst mlocate
 pacinst dash
 ln -sfT /bin/dash /bin/sh
 
+pacinst ufw
+"$XDG_BIN_DIR"/services/ufw/init.sh
+
 ### --- Install packages --- ###
 
 ### --- Main system setup --- ###
