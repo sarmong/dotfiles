@@ -231,26 +231,6 @@ pacinst nextcloud-client
 yayinst spotify
 yayinst anki
 
-# pacinst thunderbird
-# pacinst bitwarden
-# pacinst gramps
-# pacinst stretchly
-
-# pacinst virtualbox
-# pacinst gimp
-# pacinst musescore
-
-# pacinst cmatrix
-# pacinst figlet
-# pacinst espeak
-
-# pacinst cmus
-# brewinst ddgr # duckduckgo from terminal
-# pacinst gnu-typist
-# pacinst ledger
-# pacinst calcurse
-# pacinst timewarrior
-# pacinst taskwarrior
-# brewinst inetutils
+pacinst neofetch onefetch
 
 alert "FINISHED"
