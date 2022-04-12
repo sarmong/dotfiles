@@ -260,19 +260,9 @@ sudo apt update
 aptinst spotify-client
 aptinst anki
 
-# aptinst bitwarden
-# aptinst gramps
-# aptinst stretchly
-
 aptinst djview
-# aptinst virtualbox
-# aptinst gimp
 pacinst mpv
-# aptinst musescore
 
 aptinst neofetch
-# aptinst cmatrix
-# aptinst figlet
-# aptinst espeak
 
 alert "FINISHED"
