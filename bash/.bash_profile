@@ -25,7 +25,7 @@ export HISTFILESIZE=1000000
 export EDITOR="vim"
 export TERMINAL="alacritty"
 export BROWSER=firefox
-export PAGER=less
+export PAGER=bat
 export QT_QPA_PLATFORMTHEME="qt5ct" # required by qt5ct
 
 # Fixes issues with Java application(Webstorm) in tiling WM
