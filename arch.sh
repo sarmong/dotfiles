@@ -161,7 +161,7 @@ pacinst ripgrep
 pacinst thefuck
 pacinst zoxide
 yayinst atool
-pacinst unrar unzip
+pacinst unrar unzip zip
 # yayinst massren
 yayinst dragon-drop
 yayinst handlr-bin
