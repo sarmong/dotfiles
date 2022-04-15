@@ -48,5 +48,3 @@ if type rg &>/dev/null; then
 fi
 
 eval "$(zoxide init bash)"
-
-[[ -f "$XDG_CONFIG_HOME/lf/lfcd" ]] && source "$XDG_CONFIG_HOME/lf/lfcd"
