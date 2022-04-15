@@ -35,7 +35,7 @@ return {
     "nm-applet --indicator", -- network tray
     "volctl", -- audiocontrol tray
     "xfce4-power-manager", -- power manager tray
-    "udiskie", -- mounts drives automatically
+    "udiskie --smart-tray", -- mounts drives automatically
     "picom",
 
     -- Applications
