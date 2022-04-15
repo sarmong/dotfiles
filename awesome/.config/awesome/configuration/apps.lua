@@ -31,6 +31,7 @@ return {
   -- List of apps to start once on start-up
   run_on_start_up = {
     -- Essentials
+    "lxpolkit",
     "nm-applet --indicator", -- network tray
     "volctl", -- audiocontrol tray
     "xfce4-power-manager", -- power manager tray
