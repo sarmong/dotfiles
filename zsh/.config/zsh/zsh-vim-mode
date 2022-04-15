@@ -1,0 +1,43 @@
+#!/usr/bin/env zsh
+
+bindkey -v
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Use vim keys to search in insert mode
+bindkey '^h' backward-char
+bindkey '^k' up-line-or-history
+bindkey '^l' forward-char
+bindkey '^j' down-line-or-history
+
+# Fix backspace bug when switching modes
+bindkey -v '^?' backward-delete-char
+
+## C-V to edit in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "^v" edit-command-line
+
+# function zle-keymap-select zle-line-init
+#     # change cursor shape
+#     case $KEYMAP in
+#         vicmd)      print -n -- "\E]50;CursorShape=0\C-G";;  # block cursor
+#         viins|main) print -n -- "\E]50;CursorShape=1\C-G";;  # line cursor
+#     esac
+
+#     zle reset-prompt
+#     zle -R
+# }
+
+# function zle-line-finish
+# {
+#     print -n -- "\E]50;CursorShape=0\C-G"  # block cursor
+# }
+
+# zle -N zle-line-init
+# zle -N zle-line-finish
+# zle -N zle-keymap-select

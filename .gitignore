@@ -8,3 +8,5 @@ ranger/.config/ranger/history
 git-work.conf
 newsboat/.config/newsboat/pw
 newsboat/.config/newsboat/urls
+zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/plugins

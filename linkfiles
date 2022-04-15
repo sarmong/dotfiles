@@ -10,7 +10,7 @@ done
 
 Darwin="bash git nvim lf scripts vim alacritty newsboat archive/macos/skhd archive/macos/spacebar archive/macos/yabai"
 
-Linux="bash git nvim lf scripts vim alacritty newsboat bottom npm awesome rofi touchegg picom mpv xorg"
+Linux="bash zsh git nvim lf scripts vim alacritty newsboat bottom npm awesome rofi touchegg picom mpv xorg"
 
 if [ "$(uname)" = "Darwin" ]; then
   for dir in ${Darwin}; do
