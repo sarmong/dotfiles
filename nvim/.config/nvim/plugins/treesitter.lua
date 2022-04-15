@@ -1,4 +1,5 @@
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+local parsers = require("nvim-treesitter.parsers")
+local parser_configs = parsers.get_parser_configs()
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -87,3 +88,12 @@ parser_configs.norg_table = {
     branch = "main",
   },
 }
+
+-- Use bash treesitter for zsh filetypes
+local ft_to_lang = parsers.ft_to_lang
+parsers.ft_to_lang = function(ft)
+  if ft == "zsh" then
+    return "bash"
+  end
+  return ft_to_lang(ft)
+end
