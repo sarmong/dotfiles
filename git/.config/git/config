@@ -1,4 +1,6 @@
 # This is Git's per-user configuration file.
+[core]
+  pager = "bat --plain"
 [init]
 	defaultBranch = master
 [alias]
