@@ -9,7 +9,6 @@ vim.o.title = true -- shows window title
 vim.o.titlestring = "%{split(getcwd(), '/')[-1]}" -- shown only current directory in title
 vim.wo.wrap = false -- Display long lines as just one line
 vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with theses keys
-vim.cmd("syntax on") -- move to next line with theses keys
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.cmdheight = 2 -- More space for displaying messages

@@ -65,30 +65,6 @@ parser_configs.markdown = {
   filetype = "markdown",
 }
 
-parser_configs.norg = {
-  install_info = {
-    url = "https://github.com/nvim-neorg/tree-sitter-norg",
-    files = { "src/parser.c", "src/scanner.cc" },
-    branch = "main",
-  },
-}
-
-parser_configs.norg_meta = {
-  install_info = {
-    url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
-    files = { "src/parser.c" },
-    branch = "main",
-  },
-}
-
-parser_configs.norg_table = {
-  install_info = {
-    url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
-    files = { "src/parser.c" },
-    branch = "main",
-  },
-}
-
 -- Use bash treesitter for zsh filetypes
 local ft_to_lang = parsers.ft_to_lang
 parsers.ft_to_lang = function(ft)

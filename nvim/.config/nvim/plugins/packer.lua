@@ -19,7 +19,7 @@ local commits = {
   packer = "4dedd3b08f8c6e3f84afbce0c23b66320cd2a8f2",
   autopairs = "06535b1f1aefc98df464d180efa693bb696736c4",
   barbar = "be65945626fb6bf6058cae61d5176d156f923c11",
-  nvim_tree = "6e0e70b1caf42a19adf27dbf3b0bda34c4636dc3",
+  nvim_tree = "477536cd7e97350cc529806fa0b203e302b4a5ee",
   which_key = "a3c19ec5754debb7bf38a8404e36a9287b282430",
   toggleterm = "e62008fe5879eaecb105eb81e393f87d4607164c",
   wordmotion = "02e32fcb062553a8293992411677e12cacccb09d",
@@ -31,12 +31,12 @@ local commits = {
   cmp = "3192a0c57837c1ec5bf298e4f3ec984c7d2d60c0",
   luasnip = "69cb81cf7490666890545fef905d31a414edc15b",
   cmp_luasnip = "b10829736542e7cc9291e60bab134df1273165c9",
-  null_ls = "80e1c2942f70bfdf16886a64692f274ef7356010",
-  treesitter = "c9db4324351576d55e6a34d29a571843eff68ac3",
-  ts_commentstring = "097df33c9ef5bbd3828105e4bee99965b758dc3f",
-  ts_autotag = "0ceb4ef342bf1fdbb082ad4fa1fcfd0f864e1cba",
-  ts_refactor = "a21ed4d294d2da5472ce5b70385d7871c4518a1e",
-  ts_rainbow = "54ee09f540935c604c9a3d4aed83b7f5314f2caa",
+  null_ls = "82be4bf6ee7b1c2605758b06d918c9dcf6f8e3f2",
+  treesitter = "0fc170120a5ca69164f6bd4da3b26fd01aa41592",
+  ts_commentstring = "88343753dbe81c227a1c1fd2c8d764afb8d36269",
+  ts_autotag = "57035b5814f343bc6110676c9ae2eacfcd5340c2",
+  ts_refactor = "0dc8069641226904f9757de786a6ab2273eb73ea",
+  ts_rainbow = "ee433343a698cdf804389db30f96b88d138de18c",
   matchup = "97ffd1a2068049e812ddfd04b182f6a93c2c0394",
   spectre = "4a4cf2c981b077055ef7725959d13007e366ba23",
 }
@@ -67,7 +67,7 @@ packer.startup(function(use)
   use({ "tpope/vim-surround" })
   use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
   use({ "unblevable/quick-scope" })
-  use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
+  -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
   use({ "airblade/vim-rooter" }) -- automagically switches root directory
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } })
   use({
