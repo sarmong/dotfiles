@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ "$1" = "-p" ]; then
+  name="$2"
+else
+  name="$1"
+fi
+
+name=$(echo "$name" | tr '[:lower:]' '[:upper:]')
+
+result=$(curl --silent --show-error terminal-stocks.shashi.dev/"$name")
+
+if [ "$1" = "-p" ]; then
+  echo "$result" | sed '5q;d' | awk -F '│' '{print $3}'
+else
+  echo "$result"
+fi
