@@ -75,6 +75,7 @@ yayinst awesome-git
 yayinst i3lock-fancy-git
 pacinst picom
 pacinst arandr
+pacinst lxsession
 
 ## Themes
 pacinst lxappearance
