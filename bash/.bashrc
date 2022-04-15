@@ -7,7 +7,7 @@ export BASHRC_LOADED=true
 # Source other config files
 [ -n "$PS1" ] && [ "$(uname)" != "Darwin" ] && source ~/.bash_profile
 
-for file in "$XDG_CONFIG_HOME"/bash/{bash_prompt,aliases,.env,git-completion.bash,git-prompt.sh}; do
+for file in "$XDG_CONFIG_HOME"/bash/{bash_prompt,bash-aliases,bash-exports,.env,git-completion.bash,git-prompt.sh}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 
