@@ -166,7 +166,6 @@ pacinst unrar unzip zip
 # yayinst massren
 yayinst dragon-drop
 yayinst handlr-bin
-pacinst perl-file-mimeinfo
 yayinst selectdefaultapplication-git
 pacinst neofetch
 pacinst xdotool
