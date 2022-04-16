@@ -12,12 +12,21 @@ Darwin="bash git nvim lf scripts vim alacritty newsboat archive/macos/skhd archi
 
 Linux="bash zsh git nvim lf scripts vim alacritty newsboat bottom npm awesome rofi touchegg picom mpv xorg"
 
+currentdir=$(pwd)
+
 if [ "$(uname)" = "Darwin" ]; then
-  for dir in ${Darwin}; do
-    stow -v --ignore=".DS_Store" --target="$HOME" "$(basename "$dir")"
-  done
+  dirs=${Darwin}
 elif [ "$(uname)" = "Linux" ]; then
-  for dir in ${Linux}; do
-    stow -v --ignore=".DS_Store" --target="$HOME" "$(basename "$dir")"
-  done
+  dirs=${Linux}
 fi
+
+for dir in ${dirs}; do
+  dirname="$(dirname "$dir")"
+  pkgname="$(basename "$dir")"
+
+  cd "$dirname" || exit 1
+
+  stow -v --target="$HOME" "$pkgname"
+
+  cd "$currentdir" || exit 1
+done
