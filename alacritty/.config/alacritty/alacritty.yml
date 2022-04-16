@@ -149,7 +149,7 @@ cursor:
 
 #### Shell
 shell:
-  program: /bin/bash
+  program: /bin/zsh
   args:
     - -i
 

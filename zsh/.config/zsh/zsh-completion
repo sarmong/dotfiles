@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+## Completion
+zstyle :compinstall filename "/home/michael/.config/zsh/.zshrc"
+
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+_comp_options+=(globdots)		# Include hidden files.
+
+## Match case-insensitively
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
