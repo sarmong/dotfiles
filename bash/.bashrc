@@ -1,13 +1,9 @@
-# $- prints current set of options in the shell
-# If not running interactive shell, don't do anything
-[[ $- == *i* ]] || return
+#!/usr/bin/env bash
 
 export BASHRC_LOADED=true
 
 # Source other config files
-[ -n "$PS1" ] && [ "$(uname)" != "Darwin" ] && source ~/.bash_profile
-
-for file in "$XDG_CONFIG_HOME"/bash/{bash_prompt,bash-aliases,bash-exports,.env,git-completion.bash,git-prompt.sh}; do
+for file in "$HOME"/.config/bash/{bash-exports,bash_prompt,bash-aliases,.env,git-completion.bash,git-prompt.sh}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 

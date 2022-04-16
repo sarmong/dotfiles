@@ -15,6 +15,7 @@ yellow=136
 prompt_git() {
   local s='';
   local branchName='';
+  GIT_INFO=""
 
   # Check if the current directory is in a Git repository.
   git rev-parse --is-inside-work-tree &>/dev/null || return;
@@ -56,7 +57,7 @@ prompt_git() {
   [ -n "${s}" ] && s=" [${s}]";
 
   # echo -e "${1}${branchName}${2}${s}";
-  GIT_INFO="${1}${branchName}${2}${s}";
+  GIT_INFO="%F{$white} on ${1}${branchName}${2}${s}";
 }
 
 
@@ -92,7 +93,6 @@ PROMPT+="%F{$yellow}%M"
 PROMPT+="%F{$white} in "
 PROMPT+="%F{$green}%~"
 PROMPT+='${NODE_V}'
-PROMPT+="%F{$white} on "
 PROMPT+='${GIT_INFO} '
 PROMPT+=$'\n'
 PROMPT+='${VIMODE} '

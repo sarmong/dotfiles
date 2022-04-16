@@ -1,7 +1,6 @@
 ## Can be moved to .zprofile if needed
 export ZDOTDIR="$HOME"/.config/zsh
 
-
 ## Can be moved to .profile if needed
-[ -f "$HOME/.bash_profile" ] && . "$HOME/.bash_profile"
-[ -f "$ZDOTDIR/.zshrc" ] && . "$ZDOTDIR/.zshrc"
+# [ -f "$HOME/.bash_profile" ] && . "$HOME/.bash_profile"
+[ -f "$HOME/.config/zsh/.zshrc" ] && . "$HOME/.config/zsh/.zshrc"
