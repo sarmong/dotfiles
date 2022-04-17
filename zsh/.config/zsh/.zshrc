@@ -10,8 +10,8 @@ zsh_add_file "zsh-vim-mode" true
 
 
 HISTFILE="$XDG_CACHE_HOME"/zhistfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=10000000
+SAVEHIST=10000000
 
 stty stop undef # Disables C-s hang
 
