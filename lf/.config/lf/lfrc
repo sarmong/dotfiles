@@ -57,7 +57,7 @@ cmd extract ${{
 
 # cmd delete %rm -ri $fx
 
-# cmd trash %mv -bi $fx ~/Documents/air/Users/michael/.Trash
+# cmd trash %mv -bi $fx ~/docs/air/.Trash
 
 cmd trash %trash $fx
 
@@ -104,7 +104,7 @@ map x $$f
 map X !$f
 map o $xdg-open $f
 map O $mimeopen --ask $f
-map gr $dragon-drop $fx
+map gr $dragon-drop $fx & disown
 
 map A rename # at the very end
 # map c push A<c-u> # new rename
