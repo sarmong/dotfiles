@@ -1,14 +1,21 @@
 local alpha = require("alpha")
 local startify_config = require("alpha.themes.startify")
 
+local session_file = "./Session.vim"
+
+local function file_exists(path)
+  local _, error = vim.loop.fs_stat(path)
+  return error == nil
+end
+
 local top_buttons = {
   type = "group",
   val = {
-    startify_config.button(
+    file_exists(session_file) and startify_config.button(
       "r",
-      "Restore session",
-      "<cmd>source ./Session.vim<CR>"
-    ),
+      "Restore previous session",
+      "<cmd>source " .. session_file .. "<CR>"
+    ) or nil,
     startify_config.button("e", "New file", "<cmd>ene <CR>"),
   },
 }
