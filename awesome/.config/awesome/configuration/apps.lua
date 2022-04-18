@@ -39,7 +39,7 @@ return {
     "picom",
 
     -- Applications
-    "nextcloud",
+    -- "nextcloud",
     "touchegg",
     "copyq",
     "redshift",

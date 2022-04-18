@@ -31,18 +31,6 @@ flatinst() {
   echo -e "$green Successfully installed $bi_cyan $input $nocol"
 }
 
-brewinst() {
-  input="$1"
-  echo -e "$green Installing $bi_cyan $input $nocol ..."
-  brew install "$input" 1>/dev/null
-  if [ $? -gt 0 ]; then
-    echo -e "$red An error occured"
-    exit 1
-  fi
-
-  echo -e "$green Successfully installed $bi_cyan $input $nocol"
-}
-
 pacinst() {
   input="$1"
   echo -e "$green Installing $bi_cyan $input $nocol ..."
@@ -75,12 +63,6 @@ aptinst vim
 sudo bash -c "$(curl -fsSL https://git.io/JsADh || wget -q https://git.io/JsADh -O -)"
 
 pacstall -A https://raw.githubusercontent.com/sarmong/pacstall-sarmong/master
-
-## Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) # put brew into PATH
-# @TODO check if this line needed
-# aptinst build-essential
 
 ## flatpak
 sudo add-apt-repository ppa:alexlarsson/flatpak
@@ -127,7 +109,6 @@ aptinst trash-cli
 aptinst stow
 pacinst rofi
 pacinst rofi-calc
-brewinst libqalculate # needed for rofi-calc. Brew has newer version
 aptinst copyq
 
 sudo add-apt-repository ppa:touchegg/stable
@@ -187,15 +168,13 @@ aptinst shellcheck
 ## LSPs
 nvm use system
 npm i -g typescript typescript-language-server
-brewinst lua-language-server
-brewinst hashicorp/tap/terraform-ls
 
 ## Formatters
 npm install -g @fsouza/prettierd
 npm install -g stylelint
-brewinst stylua
-brewinst shfmt
-brewinst markdownlint-cli
+pacinst stylua-bin
+pacinst shfmt
+npm i -g markdownlint
 
 alert "INSTALLED PROGRAMMING TOOLS"
 
@@ -221,7 +200,7 @@ pacinst ripgrep-deb
 aptinst thefuck
 curl -sS https://webinstall.dev/zoxide | bash
 aptinst atool
-brewinst massren
+# brewinst massren
 pacinst dragon-drop
 pacinst handlr-bin
 
