@@ -32,9 +32,9 @@ flatinst() {
 }
 
 pacinst() {
-  input="$1"
+  input="$*"
   echo -e "$green Installing $bi_cyan $input $nocol ..."
-  pacstall -IP "$input" 1>/dev/null
+  pacstall -IP $input 1>/dev/null
   if [ $? -gt 0 ]; then
     echo -e "$red An error occured"
     exit 1
@@ -56,6 +56,9 @@ alert "REPOS UPDATED AND PACKAGES UPGRADED"
 aptinst git
 aptinst curl
 aptinst vim
+aptinst zsh
+curl -fLo "$XDG_DATA_HOME"/vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ### --- Install installers --- ###
 
@@ -128,6 +131,7 @@ aptinst brightnessctl
 aptinst xdotool
 aptinst playerctl
 pacinst keyd
+pacinst lf-bin
 
 alert "INSTALLED MAIN SYSTEM SETUP"
 
@@ -198,7 +202,7 @@ pacinst yt-dlp-bin
 pacinst ytfzf
 pacinst ripgrep-deb
 aptinst thefuck
-curl -sS https://webinstall.dev/zoxide | bash
+pacstall zoxide
 aptinst atool
 # brewinst massren
 pacinst dragon-drop
