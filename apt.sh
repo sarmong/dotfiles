@@ -132,6 +132,7 @@ aptinst xdotool
 aptinst playerctl
 pacinst keyd
 pacinst lf-bin
+aptinst python3 python3-pip && sudo pip3 install ueberzug # needs sudo to install in /usr/local
 
 alert "INSTALLED MAIN SYSTEM SETUP"
 
