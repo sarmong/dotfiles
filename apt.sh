@@ -202,7 +202,7 @@ pacinst yt-dlp-bin
 pacinst ytfzf
 pacinst ripgrep-deb
 aptinst thefuck
-pacstall zoxide
+pacinst zoxide
 aptinst atool
 # brewinst massren
 pacinst dragon-drop
