@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 
-file="/etc/keyd/default.conf"
+dir="/etc/keyd"
+
+file="$dir/default.conf"
+
+[ ! -d "$dir" ] && sudo mkdir "$dir"
 
 [ -f "$file" ] || [ -L "$file" ] && sudo mv "$file" "$file"-old
 
