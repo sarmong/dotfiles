@@ -41,14 +41,18 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 ## Programming settings ##
 ## ==================== ##
 
-# NVM settings
+# Node settings
 # ============
+
+[ -d "$XDG_DATA_HOME/npm/bin" ] && export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
+
 ## Might need for Ubuntu
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-[ -s "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                    # This loads nvm for Ubuntu
+[ -s "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh # This loads nvm for Arch
+
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory
 # Run 'nvm use' automatically every time there's
