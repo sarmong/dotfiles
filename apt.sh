@@ -113,6 +113,7 @@ aptinst stow
 pacinst rofi
 pacinst rofi-calc
 aptinst copyq
+apinst suckless-tools
 
 sudo add-apt-repository ppa:touchegg/stable
 sudo apt update
@@ -128,6 +129,7 @@ pacinst alacritty
 aptinst xclip
 aptinst tlp powertop
 aptinst brightnessctl
+sudo usermod -aG video "${USER}" # see https://github.com/Hummer12007/brightnessctl/issues/63
 aptinst xdotool
 aptinst playerctl
 pacinst keyd
