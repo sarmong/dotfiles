@@ -7,6 +7,7 @@ zsh_add_file "zsh-completion"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-prompt" true
 zsh_add_file "zsh-vim-mode" true
+zsh_add_file "zsh-local" true
 
 
 HISTFILE="$XDG_CACHE_HOME"/zhistfile
