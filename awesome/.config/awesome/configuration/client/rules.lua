@@ -45,8 +45,9 @@ awful.rules.rules = {
     },
   },
   {
-    rule = {
-      type = "utility",
+    rule_any = {
+      type = { "utility" },
+      class = { "PanGPUI" },
     },
     properties = {
       placement = awful.placement.top_right,
