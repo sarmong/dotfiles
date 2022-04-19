@@ -208,18 +208,7 @@ aptinst atool
 # brewinst massren
 pacinst dragon-drop
 pacinst handlr-bin
-
-## TUIs
 aptinst pass
-pacinst newsboat
-# aptinst cmus
-# brewinst ddgr # duckduckgo from terminal
-# aptinst gnu-typist
-# aptinst ledger
-# aptinst calcurse
-# aptinst timewarrior
-# aptinst taskwarrior
-# brewinst inetutils
 
 ### --- Install Applications --- ###
 
@@ -232,7 +221,7 @@ flatinst com.skype.Client
 pacinst slack-deb
 pacisnt zoom-deb
 flatinst org.telegram.desktop
-aptinst qbittorrent
+pacinst mpv
 
 sudo add-apt-repository ppa:nextcloud-devs/client
 sudo apt-get update
@@ -242,10 +231,6 @@ curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt update
 aptinst spotify-client
-aptinst anki
-
-aptinst djview
-pacinst mpv
 
 aptinst neofetch
 
