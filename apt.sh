@@ -113,7 +113,8 @@ aptinst stow
 pacinst rofi
 pacinst rofi-calc
 aptinst copyq
-apinst suckless-tools
+aptinst suckless-tools
+aptinst mlocate && sudo updatedb
 
 sudo add-apt-repository ppa:touchegg/stable
 sudo apt update

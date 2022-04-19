@@ -5,6 +5,7 @@
 # brave-browser
 # google-chrome
 # com.github.Eloston.UngoogledChromium
+# org.chromium.Chromium
 # chromium_chromium
 
 if [[ "$1" == "browser" ]]; then
