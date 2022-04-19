@@ -88,6 +88,7 @@ aptinst pamix       # Pulse Audio TUI
 
 aptinst udiskie # Automounts external drives
 pacinst picom
+aptinst lxpolkit
 
 ### --- Main system setup --- ###
 

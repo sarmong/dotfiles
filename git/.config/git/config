@@ -29,7 +29,7 @@
 
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 
-dd = diff --dirstat --find-copies --find-renames --histogram --color
+  dd = diff --dirstat --find-copies --find-renames --histogram --color
 
 [url "https://"]
 	insteadOf = git://
