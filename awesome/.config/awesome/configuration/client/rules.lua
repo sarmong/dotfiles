@@ -33,7 +33,7 @@ awful.rules.rules = {
   {
     rule_any = {
       type = { "dialog" },
-      class = { "Ulauncher" },
+      class = { "Ulauncher", "Lxpolkit" },
     },
     properties = {
       placement = awful.placement.centered,
