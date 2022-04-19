@@ -40,5 +40,5 @@ dd = diff --dirstat --find-copies --find-renames --histogram --color
 
 [include]
     path = ~/.config/git/git-personal.conf
-[includeIf "gitdir:~/Documents/work/"]
+[includeIf "gitdir:~/docs/work/"]
     path = ~/.config/git/git-work.conf
