@@ -1,8 +1,15 @@
 # This is Git's per-user configuration file.
 [core]
   pager = "bat --plain"
+  excludesfile = "~/.config/git/gitignore_global"
 [init]
 	defaultBranch = master
+[branch]
+	autosetuprebase = always
+[branch "master"]
+	rebase = true
+[branch "upstream"]
+	rebase = true
 [alias]
   co = checkout
   br = branch
