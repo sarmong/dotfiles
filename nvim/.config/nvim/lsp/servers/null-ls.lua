@@ -1,5 +1,6 @@
 local null_ls = require("null-ls")
 local lsp_fns = require("lsp.functions")
+local configs = require("lsp.lspconfig")
 
 null_ls.setup({
   sources = {
@@ -26,7 +27,8 @@ null_ls.setup({
 
     -- null_ls.builtins.completion.spell,
   },
-  on_attach = function(client)
+  on_attach = function(client, bufnr)
+    configs.on_attach(client, bufnr)
     if client.resolved_capabilities.document_formatting then
       lsp_fns.enable_format_on_save()
     end
