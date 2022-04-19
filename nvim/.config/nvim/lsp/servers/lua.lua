@@ -14,8 +14,8 @@ table.insert(library, "/usr/share/awesome/lib")
 
 configs.server_opt["sumneko_lua"] = function()
   -- disable formatting with sumneko_lua, so that null-ls will handle it
-  configs.default_opt.on_attach = function(client)
-    configs.on_attach()
+  configs.default_opt.on_attach = function(client, bufnr)
+    configs.on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
