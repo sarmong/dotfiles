@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+type="$1"
+value="$2"
+
+types="unix tounix to-unix fromunix from-unix"
+
+case "$type" in
+  "unix" | "from-unix" | "fromunix")
+    date -d "@${value:0:10}"
+    ;;
+  "to-unix" | "tounix")
+    date -d "$value" "+%s"
+    ;;
+  *)
+    echo "Unknown convertion. Allowed values are: $types"
+    ;;
+esac
