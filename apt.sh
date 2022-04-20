@@ -197,7 +197,7 @@ aptinst ffmpeg
 aptinst imagemagick
 aptinst speedtest-cli
 aptinst watch
-aptinst htop
+pacinst bottom
 aptinst scrot
 aptinst colordiff
 pacinst fzf-bin
