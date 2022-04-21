@@ -180,6 +180,7 @@ hints:
 
 #### Key bindings
 key_bindings:
+  - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
   - { key: L, mods: Control, mode: ~Vi|~Search, chars: "\x0c" }
   - { key: K, mods: Control, mode: Vi, action: ScrollHalfPageUp }
   - { key: J, mods: Control, mode: Vi, action: ScrollHalfPageDown }
