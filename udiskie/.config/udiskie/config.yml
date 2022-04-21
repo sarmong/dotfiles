@@ -1,0 +1,4 @@
+device_config:
+  # Ignore all loop devices (from snapd). See lsblk -lf
+  - id_type: squashfs
+    ignore: true
