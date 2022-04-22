@@ -23,7 +23,13 @@ local clientKeys = awful.util.table.join(
     c.ontop = not c.ontop
   end, { description = "toggle fullscreen", group = "client" }),
   awful.key({ modkey }, "q", function(c)
-    c:kill()
+    awful.spawn.with_line_callback("bash -c prompt-yn", {
+      stdout = function(stdout)
+        if stdout == "Yes" then
+          c:kill()
+        end
+      end,
+    })
   end, { description = "close", group = "client" })
 )
 
