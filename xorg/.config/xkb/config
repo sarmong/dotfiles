@@ -1,0 +1,18 @@
+xkb_keymap {
+	xkb_keycodes  { include "evdev+aliases(qwerty)"	};
+	xkb_types     { include "complete"	};
+	xkb_compat    { include "complete"	};
+	xkb_geometry  { include "pc(pc105)"	};
+
+
+  # Right Alt sets English layout
+  # Shift + Right Alt sets Russian
+  # Use config with xkbcomp ~/.config/xkb/config $DISPLAY
+  # Taken from https://habr.com/ru/post/486872/
+
+  xkb_symbols "my"  { 
+    include "pc+us+ru:2+inet(evdev)"  
+
+    key <RALT> { [ ISO_First_Group, ISO_Last_Group ] }; 
+  };
+};
