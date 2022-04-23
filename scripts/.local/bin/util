@@ -1,18 +1,53 @@
 #!/usr/bin/env bash
 
-type="$1"
-value="$2"
+from="$1"
+to_or_value="$2"
+value_or_nil="$2"
 
-types="unix tounix to-unix fromunix from-unix"
+from_values="unix date xml yaml yml"
 
-case "$type" in
-  "unix" | "from-unix" | "fromunix")
-    date -d "@${value:0:10}"
+case "$from" in
+  "unix")
+    case "$to_or_value" in
+      "date")
+        date -d "@${value_or_nil:0:10}"
+        ;;
+      *)
+        date -d "@${to_or_value:0:10}"
+        ;;
+    esac
     ;;
-  "to-unix" | "tounix")
-    date -d "$value" "+%s"
+  "date")
+    case "$to_or_value" in
+      "unix")
+        date -d "$value_or_nil" "+%s"
+        ;;
+      *)
+        date -d "$to_or_value" "+%s"
+        ;;
+    esac
+    ;;
+  "xml")
+    case "$to_or_value" in
+      "json")
+        xq . <"$to_or_value"
+        ;;
+      *)
+        xq . <"$to_or_value"
+        ;;
+    esac
+    ;;
+  "yaml" | "yml")
+    case "$to_or_value" in
+      "json")
+        yq . <"$to_or_value"
+        ;;
+      *)
+        yq . <"$to_or_value"
+        ;;
+    esac
     ;;
   *)
-    echo "Unknown convertion. Allowed values are: $types"
+    echo "Unknown convertion type. Allowed values are: $from_values"
     ;;
 esac
