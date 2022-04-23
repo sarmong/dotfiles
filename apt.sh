@@ -213,6 +213,9 @@ aptinst atool
 pacinst dragon-drop
 pacinst handlr-bin
 aptinst pass
+## Dua-cli
+curl -LSfs https://raw.githubusercontent.com/byron/dua-cli/master/ci/install.sh |
+  sh -s -- --git byron/dua-cli --target x86_64-unknown-linux-musl --crate dua
 
 ### --- Install Applications --- ###
 

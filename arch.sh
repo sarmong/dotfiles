@@ -170,6 +170,7 @@ yayinst selectdefaultapplication-git
 pacinst neofetch
 pacinst xdotool
 pacinst unclutter
+pacinst dua-cli
 
 pacinst pass
 
