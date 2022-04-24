@@ -39,10 +39,11 @@ return {
     "picom",
 
     -- Applications
-    -- "nextcloud",
+    "nextcloud",
     "touchegg",
     "copyq",
     "redshift",
+    "safeeyes",
 
     -- Configuration
     "feh --bg-fill $XDG_PICTURES_DIR/wallpaper.png &",
