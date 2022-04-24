@@ -164,6 +164,8 @@ pacinst zoxide
 yayinst atool
 pacinst unrar unzip zip
 # yayinst massren
+pacinst moreutils # Provides vidir packages for mass renaming
+pacinst fdupes
 yayinst dragon-drop
 yayinst handlr-bin
 yayinst selectdefaultapplication-git
