@@ -79,9 +79,10 @@ packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons" },
   })
   use({
-    "kyazdani42/nvim-tree.lua",
+    "sarmong/nvim-tree.lua",
     requires = { "kyazdani42/nvim-web-devicons" },
-    commit = commits.nvim_tree,
+    branch = "reload-explorer",
+    -- commit = commits.nvim_tree,
   })
   use({
     "akinsho/toggleterm.nvim",
