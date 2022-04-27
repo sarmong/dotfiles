@@ -1,3 +1,5 @@
+local configs = require("lsp.lspconfig")
+
 local fns = {}
 
 fns.format = function()
@@ -8,14 +10,17 @@ end
 fns.enable_format_on_save = function()
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = vim.api.nvim_create_augroup("FormatOnSave", {}),
-    buffer = vim.api.nvim_get_current_buf(),
     callback = fns.format,
   })
+  configs.format_on_save_enabled = true
+
   print("Enabled formatting on save")
 end
 
 fns.disable_format_on_save = function()
   vim.api.nvim_del_augroup_by_name("FormatOnSave")
+  configs.format_on_save_enabled = false
+
   print("Disabled formatting on save")
 end
 
@@ -96,4 +101,5 @@ fns.rename_with_quick_fix = function()
     end
   )
 end
+
 return fns
