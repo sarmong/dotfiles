@@ -34,4 +34,5 @@ return {
   default_opt = default_opt,
   server_opt = server_opt,
   on_attach = on_attach,
+  format_on_save_enabled = true,
 }
