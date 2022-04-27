@@ -60,26 +60,17 @@ vim.cmd(
 )
 
 -- Send WINdow CHanged signal to resize nvim properly when runnin alacritty -e nvim
-vim.cmd("autocmd VimEnter * :silent exec '!kill -s SIGWINCH $PPID'")
+vim.api.nvim_create_autocmd("VimEnter", { command = "!kill -s SIGWINCH $PPID" })
 
-vim.api.nvim_exec(
-  [[
-augroup rasi_ft
-  au!
-  autocmd BufNewFile,BufRead *.rasi set syntax=css
-augroup END
-
-]],
-  false
-)
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = vim.api.nvim_create_augroup("rasi_ft", {}),
+  pattern = "*.rasi",
+  command = "set syntax=css",
+})
 
 -- Don't list quickfix list in buffers
-vim.api.nvim_exec(
-  [[
-augroup qf
-    autocmd!
-    autocmd FileType qf set nobuflisted
-augroup END
-]],
-  false
-)
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("qf", {}),
+  pattern = "qf",
+  command = "set nobuflisted",
+})
