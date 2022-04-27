@@ -1,30 +1,28 @@
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
-vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
-vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
-vim.cmd("set inccommand=split") -- Make substitution work in realtime
+vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object"
+vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
+vim.o.inccommand = "split" -- Make substitution work in realtime
 vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.o.title = true -- shows window title
 vim.o.titlestring = "%{split(getcwd(), '/')[-1]}" -- shown only current directory in title
-vim.wo.wrap = false -- Display long lines as just one line
-vim.cmd("set whichwrap+=<,>,[,],h,l") -- move to next line with theses keys
+vim.o.wrap = true
+vim.opt.whichwrap:append("<,>,[,],h,l") -- move to next line with theses keys
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.cmdheight = 2 -- More space for displaying messages
-vim.cmd("set colorcolumn=99999") -- fix indentline for now
+vim.o.colorcolumn = 99999 -- fix indentline for now
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.splitbelow = true -- Horizontal splits will automatically be below
 vim.o.termguicolors = true -- set term gui colors most terminals support this
 vim.o.splitright = true -- Vertical splits will automatically be to the right
 vim.go.t_Co = "256" -- Support 256 colors
-vim.o.conceallevel = 0 -- So that I can see `` in markdown files
-vim.cmd("set ts=2") -- Insert 2 spaces for a tab
-vim.cmd("set sw=2") -- Change the number of space characters inserted for indentation
-vim.cmd("set expandtab") -- Change the number of space characters inserted for indentation
-vim.cmd("set smartindent") -- Change the number of space characters inserted for indentation
--- vim.bo.expandtab = true -- Converts tabs to spaces
--- vim.bo.smartindent = true -- Makes indenting smart
+vim.o.conceallevel = 3
+vim.o.tabstop = 2 -- Insert 2 spaces for a tab
+vim.o.shiftwidth = 2 -- Change the number of space characters inserted for indentation
+vim.o.expandtab = true -- Converts tabs to spaces
+vim.o.smartindent = true -- Makes indenting smart
 vim.wo.number = true -- set numbered lines
 vim.wo.relativenumber = true -- set relative number
 vim.wo.cursorline = true -- Enable highlighting of the current line
@@ -43,21 +41,16 @@ vim.o.listchars = "tab:> ,trail:•" -- show dots on trailing spaces
 vim.o.guifont = "FiraCode Nerd Font:h17"
 -- vim.bo.undofile = true
 -- vim.api.nvim_buf_set_option(0, "undofile", true)
-vim.cmd("set undofile") -- persistent undo
-vim.cmd("set wrap") -- wrap lines -- wrap lines -- wrap lines
-vim.cmd("set ignorecase") -- case insensitive search
-vim.cmd("set smartcase") -- search becomes case sensitive if contains any capital letters
-vim.cmd("set scrolloff=4") -- padding of 2 lines when scrolling
+vim.o.undofile = true -- persistent undo
+vim.o.ignorecase = true -- case insensitive search
+vim.o.smartcase = true -- search becomes case sensitive if contains any capital letters
+vim.o.scrolloff = 4 -- padding of 2 lines when scrolling
 
-vim.cmd("nmap Q <Nop>") -- 'Q' in normal mode enters Ex mode. You almost never want this.
-
--- vim.cmd("vim.g.markdown_fenced_languages = ['js=javascript']")
-vim.cmd("set conceallevel=3")
+vim.g.vim_markdown_fenced_languages = { "js=javascript" }
 
 -- set cyrillic letters for normal mode
-vim.cmd(
-  "set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
-)
+vim.o.langmap =
+  "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 
 -- Send WINdow CHanged signal to resize nvim properly when runnin alacritty -e nvim
 vim.api.nvim_create_autocmd("VimEnter", { command = "!kill -s SIGWINCH $PPID" })
