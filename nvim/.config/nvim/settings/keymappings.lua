@@ -29,7 +29,8 @@ map("n", "H", "^", { silent = true })
 map("n", "L", "$", { silent = true })
 
 -- turn off search highlights until next search
-map("n", "<esc><esc>", ":noh<CR>", { silent = true })
+-- and close quickfix window
+map("n", "<esc><esc>", ":noh<CR>:ccl<CR>", { silent = true })
 
 -- Terminal window navigation
 map("t", "<C-h>", "<C-\\><C-N><C-w>h")
