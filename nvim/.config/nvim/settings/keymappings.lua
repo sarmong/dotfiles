@@ -40,6 +40,11 @@ map("i", "<C-h>", "<C-\\><C-N><C-w>h")
 map("i", "<C-j>", "<C-\\><C-N><C-w>j")
 map("i", "<C-k>", "<C-\\><C-N><C-w>k")
 
+-- Tab navigation
+map("n", "tt", ":tabnew<CR>")
+map("n", "tn", ":tabnext<CR>")
+map("n", "tp", ":tabprevious<CR>")
+
 -- @TODO fix this - interferes with visual-multi plugin
 -- resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>")
