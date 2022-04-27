@@ -6,16 +6,16 @@ fns.format = function()
 end
 
 fns.enable_format_on_save = function()
-  -- disable format on save to not have doubles
-  -- @TODO - wrap in augroup
-  vim.cmd("autocmd! BufWritePre <buffer>")
-  vim.cmd("autocmd BufWritePre <buffer> lua require('lsp.functions').format()")
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = vim.api.nvim_create_augroup("FormatOnSave", {}),
+    buffer = vim.api.nvim_get_current_buf(),
+    callback = fns.format,
+  })
   print("Enabled formatting on save")
 end
 
 fns.disable_format_on_save = function()
-  -- @TODO - this might disable all autocommands, beware
-  vim.cmd("autocmd! BufWritePre <buffer>")
+  vim.api.nvim_del_augroup_by_name("FormatOnSave")
   print("Disabled formatting on save")
 end
 
