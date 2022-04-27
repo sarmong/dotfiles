@@ -35,11 +35,9 @@ map("n", "<esc><esc>", ":noh<CR>", { silent = true })
 map("t", "<C-h>", "<C-\\><C-N><C-w>h")
 map("t", "<C-j>", "<C-\\><C-N><C-w>j")
 map("t", "<C-k>", "<C-\\><C-N><C-w>k")
-map("t", "<C-l>", "<C-\\><C-N><C-w>l")
 map("i", "<C-h>", "<C-\\><C-N><C-w>h")
 map("i", "<C-j>", "<C-\\><C-N><C-w>j")
 map("i", "<C-k>", "<C-\\><C-N><C-w>k")
-map("i", "<C-l>", "<C-\\><C-N><C-w>l")
 
 -- @TODO fix this - interferes with visual-multi plugin
 -- resize with arrows
