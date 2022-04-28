@@ -35,5 +35,6 @@ null_ls.setup({
     then
       lsp_fns.enable_format_on_save()
     end
+    lsp_fns.disable_virtual_text()
   end,
 })

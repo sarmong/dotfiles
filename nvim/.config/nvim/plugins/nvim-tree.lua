@@ -1,7 +1,6 @@
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 local nvim_tree = require("nvim-tree")
 
-vim.g.nvim_tree_indent_markers = 1 --"0 by default, this option shows indent markers when folders are open
 vim.g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git attributes (can be used without the icons).
 -- @TODO Check why not working
 vim.g.nvim_tree_highlight_opened_files = 1 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
@@ -70,7 +69,6 @@ nvim_tree.setup({
   disable_netrw = false,
   hijack_netrw = false,
   hijack_cursor = true,
-  auto_close = true,
   filters = {
     dotfiles = true,
     exclude = { ".config", ".local" },
@@ -81,6 +79,11 @@ nvim_tree.setup({
   view = {
     mappings = {
       list = keymappings,
+    },
+  },
+  renderer = {
+    indent_markers = {
+      enable = true, -- this option shows indent markers when folders are open
     },
   },
   diagnostics = {
