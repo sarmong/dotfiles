@@ -4,7 +4,6 @@ CACHE_PATH = vim.fn.stdpath("cache")
 vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object"
 vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
 vim.o.inccommand = "split" -- Make substitution work in realtime
-vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.o.title = true -- shows window title
 vim.o.titlestring = "%{split(getcwd(), '/')[-1]}" -- shown only current directory in title
 vim.o.wrap = true
