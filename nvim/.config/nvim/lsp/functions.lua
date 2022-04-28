@@ -41,7 +41,7 @@ fns.open_float = function()
 end
 
 fns.set_loc_list = function()
-  vim.diagnostic.setlocklist()
+  vim.diagnostic.setloclist()
 end
 
 fns.enable_virtual_text = function()
