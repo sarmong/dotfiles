@@ -45,6 +45,7 @@ vim.o.undofile = true -- persistent undo
 vim.o.ignorecase = true -- case insensitive search
 vim.o.smartcase = true -- search becomes case sensitive if contains any capital letters
 vim.o.scrolloff = 4 -- padding of 2 lines when scrolling
+vim.o.laststatus = 3 -- one status line for all windows
 
 vim.g.vim_markdown_fenced_languages = { "js=javascript" }
 

@@ -1,36 +1,36 @@
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
+  local options = { noremap = true, silent = true }
   if opts then
     options = vim.tbl_extend("force", options, opts)
   end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  vim.keymap.set(mode, lhs, rhs, options)
 end
 
 -- Unmap space and set leader key to space
-map("n", "<Space>", "<NOP>", { silent = true })
+map("n", "<Space>", "<NOP>")
 vim.g.mapleader = " "
 
 -- better window movement
-map("n", "<C-h>", "<C-w>h", { silent = true })
-map("n", "<C-j>", "<C-w>j", { silent = true })
-map("n", "<C-k>", "<C-w>k", { silent = true })
-map("n", "<C-l>", "<C-w>l", { silent = true })
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
 -- save doc using Ctrl+s. If this doesn't work add this two lines to bash_profile: (or just the second)
 -- bind -r '\C-s'
 -- stty -ixon
-map("n", "<C-s>", ":w<CR>", { silent = true })
-map("i", "<C-s>", "<Esc>:w<CR>", { silent = true })
-map("v", "<C-s>", "<Esc>:w<CR>", { silent = true })
+map("n", "<C-s>", ":w<CR>")
+map("i", "<C-s>", "<Esc>:w<CR>")
+map("v", "<C-s>", "<Esc>:w<CR>")
 
-map("i", "<C-u>", "<esc>viwUea", { silent = true })
+map("i", "<C-u>", "<esc>viwUea")
 
-map("n", "H", "^", { silent = true })
-map("n", "L", "$", { silent = true })
+map("n", "H", "^")
+map("n", "L", "$")
 
 -- turn off search highlights until next search
 -- and close quickfix and loclist windows
-map("n", "<esc><esc>", ":noh<CR>:ccl<CR>:lcl<CR>", { silent = true })
+map("n", "<esc><esc>", ":noh<CR>:ccl<CR>:lcl<CR>")
 
 -- Terminal window navigation
 map("t", "<C-h>", "<C-\\><C-N><C-w>h")
@@ -53,12 +53,12 @@ map("n", "<C-Left>", ":vertical resize -2<CR>")
 map("n", "<C-Right>", ":vertical resize +2<CR>")
 
 -- better indenting
-map("v", "<", "<gv", { noremap = true, silent = true })
-map("v", ">", ">gv", { noremap = true, silent = true })
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
 -- Move selected line / block of text in visual mode
-map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
-map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+map("x", "K", ":move '<-2<CR>gv-gv")
+map("x", "J", ":move '>+1<CR>gv-gv")
 
 -- When pressing * in visual mode - search for the selected text, and not the word
 vim.api.nvim_exec(
