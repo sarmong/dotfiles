@@ -102,6 +102,13 @@ packer.startup(function(use)
   })
   use({ "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } })
 
+  -- pip3 install --user pynvim
+  use({
+    "rcarriga/vim-ultest",
+    requires = { "vim-test/vim-test" },
+    run = ":UpdateRemotePlugins",
+  })
+
   -- Git
   use({ "tpope/vim-fugitive" })
   use({ "tpope/vim-rhubarb" })
