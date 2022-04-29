@@ -25,6 +25,7 @@ local commits = {
   ts_rainbow = "ee433343a698cdf804389db30f96b88d138de18c",
   matchup = "97ffd1a2068049e812ddfd04b182f6a93c2c0394",
   spectre = "4a4cf2c981b077055ef7725959d13007e366ba23",
+  vim_markdown = "b4dc23e2b0c4ce1ed77eb630bf04238ee2871e2e",
 }
 
 packer.startup(function(use)
@@ -126,6 +127,7 @@ packer.startup(function(use)
     config = function()
       require("plugins.vim-markdown")
     end,
+    commit = commits.vim_markdown,
   })
   use({
     "iamcco/markdown-preview.nvim",
