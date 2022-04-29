@@ -187,6 +187,8 @@ packer.startup(function(use)
   use({ "folke/tokyonight.nvim" })
   -- use("christianchiarulli/nvcode-color-schemes.vim")
 
+  use("Pocco81/TrueZen.nvim")
+
   if _G.packer_bootstrap then
     require("packer").sync()
   end
