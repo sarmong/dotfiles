@@ -98,10 +98,17 @@ nvim_tree.setup({
 })
 
 -- Close vim if nvim-tree is the last buffer
-vim.api.nvim_exec(
-  [[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]],
-  false
-)
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if
+      vim.fn.winnr("$") == 1
+      and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr()
+    then
+      vim.api.nvim_command(":silent qa!")
+    end
+  end,
+})
 
 return {
   toggle = function()
