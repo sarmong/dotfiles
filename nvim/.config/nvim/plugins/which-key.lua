@@ -9,6 +9,7 @@ local nvim_tree = require("plugins.nvim-tree")
 local buffer = require("plugins.barbar")
 local spectre = require("plugins.spectre")
 local colorizer = require("plugins.colorizer")
+local true_zen = require("plugins.true_zen")
 
 vim.opt.timeoutlen = 700
 
@@ -226,6 +227,13 @@ local mappings = {
     q = { lsp_fns.set_loc_list, "set loc list" },
     v = { lsp_fns.enable_virtual_text, "virtual text on" },
     V = { lsp_fns.disable_virtual_text, "virtual text off" },
+  },
+
+  -- True Zen
+  z = {
+    name = "zen",
+    a = { true_zen.toggle_ataraxis, "ataraxis" },
+    f = { true_zen.toggle_focus, "focus" },
   },
 }
 
