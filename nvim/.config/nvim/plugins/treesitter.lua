@@ -25,6 +25,7 @@ require("nvim-treesitter.configs").setup({
   -- And only with gc. That's why it does'nt work with custom mappings
   context_commentstring = {
     enable = true,
+    enable_autocmd = false,
     config = { javascriptreact = { style_element = "{/*%s*/}" } },
   },
   -- @TODO I don't use other features from this module.

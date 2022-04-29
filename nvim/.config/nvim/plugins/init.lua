@@ -2,7 +2,7 @@ require("plugins.packer")
 
 require("plugins.treesitter")
 require("plugins.git")
-require("plugins.vim-commentary")
+require("plugins.comment")
 require("plugins.telescope")
 
 require("plugins.nvim-tree")

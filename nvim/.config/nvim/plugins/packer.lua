@@ -95,7 +95,13 @@ packer.startup(function(use)
     commit = commits.spectre,
     require = "nvim-lua/plenary.nvim",
   }) -- search and replace
-  use({ "tpope/vim-commentary" })
+  -- use({ "tpope/vim-commentary" })
+  use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  })
   use({
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
