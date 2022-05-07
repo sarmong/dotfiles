@@ -2,6 +2,6 @@
 
 mkdir -p ~/Documents/tech/test
 
-cd ~/Documents/tech/test
+cd "$XDG_DOCUMENTS_DIR"/tech/test
 
 nvim index.js
