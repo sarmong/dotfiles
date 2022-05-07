@@ -113,8 +113,19 @@ local fns = {
     vim.cmd("BufferLinePick")
   end,
 
+  -- TODO add to the plugin
   close_all_but_current = function()
-    vim.cmd("%BufDel | e#")
+    local state = require("bufferline.state")
+    local buffers = require("bufferline.buffers").get_components(state)
+    -- vim.pretty_print(buffers)
+    for _, buf in ipairs(buffers) do
+      if
+        vim.api.nvim_buf_is_loaded(buf.id)
+        and buf.id ~= vim.api.nvim_get_current_buf()
+      then
+        vim.cmd("BufDel " .. buf.id)
+      end
+    end
   end,
 
   -- close_all_but_pinned = function()
