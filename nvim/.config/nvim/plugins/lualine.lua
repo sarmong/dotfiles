@@ -68,6 +68,20 @@ require("lualine").setup({
         always_visible = false, -- Show diagnostics even if count is 0, boolean or function returning boolean
       },
     },
+    lualine_c = {
+      {
+        "filename",
+        file_status = true, -- Displays file status (readonly status, modified status)
+        path = 1,
+        shorting_target = 40, -- Shortens path to leave 40 spaces in the window for other components
+        symbols = {
+          modified = "[+]", -- Text to show when the file is modified.
+          readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+          unnamed = "[No Name]", -- Text to show for unnamed buffers.
+        },
+      },
+    },
+
     lualine_x = { "encoding", "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
