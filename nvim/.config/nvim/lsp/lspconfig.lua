@@ -3,21 +3,19 @@ local capabilities = require("lsp.cmp")
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr, elses)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  local opts = { buffer = bufnr, noremap = true, silent = true }
+
+  local function buf_set_keymap(mode, lhs, rhs)
+    vim.keymap.set(mode, lhs, rhs, opts)
   end
 
-  -- Mappings.
-  local opts = { noremap = true, silent = true }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+  buf_set_keymap("n", "gD", vim.lsp.buf.declaration)
+  buf_set_keymap("n", "gd", vim.lsp.buf.definition)
+  buf_set_keymap("n", "K", vim.lsp.buf.hover)
+  buf_set_keymap("n", "gi", vim.lsp.buf.implementation)
+  buf_set_keymap("n", "gr", vim.lsp.buf.references)
+  buf_set_keymap("n", "[d", vim.diagnostic.goto_prev)
+  buf_set_keymap("n", "]d", vim.diagnostic.goto_next)
 end
 
 local default_opt = {
