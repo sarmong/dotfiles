@@ -119,11 +119,8 @@ local globalKeys = awful.util.table.join(
     end
   end, { description = "Switch to previous window", group = "client" }),
   -- Go to next/prev screen
-  awful.key({ modkey }, "e", function()
+  awful.key({ modkey, "Control" }, "e", function()
     awful.screen.focus_relative(1)
-  end),
-  awful.key({ modkey, "Shift" }, "e", function()
-    awful.screen.focus_relative(-1)
   end),
   -- Programms
   awful.key({}, "Print", function()
