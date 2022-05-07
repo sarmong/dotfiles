@@ -75,10 +75,11 @@ packer.startup(function(use)
   -- IDE features --
   ------------------
   use({
-    "romgrk/barbar.nvim",
-    commit = commits.barbar,
+    "akinsho/bufferline.nvim",
+    tag = "v2.*",
     requires = { "kyazdani42/nvim-web-devicons" },
   })
+  use({ "ojroques/nvim-bufdel" })
   use({
     "sarmong/nvim-tree.lua",
     requires = { "kyazdani42/nvim-web-devicons" },
