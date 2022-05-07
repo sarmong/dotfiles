@@ -12,15 +12,16 @@ table.insert(library, "/usr/share/nvim/runtime/lua")
 table.insert(library, "/usr/share/nvim/runtime/lua/lsp")
 table.insert(library, "/usr/share/awesome/lib")
 
-configs.server_opt["sumneko_lua"] = function()
+configs.server_opt["sumneko_lua"] = {
   -- disable formatting with sumneko_lua, so that null-ls will handle it
-  configs.default_opt.on_attach = function(client, bufnr)
-    configs.on_attach(client, bufnr)
+  on_attach = function(client, bufnr)
+    configs.default_opt.on_attach(client, bufnr)
+
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
-  end
+  end,
 
-  configs.default_opt.settings = {
+  settings = {
     Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
@@ -42,5 +43,5 @@ configs.server_opt["sumneko_lua"] = function()
         enable = false,
       },
     },
-  }
-end
+  },
+}
