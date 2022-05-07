@@ -59,10 +59,3 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.rasi",
   command = "set syntax=css",
 })
-
--- Don't list quickfix list in buffers
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("qf", {}),
-  pattern = "qf",
-  command = "set nobuflisted",
-})
