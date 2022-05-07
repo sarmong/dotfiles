@@ -130,7 +130,7 @@ packer.startup(function(use)
     commit = commits.null_ls,
     requires = { "nvim-lua/plenary.nvim" },
   })
-  use({ "folke/lua-dev.nvim" }) -- completion for neovim lua api
+  use({ "folke/lua-dev.nvim" }) -- @TODO this is currently not used
 
   -- Other language features --
   use({ "norcalli/nvim-colorizer.lua" })
@@ -173,8 +173,6 @@ packer.startup(function(use)
   use({ "hrsh7th/cmp-path" })
   use({ "hrsh7th/cmp-cmdline" })
   use({ "ray-x/cmp-treesitter" })
-  -- @TODO check how it relates to lua-dev
-  use({ "hrsh7th/cmp-nvim-lua" }) -- completion for neovim lua api
   -- Snippets --
   use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
   use({ "saadparwaiz1/cmp_luasnip", commit = commits.cmp_luasnip })
