@@ -44,6 +44,7 @@ map("i", "<C-k>", "<C-\\><C-N><C-w>k")
 map("n", "tt", ":tabnew<CR>")
 map("n", "tn", ":tabnext<CR>")
 map("n", "tp", ":tabprevious<CR>")
+map("n", "td", ":tabclose<CR>")
 
 -- @TODO fix this - interferes with visual-multi plugin
 -- resize with arrows
