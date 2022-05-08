@@ -61,6 +61,13 @@ map("v", ">", ">gv")
 map("x", "K", ":move '<-2<CR>gv-gv")
 map("x", "J", ":move '>+1<CR>gv-gv")
 
+map("o", "in(", ":<c-u>normal! f(vi(<cr>")
+map("o", "il(", ":<c-u>normal! F)vi(<cr>")
+map("o", "p", "i{")
+map("o", "P", "i(")
+map("o", "in(", ":<c-u>normal! f{vi{<cr>")
+map("o", "il(", ":<c-u>normal! F}vi{<cr>")
+
 -- When pressing * in visual mode - search for the selected text, and not the word
 vim.api.nvim_exec(
   [[
