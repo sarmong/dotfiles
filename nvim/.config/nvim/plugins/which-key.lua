@@ -36,6 +36,7 @@ wk.setup({
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
   operators = { gc = "Comments" },
+
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "➜", -- symbol used between a key and it's label
@@ -83,6 +84,12 @@ local mappings = {
   T = { ":TSHighlightCapturesUnderCursor<cr>", "treesitter highlight" },
   h = { "<C-W>s", "split below" },
   v = { "<C-W>v", "split right" },
+  ['"'] = { 'viw<esc>a"<esc>bi"<esc>lel', "surround" },
+  ["'"] = { "viw<esc>a'<esc>bi'<esc>lel", "surround" },
+  ["("] = { "viw<esc>a)<esc>bi(<esc>lel", "surround" },
+  [")"] = { "viw<esc>a)<esc>bi(<esc>lel", "surround" },
+  ["{"] = { "viw<esc>a}<esc>bi{<esc>lel", "surround" },
+  ["}"] = { "viw<esc>a}<esc>bi{<esc>lel", "surround" },
 
   -- Actions
   a = {
@@ -90,8 +97,6 @@ local mappings = {
     c = { colorizer.toggle, "colorizer" },
     i = { ":IndentBlanklineToggle<cr>", "toggle indent lines" },
     n = { ":set nonumber!<cr>", "line-numbers" },
-    -- @TODO fix
-    --  s = { ':s/\%V\(.*\)\%V/"\1"/<cr>', 'surround' },
     r = { ":set norelativenumber!<cr>", "relative line nums" },
     v = { ":Codi<cr>", "virtual repl on" },
     V = { ":Codi!<cr>", "virtual repl off" },
@@ -238,4 +243,14 @@ local mappings = {
 }
 
 wk.register(mappings, { prefix = "<leader>", mode = "n" })
-wk.register(mappings, { prefix = "<leader>", mode = "v" })
+wk.register(
+  vim.tbl_extend("force", mappings, {
+    ['"'] = { '<esc>`>a"<esc>`<i"<esc>gvll', "surround" },
+    ["'"] = { "<esc>`>a'<esc>`<i'<esc>gvll", "surround" },
+    ["("] = { "<esc>`>a)<esc>`<i(<esc>gvll", "surround" },
+    [")"] = { "<esc>`>a)<esc>`<i(<esc>gvll", "surround" },
+    ["{"] = { "<esc>`>a{<esc>`<i{<esc>gvll", "surround" },
+    ["}"] = { "<esc>`>a}<esc>`<i{<esc>gvll", "surround" },
+  }),
+  { prefix = "<leader>", mode = "v" }
+)
