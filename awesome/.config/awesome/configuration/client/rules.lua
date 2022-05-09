@@ -66,8 +66,9 @@ awful.rules.rules = {
         "Nm-connection-editor",
         "Xfce4-power-manager-settings",
         "feh",
+        "join*",
       },
-      name = { "pulsemixer", "join?action*" },
+      name = { "pulsemixer" },
     },
     properties = {
       placement = awful.placement.centered,
