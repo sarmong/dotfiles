@@ -1,7 +1,7 @@
 local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
-require("awful.autofocus")
+-- require("awful.autofocus")
 local beautiful = require("beautiful")
 
 -- Theme
@@ -13,7 +13,7 @@ require("layout")
 -- Init all modules
 require("module.notifications")
 require("module.auto-start")
-require("module.decorate-client")
+-- require("module.decorate-client")
 -- Backdrop causes bugs on some gtk3 applications
 --require('module.backdrop')
 require("module.exit-screen")
