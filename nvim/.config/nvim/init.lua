@@ -6,6 +6,7 @@ package.path = config_dir
   .. package.path
 
 require("utils.packer-bootstrap")
+require("utils.lazy-load")
 
 require("settings")
 require("plugins")

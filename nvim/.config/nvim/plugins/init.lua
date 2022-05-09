@@ -17,6 +17,6 @@ require("plugins.indent-blankline")
 require("plugins.quick-scope")
 require("plugins.autopairs")
 require("plugins.visual-multi")
-require("plugins.spectre")
+-- require("plugins.spectre")
 
 require("plugins.colorizer")

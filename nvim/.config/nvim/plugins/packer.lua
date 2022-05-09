@@ -91,11 +91,7 @@ packer.startup(function(use)
     commit = commits.toggleterm,
   })
   use({ "mg979/vim-visual-multi", commit = commits.visual_multi })
-  use({
-    "windwp/nvim-spectre",
-    commit = commits.spectre,
-    require = "nvim-lua/plenary.nvim",
-  }) -- search and replace
+  use(require("plugins.spectre").setup) -- search and replace
   -- use({ "tpope/vim-commentary" })
   use({
     "numToStr/Comment.nvim",

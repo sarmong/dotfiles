@@ -7,7 +7,7 @@ local lsp_fns = require("lsp.functions")
 local alpha = require("plugins.alpha")
 local nvim_tree = require("plugins.nvim-tree")
 local buffer = require("plugins.bufferline")
-local spectre = require("plugins.spectre")
+local spectre = lazy.require_on_exported_call("plugins.spectre.fns")
 local colorizer = require("plugins.colorizer")
 local true_zen = require("plugins.true_zen")
 
