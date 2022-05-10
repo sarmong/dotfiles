@@ -52,7 +52,10 @@ vim.o.langmap =
   "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 
 -- Send WINdow CHanged signal to resize nvim properly when runnin alacritty -e nvim
-vim.api.nvim_create_autocmd("VimEnter", { command = "!kill -s SIGWINCH $PPID" })
+vim.api.nvim_create_autocmd(
+  "VimEnter",
+  { command = 'silent exec "!kill -s SIGWINCH $PPID"' }
+)
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   group = vim.api.nvim_create_augroup("rasi_ft", {}),
