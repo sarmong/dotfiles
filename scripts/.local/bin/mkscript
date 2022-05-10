@@ -10,5 +10,6 @@ file="$XDG_BIN_DIR"/"$1"
 touch "$file"
 chmod +x "$file"
 
-echo "#!/bin/sh" >"$file"
+[ ! -f "$file" ] && echo "#!/bin/sh" >"$file"
+
 nvim "$file"
