@@ -15,4 +15,4 @@ if [ ! -f "$full_path" ]; then
   echo "# $title" >"$filename"
 fi
 
-[ -n "$WINDOWID" ] && nvim +TZAtaraxis "$full_path" || alacritty -e nvim +TZAtaraxis "$full_path
+[ -n "$WINDOWID" ] && nvim +TZAtaraxis "$full_path" || alacritty -e nvim +TZAtaraxis "$full_path"
