@@ -1,0 +1,18 @@
+#!/bin/sh
+
+week="$(date +%V)"
+weekdir="$XDG_NC_DIR/Vault/TODO/daily/$week"
+
+filename="$(date +%m-%d).md"
+full_path="$weekdir/$filename"
+
+if [ ! -f "$full_path" ]; then
+  mkdir -p "$weekdir"
+  touch "$full_path"
+
+  title=$(date +%d.%m)
+
+  echo "# $title" >"$filename"
+fi
+
+[ -n "$WINDOWID" ] && nvim +TZAtaraxis "$full_path" || alacritty -e nvim +TZAtaraxis "$full_path
