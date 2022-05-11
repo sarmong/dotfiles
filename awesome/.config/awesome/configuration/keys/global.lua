@@ -263,10 +263,6 @@ local globalKeys = awful.util.table.join(
     { description = "Open default program for tag/workspace", group = "tag" }
   ),
   -- Custom hotkeys
-  -- File Manager
-  awful.key({ modkey, "Control" }, "e", function()
-    awful.util.spawn(apps.default.files)
-  end, { description = "filebrowser", group = "hotkeys" }),
   -- Change keyboard layout
   awful.key({ modkey }, "/", function()
     awful.spawn.with_shell("$XDG_BIN_DIR/setup/keyboard/switch-layout.sh")
