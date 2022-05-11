@@ -6,7 +6,7 @@ require("plugins.comment")
 require("plugins.telescope")
 
 require("plugins.nvim-tree")
-require("plugins.bufferline")
+require("plugins.barbar")
 require("plugins.lualine")
 require("plugins.which-key")
 require("plugins.toggleterm")
