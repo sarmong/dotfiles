@@ -12,7 +12,7 @@ if [ ! -f "$full_path" ]; then
 
   title=$(date +%d.%m)
 
-  echo "# $title" >"$filename"
+  echo "# $title" >"$full_path"
 fi
 
-[ -n "$WINDOWID" ] && nvim +TZAtaraxis "$full_path" || alacritty -e nvim +TZAtaraxis "$full_path"
+[ -n "$WINDOWID" ] && nvim "$full_path" || alacritty -e nvim "$full_path"
