@@ -70,6 +70,16 @@ packer.startup(function(use)
     end,
   })
   use({ "mbbill/undotree" })
+  use({
+    "stevearc/dressing.nvim",
+    config = function()
+      require("dressing").setup({
+        input = {
+          insert_only = false,
+        },
+      })
+    end,
+  })
 
   ------------------
   -- IDE features --
