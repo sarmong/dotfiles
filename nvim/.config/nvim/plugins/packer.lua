@@ -80,6 +80,7 @@ packer.startup(function(use)
       })
     end,
   })
+  use({ "ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim" })
 
   ------------------
   -- IDE features --
