@@ -133,6 +133,7 @@ local mappings = {
   s = {
     name = "search",
     B = { ":Telescope git_branches<cr>", "git branches" },
+    b = { ":Telescope buffers<cr>", "buffers" },
     d = {
       ":Telescope diagnostics bufnr=0<cr>",
       "document_diagnostics",
