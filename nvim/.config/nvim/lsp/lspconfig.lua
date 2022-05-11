@@ -26,11 +26,13 @@ local default_opt = {
   capabilities = capabilities,
 }
 
-local server_opt = {}
+local global_settings = {
+  format_on_save = false,
+}
 
 return {
   default_opt = default_opt,
-  server_opt = server_opt,
+  server_opt = {},
   on_attach = on_attach,
-  format_on_save_enabled = true,
+  settings = global_settings,
 }
