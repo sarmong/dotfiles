@@ -176,6 +176,14 @@ local mappings = {
     ["6"] = { ":set foldlevel=6<cr>", "level6" },
   },
 
+  -- Marks
+  m = {
+    a = { require("harpoon.mark").add_file, "add mark" },
+    s = { require("harpoon.ui").toggle_quick_menu, "show marks" },
+    n = { require("harpoon.ui").nav_next, "next mark" },
+    p = { require("harpoon.ui").nav_prev, "prev mark" },
+  },
+
   -- Git
   g = {
     name = "git",
