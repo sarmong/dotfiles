@@ -115,15 +115,13 @@ local fns = {
 
   -- TODO add to the plugin
   close_all_but_current = function()
-    local state = require("bufferline.state")
-    local buffers = require("bufferline.buffers").get_components(state)
-    -- vim.pretty_print(buffers)
-    for _, buf in ipairs(buffers) do
+    for _, buf_id in ipairs(vim.api.nvim_list_bufs()) do
       if
-        vim.api.nvim_buf_is_loaded(buf.id)
-        and buf.id ~= vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_is_loaded(buf_id)
+        and vim.api.nvim_buf_get_option(buf_id, "buflisted")
+        and buf_id ~= vim.api.nvim_get_current_buf()
       then
-        vim.cmd("BufDel " .. buf.id)
+        vim.cmd("BufDel " .. buf_id)
       end
     end
   end,
