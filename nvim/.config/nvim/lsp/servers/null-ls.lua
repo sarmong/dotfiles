@@ -30,12 +30,5 @@ null_ls.setup({
   },
   on_attach = function(client, bufnr)
     configs.default_opt.on_attach(client, bufnr)
-    if
-      client.resolved_capabilities.document_formatting
-      and configs.format_on_save_enabled
-    then
-      lsp_fns.enable_format_on_save()
-    end
-    lsp_fns.disable_virtual_text()
   end,
 })

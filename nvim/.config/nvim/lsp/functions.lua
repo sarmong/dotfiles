@@ -12,14 +12,14 @@ fns.enable_format_on_save = function()
     group = vim.api.nvim_create_augroup("FormatOnSave", {}),
     callback = fns.format,
   })
-  configs.format_on_save_enabled = true
+  configs.settings.format_on_save = true
 
   print("Enabled formatting on save")
 end
 
 fns.disable_format_on_save = function()
   vim.api.nvim_del_augroup_by_name("FormatOnSave")
-  configs.format_on_save_enabled = false
+  configs.settings.format_on_save = false
 
   print("Disabled formatting on save")
 end
@@ -45,13 +45,19 @@ fns.set_loc_list = function()
 end
 
 fns.enable_virtual_text = function()
-  vim.diagnostic.config({ virtual_text = true })
-  print("Virtual text on")
+  if not vim.diagnostic.config().virtual_text then
+    vim.diagnostic.config({ virtual_text = true })
+    configs.settings.diagnostic.virtual_text = true
+    print("Virtual text on")
+  end
 end
 
 fns.disable_virtual_text = function()
-  vim.diagnostic.config({ virtual_text = false })
-  print("Virtual text off")
+  if vim.diagnostic.config().virtual_text then
+    vim.diagnostic.config({ virtual_text = false })
+    configs.settings.diagnostic.virtual_text = false
+    print("Virtual text off")
+  end
 end
 
 -- taken from https://youtu.be/tAVxxdFFYMU
