@@ -47,7 +47,6 @@ end
 fns.enable_virtual_text = function()
   if not vim.diagnostic.config().virtual_text then
     vim.diagnostic.config({ virtual_text = true })
-    configs.settings.diagnostic.virtual_text = true
     print("Virtual text on")
   end
 end
@@ -55,7 +54,6 @@ end
 fns.disable_virtual_text = function()
   if vim.diagnostic.config().virtual_text then
     vim.diagnostic.config({ virtual_text = false })
-    configs.settings.diagnostic.virtual_text = false
     print("Virtual text off")
   end
 end
