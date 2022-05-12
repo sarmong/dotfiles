@@ -6,7 +6,7 @@ local github = require("plugins.git").github
 local lsp_fns = require("lsp.functions")
 local alpha = require("plugins.alpha")
 local nvim_tree = require("plugins.nvim-tree")
-local buffer = require("plugins.barbar")
+local tabline = require("plugins.tabline")
 local spectre = require("plugins.spectre")
 local colorizer = require("plugins.colorizer")
 local true_zen = require("plugins.true_zen")
@@ -108,14 +108,14 @@ local mappings = {
     -- close
     c = {
       name = "close",
-      c = { buffer.close_all_but_current, "all but current" },
-      p = { buffer.close_all_but_pinned, "all but pinned" },
-      l = { buffer.close_all_to_the_left, "all to the left" },
-      r = { buffer.close_all_to_the_right, "all to the right" },
+      c = { tabline.close_all_but_current, "all but current" },
+      p = { tabline.close_all_but_pinned, "all but pinned" },
+      l = { tabline.close_all_to_the_left, "all to the left" },
+      r = { tabline.close_all_to_the_right, "all to the right" },
     },
     o = {
       name = "order",
-      d = { buffer.order_by_directory, "by directory" },
+      d = { tabline.order_by_directory, "by directory" },
     },
   },
 

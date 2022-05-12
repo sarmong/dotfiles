@@ -2,7 +2,7 @@ local bufferline = require("bufferline")
 
 bufferline.setup({
   options = {
-    mode = "buffers", -- set to "tabs" to only show tabpages instead
+    mode = "tabs", -- set to "tabs" to only show tabpages instead
     numbers = "ordinal", -- "none" | "ordinal" } "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string
     close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
     right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
@@ -75,24 +75,27 @@ bufferline.setup({
     separator_style = "slant", -- "slant" | "thick" | "thin" | { 'any', 'any' },
     enforce_regular_tabs = false,
     always_show_bufferline = true,
-
-    sort_by = "insert_after_current",
   },
 })
 
 local fns = {
-  next = function()
-    vim.cmd("BufferLineCycleNext")
+  next_buf = function()
+    vim.cmd("bnext")
+  end,
+  prev_buf = function()
+    vim.cmd("bnext")
   end,
 
-  prev = function()
+  next_tab = function()
+    vim.cmd("BufferLineCycleNext")
+  end,
+  prev_tab = function()
     vim.cmd("BufferLineCyclePrev")
   end,
 
   move_next = function()
     vim.cmd("BufferLineMoveNext")
   end,
-
   move_prev = function()
     vim.cmd("BufferLineMovePrev")
   end,
@@ -143,8 +146,8 @@ local fns = {
   end,
 }
 
-vim.keymap.set("n", "<TAB>", fns.next, { noremap = true, silent = true })
-vim.keymap.set("n", "<S-TAB>", fns.prev, { noremap = true, silent = true })
+vim.keymap.set("n", "<TAB>", fns.next_tab, { noremap = true, silent = true })
+vim.keymap.set("n", "<S-TAB>", fns.prev_tab, { noremap = true, silent = true })
 vim.keymap.set("n", "<A-,>", fns.move_prev, { noremap = true, silent = true })
 vim.keymap.set("n", "<A-.>", fns.move_next, { noremap = true, silent = true })
 vim.keymap.set("n", "<A-p>", fns.pin, { noremap = true, silent = true })
