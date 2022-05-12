@@ -102,10 +102,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   nested = true,
   callback = function()
     if
-      vim.fn.winnr("$") == 1
-      and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr()
+      #vim.api.nvim_list_wins() == 1
+      and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil
     then
-      vim.api.nvim_command(":silent qa!")
+      vim.cmd("quit")
     end
   end,
 })
