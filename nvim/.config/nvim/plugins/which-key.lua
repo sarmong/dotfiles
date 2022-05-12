@@ -105,6 +105,8 @@ local mappings = {
   -- Buffer
   b = {
     name = "buffer",
+    n = { tabline.next_buf, "next buffer" },
+    p = { tabline.prev_buf, "prev buffer" },
     -- close
     c = {
       name = "close",
