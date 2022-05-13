@@ -12,6 +12,51 @@ require("nvim-treesitter.configs").setup({
     additional_vim_regex_highlighting = { "markdown" },
   },
 
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+      },
+      -- @TODO doesn't word, consider custom
+      --swap = {
+      --     enable = true,
+      --     swap_next = { ['<leader>ts'] = '@swappable' },
+      --     swap_previous = { ['<leader>tS'] = '@swappable' }
+      -- }
+      -- затем надо добавить capture group'у в textobjects.scm, открываешь нужный файлтайп, делаешь :TSEditQueryUserAfter textobjects и пишешь query, например для lua у меня вот такое:
+      -- (field) @swappable
+      -- (arguments (_) @swappable)
+      -- swap = {
+      --   enable = true,
+      --   swap_next = {
+      --     ["]m"] = "@parameter.inner",
+      --   },
+      --   swap_previous = {
+      --     ["[m"] = "@parameter.inner",
+      --   },
+      -- },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          ["]m"] = "@function.outer",
+        },
+        goto_next_end = {
+          ["]M"] = "@function.outer",
+        },
+        goto_previous_start = {
+          ["[m"] = "@function.outer",
+        },
+        goto_previous_end = {
+          ["[M"] = "@function.outer",
+        },
+      },
+    },
+  },
+
   autotag = { enable = true },
   rainbow = {
     enable = true,

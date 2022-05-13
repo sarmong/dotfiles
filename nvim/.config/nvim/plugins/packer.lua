@@ -175,6 +175,7 @@ packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter-refactor",
     commit = commits.ts_refactor,
   })
+  use({ "nvim-treesitter/nvim-treesitter-textobjects" })
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
 
   -- Completion --
