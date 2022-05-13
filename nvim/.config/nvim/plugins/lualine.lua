@@ -88,7 +88,21 @@ require("lualine").setup({
   },
   -- in inactive tab
   inactive_sections = {
-    lualine_a = {},
+    lualine_a = {
+      {
+        "filename",
+        file_status = true, -- Displays file status (readonly status, modified status)
+        path = 1,
+        shorting_target = 0, -- Shortens path to leave 40 spaces in the window for other components
+        symbols = {
+          modified = "[+]", -- Text to show when the file is modified.
+          readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+          unnamed = "[No Name]", -- Text to show for unnamed buffers.
+        },
+      },
+    },
+    lualine_b = {},
+    lualine_c = {},
   },
   tabline = {},
   extensions = {},
