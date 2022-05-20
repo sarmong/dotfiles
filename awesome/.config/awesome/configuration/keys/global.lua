@@ -118,10 +118,7 @@ local globalKeys = awful.util.table.join(
       _G.client.focus:raise()
     end
   end, { description = "Switch to previous window", group = "client" }),
-  -- Go to next/prev screen
-  awful.key({ modkey, "Control" }, "e", function()
-    awful.screen.focus_relative(1)
-  end),
+
   -- Programms
   awful.key({}, "Print", function()
     awful.util.spawn_with_shell(apps.default.screenshot)
@@ -244,8 +241,13 @@ local globalKeys = awful.util.table.join(
   end, { description = "3 - Next track", group = "hotkeys" }),
 
   -- Screen management
+  -- Go to next/prev screen
+  awful.key({ modkey }, "o", function()
+    awful.screen.focus_relative(1)
+  end, { description = "Focus another screen" }),
+
   awful.key(
-    { modkey },
+    { modkey, "Shift" },
     "o",
     awful.client.movetoscreen,
     { description = "move window to next screen", group = "client" }
