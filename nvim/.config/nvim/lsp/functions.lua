@@ -8,20 +8,24 @@ fns.format = function()
 end
 
 fns.enable_format_on_save = function()
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("FormatOnSave", {}),
-    callback = fns.format,
-  })
-  configs.settings.format_on_save = true
+  if not configs.settings.format_on_save then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("FormatOnSave", {}),
+      callback = fns.format,
+    })
+    configs.settings.format_on_save = true
 
-  print("Enabled formatting on save")
+    print("Enabled formatting on save")
+  end
 end
 
 fns.disable_format_on_save = function()
-  vim.api.nvim_del_augroup_by_name("FormatOnSave")
-  configs.settings.format_on_save = false
+  if configs.settings.format_on_save then
+    vim.api.nvim_del_augroup_by_name("FormatOnSave")
+    configs.settings.format_on_save = false
 
-  print("Disabled formatting on save")
+    print("Disabled formatting on save")
+  end
 end
 
 fns.go_to_type_definition = function()
