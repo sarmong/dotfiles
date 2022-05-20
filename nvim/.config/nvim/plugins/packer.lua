@@ -5,7 +5,7 @@ local commits = {
   packer = "4dedd3b08f8c6e3f84afbce0c23b66320cd2a8f2",
   autopairs = "06535b1f1aefc98df464d180efa693bb696736c4",
   barbar = "be65945626fb6bf6058cae61d5176d156f923c11",
-  nvim_tree = "0f0f858348aacc94f98ba32880760c5a5440b825",
+  nvim_tree = "9563a11ce0c0f9f6534d241c1e3a89ae96226af1",
   which_key = "a3c19ec5754debb7bf38a8404e36a9287b282430",
   toggleterm = "e62008fe5879eaecb105eb81e393f87d4607164c",
   wordmotion = "02e32fcb062553a8293992411677e12cacccb09d",
@@ -91,10 +91,9 @@ packer.startup(function(use)
     requires = "kyazdani42/nvim-web-devicons",
   })
   use({
-    "sarmong/nvim-tree.lua",
+    "kyazdani42/nvim-tree.lua",
     requires = { "kyazdani42/nvim-web-devicons" },
-    branch = "reload-explorer",
-    -- commit = commits.nvim_tree,
+    commit = commits.nvim_tree,
   })
   use({ "ojroques/nvim-bufdel" })
   use({
