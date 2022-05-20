@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# shellcheck disable=1007
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+
 existing_files=".bash_logout .bashrc .bash_profile"
 
 for file in ${existing_files}; do
@@ -30,3 +33,5 @@ for dir in ${dirs}; do
 
   cd "$currentdir" || exit 1
 done
+
+cp "$script_dir"/npm/.config/npm/npmrc-template "$script_dir"/npm/.config/npm/npmrc
