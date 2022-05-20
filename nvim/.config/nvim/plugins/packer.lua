@@ -96,6 +96,7 @@ packer.startup(function(use)
     branch = "reload-explorer",
     -- commit = commits.nvim_tree,
   })
+  use({ "ojroques/nvim-bufdel" })
   use({
     "akinsho/toggleterm.nvim",
     commit = commits.toggleterm,
