@@ -79,6 +79,8 @@ nvim_tree.setup({
     enable = true,
   },
   view = {
+    side = "right",
+    width = 50,
     mappings = {
       list = keymappings,
     },
