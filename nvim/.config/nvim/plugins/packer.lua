@@ -201,6 +201,7 @@ packer.startup(function(use)
   use({ "AlphaTechnolog/onedarker.nvim" })
   use({ "navarasu/onedark.nvim" })
   use({ "folke/tokyonight.nvim" })
+  use({ "ellisonleao/gruvbox.nvim" })
   -- use("christianchiarulli/nvcode-color-schemes.vim")
 
   use("Pocco81/TrueZen.nvim")
