@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local colorscheme = require("settings.colorscheme")
 local terminals = require("plugins.toggleterm")
 local git = require("plugins.git").git
 local gitsigns = require("plugins.git").gitsigns
@@ -100,6 +101,7 @@ local mappings = {
     r = { ":set norelativenumber!<cr>", "relative line nums" },
     v = { ":Codi<cr>", "virtual repl on" },
     V = { ":Codi!<cr>", "virtual repl off" },
+    b = { colorscheme.toggle_background, "toggle background" },
   },
 
   -- Buffer
