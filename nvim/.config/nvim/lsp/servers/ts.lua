@@ -8,8 +8,8 @@ configs.server_opt["tsserver"] = {
   on_attach = function(client, bufnr)
     configs.default_opt.on_attach(client, bufnr)
 
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
   end,
 
   single_file_support = true,
