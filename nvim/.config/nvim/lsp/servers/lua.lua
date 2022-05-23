@@ -17,8 +17,8 @@ configs.server_opt["sumneko_lua"] = {
   on_attach = function(client, bufnr)
     configs.default_opt.on_attach(client, bufnr)
 
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end,
 
   settings = {

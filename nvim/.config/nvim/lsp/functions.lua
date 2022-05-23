@@ -3,7 +3,7 @@ local configs = require("lsp.lspconfig")
 local fns = {}
 
 fns.format = function()
-  vim.lsp.buf.formatting_sync(nil, 1000)
+  vim.lsp.buf.format()
   print("Formatted")
 end
 
