@@ -2,7 +2,38 @@ local parsers = require("nvim-treesitter.parsers")
 local parser_configs = parsers.get_parser_configs()
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = "all", --  "all" or a list of languages
+  ensure_installed = { --  "all" or a list of languages
+    "bash",
+    "c",
+    "comment",
+    "css",
+    "dockerfile",
+    "help",
+    "html",
+    "http",
+    "java",
+    "javascript",
+    "jsdoc",
+    "json",
+    "json5",
+    "jsonc",
+    "latex",
+    "lua",
+    "make",
+    "markdown",
+    -- "proto",
+    "python",
+    "query",
+    "rasi",
+    "regex",
+    "rust",
+    "scss",
+    "toml",
+    "tsx",
+    "typescript",
+    "vim",
+    "yaml",
+  },
   highlight = {
     enable = true, -- false will disable the whole extension
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -102,14 +133,6 @@ vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 -- disabled by default
 vim.o.foldenable = false
-
-parser_configs.markdown = {
-  install_info = {
-    url = "https://github.com/MDeiml/tree-sitter-markdown",
-    files = { "src/parser.c", "src/scanner.cc" },
-  },
-  filetype = "markdown",
-}
 
 -- Use bash treesitter for zsh filetypes
 local ft_to_lang = parsers.ft_to_lang
