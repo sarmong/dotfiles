@@ -81,6 +81,7 @@ packer.startup(function(use)
     end,
   })
   use({ "ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim" })
+  use("azabiong/vim-highlighter")
 
   ------------------
   -- IDE features --
