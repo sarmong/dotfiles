@@ -41,7 +41,7 @@ map("i", "<C-j>", "<C-\\><C-N><C-w>j")
 map("i", "<C-k>", "<C-\\><C-N><C-w>k")
 
 -- Tab navigation
-map("n", "tt", ":tabnew<CR>")
+map("n", "tt", ":tabnew %<CR>")
 map("n", "tn", ":tabnext<CR>")
 map("n", "tp", ":tabprevious<CR>")
 map("n", "td", ":tabclose<CR>")
