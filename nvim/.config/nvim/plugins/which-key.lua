@@ -182,7 +182,17 @@ local mappings = {
 
   -- Marks
   m = {
-    a = { require("harpoon.mark").add_file, "add mark" },
+    a = {
+      function()
+        print(
+          "Added "
+            .. string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd(), "")
+            .. " to the harpoon"
+        )
+        require("harpoon.mark").add_file()
+      end,
+      "add mark",
+    },
     s = { require("harpoon.ui").toggle_quick_menu, "show marks" },
     n = { require("harpoon.ui").nav_next, "next mark" },
     p = { require("harpoon.ui").nav_prev, "prev mark" },
