@@ -107,7 +107,7 @@ function exit_screen_hide()
   exit_screen.visible = false
 end
 
-function exit_screen_show()
+local function exit_screen_show()
   -- naughty.notify({text = "starting the keygrabber"})
   exit_screen_grabber = awful.keygrabber.run(function(_, key, event)
     if event == "release" then
@@ -168,3 +168,5 @@ exit_screen:setup({
   expand = "none",
   layout = wibox.layout.align.vertical,
 })
+
+return exit_screen_show
