@@ -11,7 +11,7 @@ local dpi = require("beautiful").xresources.apply_dpi
 local icons = require("theme.icons")
 local battery_widget = require("widget.battery")
 
--- Titus - Horizontal Tray
+-- Horizontal Tray
 local systray = wibox.widget.systray()
 systray:set_horizontal(true)
 systray:set_base_size(20)
