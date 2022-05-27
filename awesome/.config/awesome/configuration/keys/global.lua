@@ -7,6 +7,8 @@ local modkey = require("configuration.keys.mod").modKey
 local altkey = require("configuration.keys.mod").altKey
 local apps = require("configuration.apps")
 local exit_screen_show = require("module.exit-screen")
+local tags = require("configuration.tags")
+
 -- Key bindings
 local globalKeys = awful.util.table.join(
   -- Hotkeys
@@ -284,10 +286,12 @@ local globalKeys = awful.util.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+--
+for ordinal_index, current_tag in ipairs(tags) do
+  local index = current_tag.index
   -- Hack to only show tags 1 and 9 in the shortcut window (mod+s)
   local descr_view, descr_toggle, descr_move, descr_toggle_focus
-  if i == 1 or i == 9 then
+  if index == 1 or index == 9 then
     descr_view = { description = "view tag #", group = "tag" }
     descr_toggle = { description = "toggle tag #", group = "tag" }
     descr_move = { description = "move focused client to tag #", group = "tag" }
@@ -299,34 +303,34 @@ for i = 1, 9 do
   globalKeys = awful.util.table.join(
     globalKeys,
     -- View tag only.
-    awful.key({ modkey }, "#" .. i + 9, function()
+    awful.key({ modkey }, "#" .. index + 9, function()
       local screen = awful.screen.focused()
-      local tag = screen.tags[i]
+      local tag = screen.tags[ordinal_index]
       if tag then
         tag:view_only()
       end
     end, descr_view),
     -- Toggle tag display.
-    awful.key({ modkey, "Control" }, "#" .. i + 9, function()
+    awful.key({ modkey, "Control" }, "#" .. index + 9, function()
       local screen = awful.screen.focused()
-      local tag = screen.tags[i]
+      local tag = screen.tags[index]
       if tag then
         awful.tag.viewtoggle(tag)
       end
     end, descr_toggle),
     -- Move client to tag.
-    awful.key({ modkey, "Shift" }, "#" .. i + 9, function()
+    awful.key({ modkey, "Shift" }, "#" .. index + 9, function()
       if _G.client.focus then
-        local tag = _G.client.focus.screen.tags[i]
+        local tag = _G.client.focus.screen.tags[index]
         if tag then
           _G.client.focus:move_to_tag(tag)
         end
       end
     end, descr_move),
     -- Toggle tag on focused client.
-    awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
+    awful.key({ modkey, "Control", "Shift" }, "#" .. index + 9, function()
       if _G.client.focus then
-        local tag = _G.client.focus.screen.tags[i]
+        local tag = _G.client.focus.screen.tags[index]
         if tag then
           _G.client.focus:toggle_tag(tag)
         end

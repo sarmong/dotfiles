@@ -9,42 +9,42 @@ local tags = {
     type = "chrome",
     defaultApp = apps.default.browser,
     screen = 1,
+    index = 1,
   },
   {
     icon = icons.code,
     type = "code",
     defaultApp = apps.default.editor,
     screen = 1,
+    index = 2,
   },
   {
     icon = icons.code,
     type = "code2code2",
     defaultApp = apps.default.editor,
     screen = 1,
+    index = 3,
   },
   {
     icon = icons.folder,
     type = "files",
     defaultApp = apps.default.files,
     screen = 1,
+    index = 8,
   },
   {
     icon = icons.social,
     type = "social",
     defaultApp = apps.default.social,
     screen = 1,
+    index = 9,
   },
   {
     icon = icons.music,
     type = "music",
     defaultApp = apps.default.music,
     screen = 1,
-  },
-  {
-    icon = icons.lab,
-    type = "any",
-    defaultApp = apps.default.rofi,
-    screen = 1,
+    index = 10,
   },
 }
 
@@ -77,3 +77,5 @@ _G.tag.connect_signal("property::layout", function(t)
     t.gap = 4
   end
 end)
+
+return tags
