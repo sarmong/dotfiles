@@ -21,7 +21,7 @@ systray.forced_height = 20
 -- local textclock = wibox.widget.textclock('<span font="Roboto Mono bold 9">%d.%m.%Y\n     %H:%M</span>')
 -- Clock / Calendar 12AM/PM fornat
 local textclock = wibox.widget.textclock(
-  '<span font="Roboto Mono 12">%I:%M %p</span>'
+  '<span font="Roboto Mono 12">%H:%M %a %e %b</span>'
 )
 -- textclock.forced_height = 36
 
