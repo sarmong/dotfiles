@@ -6,6 +6,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local modkey = require("configuration.keys.mod").modKey
 local altkey = require("configuration.keys.mod").altKey
 local apps = require("configuration.apps")
+local exit_screen_show = require("module.exit-screen")
 -- Key bindings
 local globalKeys = awful.util.table.join(
   -- Hotkeys
@@ -96,7 +97,7 @@ local globalKeys = awful.util.table.join(
     awful.spawn("copyq menu")
   end, { description = "Open clipboard menu", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "e", function()
-    _G.exit_screen_show()
+    exit_screen_show()
   end, { description = "Log Out Screen", group = "awesome" }),
   awful.key(
     { modkey },
@@ -123,7 +124,7 @@ local globalKeys = awful.util.table.join(
   awful.key({}, "Print", function()
     awful.util.spawn_with_shell(apps.default.screenshot)
   end, {
-    description = "Mark an area and screenshot it 10 seconds later (clipboard)",
+    description = "Open screenshot utility",
     group = "screenshots (clipboard)",
   }),
 

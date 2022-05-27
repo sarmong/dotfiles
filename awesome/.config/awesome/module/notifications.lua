@@ -1,5 +1,4 @@
 local naughty = require("naughty")
-local beautiful = require("beautiful")
 local gears = require("gears")
 local dpi = require("beautiful").xresources.apply_dpi
 
@@ -29,26 +28,17 @@ if _G.awesome.startup_errors then
   })
 end
 
-do
-  local in_error = false
-  _G.awesome.connect_signal("debug::error", function(err)
-    if in_error then
-      return
-    end
-    in_error = true
+local in_error = false
+_G.awesome.connect_signal("debug::error", function(err)
+  if in_error then
+    return
+  end
+  in_error = true
 
-    naughty.notify({
-      preset = naughty.config.presets.critical,
-      title = "Oops, an error happened!",
-      text = tostring(err),
-    })
-    in_error = false
-  end)
-end
-
-function log_this(title, txt)
   naughty.notify({
-    title = "log: " .. title,
-    text = txt,
+    preset = naughty.config.presets.critical,
+    title = "Oops, an error happened!",
+    text = tostring(err),
   })
-end
+  in_error = false
+end)
