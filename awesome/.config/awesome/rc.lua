@@ -1,4 +1,6 @@
+local awful = require("awful")
 local beautiful = require("beautiful")
+
 beautiful.init(require("theme"))
 
 require("utils.log")
@@ -13,4 +15,4 @@ require("module.quake-terminal")
 require("configuration.client")
 require("configuration.tags")
 
-_G.root.keys(require("configuration.keys.global"))
+require("configuration.keys")
