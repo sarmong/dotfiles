@@ -135,6 +135,7 @@ pacinst pandoc
 pacinst flameshot
 pacinst scrot
 pacinst mpv
+yayinst mpvc-git
 
 pacinst alacritty
 
