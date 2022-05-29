@@ -167,6 +167,7 @@ packer.startup(function(use)
     commit = commits.treesitter,
   })
   use({ "p00f/nvim-ts-rainbow", commit = commits.ts_rainbow }) -- rainbow parantheses
+  use({ "nvim-treesitter/nvim-treesitter-context" })
   use({
     "JoosepAlviste/nvim-ts-context-commentstring",
     commit = commits.ts_commentstring,

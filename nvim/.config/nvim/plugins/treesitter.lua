@@ -142,3 +142,22 @@ parsers.ft_to_lang = function(ft)
   end
   return ft_to_lang(ft)
 end
+
+require("treesitter-context").setup({
+  enable = true,
+  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+  patterns = {
+    default = {
+      "class",
+      "function",
+      "method",
+      "for",
+      "if",
+      "switch",
+    },
+  },
+  -- [!] The options below are exposed but shouldn't require your attention,
+  --     you can safely ignore them.
+
+  zindex = 20, -- The Z-index of the context window
+})
