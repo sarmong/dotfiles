@@ -6,6 +6,7 @@ lsp_install("sumneko_lua")
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
+table.insert(runtime_path, "?/init.lua")
 
 local library = vim.api.nvim_get_runtime_file("", true)
 table.insert(library, "/usr/share/nvim/runtime/lua")
