@@ -192,7 +192,7 @@ local globalKeys = {
     modifiers = { modkey, "Control" },
     key = "c",
     on_press = function()
-      awful.spawn("copyq menu")
+      awful.spawn.with_shell("CM_LAUNCHER=rofi clipmenu")
     end,
     description = "Open clipboard menu",
     group = "awesome",
