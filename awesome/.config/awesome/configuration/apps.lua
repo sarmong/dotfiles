@@ -41,7 +41,7 @@ return {
     -- Applications
     "nextcloud",
     "touchegg",
-    "copyq",
+    "clipmenud",
     "redshift",
     "safeeyes",
 
