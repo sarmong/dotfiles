@@ -125,7 +125,7 @@ pacinst rofi
 pacinst rofi-calc
 pacinst libqalculate # needed for rofi-calc. Brew has newer version
 
-pacinst copyq
+pacinst clipmenu
 
 yayinst touchegg
 
