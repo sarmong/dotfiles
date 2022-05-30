@@ -1,6 +1,6 @@
 local spawn = require("awful.spawn")
 local awful = require("awful")
-local app = require("configuration.apps").default.quake
+local app = "alacritty"
 
 local quake_id = "notnil"
 local quake_client
