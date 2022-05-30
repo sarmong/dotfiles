@@ -1,15 +1,15 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
-local TaskList = require("widget.task-list")
-local TagList = require("widget.tag-list")
+local TaskList = require("widgets.task-list")
+local TagList = require("widgets.tag-list")
 local gears = require("gears")
-local clickable_container = require("widget.material.clickable-container")
-local mat_icon_button = require("widget.material.icon-button")
-local mat_icon = require("widget.material.icon")
+local clickable_container = require("lib.material.clickable-container")
+local mat_icon_button = require("lib.material.icon-button")
+local mat_icon = require("lib.material.icon")
 local dpi = require("beautiful").xresources.apply_dpi
 local icons = require("theme.icons")
-local battery_widget = require("widget.battery")
+local battery_widget = require("lib.battery")
 
 -- Horizontal Tray
 local systray = wibox.widget.systray()
@@ -70,7 +70,7 @@ local LayoutBox = function(s)
   return layoutBox
 end
 
-local TopPanel = function(s)
+local top_panel = function(s)
   local panel = awful.wibar({
     position = "top",
     screen = s,
@@ -112,4 +112,6 @@ local TopPanel = function(s)
   return panel
 end
 
-return TopPanel
+awful.screen.connect_for_each_screen(function(s)
+  s.top_panel = top_panel(s)
+end)

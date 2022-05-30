@@ -4,8 +4,9 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local icons = require("theme.icons")
 local clickable_container = require("widget.material.clickable-container")
-local apps = require("configuration.apps")
 local dpi = require("beautiful").xresources.apply_dpi
+
+local lock_app = "i3lock-fancy"
 
 -- Appearance
 local icon_size = beautiful.exit_screen_icon_size or dpi(140)
@@ -39,14 +40,14 @@ end
 
 function suspend_command()
   exit_screen_hide()
-  awful.spawn.with_shell(apps.default.lock .. " & systemctl suspend")
+  awful.spawn.with_shell(lock_app .. " & systemctl suspend")
 end
 function exit_command()
   _G.awesome.quit()
 end
 function lock_command()
   exit_screen_hide()
-  awful.spawn.with_shell("sleep 1 && " .. apps.default.lock)
+  awful.spawn.with_shell("sleep 1 && " .. lock_app)
 end
 function poweroff_command()
   awful.spawn.with_shell("poweroff")
