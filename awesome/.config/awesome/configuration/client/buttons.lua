@@ -2,7 +2,7 @@ local awful = require("awful")
 
 local modkey = require("configuration.keys.mod").modKey
 
-return awful.util.table.join(
+local mousebindings = awful.util.table.join(
   awful.button({}, 1, function(c)
     _G.client.focus = c
     c:raise()
@@ -17,3 +17,5 @@ return awful.util.table.join(
     awful.layout.inc(-1)
   end)
 )
+
+awful.mouse.append_client_mousebindings(mousebindings)
