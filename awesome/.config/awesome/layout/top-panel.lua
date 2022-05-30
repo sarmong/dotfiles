@@ -71,8 +71,8 @@ local LayoutBox = function(s)
 end
 
 local TopPanel = function(s)
-  local panel = wibox({
-    ontop = true,
+  local panel = awful.wibar({
+    position = "top",
     screen = s,
     height = dpi(32),
     width = s.geometry.width,
@@ -81,9 +81,6 @@ local TopPanel = function(s)
     stretch = false,
     bg = beautiful.background.hue_800,
     fg = beautiful.fg_normal,
-    struts = {
-      top = dpi(32),
-    },
   })
 
   panel:struts({
