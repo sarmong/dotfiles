@@ -3,7 +3,7 @@ local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local icons = require("theme.icons")
-local clickable_container = require("widget.material.clickable-container")
+local clickable_container = require("lib.material.clickable-container")
 local dpi = require("beautiful").xresources.apply_dpi
 
 local lock_app = "i3lock-fancy"

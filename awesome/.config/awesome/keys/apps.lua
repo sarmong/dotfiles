@@ -2,6 +2,7 @@ local awful = require("awful")
 
 local super = require("keys.mod").super
 local alt = require("keys.mod").alt
+local exit_screen_show = require("modules.exit-screen")
 
 local group_name = "apps"
 
