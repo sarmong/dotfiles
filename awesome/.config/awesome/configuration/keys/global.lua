@@ -286,7 +286,7 @@ local globalKeys = {
     group = "awesome",
   }),
   awful.key({
-    modifiers = { modkey, "Control" },
+    modifiers = { modkey, "Shift", "Control" },
     key = "q",
     on_press = _G.awesome.quit,
     description = "quit awesome",
