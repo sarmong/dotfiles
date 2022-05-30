@@ -113,7 +113,7 @@ aptinst trash-cli
 aptinst stow
 pacinst rofi
 pacinst rofi-calc
-aptinst copyq
+aptinst clipmenu
 aptinst suckless-tools
 aptinst mlocate && sudo updatedb
 
