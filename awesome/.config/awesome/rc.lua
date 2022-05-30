@@ -11,7 +11,7 @@ require("module.notifications")
 require("module.auto-start")
 require("module.quake-terminal")
 
--- Setup all configurations
+require("configuration")
 require("configuration.client")
 require("configuration.tags")
 
