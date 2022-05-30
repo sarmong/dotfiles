@@ -1,48 +1,40 @@
 local awful = require("awful")
-local gears = require("gears")
 local icons = require("theme.icons")
-local apps = require("configuration.apps")
 
 local tags = {
   {
     icon = icons.chrome,
     type = "chrome",
-    defaultApp = apps.default.browser,
     screen = 1,
     index = 1,
   },
   {
     icon = icons.code,
     type = "code",
-    defaultApp = apps.default.editor,
     screen = 1,
     index = 2,
   },
   {
     icon = icons.code,
     type = "code2code2",
-    defaultApp = apps.default.editor,
     screen = 1,
     index = 3,
   },
   {
     icon = icons.folder,
     type = "files",
-    defaultApp = apps.default.files,
     screen = 1,
     index = 8,
   },
   {
     icon = icons.social,
     type = "social",
-    defaultApp = apps.default.social,
     screen = 1,
     index = 9,
   },
   {
     icon = icons.music,
     type = "music",
-    defaultApp = apps.default.music,
     screen = 1,
     index = 10,
   },
