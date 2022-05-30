@@ -2,6 +2,7 @@ local awful = require("awful")
 require("awful.autofocus")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
+local revelation = require("lib.revelation")
 
 local modkey = require("configuration.keys.mod").modKey
 local altkey = require("configuration.keys.mod").altKey
@@ -205,6 +206,13 @@ local globalKeys = {
     end,
     description = "Log Out Screen",
     group = "awesome",
+  }),
+
+  awful.key({
+    modifiers = { modkey },
+    key = "r",
+    on_press = revelation,
+    description = "open revelation",
   }),
   awful.key({
     modifiers = { modkey },
