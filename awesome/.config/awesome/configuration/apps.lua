@@ -41,7 +41,7 @@ return {
     -- Applications
     "nextcloud",
     "touchegg",
-    "clipmenud",
+    "CM_SELECTIONS='clipboard' clipmenud",
     "redshift",
     "safeeyes",
 
