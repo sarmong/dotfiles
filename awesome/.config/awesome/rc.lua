@@ -3,7 +3,7 @@ local beautiful = require("beautiful")
 
 beautiful.init(require("theme"))
 
-require("utils.log")
+require("utils")
 
 require("layout")
 
