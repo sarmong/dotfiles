@@ -74,4 +74,4 @@ local clientKeys = awful.util.table.join(
   })
 )
 
-return clientKeys
+awful.keyboard.append_client_keybindings(clientKeys)
