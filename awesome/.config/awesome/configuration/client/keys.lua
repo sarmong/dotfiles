@@ -27,7 +27,7 @@ local clientKeys = awful.util.table.join(
   }),
   awful.key({
     modifiers = { modkey, "Shift" },
-    keys = "f",
+    key = "f",
     description = "toggle fullscreen",
     group = "client",
     on_press = function(c)
