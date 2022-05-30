@@ -18,27 +18,3 @@ naughty.config.defaults.shape = gears.shape.rounded_rect
 naughty.config.defaults.border_width = 0
 naughty.config.defaults.hover_timeout = nil
 naughty.config.defaults.max_width = 500
-
--- Error handling
-if _G.awesome.startup_errors then
-  naughty.notify({
-    preset = naughty.config.presets.critical,
-    title = "Oops, there were errors during startup!",
-    text = _G.awesome.startup_errors,
-  })
-end
-
-local in_error = false
-_G.awesome.connect_signal("debug::error", function(err)
-  if in_error then
-    return
-  end
-  in_error = true
-
-  naughty.notify({
-    preset = naughty.config.presets.critical,
-    title = "Oops, an error happened!",
-    text = tostring(err),
-  })
-  in_error = false
-end)
