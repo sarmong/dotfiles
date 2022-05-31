@@ -13,7 +13,7 @@ done
 
 Darwin="bash git nvim lf scripts vim alacritty newsboat archive/macos/skhd archive/macos/spacebar archive/macos/yabai"
 
-Linux="zsh git nvim lf scripts vim alacritty newsboat bottom npm awesome rofi touchegg picom mpv xorg udiskie"
+Linux="bash zsh git nvim lf scripts vim alacritty newsboat bottom npm awesome rofi touchegg picom mpv xorg udiskie"
 
 currentdir=$(pwd)
 

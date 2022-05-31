@@ -1,4 +1,4 @@
 
 export ZDOTDIR="$HOME"/.config/zsh
 
-[ -f "$HOME/.config/zsh/.zshrc" ] && . "$HOME/.config/zsh/.zshrc"
+[ -f "$HOME/.config/zsh/zsh-exports" ] && . "$HOME/.config/zsh/zsh-exports"
