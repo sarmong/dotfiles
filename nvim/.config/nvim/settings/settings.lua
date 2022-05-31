@@ -65,3 +65,79 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.rasi",
   command = "set syntax=css",
 })
+
+local script = "~/docs/projects/telescope-media-files.nvim/scripts/vimg"
+
+local augroup = vim.api.nvim_create_augroup("ImagePreview", {})
+
+vim.api.nvim_create_autocmd("BufHidden", {
+  group = augroup,
+  pattern = "*",
+  callback = function()
+    print("hiding")
+    vim.fn.system(
+      '[ -n "$UEBERZUG_FIFO" ] && printf \'{"action": "remove", "identifier": "preview"}\n\' >"$UEBERZUG_FIFO"'
+    )
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup,
+  pattern = "*.png",
+  callback = function()
+    local file_path = vim.fn.expand("%:p")
+    local file_name = vim.fn.expand("%:t")
+    local win_num = vim.api.nvim_get_current_win()
+    local win_width = vim.api.nvim_win_get_width(win_num)
+    local win_height = vim.api.nvim_win_get_height(win_num)
+    local img_width = tonumber(
+      vim.fn.system(
+        "file " .. file_path .. " | awk -F ', ' '{print $2}' | cut -d' ' -f1",
+        true
+      )
+    )
+
+    local img_height = tonumber(
+      vim.fn.system(
+        "file " .. file_path .. " | awk -F ', ' '{print $2}' | cut -d' ' -f3"
+      )
+    )
+
+    local final_width = win_width
+    local final_height = win_height
+
+    local original_ratio = img_width / img_height
+    local designer_ratio = win_width / win_height
+
+    if original_ratio > designer_ratio then
+      final_height = math.floor(win_width / original_ratio)
+      final_width = math.floor(original_ratio * final_height)
+    else
+      final_width = math.floor(win_height * original_ratio)
+      final_height = math.floor(final_width / original_ratio)
+    end
+
+    local offset_x = math.floor((win_width / 2) - (final_width / 2))
+    local offset_y = math.floor((win_height / 2) - (final_height / 2)) + 1
+
+    vim.wo.signcolumn = "no"
+    vim.wo.number = false
+    vim.wo.relativenumber = false
+    vim.wo.winbar = file_name
+
+    vim.fn.termopen(
+      script
+        .. " "
+        .. file_path
+        .. " "
+        .. offset_x
+        .. " "
+        .. offset_y
+        .. " "
+        .. final_width
+        .. " "
+        .. final_height
+    )
+  end,
+})
+-- >/tmp/tmp.KskWemTeHCvimg-172335-ueberzug declare -Ap cmd([action]="remove" [identifier]="preview")
