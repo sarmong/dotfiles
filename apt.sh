@@ -95,6 +95,7 @@ aptinst lxpolkit
 pacinst awesome-git
 aptinst i3lock-fancy
 aptinst arandr
+sudo pip install autorandr
 aptinst lxappearance
 aptinst xfce4-power-manager
 aptinst network-manager-gnome network-manager-openvpn-gnome
