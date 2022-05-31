@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -z $BASHRC_LOADED ]; then
-  source "$HOME/.bashrc"
+if [ -f "$HOME"/.config/bash/bash-exports ]; then
+  . "$HOME"/.config/bash/bash-exports
 fi
