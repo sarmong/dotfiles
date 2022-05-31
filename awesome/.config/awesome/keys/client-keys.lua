@@ -104,12 +104,11 @@ local global_keys = {
   }),
 
   -- Focus clients
-  -- @TODO consider using global_bydirection to focus across screens
   awful.key({
     modifiers = { super },
     key = "h",
     on_press = function()
-      awful.client.focus.bydirection("left")
+      awful.client.focus.global_bydirection("left")
     end,
     description = "Focus client to the left",
     group = "client",
@@ -118,7 +117,7 @@ local global_keys = {
     modifiers = { super },
     key = "j",
     on_press = function()
-      awful.client.focus.bydirection("down")
+      awful.client.focus.global_bydirection("down")
     end,
     description = "Focus client below",
     group = "client",
@@ -127,7 +126,7 @@ local global_keys = {
     modifiers = { super },
     key = "k",
     on_press = function()
-      awful.client.focus.bydirection("up")
+      awful.client.focus.global_bydirection("up")
     end,
     description = "Focus client above",
     group = "client",
@@ -136,19 +135,18 @@ local global_keys = {
     modifiers = { super },
     key = "l",
     on_press = function()
-      awful.client.focus.bydirection("right")
+      awful.client.focus.global_bydirection("right")
     end,
     description = "Focus client to the right",
     group = "client",
   }),
 
   -- Swap clients
-  -- @TODO consider using global_bydirection to swap across screens
   awful.key({
     modifiers = { super, "Shift" },
     key = "h",
     on_press = function()
-      awful.client.swap.bydirection("left")
+      awful.client.swap.global_bydirection("left")
     end,
     description = "Swap with client to the left",
     group = "client",
@@ -157,7 +155,7 @@ local global_keys = {
     modifiers = { super, "Shift" },
     key = "j",
     on_press = function()
-      awful.client.swap.bydirection("down")
+      awful.client.swap.global_bydirection("down")
     end,
     description = "Swap with client below",
     group = "client",
@@ -166,7 +164,7 @@ local global_keys = {
     modifiers = { super, "Shift" },
     key = "k",
     on_press = function()
-      awful.client.swap.bydirection("up")
+      awful.client.swap.global_bydirection("up")
     end,
     description = "Swap with client above",
     group = "client",
@@ -175,7 +173,7 @@ local global_keys = {
     modifiers = { super, "Shift" },
     key = "l",
     on_press = function()
-      awful.client.swap.bydirection("right")
+      awful.client.swap.global_bydirection("right")
     end,
     description = "Swap with client to the right",
     group = "client",
