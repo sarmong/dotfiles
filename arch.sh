@@ -66,7 +66,7 @@ pacinst ufw
 ### --- Main system setup --- ###
 
 pacinst xorg-server
-pacinst xorg-setxkbmap xorg-xinit xorg-xev xorg-xkill xorg-xprop xorg-xrandr xorg-xset xorg-xinit
+pacinst xorg-setxkbmap xorg-xinit xorg-xev xorg-xkill xorg-xprop xorg-xrandr xorg-xset
 
 pacinst lightdm lightdm-slick-greeter
 "$XDG_BIN_DIR"/services/lightdm/init.sh
@@ -230,7 +230,7 @@ yayinst kazam
 yayinst goldendict-git
 yayinst skypeforlinux-stable-bin
 yayinst slack-desktop
-yayisnt zoom
+yayinst zoom
 pacinst telegram-desktop
 pacinst qbittorrent
 
