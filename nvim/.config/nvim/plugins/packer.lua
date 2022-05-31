@@ -207,6 +207,13 @@ packer.startup(function(use)
   -- use("christianchiarulli/nvcode-color-schemes.vim")
 
   use("Pocco81/TrueZen.nvim")
+  use({
+    "nvim-orgmode/orgmode",
+    requires = {
+      "lukas-reineke/headlines.nvim",
+      "akinsho/org-bullets.nvim",
+    },
+  })
 
   if _G.packer_bootstrap then
     require("packer").sync()
