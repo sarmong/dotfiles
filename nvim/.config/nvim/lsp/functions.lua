@@ -2,8 +2,18 @@ local configs = require("lsp.lspconfig")
 
 local fns = {}
 
+local formatting_fn
+
+if vim.fn.has("nvim-0.8") == 1 then
+  formatting_fn = vim.lsp.buf.format
+else
+  formatting_fn = function()
+    vim.lsp.buf.formatting_sync(nil, 1000)
+  end
+end
+
 fns.format = function()
-  vim.lsp.buf.format()
+  formatting_fn()
   print("Formatted")
 end
 
