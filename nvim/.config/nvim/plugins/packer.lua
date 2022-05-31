@@ -209,6 +209,9 @@ packer.startup(function(use)
   use("Pocco81/TrueZen.nvim")
   use({
     "nvim-orgmode/orgmode",
+    config = function()
+      require("orgmode").setup_ts_grammar()
+    end,
     requires = {
       "lukas-reineke/headlines.nvim",
       "akinsho/org-bullets.nvim",
