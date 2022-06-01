@@ -65,3 +65,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.rasi",
   command = "set syntax=css",
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = vim.api.nvim_create_augroup("org_ft", {}),
+  pattern = "*.org",
+  callback = function()
+    vim.wo.wrap = false
+    vim.wo.concealcursor = "nc"
+  end,
+})
