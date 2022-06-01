@@ -1,5 +1,6 @@
 local parsers = require("nvim-treesitter.parsers")
-local parser_configs = parsers.get_parser_configs()
+
+require("orgmode").setup_ts_grammar()
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = { --  "all" or a list of languages
@@ -37,7 +38,7 @@ require("nvim-treesitter.configs").setup({
   },
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "org" },
+    --   disable = { "org" },
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.

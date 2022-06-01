@@ -18,11 +18,11 @@ local commits = {
   luasnip = "69cb81cf7490666890545fef905d31a414edc15b",
   cmp_luasnip = "b10829736542e7cc9291e60bab134df1273165c9",
   null_ls = "5717fb76c7553532ac3d69e79e93fe2f2ed1dc0b",
-  treesitter = "0fc170120a5ca69164f6bd4da3b26fd01aa41592",
+  treesitter = "889e901a3ef9b6587bf710daf82b7e1e1b58b0e1",
   ts_commentstring = "88343753dbe81c227a1c1fd2c8d764afb8d36269",
-  ts_autotag = "57035b5814f343bc6110676c9ae2eacfcd5340c2",
-  ts_refactor = "0dc8069641226904f9757de786a6ab2273eb73ea",
-  ts_rainbow = "ee433343a698cdf804389db30f96b88d138de18c",
+  ts_autotag = "044a05c4c51051326900a53ba98fddacd15fea22",
+  ts_refactor = "75f5895cc662d61eb919da8050b7a0124400d589",
+  ts_rainbow = "18cb3a45e0ff843d48e8637a36b9cc6cd89d71b0",
   matchup = "97ffd1a2068049e812ddfd04b182f6a93c2c0394",
   spectre = "4a4cf2c981b077055ef7725959d13007e366ba23",
   vim_markdown = "b4dc23e2b0c4ce1ed77eb630bf04238ee2871e2e",
@@ -209,9 +209,6 @@ packer.startup(function(use)
   use("Pocco81/TrueZen.nvim")
   use({
     "nvim-orgmode/orgmode",
-    config = function()
-      require("orgmode").setup_ts_grammar()
-    end,
     requires = {
       "lukas-reineke/headlines.nvim",
       "akinsho/org-bullets.nvim",
