@@ -29,22 +29,22 @@ scrolling:
 #### Font configuration
 font:
   normal:
-    family: FuraMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Regular
   bold:
-    family: FuraMono Nerd Font
+    family: JetBrainsMono Nerd Font Mono
     style: Bold
   italic:
-    family: Hasklug Nerd Font
+    family: JetBrainsMono Nerd Font Mono
     style: Italic
   bold_italic:
-    family: Hasklug Nerd Font
+    family: JetBrainsMono Nerd Font Mono
     style: Bold Italic
   size: 8.0
 
   offset:
     x: 0 # letter spacing
-    y: 0 # line spacing
+    y: 3 # line spacing
   glyph_offset:
     x: 0
     y: 0
