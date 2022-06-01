@@ -20,3 +20,4 @@ require("plugins.visual-multi")
 require("plugins.spectre")
 
 require("plugins.colorizer")
+require("plugins.orgmode")
