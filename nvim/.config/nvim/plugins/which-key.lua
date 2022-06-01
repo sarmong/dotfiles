@@ -214,6 +214,7 @@ local mappings = {
     u = { gitsigns.undo_stage_hunk, "undo stage hunk" },
     w = { gitsigns.toggle_word_diff, "toggle word diff" },
     p = { gitsigns.preview_hunk, "preview_hunk" },
+    o = { github.go_to_repo, "go to repo" },
   },
 
   -- Gist
