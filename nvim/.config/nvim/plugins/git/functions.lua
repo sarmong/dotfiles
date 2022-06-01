@@ -1,4 +1,5 @@
 local gitsigns = require("gitsigns")
+local get_visual_selection = require("utils.get-visual-selection")
 
 local gsigns = {
   next_hunk = function()
@@ -61,6 +62,12 @@ local gsigns = {
 local github = {
   open_file = function()
     vim.cmd("GBrowse") -- rhubarb.vim
+  end,
+
+  go_to_repo = function()
+    local text = get_visual_selection()
+
+    vim.fn.system("xdg-open https://github.com/" .. text)
   end,
 }
 
