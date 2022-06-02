@@ -2,30 +2,22 @@ local packer = require("packer")
 packer.init()
 
 local commits = {
-  packer = "4dedd3b08f8c6e3f84afbce0c23b66320cd2a8f2",
-  autopairs = "06535b1f1aefc98df464d180efa693bb696736c4",
+  packer = "00ec5adef58c5ff9a07f11f45903b9dbbaa1b422",
   barbar = "0bd9de963bcc5c35e9cb9f8bcf2035042927503f",
   nvim_tree = "9563a11ce0c0f9f6534d241c1e3a89ae96226af1",
-  which_key = "a3c19ec5754debb7bf38a8404e36a9287b282430",
-  toggleterm = "e62008fe5879eaecb105eb81e393f87d4607164c",
-  wordmotion = "02e32fcb062553a8293992411677e12cacccb09d",
-  visual_multi = "d5b820655e17c6ccd363885e5614652e4cffae95",
-  lualine = "c8e5a69085e89c2bac6bd01c74fcb98f9ffa5cdc",
-  indent_blankline = "cd5b800ed9545a944fc3b5bd55ef12da90944e7e",
-  lspconfig = "ad9903c66bac88f344890acb6532f63f1cd4dac3",
-  lsp_installer = "8de362b5d6a8743ddcc6d431120ba647954bc3ec",
-  cmp = "3192a0c57837c1ec5bf298e4f3ec984c7d2d60c0",
-  luasnip = "69cb81cf7490666890545fef905d31a414edc15b",
-  cmp_luasnip = "b10829736542e7cc9291e60bab134df1273165c9",
-  null_ls = "5717fb76c7553532ac3d69e79e93fe2f2ed1dc0b",
+  which_key = "bd4411a2ed4dd8bb69c125e339d837028a6eea71",
+  toggleterm = "93c2f2ca96af74f22f470e2fbcbd5e89b1faa63d",
+  wordmotion = "1f7eaf5d5733e39fb37f8e0de2f7f15e242dd39c",
+  visual_multi = "046d0d5ac5fb2888447d1dd8b7e52fd0314f9766",
+  lualine = "3362b28f917acc37538b1047f187ff1b5645ecdd",
+  lspconfig = "c5dae15c0c94703a0565e8ba35a9f5cb96ca7b8a",
+  lsp_installer = "d19ea3cbbda96db3099c2c27f4e070f90e14e1cb",
+  cmp = "033a817ced907c8bcdcbe3355d7ea67446264f4b",
+  luasnip = "52f4aed58db32a3a03211d31d2b12c0495c45580",
+  null_ls = "7b8560d53045f36d74236d17f0b280ec94e65198",
   treesitter = "889e901a3ef9b6587bf710daf82b7e1e1b58b0e1",
-  ts_commentstring = "88343753dbe81c227a1c1fd2c8d764afb8d36269",
-  ts_autotag = "044a05c4c51051326900a53ba98fddacd15fea22",
-  ts_refactor = "75f5895cc662d61eb919da8050b7a0124400d589",
-  ts_rainbow = "18cb3a45e0ff843d48e8637a36b9cc6cd89d71b0",
-  matchup = "97ffd1a2068049e812ddfd04b182f6a93c2c0394",
-  spectre = "4a4cf2c981b077055ef7725959d13007e366ba23",
-  vim_markdown = "b4dc23e2b0c4ce1ed77eb630bf04238ee2871e2e",
+  spectre = "345e5dd57773e2b4b425a2515c831108b9808a0f",
+  vim_markdown = "3a9643961233c2812816078af8bd1eaabc530dce",
 }
 
 packer.startup(function(use)
@@ -50,17 +42,14 @@ packer.startup(function(use)
 
   -- Quality of life improvements --
 
-  use({ "windwp/nvim-autopairs", commit = commits.autopairs })
+  use({ "windwp/nvim-autopairs" })
   use({ "tpope/vim-surround" })
   use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
   use({ "unblevable/quick-scope" })
   -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
   use({ "airblade/vim-rooter" }) -- automagically switches root directory
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } })
-  use({
-    "lukas-reineke/indent-blankline.nvim",
-    commit = commits.indent_blankline,
-  })
+  use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "psliwka/vim-smoothie" }) -- smooth scrolling
   use({
     "kevinhwang91/nvim-bqf",
@@ -168,10 +157,7 @@ packer.startup(function(use)
   })
   use({ "p00f/nvim-ts-rainbow", commit = commits.ts_rainbow }) -- rainbow parantheses
   use({ "nvim-treesitter/nvim-treesitter-context" })
-  use({
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    commit = commits.ts_commentstring,
-  })
+  use({ "JoosepAlviste/nvim-ts-context-commentstring" })
   use({ "windwp/nvim-ts-autotag", commit = commits.ts_autotag })
   use({
     "nvim-treesitter/nvim-treesitter-refactor",
@@ -189,7 +175,7 @@ packer.startup(function(use)
   use({ "ray-x/cmp-treesitter" })
   -- Snippets --
   use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
-  use({ "saadparwaiz1/cmp_luasnip", commit = commits.cmp_luasnip })
+  use({ "saadparwaiz1/cmp_luasnip" })
 
   use({ "rafamadriz/friendly-snippets" })
   use({ "ChristianChiarulli/html-snippets" })
