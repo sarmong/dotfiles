@@ -12,3 +12,5 @@ zsh/.config/zsh/.zcompdump
 zsh/.config/zsh/plugins
 zsh/.config/zsh/zsh-local
 npm/.config/npm/npmrc
+scripts/.local/share
+scripts/.local/cache
