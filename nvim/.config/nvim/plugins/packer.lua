@@ -135,6 +135,7 @@ packer.startup(function(use)
   use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }) -- git lines on the left
 
   -- LSP --
+  use({ "neoclide/coc.nvim", branch = "release", disable = true })
   use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
   use({ "williamboman/nvim-lsp-installer", commit = commits.lsp_installer })
   use({

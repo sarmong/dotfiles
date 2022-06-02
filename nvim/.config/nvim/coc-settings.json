@@ -1,0 +1,64 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "scss",
+    "css",
+    "vim",
+    "lua",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "vim",
+    "markdown",
+    "rust"
+  ],
+  "Lua.runtime.version": "Lua 5.2",
+  "lua.trace.server": "verbose",
+  "Lua.diagnostics.globals": ["vim"],
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "rescript": {
+    "enable": true,
+    "module": "~/.local/share/nvim/site/pack/packer/start/vim-rescript/server/out/server.js",
+    "args": ["--node-ipc"],
+    "filetypes": ["rescript"],
+    "rootPatterns": ["bsconfig.json"]
+    }
+  },
+  "rust-client.enable": true,
+  "suggest.completionItemKindLabels": {
+    /*                 ﬘    m     */
+    "method": "  ",
+    "function": "  ",
+    "variable": "[]",
+    "field": "  ",
+    "typeParameter": "<>",
+    "constant": "  ",
+    "class": " פּ ",
+    "interface": " 蘒",
+    "struct": "  ",
+    "event": "  ",
+    "operator": "  ",
+    "module": "  ",
+    "property": "  ",
+    "enum": " 練",
+    "reference": "  ",
+    "keyword": "  ",
+    "file": "  ",
+    "folder": " ﱮ ",
+    "color": "  ",
+    "unit": " 塞 ",
+    "snippet": "  ",
+    "text": "  ",
+    "constructor": "  ",
+    "value": "  ",
+    "enumMember": "  "
+  }
+}

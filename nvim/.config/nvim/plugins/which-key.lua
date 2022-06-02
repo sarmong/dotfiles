@@ -124,13 +124,23 @@ local mappings = {
   },
 
   -- Config
+  -- c = {
+  --   name = "config",
+  --   v = { ":e $MYVIMRC<cr>", "nvim config" },
+  --   s = {
+  --     ":source $MYVIMRC<cr>:echo 'Loaded config'<cr>",
+  --     "source nvim config",
+  --   },
+  -- },
+
+  -- CoC
   c = {
-    name = "config",
-    v = { ":e $MYVIMRC<cr>", "nvim config" },
-    s = {
-      ":source $MYVIMRC<cr>:echo 'Loaded config'<cr>",
-      "source nvim config",
-    },
+    name = "CoC",
+    r = { "<Plug>(coc-rename)<cr>", "rename" },
+    f = { "<Plug>(coc-format-selected)<cr>", "format" },
+    a = { "<Plug>(coc-codeaction-selected)<cr>", "code action selected" },
+    c = { "<Plug>(coc-codeaction)<cr>", "code action" },
+    q = { "<Plug>(coc-fix-current)<cr>", "quick fix" },
   },
 
   -- Search

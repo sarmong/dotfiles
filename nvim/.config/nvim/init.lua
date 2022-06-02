@@ -10,3 +10,5 @@ require("utils.packer-bootstrap")
 require("settings")
 require("plugins")
 require("lsp")
+--
+-- vim.cmd('source ~/.config/nvim/coc.vim')
