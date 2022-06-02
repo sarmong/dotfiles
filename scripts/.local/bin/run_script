@@ -1,7 +1,11 @@
 #!/bin/sh
 
-commands_list=$(find "$XDG_BIN_DIR/" -maxdepth 1 -not -type d | xargs -L 1 basename)
+from_bin_folder=$(find "$XDG_BIN_DIR/" -maxdepth 1 -not -type d | xargs -L 1 basename)
+
+additional_commands="\nclipctl toggle"
+
+commands_list="$from_bin_folder $additional_commands"
 
 command=$(echo "$commands_list" | dmenu -l 7 -p "Command to run: ")
 
-"$command"
+$command
