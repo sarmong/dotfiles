@@ -1,6 +1,6 @@
 vim.cmd("let g:nvcode_termcolors=256")
 
-vim.cmd("colorscheme gruvbox")
+pcall(vim.cmd, "colorscheme gruvbox")
 
 vim.opt.background = "dark"
 
