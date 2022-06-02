@@ -72,5 +72,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   callback = function()
     vim.wo.wrap = false
     vim.wo.concealcursor = "nc"
+    vim.wo.foldexpr = "OrgmodeFoldExpr()"
+    vim.wo.foldenable = true
   end,
 })
