@@ -3,6 +3,8 @@
 # shellcheck disable=1007
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
+cd "$script_dir" || exit 1
+
 existing_files=".bash_logout .bashrc .bash_profile"
 
 for file in ${existing_files}; do
@@ -14,8 +16,6 @@ done
 Darwin="bash git nvim lf scripts vim alacritty newsboat archive/macos/skhd archive/macos/spacebar archive/macos/yabai"
 
 Linux="bash zsh git nvim lf scripts vim alacritty newsboat bottom npm awesome rofi touchegg picom mpv xorg udiskie"
-
-currentdir=$(pwd)
 
 if [ "$(uname)" = "Darwin" ]; then
   dirs=${Darwin}
@@ -31,7 +31,10 @@ for dir in ${dirs}; do
 
   stow -v --target="$HOME" "$pkgname"
 
-  cd "$currentdir" || exit 1
+  cd "$script_dir" || exit 1
 done
 
 cp "$script_dir"/npm/.config/npm/npmrc-template "$script_dir"/npm/.config/npm/npmrc
+
+# Source env variables so that they are available immediately
+. "$script_dir/bash/.config/bash/bash-exports"
