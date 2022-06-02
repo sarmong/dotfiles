@@ -4,7 +4,7 @@ packer.init()
 local commits = {
   packer = "4dedd3b08f8c6e3f84afbce0c23b66320cd2a8f2",
   autopairs = "06535b1f1aefc98df464d180efa693bb696736c4",
-  barbar = "be65945626fb6bf6058cae61d5176d156f923c11",
+  barbar = "0bd9de963bcc5c35e9cb9f8bcf2035042927503f",
   nvim_tree = "9563a11ce0c0f9f6534d241c1e3a89ae96226af1",
   which_key = "a3c19ec5754debb7bf38a8404e36a9287b282430",
   toggleterm = "e62008fe5879eaecb105eb81e393f87d4607164c",
@@ -87,9 +87,9 @@ packer.startup(function(use)
   -- IDE features --
   ------------------
   use({
-    "akinsho/bufferline.nvim",
-    tag = "v2.*",
-    requires = "kyazdani42/nvim-web-devicons",
+    "romgrk/barbar.nvim",
+    commit = commits.barbar,
+    requires = { "kyazdani42/nvim-web-devicons" },
   })
   use({
     "kyazdani42/nvim-tree.lua",
