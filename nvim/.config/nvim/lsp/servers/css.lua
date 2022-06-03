@@ -1,4 +1,6 @@
-local lsp_install = require("lsp.lsp-install")
+local lspconfig = require("lspconfig")
 
-lsp_install("cssls")
-lsp_install("cssmodules_ls")
+local configs = require("lsp.lspconfig")
+
+lspconfig.cssls.setup(configs.default_opt)
+lspconfig.cssmodules_ls.setup(configs.default_opt)

@@ -1,7 +1,6 @@
-local configs = require("lsp.lspconfig")
-local lsp_install = require("lsp.lsp-install")
+local lspconfig = require("lspconfig")
 
-lsp_install("sumneko_lua")
+local configs = require("lsp.lspconfig")
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -13,7 +12,7 @@ table.insert(library, "/usr/share/nvim/runtime/lua")
 table.insert(library, "/usr/share/nvim/runtime/lua/lsp")
 table.insert(library, "/usr/share/awesome/lib")
 
-configs.server_opt["sumneko_lua"] = {
+lspconfig.sumneko_lua.setup(vim.tbl_extend("force", configs.default_opt, {
   -- disable formatting with sumneko_lua, so that null-ls will handle it
   on_attach = function(client, bufnr)
     configs.default_opt.on_attach(client, bufnr)
@@ -50,4 +49,4 @@ configs.server_opt["sumneko_lua"] = {
       },
     },
   },
-}
+}))
