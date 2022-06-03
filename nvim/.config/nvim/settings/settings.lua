@@ -74,5 +74,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.wo.concealcursor = "nc"
     vim.wo.foldexpr = "OrgmodeFoldExpr()"
     vim.wo.foldenable = true
+    vim.bo.tabstop = 3
+    vim.bo.shiftwidth = 3
   end,
 })
