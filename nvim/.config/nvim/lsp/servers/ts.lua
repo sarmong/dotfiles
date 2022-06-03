@@ -1,9 +1,18 @@
 local configs = require("lsp.lspconfig")
+local util = require("lspconfig.util")
 local lsp_install = require("lsp.lsp-install")
 
 lsp_install("tsserver")
 
 configs.server_opt["tsserver"] = {
+  -- Prefer `.git` directory to avoid spawning new tsserver instance
+  -- when going inside a package from node_modules
+  root_dir = function(fname)
+    return util.root_pattern(".git")(fname)
+      or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(
+        fname
+      )
+  end,
   -- disable formatting with tsserver, so that null-ls will handle it
   on_attach = function(client, bufnr)
     configs.default_opt.on_attach(client, bufnr)
