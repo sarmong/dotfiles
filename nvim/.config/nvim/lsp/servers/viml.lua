@@ -1,3 +1,5 @@
-local lsp_install = require("lsp.lsp-install")
+local lspconfig = require("lspconfig")
 
-lsp_install("vimls")
+local configs = require("lsp.lspconfig")
+
+lspconfig.vimls.setup(configs.default_opt)

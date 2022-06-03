@@ -1,10 +1,9 @@
+local lspconfig = require("lspconfig")
+
 local configs = require("lsp.lspconfig")
 local util = require("lspconfig.util")
-local lsp_install = require("lsp.lsp-install")
 
-lsp_install("tsserver")
-
-configs.server_opt["tsserver"] = {
+lspconfig.tsserver.setup(vim.tbl_extend("force", configs.default_opt, {
   -- Prefer `.git` directory to avoid spawning new tsserver instance
   -- when going inside a package from node_modules
   root_dir = function(fname)
@@ -27,4 +26,4 @@ configs.server_opt["tsserver"] = {
   end,
 
   single_file_support = true,
-}
+}))
