@@ -11,7 +11,7 @@ local apps = {
 
   -- Applications
   "nextcloud",
-  "touchegg",
+  "libinput-gestures-setup restart",
   "CM_SELECTIONS='clipboard' clipmenud",
   "redshift",
   "safeeyes",
