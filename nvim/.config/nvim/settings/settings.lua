@@ -78,3 +78,15 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.bo.shiftwidth = 3
   end,
 })
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = vim.api.nvim_create_augroup("vim_startup", {}),
+  pattern = "*",
+  callback = function()
+    vim.cmd([[
+      if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+    ]])
+  end,
+})
