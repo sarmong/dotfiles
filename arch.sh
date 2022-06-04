@@ -128,7 +128,7 @@ pacinst libqalculate # needed for rofi-calc. Brew has newer version
 
 yayinst clipmenu-git
 
-yayinst touchegg
+yayinst libinput-gestures
 
 pacinst feh
 pacinst perl-image-exiftool
