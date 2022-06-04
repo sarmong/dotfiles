@@ -11,6 +11,7 @@ local tabline = require("plugins.tabline")
 local spectre = require("plugins.spectre")
 local colorizer = require("plugins.colorizer")
 local true_zen = require("plugins.true_zen")
+local refactoring = require("plugins.refactoring")
 
 vim.opt.timeoutlen = 700
 
@@ -131,6 +132,19 @@ local mappings = {
       ":source $MYVIMRC<cr>:echo 'Loaded config'<cr>",
       "source nvim config",
     },
+  },
+
+  -- Refactoring
+  r = {
+    name = "refactoring",
+    i = { refactoring.inline_var, "inline variable" },
+    b = {
+      e = { refactoring.extract_block, "extract block" },
+      f = { refactoring.extract_block_to_file, "extract block to a file" },
+    },
+    p = { refactoring.print_debug, "print debug" },
+    v = { refactoring.print_var, "print variable" },
+    c = { refactoring.debug_cleanup, "debug cleanup" },
   },
 
   -- Search
@@ -267,6 +281,7 @@ local mappings = {
 }
 
 wk.register(mappings, { prefix = "<leader>", mode = "n" })
+
 wk.register(
   vim.tbl_extend("force", mappings, {
     ['"'] = { '<esc>`>a"<esc>`<i"<esc>gvll', "surround" },
@@ -275,6 +290,16 @@ wk.register(
     [")"] = { "<esc>`>a)<esc>`<i(<esc>gvll", "surround" },
     ["{"] = { "<esc>`>a{<esc>`<i{<esc>gvll", "surround" },
     ["}"] = { "<esc>`>a}<esc>`<i{<esc>gvll", "surround" },
+
+    -- Refactoring
+    r = {
+      name = "refactoring",
+
+      e = { refactoring.extract_fn, "extract function" },
+      f = { refactoring.extract_fn_to_file, "extract function to a file" },
+      v = { refactoring.extract_var, "extract variable" },
+      i = { refactoring.inline_var, "inline variable" },
+    },
   }),
   { prefix = "<leader>", mode = "v" }
 )
