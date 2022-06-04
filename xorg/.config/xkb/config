@@ -10,7 +10,7 @@ xkb_keymap {
   # Use config with xkbcomp ~/.config/xkb/config $DISPLAY
   # Taken from https://habr.com/ru/post/486872/
 
-  xkb_symbols "my"  { 
+  xkb_symbols {
     include "pc+us+ru:2+ua:3+inet(evdev)"
 
     key <RALT> { [ ISO_First_Group, ISO_Last_Group ] };
