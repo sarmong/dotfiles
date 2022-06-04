@@ -116,6 +116,14 @@ packer.startup(function(use)
     run = ":UpdateRemotePlugins",
   })
 
+  use({
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+  })
+
   -- Git
   use({ "tpope/vim-fugitive" })
   use({ "tpope/vim-rhubarb" })
