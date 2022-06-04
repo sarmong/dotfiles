@@ -291,6 +291,11 @@ wk.register(
     ["{"] = { "<esc>`>a{<esc>`<i{<esc>gvll", "surround" },
     ["}"] = { "<esc>`>a}<esc>`<i{<esc>gvll", "surround" },
 
+    -- Search
+    s = vim.tbl_extend("force", mappings.s, {
+      t = { "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", "text" },
+    }),
+
     -- Refactoring
     r = {
       name = "refactoring",
