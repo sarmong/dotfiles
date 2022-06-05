@@ -55,7 +55,8 @@ def make_abs(filename):
     return filename
 files = (make_abs(f) for f in files)
 
-SOCK = os.path.join(os.getenv("HOME"), ".umpv_socket")
+# Should be the same as input-ipc-server in mpv.conf
+SOCK = "/tmp/mpvsocket"
 
 sock = None
 try:
