@@ -71,6 +71,13 @@ packer.startup(function(use)
   })
   use({ "ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim" })
   use("azabiong/vim-highlighter")
+  use({
+    "mtth/scratch.vim",
+    config = function()
+      local cache_dir = os.getenv("XDG_CACHE_HOME")
+      vim.g.scratch_persistence_file = cache_dir .. "/nvim/scratch_file"
+    end,
+  })
 
   ------------------
   -- IDE features --
