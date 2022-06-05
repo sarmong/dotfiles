@@ -181,6 +181,9 @@ packer.startup(function(use)
   use({ "hrsh7th/cmp-path" })
   use({ "hrsh7th/cmp-cmdline" })
   use({ "ray-x/cmp-treesitter" })
+
+  use({ "lukas-reineke/cmp-rg" })
+
   -- Snippets --
   use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
   use({ "saadparwaiz1/cmp_luasnip" })
