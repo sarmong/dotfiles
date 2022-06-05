@@ -129,6 +129,8 @@ pacinst libqalculate # needed for rofi-calc. Brew has newer version
 yayinst clipmenu-git
 
 yayinst libinput-gestures
+sudo gpasswd -a "$USER" input
+newgrp input
 
 pacinst feh
 pacinst perl-image-exiftool
