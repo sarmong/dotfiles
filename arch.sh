@@ -148,6 +148,7 @@ pacinst tlp powertop
 pacinst brightnessctl
 
 pacinst newsboat
+pacinst urlscan
 
 ### --- Useful CLI utils --- ###
 
