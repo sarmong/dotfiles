@@ -88,6 +88,7 @@ cmp.setup({
     { name = "buffer" },
     { name = "cmdline" },
     { name = "neorg" },
+    { name = "rg" },
   }),
 
   formatting = {
