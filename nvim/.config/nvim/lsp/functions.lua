@@ -13,7 +13,11 @@ else
 end
 
 fns.format = function()
-  formatting_fn()
+  if vim.o.filetype == "org" then
+    vim.cmd('exec "norm gg=G\\<C-o>"')
+  else
+    formatting_fn()
+  end
   print("Formatted")
 end
 
