@@ -5,7 +5,7 @@ require("orgmode").setup({
   org_default_notes_file = "~/docs/nextcloud/Vault/org/refile.org",
 })
 
-require("headlines").setup()
+-- require("headlines").setup()
 
 require("org-bullets").setup({
   symbols = { "◉", "○", "✸", "✿" },
