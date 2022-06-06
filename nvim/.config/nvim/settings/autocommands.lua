@@ -8,13 +8,10 @@ local create_autocmd = function(name, opts)
 end
 
 -- Send WINdow CHanged signal to resize nvim properly when runnin alacritty -e nvim
-create_autocmd(
-  "VimEnter",
-  {
-    group = create_augroup("WinCh"),
-    command = 'silent exec "!kill -s SIGWINCH $PPID"',
-  }
-)
+create_autocmd("VimEnter", {
+  group = create_augroup("WinCh"),
+  command = 'silent exec "!kill -s SIGWINCH $PPID"',
+})
 
 create_autocmd({ "BufNewFile", "BufRead" }, {
   group = create_augroup("rasi_ft"),
@@ -26,12 +23,13 @@ create_autocmd({ "BufNewFile", "BufRead" }, {
   group = create_augroup("org_ft"),
   pattern = "*.org",
   callback = function()
-    vim.wo.wrap = false
-    vim.wo.concealcursor = "nc"
-    vim.wo.foldexpr = "OrgmodeFoldExpr()"
-    vim.wo.foldenable = true
-    vim.bo.tabstop = 3
-    vim.bo.shiftwidth = 3
+    vim.opt_local.wrap = false
+    vim.opt_local.concealcursor = "nc"
+    vim.opt_local.foldexpr = "OrgmodeFoldExpr()"
+    vim.opt_local.foldenable = true
+    vim.opt_local.tabstop = 1
+    vim.opt_local.shiftwidth = 1
+    vim.cmd("IndentBlanklineDisable")
   end,
 })
 

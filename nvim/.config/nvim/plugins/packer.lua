@@ -214,7 +214,7 @@ packer.startup(function(use)
   use({
     "nvim-orgmode/orgmode",
     requires = {
-      "lukas-reineke/headlines.nvim",
+      -- "lukas-reineke/headlines.nvim",
       "akinsho/org-bullets.nvim",
     },
   })
