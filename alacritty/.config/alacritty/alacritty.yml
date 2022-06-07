@@ -246,8 +246,8 @@ key_bindings:
   - { key: J, mods: Control, mode: Vi, action: ScrollHalfPageDown }
 
   # # Vi Mode
-  - { key: Space, mods: Control, mode: ~Search, action: ToggleViMode }
-  - { key: Space, mods: Control, mode: Vi|~Search, action: ScrollToBottom }
+  - { key: Space, mods: Control|Shift, mode: ~Search, action: ToggleViMode }
+  - { key: Space, mods: Control|Shift, mode: Vi|~Search, action: ScrollToBottom }
   - { key: A, mode: Vi|~Search, action: ToggleViMode }
   - { key: A, mode: Vi|~Search, action: ScrollToBottom }
   - { key: I, mode: Vi|~Search, action: ToggleViMode }
