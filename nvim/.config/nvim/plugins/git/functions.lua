@@ -1,4 +1,6 @@
 local gitsigns = require("gitsigns")
+local neogit = require("neogit")
+
 local get_visual_selection = require("utils.get-visual-selection")
 
 local gsigns = {
@@ -87,6 +89,8 @@ local git = {
   show_status = function()
     vim.api.nvim_command("Git") -- fugitive
   end,
+
+  open_neogit = neogit.open,
 }
 
 return {

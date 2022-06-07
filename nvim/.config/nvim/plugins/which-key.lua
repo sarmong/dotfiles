@@ -230,6 +230,7 @@ local mappings = {
     w = { gitsigns.toggle_word_diff, "toggle word diff" },
     p = { gitsigns.preview_hunk, "preview_hunk" },
     o = { github.go_to_repo, "go to repo" },
+    n = { git.open_neogit, "neogit" },
   },
 
   -- Gist

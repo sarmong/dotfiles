@@ -137,6 +137,7 @@ packer.startup(function(use)
   use({ "f-person/git-blame.nvim" }) -- consider using zivyangll/git-blame.vim to show at the bottom
   use({ "mattn/vim-gist" })
   use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }) -- git lines on the left
+  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 
   -- LSP --
   use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
