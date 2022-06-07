@@ -5,6 +5,7 @@ freshrss-passwordfile "~/.config/newsboat/pw"
 
 #show-read-feeds no
 auto-reload no
+run-on-startup select-tag
 
 external-url-viewer "urlscan -dc -r 'dmenuhandler {}'"
 
@@ -20,6 +21,9 @@ bind-key d pagedown
 bind-key u pageup
 bind-key l open
 bind-key h quit
+bind-key h select-tag feedlist
+bind-key q select-tag feedlist
+bind-key q hard-quit tagselection
 bind-key a toggle-article-read
 bind-key n next-unread
 bind-key N prev-unread
