@@ -1,4 +1,5 @@
 local configs = require("lsp.lspconfig")
+local orgmode = require("plugins.orgmode")
 
 local fns = {}
 
@@ -14,7 +15,7 @@ end
 
 fns.format = function()
   if vim.o.filetype == "org" then
-    vim.cmd('exec "norm gg=G\\<C-o>"')
+    orgmode.format()
   else
     formatting_fn()
   end
