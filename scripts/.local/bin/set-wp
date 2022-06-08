@@ -3,5 +3,9 @@
 NEW="$1"
 WALLPAPER=$XDG_PICTURES_DIR/wallpaper.png
 
+[ ! -d "$XDG_PICTURES_DIR" ] && mkdir -p "$XDG_PICTURES_DIR"
+
+[ ! -f "$WALLPAPER" ] && touch "$WALLPAPER"
+
 convert "$NEW" "$WALLPAPER"
 feh --bg-fill "$WALLPAPER"
