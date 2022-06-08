@@ -6,6 +6,7 @@ package.path = config_dir
   .. package.path
 
 require("utils")
+req("impatient")
 
 req("settings")
 req("plugins")
