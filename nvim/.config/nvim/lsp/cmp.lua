@@ -1,6 +1,6 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-require("lsp.snippets")
+local cmp = req("cmp")
+local luasnip = req("luasnip")
+req("lsp.snippets")
 
 local kind_icons = {
   Text = "",
@@ -130,7 +130,7 @@ cmp.setup.cmdline(":", {
 })
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(
+local capabilities = req("cmp_nvim_lsp").update_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 

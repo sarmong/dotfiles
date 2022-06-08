@@ -1,12 +1,12 @@
-local lsp_installer = require("nvim-lsp-installer")
+local lsp_installer = req("nvim-lsp-installer")
 
 lsp_installer.setup({ automatic_installation = true })
 
-require("lsp.servers.ts")
-require("lsp.servers.lua")
-require("lsp.servers.css")
-require("lsp.servers.bash")
-require("lsp.servers.viml")
--- require("lsp.servers.remark")
+req("lsp.servers.ts")
+req("lsp.servers.lua")
+req("lsp.servers.css")
+req("lsp.servers.bash")
+req("lsp.servers.viml")
+-- req("lsp.servers.remark")
 
-require("lsp.servers.null-ls")
+req("lsp.servers.null-ls")

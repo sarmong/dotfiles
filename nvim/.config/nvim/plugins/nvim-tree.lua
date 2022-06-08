@@ -1,5 +1,5 @@
-local tree_cb = require("nvim-tree.config").nvim_tree_callback
-local nvim_tree = require("nvim-tree")
+local tree_cb = req("nvim-tree.config").nvim_tree_callback
+local nvim_tree = req("nvim-tree")
 
 vim.g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git attributes (can be used without the icons).
 -- @TODO Check why not working

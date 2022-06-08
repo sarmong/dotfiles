@@ -1,4 +1,4 @@
-require("gitsigns").setup({
+req("gitsigns").setup({
   signs = {
     add = {
       hl = "GitSignsAdd",

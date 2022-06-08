@@ -1,4 +1,4 @@
-require("settings.settings")
-require("settings.keymappings")
-require("settings.colorscheme")
-require("settings.autocommands")
+req("settings.settings")
+req("settings.keymappings")
+req("settings.colorscheme")
+req("settings.autocommands")

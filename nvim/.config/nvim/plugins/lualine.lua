@@ -19,7 +19,7 @@ local colors = {
   info_yellow = "#FFCC66",
 }
 
-require("lualine").setup({
+req("lualine").setup({
   options = {
     icons_enabled = true,
     theme = "gruvbox",

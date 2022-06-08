@@ -1,4 +1,4 @@
-local configs = require("lsp.lspconfig")
+local configs = req("lsp.lspconfig")
 local orgmode = require("plugins.orgmode")
 
 local fns = {}

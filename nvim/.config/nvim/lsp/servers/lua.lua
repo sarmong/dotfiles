@@ -1,6 +1,6 @@
-local lspconfig = require("lspconfig")
+local lspconfig = req("lspconfig")
 
-local configs = require("lsp.lspconfig")
+local configs = req("lsp.lspconfig")
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")

@@ -1,17 +1,17 @@
-local wk = require("which-key")
-local colorscheme = require("settings.colorscheme")
-local terminals = require("plugins.toggleterm")
-local git = require("plugins.git").git
-local gitsigns = require("plugins.git").gitsigns
-local github = require("plugins.git").github
-local lsp_fns = require("lsp.functions")
-local alpha = require("plugins.alpha")
-local nvim_tree = require("plugins.nvim-tree")
-local tabline = require("plugins.tabline")
-local spectre = require("plugins.spectre")
-local colorizer = require("plugins.colorizer")
-local true_zen = require("plugins.true_zen")
-local refactoring = require("plugins.refactoring")
+local wk = req("which-key")
+local colorscheme = req("settings.colorscheme")
+local terminals = req("plugins.toggleterm")
+local git = req("plugins.git").git
+local gitsigns = req("plugins.git").gitsigns
+local github = req("plugins.git").github
+local lsp_fns = req("lsp.functions")
+local alpha = req("plugins.alpha")
+local nvim_tree = req("plugins.nvim-tree")
+local tabline = req("plugins.tabline")
+local spectre = req("plugins.spectre")
+local colorizer = req("plugins.colorizer")
+local true_zen = req("plugins.true_zen")
+local refactoring = req("plugins.refactoring")
 
 vim.opt.timeoutlen = 700
 
@@ -140,6 +140,7 @@ local mappings = {
     name = "refactoring",
     i = { refactoring.inline_var, "inline variable" },
     b = {
+      name = "block",
       e = { refactoring.extract_block, "extract block" },
       f = { refactoring.extract_block_to_file, "extract block to a file" },
     },
@@ -204,13 +205,13 @@ local mappings = {
             .. string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd(), "")
             .. " to the harpoon"
         )
-        require("harpoon.mark").add_file()
+        req("harpoon.mark").add_file()
       end,
       "add mark",
     },
-    s = { require("harpoon.ui").toggle_quick_menu, "show marks" },
-    n = { require("harpoon.ui").nav_next, "next mark" },
-    p = { require("harpoon.ui").nav_prev, "prev mark" },
+    s = { req("harpoon.ui").toggle_quick_menu, "show marks" },
+    n = { req("harpoon.ui").nav_next, "next mark" },
+    p = { req("harpoon.ui").nav_prev, "prev mark" },
   },
 
   -- Git

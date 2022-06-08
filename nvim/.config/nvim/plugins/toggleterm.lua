@@ -1,4 +1,4 @@
-local Terminal = require("toggleterm.terminal").Terminal
+local Terminal = req("toggleterm.terminal").Terminal
 
 local function on_term_open(term)
   vim.cmd("startinsert!")
@@ -11,7 +11,7 @@ local function on_term_open(term)
   )
 end
 
-require("toggleterm").setup({
+req("toggleterm").setup({
   -- size can be a number or function which is passed the current terminal
   size = function(term)
     if term.direction == "horizontal" then

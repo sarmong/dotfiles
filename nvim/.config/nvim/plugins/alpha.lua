@@ -1,5 +1,5 @@
-local alpha = require("alpha")
-local startify_config = require("alpha.themes.startify")
+local alpha = req("alpha")
+local startify_config = req("alpha.themes.startify")
 
 local session_file = "./Session.vim"
 
@@ -37,7 +37,7 @@ local config = {
     redraw_on_resize = false,
     setup = function()
       vim.cmd([[
-            autocmd alpha_temp DirChanged * lua require('alpha').redraw()
+            autocmd alpha_temp DirChanged * lua req('alpha').redraw()
             ]])
     end,
   },

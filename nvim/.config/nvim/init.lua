@@ -5,8 +5,8 @@ package.path = config_dir
   .. "/?/init.lua;"
   .. package.path
 
-require("utils.packer-bootstrap")
+require("utils")
 
-require("settings")
-require("plugins")
-require("lsp")
+req("settings")
+req("plugins")
+req("lsp")
