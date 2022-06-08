@@ -80,6 +80,7 @@ packer.startup(function(use)
       vim.g.scratch_persistence_file = cache_dir .. "/nvim/scratch_file"
     end,
   })
+  use("lewis6991/impatient.nvim")
 
   ------------------
   -- IDE features --
