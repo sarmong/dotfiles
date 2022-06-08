@@ -1,5 +1,5 @@
-local npairs = require("nvim-autopairs")
-local Rule = require("nvim-autopairs.rule")
+local npairs = req("nvim-autopairs")
+local Rule = req("nvim-autopairs.rule")
 
 npairs.setup({
   map_c_w = true, -- map <c-w> to delete a pair if possible

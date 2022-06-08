@@ -1,8 +1,8 @@
-local parsers = require("nvim-treesitter.parsers")
+local parsers = req("nvim-treesitter.parsers")
 
-require("orgmode").setup_ts_grammar()
+req("orgmode").setup_ts_grammar()
 
-require("nvim-treesitter.configs").setup({
+req("nvim-treesitter.configs").setup({
   ensure_installed = { --  "all" or a list of languages
     "bash",
     "c",
@@ -145,7 +145,7 @@ parsers.ft_to_lang = function(ft)
   return ft_to_lang(ft)
 end
 
-require("treesitter-context").setup({
+req("treesitter-context").setup({
   enable = true,
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
   patterns = {

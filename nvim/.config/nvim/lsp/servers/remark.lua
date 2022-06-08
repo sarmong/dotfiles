@@ -1,6 +1,6 @@
-local configs = require("lsp.lspconfig")
-local lsp_install = require("lsp.lsp-install")
+local configs = req("lsp.lspconfig")
+local lsp_install = req("lsp.lsp-install")
 
 lsp_install("remark_ls")
 
--- require("lspconfig").remark_ls.setup({})
+-- req("lspconfig").remark_ls.setup({})

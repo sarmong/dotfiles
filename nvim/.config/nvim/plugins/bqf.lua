@@ -1,4 +1,4 @@
-require("bqf").setup({
+req("bqf").setup({
   auto_enable = true, -- enable nvim-bqf in quickfix window automatically
   magic_window = true, -- give the window magic, when the window is splited horizontally, keep the distance between the current line and the top/bottom border of neovim unchanged. It's a bit like a floating window, but the window is indeed a normal window, without any floating attributes
   auto_resize_height = true, -- resize quickfix window height automatically. Shrink higher height to size of list in quickfix window, otherwise extend height to size of list or to default height (10)
