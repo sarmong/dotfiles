@@ -1,7 +1,7 @@
-local gitsigns = require("gitsigns")
+local gitsigns = req("gitsigns")
 local neogit = require("neogit")
 
-local get_visual_selection = require("utils.get-visual-selection")
+local get_visual_selection = req("utils.get-visual-selection")
 
 local gsigns = {
   next_hunk = function()

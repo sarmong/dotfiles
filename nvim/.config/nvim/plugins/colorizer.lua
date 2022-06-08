@@ -1,4 +1,4 @@
-require("colorizer").setup({ "*" }, {
+req("colorizer").setup({ "*" }, {
   RGB = true, -- #RGB hex codes
   RRGGBB = true, -- #RRGGBB hex codes
   RRGGBBAA = true, -- #RRGGBBAA hex codes

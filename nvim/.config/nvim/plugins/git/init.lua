@@ -1,5 +1,5 @@
-require("plugins.git.gitblame")
-require("plugins.git.gitsigns")
-local functions = require("plugins.git.functions")
+req("plugins.git.gitblame")
+req("plugins.git.gitsigns")
+local functions = req("plugins.git.functions")
 
 return functions

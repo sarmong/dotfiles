@@ -1,4 +1,4 @@
-local spectre = require("spectre")
+local spectre = req("spectre")
 
 spectre.setup({})
 

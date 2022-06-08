@@ -1,7 +1,7 @@
-local lsp_fns = require("lsp.functions")
+local lsp_fns = req("lsp.functions")
 
 lsp_fns.disable_virtual_text()
 lsp_fns.enable_format_on_save()
 
-require("lsp.servers")
-require("lsp.cmp")
+req("lsp.servers")
+req("lsp.cmp")

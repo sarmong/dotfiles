@@ -1,4 +1,4 @@
-local packer = require("packer")
+local packer = req("packer")
 packer.init()
 
 local commits = {
