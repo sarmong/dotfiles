@@ -47,7 +47,9 @@ packer.startup(function(use)
   use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
   use({ "unblevable/quick-scope" })
   -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
-  use({ "airblade/vim-rooter" }) -- automagically switches root directory
+  use({
+    "ahmedkhalf/project.nvim",
+  }) -- automagically switches root directory
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } })
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "psliwka/vim-smoothie" }) -- smooth scrolling
