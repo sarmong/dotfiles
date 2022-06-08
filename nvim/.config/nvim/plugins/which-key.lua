@@ -176,7 +176,7 @@ local mappings = {
     },
     R = { ":Telescope registers<cr>", "registers" },
     u = { ":Telescope colorscheme<cr>", "colorschemes" },
-    p = { ":Telescope project<cr>", "projects" },
+    p = { ":Telescope projects<cr>", "projects" },
   },
 
   -- Fold

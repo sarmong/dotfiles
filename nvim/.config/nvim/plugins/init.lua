@@ -11,6 +11,7 @@ require("plugins.lualine")
 require("plugins.which-key")
 require("plugins.toggleterm")
 
+require("plugins.project")
 require("plugins.matchup")
 require("plugins.alpha")
 require("plugins.indent-blankline")

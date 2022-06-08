@@ -92,5 +92,8 @@ telescope.setup({
 })
 
 telescope.load_extension("media_files")
+-- This is a separate plugin
 telescope.load_extension("project")
+-- This one's coming from project.nvim
+telescope.load_extension("projects")
 telescope.load_extension("fzf")
