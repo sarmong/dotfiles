@@ -20,6 +20,14 @@ create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 
 create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = create_augroup("md_ft"),
+  pattern = "*.md",
+  callback = function()
+    vim.opt_local.wrap = false
+  end,
+})
+
+create_autocmd({ "BufNewFile", "BufRead" }, {
   group = create_augroup("org_ft"),
   pattern = "*.org",
   callback = function()

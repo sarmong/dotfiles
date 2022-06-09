@@ -104,6 +104,7 @@ local mappings = {
     v = { ":Codi<cr>", "virtual repl on" },
     V = { ":Codi!<cr>", "virtual repl off" },
     b = { colorscheme.toggle_background, "toggle background" },
+    w = { ":setlocal wrap!<cr>", "toggle wrap" },
   },
 
   -- Buffer
