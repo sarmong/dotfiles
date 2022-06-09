@@ -107,6 +107,7 @@ local mappings = {
     b = { colorscheme.toggle_background, "toggle background" },
     w = { ":setlocal wrap!<cr>", "toggle wrap" },
     h = { hop.word, "hop" },
+    t = { ":AerialToggle<cr>", "code tree" },
   },
 
   -- Buffer
