@@ -24,6 +24,7 @@ create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.md",
   callback = function()
     vim.opt_local.wrap = false
+    vim.opt_local.textwidth = 80
   end,
 })
 
@@ -37,6 +38,7 @@ create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.opt_local.foldenable = true
     vim.opt_local.tabstop = 1
     vim.opt_local.shiftwidth = 1
+    vim.opt_local.textwidth = 80
     vim.cmd("IndentBlanklineDisable")
   end,
 })
