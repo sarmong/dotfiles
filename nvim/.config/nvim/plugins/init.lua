@@ -19,6 +19,7 @@ req("plugins.quick-scope")
 req("plugins.autopairs")
 req("plugins.visual-multi")
 req("plugins.spectre")
+req("plugins.hop")
 
 req("plugins.colorizer")
 req("plugins.orgmode")
