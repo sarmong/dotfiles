@@ -45,6 +45,7 @@ packer.startup(function(use)
   use({ "windwp/nvim-autopairs" })
   use({ "tpope/vim-surround" })
   use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
+  use("fedepujol/move.nvim")
   use({ "unblevable/quick-scope" })
   -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
   use({
