@@ -135,6 +135,12 @@ packer.startup(function(use)
       { "nvim-treesitter/nvim-treesitter" },
     },
   })
+  use({
+    "stevearc/aerial.nvim",
+    config = function()
+      require("aerial").setup({})
+    end,
+  })
 
   -- Git
   use({ "tpope/vim-fugitive" })
