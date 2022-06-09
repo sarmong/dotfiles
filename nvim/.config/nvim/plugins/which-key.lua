@@ -12,6 +12,7 @@ local spectre = req("plugins.spectre")
 local colorizer = req("plugins.colorizer")
 local true_zen = req("plugins.true_zen")
 local refactoring = req("plugins.refactoring")
+local hop = req("plugins.hop")
 
 vim.opt.timeoutlen = 700
 
@@ -105,6 +106,7 @@ local mappings = {
     V = { ":Codi!<cr>", "virtual repl off" },
     b = { colorscheme.toggle_background, "toggle background" },
     w = { ":setlocal wrap!<cr>", "toggle wrap" },
+    h = { hop.word, "hop" },
   },
 
   -- Buffer
