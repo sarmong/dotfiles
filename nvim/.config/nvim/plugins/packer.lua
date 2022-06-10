@@ -149,6 +149,7 @@ packer.startup(function(use)
   use({ "mattn/vim-gist" })
   use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }) -- git lines on the left
   use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
   -- LSP --
   use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
