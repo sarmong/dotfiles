@@ -32,6 +32,7 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 alias mv="mv -i"
 alias rm="rm -i"
+alias t="trash"
 alias mkd="mkdir -pv"
 alias untar="tar -zxvf"
 alias sha="shasum -a 256" # check the checksum of a file
