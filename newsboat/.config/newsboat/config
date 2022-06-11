@@ -24,6 +24,7 @@ bind-key h quit
 bind-key h select-tag feedlist
 bind-key q select-tag feedlist
 bind-key q hard-quit tagselection
+bind-key R reload-all tagselection
 bind-key a toggle-article-read
 bind-key n next-unread
 bind-key N prev-unread
