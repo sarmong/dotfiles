@@ -13,6 +13,17 @@ xkb_keymap {
   xkb_symbols {
     include "pc+us+ru:2+ua:3+inet(evdev)"
 
-    key <RALT> { [ ISO_First_Group, ISO_Last_Group ] };
+    name[group1] = "English (US)";
+    name[group2] = "Russian";
+    name[group3] = "Ukrainian";
+
+    key <RALT> {
+      type[group1]="LOCAL_EIGHT_LEVEL",
+      type[group2]="LOCAL_EIGHT_LEVEL",
+      type[group3]="LOCAL_EIGHT_LEVEL",
+      symbols[group1] = [ ISO_First_Group, ISO_Last_Group, NoSymbol, NoSymbol, ISO_Prev_Group ],
+      symbols[group2] = [ ISO_First_Group, ISO_Last_Group, NoSymbol, NoSymbol, ISO_Next_Group ],
+      symbols[group3] = [ ISO_First_Group, ISO_Last_Group ]
+    };
   };
 };
