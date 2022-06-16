@@ -15,7 +15,7 @@ local commits = {
   cmp = "033a817ced907c8bcdcbe3355d7ea67446264f4b",
   luasnip = "52f4aed58db32a3a03211d31d2b12c0495c45580",
   null_ls = "7b8560d53045f36d74236d17f0b280ec94e65198",
-  treesitter = "889e901a3ef9b6587bf710daf82b7e1e1b58b0e1",
+  treesitter = "78f36bbc58a0e85c83b400e32af8b5d7c55d527b",
   spectre = "345e5dd57773e2b4b425a2515c831108b9808a0f",
   vim_markdown = "3a9643961233c2812816078af8bd1eaabc530dce",
 }
