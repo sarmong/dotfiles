@@ -8,7 +8,15 @@ req("orgmode").setup({
 -- req("headlines").setup()
 
 req("org-bullets").setup({
-  symbols = { "◉", "○", "✸", "✿" },
+  concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible
+  symbols = {
+    headlines = { "◉", "○", "✸", "✿" },
+    checkboxes = {
+      cancelled = { "", "OrgCancelled" },
+      done = { "✓", "OrgDone" },
+      todo = { "˟", "OrgTODO" },
+    },
+  },
 })
 
 local function format()
