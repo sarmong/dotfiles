@@ -116,6 +116,7 @@ pacinst bottom
 pacinst udiskie # Automounts external drives
 
 pacinst caja
+pacinst xarchiver
 yayinst lf
 pacinst ueberzug
 
