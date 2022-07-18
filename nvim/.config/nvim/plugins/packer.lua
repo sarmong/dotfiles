@@ -2,20 +2,20 @@ local packer = req("packer")
 packer.init()
 
 local commits = {
-  packer = "00ec5adef58c5ff9a07f11f45903b9dbbaa1b422",
-  barbar = "0bd9de963bcc5c35e9cb9f8bcf2035042927503f",
-  nvim_tree = "9563a11ce0c0f9f6534d241c1e3a89ae96226af1",
+  packer = "e4c2afb37d31e99b399425e102c58b091fbc16be",
+  barbar = "fa3ff258108bbffefb31beb2ae9af3c60ec9c190",
+  nvim_tree = "16753d5e2525252719d71f77e2462a113d6d896c",
   which_key = "bd4411a2ed4dd8bb69c125e339d837028a6eea71",
-  toggleterm = "93c2f2ca96af74f22f470e2fbcbd5e89b1faa63d",
+  toggleterm = "3f9d383f1f89eb5a1558ee612061eccaca385680",
   wordmotion = "1f7eaf5d5733e39fb37f8e0de2f7f15e242dd39c",
-  visual_multi = "046d0d5ac5fb2888447d1dd8b7e52fd0314f9766",
-  lualine = "3362b28f917acc37538b1047f187ff1b5645ecdd",
-  lspconfig = "c5dae15c0c94703a0565e8ba35a9f5cb96ca7b8a",
-  lsp_installer = "d19ea3cbbda96db3099c2c27f4e070f90e14e1cb",
-  cmp = "033a817ced907c8bcdcbe3355d7ea67446264f4b",
-  luasnip = "52f4aed58db32a3a03211d31d2b12c0495c45580",
-  null_ls = "7b8560d53045f36d74236d17f0b280ec94e65198",
-  treesitter = "78f36bbc58a0e85c83b400e32af8b5d7c55d527b",
+  visual_multi = "e23b98a8852255766e54bf7723a9d61fb5ab3143",
+  lualine = "655411fb7aa3cf4d46094132d684d815453f5043",
+  lspconfig = "347947355ba0a15d803cbd61b18f8bb8f401c793",
+  lsp_installer = "793f99660fa9212f52ee8b6164454e03ba1f42c9",
+  cmp = "9897465a7663997b7b42372164ffc3635321a2fe",
+  luasnip = "45fc3d860cfa7a074b4d2fbf68c0249aa3a01320",
+  null_ls = "b95d94fc094d319450a24ad8c980e632b37aa90c",
+  treesitter = "acd4821bc1a737230ef4d6eb52f03b5fe21da3df",
   spectre = "345e5dd57773e2b4b425a2515c831108b9808a0f",
   vim_markdown = "3a9643961233c2812816078af8bd1eaabc530dce",
 }
@@ -120,13 +120,6 @@ packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons" },
   })
   use({ "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } })
-
-  -- pip3 install --user pynvim
-  use({
-    "rcarriga/vim-ultest",
-    requires = { "vim-test/vim-test" },
-    run = ":UpdateRemotePlugins",
-  })
 
   use({
     "ThePrimeagen/refactoring.nvim",

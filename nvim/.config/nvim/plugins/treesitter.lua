@@ -22,6 +22,7 @@ req("nvim-treesitter.configs").setup({
     "lua",
     "make",
     "markdown",
+    "markdown_inline",
     "org",
     -- "proto",
     "python",
