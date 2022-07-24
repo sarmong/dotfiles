@@ -7,6 +7,7 @@ req("lsp.servers.lua")
 req("lsp.servers.css")
 req("lsp.servers.bash")
 req("lsp.servers.viml")
+req("lsp.servers.python")
 -- req("lsp.servers.remark")
 
 req("lsp.servers.null-ls")
