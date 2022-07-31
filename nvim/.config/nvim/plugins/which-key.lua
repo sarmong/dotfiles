@@ -182,6 +182,7 @@ local mappings = {
     R = { ":Telescope registers<cr>", "registers" },
     u = { ":Telescope colorscheme<cr>", "colorschemes" },
     p = { ":Telescope projects<cr>", "projects" },
+    s = { ":Telescope resume<cr>", "previous search" },
   },
 
   -- Fold
