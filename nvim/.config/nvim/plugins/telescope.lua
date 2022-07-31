@@ -44,6 +44,11 @@ telescope.setup({
     grep_previewer = previewers.vim_buffer_vimgrep.new,
     qflist_previewer = previewers.vim_buffer_qflist.new,
 
+    -- :help telescope.defaults.history might be useful
+    cache_picker = {
+      num_pickers = 2,
+    },
+
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = previewers.buffer_previewer_maker,
     mappings = {
