@@ -22,7 +22,7 @@ local apps = {
   "$XDG_BIN_DIR/setup/screenlayout/init.sh",
   "unclutter",
   -- @TODO turn on bluetooth depending on whether keyboard is connected
-  -- "bluetooth off",
+  "bluetooth on",
 }
 
 local function run_once(cmd)
