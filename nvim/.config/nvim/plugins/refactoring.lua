@@ -5,36 +5,26 @@ refactoring.setup({})
 local fns = {
   -- Visual mode
   extract_fn = function()
-    vim.cmd([[<Esc>]])
     refactoring.refactor("Extract Function")
-    vim.cmd([[<CR>]])
   end,
   extract_fn_to_file = function()
-    vim.cmd(
-      [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]]
-    )
+    refactoring.refactor("Extract Function To File")
   end,
   extract_var = function()
-    vim.cmd(
-      [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]]
-    )
+    refactoring.refactor("Extract Variable")
   end,
 
   -- Both visual and normal
   inline_var = function()
-    vim.cmd(
-      [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]]
-    )
+    refactoring.refactor("Inline Variable")
   end,
 
-  -- Visual mode
+  -- Normal mode
   extract_block = function()
-    vim.cmd([[<Cmd>lua require('refactoring').refactor('Extract Block')<CR>]])
+    refactoring.refactor("Extract Block")
   end,
   extract_block_to_file = function()
-    vim.cmd(
-      [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]]
-    )
+    refactoring.refactor("Extract Block To File")
   end,
 
   print_debug = function()
