@@ -224,6 +224,7 @@ packer.startup(function(use)
       "akinsho/org-bullets.nvim",
     },
   })
+  use("martinlroth/vim-devicetree")
 
   if _G.packer_bootstrap then
     require("packer").sync()
