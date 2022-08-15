@@ -86,9 +86,9 @@ cmp.setup({
     { name = "path" },
     { name = "luasnip" }, -- For luasnip users.
     { name = "buffer" },
-    { name = "cmdline" },
-    { name = "neorg" },
-    { name = "rg" },
+    -- { name = "cmdline" },
+    -- { name = "neorg" },
+    -- { name = "rg" },
   }),
 
   formatting = {
