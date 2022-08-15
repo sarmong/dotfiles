@@ -21,6 +21,7 @@ zle_highlight=('paste:none') # Removes paste highlight
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "zsh-users/zsh-history-substring-search"
 
 bindkey '^r' history-incremental-search-backward
 
