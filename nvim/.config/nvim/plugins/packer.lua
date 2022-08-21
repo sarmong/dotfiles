@@ -11,7 +11,7 @@ local commits = {
   visual_multi = "e23b98a8852255766e54bf7723a9d61fb5ab3143", -- https://github.com/mg979/vim-visual-multi
   lualine = "9076378ac1c53684c4fbfcf34b1277018c15c233", -- https://github.com/nvim-lualine/lualine.nvim
   lspconfig = "da7461b596d70fa47b50bf3a7acfaef94c47727d", -- https://github.com/neovim/nvim-lspconfig
-  lsp_installer = "793f99660fa9212f52ee8b6164454e03ba1f42c9",
+  mason = "8de637a2b02a7a996d52b4f817e8c9193943e914", -- https://github.com/williamboman/mason.nvim
   cmp = "828768631bf224a1a63771aefd09c1a072b6fe84", -- https://github.com/hrsh7th/nvim-cmp
   luasnip = "faa525713e1244551877a4d89646a10f3c3fa31e", -- https://github.com/L3MON4D3/LuaSnip
   null_ls = "9d1f8dc1c8984e30efd8406aceba53dfadeaadbd", -- https://github.com/jose-elias-alvarez/null-ls.nvim
@@ -146,7 +146,14 @@ packer.startup(function(use)
 
   -- LSP --
   use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
-  use({ "williamboman/nvim-lsp-installer", commit = commits.lsp_installer })
+  use({
+    "williamboman/mason.nvim",
+    commit = commits.mason,
+    requires = {
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
+  })
   use({
     "jose-elias-alvarez/null-ls.nvim",
     commit = commits.null_ls,
