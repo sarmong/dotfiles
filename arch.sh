@@ -207,19 +207,6 @@ yayinst vscodium-bin
 pacinst tldr
 pacinst shellcheck
 
-## LSPs
-sudo npm i -g typescript typescript-language-server
-pacinst lua-language-server
-yayinst terraform-ls
-
-## Formatters
-sudo npm install -g @fsouza/prettierd
-sudo npm install -g eslint
-sudo npm install -g stylelint
-pacinst stylua
-pacinst shfmt
-yayinst nodejs-markdownlint-cli
-
 alert "INSTALLED PROGRAMMING TOOLS"
 
 ### --- Install Applications --- ###

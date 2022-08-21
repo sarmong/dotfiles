@@ -10,11 +10,11 @@ null_ls.setup({
     -- null_ls.builtins.formatting.eslint,
     -- null_ls.builtins.formatting.stylelint,
     -- null_ls.builtins.diagnostics.stylelint,
-    null_ls.builtins.diagnostics.eslint.with({
+    null_ls.builtins.diagnostics.eslint_d.with({
       -- extra_args = { "-c", vim.fn.expand("~/.config/.eslintrc.json") },
       prefer_local = "node_modules/.bin",
     }),
-    null_ls.builtins.code_actions.eslint.with({
+    null_ls.builtins.code_actions.eslint_d.with({
       -- extra_args = { "-c", "~/.config/.eslintrc.json" },
       prefer_local = "node_modules/.bin",
     }),
