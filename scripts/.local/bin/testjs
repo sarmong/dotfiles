@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir -p "$XDG_DOCUMENTS_DIR"/test
+mkdir -p "$XDG_DOCUMENTS_DIR"/tech/test
 
 cd "$XDG_DOCUMENTS_DIR"/tech/test || exit
 
