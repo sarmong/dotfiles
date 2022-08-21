@@ -96,6 +96,7 @@ pacinst font-manager
 yayinst keyd-git
 "$XDG_BIN_DIR"/services/keyd/init.sh
 yayinst xkblayout-state-git
+yayinst inputplug
 
 ## Audio
 pacinst pulseaudio  # Main package

@@ -18,7 +18,7 @@ local apps = {
 
   -- Configuration
   "feh --bg-fill $XDG_PICTURES_DIR/wallpaper.png &",
-  "$XDG_BIN_DIR/setup/keyboard/init.sh",
+  "inputplug -c $XDG_BIN_DIR/setup/keyboard/on-connect.sh",
   "$XDG_BIN_DIR/setup/screenlayout/init.sh",
   "unclutter",
   -- @TODO turn on bluetooth depending on whether keyboard is connected
