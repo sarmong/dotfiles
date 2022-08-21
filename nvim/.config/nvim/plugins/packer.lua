@@ -2,22 +2,22 @@ local packer = req("packer")
 packer.init()
 
 local commits = {
-  packer = "e4c2afb37d31e99b399425e102c58b091fbc16be",
-  barbar = "fa3ff258108bbffefb31beb2ae9af3c60ec9c190",
-  nvim_tree = "16753d5e2525252719d71f77e2462a113d6d896c",
-  which_key = "bd4411a2ed4dd8bb69c125e339d837028a6eea71",
-  toggleterm = "3f9d383f1f89eb5a1558ee612061eccaca385680",
-  wordmotion = "1f7eaf5d5733e39fb37f8e0de2f7f15e242dd39c",
-  visual_multi = "e23b98a8852255766e54bf7723a9d61fb5ab3143",
-  lualine = "655411fb7aa3cf4d46094132d684d815453f5043",
-  lspconfig = "347947355ba0a15d803cbd61b18f8bb8f401c793",
+  packer = "90b323bccc04ad9b23c971a85813a1405c7725a8", -- https://github.com/wbthomason/packer.nvim
+  barbar = "8c6a2e6e472ff9b7dc0a53d9a3bd88f1fbc7da6d", -- https://github.com/romgrk/barbar.nvim
+  nvim_tree = "81eb718394e489d2aebbffa730d2517d72ec7f9c", -- https://github.com/kyazdani42/nvim-tree.lua
+  which_key = "bd4411a2ed4dd8bb69c125e339d837028a6eea71", -- https://github.com/folke/which-key.nvim
+  toggleterm = "62683d927dfd30dc68441a5811fdcb6c9f176c42", -- https://github.com/akinsho/toggleterm.nvim
+  wordmotion = "1f7eaf5d5733e39fb37f8e0de2f7f15e242dd39c", -- https://github.com/chaoren/vim-wordmotion
+  visual_multi = "e23b98a8852255766e54bf7723a9d61fb5ab3143", -- https://github.com/mg979/vim-visual-multi
+  lualine = "9076378ac1c53684c4fbfcf34b1277018c15c233", -- https://github.com/nvim-lualine/lualine.nvim
+  lspconfig = "da7461b596d70fa47b50bf3a7acfaef94c47727d", -- https://github.com/neovim/nvim-lspconfig
   lsp_installer = "793f99660fa9212f52ee8b6164454e03ba1f42c9",
-  cmp = "9897465a7663997b7b42372164ffc3635321a2fe",
-  luasnip = "45fc3d860cfa7a074b4d2fbf68c0249aa3a01320",
-  null_ls = "b95d94fc094d319450a24ad8c980e632b37aa90c",
-  treesitter = "acd4821bc1a737230ef4d6eb52f03b5fe21da3df",
-  spectre = "345e5dd57773e2b4b425a2515c831108b9808a0f",
-  vim_markdown = "3a9643961233c2812816078af8bd1eaabc530dce",
+  cmp = "828768631bf224a1a63771aefd09c1a072b6fe84", -- https://github.com/hrsh7th/nvim-cmp
+  luasnip = "faa525713e1244551877a4d89646a10f3c3fa31e", -- https://github.com/L3MON4D3/LuaSnip
+  null_ls = "9d1f8dc1c8984e30efd8406aceba53dfadeaadbd", -- https://github.com/jose-elias-alvarez/null-ls.nvim
+  treesitter = "67fb8939ff1f7e29659f5c4efe50a5689e3458bc", -- https://github.com/nvim-treesitter/nvim-treesitter
+  spectre = "c553eb47ad9d82f8452119ceb6eb209c930640ec", -- https://github.com/nvim-pack/nvim-spectre
+  vim_markdown = "3a9643961233c2812816078af8bd1eaabc530dce", -- https://github.com/preservim/vim-markdown
 }
 
 packer.startup(function(use)
