@@ -183,7 +183,12 @@ local mappings = {
     R = { ":Telescope registers<cr>", "registers" },
     u = { ":Telescope colorscheme<cr>", "colorschemes" },
     p = { ":Telescope projects<cr>", "projects" },
-    s = { ":Telescope resume<cr>", "previous search" },
+    s = {
+      function()
+        require("telescope.builtin").resume({ initial_mode = "normal" })
+      end,
+      "previous search",
+    },
   },
 
   -- Fold
