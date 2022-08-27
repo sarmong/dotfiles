@@ -132,7 +132,11 @@ yayinst clipmenu-git
 
 yayinst libinput-gestures
 sudo gpasswd -a "$USER" input
-newgrp input
+# This command seems to create a new shell and
+# the execution of the following commands stops until you manually exit.
+# It might be not needed. If libinput-gestures still don't work,
+# I'll need to find a different solution. Adding `&& exit` seems to not help either.
+## newgrp input
 
 pacinst feh
 pacinst perl-image-exiftool
