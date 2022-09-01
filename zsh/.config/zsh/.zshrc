@@ -23,6 +23,18 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
 
+
+# Taken from https://www.reddit.com/r/zsh/comments/mczq2j/current_process_and_directory_as_window_title/
+function xtitle () {
+    builtin print -n -- "\e]0;$@\a"
+}
+function precmd () {
+    xtitle "$(print -P '%~ | $TERM' )"
+}
+ function preexec () {
+    xtitle "Running $1"
+}
+
 bindkey '^r' history-incremental-search-backward
 
 eval "$(zoxide init zsh)"
