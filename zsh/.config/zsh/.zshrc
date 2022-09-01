@@ -32,7 +32,7 @@ function precmd () {
     xtitle "$(print -P '%~ | $TERM' )"
 }
  function preexec () {
-    xtitle "Running $1"
+    xtitle "$(print -P '$1 | %~ | $TERM' )"
 }
 
 bindkey '^r' history-incremental-search-backward
