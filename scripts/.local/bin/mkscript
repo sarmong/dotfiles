@@ -7,9 +7,8 @@ fi
 
 file="$XDG_BIN_DIR"/"$1"
 
-touch "$file"
-chmod +x "$file"
-
 [ ! -f "$file" ] && echo "#!/bin/sh" >"$file"
+
+chmod +x "$file"
 
 nvim "$file"
