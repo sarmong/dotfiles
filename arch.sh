@@ -216,6 +216,7 @@ alert "INSTALLED PROGRAMMING TOOLS"
 ### --- Install Applications --- ###
 
 yayinst safeeyes
+pacinst activitywatch-bin
 pacinst xprintidle
 pacinst redshift
 # yayinst redshift-gtk
