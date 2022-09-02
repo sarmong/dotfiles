@@ -1,0 +1,32 @@
+#!/bin/sh
+
+type="$1"
+
+. "$XDG_CONFIG_HOME/zsh/zsh-local"
+
+if [ "$type" = "work" ]; then
+  echo "Starting falcon..."
+  sudo systemctl start falcon-sensor.service
+  echo "Turning on VPN..."
+  globalprotect connect --portal ""
+  echo "Setting npm registry..."
+  npmprivate
+
+  echo "Setting Chrome as default browser..."
+  set-default browser google-chrome
+  sed -i 's/firefox/google-chrome/' "$XDG_CONFIG_HOME/zsh/zsh-local"
+elif [ "$type" = "home" ]; then
+  echo "Stopping falcon..."
+  sudo systemctl stop falcon-sensor.service
+  echo "Turning off VPN..."
+  globalprotect disconnect
+  echo "Setting npm registry..."
+  npmpublic
+
+  echo "Setting Firefox as default browser..."
+  set-default browser firefox
+  sed -i 's/google-chrome/firefox/' "$XDG_CONFIG_HOME/zsh/zsh-local"
+
+else
+  echo 'Available options are "work" and "home"'
+fi
