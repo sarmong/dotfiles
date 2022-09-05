@@ -62,6 +62,7 @@ awful.rules.rules = {
         "Xfce4-power-manager-settings",
         "feh",
         "join*",
+        "Blueman-manager",
       },
       name = { "pulsemixer" },
     },
