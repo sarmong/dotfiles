@@ -84,8 +84,8 @@ local keys = {
 
   awful.key({
     description = "Open screenshot utility",
-    modifiers = {},
-    key = "Print",
+    modifiers = { super },
+    key = "p",
     on_press = function()
       awful.util.spawn_with_shell("flameshot gui")
     end,
