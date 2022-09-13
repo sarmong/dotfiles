@@ -302,7 +302,7 @@ wk.register(
     ["'"] = { "<esc>`>a'<esc>`<i'<esc>gvll", "surround" },
     ["("] = { "<esc>`>a)<esc>`<i(<esc>gvll", "surround" },
     [")"] = { "<esc>`>a)<esc>`<i(<esc>gvll", "surround" },
-    ["{"] = { "<esc>`>a{<esc>`<i{<esc>gvll", "surround" },
+    ["{"] = { "<esc>`>a}<esc>`<i{<esc>gvll", "surround" },
     ["}"] = { "<esc>`>a}<esc>`<i{<esc>gvll", "surround" },
 
     -- Search
