@@ -32,6 +32,7 @@ packer.startup(function(use)
       "nvim-telescope/telescope-media-files.nvim",
       "nvim-telescope/telescope-project.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      "nvim-telescope/telescope-live-grep-args.nvim",
     },
   })
   use({
@@ -48,9 +49,9 @@ packer.startup(function(use)
   use("fedepujol/move.nvim")
   use({ "unblevable/quick-scope" })
   -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
-  use({
-    "ahmedkhalf/project.nvim",
-  }) -- automagically switches root directory
+  --[[ use({ ]]
+  --[[   "ahmedkhalf/project.nvim", ]]
+  --[[ }) -- automagically switches root directory ]]
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } })
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "psliwka/vim-smoothie" }) -- smooth scrolling
