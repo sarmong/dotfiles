@@ -173,7 +173,10 @@ local mappings = {
     m = { ":Telescope marks<cr>", "marks" },
     M = { ":Telescope man_pages<cr>", "man_pages" },
     o = { ":Telescope vim_options<cr>", "vim_options" },
-    t = { ":Telescope live_grep<cr>", "text" },
+    t = {
+      require("telescope").extensions.live_grep_args.live_grep_args,
+      "text",
+    },
     w = { ":Telescope grep_string<cr>", "word" },
     r = {
       name = "replace",
