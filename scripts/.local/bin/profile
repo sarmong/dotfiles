@@ -14,7 +14,7 @@ if [ "$type" = "work" ]; then
 
   echo "Setting Chrome as default browser..."
   set-default browser google-chrome
-  sed -i 's/firefox/google-chrome/' "$XDG_CONFIG_HOME/zsh/zsh-local"
+  sed -i 's/firefox/google-chrome-stable/' "$XDG_CONFIG_HOME/zsh/zsh-local"
 elif [ "$type" = "home" ]; then
   echo "Stopping falcon..."
   sudo systemctl stop falcon-sensor.service
@@ -25,7 +25,7 @@ elif [ "$type" = "home" ]; then
 
   echo "Setting Firefox as default browser..."
   set-default browser firefox
-  sed -i 's/google-chrome/firefox/' "$XDG_CONFIG_HOME/zsh/zsh-local"
+  sed -i 's/google-chrome-stable/firefox/' "$XDG_CONFIG_HOME/zsh/zsh-local"
 
 else
   echo 'Available options are "work" and "home"'
