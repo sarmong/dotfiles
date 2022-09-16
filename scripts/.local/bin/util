@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
-from="$1"
+from_or_action="$1"
 to_or_value="$2"
 value_or_nil="$2"
 
-from_values="unix date xml yaml yml"
+from_values="unix date xml yaml yml min"
 
-case "$from" in
+case "$from_or_action" in
+  "min")
+    base=${to_or_value%.*}
+    ext=${to_or_value#$base.}
+    uglifyjs "$to_or_value" -o "$base".min."$ext"
+    ;;
   "unix")
     case "$to_or_value" in
       "date")
