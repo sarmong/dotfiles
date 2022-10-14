@@ -2,22 +2,22 @@ local packer = req("packer")
 packer.init()
 
 local commits = {
-  packer = "90b323bccc04ad9b23c971a85813a1405c7725a8", -- https://github.com/wbthomason/packer.nvim
-  barbar = "8c6a2e6e472ff9b7dc0a53d9a3bd88f1fbc7da6d", -- https://github.com/romgrk/barbar.nvim
-  nvim_tree = "81eb718394e489d2aebbffa730d2517d72ec7f9c", -- https://github.com/kyazdani42/nvim-tree.lua
-  which_key = "bd4411a2ed4dd8bb69c125e339d837028a6eea71", -- https://github.com/folke/which-key.nvim
-  toggleterm = "62683d927dfd30dc68441a5811fdcb6c9f176c42", -- https://github.com/akinsho/toggleterm.nvim
+  packer = "6afb67460283f0e990d35d229fd38fdc04063e0a", -- https://github.com/wbthomason/packer.nvim
+  barbar = "517b457630d84aff875287d8249791df95ff91ab", -- https://github.com/romgrk/barbar.nvim
+  nvim_tree = "b07701f9da3ec62016ad46002a6c0ae9b414574c", -- https://github.com/kyazdani42/nvim-tree.lua
+  which_key = "6885b669523ff4238de99a7c653d47b081b5506d", -- https://github.com/folke/which-key.nvim
+  toggleterm = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda", -- https://github.com/akinsho/toggleterm.nvim
   wordmotion = "1f7eaf5d5733e39fb37f8e0de2f7f15e242dd39c", -- https://github.com/chaoren/vim-wordmotion
-  visual_multi = "e23b98a8852255766e54bf7723a9d61fb5ab3143", -- https://github.com/mg979/vim-visual-multi
-  lualine = "9076378ac1c53684c4fbfcf34b1277018c15c233", -- https://github.com/nvim-lualine/lualine.nvim
-  lspconfig = "da7461b596d70fa47b50bf3a7acfaef94c47727d", -- https://github.com/neovim/nvim-lspconfig
-  mason = "8de637a2b02a7a996d52b4f817e8c9193943e914", -- https://github.com/williamboman/mason.nvim
-  cmp = "828768631bf224a1a63771aefd09c1a072b6fe84", -- https://github.com/hrsh7th/nvim-cmp
-  luasnip = "faa525713e1244551877a4d89646a10f3c3fa31e", -- https://github.com/L3MON4D3/LuaSnip
-  null_ls = "9d1f8dc1c8984e30efd8406aceba53dfadeaadbd", -- https://github.com/jose-elias-alvarez/null-ls.nvim
-  treesitter = "67fb8939ff1f7e29659f5c4efe50a5689e3458bc", -- https://github.com/nvim-treesitter/nvim-treesitter
-  spectre = "c553eb47ad9d82f8452119ceb6eb209c930640ec", -- https://github.com/nvim-pack/nvim-spectre
-  vim_markdown = "3a9643961233c2812816078af8bd1eaabc530dce", -- https://github.com/preservim/vim-markdown
+  visual_multi = "724bd53adfbaf32e129b001658b45d4c5c29ca1a", -- https://github.com/mg979/vim-visual-multi
+  lualine = "edca2b03c724f22bdc310eee1587b1523f31ec7c", -- https://github.com/nvim-lualine/lualine.nvim
+  lspconfig = "36765a3996f84efa3f33d998aedbd81f3bf0d1b4", -- https://github.com/neovim/nvim-lspconfig
+  mason = "81f2e60e032ec78aac290b7c9edd721585f7d14a", -- https://github.com/williamboman/mason.nvim
+  cmp = "714ccb7483d0ab90de1b93914f3afad1de8da24a", -- https://github.com/hrsh7th/nvim-cmp
+  luasnip = "563827f00bb4fe43269e3be653deabc0005f1302", -- https://github.com/L3MON4D3/LuaSnip
+  null_ls = "643c67a296711ff40f1a4d1bec232fa20b179b90", -- https://github.com/jose-elias-alvarez/null-ls.nvim
+  treesitter = "c8533707679b99dc80d5f46f7b519081fb9c1ac9", -- https://github.com/nvim-treesitter/nvim-treesitter
+  spectre = "6d877bc1f2262af1053da466e4acd909ad61bc18", -- https://github.com/nvim-pack/nvim-spectre
+  vim_markdown = "c3f83ebb43b560af066d2a5d66bc77c6c05293b1", -- https://github.com/preservim/vim-markdown
 }
 
 packer.startup(function(use)
