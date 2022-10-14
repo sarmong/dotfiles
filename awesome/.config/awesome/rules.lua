@@ -84,6 +84,15 @@ awful.rules.rules = {
     },
   },
   {
+    rule = { instance = "telegram-desktop", name = "Media viewer" },
+    properties = {
+      placement = awful.placement.maximize,
+      ontop = false,
+      floating = false,
+      skip_decoration = true,
+    },
+  },
+  {
     -- Event Tester is xev
     rule_any = { name = { "dragon", "Event Tester" } },
     properties = {
