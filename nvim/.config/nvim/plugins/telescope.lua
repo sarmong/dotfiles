@@ -5,6 +5,7 @@ local previewers = req("telescope.previewers")
 
 telescope.setup({
   defaults = {
+    path_display = { "truncate" },
     sorting_strategy = "descending",
     selection_strategy = "reset",
     vimgrep_arguments = {
