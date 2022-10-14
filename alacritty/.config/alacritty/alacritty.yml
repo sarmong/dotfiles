@@ -48,7 +48,7 @@ font:
   glyph_offset:
     x: 0
     y: 0
-  use_thin_strokes: false # Good for MacOS retina
+  # use_thin_strokes: false # Good for MacOS retina
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
@@ -168,9 +168,6 @@ colors:
     focused_match:
       foreground: CellBackground
       background: CellForeground
-    bar:
-      foreground: "#cccccc"
-      background: "#432392"
 
   hints:
     start:
@@ -188,6 +185,10 @@ colors:
   selection:
     text: CellBackground
     background: CellForeground
+
+  footer_bar:
+    foreground: "#cccccc"
+    background: "#432392"
 
   indexed_colors: []
 
