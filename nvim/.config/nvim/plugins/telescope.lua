@@ -2,6 +2,7 @@ local telescope = req("telescope")
 local actions = req("telescope.actions")
 local sorters = req("telescope.sorters")
 local previewers = req("telescope.previewers")
+local lga_actions = require("telescope-live-grep-args.actions")
 
 telescope.setup({
   defaults = {
@@ -96,6 +97,14 @@ telescope.setup({
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
+    },
+    live_grep_args = {
+      auto_quoting = true, -- If the prompt value does not begin with ', " or - the entire prompt is treated as a single argument
+      default_mappings = {
+        i = {
+          ["<C-o>"] = lga_actions.quote_prompt({ postfix = ' --iglob "**/' }),
+        },
+      },
     },
   },
 })
