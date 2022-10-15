@@ -5,6 +5,9 @@ local previewers = req("telescope.previewers")
 
 telescope.setup({
   defaults = {
+    preview = {
+      timeout = 1000,
+    },
     path_display = { "truncate" },
     sorting_strategy = "descending",
     selection_strategy = "reset",
