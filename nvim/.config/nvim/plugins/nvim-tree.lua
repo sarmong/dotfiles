@@ -1,34 +1,4 @@
-local tree_cb = req("nvim-tree.config").nvim_tree_callback
 local nvim_tree = req("nvim-tree")
-
-vim.g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git attributes (can be used without the icons).
--- @TODO Check why not working
-vim.g.nvim_tree_highlight_opened_files = 1 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
-vim.g.nvim_tree_group_empty = 1 --  0 by default, compact folders that only contain a single folder into one node in the file tree
-vim.g.nvim_tree_special_files = {
-  ["README.md"] = 1,
-  ["Makefile"] = 1,
-  ["package.json"] = 1,
-} -- List of filenames that gets highlighted with NvimTreeSpecialFile
-
-vim.g.nvim_tree_icons = {
-  default = "",
-  symlink = "",
-  git = {
-    unstaged = "",
-    staged = "✓",
-    unmerged = "",
-    renamed = "➜",
-    untracked = "",
-  },
-  folder = {
-    default = "",
-    open = "",
-    empty = "",
-    empty_open = "",
-    symlink = "",
-  },
-}
 
 local keymappings = {
   -- mappings
@@ -91,8 +61,36 @@ nvim_tree.setup({
     },
   },
   renderer = {
+    highlight_git = true, -- will enable file highlight for git attributes (can be used without the icons).
+    highlight_opened_files = "icon", -- none, icon, name, all -- will enable folder and file icon highlight for opened files/directories.
+    group_empty = true, -- compact folders that only contain a single folder into one node in the file tree
     indent_markers = {
       enable = true, -- this option shows indent markers when folders are open
+    },
+    special_files = {
+      ["README.md"] = 1,
+      ["Makefile"] = 1,
+      ["package.json"] = 1,
+    }, -- List of filenames that gets highlighted with NvimTreeSpecialFile
+    icons = {
+      glyphs = {
+        default = "",
+        symlink = "",
+        git = {
+          unstaged = "",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "",
+        },
+        folder = {
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+        },
+      },
     },
   },
   diagnostics = {
