@@ -30,7 +30,7 @@ map("n", "L", "$")
 
 -- turn off search highlights until next search
 -- and close quickfix and loclist windows
-map("n", "<esc><esc>", ":noh<CR>:ccl<CR>:lcl<CR>")
+map("n", "<leader>q", ":noh<CR>:ccl<CR>:lcl<CR>")
 
 -- Terminal window navigation
 map("t", "<C-h>", "<C-\\><C-N><C-w>h")
