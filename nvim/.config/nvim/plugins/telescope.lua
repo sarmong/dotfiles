@@ -49,21 +49,14 @@ telescope.setup({
     grep_previewer = previewers.vim_buffer_vimgrep.new,
     qflist_previewer = previewers.vim_buffer_qflist.new,
 
-    -- :help telescope.defaults.history might be useful
-    cache_picker = {
-      num_pickers = 2,
-    },
-
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = previewers.buffer_previewer_maker,
     mappings = {
+      -- To disable a keymap, put [map] = false
       i = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        -- To disable a keymap, put [map] = false
-        -- So, to not map "<C-n>", just put
-        -- ["<c-x>"] = false,
         ["<esc><esc>"] = actions.close,
 
         -- Otherwise, just set the mapping to the function that you want it to be.
@@ -72,15 +65,16 @@ telescope.setup({
         -- Add up multiple actions
         ["<CR>"] = actions.select_default + actions.center,
 
-        -- You can perform as many actions in a row as you like
-        -- ["<CR>"] = actions.select_default + actions.center + my_cool_custom_action,
+        ["<C-Down>"] = actions.cycle_history_next,
+        ["<C-Up>"] = actions.cycle_history_prev,
+
+        ["<C-y>"] = actions.delete_buffer,
       },
       n = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<esc><esc>"] = actions.close,
-        -- ["<C-i>"] = my_cool_custom_action,
       },
     },
   },
