@@ -1,7 +1,11 @@
 #!/bin/sh
 
-# if [ "$(cat /etc/hostname)" = "dell" ]; then
-#   "$XDG_BIN_DIR"/setup/screenlayout/monitor-on-the-left.sh
-# else
-"$XDG_BIN_DIR"/setup/screenlayout/monitor-on-the-right.sh
-# fi
+connected=$(xrandr | grep " connected " | awk '{ print$1 }')
+second_monitor=$(echo "$connected" | awk 'NR==2')
+
+if [ "$second_monitor" ]; then
+  "$XDG_BIN_DIR"/setup/screenlayout/monitor-on-the-right.sh "$second_monitor"
+else
+  echo "here"
+  "$XDG_BIN_DIR"/setup/screenlayout/undocked.sh
+fi
