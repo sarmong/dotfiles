@@ -130,7 +130,7 @@ cmp.setup.cmdline(":", {
 })
 
 -- Setup lspconfig.
-local capabilities = req("cmp_nvim_lsp").update_capabilities(
+local capabilities = req("cmp_nvim_lsp").default_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
