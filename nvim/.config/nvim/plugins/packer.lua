@@ -1,5 +1,10 @@
 local packer = req("packer")
-packer.init()
+packer.init({
+  snapshot = "10-18",
+  snapshot_path = vim.fn.resolve(
+    vim.fn.stdpath("config") .. "plugins/snapshots"
+  ),
+})
 
 local commits = {
   packer = "6afb67460283f0e990d35d229fd38fdc04063e0a", -- https://github.com/wbthomason/packer.nvim
