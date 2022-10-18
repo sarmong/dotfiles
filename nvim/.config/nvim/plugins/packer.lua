@@ -38,7 +38,7 @@ packer.startup(function(use)
   use({
     "nvim-lualine/lualine.nvim",
     commit = commits.lualine,
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    requires = { "nvim-tree/nvim-web-devicons" },
   })
 
   -- Quality of life improvements --
@@ -91,11 +91,11 @@ packer.startup(function(use)
   use({
     "romgrk/barbar.nvim",
     commit = commits.barbar,
-    requires = { "kyazdani42/nvim-web-devicons" },
+    requires = { "nvim-tree/nvim-web-devicons" },
   })
   use({
     "kyazdani42/nvim-tree.lua",
-    requires = { "kyazdani42/nvim-web-devicons" },
+    requires = { "nvim-tree/nvim-web-devicons" },
     commit = commits.nvim_tree,
   })
   use({ "ojroques/nvim-bufdel" })
@@ -118,7 +118,7 @@ packer.startup(function(use)
   })
   use({
     "goolord/alpha-nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
+    requires = { "nvim-tree/nvim-web-devicons" },
   })
   use({ "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } })
 
