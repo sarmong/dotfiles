@@ -11,10 +11,11 @@ function zsh_add_plugin() {
   [[ $- != *i* ]] && return
 
   PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+  FILE_NAME="${2:-$PLUGIN_NAME}"
   if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
     # For plugins
-    zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" ||
-      zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+    zsh_add_file "plugins/$PLUGIN_NAME/$FILE_NAME.plugin.zsh" ||
+      zsh_add_file "plugins/$PLUGIN_NAME/$FILE_NAME.zsh"
   else
     git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
   fi

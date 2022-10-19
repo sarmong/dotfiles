@@ -22,6 +22,10 @@ zle_highlight=('paste:none') # Removes paste highlight
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
+zsh_add_plugin "marzocchi/zsh-notify" "notify"
+
+zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
+zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
 
 
 # Taken from https://www.reddit.com/r/zsh/comments/mczq2j/current_process_and_directory_as_window_title/
