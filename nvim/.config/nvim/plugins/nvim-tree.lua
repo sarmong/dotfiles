@@ -40,7 +40,6 @@ nvim_tree.setup({
   disable_netrw = false,
   hijack_netrw = false,
   hijack_cursor = true,
-  reload_on_bufenter = true,
   filters = {
     dotfiles = true,
     exclude = { ".config", ".local" },
