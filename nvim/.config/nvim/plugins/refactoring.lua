@@ -32,7 +32,7 @@ local fns = {
   end,
 
   print_var = function()
-    refactoring.debug.print_var({})
+    refactoring.debug.print_var({ normal = true })
   end,
 
   debug_cleanup = function()
