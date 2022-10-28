@@ -32,7 +32,12 @@ telescope.setup({
       vertical = { mirror = false },
     },
     file_sorter = sorters.get_fuzzy_file,
-    file_ignore_patterns = { "node_modules", ".git" },
+    file_ignore_patterns = {
+      "node_modules",
+      ".git",
+      "yarn.lock",
+      "package-lock.json",
+    },
     generic_sorter = sorters.get_generic_fuzzy_sorter,
     shorten_path = true,
     winblend = 0,
