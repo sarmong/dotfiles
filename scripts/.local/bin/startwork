@@ -1,11 +1,17 @@
 #!/bin/bash
 
 # if command not found - install it globally
-command -v jira || npm install -g jira-cl
+if [ ! "$(command -v jira)" ] && [ "$(command -v paru)" ]; then
+  paru -S jira-cli-bin
+  clipctl toggle
+  echo "Firstly, set up JIRA_API_TOKEN and JIRA_AUTH_TYPE"
+  jira init
+  clipctl toggle
+fi
 
-issue=$(jira issue | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" | sed '2d' | fzf)
+issue=$(jira issue list -a"$(jira me)" -s~Done --plain | fzf)
 
-issue_number=$(echo "$issue" | awk '{print $1}')
+issue_number=$(echo "$issue" | awk '{print $2}')
 
 echo "$issue"
 
@@ -16,23 +22,21 @@ read -r
 # @TODO choose feature/improv/bugfix
 branch_name="${issue_number}_$REPLY"
 
-
 echo "Branch name is $branch_name"
 
 echo -n "Y/n: "
 read -r
 
-if [ "$REPLY" = "n" ] || [ "$REPLY" = "N" ]; then 
+if [ "$REPLY" = "n" ] || [ "$REPLY" = "N" ]; then
   echo 'Exiting...'
   exit 1
 fi
 
 main_branch=$(git rev-parse --abbrev-ref origin/HEAD | cut -c8-)
-git checkout $main_branch
+git checkout "$main_branch"
 git pull
-git branch $branch_name
-git checkout $branch_name
+git branch "$branch_name"
+git checkout "$branch_name"
 
-# @TODO fix transition 
-jira issue $issue_number --transition "Start Progress"
-
+# @TODO fix transition
+# jira issue $issue_number --transition "Start Progress"
