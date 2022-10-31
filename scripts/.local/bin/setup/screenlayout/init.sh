@@ -6,6 +6,5 @@ second_monitor=$(echo "$connected" | awk 'NR==2')
 if [ "$second_monitor" ]; then
   "$XDG_BIN_DIR"/setup/screenlayout/monitor-on-the-right.sh "$second_monitor"
 else
-  echo "here"
   "$XDG_BIN_DIR"/setup/screenlayout/undocked.sh
 fi
