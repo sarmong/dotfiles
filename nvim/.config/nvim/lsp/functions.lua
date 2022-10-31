@@ -3,21 +3,11 @@ local orgmode = require("plugins.orgmode")
 
 local fns = {}
 
-local formatting_fn
-
-if vim.fn.has("nvim-0.8") == 1 then
-  formatting_fn = vim.lsp.buf.format
-else
-  formatting_fn = function()
-    vim.lsp.buf.formatting_sync(nil, 1000)
-  end
-end
-
 fns.format = function()
   if vim.o.filetype == "org" then
     orgmode.format()
   else
-    formatting_fn()
+    vim.lsp.buf.format()
   end
   print("Formatted")
 end
