@@ -196,7 +196,7 @@ alert "INSTALLED MAIN SYSTEM SETUP"
 ### --- Programming tools --- ###
 ## Install system version of node
 pacinst nodejs-lts-gallium
-yayinst nvm
+yayinst fnm-bin
 sudo npm i -g yarn
 pacinst httpie
 yayinst postman-bin
