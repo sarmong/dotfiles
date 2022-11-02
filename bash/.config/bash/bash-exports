@@ -59,33 +59,11 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 [ -d "$XDG_DATA_HOME/npm/bin" ] && export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 
 ## Might need for Ubuntu
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                    # This loads nvm for Ubuntu
-[ -s "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh # This loads nvm for Arch
-
+# export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory
-# Run 'nvm use' automatically every time there's
-# a .nvmrc file in the directory. Also, revert to default
-# version when entering a directory without .nvmrc
-enter_directory() {
-  if [ "$PWD" = "$PREV_PWD" ]; then
-    return
-  fi
-
-  PREV_PWD=$PWD
-  if [ -f ".nvmrc" ]; then
-    nvm use
-    NVM_DIRTY=true
-  elif [ "$NVM_DIRTY" = true ]; then
-    nvm use system
-    NVM_DIRTY=false
-  fi
-}
-
-export PROMPT_COMMAND=enter_directory
+[ "$(which fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
 
 if command -v mkcert &>/dev/null; then
   export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
