@@ -6,30 +6,11 @@ packer.init({
   ),
 })
 
-local commits = {
-  packer = "6afb67460283f0e990d35d229fd38fdc04063e0a", -- https://github.com/wbthomason/packer.nvim
-  barbar = "517b457630d84aff875287d8249791df95ff91ab", -- https://github.com/romgrk/barbar.nvim
-  nvim_tree = "b07701f9da3ec62016ad46002a6c0ae9b414574c", -- https://github.com/kyazdani42/nvim-tree.lua
-  which_key = "6885b669523ff4238de99a7c653d47b081b5506d", -- https://github.com/folke/which-key.nvim
-  toggleterm = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda", -- https://github.com/akinsho/toggleterm.nvim
-  wordmotion = "1f7eaf5d5733e39fb37f8e0de2f7f15e242dd39c", -- https://github.com/chaoren/vim-wordmotion
-  visual_multi = "724bd53adfbaf32e129b001658b45d4c5c29ca1a", -- https://github.com/mg979/vim-visual-multi
-  lualine = "edca2b03c724f22bdc310eee1587b1523f31ec7c", -- https://github.com/nvim-lualine/lualine.nvim
-  lspconfig = "36765a3996f84efa3f33d998aedbd81f3bf0d1b4", -- https://github.com/neovim/nvim-lspconfig
-  mason = "81f2e60e032ec78aac290b7c9edd721585f7d14a", -- https://github.com/williamboman/mason.nvim
-  cmp = "714ccb7483d0ab90de1b93914f3afad1de8da24a", -- https://github.com/hrsh7th/nvim-cmp
-  luasnip = "563827f00bb4fe43269e3be653deabc0005f1302", -- https://github.com/L3MON4D3/LuaSnip
-  null_ls = "643c67a296711ff40f1a4d1bec232fa20b179b90", -- https://github.com/jose-elias-alvarez/null-ls.nvim
-  treesitter = "c8533707679b99dc80d5f46f7b519081fb9c1ac9", -- https://github.com/nvim-treesitter/nvim-treesitter
-  spectre = "6d877bc1f2262af1053da466e4acd909ad61bc18", -- https://github.com/nvim-pack/nvim-spectre
-  vim_markdown = "c3f83ebb43b560af066d2a5d66bc77c6c05293b1", -- https://github.com/preservim/vim-markdown
-}
-
 packer.startup(function(use)
   -- Packer can manage itself as an optional plugin
-  use({ "wbthomason/packer.nvim", commit = commits.packer })
+  use({ "wbthomason/packer.nvim" })
 
-  use({ "folke/which-key.nvim", commit = commits.which_key })
+  use({ "folke/which-key.nvim" })
   use({
     "nvim-telescope/telescope.nvim",
     requires = {
@@ -42,7 +23,6 @@ packer.startup(function(use)
   })
   use({
     "nvim-lualine/lualine.nvim",
-    commit = commits.lualine,
     requires = { "nvim-tree/nvim-web-devicons" },
   })
 
@@ -50,7 +30,7 @@ packer.startup(function(use)
 
   use({ "windwp/nvim-autopairs" })
   use({ "tpope/vim-surround" })
-  use({ "chaoren/vim-wordmotion", commit = commits.wordmotion })
+  use({ "chaoren/vim-wordmotion" })
   use("fedepujol/move.nvim")
   use({ "unblevable/quick-scope" })
   -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
@@ -95,23 +75,19 @@ packer.startup(function(use)
   ------------------
   use({
     "romgrk/barbar.nvim",
-    commit = commits.barbar,
     requires = { "nvim-tree/nvim-web-devicons" },
   })
   use({
     "kyazdani42/nvim-tree.lua",
     requires = { "nvim-tree/nvim-web-devicons" },
-    commit = commits.nvim_tree,
   })
   use({ "ojroques/nvim-bufdel" })
   use({
     "akinsho/toggleterm.nvim",
-    commit = commits.toggleterm,
   })
-  use({ "mg979/vim-visual-multi", commit = commits.visual_multi })
+  use({ "mg979/vim-visual-multi" })
   use({
     "windwp/nvim-spectre",
-    commit = commits.spectre,
     require = "nvim-lua/plenary.nvim",
   }) -- search and replace
   -- use({ "tpope/vim-commentary" })
@@ -151,10 +127,9 @@ packer.startup(function(use)
   use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
   -- LSP --
-  use({ "neovim/nvim-lspconfig", commit = commits.lspconfig })
+  use({ "neovim/nvim-lspconfig" })
   use({
     "williamboman/mason.nvim",
-    commit = commits.mason,
     requires = {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -162,7 +137,6 @@ packer.startup(function(use)
   })
   use({
     "jose-elias-alvarez/null-ls.nvim",
-    commit = commits.null_ls,
     requires = { "nvim-lua/plenary.nvim" },
   })
   use({ "folke/lua-dev.nvim" }) -- @TODO this is currently not used
@@ -175,7 +149,6 @@ packer.startup(function(use)
     config = function()
       require("plugins.vim-markdown")
     end,
-    commit = commits.vim_markdown,
   })
   use({
     "iamcco/markdown-preview.nvim",
@@ -187,21 +160,19 @@ packer.startup(function(use)
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    commit = commits.treesitter,
   })
-  use({ "p00f/nvim-ts-rainbow", commit = commits.ts_rainbow }) -- rainbow parantheses
+  use({ "p00f/nvim-ts-rainbow" }) -- rainbow parantheses
   use({ "nvim-treesitter/nvim-treesitter-context" })
   use({ "JoosepAlviste/nvim-ts-context-commentstring" })
-  use({ "windwp/nvim-ts-autotag", commit = commits.ts_autotag })
+  use({ "windwp/nvim-ts-autotag" })
   use({
     "nvim-treesitter/nvim-treesitter-refactor",
-    commit = commits.ts_refactor,
   })
   use({ "nvim-treesitter/nvim-treesitter-textobjects" })
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
 
   -- Completion --
-  use({ "hrsh7th/nvim-cmp", commit = commits.cmp }) -- @TODO Integrate with autopairs
+  use({ "hrsh7th/nvim-cmp" }) -- @TODO Integrate with autopairs
   use({ "hrsh7th/cmp-nvim-lsp" })
   use({ "hrsh7th/cmp-buffer" })
   use({ "hrsh7th/cmp-path" })
@@ -211,7 +182,7 @@ packer.startup(function(use)
   use({ "lukas-reineke/cmp-rg" })
 
   -- Snippets --
-  use({ "L3MON4D3/LuaSnip", commit = commits.luasnip })
+  use({ "L3MON4D3/LuaSnip" })
   use({ "saadparwaiz1/cmp_luasnip" })
 
   use({ "rafamadriz/friendly-snippets" })
