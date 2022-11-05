@@ -18,6 +18,7 @@
   cm = commit -m
   cam = commit --amend --no-edit
   l = log --all --graph --decorate --oneline
+  wt = worktree
 
   unstage = reset HEAD --
 
