@@ -11,3 +11,5 @@ req("impatient")
 req("settings")
 req("plugins")
 req("lsp")
+
+vim.cmd("source " .. config_dir .. "/utils/quitdialog.vim")
