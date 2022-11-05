@@ -148,6 +148,7 @@ pacinst mpv
 yayinst mpvc-git
 
 pacinst alacritty
+pacinst tmux
 
 pacinst xclip
 pacinst tlp powertop

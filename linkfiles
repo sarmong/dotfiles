@@ -13,9 +13,9 @@ for file in ${existing_files}; do
   [ -f "$path" ] && [ ! -L "$path" ] && mv "$path" "$HOME/$file-old"
 done
 
-Darwin="bash git nvim lf scripts vim alacritty newsboat archive/macos/skhd archive/macos/spacebar archive/macos/yabai"
+Darwin="bash git nvim lf scripts vim alacritty newsboat tmux archive/macos/skhd archive/macos/spacebar archive/macos/yabai"
 
-Linux="bash zsh git nvim lf scripts vim alacritty newsboat bottom npm awesome rofi libinput-gestures picom mpv xorg udiskie"
+Linux="bash zsh git nvim lf scripts vim alacritty newsboat tmux bottom npm awesome rofi libinput-gestures picom mpv xorg udiskie"
 
 if [ "$(uname)" = "Darwin" ]; then
   dirs=${Darwin}
