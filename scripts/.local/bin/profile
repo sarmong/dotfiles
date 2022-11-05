@@ -2,10 +2,15 @@
 
 type="$1"
 tmp_file="/tmp/current-profile"
+local_file="$XDG_CONFIG_HOME/zsh/zsh-local"
 
 touch "$tmp_file"
 
-. "$XDG_CONFIG_HOME/zsh/zsh-local"
+if [ -f "$local_file" ]; then
+  . "$local_file"
+else
+  echo "No zsh-local file found"
+fi
 
 if [ "$type" = "work" ]; then
   if [ "$(cat $tmp_file)" = "work" ]; then
