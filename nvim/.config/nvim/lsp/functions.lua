@@ -12,7 +12,7 @@ fns.format = function()
   print("Formatted")
 end
 
-fns.enable_format_on_save = function()
+fns.enable_format_on_save = function(silent)
   if not configs.settings.format_on_save then
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("FormatOnSave", {}),
@@ -20,7 +20,9 @@ fns.enable_format_on_save = function()
     })
     configs.settings.format_on_save = true
 
-    print("Enabled formatting on save")
+    if not silent then
+      print("Enabled formatting on save")
+    end
   end
 end
 
@@ -28,7 +30,6 @@ fns.disable_format_on_save = function()
   if configs.settings.format_on_save then
     vim.api.nvim_del_augroup_by_name("FormatOnSave")
     configs.settings.format_on_save = false
-
     print("Disabled formatting on save")
   end
 end
@@ -60,10 +61,13 @@ fns.enable_virtual_text = function()
   end
 end
 
-fns.disable_virtual_text = function()
+fns.disable_virtual_text = function(silent)
   if vim.diagnostic.config().virtual_text then
     vim.diagnostic.config({ virtual_text = false })
-    print("Virtual text off")
+
+    if not silent then
+      print("Enabled formatting on save")
+    end
   end
 end
 
