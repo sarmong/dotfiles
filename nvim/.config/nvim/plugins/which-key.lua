@@ -244,7 +244,10 @@ local mappings = {
     u = { gitsigns.undo_stage_hunk, "undo stage hunk" },
     w = { gitsigns.toggle_word_diff, "toggle word diff" },
     p = { gitsigns.preview_hunk, "preview_hunk" },
-    o = { github.go_to_repo, "go to repo" },
+    o = { github.open_repo, "open repo" },
+    O = { github.open_line_url, "open line url" },
+    y = { github.yank_repo, "yank repo url" },
+    Y = { github.yank_line_url, "yank line url" },
     n = { git.open_neogit, "neogit" },
   },
 
