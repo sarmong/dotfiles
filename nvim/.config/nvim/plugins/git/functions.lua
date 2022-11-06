@@ -1,5 +1,7 @@
 local gitsigns = req("gitsigns")
-local neogit = require("neogit")
+local gitlinker = req("gitlinker")
+local gitlinker_actions = req("gitlinker.actions")
+local neogit = req("neogit")
 
 local get_visual_selection = req("utils.get-visual-selection")
 
@@ -66,10 +68,54 @@ local github = {
     vim.cmd("GBrowse") -- rhubarb.vim
   end,
 
-  go_to_repo = function()
-    local text = get_visual_selection()
+  open_repo = function()
+    local current_mode = vim.api.nvim_get_mode()["mode"]
 
-    vim.fn.system("xdg-open https://github.com/" .. text)
+    if current_mode == "v" then
+      local text = get_visual_selection()
+
+      local url = "https://github.com/" .. text
+      vim.fn.system("xdg-open " .. url)
+    else
+      gitlinker.get_repo_url({
+        action_callback = gitlinker_actions.open_in_browser,
+      })
+    end
+  end,
+
+  open_line_url = function()
+    local current_mode = vim.api.nvim_get_mode()["mode"]
+
+    print(current_mode)
+
+    gitlinker.get_buf_range_url(
+      string.lower(current_mode),
+      { action_callback = gitlinker.actions.open_in_browser }
+    )
+  end,
+
+  yank_repo = function()
+    local current_mode = vim.api.nvim_get_mode()["mode"]
+
+    if current_mode == "v" then
+      local text = get_visual_selection()
+
+      local url = "https://github.com/" .. text
+      vim.fn.setreg("+", url)
+    else
+      gitlinker.get_repo_url({
+        action_callback = gitlinker_actions.copy_to_clipboard,
+      })
+    end
+  end,
+
+  yank_line_url = function()
+    local current_mode = vim.api.nvim_get_mode()["mode"]
+
+    gitlinker.get_buf_range_url(
+      string.lower(current_mode),
+      { action_callback = gitlinker.actions.copy_to_clipboard }
+    )
   end,
 }
 
