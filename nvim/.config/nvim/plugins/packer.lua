@@ -124,12 +124,12 @@ packer.startup(function(use)
 
   -- Git
   use({ "tpope/vim-fugitive" })
-  use({ "tpope/vim-rhubarb" })
   use({ "f-person/git-blame.nvim" }) -- consider using zivyangll/git-blame.vim to show at the bottom
   use({ "mattn/vim-gist" })
   use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }) -- git lines on the left
   use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
   use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  use({ "ruifm/gitlinker.nvim" })
 
   -- LSP --
   use({ "neovim/nvim-lspconfig" })
