@@ -20,6 +20,7 @@ req("plugins.autopairs")
 req("plugins.visual-multi")
 req("plugins.spectre")
 req("plugins.hop")
+req("plugins.marks")
 
 req("plugins.colorizer")
 req("plugins.orgmode")
