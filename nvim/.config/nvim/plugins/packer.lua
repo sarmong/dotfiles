@@ -69,6 +69,7 @@ packer.startup(function(use)
   })
   use("lewis6991/impatient.nvim")
   use("phaazon/hop.nvim")
+  use("chentoast/marks.nvim")
 
   ------------------
   -- IDE features --
