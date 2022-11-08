@@ -16,13 +16,8 @@ lspconfig.tsserver.setup(vim.tbl_extend("force", configs.default_opt, {
   on_attach = function(client, bufnr)
     configs.default_opt.on_attach(client, bufnr)
 
-    if vim.fn.has("nvim-0.8") == 1 then
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
-    else
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
-    end
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
   end,
 
   single_file_support = true,
