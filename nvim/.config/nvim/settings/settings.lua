@@ -26,9 +26,7 @@ vim.wo.number = true -- set numbered lines
 vim.wo.relativenumber = true -- set relative number
 vim.wo.cursorline = true -- Enable highlighting of the current line
 vim.o.showtabline = 2 -- Always show tabs
-if vim.fn.has("nvim-0.8") == 1 then
-  vim.opt.winbar = "%m %f"
-end
+vim.opt.winbar = "%m %f"
 vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore
 vim.o.backup = false -- This is recommended by coc
 vim.o.writebackup = false -- This is recommended by coc
