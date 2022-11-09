@@ -9,7 +9,6 @@ req("plugins.nvim-tree")
 req("plugins.tabline")
 req("plugins.lualine")
 req("plugins.which-key")
-req("plugins.toggleterm")
 
 req("plugins.project")
 req("plugins.matchup")

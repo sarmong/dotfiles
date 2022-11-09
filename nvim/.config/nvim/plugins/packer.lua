@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snapshot = "11-08",
+  snapshot = "11-09",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -83,9 +83,6 @@ packer.startup(function(use)
     requires = { "nvim-tree/nvim-web-devicons" },
   })
   use({ "ojroques/nvim-bufdel" })
-  use({
-    "akinsho/toggleterm.nvim",
-  })
   use({ "mg979/vim-visual-multi" })
   use({
     "windwp/nvim-spectre",

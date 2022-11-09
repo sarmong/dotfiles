@@ -1,6 +1,5 @@
 local wk = req("which-key")
 local colorscheme = req("settings.colorscheme")
-local terminals = req("plugins.toggleterm")
 local git = req("plugins.git").git
 local gitsigns = req("plugins.git").gitsigns
 local github = req("plugins.git").github
@@ -263,18 +262,6 @@ local mappings = {
     p = { ":Gist -P<cr>", "post public gist " },
     P = { ":Gist -p<cr>", "post private gist " },
     a = { ":Gist -a<cr>", "post gist anon" },
-  },
-
-  -- Terminal
-  t = {
-    name = "terminal",
-    t = { terminals.toggle_hor, "toggle" },
-    v = { terminals.toggle_vert, "vertical" },
-    f = { terminals.toggle_float, "float" },
-    n = { terminals.toggle_node, "node" },
-    m = { terminals.toggle_npm, "npm" },
-    r = { terminals.toggle_ranger, "ranger" },
-    g = { terminals.toggle_git, "git" },
   },
 
   -- LSP
