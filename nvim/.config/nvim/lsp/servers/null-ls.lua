@@ -1,5 +1,4 @@
 local null_ls = req("null-ls")
-local lsp_fns = req("lsp.functions")
 local configs = req("lsp.lspconfig")
 
 null_ls.setup({
@@ -7,9 +6,11 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua,
 
     null_ls.builtins.formatting.prettierd,
-    -- null_ls.builtins.formatting.eslint,
+
     -- null_ls.builtins.formatting.stylelint,
     -- null_ls.builtins.diagnostics.stylelint,
+
+    null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.diagnostics.eslint_d.with({
       -- extra_args = { "-c", vim.fn.expand("~/.config/.eslintrc.json") },
       prefer_local = "node_modules/.bin",
@@ -18,6 +19,7 @@ null_ls.setup({
       -- extra_args = { "-c", "~/.config/.eslintrc.json" },
       prefer_local = "node_modules/.bin",
     }),
+
     null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.shfmt.with({
