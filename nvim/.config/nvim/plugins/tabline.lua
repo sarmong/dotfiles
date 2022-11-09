@@ -52,36 +52,6 @@ local fns = {
   end,
 }
 
-vim.keymap.set(
-  "n",
-  "<leader><TAB>",
-  fns.next,
-  { noremap = true, silent = true }
-)
-vim.keymap.set(
-  "n",
-  "<leader><S-TAB>",
-  fns.prev,
-  { noremap = true, silent = true }
-)
-vim.keymap.set("n", "<A-.>", fns.move_next, { noremap = true, silent = true })
-vim.keymap.set("n", "<A-,>", fns.move_prev, { noremap = true, silent = true })
-vim.keymap.set("n", "<A-p>", fns.pin, { noremap = true, silent = true })
-
-vim.keymap.set("n", "<S-x>", fns.close, { noremap = true, silent = true })
-vim.keymap.set(
-  "n",
-  "<A-w>",
-  ":w<CR>:BufferClose<CR>",
-  { noremap = true, silent = true }
-)
-
-for i = 1, 9 do
-  vim.keymap.set("n", "<A-" .. i .. ">", function()
-    fns.go_to(i)
-  end, { noremap = true, silent = true })
-end
-
 vim.g.bufferline = {
   icons = "both",
   exclude_ft = { "qf" },
