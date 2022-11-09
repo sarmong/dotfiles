@@ -4,7 +4,6 @@ req("plugins.treesitter")
 req("plugins.git")
 req("plugins.comment")
 req("plugins.telescope")
-req("plugins.bqf")
 
 req("plugins.nvim-tree")
 req("plugins.tabline")
