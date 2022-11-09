@@ -10,6 +10,7 @@ packer.startup(function(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
   use({ "nvim-lua/plenary.nvim" }) -- required by many plugins
+  use({ "nvim-tree/nvim-web-devicons" })
 
   use({ "folke/which-key.nvim" })
   use({
@@ -21,22 +22,17 @@ packer.startup(function(use)
       "nvim-telescope/telescope-live-grep-args.nvim",
     },
   })
-  use({
-    "nvim-lualine/lualine.nvim",
-    requires = { "nvim-tree/nvim-web-devicons" },
-  })
+  use({ "nvim-lualine/lualine.nvim" })
 
   -- Quality of life improvements --
 
   use({ "windwp/nvim-autopairs" })
   use({ "tpope/vim-surround" })
   use({ "chaoren/vim-wordmotion" })
-  use("fedepujol/move.nvim")
+  use({ "fedepujol/move.nvim" })
   use({ "unblevable/quick-scope" })
   -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
-  use({
-    "ahmedkhalf/project.nvim",
-  }) -- automagically switches root directory
+  use({ "ahmedkhalf/project.nvim" }) -- automagically switches root directory
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } })
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "psliwka/vim-smoothie" }) -- smooth scrolling
@@ -59,7 +55,7 @@ packer.startup(function(use)
     end,
   })
   use({ "ThePrimeagen/harpoon" })
-  use("azabiong/vim-highlighter")
+  use({ "azabiong/vim-highlighter" })
   use({
     "mtth/scratch.vim",
     config = function()
@@ -67,25 +63,18 @@ packer.startup(function(use)
       vim.g.scratch_persistence_file = cache_dir .. "/nvim/scratch_file"
     end,
   })
-  use("lewis6991/impatient.nvim")
-  use("phaazon/hop.nvim")
-  use("chentoast/marks.nvim")
+  use({ "lewis6991/impatient.nvim" })
+  use({ "phaazon/hop.nvim" })
+  use({ "chentoast/marks.nvim" })
 
   ------------------
   -- IDE features --
   ------------------
-  use({
-    "romgrk/barbar.nvim",
-    requires = { "nvim-tree/nvim-web-devicons" },
-  })
-  use({
-    "kyazdani42/nvim-tree.lua",
-    requires = { "nvim-tree/nvim-web-devicons" },
-  })
+  use({ "romgrk/barbar.nvim" })
+  use({ "kyazdani42/nvim-tree.lua" })
   use({ "ojroques/nvim-bufdel" })
   use({ "mg979/vim-visual-multi" })
   use({ "windwp/nvim-spectre" }) -- search and replace
-  -- use({ "tpope/vim-commentary" })
   use({
     "numToStr/Comment.nvim",
     config = function()
@@ -96,18 +85,10 @@ packer.startup(function(use)
       })
     end,
   })
-  use({
-    "goolord/alpha-nvim",
-    requires = { "nvim-tree/nvim-web-devicons" },
-  })
+  use({ "goolord/alpha-nvim" })
   use({ "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } })
 
-  use({
-    "ThePrimeagen/refactoring.nvim",
-    requires = {
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-  })
+  use({ "ThePrimeagen/refactoring.nvim" })
   use({
     "stevearc/aerial.nvim",
     config = function()
@@ -152,17 +133,12 @@ packer.startup(function(use)
   })
 
   -- Treesitter --
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  })
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   use({ "p00f/nvim-ts-rainbow" }) -- rainbow parantheses
   use({ "nvim-treesitter/nvim-treesitter-context" })
   use({ "JoosepAlviste/nvim-ts-context-commentstring" })
   use({ "windwp/nvim-ts-autotag" })
-  use({
-    "nvim-treesitter/nvim-treesitter-refactor",
-  })
+  use({ "nvim-treesitter/nvim-treesitter-refactor" })
   use({ "nvim-treesitter/nvim-treesitter-textobjects" })
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
 
@@ -203,7 +179,7 @@ packer.startup(function(use)
       "akinsho/org-bullets.nvim",
     },
   })
-  use("martinlroth/vim-devicetree")
+  use({ "martinlroth/vim-devicetree" })
 
   if _G.packer_bootstrap then
     require("packer").sync()
