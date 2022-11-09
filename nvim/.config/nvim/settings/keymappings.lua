@@ -1,3 +1,5 @@
+local tabline = req("plugins.tabline")
+
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then
@@ -77,21 +79,38 @@ map("n", "<A-h>", ":MoveHChar(-1)<CR>")
 map("v", "<A-l>", ":MoveHBlock(1)<CR>")
 map("v", "<A-h>", ":MoveHBlock(-1)<CR>")
 
+-- Buffers
+map("n", "<C-i>", "<C-i>") -- needed to distinguish tab and c-i in terminals that support it
+map("n", "<leader><TAB>", tabline.next)
+map("n", "<leader><S-TAB>", tabline.prev)
+map("n", "<A-.>", tabline.move_next)
+map("n", "<A-,>", tabline.move_prev)
+map("n", "<A-p>", tabline.pin)
+
+map("n", "<S-x>", tabline.close)
+map("n", "<A-w>", ":w<CR>:BufferClose<CR>")
+
+for i = 1, 9 do
+  map("n", "<A-" .. i .. ">", function()
+    tabline.go_to(i)
+  end)
+end
+
 -- When pressing * in visual mode - search for the selected text, and not the word
 vim.api.nvim_exec(
   [[
-function! s:VSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  " Use this line instead of the above to match matches spanning across lines
-  "let @/ = '\V' . substitute(escape(@@, '\'), '\_s\+', '\\_s\\+', 'g')
-  call histadd('/', substitute(@/, '[?/]', '\="\\%d".char2nr(submatch(0))', 'g'))
-  let @@ = temp
-endfunction
+    function! s:VSetSearch()
+      let temp = @@
+      norm! gvy
+      let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+      " Use this line instead of the above to match matches spanning across lines
+      "let @/ = '\V' . substitute(escape(@@, '\'), '\_s\+', '\\_s\\+', 'g')
+      call histadd('/', substitute(@/, '[?/]', '\="\\%d".char2nr(submatch(0))', 'g'))
+      let @@ = temp
+    endfunction
 
-vnoremap * :<C-u>call <SID>VSetSearch()<CR>/<CR>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>?<CR>
-]],
+    vnoremap * :<C-u>call <SID>VSetSearch()<CR>/<CR>
+    vnoremap # :<C-u>call <SID>VSetSearch()<CR>?<CR>
+  ]],
   false
 )
