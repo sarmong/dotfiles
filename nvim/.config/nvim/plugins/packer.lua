@@ -36,13 +36,7 @@ packer.startup(function(use)
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } })
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "psliwka/vim-smoothie" }) -- smooth scrolling
-  use({
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-    config = function()
-      require("plugins.bqf")
-    end,
-  })
+  use({ "kevinhwang91/nvim-bqf", ft = "qf" })
   use({ "mbbill/undotree" })
   use({
     "stevearc/dressing.nvim",
