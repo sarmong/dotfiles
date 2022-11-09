@@ -9,12 +9,12 @@ packer.init({
 packer.startup(function(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
+  use({ "nvim-lua/plenary.nvim" }) -- required by many plugins
 
   use({ "folke/which-key.nvim" })
   use({
     "nvim-telescope/telescope.nvim",
     requires = {
-      "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-media-files.nvim",
       "nvim-telescope/telescope-project.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
@@ -58,7 +58,7 @@ packer.startup(function(use)
       })
     end,
   })
-  use({ "ThePrimeagen/harpoon", requires = "nvim-lua/plenary.nvim" })
+  use({ "ThePrimeagen/harpoon" })
   use("azabiong/vim-highlighter")
   use({
     "mtth/scratch.vim",
@@ -84,10 +84,7 @@ packer.startup(function(use)
   })
   use({ "ojroques/nvim-bufdel" })
   use({ "mg979/vim-visual-multi" })
-  use({
-    "windwp/nvim-spectre",
-    require = "nvim-lua/plenary.nvim",
-  }) -- search and replace
+  use({ "windwp/nvim-spectre" }) -- search and replace
   -- use({ "tpope/vim-commentary" })
   use({
     "numToStr/Comment.nvim",
@@ -108,7 +105,6 @@ packer.startup(function(use)
   use({
     "ThePrimeagen/refactoring.nvim",
     requires = {
-      { "nvim-lua/plenary.nvim" },
       { "nvim-treesitter/nvim-treesitter" },
     },
   })
@@ -123,9 +119,9 @@ packer.startup(function(use)
   use({ "tpope/vim-fugitive" })
   use({ "f-person/git-blame.nvim" }) -- consider using zivyangll/git-blame.vim to show at the bottom
   use({ "mattn/vim-gist" })
-  use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }) -- git lines on the left
-  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
-  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  use({ "lewis6991/gitsigns.nvim" }) -- git lines on the left
+  use({ "TimUntersberger/neogit" })
+  use({ "sindrets/diffview.nvim" })
   use({ "ruifm/gitlinker.nvim" })
 
   -- LSP --
@@ -137,10 +133,7 @@ packer.startup(function(use)
       "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
   })
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-  })
+  use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "folke/lua-dev.nvim" }) -- @TODO this is currently not used
 
   -- Other language features --
