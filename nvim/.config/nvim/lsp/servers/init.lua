@@ -1,18 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({ automatic_installation = true })
-require("mason-tool-installer").setup({
-  ensure_installed = {
-    "stylua",
-    "shellcheck",
-    "editorconfig-checker",
-    "eslint_d",
-    "prettierd",
-    "stylelint-lsp",
-    "shellcheck",
-    "shfmt",
-    "markdownlint",
-  },
-})
+require("mason-null-ls").setup({ automatic_installation = true })
 
 req("lsp.servers.ts")
 req("lsp.servers.lua")
