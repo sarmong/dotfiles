@@ -245,6 +245,7 @@ key_bindings:
   - { key: L, mods: Control, mode: ~Vi|~Search, chars: "\x0c" }
   - { key: K, mods: Control, mode: Vi, action: ScrollHalfPageUp }
   - { key: J, mods: Control, mode: Vi, action: ScrollHalfPageDown }
+  - { key: I, mods: Control, chars: "\x1b[105;5u" } # map C-i separately in neovim
 
   # # Vi Mode
   - { key: Space, mods: Control|Shift, mode: ~Search, action: ToggleViMode }
