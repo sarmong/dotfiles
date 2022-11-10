@@ -116,6 +116,7 @@ packer.startup(function(use)
   })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "folke/lua-dev.nvim" }) -- @TODO this is currently not used
+  use({ "j-hui/fidget.nvim" })
 
   -- Other language features --
   use({ "norcalli/nvim-colorizer.lua" })
