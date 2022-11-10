@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snapshot = "11-10",
+  snapshot = "11-10-2",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -110,7 +110,7 @@ packer.startup(function(use)
     "williamboman/mason.nvim",
     requires = {
       "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "jayp0521/mason-null-ls.nvim",
     },
   })
   use({ "jose-elias-alvarez/null-ls.nvim" })
