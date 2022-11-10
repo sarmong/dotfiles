@@ -261,8 +261,7 @@ local mappings = {
     a = { lsp_fns.code_action, "action" },
     f = { lsp_fns.open_float, "open float" },
     q = { lsp_fns.set_loc_list, "set loc list" },
-    v = { lsp_fns.enable_virtual_text, "virtual text on" },
-    V = { lsp_fns.disable_virtual_text, "virtual text off" },
+    v = { lsp_fns.toggle_virtual_text, "toggle virtual text" },
   },
 
   -- True Zen
