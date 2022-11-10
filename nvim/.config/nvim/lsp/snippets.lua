@@ -1,5 +1,6 @@
 -- @TODO make it more explicit how the snippets are loaded
 req("luasnip.loaders.from_vscode").lazy_load()
+
 --Treesitter
 local q = require("vim.treesitter.query")
 local ls = require("luasnip")
@@ -13,10 +14,8 @@ local sn = ls.snippet_node
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 local snippets, autosnippets = {}, {}
-local group = vim.api.nvim_create_augroup(
-  "Javascript Snippets",
-  { clear = true }
-)
+local group =
+  vim.api.nvim_create_augroup("Javascript Snippets", { clear = true })
 local file_pattern = "*.js"
 
 local function cs(trigger, nodes, opts)
@@ -102,14 +101,10 @@ local get_variable = function(position)
       "(variable_declarator name: (identifier) u/name (#offset! u/name))"
     local query_string_parameters =
       "(formal_parameters (identifier) u/identifier (#offset! u/identifier))"
-    local query_variables = vim.treesitter.parse_query(
-      "javascript",
-      query_string_variables
-    )
-    local query_parameters = vim.treesitter.parse_query(
-      "javascript",
-      query_string_parameters
-    )
+    local query_variables =
+      vim.treesitter.parse_query("javascript", query_string_variables)
+    local query_parameters =
+      vim.treesitter.parse_query("javascript", query_string_parameters)
     local matches = {}
     insert_matches(matches, query_variables, root, cursor_row)
     insert_matches(matches, query_parameters, root, cursor_row)
