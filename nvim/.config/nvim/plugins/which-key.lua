@@ -250,20 +250,6 @@ local mappings = {
     n = { git.open_neogit, "neogit" },
   },
 
-  -- Gist
-  G = {
-    name = "gist",
-    b = { ":Gist -b<cr>", "post gist browser" },
-    d = { ":Gist -d<cr>", "delete gist" },
-    e = { ":Gist -e<cr>", "edit gist" },
-    l = { ":Gist -l<cr>", "list public gists" },
-    s = { ":Gist -ls<cr>", "list starred gists" },
-    m = { ":Gist -m<cr>", "post gist all buffers" },
-    p = { ":Gist -P<cr>", "post public gist " },
-    P = { ":Gist -p<cr>", "post private gist " },
-    a = { ":Gist -a<cr>", "post gist anon" },
-  },
-
   -- LSP
   l = {
     name = "LSP",

@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snapshot = "11-09",
+  snapshot = "11-10",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -99,7 +99,6 @@ packer.startup(function(use)
   -- Git
   use({ "tpope/vim-fugitive" })
   use({ "f-person/git-blame.nvim" }) -- consider using zivyangll/git-blame.vim to show at the bottom
-  use({ "mattn/vim-gist" })
   use({ "lewis6991/gitsigns.nvim" }) -- git lines on the left
   use({ "TimUntersberger/neogit" })
   use({ "sindrets/diffview.nvim" })
