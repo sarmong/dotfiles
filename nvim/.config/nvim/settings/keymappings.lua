@@ -81,8 +81,8 @@ map("v", "<A-h>", ":MoveHBlock(-1)<CR>")
 
 -- Buffers
 map("n", "<C-i>", "<C-i>") -- needed to distinguish tab and c-i in terminals that support it
-map("n", "<leader><TAB>", tabline.next)
-map("n", "<leader><S-TAB>", tabline.prev)
+map("n", "<TAB>", tabline.next)
+map("n", "<S-TAB>", tabline.prev)
 map("n", "<A-.>", tabline.move_next)
 map("n", "<A-,>", tabline.move_prev)
 map("n", "<A-p>", tabline.pin)
