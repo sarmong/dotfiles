@@ -66,8 +66,16 @@ fns.disable_virtual_text = function(silent)
     vim.diagnostic.config({ virtual_text = false })
 
     if not silent then
-      print("Enabled formatting on save")
+      print("Virtual text off")
     end
+  end
+end
+
+fns.toggle_virtual_text = function()
+  if vim.diagnostic.config().virtual_text then
+    fns.disable_virtual_text()
+  else
+    fns.enable_virtual_text()
   end
 end
 
