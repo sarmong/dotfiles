@@ -13,12 +13,12 @@ table.insert(library, "/usr/share/nvim/runtime/lua/lsp")
 table.insert(library, "/usr/share/awesome/lib")
 
 lspconfig.sumneko_lua.setup(vim.tbl_extend("force", configs.default_opt, {
-  -- disable formatting with sumneko_lua, so that null-ls will handle it
   on_attach = function(client, bufnr)
-    configs.default_opt.on_attach(client, bufnr)
-
+    -- disable formatting with sumneko_lua, so that null-ls will handle it
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+
+    configs.default_opt.on_attach(client, bufnr)
   end,
 
   settings = {

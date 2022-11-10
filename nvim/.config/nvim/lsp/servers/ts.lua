@@ -12,12 +12,12 @@ lspconfig.tsserver.setup(vim.tbl_extend("force", configs.default_opt, {
         fname
       )
   end,
-  -- disable formatting with tsserver, so that null-ls will handle it
   on_attach = function(client, bufnr)
-    configs.default_opt.on_attach(client, bufnr)
-
+    -- disable formatting with tsserver, so that null-ls will handle it
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+
+    configs.default_opt.on_attach(client, bufnr)
   end,
 
   single_file_support = true,
