@@ -10,6 +10,8 @@ null_ls.setup({
     -- null_ls.builtins.formatting.stylelint,
     -- null_ls.builtins.diagnostics.stylelint,
 
+    req("typescript.extensions.null-ls.code-actions"),
+
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.diagnostics.eslint_d.with({
       -- extra_args = { "-c", vim.fn.expand("~/.config/.eslintrc.json") },

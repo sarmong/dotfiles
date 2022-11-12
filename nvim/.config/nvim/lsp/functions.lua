@@ -1,5 +1,6 @@
 local configs = req("lsp.lspconfig")
-local orgmode = require("plugins.orgmode")
+local orgmode = req("plugins.orgmode")
+local ts = req("typescript")
 
 local fns = {}
 
@@ -78,6 +79,19 @@ fns.toggle_virtual_text = function()
     fns.enable_virtual_text()
   end
 end
+
+fns.go_to_source_definition = function()
+  vim.cmd("TypescriptGoToSourceDefinition")
+end
+
+fns.rename_file = function()
+  vim.cmd("TypescriptRenameFile")
+end
+
+fns.fix_all = ts.actions.fixAll
+fns.add_missing_imports = ts.actions.addMissingImports
+fns.organize_imports = ts.actions.organizeImports
+fns.remove_unused = ts.actions.removeUnused
 
 -- taken from https://youtu.be/tAVxxdFFYMU
 -- @TODO fix
