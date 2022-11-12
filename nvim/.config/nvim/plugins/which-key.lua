@@ -12,6 +12,7 @@ local colorizer = req("plugins.colorizer")
 local true_zen = req("plugins.true_zen")
 local refactoring = req("plugins.refactoring")
 local hop = req("plugins.hop")
+local ts = req("typescript")
 
 vim.opt.timeoutlen = 700
 
@@ -256,11 +257,17 @@ local mappings = {
     e = { lsp_fns.enable_format_on_save, "enable format on save" },
     d = { lsp_fns.disable_format_on_save, "disable format on save" },
     t = { lsp_fns.go_to_type_definition, "go to type definition" },
+    s = { lsp_fns.go_to_source_definition, "go to source" },
     r = { lsp_fns.rename, "rename" },
     a = { lsp_fns.code_action, "action" },
     f = { lsp_fns.open_float, "open float" },
-    q = { lsp_fns.set_loc_list, "set loc list" },
+    Q = { lsp_fns.set_loc_list, "set loc list" },
+    q = { lsp_fns.fix_all, "quickfix all" },
     v = { lsp_fns.toggle_virtual_text, "toggle virtual text" },
+    i = { lsp_fns.add_missing_imports, "add missing imports" },
+    o = { lsp_fns.organize_imports, "organize imports" },
+    R = { lsp_fns.rename_file, "rename file" },
+    u = { lsp_fns.remove_unused, "remove unused" },
   },
 
   -- True Zen

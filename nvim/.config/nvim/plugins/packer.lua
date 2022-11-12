@@ -66,6 +66,7 @@ packer.startup(function(use)
   use({ "lewis6991/impatient.nvim" })
   use({ "phaazon/hop.nvim" })
   use({ "chentoast/marks.nvim" })
+  use({ "norcalli/nvim-colorizer.lua" })
 
   ------------------
   -- IDE features --
@@ -114,11 +115,11 @@ packer.startup(function(use)
     },
   })
   use({ "jose-elias-alvarez/null-ls.nvim" })
-  use({ "folke/lua-dev.nvim" }) -- @TODO this is currently not used
   use({ "j-hui/fidget.nvim" })
 
   -- Other language features --
-  use({ "norcalli/nvim-colorizer.lua" })
+  use({ "jose-elias-alvarez/typescript.nvim" })
+  use({ "folke/lua-dev.nvim" }) -- @TODO this is currently not used
   use({
     "plasticboy/vim-markdown",
     ft = "markdown",
