@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snapshot = "11-12",
+  snapshot = "11-12-2",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -104,6 +104,7 @@ packer.startup(function(use)
   use({ "TimUntersberger/neogit" })
   use({ "sindrets/diffview.nvim" })
   use({ "ruifm/gitlinker.nvim" })
+  use({ "pwntester/octo.nvim" })
 
   -- LSP --
   use({ "neovim/nvim-lspconfig" })
