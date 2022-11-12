@@ -1,8 +1,9 @@
-local gitlinker = require("gitlinker")
+local gitlinker = req("gitlinker")
 
 req("plugins.git.gitblame")
 req("plugins.git.gitsigns")
 req("plugins.git.neogit")
+req("plugins.git.octo")
 
 local functions = req("plugins.git.functions")
 
