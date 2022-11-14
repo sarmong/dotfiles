@@ -26,6 +26,7 @@ zsh_add_plugin "marzocchi/zsh-notify" "notify"
 
 zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
 zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
+zstyle ':notify:*' expire-time 10000
 
 
 # Taken from https://www.reddit.com/r/zsh/comments/mczq2j/current_process_and_directory_as_window_title/
