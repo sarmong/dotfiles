@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "file://$(readlink -f $1)" | xclip -sel clipboard -t text/uri-list
