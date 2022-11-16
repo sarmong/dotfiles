@@ -34,7 +34,7 @@ telescope.setup({
     file_sorter = sorters.get_fuzzy_file,
     file_ignore_patterns = {
       "node_modules",
-      ".git",
+      "%.git",
       "yarn.lock",
       "package-lock.json",
     },
