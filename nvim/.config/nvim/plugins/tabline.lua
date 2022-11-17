@@ -1,3 +1,8 @@
+require("bufdel").setup({
+  -- @TODO open issue to open on the right
+  next = "alternate",
+})
+
 local fns = {
   next = function()
     vim.cmd("BufferNext")
