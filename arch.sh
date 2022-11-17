@@ -201,8 +201,6 @@ yayinst fnm-bin
 sudo npm i -g yarn
 pacinst httpie
 yayinst postman-bin
-yayinst lazynpm
-pacinst lazygit
 pacinst tig
 yayinst zeal # Documentation browser
 
