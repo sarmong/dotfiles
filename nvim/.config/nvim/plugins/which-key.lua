@@ -12,7 +12,6 @@ local colorizer = req("plugins.colorizer")
 local true_zen = req("plugins.true_zen")
 local refactoring = req("plugins.refactoring")
 local hop = req("plugins.hop")
-local ts = req("typescript")
 
 vim.opt.timeoutlen = 700
 
