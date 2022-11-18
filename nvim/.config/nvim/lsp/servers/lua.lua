@@ -42,6 +42,9 @@ lspconfig.sumneko_lua.setup(vim.tbl_extend("force", configs.default_opt, {
       telemetry = {
         enable = false,
       },
+      completion = {
+        callSnippet = "Replace",
+      },
     },
   },
 }))
