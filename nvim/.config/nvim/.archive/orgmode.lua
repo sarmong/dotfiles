@@ -44,6 +44,21 @@ local function format()
   end
 end
 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = vim.api.create_augroup("org_ft"),
+  pattern = "*.org",
+  callback = function()
+    vim.opt_local.wrap = false
+    vim.opt_local.concealcursor = "nc"
+    vim.opt_local.foldexpr = "OrgmodeFoldExpr()"
+    vim.opt_local.foldenable = true
+    vim.opt_local.tabstop = 1
+    vim.opt_local.shiftwidth = 1
+    vim.opt_local.textwidth = 80
+    vim.cmd("IndentBlanklineDisable")
+  end,
+})
+
 return {
   format = format,
 }

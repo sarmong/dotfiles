@@ -28,21 +28,6 @@ create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-create_autocmd({ "BufNewFile", "BufRead" }, {
-  group = create_augroup("org_ft"),
-  pattern = "*.org",
-  callback = function()
-    vim.opt_local.wrap = false
-    vim.opt_local.concealcursor = "nc"
-    vim.opt_local.foldexpr = "OrgmodeFoldExpr()"
-    vim.opt_local.foldenable = true
-    vim.opt_local.tabstop = 1
-    vim.opt_local.shiftwidth = 1
-    vim.opt_local.textwidth = 80
-    vim.cmd("IndentBlanklineDisable")
-  end,
-})
-
 create_autocmd("BufReadPost", {
   group = create_augroup("vim_startup"),
   pattern = "*",
