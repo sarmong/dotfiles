@@ -1,7 +1,5 @@
 local parsers = req("nvim-treesitter.parsers")
 
-req("orgmode").setup_ts_grammar()
-
 req("nvim-treesitter.configs").setup({
   ensure_installed = { --  "all" or a list of languages
     "bash",

@@ -1,15 +1,10 @@
 local configs = req("lsp.lspconfig")
-local orgmode = req("plugins.orgmode")
 local ts = req("typescript")
 
 local fns = {}
 
 fns.format = function()
-  if vim.o.filetype == "org" then
-    orgmode.format()
-  else
-    vim.lsp.buf.format()
-  end
+  vim.lsp.buf.format()
   print("Formatted")
 end
 
