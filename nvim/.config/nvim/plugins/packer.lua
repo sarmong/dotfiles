@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snapshot = "11-20",
+  snapshot = "11-20-2",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -28,7 +28,8 @@ packer.startup(function(use)
 
   use({ "windwp/nvim-autopairs" })
   use({ "tpope/vim-surround" })
-  use({ "chaoren/vim-wordmotion" })
+  use({ "bkad/CamelCaseMotion" })
+
   use({ "fedepujol/move.nvim" })
   use({ "unblevable/quick-scope" })
   -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
