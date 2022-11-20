@@ -3,9 +3,17 @@
 NEW="$1"
 WALLPAPER=$XDG_PICTURES_DIR/wallpaper.png
 
+mimetype=$(file -i "$NEW" | awk -F: '{print $2}' | awk -F ';' '{print $1}' | xargs)
+
+if [ "$mimetype" != "image/jpeg" ] && [ "$mimetype" != "image/png" ]; then
+  echo "File not an image"
+  exit 1
+fi
+
 [ ! -d "$XDG_PICTURES_DIR" ] && mkdir -p "$XDG_PICTURES_DIR"
 
 [ ! -f "$WALLPAPER" ] && touch "$WALLPAPER"
 
 convert "$NEW" "$WALLPAPER"
+
 feh --bg-fill "$WALLPAPER"
