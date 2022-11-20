@@ -3,12 +3,35 @@ local ts = req("typescript")
 
 local fns = {}
 
+local function has_formatting()
+  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+
+  local has = false
+  for _, client in ipairs(clients) do
+    if client.server_capabilities.documentFormattingProvider then
+      has = true
+      break
+    end
+  end
+
+  return has
+end
+
 fns.format = function()
-  vim.lsp.buf.format()
-  print("Formatted")
+  if has_formatting() then
+    vim.lsp.buf.format()
+    print("Formatted")
+  else
+    print("No formatting server")
+  end
 end
 
 fns.enable_format_on_save = function(silent)
+  if not has_formatting() then
+    print("No formatting server")
+    return
+  end
+
   if not configs.settings.format_on_save then
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("FormatOnSave", {}),
