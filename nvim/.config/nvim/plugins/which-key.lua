@@ -82,7 +82,9 @@ local mappings = {
   f = { ":Telescope find_files hidden=true<cr>", "find files" },
   M = { ":MarkdownPreviewToggle<cr>", "markdown preview" },
   u = { ":UndotreeToggle<cr>", "undo tree" },
-  p = { ":Scratch<cr>", "scratchpad" },
+  p = { '"_dP', "super paste" },
+  -- @TODO find another place for scratchpad
+  -- p = { ":Scratch<cr>", "scratchpad" },
   -- TODO create entire treesitter section
   T = { ":TSHighlightCapturesUnderCursor<cr>", "treesitter highlight" },
   h = { "<C-W>s", "split below" },
