@@ -160,7 +160,9 @@ pacinst urlscan
 ### --- Useful CLI utils --- ###
 
 pacinst ffmpeg
+pacinst ffmpegthumbnailer
 pacinst imagemagick
+pacinst lynx
 
 pacinst jq
 pacinst tree
