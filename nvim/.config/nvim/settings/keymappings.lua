@@ -65,6 +65,7 @@ map("v", ">", ">gv")
 map("x", "K", ":move '<-2<CR>gv-gv")
 map("x", "J", ":move '>+1<CR>gv-gv")
 
+-- @TODO doesn't work?
 map("o", "in(", ":<c-u>normal! f(vi(<cr>")
 map("o", "il(", ":<c-u>normal! F)vi(<cr>")
 map("o", "p", "i{")
