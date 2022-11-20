@@ -27,11 +27,6 @@ fns.format = function()
 end
 
 fns.enable_format_on_save = function(silent)
-  if not has_formatting() then
-    print("No formatting server")
-    return
-  end
-
   if not configs.settings.format_on_save then
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("FormatOnSave", {}),
