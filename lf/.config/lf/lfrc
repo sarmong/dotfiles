@@ -83,7 +83,6 @@ cmd copyto ${{
 	notify-send "📋 File(s) copied." "File(s) copies to $dest."
 }}
 
-cmd setbg "$1"
 cmd bulkrename $vidir
 
 # Bindings
@@ -113,7 +112,7 @@ map I push A<c-a> # at the very beginning
 map r push A<a-b><a-b><a-f> # before extention
 map a push A<a-b> # after extention
 map B bulkrename
-map b $setbg $f
+map b $set-wp $f
 
 map <c-e> down
 map <c-y> up
