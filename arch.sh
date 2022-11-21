@@ -36,7 +36,7 @@ alert() {
   echo -e "-----------------------------------------------------------------$nocol"
 }
 
-pacman -Syyyu
+sudo pacman -Syyyu
 
 sudo pacman -S --needed base-devel
 mkdir -p ~/.local/src
@@ -69,7 +69,9 @@ pacinst ufw
 ### --- Main system setup --- ###
 
 pacinst xorg-server
-pacinst xorg-setxkbmap xorg-xinit xorg-xev xorg-xkill xorg-xprop xorg-xrandr xorg-xset
+pacinst xorg-setxkbmap xorg-xinit xorg-xev xorg-xkill xorg-xprop xorg-xrandr xorg-xset xorg-xinput
+pacinst xdotool
+pacinst wmctrl
 
 pacinst lightdm lightdm-slick-greeter
 "$XDG_BIN_DIR"/services/lightdm/init.sh
@@ -86,7 +88,8 @@ pacinst lxappearance
 yayinst gtk-theme-arc-gruvbox-git
 pacinst papirus-icon-theme
 pacinst qt5ct
-yayinst adwaita-qt
+yayinst adwaita-qt6-git
+yayinst adwaita-qt5-git
 
 ## Fonts
 pacinst noto-fonts
@@ -184,10 +187,9 @@ pacinst unrar unzip zip
 pacinst moreutils # Provides vidir packages for mass renaming
 pacinst fdupes
 yayinst dragon-drop
-yayinst handlr-bin
+pacinst handlr
 yayinst selectdefaultapplication-git
 pacinst neofetch
-pacinst xdotool
 pacinst unclutter
 pacinst dua-cli
 pacinst uglify-js
@@ -200,7 +202,7 @@ alert "INSTALLED MAIN SYSTEM SETUP"
 
 ### --- Programming tools --- ###
 ## Install system version of node
-pacinst nodejs-lts-gallium
+pacinst nodejs
 yayinst fnm-bin
 sudo npm i -g yarn
 pacinst httpie
@@ -236,6 +238,7 @@ yayinst slack-desktop
 yayinst zoom
 pacinst telegram-desktop
 pacinst qbittorrent
+yayinst webcamoid
 
 pacinst nextcloud-client
 
