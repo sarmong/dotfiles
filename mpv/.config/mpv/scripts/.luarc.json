@@ -1,0 +1,4 @@
+{
+  "Lua.diagnostics.globals": ["mp"],
+  "Lua.workspace.library": ["${3rd}/luassert/library"]
+}
