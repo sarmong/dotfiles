@@ -1,0 +1,18 @@
+[
+  {
+    "label": "Save playlist",
+    "command": ["script-message", "playlistmanager", "save", "interactively"]
+  },
+  {
+    "label": "Save playlist (default name)",
+    "command": ["script-message", "playlistmanager", "save"]
+  },
+  {
+    "label": "Shuffle playlist",
+    "command": ["script-message", "playlistmanager", "shuffle"]
+  },
+  {
+    "label": "Reverse playlist",
+    "command": ["script-message", "playlistmanager", "reverse"]
+  }
+]

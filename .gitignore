@@ -16,3 +16,4 @@ scripts/.local/share
 scripts/.local/cache
 scripts/.local/state
 mpv/.config/mpv/watch_later
+mpv/.config/mpv/playlists
