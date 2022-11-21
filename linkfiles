@@ -13,6 +13,9 @@ for file in ${existing_files}; do
   [ -f "$path" ] && [ ! -L "$path" ] && mv "$path" "$HOME/$file-old"
 done
 
+mkdir ~/.local
+mkdir ~/.config
+
 Darwin="bash git nvim lf scripts vim alacritty newsboat tmux archive/macos/skhd archive/macos/spacebar archive/macos/yabai"
 
 Linux="bash zsh git nvim lf scripts vim alacritty newsboat tmux bottom npm awesome rofi libinput-gestures picom mpv xorg udiskie"
@@ -36,5 +39,6 @@ done
 
 cp "$script_dir"/npm/.config/npm/npmrc-template "$script_dir"/npm/.config/npm/npmrc
 
+# TODO doesn't export
 # Source env variables so that they are available immediately
 . "$script_dir/bash/.config/bash/bash-exports"
