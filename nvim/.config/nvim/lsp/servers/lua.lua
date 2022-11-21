@@ -28,6 +28,9 @@ lspconfig.sumneko_lua.setup(vim.tbl_extend("force", configs.default_opt, {
         version = "LuaJIT",
         -- Setup your lua path
         path = runtime_path,
+        special = {
+          req = "require",
+        },
       },
       diagnostics = {
         enable = true,
