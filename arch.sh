@@ -39,6 +39,8 @@ alert() {
 pacman -Syyyu
 
 sudo pacman -S --needed base-devel
+mkdir -p ~/.local/src
+cd ~/.local/src
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
