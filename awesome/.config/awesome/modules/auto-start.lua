@@ -14,7 +14,7 @@ local apps = {
   "libinput-gestures-setup restart",
   "CM_SELECTIONS='clipboard' clipmenud",
   "redshift",
-  "safeeyes",
+  -- "safeeyes",
   "aw-qt",
 
   -- Configuration
