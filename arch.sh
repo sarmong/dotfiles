@@ -111,7 +111,7 @@ pacinst pavucontrol # Pulse Audio Volume Control GUI
 pacinst pamixer     # Pulse Audio CLI
 pacinst playerctl
 
-pacinst blueman bluez # Blueman is a GUI for bluez
+pacinst blueman bluez bluez-utils # Blueman is a GUI for bluez
 
 pacinst network-manager-applet
 pacinst gnome-keyring # Should start systemd service automatically
