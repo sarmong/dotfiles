@@ -71,6 +71,7 @@ play() {
 
 # Might be useful
 alias weather="curl wttr.in"
+alias moon="curl wttr.in/moon"
 alias myip="curl ipinfo.io/ip"
 alias week='date +%V'
 
