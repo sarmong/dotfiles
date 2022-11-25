@@ -65,13 +65,8 @@ map("v", ">", ">gv")
 map("x", "K", ":move '<-2<CR>gv-gv")
 map("x", "J", ":move '>+1<CR>gv-gv")
 
--- @TODO doesn't work?
-map("o", "in(", ":<c-u>normal! f(vi(<cr>")
-map("o", "il(", ":<c-u>normal! F)vi(<cr>")
 map("o", "p", "i{")
 map("o", "P", "i(")
-map("o", "in(", ":<c-u>normal! f{vi{<cr>")
-map("o", "il(", ":<c-u>normal! F}vi{<cr>")
 
 map("n", "<A-j>", ":MoveLine(1)<CR>")
 map("n", "<A-k>", ":MoveLine(-1)<CR>")
