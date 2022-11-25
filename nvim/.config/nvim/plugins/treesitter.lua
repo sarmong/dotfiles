@@ -44,13 +44,8 @@ req("nvim-treesitter.configs").setup({
     additional_vim_regex_highlighting = { "markdown", "org" },
 
     disable = function()
-      if
-        vim.api.nvim_buf_line_count(0) > 1000 or vim.fn.getline(1):len() > 200
-      then
-        return true
-      else
-        return false
-      end
+      return vim.api.nvim_buf_line_count(0) > 4000
+        or vim.fn.getline(1):len() > 200
     end,
   },
 
