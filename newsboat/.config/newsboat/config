@@ -2,6 +2,7 @@ urls-source "freshrss"
 freshrss-url "https:///api/greader.php"
 freshrss-login "michael"
 freshrss-passwordfile "~/.config/newsboat/pw"
+freshrss-min-items 1000
 
 #show-read-feeds no
 auto-reload no
