@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snapshot = "11-20-3",
+  snapshot = "11-25",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -171,6 +171,7 @@ packer.startup(function(use)
   use({ "navarasu/onedark.nvim" })
   use({ "folke/tokyonight.nvim" })
   use({ "ellisonleao/gruvbox.nvim" })
+  use({ "sainnhe/gruvbox-material" })
   -- use("christianchiarulli/nvcode-color-schemes.vim")
 
   use("Pocco81/TrueZen.nvim")
