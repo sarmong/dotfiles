@@ -1,6 +1,7 @@
 require("mason").setup()
 require("mason-lspconfig").setup({ automatic_installation = true })
 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 req("lsp.servers.ts")
 req("lsp.servers.lua")
 req("lsp.servers.css")
