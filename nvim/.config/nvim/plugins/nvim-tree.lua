@@ -13,7 +13,6 @@ local keymappings = {
   { key = "H", action = "toggle_dotfiles" },
   { key = "R", action = "refresh" },
   { key = "a", action = "create" },
-  -- @TODO see if trash can be used for folders
   { key = "d", action = "trash" },
   { key = "D", action = "remove" },
   { key = "r", action = "rename" },

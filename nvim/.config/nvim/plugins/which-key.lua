@@ -85,8 +85,6 @@ local mappings = {
   p = { '"_dP', "super paste" },
   -- @TODO find another place for scratchpad
   -- p = { ":Scratch<cr>", "scratchpad" },
-  -- TODO create entire treesitter section
-  T = { ":TSHighlightCapturesUnderCursor<cr>", "treesitter highlight" },
   h = { "<C-W>s", "split below" },
   v = { "<C-W>v", "split right" },
   ['"'] = { 'viw<esc>a"<esc>bi"<esc>lel', "surround" },
