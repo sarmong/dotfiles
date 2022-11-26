@@ -1,6 +1,7 @@
 local null_ls = req("null-ls")
 local configs = req("lsp.lspconfig")
 
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
