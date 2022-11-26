@@ -50,6 +50,17 @@ req("nvim-treesitter.configs").setup({
   },
 
   textobjects = {
+    -- swappable queries can be found here
+    -- https://github.com/atchim/dotsoup/tree/main/nvim/queries
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>ts"] = "@swappable",
+      },
+      swap_previous = {
+        ["<leader>tS"] = "@swappable",
+      },
+    },
     select = {
       enable = true,
       lookahead = true,
@@ -57,24 +68,6 @@ req("nvim-treesitter.configs").setup({
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
       },
-      -- @TODO doesn't word, consider custom
-      --swap = {
-      --     enable = true,
-      --     swap_next = { ['<leader>ts'] = '@swappable' },
-      --     swap_previous = { ['<leader>tS'] = '@swappable' }
-      -- }
-      -- затем надо добавить capture group'у в textobjects.scm, открываешь нужный файлтайп, делаешь :TSEditQueryUserAfter textobjects и пишешь query, например для lua у меня вот такое:
-      -- (field) @swappable
-      -- (arguments (_) @swappable)
-      -- swap = {
-      --   enable = true,
-      --   swap_next = {
-      --     ["]m"] = "@parameter.inner",
-      --   },
-      --   swap_previous = {
-      --     ["[m"] = "@parameter.inner",
-      --   },
-      -- },
       move = {
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
