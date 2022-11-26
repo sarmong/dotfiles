@@ -114,6 +114,7 @@ req("nvim-treesitter.configs").setup({
   -- consider finding separate smaller plugin for hightlight definitions (perhaps with native lsp)
   refactor = {
     highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = true },
   },
   playground = {
     enable = true,
