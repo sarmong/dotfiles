@@ -1,4 +1,3 @@
-# Basic vars
 set shell sh
 set shellopts '-eu'
 set ifs "\n"
@@ -20,24 +19,13 @@ cmd extract ${{
 	[ $ans = "y" ] && aunpack $fx
 }}
 
-# cmd delete ${{
-# 	clear; tput cup $(($(tput lines)/3)); tput bold
-# 	set -f
-# 	printf "%s\n\t" "$fx"
-# 	printf "delete?[y/N]"
-# 	read ans
-# 	[ $ans = "y" ] && rm -rf -- $fx
-# }}
-
-# cmd delete %rm -ri $fx
-
 # cmd trash %mv -bi $fx ~/docs/air/.Trash
 
 cmd moveto ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 	clear; echo "Move to where?"
-	dest="$(fd . ~ /run/media/$USER --type d | sed "s|/home/$USER|[home]|" | sed "s|/run/media/$USER|[drives]|" | fzf | sed "s|\[home\]|/home/$USER|" | sed 's|\[drives\]|/run/media/$USER|')" &&
+	dest="$(fd . ~ --type d --follow --relative-path | sed "s|/home/$USER|~|" | fzf | sed "s|~|/home/$USER|")"
 	for x in $fx; do
 		eval mv -iv \"$x\" \"$dest\"
 	done &&
@@ -48,7 +36,7 @@ cmd copyto ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 	clear; echo "Copy to where?"
-	dest="$(fd . /home/michael /run/media/michael/transcend2 --type d | sed 's|/home/michael|[home]|' | sed 's|/run/media/michael/transcend2|[transcend]|' | fzf | sed 's|\[home\]|/home/michael|' | sed 's|\[transcend\]|/run/media/michael/transcend2|')" &&
+	dest="$(fd . ~ --type d --follow --relative-path | sed "s|/home/$USER|~|" | fzf | sed "s|~|/home/$USER|")"
 	for x in $fx; do
 		eval cp -ivr \"$x\" \"$dest\"
 	done &&
@@ -64,25 +52,23 @@ cmd zi ${{
   lf -remote "send ${id} cd '${result}'"
 }}
 
-cmd bulkrename $vidir
+# @TODO if you change it to '&$' (as default)
+# it opens x-shellscript file in firefox
+cmd open $$OPENER $f
 
 cmd openall ${{
+  echo "$OPENER"
   for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done
 }}
 
-# Bindings
-map <c-f> $lf -remote "send $id select '$(fzf)'"
-map J $lf -remote "send $id cd $(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf)"
 map gh
 map gg top
-# map D delete
 map T %trash $fx
 map E extract
 map C copyto
 map M moveto
 map <c-n> push :mkdir<space>
 map <c-r> reload
-map <c-s> set hidden!
 map <enter> shell
 map x $$f
 map X !$f
@@ -90,23 +76,15 @@ map oa openall
 map ow $mimeopen --ask $f # open with
 map gd $dragon-drop $fx & disown
 map gc $fcp $fx
+map gb $set-wp $f
 
 map A rename # at the very end
-# map c push A<c-u> # new rename
+map c push A<c-u> # new rename
 map I push A<c-a> # at the very beginning
 map r push A<a-b><a-b><a-f> # before extention
 map a push A<a-b> # after extention
-map B bulkrename
-map b $set-wp $f
+map B $vidir # bulk rename
+map t %mimetype --brief $f
 
-map <c-e> down
-map <c-y> up
-map V push :!nvim<space>
-
-map W $setsid -f $TERMINAL >/dev/null 2>&1
-
-## Copy path
+# Copy path
 map Y $printf "%s" "$fx" | xclip -selection clipboard
-
-# Source Bookmarks
-# source "~/.config/lf/shortcutrc"
