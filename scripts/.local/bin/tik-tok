@@ -1,5 +1,0 @@
-#!/bin/sh
-
-currentDate=$(date "+ %H:%M")
-
-notify-send -title 'Reminder' -message "$currentDate" -sound submarine
