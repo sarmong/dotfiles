@@ -144,6 +144,7 @@ sudo gpasswd -a "$USER" input
 ## newgrp input
 
 pacinst feh
+yayinst nsxiv
 pacinst perl-image-exiftool
 pacinst zathura zathura-pdf-mupdf zathura-djvu
 pacinst pandoc
