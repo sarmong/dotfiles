@@ -47,6 +47,7 @@ elif [[ "$1" == "video" ]]; then
 
 ## Available options:
 # feh
+# nsxiv
 # org.gnome.eog (gnome image viewer)
 # display-im6.q16 (imagemagick)
 elif [[ "$1" == "image" ]]; then
@@ -61,10 +62,12 @@ elif [[ "$1" == "image" ]]; then
   handlr set image/x-icon "$2.desktop"
   handlr set image/x-xbitmap "$2.desktop"
   handlr set image/x-xpixmap "$2.desktop"
+  handlr set image/webp "$2.desktop"
+  handlr set image/x-tga "$2.desktop"
 
 ## Available options:
 # org.gnome.Evince (gnome document viewer)
 # org.pwmt.zathura-pdf-poppler
-elif [[ "$1" == "image" ]]; then
+elif [[ "$1" == "pdf" ]]; then
   handlr set application/pdf "$2.desktop"
 fi
