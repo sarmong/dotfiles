@@ -188,6 +188,7 @@ pacinst moreutils # Provides vidir packages for mass renaming
 pacinst fdupes
 yayinst dragon-drop
 pacinst handlr
+pacinst perl-file-mimeinfo
 yayinst selectdefaultapplication-git
 pacinst neofetch
 pacinst unclutter
