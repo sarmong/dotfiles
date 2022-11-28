@@ -56,15 +56,19 @@ cmd copyto ${{
 }}
 
 cmd z %{{
-    result="$(zoxide query --exclude "${PWD}" -- "$@")"
-    lf -remote "send ${id} cd '${result}'"
+  result="$(zoxide query --exclude "${PWD}" -- "$@")"
+  lf -remote "send ${id} cd '${result}'"
 }}
 cmd zi ${{
-    result="$(zoxide query -i -- "$@")"
-    lf -remote "send ${id} cd '${result}'"
+  result="$(zoxide query -i -- "$@")"
+  lf -remote "send ${id} cd '${result}'"
 }}
 
 cmd bulkrename $vidir
+
+cmd openall ${{
+  for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done
+}}
 
 # Bindings
 map <c-f> $lf -remote "send $id select '$(fzf)'"
@@ -82,8 +86,8 @@ map <c-s> set hidden!
 map <enter> shell
 map x $$f
 map X !$f
-map o $xdg-open $f
-map O $mimeopen --ask $f
+map oa openall
+map ow $mimeopen --ask $f # open with
 map gd $dragon-drop $fx & disown
 map gc $fcp $fx
 
