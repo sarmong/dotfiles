@@ -178,6 +178,7 @@ packer.startup(function(use)
   use({ "martinlroth/vim-devicetree" })
   use({ "sarmong/lf-vim" })
   use({ "sarmong/newsboat.vim" })
+  use({ "kovetskiy/sxhkd-vim" })
 
   if _G.packer_bootstrap then
     require("packer").sync()
