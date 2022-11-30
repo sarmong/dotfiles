@@ -16,6 +16,7 @@ local apps = {
   "redshift",
   -- "safeeyes",
   "aw-qt",
+  "conky",
 
   -- Configuration
   "feh --bg-fill $XDG_PICTURES_DIR/wallpaper.png &",
