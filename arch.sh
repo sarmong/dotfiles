@@ -119,6 +119,7 @@ pacinst gnome-keyring # Should start systemd service automatically
 pacinst xfce4-power-manager
 pacinst mate-system-monitor
 pacinst bottom
+pacinst conky
 pacinst udiskie # Automounts external drives
 
 pacinst caja
