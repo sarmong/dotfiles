@@ -23,9 +23,9 @@ map("n", "w", "<Plug>CamelCaseMotion_w")
 -- save doc using Ctrl+s. If this doesn't work add this two lines to bash_profile: (or just the second)
 -- bind -r '\C-s'
 -- stty -ixon
-map("n", "<C-s>", ":w<CR>")
-map("i", "<C-s>", "<Esc>:w<CR>")
-map("v", "<C-s>", "<Esc>:w<CR>")
+map("n", "<C-s>", ":update<CR>")
+map("i", "<C-s>", "<Esc>:update<CR>")
+map("v", "<C-s>", "<Esc>:update<CR>")
 
 map("i", "<C-u>", "<esc>viwUea")
 
