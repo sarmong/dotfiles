@@ -1,3 +1,4 @@
+local project = req("plugins.project")
 local wk = req("which-key")
 local colorscheme = req("settings.colorscheme")
 local git = req("plugins.git").git
@@ -134,6 +135,12 @@ local mappings = {
     s = {
       ":source $MYVIMRC<cr>:echo 'Loaded config'<cr>",
       "source nvim config",
+    },
+    -- Project
+    p = {
+      name = "project",
+      m = { project.use_monorepo, "monorepo" },
+      p = { project.use_package, "package" },
     },
   },
 
