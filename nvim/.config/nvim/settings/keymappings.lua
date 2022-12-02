@@ -32,6 +32,9 @@ map("i", "<C-u>", "<esc>viwUea")
 map("n", "H", "^")
 map("n", "L", "$")
 
+map("n", "S", ":%s//gc<Left><Left><Left>", { silent = false })
+map("v", "S", ":s//gc<Left><Left><Left>", { silent = false })
+
 -- turn off search highlights until next search
 -- and close quickfix and loclist windows
 map("n", "<leader>q", ":noh<CR>:ccl<CR>:lcl<CR>")
