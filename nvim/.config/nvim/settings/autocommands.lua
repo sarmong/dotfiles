@@ -50,3 +50,9 @@ create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+create_autocmd("BufWritePre", {
+  group = "Remove trailing spaces",
+  pattern = "*",
+  command = "execute '%s/\\s\\+$//e'",
+})
