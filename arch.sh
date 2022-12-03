@@ -99,6 +99,9 @@ pacinst noto-fonts
 pacinst otf-font-awesome
 yayinst nerd-fonts-complete
 pacinst font-manager
+pacinst noto-fonts-emoji # provide emojis for terminal and polybar
+# yayinst ttf-twemoji
+# pacinst ttf-joypixels
 
 ## Keyboard
 yayinst keyd-git

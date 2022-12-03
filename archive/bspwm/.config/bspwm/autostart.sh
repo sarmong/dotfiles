@@ -1,39 +1,36 @@
 #!/bin/sh
 
-killall sxhkd
-killall polybar
-killall picom
-
-sxhkd &
-"$XDG_CONFIG_HOME/polybar/launch.sh" &
-picom &
-
-## Configurations
-feh --bg-fill "$XDG_PICTURES_DIR/wallpaper.png" &
-"$XDG_BIN_DIR/setup/screenlayout/init.sh" &
-"$XDG_BIN_DIR/setup/keyboard/init.sh" &
+pidof picom && kill -s USR1 "$(pidof picom)" || picom --daemon
+pidof sxhkd && kill -s USR1 "$(pidof sxhkd)" || sxhkd &
 
 # run only on initial start
 if [ "$1" = 0 ]; then
+  "$XDG_CONFIG_HOME/polybar/launch.sh" &
+
+  ## Configurations
+  "$XDG_BIN_DIR/setup/keyboard/init.sh" &
+  "$XDG_BIN_DIR/setup/screenlayout/init.sh" &
   inputplug -c "$XDG_BIN_DIR/setup/keyboard/on-connect.sh" &
   unclutter &
-  xsetroot -cursor_name left_ptr & # remove x-shaped cursor when no windows open
+  # xsetroot -cursor_name left_ptr & # remove x-shaped cursor when no windows open
   # bluetooth on &
 
   ## Essentials
   deadd-notification-center &
   lxpolkit &
-  nm-applet &         # indicator # network tray
-  volctl &            # audiocontrol tray
+  nm-applet &           # indicator # network tray
   xfce4-power-manager & # power manager tray
   conky &
-  udiskie --smart-tray # mounts drives automatically
+  udiskie --smart-tray & # mounts drives automatically
 
   ## Applications
   nextcloud &
-  libinput-gestures-setup restart &
+  # libinput-gestures-setup restart &
   CM_SELECTIONS='clipboard' clipmenud &
   redshift &
   # safeeyes
+  sleep 5
+
+  volctl & # audiocontrol tray
   aw-qt &
 fi
