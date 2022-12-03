@@ -8,3 +8,5 @@ if [ "$second_monitor" ]; then
 else
   "$XDG_BIN_DIR"/setup/screenlayout/undocked.sh
 fi
+
+feh --bg-fill "$XDG_PICTURES_DIR/wallpaper.png" &
