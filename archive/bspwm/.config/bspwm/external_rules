@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+window_id="$1"
+window_class="$2"
+window_instance="$3"
+consequences=$4
+title="$(xdotool getwindowname "$window_id")"
+bw="$(bspc config border_width)"
+
+get_value() { echo "$consequences" | tr ' ' '\n' | grep ''"$1"'' | sed 's/(.*=)(.*)/\2/g' -E; }
+
+set_position() {
+  hex_id="$(printf "0x%x\n" "$window_id")"
+  ww=$(wattr w "$hex_id")
+  wh=$(wattr h "$hex_id")
+
+  root_id="$(xdo id -n root)"
+  rw=$(wattr w "$root_id")
+  rh=$(wattr h "$root_id")
+
+  if [[ "$1" == -* ]]; then
+    x=$((rw + $1 - ww - 2 * bw)) # 961
+  else
+    x=$1
+  fi
+
+  if [[ "$2" == -* ]]; then
+    y=$((rh + $2 - wh - 2 * bw))
+  else
+    y=$2
+  fi
+
+  xdo move -x "$x" -y "$y" -r "$window_id"
+}
+
+case "$window_class" in
+  Ulauncher | Lxpolkit)
+    echo "state=floating"
+    echo "center=on"
+    ;;
+  PanGPUI)
+    echo "state=floating"
+    echo "sticky=on"
+    ;;
+  Pavucontrol | Nm-connection-editor | Xfce4-power-manager-settings | feh | join* | Blueman-manager)
+    echo "state=floating"
+    echo "sticky=on"
+    ;;
+
+  "Dragon-drop")
+    echo "sticky=on"
+    set_position "-10" 40
+    ;;
+esac
+
+case "$title" in
+  "Event Tester")
+    echo "state=floating"
+    set_position -0 40
+    ;;
+esac

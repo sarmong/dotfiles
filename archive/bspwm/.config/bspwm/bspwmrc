@@ -1,24 +1,29 @@
-#!/bin/sh 
+#!/bin/sh
 
-# bspc rule -r "*"
-$HOME/.config/bspwm/autostart.sh
+# TODO
+# = minimize and restore
+# - focus floating window
+# - lock screen after suspend
+
+connected_displays="$(xrandr | grep " connected " | awk '{ print $1 }')"
+
+echo "$connected_displays" | xargs -L1 -I {} bspc monitor {} -d 1 2 3 4 5 6 7 8
+# bspc monitor HDMI-1 -d 1 2 3 4 5 6
+# bspc monitor eDP-1 -d 7 8 9 0
+# bspc wm --reorder-monitors HDMI-1 eDP-1
+# bspc monitor LVDS-1 -d 1 2 3 8 9 0
+
 ###---Autostart---###
+"$XDG_CONFIG_HOME/bspwm/autostart.sh" "$1"
 
-# for WebStorm to work correctly
-wmname LG3D
+bspc config automatic_scheme alternate >/dev/null 2>&1 &
 
-bspc monitor HDMI-1 -d 1 2 3 4 5 6
-bspc monitor eDP-1 -d 7 8 9 0
-bspc wm --reorder-monitors HDMI-1 eDP-1 
+bspc config border_width 2
+bspc config window_gap 12
 
-bspc config automatic_scheme alternate> /dev/null 2>&1 & 
-
-bspc config border_width         2
-bspc config window_gap          12
-
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config split_ratio 0.52
+bspc config borderless_monocle true
+bspc config gapless_monocle true
 bspc config single_monocle true
 
 bspc config click_to_focus true
@@ -28,4 +33,8 @@ bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner
 
-bspc rule -a PanGPUI state=floating
+bspc rule -r "*"
+bspc config external_rules_command "$HOME/.config/bspwm/external_rules"
+
+# for WebStorm to work correctly
+# wmname LG3D
