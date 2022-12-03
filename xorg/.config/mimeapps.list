@@ -4,8 +4,8 @@ x-scheme-handler/tg=telegramdesktop.desktop;
 [Default Applications]
 application/javascript=nvim.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
-application/xhtml+xml=firefox.desktop;
 application/x-shellscript=nvim.desktop;
+application/xhtml+xml=firefox.desktop;
 audio/aac=mpv.desktop;
 audio/flac=mpv.desktop;
 audio/m4a=mpv.desktop;
