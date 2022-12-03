@@ -72,11 +72,14 @@ pacinst xorg-server
 pacinst xorg-setxkbmap xorg-xinit xorg-xev xorg-xkill xorg-xprop xorg-xrandr xorg-xset xorg-xinput
 pacinst xdotool
 pacinst wmctrl
+yayinst wmutils-git
+pacinst xdo
 
 pacinst lightdm lightdm-slick-greeter
 "$XDG_BIN_DIR"/services/lightdm/init.sh
 
 yayinst awesome-git
+pacinst bspwm sxhkd polybar
 yayinst i3lock-fancy-git
 pacinst picom
 pacinst arandr
