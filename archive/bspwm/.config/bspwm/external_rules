@@ -5,7 +5,9 @@ window_class="$2"
 window_instance="$3"
 consequences=$4
 title="$(xdotool getwindowname "$window_id")"
+# beware - when using bspc inside a function - bspwm totally freezes
 bw="$(bspc config border_width)"
+monitor_dimensions=$(bspc query -T -m focused | jq ".rectangle")
 
 get_value() { echo "$consequences" | tr ' ' '\n' | grep ''"$1"'' | sed 's/(.*=)(.*)/\2/g' -E; }
 
@@ -14,20 +16,21 @@ set_position() {
   ww=$(wattr w "$hex_id")
   wh=$(wattr h "$hex_id")
 
-  root_id="$(xdo id -n root)"
-  rw=$(wattr w "$root_id")
-  rh=$(wattr h "$root_id")
+  rw=$(echo "$monitor_dimensions" | jq ".width")
+  rh=$(echo "$monitor_dimensions" | jq ".height")
+  rx=$(echo "$monitor_dimensions" | jq ".x")
+  ry=$(echo "$monitor_dimensions" | jq ".y")
 
   if [[ "$1" == -* ]]; then
-    x=$((rw + $1 - ww - 2 * bw)) # 961
+    x=$((rx + rw + $1 - ww - 2 * bw))
   else
-    x=$1
+    x=$((rx + $1))
   fi
 
   if [[ "$2" == -* ]]; then
-    y=$((rh + $2 - wh - 2 * bw))
+    y=$((ry + rh + $2 - wh - 2 * bw))
   else
-    y=$2
+    y=$((ry + $2))
   fi
 
   xdo move -x "$x" -y "$y" -r "$window_id"
