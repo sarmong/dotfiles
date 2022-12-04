@@ -1,15 +1,16 @@
 #!/bin/sh
 
-pidof picom && kill -s USR1 "$(pidof picom)" || picom --daemon
 pidof sxhkd && kill -s USR1 "$(pidof sxhkd)" || sxhkd &
+
+"$XDG_BIN_DIR/setup/screenlayout/init.sh" &
 
 # run only on initial start
 if [ "$1" = 0 ]; then
+  picom --daemon
   "$XDG_CONFIG_HOME/polybar/launch.sh" &
 
   ## Configurations
   "$XDG_BIN_DIR/setup/keyboard/init.sh" &
-  "$XDG_BIN_DIR/setup/screenlayout/init.sh" &
   inputplug -c "$XDG_BIN_DIR/setup/keyboard/on-connect.sh" &
   unclutter &
   # xsetroot -cursor_name left_ptr & # remove x-shaped cursor when no windows open
@@ -29,8 +30,8 @@ if [ "$1" = 0 ]; then
   CM_SELECTIONS='clipboard' clipmenud &
   redshift &
   # safeeyes
-  sleep 5
 
+  sleep 5
   volctl & # audiocontrol tray
   aw-qt &
 fi
