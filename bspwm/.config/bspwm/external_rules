@@ -8,6 +8,7 @@ title="$(xdotool getwindowname "$window_id")"
 # beware - when using bspc inside a function - bspwm totally freezes
 bw="$(bspc config border_width)"
 monitor_dimensions=$(bspc query -T -m focused | jq ".rectangle")
+xdo id -N Bspwm -n root -a "$(bspc query -M -m --names)"
 
 get_value() { echo "$consequences" | tr ' ' '\n' | grep ''"$1"'' | sed 's/(.*=)(.*)/\2/g' -E; }
 

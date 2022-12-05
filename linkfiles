@@ -18,7 +18,7 @@ mkdir ~/.config
 
 Darwin="bash git nvim lf scripts vim alacritty newsboat tmux archive/macos/skhd archive/macos/spacebar archive/macos/yabai"
 
-Linux="bash zsh git nvim lf scripts vim alacritty newsboat tmux bottom conky npm awesome rofi libinput-gestures picom mpv xorg udiskie archive/bspwm archive/polybar archive/sxhkd"
+Linux="bash zsh git nvim lf scripts vim alacritty newsboat tmux bottom conky npm awesome rofi libinput-gestures picom mpv xorg udiskie bspwm polybar sxhkd kitty"
 
 if [ "$(uname)" = "Darwin" ]; then
   dirs=${Darwin}
