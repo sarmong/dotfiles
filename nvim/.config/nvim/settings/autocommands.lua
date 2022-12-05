@@ -53,6 +53,10 @@ create_autocmd("TextYankPost", {
 
 create_autocmd("BufWritePre", {
   group = "Remove trailing spaces",
-  pattern = "*",
-  command = "execute '%s/\\s\\+$//e'",
+  pattern = { "*.conf", "sxhkdrc", "lfrc", "*/newsboat/config", "*.rasi" },
+  callback = function()
+    local cur = vim.api.nvim_win_get_cursor(0)
+    vim.cmd([[ %s/\s\+$//e ]])
+    vim.api.nvim_win_set_cursor(0, cur)
+  end,
 })
