@@ -5,6 +5,7 @@ x-scheme-handler/tg=telegramdesktop.desktop;
 application/javascript=nvim.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 application/x-shellscript=nvim.desktop;
+application/x-troff-man=nvim.desktop;
 application/xhtml+xml=firefox.desktop;
 audio/aac=mpv.desktop;
 audio/flac=mpv.desktop;
