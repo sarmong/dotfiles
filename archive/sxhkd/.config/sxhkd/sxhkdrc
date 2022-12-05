@@ -1,15 +1,6 @@
 super + Return
   $TERMINAL
 
-super + control + Return
-  alacritty -e nvim ~/.local/bin/polybar/forecast
-
-super + shift + f
-  firefox
-
-super + shift + v
-  kitty nvim ~/Nextcloud/Vault/index.md
-
 # @TODO need it?
 super + shift + d
   i3-dmenu-desktop
@@ -117,6 +108,9 @@ super + f
 
 super + shift + f
   bspc node -t \~fullscreen
+
+super + shift + s
+  bspc node --flag sticky
 
 # Insert receptacle
 super + i; {h,j,k,l}
