@@ -45,7 +45,7 @@ case "$window_class" in
     echo "state=floating"
     echo "sticky=on"
     ;;
-  Pavucontrol | Nm-connection-editor | Xfce4-power-manager-settings | feh | join* | Blueman-manager)
+  Pavucontrol | Nm-connection-editor | Xfce4-power-manager-settings | feh | Blueman-manager)
     echo "state=floating"
     echo "sticky=on"
     ;;
@@ -53,6 +53,10 @@ case "$window_class" in
   "Dragon-drop")
     echo "sticky=on"
     set_position "-10" 40
+    ;;
+
+  join* | Zoom* | zoom*)
+    echo "state=floating"
     ;;
 esac
 
