@@ -58,11 +58,20 @@ case "$window_class" in
   join* | Zoom* | zoom*)
     echo "state=floating"
     ;;
+
+  centered)
+    echo "state=floating"
+    echo "center=on"
+    ;;
 esac
 
 case "$title" in
   "Event Tester")
     echo "state=floating"
     set_position -0 40
+    ;;
+
+  "weather report")
+    echo "rectangle=1400x900+0+0"
     ;;
 esac
