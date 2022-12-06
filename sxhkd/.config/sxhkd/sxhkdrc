@@ -71,6 +71,10 @@ super + {_,shift + }{h,j,k,l}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} 'focused:^{1-9,10}'
 
+# Move node to a desktop on another monitor
+super + control + {1-9,0}
+	bspc node -d 'any.!focused:^{1-9,10}'
+
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
@@ -82,8 +86,9 @@ super + {w,s}
 super + {grave,Escape}
 	bspc {node,desktop} -f last
 
-super + Tab
-	bspc node -f last.local
+# Focus the next/previous node in the current desktop
+super + {_,shift +}Tab
+	bspc node -f {next,prev}.local.!hidden.window
 
 super + o
 	bspc monitor -f next
