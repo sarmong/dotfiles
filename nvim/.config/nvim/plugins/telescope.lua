@@ -14,7 +14,7 @@ telescope.setup({
     selection_strategy = "reset",
     vimgrep_arguments = {
       "rg",
-      "--hidden",
+      "--color=never",
       "--no-heading",
       "--with-filename",
       "--line-number",
@@ -37,6 +37,9 @@ telescope.setup({
       "%.git",
       "yarn.lock",
       "package-lock.json",
+      "%.yarn",
+      "!%.config",
+      "!%.local",
     },
     generic_sorter = sorters.get_generic_fuzzy_sorter,
     shorten_path = true,
