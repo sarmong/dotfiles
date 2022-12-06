@@ -4,11 +4,11 @@ speedtest=$(speedtest)
 
 downloadSpeed=$(echo "$speedtest" | grep "Download:" | awk '{print $2}' | cut -d'.' -f1)
 
-error=$(echo "$speedtest" | grep -Eo "Err")
+error=$(echo "$speedtest" | grep -Eo "Cannot retrieve")
+error2=$(echo "$speedtest" | grep -Eo "ERROR")
 
-if [ -n "$error" ]; then
+if [ -n "$error" ] || [ -n "$error2" ]; then
   echo "Err"
-  exit 0
+else
+  echo "$downloadSpeed Mbit/s"
 fi
-
-echo "$downloadSpeed Mbit/s"
