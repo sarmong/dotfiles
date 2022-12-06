@@ -158,6 +158,9 @@ XF86AudioLowerVolume
 XF86AudioMute
 	pulsemixer --toggle-mute
 
+XF86AudioPlay
+	playerctl play-pause
+
 # Sreen brightness controls
 XF86MonBrightnessUp
 	brightnessctl set +10%
