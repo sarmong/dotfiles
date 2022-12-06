@@ -18,7 +18,7 @@ show="window_title"                     # options: window_title, window_class, w
 forbidden_classes="Polybar Conky Gmrun" # Window classes that do not appear in the window list.
 empty_desktop_message="Desktop"
 
-char_limit=20
+char_limit=50
 max_windows=5
 char_case="normal" # normal, upper, lower
 add_spaces="true"
