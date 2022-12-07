@@ -5,10 +5,10 @@ xkb_keymap {
 	xkb_geometry  { include "pc(pc105)"	};
 
 
-  # Right Alt sets English layout
-  # Shift + Right Alt sets Russian
-  # Use config with xkbcomp ~/.config/xkb/config $DISPLAY
-  # Taken from https://habr.com/ru/post/486872/
+  // Right Alt sets English layout
+  // Shift + Right Alt sets Russian
+  // Use config with xkbcomp ~/.config/xkb/config $DISPLAY
+  // Taken from https://habr.com/ru/post/486872/
 
   xkb_symbols {
     include "pc+us+ru:2+ua:3+inet(evdev)"
@@ -27,3 +27,5 @@ xkb_keymap {
     };
   };
 };
+
+// vim:ft=xkb
