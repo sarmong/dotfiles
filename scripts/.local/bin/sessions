@@ -1,0 +1,9 @@
+#!/bin/sh
+
+sessions=$(tmux ls)
+
+selected=$(echo "$sessions" | rofi -dmenu | awk -F ':' '{print $1}')
+
+[ -z "$selected" ] && exit 1
+
+"$TERMINAL" -e tmux attach -t "$selected"
