@@ -64,6 +64,10 @@ case "$window_class" in
     echo "state=floating"
     echo "center=on"
     ;;
+
+  Surf)
+    echo "state=tiled"
+    ;;
 esac
 
 case "$title" in
