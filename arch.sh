@@ -239,6 +239,7 @@ pacinst redshift
 pacinst firefox
 yayinst brave-bin
 pacinst chromium
+yayinst surf
 
 yayinst kazam
 yayinst goldendict-git
