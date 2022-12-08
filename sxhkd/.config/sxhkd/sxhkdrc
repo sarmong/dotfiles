@@ -78,8 +78,8 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} 'focused:^{1-9,10}'
+super + {_,shift + }{1-4,7-9,0}
+	bspc {desktop -f,node -d} 'focused:^{1-8}'
 
 # Move node to a desktop on another monitor
 super + control + {1-9,0}
