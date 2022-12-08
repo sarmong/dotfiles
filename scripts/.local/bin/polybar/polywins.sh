@@ -56,7 +56,9 @@ raise_or_minimize() {
 }
 
 close() {
-  wmctrl -ic "$1"
+  echo "$1" >"/tmp/window_to_kill"
+  eww open prompt
+  # wmctrl -ic "$1"
 }
 
 slop_resize() {
