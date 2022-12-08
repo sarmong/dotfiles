@@ -80,6 +80,7 @@ pacinst lightdm lightdm-slick-greeter
 
 yayinst awesome-git
 pacinst bspwm sxhkd polybar
+yayinst eww
 yayinst i3lock-fancy-git
 pacinst picom
 pacinst arandr
