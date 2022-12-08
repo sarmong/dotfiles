@@ -29,8 +29,18 @@ super + shift + c
 super + shift + n
 	alacritty --working-directory $XDG_NC_DIR/Vault -e $SHELL -c 'nvim ; $SHELL'
 
+super + period
+	dunstctl close-all
+
+super + comma
+	dunstctl history-pop
+
+# TODO doesn't work?
+super + slash
+	dunstctl action
+
 super + n
-  kill -s USR1 $(pidof deadd-notification-center)
+	nothis
 
 ## -- BSPWM Bindings -- ##
 # Quit bspwm
