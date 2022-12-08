@@ -1,14 +1,14 @@
 #!/bin/sh
 
-# Terminate already running bar instances
-killall -q polybar
-# If all your bars have ipc enabled, you can also use
-# polybar-msg cmd quit
+polybar-msg cmd quit
 
-if type "xrandr"; then
-  for m in $(xrandr --listactivemonitors | awk '{print $4}' | tail -n +2); do
-    MONITOR=$m polybar --reload bar1 2>&1 | tee -a /tmp/polybar-"$m".log &
-  done
-else
-  polybar --reload bar1 &
-fi
+monitors=$(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}')
+
+i=0
+for m in $monitors; do
+  bar=$([ $i = 0 ] && echo "primary" || echo "secondary")
+  i=$((i + 1))
+  echo "$bar - $m"
+
+  MONITOR=$m polybar --reload "$bar" 2>&1 | tee -a /tmp/polybar-"$m".log &
+done
