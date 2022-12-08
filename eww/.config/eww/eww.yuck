@@ -1,0 +1,30 @@
+(defwindow prompt
+           :monitor 1
+           :geometry (geometry :width "10%"
+                               :height "10%"
+                               :anchor "center")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "dialog"
+           :wm-ignore false
+
+  (box :orientation "vertical"
+       :halign "center"
+       :valign "center"
+        :spacing 20
+    (label :text "Close the window?")
+
+  (box :orientation "horizontal"
+       :halign "center"
+       :valign "center"
+        :spacing 30
+    (btn :action "eww close prompt" :text "No")
+    (btn :action "~/.config/eww/close-win.sh" :text "Yes")
+    )))
+
+(defwidget btn [text action]
+    (button 
+      :onclick action
+      :width 60
+      :height 30
+      text))
