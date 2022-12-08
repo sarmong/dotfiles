@@ -1,0 +1,66 @@
+[global]
+    follow = keyboard
+
+    width = 300
+    height = 300
+    origin = top-right
+    offset = 10x50
+    scale = 0
+
+    notification_limit = 0
+    indicate_hidden = yes
+    transparency = 10 # 0 to 100
+    padding = 8
+    horizontal_padding = 8
+    text_icon_padding = 0
+
+    frame_width = 3
+    frame_color = "#a89984"
+
+    gap_size = 10
+
+    # Sort messages by urgency.
+    sort = yes
+
+    idle_threshold = 60
+
+    ### Text ###
+
+    font = Monospace 8
+    line_height = 0
+    vertical_alignment = top
+    format = "%a\n<b>%s</b>\n%b"
+    show_age_threshold = 60
+
+    # You can also set multiple icon themes, with the leftmost one being used first.
+    # icon_theme = "Adwaita, breeze"
+    icon_theme = Adwaita
+
+    min_icon_size = 8
+    max_icon_size = 45
+
+    sticky_history = yes
+    history_length = 100
+
+    corner_radius = 5
+
+    mouse_left_click = close_current
+    mouse_middle_click = close_all
+    mouse_right_click = do_action
+
+[urgency_low]
+    background = "#282828"
+    foreground = "#ebdbb2"
+    timeout = 5
+
+[urgency_normal]
+    background = "#32302f"
+    foreground = "#ebdbb2"
+    timeout = 10
+
+[urgency_critical]
+    background = "#cc241d"
+    foreground = "#ebdbb2"
+    timeout = 60
+
+# vim: ft=cfg

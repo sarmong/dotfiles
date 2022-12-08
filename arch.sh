@@ -79,7 +79,7 @@ pacinst lightdm lightdm-slick-greeter
 "$XDG_BIN_DIR"/services/lightdm/init.sh
 
 yayinst awesome-git
-pacinst bspwm sxhkd polybar
+pacinst bspwm sxhkd polybar dunst
 yayinst eww
 yayinst i3lock-fancy-git
 pacinst picom
