@@ -6,7 +6,7 @@ killall -q polybar
 # polybar-msg cmd quit
 
 if type "xrandr"; then
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+  for m in $(xrandr --listactivemonitors | awk '{print $4}' | tail -n +2); do
     MONITOR=$m polybar --reload bar1 2>&1 | tee -a /tmp/polybar-"$m".log &
   done
 else
