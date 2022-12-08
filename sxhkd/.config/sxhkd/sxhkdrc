@@ -85,6 +85,10 @@ super + {_,shift + }{1-9,0}
 super + control + {1-9,0}
 	bspc node -d 'any.!focused:^{1-9,10}'
 
+# send to the prev/next desktop
+super + shift + {w,s}
+	bspc node -d {prev,next}.local
+
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
@@ -124,12 +128,12 @@ super + f
 super + shift + f
   bspc node -t \~fullscreen
 
-super + shift + s
+super + control + s
   bspc node --flag sticky
 
 # Insert receptacle
-super + i; {h,j,k,l}
-  bspc node --presel-dir {west,south,north,east} -i
+# super + i; {h,j,k,l}
+#   bspc node --presel-dir {west,south,north,east} -i
 
 # Balance nodes
 super + equal
