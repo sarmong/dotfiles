@@ -2,7 +2,7 @@
 
 if [ "$1" = 0 ]; then
   connected_displays="$(xrandr --listactivemonitors | awk '{print $4}' | tail -n +2)"
-  echo "$connected_displays" | xargs -L1 -I {} bspc monitor {} -d I II III IV V VI VII VIII IX X
+  echo "$connected_displays" | xargs -L1 -I {} bspc monitor {} -d 1 2 3 4 7 8 9 0
 
   ~/.config/bspwm/bin/on-monitor-change.sh &
 fi
