@@ -67,7 +67,7 @@ super + m
 
 # swap the current node and the biggest window
 super + g
-	bspc node -s biggest.window
+	bspc node -s biggest.window.local
 
 #
 # focus/swap
