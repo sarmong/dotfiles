@@ -1,10 +1,7 @@
 #!/bin/sh
 
 type="$1"
-tmp_file="/tmp/current-profile"
 local_file="$XDG_CONFIG_HOME/zsh/zsh-local"
-
-touch "$tmp_file"
 
 if [ -f "$local_file" ]; then
   . "$local_file"
@@ -13,17 +10,15 @@ else
 fi
 
 if [ "$type" = "work" ]; then
-  if [ "$(cat $tmp_file)" = "work" ]; then
-    echo "Already working"
-    exit 0
-  fi
-
-  echo "" >"$tmp_file"
 
   echo "Starting falcon..."
   sudo systemctl start falcon-sensor.service
+
   echo "Turning on VPN..."
-  globalprotect connect --portal ""
+  [ "$(globalprotect show --status | rg "Disconnected")" ] &&
+    globalprotect connect --portal "" ||
+    echo "Already connected to VPN"
+
   echo "Setting npm registry..."
   npmprivate
 
@@ -31,28 +26,20 @@ if [ "$type" = "work" ]; then
   set-default browser google-chrome
   sed -i 's/firefox/google-chrome-stable/' "$XDG_CONFIG_HOME/zsh/zsh-local"
 
-  echo "work" >"$tmp_file"
-
 elif [ "$type" = "home" ]; then
-  if [ "$(cat $tmp_file)" = "home" ]; then
-    echo "Already chilling"
-    exit 0
-  fi
-
-  echo "" >"$tmp_file"
 
   echo "Stopping falcon..."
   sudo systemctl stop falcon-sensor.service
+
   echo "Turning off VPN..."
   globalprotect disconnect
+
   echo "Setting npm registry..."
   npmpublic
 
   echo "Setting Firefox as default browser..."
   set-default browser firefox
   sed -i 's/google-chrome-stable/firefox/' "$XDG_CONFIG_HOME/zsh/zsh-local"
-
-  echo "home" >"$tmp_file"
 
 else
   echo 'Available options are "work" and "home"'
