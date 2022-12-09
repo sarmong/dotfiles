@@ -18,7 +18,7 @@ bspc subscribe monitor | while read -r line; do
         echo "all_mons" "$all_mons"
         echo "another_monitor" "$another_mon"
         echo "--------------------"
-        bspc monitor "$new_mon" -d I II III IV V VI VII VIII IX X
+        bspc monitor "$new_mon" -d 1 2 3 4 7 8 9 0
         ~/.config/polybar/launch.sh >/dev/null 2>&1 &
         ~/.config/bspwm/bin/move_windows.sh "$another_mon" "$new_mon"
       fi
