@@ -110,8 +110,6 @@
 # to find fitting options for rules.
 [telegram]
     desktop_entry = "*telegram*"
-    # summary = "*"
-    script = dunst_test.sh
     format = "<b>%s</b>\n%b"
     action_name = mail-reply-sender
 
