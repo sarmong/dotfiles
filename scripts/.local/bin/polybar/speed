@@ -1,6 +1,6 @@
 #!/bin/sh
 
-speedtest=$(speedtest)
+speedtest=$(speedtest 2>&1)
 
 downloadSpeed=$(echo "$speedtest" | grep "Download:" | awk '{print $2}' | cut -d'.' -f1)
 
@@ -8,7 +8,7 @@ error=$(echo "$speedtest" | grep -Eo "Cannot retrieve")
 error2=$(echo "$speedtest" | grep -Eo "ERROR")
 
 if [ -n "$error" ] || [ -n "$error2" ]; then
-  echo "Err"
+  echo "No connection"
 else
   echo "$downloadSpeed Mbit/s"
 fi
