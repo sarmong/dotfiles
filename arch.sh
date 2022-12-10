@@ -165,7 +165,9 @@ pacinst alacritty
 pacinst tmux
 
 pacinst xclip
-pacinst tlp powertop
+pacinst powertop
+yayinst auto-cpufreq
+sudo systemctl enable auto-cpufreq.service
 pacinst brightnessctl
 
 pacinst newsboat
