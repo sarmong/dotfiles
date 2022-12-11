@@ -2,7 +2,7 @@
 
 from_bin_folder=$(find "$XDG_BIN_DIR/" -maxdepth 1 -not -type d | xargs -L 1 basename)
 
-tmux_projects="$(ls ~/.config/tmuxinator | xargs basename -s .yml | xargs echo "alacritty --command tmuxinator")"
+tmux_projects="$(ls ~/.config/tmuxinator | xargs basename -s .yml | xargs echo "$TERMINAL -e tmuxinator")"
 
 additional_commands="\nclipctl toggle\n$tmux_projects"
 
