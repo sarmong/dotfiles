@@ -18,7 +18,7 @@ super + c
 	rofi -show calc
 
 super + shift + e
-  rofi -show power-menu -location 1 -yoffset 30 -xoffset 10 -width 15 -columns 1 -lines 6 -modi power-menu:"$XDG_BIN_DIR"/rofi/rofi-power-menu
+	"$XDG_BIN_DIR"/rofi/power
 
 super + control + c
 	CM_LAUNCHER=rofi clipmenu
