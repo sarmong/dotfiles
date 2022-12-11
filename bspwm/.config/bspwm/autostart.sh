@@ -17,7 +17,7 @@ if [ "$1" = 0 ]; then
   # bluetooth on &
 
   ## Essentials
-  deadd-notification-center &
+  dunst &
   lxpolkit &
   nm-applet &           # indicator # network tray
   xfce4-power-manager & # power manager tray
