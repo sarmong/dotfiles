@@ -42,6 +42,9 @@ super + slash
 super + n
 	nothis
 
+super + z
+	tdrop -ma -w -4 -h 440 -y 35 $TERMINAL
+
 ## -- BSPWM Bindings -- ##
 # Quit bspwm
 super + shift + Escape
