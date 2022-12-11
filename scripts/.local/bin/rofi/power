@@ -26,7 +26,7 @@ confirm "${selected}"
 case "$selected" in
   0) betterlockscreen --lock ;;
   1) bspc quit ;;
-  2) systemctl suspend ;;
+  2) systemctl suspend && betterlockscreen --lock ;;
   3) systemctl hibernate ;;
   4) systemctl reboot ;;
   5) systemctl poweroff ;;
