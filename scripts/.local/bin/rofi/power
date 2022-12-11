@@ -6,7 +6,7 @@ texts=(
   " suspend"
   " hibernate"
   " reboot"
-  "\\uf011 shut down"
+  " shut down"
 )
 
 confirm() {
@@ -19,7 +19,7 @@ confirm() {
 }
 
 IFS=$'\n'
-selected=$(echo "${texts[*]}" | rofi -dmenu -format i)
+selected=$(echo -e "${texts[*]}" | rofi -dmenu -format i)
 
 confirm "${selected}"
 
