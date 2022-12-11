@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snapshot = "12-08",
+  snaphot = "12-11",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -181,6 +181,7 @@ packer.startup(function(use)
   use({ "kovetskiy/sxhkd-vim" })
   use({ "sarmong/conky-syntax.vim" })
   use({ "elkowar/yuck.vim" })
+  use({ "fladson/vim-kitty" })
 
   if _G.packer_bootstrap then
     require("packer").sync()

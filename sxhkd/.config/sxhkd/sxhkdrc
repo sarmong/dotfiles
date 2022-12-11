@@ -24,10 +24,10 @@ super + control + c
 	CM_LAUNCHER=rofi clipmenu
 
 super + shift + c
-	alacritty --working-directory $XDG_DOTFILES_DIR -e $SHELL -c 'nvim ; $SHELL'
+	$TERMINAL --working-directory $XDG_DOTFILES_DIR -e $SHELL -c 'nvim ; $SHELL'
 
 super + shift + n
-	alacritty --working-directory $XDG_NC_DIR/Vault -e $SHELL -c 'nvim ; $SHELL'
+	$TERMINAL --working-directory $XDG_NC_DIR/Vault -e $SHELL -c 'nvim ; $SHELL'
 
 super + period
 	dunstctl close-all

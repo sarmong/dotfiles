@@ -98,7 +98,7 @@ local keys = {
     key = "c",
     on_press = function()
       awful.spawn.with_shell(
-        "alacritty --working-directory $XDG_DOTFILES_DIR -e $SHELL -c 'nvim ; $SHELL'"
+        "$TERMINAL --working-directory $XDG_DOTFILES_DIR -e $SHELL -c 'nvim ; $SHELL'"
       )
     end,
     group = group_name,
@@ -109,7 +109,7 @@ local keys = {
     key = "n",
     on_press = function()
       awful.spawn.with_shell(
-        "alacritty --working-directory $XDG_NC_DIR/Vault -e $SHELL -c 'nvim ; $SHELL'"
+        "$TERMINAL --working-directory $XDG_NC_DIR/Vault -e $SHELL -c 'nvim ; $SHELL'"
       )
     end,
     group = group_name,
@@ -119,7 +119,7 @@ local keys = {
     modifiers = { super },
     key = "Return",
     on_press = function()
-      awful.spawn("alacritty")
+      awful.spawn.with_shell("$TERMINAL")
     end,
     group = group_name,
   }),

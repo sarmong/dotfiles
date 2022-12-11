@@ -164,6 +164,7 @@ pacinst mpv
 yayinst mpvc-git
 
 pacinst alacritty
+pacinst kitty
 pacinst tmux
 
 pacinst xclip
