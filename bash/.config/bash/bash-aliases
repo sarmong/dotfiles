@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 eval "$(thefuck --alias)"
 
@@ -30,8 +30,8 @@ alias ll="ls -Al"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
-alias mv="mv -i"
-alias rm="rm -i"
+alias mv="mv -I"
+alias rm="rm -I"
 alias t="trash"
 alias mkd="mkdir -pv"
 alias untar="tar -zxvf"
@@ -40,11 +40,6 @@ alias diff="colordiff"
 pdfman() {
   man -Tpdf "$1" | zathura -
   # man -t "$1" | ps2pdf - | zathura -
-}
-
-mcd() {
-  mkdir -pv "$1"
-  cd "$1"
 }
 
 alias open="xdg-open"
@@ -74,6 +69,35 @@ alias weather="curl wttr.in"
 alias moon="curl wttr.in/moon"
 alias myip="curl ipinfo.io/ip"
 alias week='date +%V'
+
+mcd() {
+  mkdir -pv "$@" && cd "${@:$#}" || exit
+}
+
+takearchive() {
+  local data thedir
+  data="$(mktemp)"
+  curl -L "$1" >"$data"
+  tar xf "$data"
+  thedir="$(tar tf "$data" | head -n 1)"
+  rm -f "$data"
+  cd "$thedir" || exit
+}
+
+takegit() {
+  git clone "$1"
+  cd "$(basename "${1%%.git}")" || exit
+}
+
+take() {
+  if [[ $1 =~ ^(https?|ftp).*\.tar\.(gz|bz2|xz)$ ]]; then
+    takearchive "$1"
+  elif [[ $1 =~ ^([A-Za-z0-9]\+@|https?|git|ssh|ftps?|rsync).*\.git/?$ ]]; then
+    takegit "$1"
+  else
+    mcd "$@"
+  fi
+}
 
 ###
 # macOs
