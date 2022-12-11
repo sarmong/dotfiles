@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+texts="\
+ lock screen
+ log out
+ suspend
+ hibernate
+ reboot
+\uf011 shut down
+"
+
+confirm() {
+  answer=$(printf "Yes,$1\nNo, cancel" | rofi -dmenu)
+  [ "$answer" != "Yes,$1" ] && exit 1
+}
+
+selected=$(echo -e "$texts" | rofi -dmenu)
+
+[ -z "$selected" ] && exit 1
+
+confirm "${selected:1}"
+
+case "$selected" in
+  *lock*)
+    betterlockscreen --lock
+    ;;
+  *log*)
+    bspc quit
+    ;;
+  *suspend*)
+    systemctl suspend
+    ;;
+  *hibernate*)
+    systemctl hibernate
+    ;;
+  *reboot*)
+    systemctl reboot
+    ;;
+  *shutdown*)
+    systemctl poweroff
+    ;;
+  *)
+    exit 1
+    ;;
+esac
