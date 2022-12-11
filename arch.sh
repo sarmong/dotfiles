@@ -82,6 +82,8 @@ yayinst awesome-git
 pacinst bspwm sxhkd polybar dunst
 yayinst eww
 yayinst i3lock-fancy-git
+yayinst betterlockscreen
+sudo systemctl enable --now betterlockscreen@"$USER"
 pacinst picom
 pacinst arandr
 pacinst autorandr
