@@ -15,9 +15,9 @@ if [ "$type" = "work" ]; then
   sudo systemctl start falcon-sensor.service
 
   echo "Turning on VPN..."
-  [ "$(globalprotect show --status | rg "Disconnected")" ] &&
-    globalprotect connect --portal "" ||
-    echo "Already connected to VPN"
+  [ "$(globalprotect show --status | rg "Connected")" ] &&
+    echo "Already connected to VPN" ||
+    globalprotect connect --portal ""
 
   echo "Setting npm registry..."
   npmprivate
