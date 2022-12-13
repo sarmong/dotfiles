@@ -7,6 +7,7 @@ vim.o.inccommand = "split" -- Make substitution work in realtime
 vim.o.title = true -- shows window title
 vim.o.titlestring = "%{split(getcwd(), '/')[-1]}" -- shown only current directory in title
 vim.o.wrap = true
+vim.o.linebreak = true
 vim.opt.whichwrap:append("<,>,[,],h,l") -- move to next line with theses keys
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file
