@@ -6,8 +6,22 @@
   exit
 }
 
+mpv_same_desktop() {
+  focused_desktop="$(bspc query -D -d focused)"
+  is_mpv_open=$(echo '{ "command": ["get_property", "playlist"] }' | socat - /tmp/mpvsocket | jq '.data')
+
+  if [ -z "$is_mpv_open" ]; then
+    bspc rule -a mpv --one-shot desktop="$focused_desktop"
+    notify-send --app-name="Newsboat" "Newsboat" "Opening mpv..."
+  else
+    notify-send --app-name="Newsboat" "Newsboat" "Adding video to current mpv instance..."
+  fi
+}
+
 case "$1" in
   *mkv | *webm | *mp4 | *youtube.com/watch* | *youtube.com/playlist* | *youtu.be* | *hooktube.com* | *bitchute.com* | *videos.lukesmith.xyz* | *odysee.com*)
+    mpv_same_desktop
+
     setsid -f umpv "$1" >/dev/null 2>&1
     ;;
 
