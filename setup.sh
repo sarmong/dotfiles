@@ -16,7 +16,7 @@ linkto() {
 
   # if directory and not link - ln will fail, so rename beforehand
   if [ -d "$dest" ] && [ ! -L "$dest" ]; then
-    mv "$dest" "$dest~"
+    mv -v "$dest" "$dest~"
   fi
 
   # if dest already links to the same file, do nothing
@@ -25,18 +25,22 @@ linkto() {
   fi
 }
 
-for file in "$script_dir"/home/*; do
-  linkto "$file" "$HOME"
-done
+linkdir() {
+  from="$1"
+  to="$2"
+  for file in "$script_dir"/"$from"/*; do
+    linkto "$file" "$to"
+  done
+}
 
-for file in "$script_dir"/dotconfig/*; do
-  linkto "$file" "$HOME/.config"
-done
+mkdir -p ~/.config/
+mkdir -p ~/.local
 
-mkdir -p ~/.local/
-
+linkdir "home" "$HOME"
+linkdir "dotconfig" "$HOME/.config"
 linkto "$script_dir/dotlocal/bin" "$HOME/.local"
 
+echo ""
 echo "All files linked"
 echo ""
 echo "Now: "
