@@ -11,8 +11,15 @@ linkto() {
   file="$1"
   to="$2"
   filename=$(basename "$file")
-  target=$(readlink "$to/$filename")
+  dest="$to/$filename"
+  target=$(readlink "$dest")
 
+  # if directory and not link - ln will fail, so rename beforehand
+  if [ -d "$dest" ] && [ ! -L "$dest" ]; then
+    mv "$dest" "$dest~"
+  fi
+
+  # if dest already links to the same file, do nothing
   if [ ! "$target" = "$file" ]; then
     ln -sv --backup=numbered "$file" "$to"
   fi
@@ -31,3 +38,8 @@ mkdir -p ~/.local/
 linkto "$script_dir/dotlocal/bin" "$HOME/.local"
 
 echo "All files linked"
+echo ""
+echo "Now: "
+echo "1: add git/git-work.conf same as git-personal.conf"
+echo "2: add zsh/zsh-local and add necessary local configuration (e.g. default browser)"
+echo "3: add newsboat password at newsboat/pw"
