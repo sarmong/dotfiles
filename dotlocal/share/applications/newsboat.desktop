@@ -1,0 +1,9 @@
+[Desktop Entry]
+
+Type=Application
+Version=1.0
+Name=newsboat
+GenericName=RSS Reader
+Exec=newsboat
+Icon=newsboat
+Terminal=true
