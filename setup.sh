@@ -34,11 +34,14 @@ linkdir() {
 }
 
 mkdir -p ~/.config/
-mkdir -p ~/.local
+mkdir -p ~/.local/share/applications
+mkdir -p ~/.local/share/xdg
 
 linkdir "home" "$HOME"
 linkdir "dotconfig" "$HOME/.config"
 linkto "$script_dir/dotlocal/bin" "$HOME/.local"
+linkdir "dotlocal/share/applications" "$HOME/.local/share/applications"
+linkdir "dotlocal/share/xdg" "$HOME/.local/share/xdg"
 
 echo ""
 echo "All files linked"
