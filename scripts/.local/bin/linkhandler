@@ -8,7 +8,6 @@
 
 case "$1" in
   *mkv | *webm | *mp4 | *youtube.com/watch* | *youtube.com/playlist* | *youtu.be* | *hooktube.com* | *bitchute.com* | *videos.lukesmith.xyz* | *odysee.com*)
-    notify-send --app-name="Newsboat" "Newsboat" "Opening in mpv..."
     setsid -f umpv "$1" >/dev/null 2>&1
     ;;
 
