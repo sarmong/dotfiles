@@ -1,8 +1,5 @@
 .env
 personal/
-dotlocal/share
-dotlocal/cache
-dotlocal/state
 dotconfig/nvim/plugin
 dotconfig/vim/plugged
 dotconfig/ranger/bookmarks
