@@ -26,7 +26,7 @@
 
     ### Text ###
 
-    font = Monospace 8
+    font = Monospace 10
     line_height = 0
     vertical_alignment = top
     format = "%a\n<b>%s</b>\n%b"
