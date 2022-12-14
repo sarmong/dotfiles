@@ -15,3 +15,4 @@ dotconfig/zsh/zsh-local
 dotconfig/npm/npmrc
 dotconfig/mpv/watch_later
 dotconfig/mpv/playlists
+dotconfig/git/git-work.conf
