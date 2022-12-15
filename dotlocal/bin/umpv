@@ -1,14 +1,70 @@
-#!/bin/sh
+#!/usr/bin/env python3
 
-# if something doesn't work, look here
-# https://github.com/mpv-player/mpv/blob/master/TOOLS/umpv
+import sys
+import os
+import socket
+import errno
+import subprocess
+import string
 
-if [ ! "$(pgrep -x "mpv")" ]; then
-  notify-send --app-name="MPV" "MPV" "Opening mpv..."
-  mpv "$@"
-else
-  notify-send --app-name="MPV" "MPV" "Loading files to existing mpv instance..."
-  for file in "$@"; do
-    echo loadfile "$(pwd)/$file" append | socat - /tmp/mpvsocket
-  done
-fi
+files = sys.argv[1:]
+
+# this is the same method mpv uses to decide this
+
+
+def is_url(filename):
+    parts = filename.split("://", 1)
+    if len(parts) < 2:
+        return False
+    # protocol prefix has no special characters => it's an URL
+    allowed_symbols = string.ascii_letters + string.digits + '_'
+    prefix = parts[0]
+    return all(map(lambda c: c in allowed_symbols, prefix))
+
+# make them absolute; also makes them safe against interpretation as options
+
+
+def make_abs(filename):
+    if not is_url(filename):
+        return os.path.abspath(filename)
+    return filename
+
+
+files = (make_abs(f) for f in files)
+
+SOCK = "/tmp/mpvsocket"
+
+sock = None
+try:
+    sock = socket.socket(socket.AF_UNIX)
+    sock.connect(SOCK)
+except socket.error as e:
+    if e.errno == errno.ECONNREFUSED:
+        sock = None
+        pass  # abandoned socket
+    elif e.errno == errno.ENOENT:
+        sock = None
+        pass  # doesn't exist
+    else:
+        raise e
+
+if sock:
+    # Unhandled race condition: what if mpv is terminating right now?
+    os.system(
+        'notify-send --app-name="MPV" "MPV" "Loading files to existing mpv instance..." ')
+
+    for f in files:
+        # escape: \ \n "
+        f = f.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n")
+        f = "\"" + f + "\""
+        sock.send(("raw loadfile " + f + " append\n").encode("utf-8"))
+else:
+    # Let mpv recreate socket if it doesn't already exist.
+    os.system('notify-send --app-name="MPV" "MPV" "Opening mpv..."')
+
+    opts = (os.getenv("MPV") or "mpv").split()
+    opts.extend(["--no-terminal", "--input-ipc-server=" + SOCK,
+                 "--"])
+    opts.extend(files)
+
+    subprocess.check_call(opts)
