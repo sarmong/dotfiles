@@ -13,3 +13,7 @@ dotconfig/npm/npmrc
 dotconfig/mpv/watch_later
 dotconfig/mpv/playlists
 dotconfig/git/git-work.conf
+dotconfig/mpd/state
+dotconfig/mpd/database
+dotconfig/mpd/sticker.sql
+dotconfig/ncmpcpp/error.log
