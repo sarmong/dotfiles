@@ -94,8 +94,8 @@ pacinst lxappearance
 yayinst gtk-theme-arc-gruvbox-git
 pacinst papirus-icon-theme
 pacinst qt5ct
-yayinst adwaita-qt6-git
-yayinst adwaita-qt5-git
+pacinst adwaita-qt6
+pacinst adwaita-qt5
 
 ## Fonts
 pacinst noto-fonts
@@ -107,7 +107,7 @@ pacinst noto-fonts-emoji # provide emojis for terminal and polybar
 # pacinst ttf-joypixels
 
 ## Keyboard
-yayinst keyd-git
+yayinst keyd
 "$XDG_BIN_DIR"/services/keyd/init.sh
 yayinst xkblayout-state-git
 yayinst inputplug
