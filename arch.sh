@@ -162,6 +162,8 @@ pacinst flameshot
 pacinst scrot
 pacinst mpv
 yayinst mpvc-git
+pacinst mpd mpc ncmpcpp
+yayinst mpdris2
 
 pacinst alacritty
 pacinst kitty
