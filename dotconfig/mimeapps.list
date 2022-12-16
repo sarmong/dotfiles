@@ -1,5 +1,4 @@
 [Added Associations]
-x-scheme-handler/tg=telegramdesktop.desktop;
 
 [Default Applications]
 application/javascript=nvim.desktop;
@@ -50,5 +49,4 @@ video/webm=mpv.desktop;
 x-scheme-handler/about=firefox.desktop;
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/tg=telegramdesktop.desktop;
 x-scheme-handler/unknown=firefox.desktop;
