@@ -6,8 +6,8 @@ cd "$script_dir" || exit 1
 
 ./packages/install.sh
 
-./setup.sh
+./setup.sh | tee -a ./setup.log
 
 source ./dotconfig/bash/bash-exports
 
-./configure.sh
+./configure.sh | tee -a ./setup.log
