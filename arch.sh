@@ -9,7 +9,7 @@ nocol='\e[0m' # Text Reset
 pacinst() {
   input="$*"
   echo -e "$green Installing $bi_cyan $input $nocol ..."
-  sudo pacman -S --noconfirm $input 1>/dev/null
+  sudo pacman -S --noconfirm --needed $input 1>/dev/null
   if [ $? -gt 0 ]; then
     echo -e "$red An error occured"
     exit 1
@@ -53,7 +53,6 @@ pacinst curl wget
 pacinst vim neovim
 curl -fLo "$XDG_DATA_HOME"/vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-pacinst stow
 pacinst openssh
 pacinst man-db man-pages
 pacinst mlocate
@@ -73,6 +72,7 @@ pacinst xorg-setxkbmap xorg-xinit xorg-xev xorg-xkill xorg-xprop xorg-xrandr xor
 pacinst xdotool
 pacinst wmctrl
 yayinst wmutils-git
+pacinst wmname
 pacinst xdo
 
 pacinst lightdm lightdm-slick-greeter
@@ -81,7 +81,6 @@ pacinst lightdm lightdm-slick-greeter
 yayinst awesome-git
 pacinst bspwm sxhkd polybar dunst
 yayinst eww
-yayinst i3lock-fancy-git
 yayinst betterlockscreen
 sudo systemctl enable --now betterlockscreen@"$USER"
 pacinst picom
@@ -113,7 +112,8 @@ yayinst xkblayout-state-git
 yayinst inputplug
 
 ## Audio
-pacinst pulseaudio  # Main package
+pacinst pulseaudio # Main package
+pacinst pulseaudio-alsa pulseaudio-bluetooth
 yayinst volctl      # Volume System Tray
 pacinst pulsemixer  # Pulse Audio TUI
 pacinst pavucontrol # Pulse Audio Volume Control GUI
@@ -156,6 +156,7 @@ sudo gpasswd -a "$USER" input
 pacinst feh
 yayinst nsxiv
 pacinst perl-image-exiftool
+pacinst mediainfo
 pacinst zathura zathura-pdf-mupdf zathura-djvu
 pacinst pandoc
 pacinst flameshot
@@ -210,6 +211,9 @@ pacinst neofetch
 pacinst unclutter
 pacinst dua-cli
 pacinst uglify-js
+pacinst entr
+pacinst downgrade
+yayinst jira-cli-bin
 
 pacinst pass
 
@@ -238,6 +242,7 @@ alert "INSTALLED PROGRAMMING TOOLS"
 
 ### --- Install Applications --- ###
 
+yayinst timeshift-bin
 yayinst safeeyes
 pacinst activitywatch-bin
 pacinst xprintidle
@@ -246,10 +251,12 @@ pacinst redshift
 
 pacinst firefox
 yayinst brave-bin
-pacinst chromium
 yayinst surf
 
+pacinst libreoffice-still
 yayinst kazam
+pacinst kooha
+pacinst simplescreenrecorder
 yayinst goldendict-git
 yayinst skypeforlinux-stable-bin
 yayinst slack-desktop
@@ -257,11 +264,13 @@ yayinst zoom
 pacinst telegram-desktop
 pacinst qbittorrent
 yayinst webcamoid
+yayinst protonvpn
+pacinst monero-gui
+yayinst freetube-bin
 
 pacinst nextcloud-client
 
 yayinst spotify
-yayinst anki
 
 pacinst neofetch onefetch
 
