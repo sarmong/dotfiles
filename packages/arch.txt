@@ -1,0 +1,264 @@
+# vim:ft=conf
+
+base
+linux
+liux
+linux-firmware
+grub
+efibootmgr
+networkmanager
+
+# base-devel
+archlinux-keyring
+autoconf
+automake
+binutils
+bison
+fakeroot
+file
+findutils
+flex
+gawk
+gcc
+gettext
+grep
+groff
+gzip
+libtool
+m4
+make
+pacman
+patch
+pkgconf
+sed
+sudo
+texinfo
+which
+
+git
+curl
+wget
+vim
+neovim
+openssh
+man-db
+man-pages
+mlocate
+zsh
+dash
+
+ufw
+
+xorg-server
+xorg-setxkbmap
+xorg-xinit
+xorg-xev
+xorg-xkill
+xorg-xprop
+xorg-xrandr
+xorg-xset
+xorg-xinput
+xdotool
+wmctrl
+wmutils-git                   a
+wmname
+xdo
+
+lightdm
+lightdm-slick-greeter
+
+awesome-git                   a
+bspwm
+sxhkd
+polybar
+dunst
+eww                           a
+betterlockscreen              a
+picom
+arandr
+autorandr
+lxsession
+
+## Themes
+lxappearance
+gtk-theme-arc-gruvbox-git     a
+papirus-icon-theme
+qt5ct
+adwaita-qt6
+adwaita-qt5
+
+## Fonts
+noto-fonts
+otf-font-awesome
+nerd-fonts-complete           a
+font-manager
+noto-fonts-emoji # provide emojis for terminal and polybar
+# ttf a-twemoji
+# ttf-joypixels
+
+## Keyboard
+keyd                          a
+xkblayout-state-git           a
+inputplug                     a
+
+## Audio
+pulseaudio  # Main package
+pulseaudio-alsa
+pulseaudio-bluetooth
+volctl                        a      # Volume System Tray
+pulsemixer  # Pulse Audio TUI
+pavucontrol # Pulse Audio Volume Control GUI
+pamixer     # Pulse Audio CLI
+playerctl
+
+blueman  # Blueman is a GUI for bluez
+bluez
+bluez-utils
+
+network-manager-applet
+gnome-keyring # Should start systemd service automatically
+
+xfce4-power-manager
+mate-system-monitor
+bottom
+conky
+udiskie # Automounts external drives
+
+caja
+xarchiver
+lf                            a
+ueberzug
+
+trash-cli
+
+dmenu
+rofi
+rofi-calc
+libqalculate # needed for rofi-calc. Brew has newer version
+
+clipmenu-git                  a
+
+libinput-gestures             a
+
+feh
+nsxiv                         a
+perl-image-exiftool
+mediainfo
+zathura
+zathura-pdf-mupdf
+zathura-djvu
+pandoc
+flameshot
+scrot
+mpv
+mpvc-git                      a
+mpd
+mpc
+ncmpcpp
+mpdris2                       a
+
+alacritty
+kitty
+tmux
+
+xclip
+powertop
+auto-cpufreq                  a
+brightnessctl
+
+newsboat
+urlscan
+
+### --- Useful CLI utils --- ###
+
+ffmpeg
+ffmpegthumbnailer
+imagemagick
+lynx
+
+jq
+tree
+speedtest-cli
+colordiff
+fzf
+fd
+bat
+yt-dlp
+ytfzf                         a
+ripgrep
+thefuck
+zoxide
+atool                         a
+unrar
+unzip
+zip
+# massren                   a
+moreutils # Provides vidir packages for mass renaming
+fdupes
+dragon-drop                   a
+handlr
+perl-file-mimeinfo
+selectdefaultapplication-git  a
+neofetch
+unclutter
+dua-cli
+uglify-js
+entr
+downgrade
+jira-cli-bin                  a
+
+pass
+
+###############################################
+
+### --- Programming tools --- ###
+## Install system version of node
+nodejs
+fnm-bin                       a
+yarn
+httpie
+postman-bin                   a
+tig
+zeal                          a # Documentation browser
+
+github-cli
+
+vscodium-bin                  a
+
+tldr
+shellcheck
+
+### --- Install Applications --- ###
+
+timeshift-bin                 a
+safeeyes                      a
+activitywatch-bin
+xprintidle
+redshift
+# redshift-gtk                  a
+
+firefox
+brave-bin                     a
+surf                          a
+
+libreoffice-still
+protonvpn                     a
+kazam                         a
+kooha
+simplescreenrecorder
+goldendict-git                a
+skypeforlinux-stable-bin      a
+slack-desktop                 a
+zoom                          a
+telegram-desktop
+qbittorrent
+webcamoid                     a
+monero-gui
+freetube-bin                  a
+
+nextcloud-client
+
+spotify                       a
+
+neofetch
+onefetch
