@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "$TTT"
-
 # shellcheck disable=1007
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 cd "$script_dir" || exit 1
@@ -27,7 +25,7 @@ install() {
   fi
 }
 
-pacman() {
+pac() {
   install "sudo pacman -S --noconfirm --needed" "$1"
 }
 
@@ -41,17 +39,28 @@ finalize() {
   printf "%s\n" "${failed_packages[@]}" | tee -a ./errors.log
 }
 
+install_paru() {
+  if command -v paru >/dev/null; then
+    echo -e "$red Paru already installed$nocol"
+    return
+  fi
+
+  echo -e "$green Installing paru... $nocol"
+
+  mkdir -p ~/.local/src
+  cd ~/.local/src || exit 1
+  git clone https://aur.archlinux.org/paru.git >>./output.log
+  cd paru || exit 1
+  makepkg --noconfirm -si >>./output.log
+  cd "$script_dir" || exit 1
+}
+
 trap 'finalize && exit 1' SIGTERM SIGINT SIGQUIT
 
+sudo pacman -Syy
+install_paru
+
 to_install=$(sed 's/#.*$//g' "./arch.txt" | sed '/^$/d')
-
-sudo command pacman -Syyu
-
-mkdir -p ~/.local/src
-cd ~/.local/src || exit 1
-git clone https://aur.archlinux.org/paru.git
-cd paru || exit 1
-makepkg -si
 
 IFS=$'\n'
 for package in $to_install; do
@@ -61,7 +70,7 @@ for package in $to_install; do
   if [ "$flag" = "a" ]; then
     aur "$package_name"
   else
-    pacman "$package_name"
+    pac "$package_name"
   fi
 done
 
