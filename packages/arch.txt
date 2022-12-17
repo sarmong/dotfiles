@@ -2,7 +2,6 @@
 
 base
 linux
-liux
 linux-firmware
 grub
 efibootmgr
@@ -46,6 +45,7 @@ man-pages
 mlocate
 zsh
 dash
+cronie
 
 ufw
 

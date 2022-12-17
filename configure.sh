@@ -3,7 +3,7 @@
 curl -fLo "$XDG_DATA_HOME"/vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-ln -sfT /bin/dash /bin/sh
+sudo ln -sfT /bin/dash /bin/sh
 
 "$XDG_BIN_DIR"/services/ufw/init.sh
 "$XDG_BIN_DIR"/services/lightdm/init.sh
