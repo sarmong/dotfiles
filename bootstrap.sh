@@ -6,8 +6,10 @@ cd "$script_dir" || exit 1
 
 ./packages/install.sh
 
-./setup.sh | tee -a ./setup.log
+./packages/build/init.sh | tee -a ./bootstrap.log
+
+./setup.sh | tee -a ./bootstrap.log
 
 source ./dotconfig/bash/bash-exports
 
-./configure.sh | tee -a ./setup.log
+./configure.sh | tee -a ./bootstrap.log
