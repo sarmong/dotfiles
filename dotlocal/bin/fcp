@@ -1,6 +1,7 @@
 #!/bin/sh
 
-file="file://$(readlink -f $1)"
+# @TODO copy multiple files
+file="file://$(readlink -f "$1")"
 echo "$file" | xclip -sel clipboard -t text/uri-list
 
-echo "Copied $file"
+notify-send "Copied $file"
