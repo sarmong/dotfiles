@@ -1,6 +1,10 @@
 local lsp_fns = req("lsp.functions")
 
-lsp_fns.disable_virtual_text(true)
+vim.diagnostic.config({
+  float = { border = "rounded" },
+  virtual_text = false,
+})
+
 lsp_fns.enable_format_on_save(true)
 
 req("lsp.servers")
