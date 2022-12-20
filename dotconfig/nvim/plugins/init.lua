@@ -22,3 +22,4 @@ req("plugins.hop")
 req("plugins.marks")
 
 req("plugins.colorizer")
+req("plugins.window-picker")
