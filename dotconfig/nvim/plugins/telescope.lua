@@ -1,5 +1,6 @@
 local telescope = req("telescope")
 local actions = req("telescope.actions")
+local action_set = req("telescope.actions.set")
 local sorters = req("telescope.sorters")
 local previewers = req("telescope.previewers")
 local lga_actions = require("telescope-live-grep-args.actions")
@@ -77,6 +78,10 @@ telescope.setup({
         ["<C-Up>"] = actions.cycle_history_prev,
 
         ["<C-y>"] = actions.delete_buffer,
+
+        ["<S-CR>"] = function(prompt_bufnr)
+          action_set.edit(prompt_bufnr, "Pick")
+        end,
       },
       n = {
         ["<C-j>"] = actions.move_selection_next,
@@ -84,6 +89,9 @@ telescope.setup({
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<C-y>"] = actions.delete_buffer,
         ["<esc><esc>"] = actions.close,
+        ["<S-CR>"] = function(prompt_bufnr)
+          action_set.edit(prompt_bufnr, "Pick")
+        end,
       },
     },
   },
