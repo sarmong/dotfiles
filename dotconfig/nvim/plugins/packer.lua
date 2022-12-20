@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snaphot = "12-13",
+  snaphot = "12-20",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -68,6 +68,7 @@ packer.startup(function(use)
   use({ "phaazon/hop.nvim" })
   use({ "chentoast/marks.nvim" })
   use({ "norcalli/nvim-colorizer.lua" })
+  use({ "s1n7ax/nvim-window-picker" })
 
   ------------------
   -- IDE features --
