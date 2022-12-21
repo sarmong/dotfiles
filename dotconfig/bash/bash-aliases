@@ -57,7 +57,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias yt="yt-dlp --embed-metadata"          # Download video
 alias yta="yt-dlp --embed-metadata -f 'ba'" # Download audio
 play() {
   mpv "$1" &
