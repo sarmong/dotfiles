@@ -1,6 +1,9 @@
 super + Return
   $TERMINAL
 
+super + control + Return
+  $TERMINAL --class centered
+
 # @TODO need it?
 super + shift + d
   i3-dmenu-desktop
