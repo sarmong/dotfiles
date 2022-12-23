@@ -1,0 +1,22 @@
+#!/bin/sh
+
+project="$1"
+
+echo "$project"
+if ! tmux has-session -t "$project" 2>/dev/null; then
+  echo "here"
+  tmux new-session -d -s "$project"
+
+  tmux rename-window 'neovim'
+  tmux send-keys 'nvim' C-m
+
+  tmux new-window -a -n server
+  tmux send-keys 'yarn install' C-m
+
+  tmux new-window -a -n shell
+  tmux send-keys 'git status' C-m
+
+  tmux select-window -t 1
+fi
+
+tmux attach-session -t "$project"
