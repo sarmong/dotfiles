@@ -1,9 +1,9 @@
 #!/bin/sh
 
-sessions=$(tmux ls)
+sessions=$(ls ~/docs/work)
 
 selected=$(echo "$sessions" | rofi -dmenu | awk -F ':' '{print $1}')
 
 [ -z "$selected" ] && exit 1
 
-"$TERMINAL" -e tmux attach -t "$selected"
+"$TERMINAL" --directory ~/docs/work/"$selected" -e workplace "$selected"
