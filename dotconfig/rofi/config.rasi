@@ -1,4 +1,4 @@
-@theme "~/.config/rofi/themes/blue.rasi"
+@theme "~/.config/rofi/themes/gruvbox-dark.rasi"
 
 configuration {
 	modi: "run,drun,window,combi,calc";
