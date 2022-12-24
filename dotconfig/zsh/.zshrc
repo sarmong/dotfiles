@@ -18,6 +18,12 @@ stty stop undef # Disables C-s hang
 
 zle_highlight=('paste:none') # Removes paste highlight
 
+## Automatically escapes symbols in URL
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
 compdef _setsid dis # Use setsid completion for dis
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
