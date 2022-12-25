@@ -1,5 +1,5 @@
---[[ uosc 4.4.0 - 2022-Oct-28 | https://github.com/tomasklaen/uosc ]]
-local uosc_version = '4.4.0'
+--[[ uosc 4.6.0 - 2022-Dec-25 | https://github.com/tomasklaen/uosc ]]
+local uosc_version = '4.6.0'
 
 assdraw = require('mp.assdraw')
 opt = require('mp.options')
@@ -88,7 +88,8 @@ defaults = {
 	foreground_text = '000000',
 	background = '000000',
 	background_text = 'ffffff',
-	total_time = false,
+  total_time = false, -- deprecated by below
+	destination_time = 'playtime-remaining',
 	time_precision = 0,
 	font_bold = false,
 	autohide = false,
@@ -96,9 +97,10 @@ defaults = {
 	pause_indicator = 'flash',
 	curtain_opacity = 0.5,
 	stream_quality_options = '4320,2160,1440,1080,720,480,360,240,144',
-	media_types = '3g2,3gp,aac,aiff,ape,apng,asf,au,avi,avif,bmp,dsf,f4v,flac,flv,gif,h264,h265,j2k,jp2,jfif,jpeg,jpg,jxl,m2ts,m4a,m4v,mid,midi,mj2,mka,mkv,mov,mp3,mp4,mp4a,mp4v,mpeg,mpg,oga,ogg,ogm,ogv,opus,png,rm,rmvb,spx,svg,tak,tga,tta,tif,tiff,ts,vob,wav,weba,webm,webp,wma,wmv,wv,y4m',
+	media_types = '3g2,3gp,aac,aiff,ape,apng,asf,au,avi,avif,bmp,dsf,dts,f4v,flac,flv,gif,h264,h265,j2k,jp2,jfif,jpeg,jpg,jxl,m2ts,m4a,m4v,mid,midi,mj2,mka,mkv,mov,mp3,mp4,mp4a,mp4v,mpeg,mpg,oga,ogg,ogm,ogv,opus,png,rm,rmvb,spx,svg,tak,tga,tta,tif,tiff,ts,vob,wav,weba,webm,webp,wma,wmv,wv,y4m',
 	subtitle_types = 'aqt,ass,gsub,idx,jss,lrc,mks,pgs,pjs,psb,rt,slt,smi,sub,sup,srt,ssa,ssf,ttxt,txt,usf,vt,vtt',
 	default_directory = '~/',
+	use_trash = false,
 	chapter_ranges = 'openings:30abf964,endings:30abf964,ads:c54e4e80',
 	chapter_range_patterns = 'openings:オープニング;endings:エンディング',
 }
@@ -268,7 +270,7 @@ end
 
 --[[ STATE ]]
 
-display = {width = 1280, height = 720, scale_x = 1, scale_y = 1}
+display = {width = 1280, height = 720, scale_x = 1, scale_y = 1, initialized = false}
 cursor = {hidden = true, x = 0, y = 0}
 state = {
 	os = (function()
@@ -343,9 +345,11 @@ require('uosc_shared/lib/menus')
 function update_display_dimensions()
 	local scale = (state.hidpi_scale or 1) * options.ui_scale
 	local real_width, real_height = mp.get_osd_size()
+	if real_width <= 0 then return end
 	local scaled_width, scaled_height = round(real_width / scale), round(real_height / scale)
 	display.width, display.height = scaled_width, scaled_height
 	display.scale_x, display.scale_y = real_width / scaled_width, real_height / scaled_height
+	display.initialized = true
 
 	-- Tell elements about this
 	Elements:trigger('display')
@@ -366,9 +370,13 @@ function update_human_times()
 		state.time_human = format_time(state.time)
 		if state.duration then
 			local speed = state.speed or 1
-			state.duration_or_remaining_time_human = format_time(
-				options.total_time and state.duration or ((state.time - state.duration))
-			)
+      if options.total_time or options.destination_time == "total" then
+        state.duration_or_remaining_time_human = format_time(state.duration)
+      elseif options.destination_time == "time-remaining" then
+        state.duration_or_remaining_time_human = format_time(state.time - state.duration)
+      else
+        state.duration_or_remaining_time_human = format_time((state.time - state.duration) / speed)
+      end
 		else
 			state.duration_or_remaining_time_human = nil
 		end
@@ -482,7 +490,7 @@ function load_file_index_in_current_directory(index)
 		if index < 0 then index = #files + index + 1 end
 
 		if files[index] then
-			mp.commandv('loadfile', utils.join_path(serialized.dirname, files[index]))
+			mp.commandv('loadfile', join_path(serialized.dirname, files[index]))
 		end
 	end
 end
@@ -643,7 +651,7 @@ mp.observe_property('osd-dimensions', 'native', function(name, val)
 	request_render()
 end)
 mp.observe_property('display-hidpi-scale', 'native', create_state_setter('hidpi_scale', update_display_dimensions))
-mp.observe_property('cache', 'native', create_state_setter('cache'))
+mp.observe_property('cache', 'string', create_state_setter('cache'))
 mp.observe_property('cache-buffering-state', 'number', create_state_setter('cache_buffering'))
 mp.observe_property('demuxer-via-network', 'native', create_state_setter('is_stream', function()
 	Elements:trigger('dispositions')
@@ -900,7 +908,7 @@ mp.add_key_binding(nil, 'open-file', function()
 	-- Update active file in directory navigation menu
 	local function handle_file_loaded()
 		if Menu:is_open('open-file') then
-			Elements.menu:activate_value(normalize_path(mp.get_property_native('path')))
+			Elements.menu:activate_one_value(normalize_path(mp.get_property_native('path')))
 		end
 	end
 
@@ -1001,7 +1009,7 @@ mp.add_key_binding(nil, 'audio-device', create_self_updating_menu_opener({
 }))
 mp.add_key_binding(nil, 'open-config-directory', function()
 	local config_path = mp.command_native({'expand-path', '~~/mpv.conf'})
-	local config = serialize_path(config_path)
+	local config = serialize_path(normalize_path(config_path))
 
 	if config then
 		local args
