@@ -1,6 +1,6 @@
 local packer = req("packer")
 packer.init({
-  snaphot = "12-20",
+  snaphot = "12-25",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
