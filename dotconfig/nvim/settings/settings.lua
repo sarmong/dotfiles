@@ -38,6 +38,7 @@ vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.list = true
 vim.o.listchars = "tab:> ,trail:•" -- show dots on trailing spaces
 vim.o.virtualedit = "block" -- more consistent cursor in visual block mode
+vim.opt.completeopt = { "menu", "preview", "noselect", "noinsert" }
 
 -- vim.o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
 vim.o.guifont = "FiraCode Nerd Font:h17"
