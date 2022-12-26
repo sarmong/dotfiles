@@ -36,8 +36,8 @@ local keymappings = {
 }
 
 nvim_tree.setup({
-  disable_netrw = false,
-  hijack_netrw = false,
+  disable_netrw = true,
+  hijack_netrw = true,
   hijack_cursor = true,
   filters = {
     dotfiles = true,
