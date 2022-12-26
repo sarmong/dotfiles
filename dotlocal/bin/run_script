@@ -8,6 +8,6 @@ additional_commands="\nclipctl toggle\n$tmux_projects"
 
 commands_list="$from_bin_folder $additional_commands"
 
-command=$(printf "$commands_list" | dmenu -l 7 -p "Command to run: ")
+command=$(printf "$commands_list" | rofi -dmenu -l 7 -p "Command to run")
 
 $command
