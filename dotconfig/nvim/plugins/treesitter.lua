@@ -146,6 +146,7 @@ end
 req("treesitter-context").setup({
   enable = true,
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+  min_window_height = 30,
   patterns = {
     default = {
       "class",
