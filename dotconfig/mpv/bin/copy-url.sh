@@ -4,7 +4,6 @@ path=$(mpvc --format '%path%')
 
 ## if streaming directly from yt-dlp
 if [[ $path = https://* ]]; then
-  notify-send "here"
   url="$path"
 else
   path=$(mpvc --format '%path%')
@@ -13,4 +12,4 @@ fi
 
 echo "$url" | xclip -sel clip
 
-notify-send 'URL copied to clipboard'
+notify-send "URL copied to clipboard" "$url"
