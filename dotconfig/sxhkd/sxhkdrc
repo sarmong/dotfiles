@@ -1,5 +1,5 @@
 super + Return
-  $TERMINAL
+  $TERMINAL || kitty || alacritty || st
 
 super + control + Return
   $TERMINAL --class centered
