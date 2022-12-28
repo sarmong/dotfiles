@@ -4,15 +4,15 @@ super + Return
 super + control + Return
   $TERMINAL --class centered
 
-# @TODO need it?
-super + shift + d
-  i3-dmenu-desktop
-
+## Launchers
 super + e
   rofi -combi-modi window,drun,ssh -show combi -monitor -1
 
 super + d
   run_script
+
+super + x
+	sessions
 
 super + b
 	bookmarks $XDG_NC_DIR/Documents/bookmarks.txt
@@ -25,6 +25,8 @@ super + shift + e
 
 super + control + c
 	CM_LAUNCHER=rofi clipmenu
+
+## Shortcuts
 
 super + shift + c
 	$TERMINAL --working-directory $XDG_DOTFILES_DIR -e $SHELL -c 'nvim ; $SHELL'
