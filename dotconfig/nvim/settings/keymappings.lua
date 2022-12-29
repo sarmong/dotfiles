@@ -47,6 +47,9 @@ map("v", "S", ":s//gc<Left><Left><Left>", { silent = false })
 -- and close quickfix and loclist windows
 map("n", "<leader>q", ":noh<CR>:ccl<CR>:lcl<CR>")
 
+-- Search within visual selection
+map("v", "/", "<esc>/\\%V", { silent = false })
+
 -- Terminal window navigation
 map("t", "<C-h>", "<C-\\><C-N><C-w>h")
 map("t", "<C-j>", "<C-\\><C-N><C-w>j")
