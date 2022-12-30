@@ -88,6 +88,7 @@ local mappings = {
   -- p = { ":Scratch<cr>", "scratchpad" },
   h = { "<C-W>s", "split below" },
   v = { "<C-W>v", "split right" },
+  x = { "<:!chmod +x %<CR>", "make executable" },
   ['"'] = { 'viw<esc>a"<esc>bi"<esc>lel', "surround" },
   ["'"] = { "viw<esc>a'<esc>bi'<esc>lel", "surround" },
   ["("] = { "viw<esc>a)<esc>bi(<esc>lel", "surround" },
