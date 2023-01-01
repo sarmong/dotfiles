@@ -1,19 +1,22 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 NEW="$1"
 WALLPAPER=$XDG_PICTURES_DIR/wallpaper.png
 
 mimetype=$(file -i "$NEW" | awk -F: '{print $2}' | awk -F ';' '{print $1}' | xargs)
 
-if [ "$mimetype" != "image/jpeg" ] && [ "$mimetype" != "image/png" ]; then
+[ ! -d "$XDG_PICTURES_DIR" ] && mkdir -p "$XDG_PICTURES_DIR"
+[ ! -f "$WALLPAPER" ] && touch "$WALLPAPER"
+
+if [[ ! "$mimetype" =~ image/* ]]; then
   echo "File not an image"
   exit 1
 fi
 
-[ ! -d "$XDG_PICTURES_DIR" ] && mkdir -p "$XDG_PICTURES_DIR"
-
-[ ! -f "$WALLPAPER" ] && touch "$WALLPAPER"
-
-convert "$NEW" "$WALLPAPER"
+if [ "$mimetype" != "image/png" ]; then
+  convert "$NEW" "$WALLPAPER"
+else
+  cp "$NEW" "$WALLPAPER"
+fi
 
 feh --bg-fill "$WALLPAPER"
