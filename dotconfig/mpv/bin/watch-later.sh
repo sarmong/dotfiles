@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-wl_file="$XDG_NC_DIR/watch-later.txt"
+wl_file="$XDG_NC_DIR/mpv/watch-later.txt"
 
 add() {
   path=$(mpvc --format '%path%')
