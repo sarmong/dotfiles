@@ -25,7 +25,7 @@ end
 
 local function save_recent()
   -- If playlist consist of local files - don't save
-  if not playlist_metadata then
+  if not playlist_metadata or #playlist_metadata < 1 then
     return
   end
   local datetime = os.date("%Y-%m-%dT%H:%M:%S")
