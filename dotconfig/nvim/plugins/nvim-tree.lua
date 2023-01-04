@@ -103,8 +103,9 @@ nvim_tree.setup({
 })
 
 -- Close vim if nvim-tree is the last buffer
-vim.api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
   nested = true,
+  group = "NvimTree - close vim",
   callback = function()
     if
       #vim.api.nvim_list_wins() == 1
