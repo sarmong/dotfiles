@@ -87,6 +87,7 @@ local mappings = {
   -- @TODO find another place for scratchpad
   -- p = { ":Scratch<cr>", "scratchpad" },
   h = { "<C-W>s", "split below" },
+  k = { "K", "view help" },
   v = { "<C-W>v", "split right" },
   x = { "<:!chmod +x %<CR>", "make executable" },
   ['"'] = { 'viw<esc>a"<esc>bi"<esc>lel', "surround" },
