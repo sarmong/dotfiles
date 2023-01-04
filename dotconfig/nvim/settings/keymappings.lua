@@ -1,21 +1,5 @@
 local tabline = req("plugins.tabline")
 
--- stylua: ignore
-local langmap = { A = "Ф", B = "И", C = "С", D = "В", E = "У", F = "А", G = "П", H = "Р", I = "Ш", J = "О", K = "Л", L = "Д", M = "Ь", N = "Т", O = "Щ", P = "З", Q = "Й", R = "К", S = "Ы", T = "Е", U = "Г", V = "М", W = "Ц", X = "Ч", Y = "Н", Z = "Я", a = "ф", b = "и", c = "с", d = "в", e = "у", f = "а", g = "п", h = "р", i = "ш", j = "о", k = "л", l = "д", m = "ь", n = "т", o = "щ", p = "з", q = "й", r = "к", s = "ы", t = "е", u = "г", v = "м", w = "ц", x = "ч", y = "н", z = "я", }
-
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.keymap.set(mode, lhs, rhs, options)
-
-  local char = langmap[string.match(lhs, "<C%-(%a)>")]
-  if char then
-    vim.keymap.set(mode, "<C-" .. char .. ">", rhs, options)
-  end
-end
-
 -- Unmap space and set leader key to space
 map("n", "<Space>", "<NOP>")
 vim.g.mapleader = " "
