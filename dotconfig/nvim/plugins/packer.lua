@@ -190,6 +190,12 @@ packer.startup(function(use)
   use({ "sarmong/conky-syntax.vim" })
   use({ "elkowar/yuck.vim" })
   use({ "fladson/vim-kitty" })
+  use({
+    "danymat/neogen",
+    config = function()
+      require("neogen").setup({})
+    end,
+  })
 
   if _G.packer_bootstrap then
     require("packer").sync()
