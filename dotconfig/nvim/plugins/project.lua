@@ -18,6 +18,7 @@ return {
         ".git",
       },
     }))
+    cmd("e")
   end,
   use_package = function()
     project.setup(vim.tbl_extend("force", default_config, {
@@ -25,5 +26,6 @@ return {
         "package.json",
       },
     }))
+    cmd("e")
   end,
 }
