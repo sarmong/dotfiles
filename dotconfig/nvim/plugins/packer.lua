@@ -136,6 +136,13 @@ packer.startup(function(use)
     ft = "markdown",
   })
 
+  use({
+    "lukas-reineke/headlines.nvim",
+    config = function()
+      require("headlines").setup()
+    end,
+  })
+
   -- Treesitter --
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   use({ "p00f/nvim-ts-rainbow" }) -- rainbow parantheses
