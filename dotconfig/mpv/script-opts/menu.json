@@ -12,15 +12,11 @@
     "command": ["script-message", "playlistmanager", "shuffle"]
   },
   {
-    "label": "Reverse playlist",
-    "command": ["script-message", "playlistmanager", "reverse"]
-  },
-  {
     "label": "Watch Later",
-    "command": ["run", "/home/michael/.config/mpv/bin/watch-later.sh", "add"]
+    "command": ["run", "/home/michael/.local/bin/watch-later.sh", "add"]
   },
   {
     "label": "Load Watch Later playlist",
-    "command": ["run", "/home/michael/.config/mpv/bin/watch-later.sh", "load"]
+    "command": ["run", "/home/michael/.local/bin/watch-later.sh", "load"]
   }
 ]
