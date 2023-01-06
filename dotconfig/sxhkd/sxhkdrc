@@ -170,7 +170,9 @@ super + {Left,Right,Up,Down}
 # super + shift + c
 #   toggleprogram "picom" "--experimental-backends"
 
-# Pulse Audio controls
+
+## Audio controls
+
 XF86AudioRaiseVolume
 	pulsemixer --change-volume +5
 
@@ -180,10 +182,21 @@ XF86AudioLowerVolume
 XF86AudioMute
 	pulsemixer --toggle-mute
 
-XF86AudioPlay
+{ XF86AudioPlay, alt + Up }
 	playerctl play-pause
 
-# Sreen brightness controls
+alt + Down
+	playerctl pause --all-players
+
+{ XF86AudioPrev, alt + Left }
+	playerctl previous
+
+{ XF86AudioNext, alt + Right }
+	playerctl next
+
+
+## Sreen brightness controls
+
 XF86MonBrightnessUp
 	brightnessctl set +10%
 
