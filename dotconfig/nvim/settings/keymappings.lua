@@ -27,6 +27,13 @@ map("n", "L", "$")
 map("n", "S", ":%s//gc<Left><Left><Left>", { silent = false })
 map("v", "S", ":s//gc<Left><Left><Left>", { silent = false })
 
+map("n", "gx", function()
+  local url = fn.expand("<cfile>")
+  if url:match("^https?://") then
+    vim.loop.spawn("xdg-open", { args = { url } })
+  end
+end)
+
 -- turn off search highlights until next search
 -- and close quickfix and loclist windows
 map("n", "<leader>q", ":noh<CR>:ccl<CR>:lcl<CR>")
