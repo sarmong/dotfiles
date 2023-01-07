@@ -89,7 +89,6 @@ local mappings = {
   h = { "<C-W>s", "split below" },
   k = { "K", "view help" },
   v = { "<C-W>v", "split right" },
-  x = { "<:!chmod +x %<CR>", "make executable" },
   ['"'] = { 'viw<esc>a"<esc>bi"<esc>lel', "surround" },
   ["'"] = { "viw<esc>a'<esc>bi'<esc>lel", "surround" },
   ["("] = { "viw<esc>a)<esc>bi(<esc>lel", "surround" },
@@ -199,6 +198,11 @@ local mappings = {
       end,
       "previous search",
     },
+  },
+
+  x = {
+    x = { "<:!chmod +x %<CR>", "make executable" },
+    c = { ":g/console.log/d<CR>", "Remove console.logs" },
   },
 
   -- Fold
