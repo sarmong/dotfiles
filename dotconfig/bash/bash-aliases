@@ -23,6 +23,9 @@ alias ka="killall"
 alias g="git"
 alias gs="git status"
 alias gcob='git branch | fzf | xargs git checkout'
+alias s="systemctl"
+alias ss="sudo systemctl"
+alias j="journalctl"
 
 [ "$(uname)" = 'Darwin' ] && alias ls="gls -hGF --color=auto --group-directories-first" || alias ls="ls -hGF --color=auto --group-directories-first"
 alias la="ls -A"
