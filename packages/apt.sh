@@ -57,8 +57,6 @@ aptinst git
 aptinst curl
 aptinst vim
 aptinst zsh
-curl -fLo "$XDG_DATA_HOME"/vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ### --- Install installers --- ###
 
