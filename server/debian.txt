@@ -1,0 +1,11 @@
+git
+zsh
+
+zoxide
+fzf
+
+ufw
+nginx
+docker
+docker-compose
+python3-certbot-nginx

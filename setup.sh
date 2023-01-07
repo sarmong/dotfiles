@@ -36,6 +36,7 @@ linkdir() {
 mkdir -p ~/.config/
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/xdg
+mkdir -p ~/.local/cache
 
 linkdir "home" "$HOME"
 linkdir "dotconfig" "$HOME/.config"
