@@ -5,11 +5,16 @@ package.path = config_dir
   .. "/?/init.lua;"
   .. package.path
 
+IDE = not os.getenv("IS_SERVER")
+
 require("utils")
 req("impatient")
 
 req("settings")
 req("plugins")
-req("lsp")
+
+if IDE then
+  req("lsp")
+end
 
 -- vim.cmd("source " .. config_dir .. "/utils/quitdialog.vim")
