@@ -54,6 +54,11 @@ alias o="xdg-open"
 alias mtype="file -b --mime-type"
 alias copy="xclip -sel clipboard"
 
+lns() {
+  target=$(readlink -f "$1")
+  ln -vs "$target" "$2"
+}
+
 alias v="nvim"
 alias fo="fzf | xargs xdg-open"
 alias nb="newsboat"
