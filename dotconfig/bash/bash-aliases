@@ -1,6 +1,6 @@
 #!/bin/bash
 
-eval "$(thefuck --alias)"
+exists thefuck && eval "$(thefuck --alias)"
 
 # Brew commands
 alias binstall="brew install"

@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
 
+## Checks if command exists
+function exists() {
+  type "$1" &>/dev/null
+  return "$?"
+}
+
 # Function to source files if they exist
 # Set second argument to true to only source the file in interactive shell
 function zsh_add_file() {

@@ -1,5 +1,11 @@
 #!/bin/bash
 
+## Checks if command exists
+function exists() {
+  type "$1" &>/dev/null
+  return "$?"
+}
+
 ## ~/ cleanup
 ## See wiki for details - https://wiki.archlinux.org/title/XDG_Base_Directory
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -65,9 +71,9 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-[ "$(which fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
+exists fnm && eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
 
-if command -v mkcert &>/dev/null; then
+if exists mkcert; then
   export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
 fi
 
