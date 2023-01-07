@@ -29,11 +29,13 @@ compdef _setsid dis # Use setsid completion for dis
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
-zsh_add_plugin "marzocchi/zsh-notify" "notify"
 
-zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
-zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
-zstyle ':notify:*' expire-time 10000
+if [ -n "$DISPLAY" ]; then
+  zsh_add_plugin "marzocchi/zsh-notify" "notify"
+  zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
+  zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
+  zstyle ':notify:*' expire-time 10000
+fi
 
 
 # Taken from https://www.reddit.com/r/zsh/comments/mczq2j/current_process_and_directory_as_window_title/
@@ -49,4 +51,4 @@ function precmd () {
 
 bindkey '^r' history-incremental-search-backward
 
-eval "$(zoxide init zsh)"
+exists zoxide && eval "$(zoxide init zsh)"
