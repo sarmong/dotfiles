@@ -48,3 +48,8 @@ autocmd("BufWritePre", {
     vim.api.nvim_win_set_cursor(0, cur)
   end,
 })
+
+autocmd("VimResized", {
+  group = "Resize splits",
+  command = "tabdo wincmd =",
+})
