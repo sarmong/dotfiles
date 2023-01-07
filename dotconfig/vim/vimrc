@@ -12,10 +12,6 @@ set directory=$XDG_CACHE_HOME/vim/swap   | call mkdir(&directory, 'p')
 set undodir=$XDG_CACHE_HOME/vim/undo     | call mkdir(&undodir,   'p')
 if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
 
-call plug#begin()
-Plug 'morhetz/gruvbox'
-call plug#end()
-
 color gruvbox
 set background=dark
 
