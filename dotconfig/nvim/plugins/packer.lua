@@ -124,10 +124,9 @@ packer.startup(function(use)
   use({ "jose-elias-alvarez/typescript.nvim" })
   use({ "folke/lua-dev.nvim" }) -- @TODO this is currently not used
   use({
-    "plasticboy/vim-markdown",
-    ft = "markdown",
+    "git@github.com:sarmong/markdown.nvim.git",
     config = function()
-      require("plugins.vim-markdown")
+      require("markdown").setup({})
     end,
   })
   use({
