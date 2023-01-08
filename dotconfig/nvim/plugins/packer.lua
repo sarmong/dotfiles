@@ -137,7 +137,7 @@ packer.startup(function(use)
   })
 
   use({
-    "lukas-reineke/headlines.nvim",
+    "sarmong/headlines.nvim",
     config = function()
       require("headlines").setup()
     end,
