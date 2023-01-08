@@ -1,5 +1,8 @@
+# vim:ft=conf
+
 git
 zsh
+psmisc # provides killall
 
 zoxide
 fzf
