@@ -29,6 +29,7 @@ end
 fns.enable_format_on_save = function(silent)
   if not configs.settings.format_on_save then
     vim.api.nvim_create_autocmd("BufWritePre", {
+      ---@TODO remove for only one buffer
       group = vim.api.nvim_create_augroup("FormatOnSave", {}),
       callback = fns.format,
     })

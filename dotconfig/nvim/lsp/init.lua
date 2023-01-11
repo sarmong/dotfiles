@@ -10,7 +10,7 @@ lsp_fns.enable_format_on_save(true)
 vim.diagnostic.config({
   float = {
     border = "rounded",
-    source = "if_many",
+    source = true,
     header = "",
     prefix = "",
   },
