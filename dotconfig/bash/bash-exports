@@ -25,7 +25,7 @@ export XDG_PUBLICSHARE_DIR="$HOME/docs/public"
 export XDG_TEMPLATES_DIR="$HOME/docs/templates"
 export XDG_DOTFILES_DIR="$HOME/docs/dotfiles"
 export XDG_BIN_DIR="$HOME/.local/bin"
-export XDG_NC_DIR="$HOME/docs/nextcloud"
+export XDG_NC_DIR="$HOME/docs/nc"
 
 export LESSHISTFILE="-" # removes lesshist file
 # export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
