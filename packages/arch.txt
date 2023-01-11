@@ -256,7 +256,8 @@ webcamoid                     a
 monero-gui
 freetube-bin                  a
 
-nextcloud-client
+# nextcloud-client
+syncthing
 
 spotify                       a
 
