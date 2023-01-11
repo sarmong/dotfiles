@@ -26,7 +26,6 @@ if [ "$1" = 0 ]; then
   playerctld daemon
 
   ## Applications
-  nextcloud &
   # libinput-gestures-setup restart &
   CM_SELECTIONS='clipboard' clipmenud &
   redshift &
