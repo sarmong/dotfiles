@@ -3,6 +3,7 @@
 git
 zsh
 psmisc # provides killall
+trash-cli
 
 zoxide
 fzf
