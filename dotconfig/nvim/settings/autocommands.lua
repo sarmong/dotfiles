@@ -53,3 +53,9 @@ autocmd("VimResized", {
   group = "Resize splits",
   command = "tabdo wincmd =",
 })
+
+autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "tsconfig*" },
+  group = "jsonc",
+  command = "set filetype=jsonc",
+})
