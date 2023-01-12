@@ -6,7 +6,10 @@ super + control + Return
 
 ## Launchers
 super + e
-  rofi -combi-modi window,drun,ssh -show combi -monitor -1
+  rofi -show drun -monitor -1
+
+super + r
+  rofi -show window -monitor -1
 
 super + d
   run_script
