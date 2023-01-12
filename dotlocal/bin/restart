@@ -1,0 +1,19 @@
+#!/bin/sh
+
+programs="sxhkd
+polybar
+polybar-relaunch"
+
+p=${1-$(printf "$programs" | rofi -dmenu -l 7 -p "Program to restart")}
+
+case "$p" in
+  sxhkd)
+    kill -s USR1 "$(pidof sxhkd)"
+    ;;
+  polybar)
+    kill -s USR1 "$(pidof polybar)"
+    ;;
+  polybar-relaunch)
+    killall polybar && ~/.config/polybar/launch.sh
+    ;;
+esac
