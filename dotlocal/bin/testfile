@@ -1,0 +1,15 @@
+#!/bin/sh
+
+files="lua
+js
+ts
+go
+"
+
+filetype="${1-$(printf "%s" "$files" | rofi -dmenu)}"
+
+dir="$XDG_DOCUMENTS_DIR"/tech/testfiles
+
+[ ! -d "$dir" ] && mkdir -p "$dir"
+
+$TERMINAL -e "$SHELL" -c "cd $dir && nvim test.$filetype"

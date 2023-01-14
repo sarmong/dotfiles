@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# @TODO very slow
+# consider using fcp
 list_of_files=$(fd --type f -E '.*' -E 'node_modules' . "$HOME" | cut -d/ -f4-)
 
 echo "$list_of_files" | rofi -dmenu -i -p "Select file" -multi-select | xargs -d '\n' dragon-drop -a

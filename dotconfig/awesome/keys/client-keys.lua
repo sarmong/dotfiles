@@ -53,7 +53,7 @@ local local_keys = {
     group = "client",
     on_press = function(c)
       awful.spawn.with_line_callback(
-        "bash -c 'prompt-yn \"Kill " .. c.name .. "\"? '",
+        "bash -c 'prompt \"Kill " .. c.name .. "\"? '",
         {
           stdout = function(stdout)
             if stdout == "Yes" then

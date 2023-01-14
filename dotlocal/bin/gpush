@@ -1,19 +1,9 @@
 #!/bin/sh
 
-branch=$(git rev-parse --abbrev-ref HEAD)
-branchTest=$(echo "$branch" | grep -P '\w+\/([A-Z]{2,5}-\d{2,5})_\w+')
-
-# if [ -z "$branchTest" ]; then
-#   echo 'Please rename the branch according to guidelines.'
-#   exit 1
-# fi
-
-git rev-parse --abbrev-ref --symbolic-full-name @{u}
-
-if [ $? -eq 0 ]; then
+if git rev-parse --abbrev-ref --symbolic-full-name "@{u}"; then
   echo 'Pushing to the existing branch...'
-  git push $1
-else 
+  git push "$1"
+else
   echo 'Creating new upstream branch...'
-  git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD) $1
+  git push --set-upstream origin "$(git rev-parse --abbrev-ref HEAD)" "$1"
 fi
