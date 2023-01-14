@@ -7,6 +7,7 @@ req("nvim-treesitter.configs").setup({
     "comment",
     "css",
     "dockerfile",
+    "go",
     "help",
     "html",
     "http",
