@@ -8,7 +8,7 @@ fi
 
 name=$(echo "$name" | tr '[:lower:]' '[:upper:]')
 
-result=$(curl --silent --show-error terminal-stocks.shashi.dev/"$name")
+result=$(curl --silent --show-error terminal-stocks.dev/"$name")
 
 if [ "$1" = "-p" ]; then
   echo "$result" | sed '5q;d' | awk -F '│' '{print $3}'

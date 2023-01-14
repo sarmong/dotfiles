@@ -1,22 +1,24 @@
 #!/bin/bash
-#Use: live-mdpdf file.md output.pdf
+
+# Usage: live-mdpdf file.md output.pdf
+
 NAME="$1"
 OUT="$2"
 
-[[ -z $NAME ]] && read -p "Please enter document name: " NAME
-
 [[ -z $OUT ]] && OUT="$NAME.pdf"
 
-[[ ! -e ${PWD}/$NAME ]] && touch ${PWD}/$NAME
+[[ ! -e ${PWD}/$NAME ]] && touch "$PWD/$NAME"
 
 open-out() {
-	if ! pgrep -x "zathura" >/dev/null; then
-		zathura ${PWD}/$OUT &
-	fi
+  if ! pgrep -x "zathura" >/dev/null; then
+    zathura "$PWD/$OUT" &
+  fi
 }
 # ${EDITOR} $NAME &
 
-while inotifywait -e modify ${PWD}/$NAME; do
-	pandoc ${PWD}/$NAME -t html -o ${PWD}/$OUT
-	open-out
+## @TODO update
+## inotify-tools wkhtmltopdf
+while inotifywait -e modify "$PWD/$NAME"; do
+  pandoc "$PWD/$NAME" -t html -o "$PWD/$OUT"
+  open-out
 done

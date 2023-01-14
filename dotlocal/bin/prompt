@@ -1,3 +1,9 @@
 #!/bin/sh
 
-[ "$(printf "Yes\nNo" | dmenu -i -p "$1")" = "Yes" ] && $2
+res="$(printf "Yes\nNo" | dmenu -i -p "$1")"
+
+if [ "$res" = "Yes" ] && [ -n "$2" ]; then
+  $2
+else
+  echo "$res"
+fi
