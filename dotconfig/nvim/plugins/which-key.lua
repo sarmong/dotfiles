@@ -173,6 +173,14 @@ local mappings = {
       "workspace_diagnostics",
     },
     f = { ":Telescope find_files hidden=true<cr>", "files" },
+    F = {
+      function()
+        req("telescope.builtin").find_files({
+          cwd = fn.finddir(".git/..", fn.expand("%:p:h") .. ";"),
+        })
+      end,
+      "files in root",
+    },
     c = { ":Telescope command_history<cr>", "history" },
     h = { ":Telescope help_tags<cr>", "vim help" },
     i = { ":Telescope media_files<cr>", "media files" },
@@ -182,6 +190,14 @@ local mappings = {
     t = {
       require("telescope").extensions.live_grep_args.live_grep_args,
       "text",
+    },
+    T = {
+      function()
+        require("telescope.builtin").live_grep({
+          cwd = fn.finddir(".git/..", fn.expand("%:p:h") .. ";"),
+        })
+      end,
+      "text in root",
     },
     w = { ":Telescope grep_string<cr>", "word" },
     r = {
