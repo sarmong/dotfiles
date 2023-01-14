@@ -455,6 +455,7 @@ map_and_reset_geometry() {
 	# be run separately or can activate window on another desktop on some window
 	# managers (e.g. bspwm)
 	# @TODO use official package after #369 is resolved
+	# https://github.com/noctuid/tdrop/issues/369
 	# xdotool windowactivate "$wid" 2> /dev/null
 }
 
