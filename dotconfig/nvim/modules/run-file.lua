@@ -18,6 +18,7 @@ local ft_to_command = {
   lua = { "lua" },
   javascript = { "node" },
   typescript = { "ts-node" },
+  go = { "go", "run" },
 }
 
 local function run_file()

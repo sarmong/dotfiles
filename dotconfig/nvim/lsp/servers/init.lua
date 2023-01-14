@@ -17,6 +17,7 @@ local servers = {
   "pylsp",
   "pyright",
   "vimls",
+  "gopls",
 }
 
 for _, server in ipairs(servers) do
