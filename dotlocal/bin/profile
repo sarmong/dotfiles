@@ -17,7 +17,7 @@ if [ "$type" = "work" ]; then
   echo "Turning on VPN..."
   [ "$(globalprotect show --status | rg "Connected")" ] &&
     echo "Already connected to VPN" ||
-    globalprotect connect --portal ""
+    "$TERMINAL" --class=centered -e zsh -c 'globalprotect connect --portal ""'
 
   echo "Setting npm registry..."
   npmprivate
@@ -44,3 +44,5 @@ elif [ "$type" = "home" ]; then
 else
   echo 'Available options are "work" and "home"'
 fi
+
+notify-send "Profile" "Done setting profile"
