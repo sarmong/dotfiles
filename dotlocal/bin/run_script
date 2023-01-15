@@ -8,6 +8,8 @@ commands=(
   dict
   dmenuhandler
   emoji
+  fcp
+  fcp --drag
   mkscript
   mounter
   nothis
