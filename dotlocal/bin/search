@@ -1,0 +1,7 @@
+#!/bin/sh
+
+search_term=$(rofi -dmenu -p "search" | sed s/\ /+/)
+
+url="https://search.brave.com/search?q=$search_term"
+
+firefox "$url"
