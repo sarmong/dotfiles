@@ -1,7 +1,37 @@
 #!/bin/sh
 
 # @TODO copy multiple files
-file="file://$(readlink -f "$1")"
-echo "$file" | xclip -sel clipboard -t text/uri-list
 
-notify-send "Copied $file"
+get_file() {
+  pipe="/tmp/fcp"
+  mkfifo $pipe
+  trap 'rm $pipe' EXIT
+
+  fd --type f --exclude 'node_modules' . "$HOME" | cut -d/ -f4- >"$pipe" &
+
+  if tty >/dev/null 2>&1; then
+    file=$(fzf --multi <"$pipe")
+  else
+    file=$(rofi -dmenu -i -p "Select file" -multi-select <"$pipe")
+  fi
+
+  echo "$file"
+}
+
+copy() {
+  file_path="file://$(readlink -f "$HOME/$1")"
+  echo "$file_path" | xclip -sel clipboard -t text/uri-list
+}
+
+drag() {
+  echo "$HOME/$1" | xargs -d '\n' dragon-drop -a
+}
+
+case "$1" in
+  "-d" | "--drag")
+    drag "${2-$(get_file)}"
+    ;;
+  *)
+    copy "${1-$(get_file)}"
+    ;;
+esac
