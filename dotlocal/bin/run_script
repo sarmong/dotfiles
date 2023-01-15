@@ -16,6 +16,7 @@ commands=(
   "profile work"
   "profile home"
   restart
+  search
   sessions
   testfile
   watch-later.sh
