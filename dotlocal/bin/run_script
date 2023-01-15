@@ -9,6 +9,7 @@ commands=(
   dmenuhandler
   emoji
   mkscript
+  mounter
   nothis
   "profile work"
   "profile home"
