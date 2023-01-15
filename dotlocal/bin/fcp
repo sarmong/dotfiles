@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# @TODO copy multiple files
+tty >/dev/null 2>&1
+is_tty="$?"
 
 get_file() {
   pipe="/tmp/fcp"
@@ -9,7 +10,7 @@ get_file() {
 
   fd --type f --exclude 'node_modules' . "$HOME" | cut -d/ -f4- >"$pipe" &
 
-  if tty >/dev/null 2>&1; then
+  if [ $is_tty -eq 0 ]; then
     file=$(fzf --multi <"$pipe")
   else
     file=$(rofi -dmenu -i -p "Select file" -multi-select <"$pipe")
@@ -19,19 +20,27 @@ get_file() {
 }
 
 copy() {
-  file_path="file://$(readlink -f "$HOME/$1")"
-  echo "$file_path" | xclip -sel clipboard -t text/uri-list
+  links=$(echo "$@" | xargs -I {} echo "file://$(readlink -f "$HOME"/{})")
+  echo "$links" | xclip -sel clipboard -t text/uri-list
+
+  if [ $is_tty -eq 0 ]; then
+    echo "Successfully copied:"
+    echo "$@"
+  else
+    notify-send "FCP" "Copied:\n$*"
+  fi
 }
 
 drag() {
-  echo "$HOME/$1" | xargs -d '\n' dragon-drop -a
+  echo "$@" | sed "s|^|$HOME/|" | xargs -d '\n' dragon-drop -a
 }
 
 case "$1" in
   "-d" | "--drag")
-    drag "${2-$(get_file)}"
+    shift
+    drag "${@-$(get_file)}"
     ;;
   *)
-    copy "${1-$(get_file)}"
+    copy "${@-$(get_file)}"
     ;;
 esac

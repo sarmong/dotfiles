@@ -9,7 +9,7 @@ commands=(
   dmenuhandler
   emoji
   fcp
-  fcp --drag
+  "fcp --drag"
   mkscript
   mounter
   nothis
