@@ -22,7 +22,7 @@ if [ "$1" = 0 ]; then
   nm-applet &           # indicator # network tray
   xfce4-power-manager & # power manager tray
   conky &
-  udiskie --smart-tray & # mounts drives automatically
+  udiskie &
   playerctld daemon
 
   ## Applications
