@@ -20,7 +20,8 @@ get_file() {
 }
 
 copy() {
-  links=$(echo "$@" | xargs -I {} echo "file://$(readlink -f "$HOME"/{})")
+  links=$(echo "$@" | xargs realpath | xargs -I {} echo "file://{}")
+
   echo "$links" | xclip -sel clipboard -t text/uri-list
 
   if [ $is_tty -eq 0 ]; then
