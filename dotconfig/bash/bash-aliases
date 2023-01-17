@@ -2,25 +2,24 @@
 
 exists thefuck && eval "$(thefuck --alias)"
 
-# Brew commands
-alias binstall="brew install"
-alias cinstall="brew cask install"
-alias bsearch="brew search"
-alias binfo="brew info"
+alias bat="batcat" # For Debian
 
-# Apt commands
-alias update="sudo apt update && sudo apt upgrade && brew update && brew upgrade"
+## Package managers
+alias update="sudo apt update && sudo apt upgrade"
 alias aptinst="sudo apt install"
 alias aptsearch="apt search"
 alias aptremove="sudo apt remove"
 
-alias bat="batcat"
-
 alias p="sudo pacman"
 
-# Abbreviations
+## Abbreviations
 [ -f "$XDG_CONFIG_HOME/lf/lfcd" ] && . "$XDG_CONFIG_HOME/lf/lfcd"
 alias lf="lfcd"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 alias ka="killall"
 alias g="git"
 alias gs="git status"
@@ -31,15 +30,16 @@ alias j="journalctl"
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
-[ "$(uname)" = 'Darwin' ] && alias ls="gls -hGF --color=auto --group-directories-first" || alias ls="ls -hGF --color=auto --group-directories-first"
+alias ls="ls -hGF --color=auto --group-directories-first"
 alias la="ls -A"
 alias ll="ls -Al"
 alias grep="grep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
+alias fgrep="grep -F --color=auto"
+alias egrep="grep -E --color=auto"
 alias mv="mv -i"
 alias rm="rm -I"
 alias t="trash"
+alias c="clear"
 alias mkd="mkdir -pv"
 alias untar="tar -zxvf"
 alias sha="shasum -a 256" # check the checksum of a file
@@ -49,8 +49,8 @@ pdfman() {
   # man -t "$1" | ps2pdf - | zathura -
 }
 
-alias open="xdg-open"
-alias o="xdg-open"
+alias o="open"
+alias ow="open --ask"
 alias mtype="file -b --mime-type"
 alias copy="xclip -sel clipboard"
 
@@ -62,12 +62,7 @@ lns() {
 alias v="nvim"
 alias fo="fzf | xargs xdg-open"
 alias nb="newsboat"
-
-# Easier navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias ec="pushd \$XDG_DOTFILES_DIR >/dev/null && fzf | xargs nvim && popd >/dev/null"
 
 alias yta="yt-dlp --embed-metadata -f 'ba'" # Download audio
 play() {
@@ -75,7 +70,6 @@ play() {
   disown
 }
 
-# Might be useful
 alias weather="curl wttr.in"
 alias moon="curl wttr.in/moon"
 alias myip="curl ipinfo.io/ip"
@@ -109,20 +103,3 @@ take() {
     mcd "$@"
   fi
 }
-
-###
-# macOs
-###
-
-alias yabairestart='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
-
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
-
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
