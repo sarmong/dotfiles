@@ -10,13 +10,13 @@ set previewer '~/.config/lf/scope'
 
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
-cmd extract ${{
+cmd extract %{{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 	printf "%s\n\t" "$fx"
 	printf "extract?[y/N]"
 	read ans
-	[ $ans = "y" ] && aunpack $fx
+	[ $ans = "y" ] && aunpack --verbose $fx
 }}
 
 # cmd trash %mv -bi $fx ~/docs/air/.Trash
@@ -26,9 +26,7 @@ cmd moveto ${{
 	set -f
 	clear; echo "Move to where?"
 	dest="$(fd . ~ --type d --follow --relative-path | sed "s|/home/$USER|~|" | fzf | sed "s|~|/home/$USER|")"
-	for x in $fx; do
-		eval mv -iv \"$x\" \"$dest\"
-	done &&
+	mv -iv $fx "$dest"
 	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
 }}
 
@@ -37,9 +35,7 @@ cmd copyto ${{
 	set -f
 	clear; echo "Copy to where?"
 	dest="$(fd . ~ --type d --follow --relative-path | sed "s|/home/$USER|~|" | fzf | sed "s|~|/home/$USER|")"
-	for x in $fx; do
-		eval cp -ivr \"$x\" \"$dest\"
-	done &&
+	cp -vr $fx "$dest"
 	notify-send "📋 File(s) copied." "File(s) copies to $dest."
 }}
 
