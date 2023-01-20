@@ -49,8 +49,8 @@ pdfman() {
   # man -t "$1" | ps2pdf - | zathura -
 }
 
-alias o="open"
-alias ow="open --ask"
+alias o="lfh"
+alias ow="lfh --ask"
 alias mtype="file -b --mime-type"
 alias copy="xclip -sel clipboard"
 
