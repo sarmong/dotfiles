@@ -48,14 +48,7 @@ cmd zi ${{
   lf -remote "send ${id} cd '${result}'"
 }}
 
-# @TODO if you change it to '&$' (as default)
-# it opens x-shellscript file in firefox
-cmd open $$OPENER $f
-
-cmd openall ${{
-  echo "$OPENER"
-  for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done
-}}
+cmd open &lfh $f
 
 map gh
 map gg top
@@ -68,8 +61,8 @@ map <c-r> reload
 map <enter> shell
 map x $$f
 map X !$f
-map oa openall
-map ow $mimeopen --ask $f # open with
+map oa &lfh $fs
+map ow %open --ask --rofi $fx
 map gd $dragon-drop $fx & disown
 map gc $fcp $fx
 map gb $set-wp $f
