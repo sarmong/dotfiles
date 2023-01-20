@@ -11,14 +11,16 @@ urls="$(sed 's/.*│//g' <"/dev/stdin" | tr -d '\n' |            # First remove 
 
 [ -z "$urls" ] && exit 1
 
-while getopts "hoc" o; do case "${o}" in
-  h) printf "Optional arguments for custom use:\\n  -c: copy\\n  -o: xdg-open\\n  -h: Show this message\\n" && exit 1 ;;
+while getopts "hoc" opt; do case "$opt" in
   o)
     chosen="$(echo "$urls" | rofi -dmenu -i -p 'Follow which url?' -l 10)"
-    setsid xdg-open "$chosen" >/dev/null 2>&1 &
+    [ -z "$chosen" ] && exit
+    lfh --with browser "$chosen"
     ;;
   c)
-    echo "$urls" | rofi -dmenu -i -p 'Copy which url?' -l 10 | tr -d '\n' | xclip -selection clipboard
+    chosen="$(echo "$urls" | rofi -dmenu -i -p 'Copy which url?' -l 10)"
+    [ -z "$chosen" ] && exit
+    echo "$chosen" | tr -d '\n' | xclip -selection clipboard
     ;;
-  *) printf "Invalid option: -%s\\n" "$OPTARG" && exit 1 ;;
+  *) printf "Invalid option: -%s\\n" "$opt" && exit 1 ;;
 esac done
