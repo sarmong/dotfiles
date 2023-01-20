@@ -95,6 +95,18 @@ telescope.setup({
       },
     },
   },
+  pickers = {
+    buffers = {
+      mappings = {
+        n = {
+          ["<CR>"] = actions.select_drop,
+        },
+        i = {
+          ["<CR>"] = actions.select_drop,
+        },
+      },
+    },
+  },
   extensions = {
     media_files = {
       -- filetypes whitelist
