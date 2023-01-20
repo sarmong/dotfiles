@@ -46,6 +46,7 @@ video/mpeg-system=mpv.desktop;
 video/ogg=mpv.desktop;
 video/quicktime=mpv.desktop;
 video/webm=mpv.desktop;
+video/x-matroska=mpv.desktop;
 x-scheme-handler/about=firefox.desktop;
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
