@@ -8,7 +8,7 @@ freshrss-min-items 1000
 auto-reload no
 run-on-startup select-tag
 
-external-url-viewer "urlscan -dc -r 'dmenuhandler {}'"
+external-url-viewer "urlscan -dc -r 'lfh --ask --rofi {}'"
 
 bind-key j down
 bind-key k up
@@ -53,15 +53,12 @@ highlight article ":.*\\(link\\)$" cyan default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
-browser linkhandler
+browser lfh
 macro , open-in-browser
-macro b set browser "$BROWSER" ; open-in-browser ; set browser linkhandler
-macro d set browser "cd ~/dls/watch-later && dis yt"; open-in-browser ; set browser linkhandler
-macro c set browser "echo %u | xclip -r -sel c" ; open-in-browser ; set browser linkhandler
-macro o set browser "dmenuhandler" ; open-in-browser ; set browser linkhandler
-macro i set browser "feh" ; open-in-browser ; set browser linkhandler
-macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
-macro l set browser "~/.config/newsboat/get-duration.sh" ; open-in-browser-noninteractively ; set browser linkhandler
-# macro C set browser "youtube-viewer --comments=%u" ; open-in-browser ; set browser linkhandler
-# macro p set browser "peertubetorrent %u 480" ; open-in-browser ; set browser linkhandler
-# macro P set browser "peertubetorrent %u 1080" ; open-in-browser ; set browser linkhandler
+macro b set browser "$BROWSER" ; open-in-browser ; set browser lfh
+macro d set browser "cd ~/dls/watch-later && dis yt"; open-in-browser ; set browser lfh
+macro c set browser "echo %u | xclip -r -sel c" ; open-in-browser ; set browser lfh
+macro w set browser "lfh --ask --rofi" ; open-in-browser ; set browser lfh
+macro i set browser "feh" ; open-in-browser ; set browser lfh
+macro v set browser "setsid -f mpv" ; open-in-browser ; set browser lfh
+macro l set browser "~/.config/newsboat/get-duration.sh" ; open-in-browser-noninteractively ; set browser lfh

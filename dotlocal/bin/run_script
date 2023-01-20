@@ -6,7 +6,9 @@ commands=(
   copy-spotify-url
   "clipctl toggle"
   dict
-  dmenuhandler
+  open
+  "open --clip"
+  "open --ask"
   emoji
   fcp
   "fcp --drag"

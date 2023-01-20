@@ -1,0 +1,175 @@
+#!/usr/bin/env bash
+
+declare -A programs
+programs["default"]="open"
+programs["copy"]="xclip -selection clipboard <<<"
+programs["copy file"]="fcp"
+programs["drag file"]="fcp --drag"
+programs["mpv"]="dis umpv"
+programs["mpv new"]="dis mpv"
+programs["dl video"]="dis yt "
+programs["dl audio"]="dis yta"
+programs["dl"]="dis curl -LO"
+programs["zathura"]="dis zathura"
+programs["feh"]="dis feh"
+programs["nsxiv"]="dis nsxiv"
+programs["browser"]="$BROWSER"
+programs["firefox"]="firefox"
+programs["nvim"]="edit"
+
+get_default() {
+  case "$1" in
+    *mkv | *webm | *mp4 | *youtube.com/watch* | *youtube.com/playlist* | *youtu.be*)
+      echo "mpv"
+      ;;
+
+    *png | *jpg* | *jpeg | *gif)
+      echo "nsxiv"
+      ;;
+
+    *pdf | *epub)
+      echo "zathura"
+      ;;
+
+    *mp3 | *flac)
+      echo "dl"
+      ;;
+
+    *.sh)
+      echo "nvim"
+      ;;
+    *)
+      is_url "$1" && echo "browser" && return
+      case "$(xdg-mime query filetype "$1")" in
+        image/*)
+          echo "nsxiv"
+          ;;
+        video/*)
+          echo "mpv"
+          ;;
+        text/* | application/x-shellscript)
+          echo "nvim"
+          ;;
+        *)
+          echo "xdg-open"
+          ;;
+      esac
+      ;;
+  esac
+}
+
+is_url() {
+  [[ "$1" =~ ^https? ]] && return 0 || return 1
+}
+
+edit() {
+  if is_url "$1"; then
+    file_path="/tmp/$(basename "$1")"
+    curl -sL "$1" >"$file_path"
+  else
+    file_path="$1"
+  fi
+
+  if tty >/dev/null; then
+    nvim "$file_path"
+  else
+    "$TERMINAL" -e nvim "$file_path"
+  fi
+}
+
+get_file() {
+  launcher="$1"
+  [ -n "$selected_uri" ] && return
+
+  pipe="/tmp/open"
+  mkfifo $pipe
+  trap 'rm $pipe' EXIT
+
+  fd --type f --exclude 'node_modules' . ./ | cut -d/ -f2- >"$pipe" &
+
+  if [ "$launcher" == "rofi" ] || ! tty >/dev/null; then
+    file=$(rofi -dmenu -multi-select -i -p "Select file " <"$pipe")
+  else
+    file=$(fzf --multi --prompt "Select file " <"$pipe")
+  fi
+
+  echo "$file"
+}
+
+get_program() {
+  launcher="$1"
+  IFS=$'\n'
+
+  if [ "$launcher" == "rofi" ] || ! tty >/dev/null; then
+    choice="${selected_program-$(echo -e "${!programs[*]}" | rofi -dmenu -i -p 'Open it with? ')}"
+  else
+    choice="${selected_program-$(echo -e "${!programs[*]}" | fzf --prompt 'Open it with? ')}"
+  fi
+
+  echo "$choice"
+}
+
+open_with() {
+  program="$1"
+  shift
+
+  if [[ "$program" =~ dl ]]; then
+    cd "$XDG_DOWNLOAD_DIR" || exit 1
+  fi
+
+  ${programs[$program]} "$@"
+}
+
+options=$(getopt -l "clip,with:,ask,rofi" -o "cw:ar" -a -- "$@")
+
+# set --:
+# If no arguments follow this option, then the positional parameters are unset. Otherwise, the positional parameters
+# are set to the arguments, even if some of them begin with a ‘-’.
+eval set -- "$options"
+
+for _ in $options; do
+  case "$1" in
+    -c | --clip)
+      clip="$(xclip -o -sel clip)"
+      ;;
+    -w | --with)
+      shift
+      selected_program="$1"
+      ;;
+    -a | --ask)
+      should_ask=true
+      ;;
+    -r | --rofi)
+      launcher="rofi"
+      ;;
+    --)
+      shift
+
+      if [ -z "$1" ]; then
+        if [ -n "$clip" ]; then
+          files=("$clip")
+        else
+          readarray -t files < <(get_file "$launcher")
+        fi
+      else
+        files=("$@")
+      fi
+
+      [ -z "${files[0]}" ] && exit 1
+
+      if [ -n "${programs[$selected_program]}" ]; then
+        program="$selected_program"
+      elif [ "$should_ask" ]; then
+        program=$(get_program "$launcher")
+      else
+        program=$(get_default "${files[0]}")
+      fi
+
+      [ -z "$program" ] && exit 1
+
+      open_with "$program" "${files[@]}"
+      exit 0
+      ;;
+  esac
+  shift
+done
