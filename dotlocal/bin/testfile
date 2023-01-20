@@ -6,10 +6,20 @@ ts
 go
 "
 
-filetype="${1-$(printf "%s" "$files" | rofi -dmenu)}"
+if tty >/dev/null; then
+  filetype="${1-$(printf "%s" "$files" | fzf)}"
+else
+  filetype="${1-$(printf "%s" "$files" | rofi -dmenu)}"
+fi
+
+[ -z "$filetype" ] && exit
 
 dir="$XDG_DOCUMENTS_DIR"/tech/testfiles
 
 [ ! -d "$dir" ] && mkdir -p "$dir"
 
-$TERMINAL -e "$SHELL" -c "cd $dir && nvim test.$filetype"
+if tty >/dev/null; then
+  cd "$dir" && nvim "test.$filetype"
+else
+  "$TERMINAL" -e "$SHELL" -c "cd $dir && nvim test.$filetype"
+fi
