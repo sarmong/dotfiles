@@ -2,7 +2,7 @@
 
 exists thefuck && eval "$(thefuck --alias)"
 
-alias bat="batcat" # For Debian
+exists batcat && alias bat="batcat" # For Debian
 
 ## Package managers
 alias update="sudo apt update && sudo apt upgrade"
@@ -49,8 +49,11 @@ pdfman() {
   # man -t "$1" | ps2pdf - | zathura -
 }
 
+alias open="lfh"
 alias o="lfh"
 alias ow="lfh --ask"
+alias xopen="xdg-open"
+alias xo="xdg-open"
 alias mtype="file -b --mime-type"
 alias copy="xclip -sel clipboard"
 
