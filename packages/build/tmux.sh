@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# see https://github.com/tmux/tmux/issues/2705
 version="3.3a"
 
 # shellcheck disable=1007
