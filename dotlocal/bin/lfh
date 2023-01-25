@@ -16,7 +16,7 @@ programs["nsxiv"]="dis nsxiv"
 programs["browser"]="$BROWSER"
 programs["firefox"]="firefox"
 programs["nvim"]="edit"
-programs["xdg-open"]="xdg-open"
+programs["xdg-open"]="dis xdg-open"
 
 get_default() {
   case "$1" in
