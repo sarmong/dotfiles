@@ -71,7 +71,7 @@ edit() {
     file_path="$1"
   fi
 
-  if tty >/dev/null; then
+  if [[ $- == *i* ]]; then
     nvim "$file_path"
   else
     "$TERMINAL" -e nvim "$file_path"
@@ -88,7 +88,7 @@ get_file() {
 
   fd --type f --exclude 'node_modules' . ./ | cut -d/ -f2- >"$pipe" &
 
-  if [ "$launcher" == "rofi" ] || ! tty >/dev/null; then
+  if [ "$launcher" == "rofi" ] || [[ $- != *i* ]]; then
     file=$(rofi -dmenu -multi-select -i -p "Select file " <"$pipe")
   else
     file=$(fzf --multi --prompt "Select file " <"$pipe")
@@ -101,7 +101,7 @@ get_program() {
   launcher="$1"
   IFS=$'\n'
 
-  if [ "$launcher" == "rofi" ] || ! tty >/dev/null; then
+  if [ "$launcher" == "rofi" ] || [[ $- != *i* ]]; then
     choice="${selected_program-$(echo -e "${!programs[*]}" | rofi -dmenu -i -p 'Open it with? ')}"
   else
     choice="${selected_program-$(echo -e "${!programs[*]}" | fzf --prompt 'Open it with? ')}"
