@@ -6,10 +6,10 @@ commands=(
   copy-spotify-url
   "clipctl toggle"
   dict
-  open
+  lfh
   "lfh --clip"
   "lfh --ask"
-  "file manager"
+  "file-manager"
   emoji
   fcp
   "fcp --drag"
@@ -27,8 +27,8 @@ commands=(
 )
 
 declare -A other
-other["file manager"]="$TERMINAL --class centered -e $SHELL -c lf"
+other["file-manager"]="$TERMINAL --class centered -e $SHELL -c lf"
 
 command=$(printf "%s\n" "${commands[@]}" | rofi -dmenu -l 7 -p "Command to run")
 
-"$command" || ${other["$command"]}
+$command || ${other["$command"]}
