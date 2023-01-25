@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-tty >/dev/null 2>&1
-is_tty="$?"
-
 get_file() {
   pipe="/tmp/fcp"
   mkfifo $pipe
@@ -10,7 +7,7 @@ get_file() {
 
   fd --type f --exclude 'node_modules' . "$HOME" | cut -d/ -f4- >"$pipe" &
 
-  if [ $is_tty -eq 0 ]; then
+  if [[ $- == *i* ]]; then
     file=$(fzf --multi <"$pipe")
   else
     file=$(rofi -dmenu -i -p "Select file" -multi-select <"$pipe")
