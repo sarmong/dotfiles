@@ -63,6 +63,7 @@ case "$window_class" in
   centered)
     echo "state=floating"
     echo "center=on"
+    echo "rectangle=1100x600+0+0"
     ;;
 
   Surf)
