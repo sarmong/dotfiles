@@ -7,8 +7,9 @@ commands=(
   "clipctl toggle"
   dict
   open
-  "open --clip"
-  "open --ask"
+  "lfh --clip"
+  "lfh --ask"
+  "file manager"
   emoji
   fcp
   "fcp --drag"
@@ -25,6 +26,9 @@ commands=(
   wifi-menu.sh
 )
 
+declare -A other
+other["file manager"]="$TERMINAL --class centered -e $SHELL -c lf"
+
 command=$(printf "%s\n" "${commands[@]}" | rofi -dmenu -l 7 -p "Command to run")
 
-$command
+"$command" || ${other["$command"]}
