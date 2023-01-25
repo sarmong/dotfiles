@@ -20,15 +20,20 @@ get_file() {
 }
 
 copy() {
-  links=$(echo "$@" | xargs realpath | xargs -I {} echo "file://{}")
+  links=()
+  for f in "$@"; do
+    link="$(echo "$f" | xargs -0 realpath | xargs -I {} echo "file://{}")"
+    links+=("$link")
+  done
 
-  echo "$links" | xclip -sel clipboard -t text/uri-list
+  printf "%s\n" "${links[@]}" | xclip -sel clipboard -t text/uri-list
 
-  if [ $is_tty -eq 0 ]; then
+  if [[ $- == *i* ]]; then
     echo "Successfully copied:"
     echo "$@"
   else
-    notify-send "FCP" "Copied:\n$*"
+    names=$(echo "${links[@]}" | xargs -0 basename)
+    notify-send "FCP" "Copied:\n$names"
   fi
 }
 
