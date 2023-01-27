@@ -1,3 +1,4 @@
+local functions = require("lsp.functions")
 local configs = req("lsp.lspconfig")
 local util = req("lspconfig.util")
 
@@ -21,6 +22,9 @@ req("typescript").setup({
       client.server_capabilities.documentRangeFormattingProvider = false
 
       configs.default_opt.on_attach(client, bufnr)
+
+      -- go_to_source_definition doesn't list .d.ts files
+      map("n", "gd", functions.go_to_source_definition, { buffer = bufnr })
     end,
 
     single_file_support = true,
