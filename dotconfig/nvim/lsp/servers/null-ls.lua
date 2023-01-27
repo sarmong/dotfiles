@@ -6,7 +6,9 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
 
-    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.prettierd.with({
+      extra_args = { "--prose-wrap=always" },
+    }),
 
     -- null_ls.builtins.formatting.stylelint,
     -- null_ls.builtins.diagnostics.stylelint,
