@@ -14,25 +14,24 @@ local function print_output(buf, command)
   })
 end
 
-local ft_to_command = {
-  lua = { "lua" },
-  javascript = { "node" },
-  typescript = { "ts-node" },
-  go = { "go", "run" },
-}
+local function get_command(file)
+  return ({
+    lua = { "lua", file },
+    javascript = { "node", file },
+    typescript = { "ts-node", file },
+    go = { "go", "run", file },
+  })[vim.bo.filetype]
+end
 
 local function run_file()
   local current_buf = a.nvim_get_current_buf()
   local current_win = a.nvim_get_current_win()
   local filepath = fn.expand("%:p")
 
-  local command = ft_to_command[vim.bo.filetype]
-
+  local command = get_command(filepath)
   if not command then
     return
   end
-
-  table.insert(command, filepath)
 
   local output_buf = a.nvim_create_buf(false, true)
   cmd("65vsplit")
