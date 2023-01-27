@@ -79,7 +79,7 @@ telescope.setup({
 
         ["<C-y>"] = actions.delete_buffer,
 
-        ["<S-CR>"] = function(prompt_bufnr)
+        ["<C-CR>"] = function(prompt_bufnr)
           action_set.edit(prompt_bufnr, "Pick")
         end,
       },
@@ -89,7 +89,7 @@ telescope.setup({
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<C-y>"] = actions.delete_buffer,
         ["<esc><esc>"] = actions.close,
-        ["<S-CR>"] = function(prompt_bufnr)
+        ["<C-CR>"] = function(prompt_bufnr)
           action_set.edit(prompt_bufnr, "Pick")
         end,
       },
@@ -100,11 +100,17 @@ telescope.setup({
       mappings = {
         n = {
           ["<CR>"] = actions.select_drop,
+          ["<C-CR>"] = actions.select_default,
         },
         i = {
           ["<CR>"] = actions.select_drop,
+          ["<C-CR>"] = actions.select_default,
         },
       },
+      -- initial_mode = "normal",
+    },
+    grep_string = {
+      initial_mode = "normal",
     },
   },
   extensions = {
