@@ -48,6 +48,10 @@ fi                      # FILE
 *.scala          
 *.ts             
 *.vim            
+*.nix            
+
+*.pdf            
+
 *.cmd            
 *.ps1            
 *.sh             
@@ -120,13 +124,10 @@ fi                      # FILE
 *.mng            
 *.pcx            
 *.mov            
-*.mpg            
 *.mpeg           
 *.m2v            
-*.mkv            
 *.webm           
 *.ogm            
-*.mp4            
 *.m4v            
 *.mp4v           
 *.vob            
@@ -137,7 +138,6 @@ fi                      # FILE
 *.rm             
 *.rmvb           
 *.flc            
-*.avi            
 *.fli            
 *.flv            
 *.gl             
@@ -165,5 +165,8 @@ fi                      # FILE
 *.opus           
 *.spx            
 *.xspf           
-*.pdf            
-*.nix            
+
+*.mpg            
+*.mkv            
+*.mp4            
+*.avi            
