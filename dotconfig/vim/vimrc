@@ -50,6 +50,36 @@ set noerrorbells visualbell t_vb=
 set mouse+=a
 set showcmd
 
+set splitbelow
+set splitright
+set cursorline
+set clipboard=unnamedplus
+set list
+set listchars=tab:>-,trail:•
+set scrolloff=4
+
+"" Keymaps
+
+let mapleader=" "
+
+" better window movement
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" resize with arrows
+nnoremap <C-Up> :resize -2<CR>
+nnoremap <C-Down> :resize +2<CR>
+nnoremap <C-Left> :vertical resize -2<CR>
+nnoremap <C-Right> :vertical resize +2<CR>
+
+vnoremap < <gv
+vnoremap > >gv
+
+nnoremap <leader><TAB> :bnext<CR>
+nnoremap <leader><S-TAB> :bprev<CR>
+
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 command SudaWrite :execute ':silent w !sudo tee % > /dev/null' | :edit!
