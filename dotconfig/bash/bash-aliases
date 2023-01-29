@@ -113,6 +113,8 @@ lf() {
   if [ -f "$tmp" ]; then
     dir="$(cat "$tmp")"
     rm -f "$tmp" >/dev/null
-    [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir" || exit
+    if [ -d "$dir" ] && [ "$dir" != "$(pwd)" ]; then
+      cd "$dir" || exit
+    fi
   fi
 }
