@@ -11,11 +11,20 @@ autocmd({ "BufNewFile", "BufRead" }, {
 })
 
 autocmd({ "BufNewFile", "BufRead" }, {
-  group = "Mardown options",
+  group = "Markdown options",
   pattern = "*.md",
   callback = function()
     vim.opt_local.wrap = false
     vim.opt_local.textwidth = 80
+  end,
+})
+
+autocmd("FileType", {
+  group = "Quickfix conf",
+  pattern = "qf",
+  callback = function()
+    -- span qf window across all nvim width
+    cmd.wincmd("J")
   end,
 })
 
