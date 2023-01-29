@@ -29,6 +29,7 @@ compdef _setsid dis # Use setsid completion for dis
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
+zsh_add_plugin "joshskidmore/zsh-fzf-history-search"
 
 if [ -n "$DISPLAY" ]; then
   zsh_add_plugin "marzocchi/zsh-notify" "notify"
@@ -49,6 +50,6 @@ function precmd () {
     xtitle "$(print -P '$1 | %~ | $TERM' )"
 }
 
-bindkey '^r' history-incremental-search-backward
+# bindkey '^r' history-incremental-search-backward
 
 exists zoxide && eval "$(zoxide init zsh)"
