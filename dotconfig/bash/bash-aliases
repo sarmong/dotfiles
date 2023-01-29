@@ -13,8 +13,6 @@ alias aptremove="sudo apt remove"
 alias p="sudo pacman"
 
 ## Abbreviations
-[ -f "$XDG_CONFIG_HOME/lf/lfcd" ] && . "$XDG_CONFIG_HOME/lf/lfcd"
-alias lf="lfcd"
 
 alias ..="cd .."
 alias ...="cd ../.."
