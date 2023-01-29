@@ -100,6 +100,13 @@ nvim_tree.setup({
       error = "",
     },
   },
+  actions = {
+    open_file = {
+      window_picker = {
+        picker = req("window-picker").pick_window,
+      },
+    },
+  },
 })
 
 -- Close vim if nvim-tree is the last buffer
