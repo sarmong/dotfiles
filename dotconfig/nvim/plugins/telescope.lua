@@ -63,32 +63,26 @@ telescope.setup({
     mappings = {
       -- To disable a keymap, put [map] = false
       i = {
+        ["<esc><esc>"] = actions.close,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<esc><esc>"] = actions.close,
-
-        -- Otherwise, just set the mapping to the function that you want it to be.
-        -- ["<C-i>"] = actions.select_horizontal,
-
-        -- Add up multiple actions
-        ["<CR>"] = actions.select_default + actions.center,
-
+        ["<C-h>"] = actions.select_horizontal,
         ["<C-Down>"] = actions.cycle_history_next,
         ["<C-Up>"] = actions.cycle_history_prev,
-
-        ["<C-y>"] = actions.delete_buffer,
-
+        ["<CR>"] = actions.select_default + actions.center,
         ["<C-CR>"] = function(prompt_bufnr)
+          print("here")
           action_set.edit(prompt_bufnr, "Pick")
         end,
       },
       n = {
+        ["<esc><esc>"] = actions.close,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<C-y>"] = actions.delete_buffer,
-        ["<esc><esc>"] = actions.close,
+        ["<C-h>"] = actions.select_horizontal,
+        ["<CR>"] = actions.select_default + actions.center,
         ["<C-CR>"] = function(prompt_bufnr)
           action_set.edit(prompt_bufnr, "Pick")
         end,
@@ -101,10 +95,12 @@ telescope.setup({
         n = {
           ["<CR>"] = actions.select_drop,
           ["<C-CR>"] = actions.select_default,
+          ["<C-y>"] = actions.delete_buffer,
         },
         i = {
           ["<CR>"] = actions.select_drop,
           ["<C-CR>"] = actions.select_default,
+          ["<C-y>"] = actions.delete_buffer,
         },
       },
       -- initial_mode = "normal",
