@@ -24,8 +24,10 @@ map("i", "<C-u>", "<esc>viwUea")
 map("n", "H", "^")
 map("n", "L", "$")
 
-map("n", "S", ":%s//gc<Left><Left><Left>", { silent = false })
-map("v", "S", ":s//gc<Left><Left><Left>", { silent = false })
+map("n", "s", ":%s//gc<Left><Left><Left>", { silent = false })
+map("n", "S", '"hyiw:%s/<C-r>h//gc<left><left><left>', { silent = false })
+map("v", "s", ":s//gc<Left><Left><Left>", { silent = false })
+map("v", "S", '"hy:%s/<C-r>h//gc<left><left><left>', { silent = false })
 
 map("n", "gx", function()
   local url = fn.expand("<cfile>")
