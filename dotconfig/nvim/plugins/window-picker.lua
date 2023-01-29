@@ -1,11 +1,17 @@
 req("window-picker").setup({
   autoselect_one = true,
   include_current_win = true,
-  current_win_hl_color = "#89b4fa",
-  other_win_hl_color = "#89b4fa",
+  current_win_hl_color = "#076678",
+  other_win_hl_color = "#076678",
+  filter_rules = {
+    bo = {
+      filetype = { "NvimTree", "neo-tree", "notify", "qf" },
+      buftype = { "terminal" },
+    },
+  },
 })
 
-vim.api.nvim_create_user_command("Pick", function(e)
+command("Pick", function(e)
   local picked = req("window-picker").pick_window()
   vim.api.nvim_set_current_win(picked)
   vim.cmd("e " .. e.fargs[1])
