@@ -1,3 +1,4 @@
+local lspconfig = req("lspconfig")
 local capabilities = req("lsp.cmp")
 
 -- Use an on_attach function to only map the following keys
@@ -21,7 +22,7 @@ local on_attach = function(client, bufnr, elses)
   buf_set_keymap("n", "]d", vim.diagnostic.goto_next)
 end
 
-local default_opt = {
+local default_conf = {
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
@@ -33,9 +34,14 @@ local global_settings = {
   format_on_save = false,
 }
 
+---@param server string
+---@param config table
+local function setup(server, config)
+  lspconfig[server].setup(vim.tbl_deep_extend("force", default_conf, config))
+end
+
 return {
-  default_opt = default_opt,
-  server_opt = {},
-  on_attach = on_attach,
+  default_conf = default_conf,
   settings = global_settings,
+  setup = setup,
 }
