@@ -19,15 +19,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-autocmd("FileType", {
-  group = "Quickfix conf",
-  pattern = "qf",
-  callback = function()
-    -- span qf window across all nvim width
-    cmd.wincmd("J")
-  end,
-})
-
 autocmd("BufReadPost", {
   group = "Jump to the latest edit position",
   callback = function()
