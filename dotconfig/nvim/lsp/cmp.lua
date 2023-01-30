@@ -51,11 +51,11 @@ cmp.setup({
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-u>"] = cmp.mapping.scroll_docs(4),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
@@ -85,7 +85,7 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "treesitter" },
     { name = "path" },
-    { name = "luasnip" }, -- For luasnip users.
+    { name = "luasnip" },
     { name = "buffer" },
     -- { name = "cmdline" },
     -- { name = "neorg" },
