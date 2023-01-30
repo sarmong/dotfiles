@@ -21,4 +21,29 @@ req("bqf").setup({
     wrap = false, -- wrap the line, `:h wrap` for detail
     should_preview_cb = nil, -- a callback function to decide whether to preview while switching buffer with a bufnr parameter
   },
+  func_map = {
+    open = "<C-CR>",
+  },
+})
+
+autocmd("FileType", {
+  group = "Quickfix conf",
+  pattern = "qf",
+  callback = function()
+    -- span qf window across all nvim width
+    cmd.wincmd("J")
+
+    map("n", "<CR>", function()
+      cmd("norm p") -- hide preview from bqf
+      local winid = req("window-picker").pick_window()
+      if not winid then
+        cmd("norm p")
+        return
+      end
+      local cursor = a.nvim_win_get_cursor(0)
+      fn.setqflist({}, "r", { idx = cursor[1] })
+      a.nvim_set_current_win(winid)
+      cmd("cc")
+    end, { buffer = 0 })
+  end,
 })
