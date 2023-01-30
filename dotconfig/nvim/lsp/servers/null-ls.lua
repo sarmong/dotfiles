@@ -39,6 +39,6 @@ null_ls.setup({
     -- null_ls.builtins.completion.spell,
   },
   on_attach = function(client, bufnr)
-    configs.default_opt.on_attach(client, bufnr)
+    configs.default_conf.on_attach(client, bufnr)
   end,
 })

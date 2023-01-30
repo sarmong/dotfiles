@@ -1,5 +1,3 @@
-local lspconfig = req("lspconfig")
-
 local configs = req("lsp.lspconfig")
 
 local runtime_path = vim.split(package.path, ";")
@@ -12,13 +10,13 @@ table.insert(library, "/usr/share/nvim/runtime/lua")
 table.insert(library, "/usr/share/nvim/runtime/lua/lsp")
 table.insert(library, "/usr/share/awesome/lib")
 
-lspconfig.sumneko_lua.setup(vim.tbl_extend("force", configs.default_opt, {
+return {
   on_attach = function(client, bufnr)
     -- disable formatting with sumneko_lua, so that null-ls will handle it
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
 
-    configs.default_opt.on_attach(client, bufnr)
+    configs.default_conf.on_attach(client, bufnr)
   end,
 
   settings = {
@@ -27,7 +25,7 @@ lspconfig.sumneko_lua.setup(vim.tbl_extend("force", configs.default_opt, {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = "LuaJIT",
         -- Setup your lua path
-        path = runtime_path,
+        -- path = runtime_path,
         special = {
           req = "require",
         },
@@ -37,10 +35,10 @@ lspconfig.sumneko_lua.setup(vim.tbl_extend("force", configs.default_opt, {
         -- Get the language server to recognize the `vim` global
         globals = { "vim", "use", "awesome", "client", "root" },
       },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = library,
-      },
+      -- workspace = {
+      --   -- Make the server aware of Neovim runtime files
+      --   library = library,
+      -- },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
         enable = false,
@@ -50,4 +48,4 @@ lspconfig.sumneko_lua.setup(vim.tbl_extend("force", configs.default_opt, {
       },
     },
   },
-}))
+}
