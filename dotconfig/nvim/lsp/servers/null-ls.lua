@@ -1,5 +1,5 @@
 local null_ls = req("null-ls")
-local configs = req("lsp.lspconfig")
+local default_conf = req("lsp.servers.default")
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 null_ls.setup({
@@ -39,6 +39,6 @@ null_ls.setup({
     -- null_ls.builtins.completion.spell,
   },
   on_attach = function(client, bufnr)
-    configs.default_conf.on_attach(client, bufnr)
+    default_conf.on_attach(client, bufnr)
   end,
 })
