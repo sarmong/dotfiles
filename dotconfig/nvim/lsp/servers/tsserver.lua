@@ -1,5 +1,5 @@
 local functions = require("lsp.functions")
-local configs = req("lsp.lspconfig")
+local default_conf = req("lsp.servers.default")
 local util = req("lspconfig.util")
 
 req("typescript").setup({
@@ -7,7 +7,7 @@ req("typescript").setup({
   go_to_source_definition = {
     fallback = true, -- fall back to standard LSP definition on failure
   },
-  server = vim.tbl_extend("force", configs.default_conf, {
+  server = vim.tbl_extend("force", default_conf, {
     -- Prefer `.git` directory to avoid spawning new tsserver instance
     -- when going inside a package from node_modules
     root_dir = function(fname)
@@ -21,7 +21,7 @@ req("typescript").setup({
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
 
-      configs.default_conf.on_attach(client, bufnr)
+      default_conf.on_attach(client, bufnr)
 
       -- go_to_source_definition doesn't list .d.ts files
       map("n", "gd", functions.go_to_source_definition, { buffer = bufnr })
