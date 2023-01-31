@@ -1,4 +1,4 @@
-local configs = req("lsp.lspconfig")
+local default_conf = req("lsp.servers.default")
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -16,7 +16,7 @@ return {
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
 
-    configs.default_conf.on_attach(client, bufnr)
+    default_conf.on_attach(client, bufnr)
   end,
 
   settings = {

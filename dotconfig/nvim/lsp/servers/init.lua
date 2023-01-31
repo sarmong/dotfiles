@@ -1,9 +1,12 @@
-local configs = req("lsp.lspconfig")
+local lspconfig = req("lspconfig")
+
+local default_config = req("lsp.servers.default")
 
 require("mason").setup()
 require("mason-lspconfig").setup({ automatic_installation = true })
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- @TODO
 req("lsp.servers.tsserver")
 req("lsp.servers.null-ls")
 
@@ -20,12 +23,12 @@ local servers = {
 }
 
 for _, server in ipairs(servers) do
-  local ok, conf = pcall(require, "lsp.servers." .. server)
+  local ok, config = pcall(require, "lsp.servers." .. server)
   if not ok then
-    conf = {}
+    config = {}
   end
 
-  configs.setup(server, conf)
+  lspconfig[server].setup(vim.tbl_deep_extend("force", default_config, config))
 end
 
 -- has to go after null_ls
