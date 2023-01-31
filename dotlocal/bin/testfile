@@ -1,22 +1,18 @@
 #!/bin/sh
 
-files="lua
-js
-ts
-go
-"
+dir="$XDG_DOCUMENTS_DIR"/tech/testfiles
+[ ! -d "$dir" ] && mkdir -p "$dir"
+
+# shellcheck disable=2012
+files="$(ls -1 "$dir" | cut -d '.' -f 2)"
 
 if tty >/dev/null; then
   filetype="${1-$(printf "%s" "$files" | fzf)}"
 else
-  filetype="${1-$(printf "%s" "$files" | rofi -dmenu)}"
+  filetype="${1-$(printf "%s" "$files" | rofi -dmenu -l 10)}"
 fi
 
 [ -z "$filetype" ] && exit
-
-dir="$XDG_DOCUMENTS_DIR"/tech/testfiles
-
-[ ! -d "$dir" ] && mkdir -p "$dir"
 
 if tty >/dev/null; then
   cd "$dir" && nvim "test.$filetype"
