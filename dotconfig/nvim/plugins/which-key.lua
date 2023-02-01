@@ -12,7 +12,6 @@ local spectre = req("plugins.spectre")
 local colorizer = req("plugins.colorizer")
 local true_zen = req("plugins.true_zen")
 local refactoring = req("plugins.refactoring")
-local hop = req("plugins.hop")
 
 vim.opt.timeoutlen = 700
 
@@ -78,7 +77,6 @@ wk.setup({
 
 local mappings = {
   [";"] = { alpha.open_home_page, "home screen" },
-  ["/"] = { "<Plug>CommentaryLine<cr>", "comment" },
   e = { nvim_tree.toggle, "filetree" },
   f = { ":Telescope find_files hidden=true<cr>", "find files" },
   M = { ":MarkdownPreviewToggle<cr>", "markdown preview" },
@@ -106,7 +104,6 @@ local mappings = {
     v = { ":Codi!!<cr>", "toggle virtual repl" },
     b = { colorscheme.toggle_background, "toggle background" },
     w = { ":setlocal wrap!<cr>", "toggle wrap" },
-    h = { hop.word, "hop" },
     t = { ":AerialToggle<cr>", "code tree" },
   },
 
@@ -188,7 +185,7 @@ local mappings = {
     M = { ":Telescope man_pages<cr>", "man_pages" },
     o = { ":Telescope vim_options<cr>", "vim_options" },
     t = {
-      require("telescope").extensions.live_grep_args.live_grep_args,
+      req("telescope").extensions.live_grep_args.live_grep_args,
       "text",
     },
     T = {
