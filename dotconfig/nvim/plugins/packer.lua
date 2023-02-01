@@ -1,6 +1,5 @@
 local packer = req("packer")
 packer.init({
-  snaphot = "01-06",
   snapshot_path = vim.fn.resolve(
     vim.fn.stdpath("config") .. "/plugins/snapshots"
   ),
@@ -65,7 +64,6 @@ packer.startup(function(use)
     end,
   })
   use({ "lewis6991/impatient.nvim" })
-  use({ "phaazon/hop.nvim" })
   use({ "chentoast/marks.nvim" })
   use({ "norcalli/nvim-colorizer.lua" })
   use({ "s1n7ax/nvim-window-picker" })
@@ -181,7 +179,7 @@ packer.startup(function(use)
   use({ "sainnhe/gruvbox-material" })
   -- use("christianchiarulli/nvcode-color-schemes.vim")
 
-  use("Pocco81/TrueZen.nvim")
+  use({ "Pocco81/TrueZen.nvim" })
   use({ "martinlroth/vim-devicetree" })
   use({ "sarmong/lf-vim" })
   use({ "sarmong/newsboat.vim" })
