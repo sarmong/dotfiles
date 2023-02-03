@@ -54,6 +54,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct" # required by qt5ct
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 ## Set custom MANPAGER
+export MANWIDTH="80"
 # fixes formatting issues
 export MANROFFOPT="-c"
 # bat as manpager
