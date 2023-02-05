@@ -206,6 +206,7 @@ uglify-js
 entr
 downgrade
 jira-cli-bin                  a
+tokei
 
 pass
 
