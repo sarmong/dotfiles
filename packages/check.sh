@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+cyan='\e[1;96m'
+nocol='\e[0m'
+
 # shellcheck disable=1007
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 cd "$script_dir" || exit 1
@@ -18,6 +21,8 @@ for package in $to_install; do
   fi
 done
 
+echo -e "${cyan}Packages that are listed but not installed:${nocol}"
 printf "%s\n" "${not_installed[@]}"
 echo ""
+echo -e "${cyan}Packages that are installed but not listed:${nocol}"
 echo -e "$unlisted"
