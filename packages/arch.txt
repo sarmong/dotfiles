@@ -225,7 +225,7 @@ github-cli
 
 vscodium-bin                  a
 
-tldr
+tealdeer
 shellcheck
 
 ### --- Install Applications --- ###
