@@ -5,7 +5,7 @@ local util = req("lspconfig.util")
 req("typescript").setup({
   debug = false, -- enable debug logging for commands
   go_to_source_definition = {
-    fallback = true, -- fall back to standard LSP definition on failure
+    fallback = false, -- fall back to standard LSP definition on failure
   },
   server = vim.tbl_extend("force", default_conf, {
     -- Prefer `.git` directory to avoid spawning new tsserver instance
