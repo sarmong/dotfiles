@@ -111,12 +111,13 @@ fns.remove_unused = ts.actions.removeUnused
 fns.rename_qf = function(err, method, result, ...)
   vim.lsp.handlers["textDocument/rename"](err, method, result, ...)
   local changes = method.changes or method.documentChanges
-  if not changes then
+
+  if not changes or vim.tbl_count(changes) < 2 then
     return
   end
 
   local entries = {}
-  for uri, edits in pairs(method.changes) do
+  for uri, edits in pairs(changes) do
     local bufnr = vim.uri_to_bufnr(uri)
 
     for _, edit in ipairs(edits) do
