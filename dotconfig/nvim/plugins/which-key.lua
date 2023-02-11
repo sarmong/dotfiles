@@ -12,6 +12,7 @@ local spectre = req("plugins.spectre")
 local colorizer = req("plugins.colorizer")
 local true_zen = req("plugins.true_zen")
 local refactoring = req("plugins.refactoring")
+local fns = req("modules.functions")
 
 vim.opt.timeoutlen = 700
 
@@ -105,6 +106,7 @@ local mappings = {
     b = { colorscheme.toggle_background, "toggle background" },
     w = { ":setlocal wrap!<cr>", "toggle wrap" },
     t = { ":AerialToggle<cr>", "code tree" },
+    s = { fns.toggle_signcolumn, "toggle signcolumn" },
   },
 
   -- Buffer
