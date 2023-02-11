@@ -62,9 +62,9 @@ map <enter> shell
 map x $$f
 map X !$f
 map oa &lfh $fs
-map ow %open --ask --rofi $fx
+map ow &lfh --ask --rofi $fx
 map gd $dragon-drop $fx & disown
-map gc $fcp $fx
+map gc &fcp $fx
 map gb $set-wp $f
 
 map A rename # at the very end
