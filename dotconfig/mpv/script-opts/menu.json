@@ -1,5 +1,9 @@
 [
   {
+    "label": "Load all files in a directory",
+    "command": ["script-message", "load-directory"]
+  },
+  {
     "label": "Save playlist",
     "command": ["script-message", "playlistmanager", "save", "interactively"]
   },
