@@ -14,7 +14,7 @@ local servers = {
   "gopls",
   "pylsp",
   "pyright",
-  "sumneko_lua",
+  "lua_ls",
   "tsserver",
   "vimls",
 }
