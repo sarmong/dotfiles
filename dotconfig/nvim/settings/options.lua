@@ -1,56 +1,67 @@
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
-vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object"
-vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
-vim.o.inccommand = "split" -- Make substitution work in realtime
-vim.o.title = true -- shows window title
-vim.o.titlestring = "%{split(getcwd(), '/')[-1]}" -- shown only current directory in title
-vim.o.wrap = true
-vim.o.linebreak = true
-vim.opt.whichwrap:append("<,>,[,],h,l") -- move to next line with theses keys
-vim.o.pumheight = 10 -- Makes popup menu smaller
-vim.o.fileencoding = "utf-8" -- The encoding written to file
-vim.o.cmdheight = 1 -- More space for displaying messages
-vim.o.colorcolumn = 99999 -- fix indentline for now
-vim.o.mouse = "a" -- Enable your mouse
-vim.o.splitbelow = true -- Horizontal splits will automatically be below
-vim.o.termguicolors = true -- set term gui colors most terminals support this
-vim.o.splitright = true -- Vertical splits will automatically be to the right
-vim.go.t_Co = "256" -- Support 256 colors
-vim.o.conceallevel = 3
-vim.o.tabstop = 2 -- Insert 2 spaces for a tab
-vim.o.shiftwidth = 2 -- Change the number of space characters inserted for indentation
-vim.o.expandtab = true -- Converts tabs to spaces
-vim.o.smartindent = true -- Makes indenting smart
-vim.wo.number = true -- set numbered lines
-vim.wo.relativenumber = true -- set relative number
-vim.wo.cursorline = true -- Enable highlighting of the current line
-vim.o.showtabline = 2 -- Always show tabs
-vim.opt.winbar = "%m %t"
-vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore
-vim.o.backup = false -- This is recommended by coc
-vim.o.signcolumn = "yes:1"
-vim.o.updatetime = 300 -- Faster completion
-vim.o.timeoutlen = 700 -- By default timeoutlen is 1000 ms
-vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
-vim.o.list = true
-vim.o.listchars = "tab:> ,trail:•" -- show dots on trailing spaces
-vim.o.virtualedit = "block" -- more consistent cursor in visual block mode
-vim.opt.completeopt = { "menu", "preview", "noselect", "noinsert" }
-
--- vim.o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
-vim.o.guifont = "FiraCode Nerd Font:h17"
--- vim.bo.undofile = true
--- vim.api.nvim_buf_set_option(0, "undofile", true)
-vim.o.undofile = true -- persistent undo
-vim.o.ignorecase = true -- case insensitive search
-vim.o.smartcase = true -- search becomes case sensitive if contains any capital letters
-vim.o.scrolloff = 4 -- padding of 2 lines when scrolling
-vim.o.keywordprg = ":help" -- open help when pressing K
+-- vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
+-- vim.opt.whichwrap:append("<,>,[,],h,l") -- move to next line with theses keys
 
 vim.g.vim_markdown_fenced_languages = { "js=javascript" }
 
--- set cyrillic letters for normal mode
-vim.o.langmap =
-  "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+-- stylua: ignore start
+local options = {
+  title              =    true,                          -- Sets terminal window title
+  titlestring        =    "%{split(getcwd(), '/')[-1]}", -- Show current directory in title
+  termguicolors      =    true,
+  splitbelow         =    true,              -- Horizontal splits below
+  splitright         =    true,              -- Vertical splits to the right
+
+  undofile           =    true,
+  clipboard          =    "unnamedplus",
+
+  wrap               =    true,
+  textwidth          =    100,
+  linebreak          =    true,              -- Don't wrap in the middle of a word
+
+  tabstop            =    2,                 -- Insert 2 spaces for a tab
+  shiftwidth         =    2,                 -- Change the number of space characters inserted for indentation
+  expandtab          =    true,              -- Converts tabs to spaces
+  smartindent        =    true,              -- Makes indenting smart
+
+  number             =    true,
+  relativenumber     =    true,
+  scrolloff          =    4,
+  virtualedit        =    "block",           -- Visual block over non existing columns
+
+  ignorecase         =    true,
+  smartcase          =    true,
+
+  showtabline        =    2,
+  winbar             =    "%m %t",
+  signcolumn         =    "yes:1",
+
+  colorcolumn        =    "+1",              -- Based off of textwidth value
+  cursorline         =    true,              -- Enable highlighting of the current line
+  showmode           =    false,             -- Don't show mode in the command line
+  cmdheight          =    1,
+
+  list               =    true,              -- Show listchars
+  listchars          =    "tab:> ,trail:•",
+
+  pumheight          =    20,                -- Number of items in completion menu
+  completeopt        =    { "menu", "preview", "noselect", "noinsert" },
+
+  conceallevel       =    3,
+  timeoutlen         =    700,
+
+  inccommand         =    "split",           -- Show split preview window
+  keywordprg         =    ":help",           -- open help when pressing K
+  -- updatetime      =    300,               -- Faster completion
+
+  guifont            =    "FiraCode Nerd Font:h17",
+  langmap            =    "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz",
+}
+-- stylua: ignore end
+
+
+for opt, value in pairs(options) do
+  vim.opt[opt] = value
+end
