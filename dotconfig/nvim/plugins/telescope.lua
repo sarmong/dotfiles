@@ -1,4 +1,5 @@
 local telescope = req("telescope")
+local builtin = req("telescope.builtin")
 local actions = req("telescope.actions")
 local action_set = req("telescope.actions.set")
 local sorters = req("telescope.sorters")
@@ -11,7 +12,7 @@ telescope.setup({
       timeout = 1000,
     },
     path_display = { "truncate" },
-    sorting_strategy = "descending",
+    sorting_strategy = "ascending",
     selection_strategy = "reset",
     vimgrep_arguments = {
       "rg",
@@ -22,11 +23,13 @@ telescope.setup({
       "--column",
       "--smart-case",
     },
-    prompt_position = "top",
     prompt_prefix = " ",
     selection_caret = " ",
     entry_prefix = "  ",
     initial_mode = "insert",
+    layout_config = {
+      prompt_position = "top",
+    },
     layout_strategy = "horizontal",
     layout_defaults = {
       horizontal = { mirror = false },
@@ -72,7 +75,6 @@ telescope.setup({
         ["<C-Up>"] = actions.cycle_history_prev,
         ["<CR>"] = actions.select_default + actions.center,
         ["<C-CR>"] = function(prompt_bufnr)
-          print("here")
           action_set.edit(prompt_bufnr, "Pick")
         end,
       },
