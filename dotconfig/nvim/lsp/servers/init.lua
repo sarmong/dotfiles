@@ -11,6 +11,7 @@ local servers = {
   "clangd",
   "cssls",
   "cssmodules_ls",
+  "eslint",
   "gopls",
   "pylsp",
   "pyright",
