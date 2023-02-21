@@ -1,8 +1,11 @@
+local telescope = require("plugins.telescope")
 local tabline = req("plugins.tabline")
 
 -- Unmap space and set leader key to space
 map("n", "<Space>", "<NOP>")
 vim.g.mapleader = " "
+
+map("n", "<C-p>", telescope.oldfiles)
 
 -- better window movement
 map("n", "<C-h>", "<C-w>h")
@@ -21,8 +24,8 @@ map("v", "<C-s>", "<Esc>:update<CR>")
 
 map("i", "<C-u>", "<esc>viwUea")
 
-map("n", "H", "^")
-map("n", "L", "$")
+map({ "n", "v" }, "H", "^")
+map({ "n", "v" }, "L", "$")
 
 map("n", "s", ":%s//gc<Left><Left><Left>", { silent = false })
 map("n", "S", '"hyiw:%s/<C-r>h//gc<left><left><left>', { silent = false })
