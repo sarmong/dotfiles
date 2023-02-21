@@ -51,7 +51,7 @@ super + n
 	nothis
 
 super + z
-	tdrop -ma -w -4 -h 440 -y 35 $TERMINAL
+	tdrop -ma -w 50% -h 440 -x 25% -y 35 $TERMINAL
 
 ## -- BSPWM Bindings -- ##
 # Quit bspwm
