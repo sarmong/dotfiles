@@ -64,7 +64,7 @@ packer.startup(function(use)
   })
   use({ "lewis6991/impatient.nvim" })
   use({ "chentoast/marks.nvim" })
-  use({ "norcalli/nvim-colorizer.lua" })
+  use({ "NvChad/nvim-colorizer.lua" })
   use({ "s1n7ax/nvim-window-picker" })
 
   ------------------
