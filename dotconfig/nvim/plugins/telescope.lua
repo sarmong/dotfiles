@@ -141,3 +141,13 @@ telescope.load_extension("project")
 telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("live_grep_args")
+
+return {
+  oldfiles = function()
+    builtin.oldfiles({
+      preview = { hide_on_startup = true },
+      initial_mode = "normal",
+      layout_config = { width = 0.5, height = 0.5 },
+    })
+  end,
+}
