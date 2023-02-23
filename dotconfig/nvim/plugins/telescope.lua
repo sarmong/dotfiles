@@ -127,7 +127,7 @@ telescope.setup({
     },
     live_grep_args = {
       auto_quoting = true, -- If the prompt value does not begin with ', " or - the entire prompt is treated as a single argument
-      default_mappings = {
+      mappings = {
         i = {
           ["<C-o>"] = lga_actions.quote_prompt({ postfix = ' --iglob "**/' }),
         },
