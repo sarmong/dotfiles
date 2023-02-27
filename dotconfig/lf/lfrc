@@ -8,15 +8,21 @@ set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml:!.config:!.local"
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
 
+# : - read        - Read a command to evaluate.
+# $ - shell       - Read a shell command to execute.
+# % - shell-pipe  - Read a shell command to execute piping its standard I/O to the bottom statline.
+# ! - shell-wait  - Read a shell command to execute and wait for a key press in the end.
+# & - shell-async - Read a shell command to execute asynchronously without standard I/O.
+
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
-cmd extract %{{
+cmd extract !{{
 	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
 	printf "%s\n\t" "$fx"
 	printf "extract?[y/N]"
 	read ans
-	[ $ans = "y" ] && aunpack --verbose $fx
+	[ $ans = "y" ] && aunpack --explain $fx
 }}
 
 # cmd trash %mv -bi $fx ~/docs/air/.Trash
