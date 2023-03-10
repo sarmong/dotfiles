@@ -152,4 +152,39 @@ return {
       layout_config = { width = 0.5, height = 0.5 },
     })
   end,
+
+  find_files = function()
+    if vim.bo.filetype ~= "NvimTree" then
+      builtin.find_files({ hidden = true })
+    else
+      local tree = req("nvim-tree.lib")
+      local node = tree.get_node_at_cursor()
+      if node then
+        builtin.find_files({
+          search_dirs = {
+            not node.open and node.parent.absolute_path or node.absolute_path,
+          },
+          hidden = true,
+        })
+      end
+    end
+  end,
+
+  text = function()
+    if vim.bo.filetype ~= "NvimTree" then
+      telescope.extensions.live_grep_args.live_grep_args()
+    else
+      local tree = req("nvim-tree.lib")
+      local node = tree.get_node_at_cursor()
+      if node then
+        -- @TODO https://github.com/nvim-telescope/telescope-live-grep-args.nvim/issues/45
+        builtin.live_grep({
+          -- telescope.extensions.live_grep_args.live_grep_args({
+          search_dirs = {
+            not node.open and node.parent.absolute_path or node.absolute_path,
+          },
+        })
+      end
+    end
+  end,
 }
