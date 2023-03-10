@@ -20,6 +20,7 @@ local function get_command(file)
     javascript = { "node", file },
     typescript = { "ts-node", file },
     go = { "go", "run", file },
+    python = { "python", file },
   })[vim.bo.filetype]
 end
 
