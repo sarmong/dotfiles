@@ -13,6 +13,7 @@ local colorizer = req("plugins.colorizer")
 local true_zen = req("plugins.true_zen")
 local refactoring = req("plugins.refactoring")
 local fns = req("modules.functions")
+local telescope = require("plugins.telescope")
 
 vim.opt.timeoutlen = 700
 
@@ -79,7 +80,7 @@ wk.setup({
 local mappings = {
   [";"] = { alpha.open_home_page, "home screen" },
   e = { nvim_tree.toggle, "filetree" },
-  f = { ":Telescope find_files hidden=true<cr>", "find files" },
+  f = { telescope.find_files, "find files" },
   M = { ":MarkdownPreviewToggle<cr>", "markdown preview" },
   u = { ":UndotreeToggle<cr>", "undo tree" },
   p = { '"_dP', "super paste" },
@@ -171,7 +172,7 @@ local mappings = {
       ":Telescope diagnostics<cr>",
       "workspace_diagnostics",
     },
-    f = { ":Telescope find_files hidden=true<cr>", "files" },
+    f = { telescope.find_files, "files" },
     F = {
       function()
         req("telescope.builtin").find_files({
@@ -186,10 +187,7 @@ local mappings = {
     m = { ":Telescope marks<cr>", "marks" },
     M = { ":Telescope man_pages<cr>", "man_pages" },
     o = { ":Telescope vim_options<cr>", "vim_options" },
-    t = {
-      req("telescope").extensions.live_grep_args.live_grep_args,
-      "text",
-    },
+    t = { telescope.text, "text" },
     T = {
       function()
         require("telescope.builtin").live_grep({
