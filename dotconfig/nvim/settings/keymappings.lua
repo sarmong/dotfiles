@@ -95,7 +95,7 @@ map("n", "<A-.>", tabline.move_next)
 map("n", "<A-,>", tabline.move_prev)
 map("n", "<A-p>", tabline.pin)
 
-map("n", "<S-x>", tabline.close)
+map("n", "<S-x>", ":BufDel<CR>")
 map("n", "<A-w>", ":w<CR>:BufDel<CR>")
 
 for i = 1, 9 do
