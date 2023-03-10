@@ -48,6 +48,10 @@ except socket.error as e:
     else:
         raise e
 
+# If socket exists, but mpv is not running, remove socket
+if sock and not os.popen("pgrep mpv").read():
+    os.system("rm " + SOCK)
+
 if sock:
     # Unhandled race condition: what if mpv is terminating right now?
     os.system(
