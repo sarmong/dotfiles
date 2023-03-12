@@ -22,9 +22,9 @@ if [ "$type" = "work" ]; then
   sed -i 's/firefox/google-chrome-stable/' "$XDG_CONFIG_HOME/zsh/zsh-local"
 
   echo "Turning on VPN..."
-  [ "$(globalprotect show --status | rg "Connected")" ] &&
-    echo "Already connected to VPN" ||
-    globalprotect connect --portal ""
+  # [ "$(globalprotect show --status | rg "Connected")" ] &&
+  #   echo "Already connected to VPN" ||
+  globalprotect connect --portal ""
 
 elif [ "$type" = "home" ]; then
 
