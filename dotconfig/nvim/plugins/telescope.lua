@@ -177,9 +177,7 @@ return {
       local tree = req("nvim-tree.lib")
       local node = tree.get_node_at_cursor()
       if node then
-        -- @TODO https://github.com/nvim-telescope/telescope-live-grep-args.nvim/issues/45
-        builtin.live_grep({
-          -- telescope.extensions.live_grep_args.live_grep_args({
+        telescope.extensions.live_grep_args.live_grep_args({
           search_dirs = {
             not node.open and node.parent.absolute_path or node.absolute_path,
           },
