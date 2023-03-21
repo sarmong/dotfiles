@@ -6,7 +6,7 @@ req("plugins.comment")
 req("plugins.telescope")
 
 req("plugins.nvim-tree")
-req("plugins.tabline")
+req("plugins.barbar")
 req("plugins.lualine")
 req("plugins.which-key")
 
