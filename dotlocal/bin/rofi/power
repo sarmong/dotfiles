@@ -21,6 +21,8 @@ confirm() {
 IFS=$'\n'
 selected=$(echo -e "${texts[*]}" | rofi -dmenu -format i)
 
+[ "$selected" == -1 ] && exit 1
+
 confirm "${selected}"
 
 case "$selected" in
