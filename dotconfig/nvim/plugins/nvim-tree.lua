@@ -125,6 +125,6 @@ autocmd("BufEnter", {
 
 return {
   toggle = function()
-    nvim_tree.toggle()
+    api.tree.toggle()
   end,
 }
