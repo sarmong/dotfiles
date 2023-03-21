@@ -1,5 +1,5 @@
 local telescope = require("plugins.telescope")
-local tabline = req("plugins.tabline")
+local barbar = req("plugins.barbar")
 
 -- Unmap space and set leader key to space
 map("n", "<Space>", "<NOP>")
@@ -89,18 +89,18 @@ map("v", "<A-h>", ":MoveHBlock(-1)<CR>")
 
 -- Buffers
 map("n", "<C-i>", "<C-i>") -- needed to distinguish tab and c-i in terminals that support it
-map("n", "<TAB>", tabline.next)
-map("n", "<S-TAB>", tabline.prev)
-map("n", "<A-.>", tabline.move_next)
-map("n", "<A-,>", tabline.move_prev)
-map("n", "<A-p>", tabline.pin)
+map("n", "<TAB>", barbar.next)
+map("n", "<S-TAB>", barbar.prev)
+map("n", "<A-.>", barbar.move_next)
+map("n", "<A-,>", barbar.move_prev)
+map("n", "<A-p>", barbar.pin)
 
-map("n", "<S-x>", tabline.close)
+map("n", "<S-x>", barbar.close)
 map("n", "<A-w>", ":w<CR>:BufferClose<CR>")
 
 for i = 1, 9 do
   map("n", "<A-" .. i .. ">", function()
-    tabline.go_to(i)
+    barbar.go_to(i)
   end)
 end
 
