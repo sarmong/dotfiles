@@ -1,4 +1,5 @@
 local nvim_tree = req("nvim-tree")
+local api = req("nvim-tree.api")
 
 local keymappings = {
   -- mappings
