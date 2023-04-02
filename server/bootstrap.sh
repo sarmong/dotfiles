@@ -21,7 +21,7 @@ git clone https://github.com/sarmong/dotfiles.git
 
 cd dotfile || exit 1
 
-./setup.sh
+./link.sh
 
 ## Firewall
 

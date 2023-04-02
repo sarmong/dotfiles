@@ -8,7 +8,7 @@ cd "$script_dir" || exit 1
 
 ./packages/build/init.sh | tee -a ./bootstrap.log
 
-./setup.sh | tee -a ./bootstrap.log
+./link.sh | tee -a ./bootstrap.log
 
 source ./dotconfig/bash/bash-exports
 
