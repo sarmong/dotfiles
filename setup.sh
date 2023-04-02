@@ -28,6 +28,11 @@ linkto() {
 linkdir() {
   from="$1"
   to="$2"
+
+  if [ ! -d "$to" ]; then
+    mkdir "$to"
+  fi
+
   for file in "$script_dir"/"$from"/*; do
     linkto "$file" "$to"
   done
@@ -42,7 +47,7 @@ linkdir "home" "$HOME"
 linkdir "dotconfig" "$HOME/.config"
 linkto "$script_dir/dotlocal/bin" "$HOME/.local"
 linkdir "dotlocal/share/applications" "$HOME/.local/share/applications"
-linkdir "dotlocal/share/xdg" "$HOME/.local/share/xdg"
+linkdir "dotlocal/xdg" "$HOME/.local/xdg"
 
 echo ""
 echo "All files linked"
