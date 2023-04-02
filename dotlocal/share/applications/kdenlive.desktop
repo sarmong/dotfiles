@@ -1,0 +1,8 @@
+[Desktop Entry]
+
+Type=Application
+Version=1.0
+Name=Kdenlive
+GenericName=Video editor
+Exec=/home/michael/.local/src/kdenlive-22.12.3-x86_64.AppImage
+Icon=kdenlive-icon
