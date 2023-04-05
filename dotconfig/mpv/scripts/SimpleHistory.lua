@@ -3,6 +3,8 @@
 -- Creator: Eisa AlAwadhi
 -- Project: SimpleHistory
 -- Version: 1.1.6
+-- Custom changelog:
+-- Use absolute path for history - line#437
 
 local o = {
   ---------------------------USER CUSTOMIZATION SETTINGS---------------------------
@@ -435,8 +437,28 @@ function format_time(seconds, sep, decimals, style)
   end
 end
 
-function get_file()
+local function get_file_abs_path()
+  local working_dir = mp.get_property("working-directory")
   local path = mp.get_property("path")
+
+  if path:match("^/") or path:match("^https?://") then
+    return path
+  end
+
+  local cmd = string.format("realpath '%s/%s'", working_dir, path)
+  local handle = io.popen(cmd)
+  if handle == nil then
+    return path
+  end
+  local result = handle:read("*a")
+  handle:close()
+
+  local abs_path = result:gsub("\n", "")
+  return abs_path
+end
+
+function get_file()
+  local path = get_file_abs_path()
   if not path then
     return
   end
