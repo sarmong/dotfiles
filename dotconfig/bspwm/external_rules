@@ -80,4 +80,8 @@ case "$title" in
   "weather report")
     echo "rectangle=1400x900+0+0"
     ;;
+
+  "Zoom Meeting")
+    echo "state=tiled"
+    ;;
 esac
