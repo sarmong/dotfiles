@@ -25,6 +25,7 @@ alias gcob='git branch | fzf | xargs git checkout'
 alias s="systemctl"
 alias ss="sudo systemctl"
 alias j="journalctl"
+alias se="sudoedit"
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
