@@ -1,6 +1,4 @@
-local beautiful = require("beautiful")
-
-beautiful.init(require("theme"))
+require("theme")
 
 require("utils")
 
