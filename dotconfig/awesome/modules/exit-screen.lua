@@ -98,7 +98,7 @@ exit_screen = wibox({
   width = screen_geometry.width,
 })
 
-exit_screen.bg = beautiful.background.hue_800 .. "dd"
+exit_screen.bg = beautiful.bg_normal .. "dd"
 exit_screen.fg = beautiful.exit_screen_fg or beautiful.wibar_fg or "#FEFEFE"
 
 local exit_screen_grabber

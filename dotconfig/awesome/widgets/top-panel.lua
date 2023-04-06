@@ -20,9 +20,8 @@ systray.forced_height = 20
 -- Clock / Calendar 24h format
 -- local textclock = wibox.widget.textclock('<span font="Roboto Mono bold 9">%d.%m.%Y\n     %H:%M</span>')
 -- Clock / Calendar 12AM/PM fornat
-local textclock = wibox.widget.textclock(
-  '<span font="Roboto Mono 12">%H:%M %a %e %b</span>'
-)
+local textclock =
+  wibox.widget.textclock('<span font="Roboto Mono 12">%H:%M %a %e %b</span>')
 -- textclock.forced_height = 36
 
 -- Add a calendar (credits to kylekewley for the original code)
@@ -33,13 +32,8 @@ local month_calendar = awful.widget.calendar_popup.month({
 })
 month_calendar:attach(textclock)
 
-local clock_widget = wibox.container.margin(
-  textclock,
-  dpi(13),
-  dpi(13),
-  dpi(9),
-  dpi(8)
-)
+local clock_widget =
+  wibox.container.margin(textclock, dpi(13), dpi(13), dpi(9), dpi(8))
 
 local add_button = mat_icon_button(mat_icon(icons.plus, dpi(24)))
 add_button:buttons(gears.table.join(awful.button({}, 1, nil, function()
@@ -79,7 +73,7 @@ local top_panel = function(s)
     x = s.geometry.x,
     y = s.geometry.y,
     stretch = false,
-    bg = beautiful.background.hue_800,
+    bg = beautiful.bg_normal,
     fg = beautiful.fg_normal,
   })
 

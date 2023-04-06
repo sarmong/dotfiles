@@ -1,15 +1,15 @@
 local naughty = require("naughty")
 
-if _G.awesome.startup_errors then
+if awesome.startup_errors then
   naughty.notify({
     preset = naughty.config.presets.critical,
     title = "Oops, there were errors during startup!",
-    text = _G.awesome.startup_errors,
+    text = awesome.startup_errors,
   })
 end
 
 local in_error = false
-_G.awesome.connect_signal("debug::error", function(err)
+awesome.connect_signal("debug::error", function(err)
   if in_error then
     return
   end
