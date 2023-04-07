@@ -1,9 +1,9 @@
 local awful = require("awful")
+local ruled = require("ruled")
 
--- Rules
-awful.rules.rules = {
-  -- All clients will match this rule.
+ruled.client.append_rules({
   {
+    -- All clients will match this rule.
     rule = {},
     properties = {
       focus = awful.client.focus.filter,
@@ -21,11 +21,6 @@ awful.rules.rules = {
     },
   },
   {
-    rule_any = { name = { "QuakeTerminal" } },
-    properties = { skip_decoration = true },
-  },
-  -- Titlebars
-  {
     rule_any = {
       type = { "dialog" },
       class = { "Ulauncher", "Lxpolkit" },
@@ -34,8 +29,6 @@ awful.rules.rules = {
       placement = awful.placement.centered,
       ontop = true,
       floating = true,
-      drawBackdrop = true,
-      skip_decoration = true,
       border_width = 0,
     },
   },
@@ -48,8 +41,6 @@ awful.rules.rules = {
       placement = awful.placement.top_right,
       ontop = true,
       floating = true,
-      drawBackdrop = true,
-      skip_decoration = true,
       sticky = true,
       border_width = 0,
     },
@@ -70,7 +61,6 @@ awful.rules.rules = {
       placement = awful.placement.centered,
       ontop = false,
       floating = true,
-      skip_decoration = true,
     },
   },
   {
@@ -80,7 +70,6 @@ awful.rules.rules = {
       placement = awful.placement.centered,
       ontop = false,
       floating = true,
-      skip_decoration = true,
     },
   },
   {
@@ -89,7 +78,6 @@ awful.rules.rules = {
       placement = awful.placement.maximize,
       ontop = false,
       floating = false,
-      skip_decoration = true,
     },
   },
   {
@@ -99,8 +87,19 @@ awful.rules.rules = {
       placement = awful.placement.top_right,
       ontop = true,
       floating = true,
-      skip_decoration = true,
       sticky = true,
     },
   },
-}
+
+  -- Utility classes
+  {
+    rule_any = { class = { "centered" } },
+    properties = {
+      placement = awful.placement.centered,
+      ontop = true,
+      floating = true,
+      width = 1100,
+      height = 600,
+    },
+  },
+})
