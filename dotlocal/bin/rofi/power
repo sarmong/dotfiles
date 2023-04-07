@@ -25,9 +25,17 @@ selected=$(echo -e "${texts[*]}" | rofi -dmenu -format i)
 
 confirm "${selected}"
 
+wm=$(wmctrl -m | head -1 | awk -F": " '{print $2}')
+
+if [ "$wm" == "bspwm" ]; then
+  quit_cmd="bspc quit"
+elif [ "$wm" == "awesome" ]; then
+  quit_cmd="echo 'awesome.quit()' | awesome-client"
+fi
+
 case "$selected" in
   0) betterlockscreen --lock ;;
-  1) bspc quit ;;
+  1) "$quit_cmd" ;;
   2) systemctl suspend && betterlockscreen --lock ;;
   3) systemctl hibernate ;;
   4) systemctl reboot ;;
