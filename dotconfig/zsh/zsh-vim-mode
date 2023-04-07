@@ -22,6 +22,14 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^v" edit-command-line
 
+function vi-yank-xclip {
+  zle vi-yank
+  echo "$CUTBUFFER" | xclip -sel clip
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
 # function zle-keymap-select zle-line-init
 #     # change cursor shape
 #     case $KEYMAP in
