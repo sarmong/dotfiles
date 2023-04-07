@@ -59,9 +59,9 @@ local theme = {
   taglist_bg_focus = "linear:0,0:"
     .. dpi(40)
     .. ",0:0,"
-    .. colors.neutral_red
+    .. colors.faded_aqua
     .. ":0.08,"
-    .. colors.neutral_red
+    .. colors.faded_aqua
     .. ":0.08,"
     .. colors.dark1
     .. ":1,"
