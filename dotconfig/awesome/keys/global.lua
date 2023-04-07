@@ -1,50 +1,40 @@
-local awful = require("awful")
-require("awful.autofocus")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local revelation = require("lib.revelation")
 
+local gen_keys = require("keys.gen-keys")
 local super = require("keys.mod").super
+local ctrl = require("keys.mod").ctrl
+local shift = require("keys.mod").shift
 
 local globalKeys = {
-  awful.key({
+  {
+    description = "Show help",
     modifiers = { super },
     key = "F1",
     on_press = hotkeys_popup.show_help,
-    description = "Show help",
     group = "awesome",
-  }),
+  },
 
-  awful.key({
-    modifiers = { super },
+  {
+    description = "Reveal all windows",
+    modifiers = { super, ctrl },
     key = "r",
     on_press = revelation,
-    description = "open revelation",
-  }),
-  awful.key({
-    modifiers = { super, "Control" },
+  },
+  {
+    description = "Reload awesome",
+    modifiers = { super, shift, ctrl },
     key = "r",
-    on_press = _G.awesome.restart,
-    description = "reload awesome",
+    on_press = awesome.restart,
     group = "awesome",
-  }),
-  awful.key({
-    modifiers = { super, "Shift", "Control" },
+  },
+  {
+    description = "Quit awesome",
+    modifiers = { super, shift, ctrl },
     key = "q",
-    on_press = _G.awesome.quit,
-    description = "quit awesome",
+    on_press = awesome.quit,
     group = "awesome",
-  }),
-
-  -- Change keyboard layout
-  awful.key({
-    modifiers = { super },
-    key = "/",
-    on_press = function()
-      awful.spawn.with_shell("$XDG_BIN_DIR/setup/keyboard/switch-layout.sh")
-    end,
-    description = "Change keyboard layout",
-    group = "hotkeys",
-  }),
+  },
 }
 
-return globalKeys
+return gen_keys(globalKeys)

@@ -1,23 +1,102 @@
 local awful = require("awful")
+
+local gen_keys = require("keys.gen-keys")
 local super = require("keys.mod").super
 local alt = require("keys.mod").alt
 local shift = require("keys.mod").shift
+local ctrl = require("keys.mod").ctrl
 
 local local_keys = {
-  awful.key({
+  -- Focus clients
+  {
+    description = "Focus client to the left",
+    modifiers = { super },
+    key = "h",
+    on_press = function()
+      awful.client.focus.global_bydirection("left")
+    end,
+    group = "client",
+  },
+  {
+    description = "Focus client below",
+    modifiers = { super },
+    key = "j",
+    on_press = function()
+      awful.client.focus.global_bydirection("down")
+    end,
+    group = "client",
+  },
+  {
+    description = "Focus client above",
+    modifiers = { super },
+    key = "k",
+    on_press = function()
+      awful.client.focus.global_bydirection("up")
+    end,
+    group = "client",
+  },
+  {
+    description = "Focus client to the right",
+    modifiers = { super },
+    key = "l",
+    on_press = function()
+      awful.client.focus.global_bydirection("right")
+    end,
+    group = "client",
+  },
+
+  -- Swap clients
+  {
+    description = "Swap with client to the left",
+    modifiers = { super, shift },
+    key = "h",
+    on_press = function()
+      awful.client.swap.global_bydirection("left")
+    end,
+    group = "client",
+  },
+  {
+    description = "Swap with client below",
+    modifiers = { super, shift },
+    key = "j",
+    on_press = function()
+      awful.client.swap.global_bydirection("down")
+    end,
+    group = "client",
+  },
+  {
+    description = "Swap with client above",
+    modifiers = { super, shift },
+    key = "k",
+    on_press = function()
+      awful.client.swap.global_bydirection("up")
+    end,
+    group = "client",
+  },
+  {
+    description = "Swap with client to the right",
+    modifiers = { super, shift },
+    key = "l",
+    on_press = function()
+      awful.client.swap.global_bydirection("right")
+    end,
+    group = "client",
+  },
+
+  {
+    description = "toggle maximized",
     modifiers = { super },
     key = "m",
     on_press = function(c)
       c.maximized = not c.maximized
       c:raise()
     end,
-    description = "toggle maximized",
     group = "client",
-  }),
-  awful.key({
+  },
+  {
+    description = "toggle float",
     modifiers = { super },
     key = "f",
-    description = "toggle float",
     group = "client",
     on_press = function(c)
       c.floating = not c.floating
@@ -25,31 +104,31 @@ local local_keys = {
       awful.placement.centered(c)
       c:raise()
     end,
-  }),
-  awful.key({
-    modifiers = { super, "Shift" },
-    key = "f",
+  },
+  {
     description = "toggle fullscreen",
+    modifiers = { super, shift },
+    key = "f",
     group = "client",
     on_press = function(c)
       c.fullscreen = not c.fullscreen
       c:raise()
     end,
-  }),
-  awful.key({
-    modifiers = { super, "Shift" },
-    key = "s",
+  },
+  {
     description = "toggle sticky",
+    modifiers = { super, shift },
+    key = "s",
     group = "client",
     on_press = function(c)
       c.sticky = not c.sticky
       c.ontop = not c.ontop
     end,
-  }),
-  awful.key({
+  },
+  {
+    description = "close client with confirmation",
     modifiers = { super },
     key = "q",
-    description = "close client with confirmation",
     group = "client",
     on_press = function(c)
       awful.spawn.with_line_callback(
@@ -63,215 +142,139 @@ local local_keys = {
         }
       )
     end,
-  }),
-  awful.key({
-    modifiers = { super, "Shift" },
-    key = "q",
+  },
+  {
     description = "close client without confirmation",
+    modifiers = { super, shift },
+    key = "q",
     group = "client",
     on_press = function(c)
       c:kill()
     end,
-  }),
-}
-
-local global_keys = {
-  awful.key({
-    modifiers = { super, "Control" },
+  },
+  {
+    description = "Minimize a client",
+    modifiers = { super, ctrl },
     key = "h",
     on_press = function()
       if client.focus then
         client.focus.minimized = true
       end
     end,
-    description = "Minimize a client",
-    group = "launcher",
-  }),
-
-  awful.key({
-    modifiers = { super, "Control" },
-    key = "n",
-    on_press = function()
-      local c = awful.client.restore()
-      -- Focus restored client
-      if c then
-        _G.client.focus = c
-        c:raise()
-      end
-    end,
-    description = "restore minimized",
     group = "client",
-  }),
-
-  -- Focus clients
-  awful.key({
-    modifiers = { super },
-    key = "h",
-    on_press = function()
-      awful.client.focus.global_bydirection("left")
-    end,
-    description = "Focus client to the left",
-    group = "client",
-  }),
-  awful.key({
-    modifiers = { super },
-    key = "j",
-    on_press = function()
-      awful.client.focus.global_bydirection("down")
-    end,
-    description = "Focus client below",
-    group = "client",
-  }),
-  awful.key({
-    modifiers = { super },
-    key = "k",
-    on_press = function()
-      awful.client.focus.global_bydirection("up")
-    end,
-    description = "Focus client above",
-    group = "client",
-  }),
-  awful.key({
-    modifiers = { super },
-    key = "l",
-    on_press = function()
-      awful.client.focus.global_bydirection("right")
-    end,
-    description = "Focus client to the right",
-    group = "client",
-  }),
-
-  -- Swap clients
-  awful.key({
-    modifiers = { super, "Shift" },
-    key = "h",
-    on_press = function()
-      awful.client.swap.global_bydirection("left")
-    end,
-    description = "Swap with client to the left",
-    group = "client",
-  }),
-  awful.key({
-    modifiers = { super, "Shift" },
-    key = "j",
-    on_press = function()
-      awful.client.swap.global_bydirection("down")
-    end,
-    description = "Swap with client below",
-    group = "client",
-  }),
-  awful.key({
-    modifiers = { super, "Shift" },
-    key = "k",
-    on_press = function()
-      awful.client.swap.global_bydirection("up")
-    end,
-    description = "Swap with client above",
-    group = "client",
-  }),
-  awful.key({
-    modifiers = { super, "Shift" },
-    key = "l",
-    on_press = function()
-      awful.client.swap.global_bydirection("right")
-    end,
-    description = "Swap with client to the right",
-    group = "client",
-  }),
-
-  awful.key({
-    modifiers = { super },
-    key = "u",
-    on_press = awful.client.urgent.jumpto,
-    description = "jump to urgent client",
-    group = "client",
-  }),
-
-  awful.key({
+  },
+  {
+    description = "Switch to next window",
     modifiers = { super },
     key = "Tab",
     on_press = function()
       --awful.client.focus.history.previous()
       awful.client.focus.byidx(1)
-      if _G.client.focus then
-        _G.client.focus:raise()
+      if client.focus then
+        client.focus:raise()
       end
     end,
-    description = "Switch to next window",
     group = "client",
-  }),
-  awful.key({
-    modifiers = { super, "Shift" },
+  },
+  {
+    description = "Switch to previous window",
+    modifiers = { super, shift },
     key = "Tab",
     on_press = function()
       --awful.client.focus.history.previous()
       awful.client.focus.byidx(-1)
-      if _G.client.focus then
-        _G.client.focus:raise()
+      if client.focus then
+        client.focus:raise()
       end
     end,
-    description = "Switch to previous window",
     group = "client",
-  }),
+  },
 
-  awful.key({
-    modifiers = { alt, shift },
+  {
+    description = "move window to next screen",
+    modifiers = { super, shift },
+    key = "o",
+    on_press = function(c)
+      c:move_to_screen()
+    end,
+    group = "client",
+  },
+}
+
+local global_keys = {
+  {
+    description = "restore minimized",
+    modifiers = { super, ctrl },
+    key = "n",
+    on_press = function()
+      local c = awful.client.restore()
+      -- Focus restored client
+      if c then
+        client.focus = c
+        c:raise()
+      end
+    end,
+    group = "client",
+  },
+
+  {
+    description = "jump to urgent client",
+    modifiers = { super },
+    key = "u",
+    on_press = awful.client.urgent.jumpto,
+    group = "client",
+  },
+
+  {
+    description = "Increase master width factor",
+    modifiers = { super },
     key = "Right",
     on_press = function()
       awful.tag.incmwfact(0.05)
     end,
-    description = "Increase master width factor",
     group = "layout",
-  }),
-  awful.key({
-    modifiers = { alt, shift },
+  },
+  {
+    description = "Decrease master width factor",
+    modifiers = { super },
     key = "Left",
     on_press = function()
       awful.tag.incmwfact(-0.05)
     end,
-    description = "Decrease master width factor",
     group = "layout",
-  }),
+  },
 
-  awful.key({
-    modifiers = { alt, "Shift" },
+  {
+    description = "Decrease master height factor",
+    modifiers = { super },
     key = "Down",
     on_press = function()
       awful.client.incwfact(0.05)
     end,
-    description = "Decrease master height factor",
     group = "layout",
-  }),
-  awful.key({
-    modifiers = { alt, "Shift" },
+  },
+  {
+    description = "Increase master height factor",
+    modifiers = { super },
     key = "Up",
     on_press = function()
       awful.client.incwfact(-0.05)
     end,
-    description = "Increase master height factor",
     group = "layout",
-  }),
+  },
 
   -- Screen management
-  awful.key({
+  {
+    description = "Focus another screen",
     modifiers = { super },
     key = "o",
     on_press = function()
       awful.screen.focus_relative(1)
     end,
-    description = "Focus another screen",
-  }),
-
-  awful.key({
-    modifiers = { super, "Shift" },
-    key = "o",
-    on_press = awful.client.movetoscreen,
-    description = "move window to next screen",
-    group = "client",
-  }),
+  },
 }
 
 return {
-  local_keys = local_keys,
-  global_keys = global_keys,
+  local_keys = gen_keys(local_keys),
+  global_keys = gen_keys(global_keys),
 }
