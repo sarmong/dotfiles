@@ -4,7 +4,7 @@ local super = require("keys.mod").super
 
 local mousebindings = awful.util.table.join(
   awful.button({}, 1, function(c)
-    _G.client.focus = c
+    client.focus = c
     c:raise()
   end),
   awful.button({ super }, 1, awful.mouse.client.move),
