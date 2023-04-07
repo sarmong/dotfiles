@@ -192,6 +192,7 @@ atool                         a
 unrar
 unzip
 zip
+p7zip
 # massren                   a
 moreutils # Provides vidir packages for mass renaming
 fdupes
