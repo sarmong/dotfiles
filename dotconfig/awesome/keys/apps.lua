@@ -3,6 +3,7 @@ local awful = require("awful")
 local super = require("keys.mod").super
 local alt = require("keys.mod").alt
 local exit_screen_show = require("modules.exit-screen")
+local quake = require("modules.quake-terminal")
 
 local group_name = "apps"
 
@@ -129,7 +130,7 @@ local keys = {
     modifiers = { super },
     key = "z",
     on_press = function()
-      _G.toggle_quake()
+      quake:toggle()
     end,
     group = group_name,
   }),
