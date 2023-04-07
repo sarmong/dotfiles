@@ -17,3 +17,6 @@ awful.keyboard.append_global_keybindings(tag_keys)
 awful.mouse.append_client_mousebindings(mouse_bindings)
 awful.keyboard.append_client_keybindings(client_local_keys)
 awful.keyboard.append_global_keybindings(client_global_keys)
+
+-- @TODO remove and replace
+require("awful.autofocus")
