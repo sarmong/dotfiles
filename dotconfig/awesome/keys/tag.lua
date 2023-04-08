@@ -23,6 +23,40 @@ local keys = {
     group = "tag",
   },
   {
+    description = "Move client to the previous tag",
+    modifiers = { super, shift },
+    key = "w",
+    on_press = function()
+      local selected_tag = awful.screen.focused().selected_tag
+      local selected_client = client.focus
+      if selected_tag and selected_client then
+        local all_tags = selected_client.screen.tags
+        local tag = all_tags[selected_tag.index - 1] or all_tags[#all_tags]
+        if tag then
+          client.focus:move_to_tag(tag)
+        end
+      end
+    end,
+    group = "tag",
+  },
+  {
+    description = "Move client to the next tag",
+    modifiers = { super, shift },
+    key = "s",
+    on_press = function()
+      local selected_tag = awful.screen.focused().selected_tag
+      local selected_client = client.focus
+      if selected_tag and selected_client then
+        local all_tags = selected_client.screen.tags
+        local tag = all_tags[selected_tag.index + 1] or all_tags[1]
+        if tag then
+          client.focus:move_to_tag(tag)
+        end
+      end
+    end,
+    group = "tag",
+  },
+  {
     description = "View previous tag",
     modifiers = { super },
     key = "Escape",
