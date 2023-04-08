@@ -3,7 +3,7 @@ local gears = require("gears")
 
 local gen_keys = require("keys.gen-keys")
 local super = require("keys.mod").super
-local ctrl = require("keys.mod").super
+local ctrl = require("keys.mod").ctrl
 local shift = require("keys.mod").shift
 local tags = require("tags")
 
