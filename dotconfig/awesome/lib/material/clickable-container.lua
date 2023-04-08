@@ -10,7 +10,7 @@ function build(widget)
   container:connect_signal("mouse::enter", function()
     container.bg = "#ffffff11"
     -- Hm, no idea how to get the wibox from this signal's arguments...
-    local w = _G.mouse.current_wibox
+    local w = mouse.current_wibox
     if w then
       old_cursor, old_wibox = w.cursor, w
       w.cursor = "hand1"

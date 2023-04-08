@@ -1,13 +1,10 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local dpi = require("beautiful").xresources.apply_dpi
-local capi = { button = _G.button }
+
 local clickable_container = require("lib.material.clickable-container")
 local super = require("keys.mod").super
---- Common method to create buttons.
--- @tab buttons
--- @param object
--- @treturn table
+
 local function create_buttons(buttons, object)
   if buttons then
     local btns = {}
@@ -16,7 +13,7 @@ local function create_buttons(buttons, object)
       -- press and release events, and will propagate them to the
       -- button object the user provided, but with the object as
       -- argument.
-      local btn = capi.button({ modifiers = b.modifiers, button = b.button })
+      local btn = button({ modifiers = b.modifiers, button = b.button })
       btn:connect_signal("press", function()
         b:emit_signal("press", object)
       end)
@@ -102,24 +99,24 @@ local function list_update(w, buttons, label, data, objects)
   end
 end
 
-local TagList = function(s)
-  return awful.widget.taglist(
-    s,
-    awful.widget.taglist.filter.all,
-    awful.util.table.join(
+local Tag_list = function(s)
+  return awful.widget.taglist({
+    screen = s,
+    filter = awful.widget.taglist.filter.all,
+    buttons = awful.util.table.join(
       awful.button({}, 1, function(t)
         t:view_only()
       end),
       awful.button({ super }, 1, function(t)
-        if _G.client.focus then
-          _G.client.focus:move_to_tag(t)
+        if client.focus then
+          client.focus:move_to_tag(t)
           t:view_only()
         end
       end),
       awful.button({}, 3, awful.tag.viewtoggle),
       awful.button({ super }, 3, function(t)
-        if _G.client.focus then
-          _G.client.focus:toggle_tag(t)
+        if client.focus then
+          client.focus:toggle_tag(t)
         end
       end),
       awful.button({}, 4, function(t)
@@ -129,9 +126,8 @@ local TagList = function(s)
         awful.tag.viewnext(t.screen)
       end)
     ),
-    {},
-    list_update
-    --wibox.layout.fixed.veritcal()
-  )
+    update_function = list_update,
+  })
 end
-return TagList
+
+return Tag_list

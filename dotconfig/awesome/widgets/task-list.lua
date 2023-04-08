@@ -142,7 +142,7 @@ local function list_update(w, buttons, label, data, objects)
 end
 local tasklist_buttons = awful.util.table.join(
   awful.button({}, 1, function(c)
-    if c == _G.client.focus then
+    if c == client.focus then
       c.minimized = true
     else
       -- Without this, the following
@@ -153,7 +153,7 @@ local tasklist_buttons = awful.util.table.join(
       end
       -- This will also un-minimize
       -- the client, if needed
-      _G.client.focus = c
+      client.focus = c
       c:raise()
     end
   end),
@@ -168,7 +168,7 @@ local tasklist_buttons = awful.util.table.join(
   end)
 )
 
-local TaskList = function(s)
+local Task_list = function(s)
   return awful.widget.tasklist({
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
@@ -179,4 +179,4 @@ local TaskList = function(s)
   })
 end
 
-return TaskList
+return Task_list
