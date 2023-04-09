@@ -8,6 +8,9 @@ local quake = lain.util.quake({
   height = 0.4,
   horiz = "center",
   overlap = true,
+  settings = function(c)
+    c.sticky = true
+  end,
 })
 
 return quake
