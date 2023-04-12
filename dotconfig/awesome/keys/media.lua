@@ -52,6 +52,20 @@ local keys = {
     end,
   },
   {
+    description = "Previous track",
+    key = "XF86AudioPrev",
+    on_press = function()
+      awful.spawn("playerctl previous")
+    end,
+  },
+  {
+    description = "Next track",
+    key = "XF86AudioNext",
+    on_press = function()
+      awful.spawn("playerctl next")
+    end,
+  },
+  {
     description = "1 - Previous track",
     key = "KP_End",
     on_press = function()
