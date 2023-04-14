@@ -28,13 +28,6 @@ local globalKeys = {
     on_press = awesome.restart,
     group = "awesome",
   },
-  {
-    description = "Quit awesome",
-    modifiers = { super, shift, ctrl },
-    key = "q",
-    on_press = awesome.quit,
-    group = "awesome",
-  },
 }
 
 return gen_keys(globalKeys)
