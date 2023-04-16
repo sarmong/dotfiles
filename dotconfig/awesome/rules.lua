@@ -52,7 +52,7 @@ ruled.client.append_rules({
         "Nm-connection-editor",
         "Xfce4-power-manager-settings",
         "feh",
-        "join*",
+        "zoom",
         "Blueman-manager",
       },
       name = { "pulsemixer" },
