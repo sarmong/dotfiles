@@ -16,7 +16,7 @@ unlisted=$(grep -Fxvf <(echo "$to_install") <(echo "$installed"))
 not_installed=()
 
 for package in $to_install; do
-  if ! pacman -Q "$package" >/dev/null 2>&1; then
+  if ! pacman -Qe "$package" >/dev/null 2>&1; then
     not_installed+=("$package")
   fi
 done
