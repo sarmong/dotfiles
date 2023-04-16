@@ -1,6 +1,14 @@
-require("bufdel").setup({
+req("bufdel").setup({
   -- @TODO open issue to open on the right
   next = "alternate",
+})
+
+req("barbar").setup({
+  icons = {
+    buffer_index = true,
+    filetype = { enabled = true },
+  },
+  exclude_ft = { "qf" },
 })
 
 local fns = {
@@ -55,11 +63,6 @@ local fns = {
   order_by_directory = function()
     vim.cmd("BufferOrderByDirectory")
   end,
-}
-
-vim.g.bufferline = {
-  icons = "both",
-  exclude_ft = { "qf" },
 }
 
 return fns
