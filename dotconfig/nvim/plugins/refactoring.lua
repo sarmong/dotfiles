@@ -1,6 +1,15 @@
 local refactoring = require("refactoring")
 
-refactoring.setup({})
+refactoring.setup({
+  print_var_statements = {
+    javascript = {
+      "console.log('%s ', %s);",
+    },
+    typescript = {
+      "console.log('%s ', %s);",
+    },
+  },
+})
 
 local fns = {
   -- Visual mode
