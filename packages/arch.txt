@@ -7,32 +7,7 @@ grub
 efibootmgr
 networkmanager
 
-# base-devel
-archlinux-keyring
-autoconf
-automake
-binutils
-bison
-fakeroot
-file
-findutils
-flex
-gawk
-gcc
-gettext
-grep
-groff
-gzip
-libtool
-m4
-make
-pacman
-patch
-pkgconf
-sed
-sudo
-texinfo
-which
+base-devel
 
 git
 curl
