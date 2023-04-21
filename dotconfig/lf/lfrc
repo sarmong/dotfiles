@@ -6,7 +6,7 @@ set icons
 set period 1
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml:!.config:!.local"
 set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/scope'
+set previewer '~/.config/lf/previewer'
 
 # : - read        - Read a command to evaluate.
 # $ - shell       - Read a shell command to execute.
