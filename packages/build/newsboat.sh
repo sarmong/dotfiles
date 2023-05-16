@@ -8,7 +8,7 @@ script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 mkdir -p ~/.local/src/newsboat
 cd ~/.local/src/newsboat || exit 1
 
-wget "https://github.com/newsboat/newsboat/archive/refs/tags/$version.tar.gz"
+curl --remote-name --location "https://github.com/newsboat/newsboat/archive/refs/tags/$version.tar.gz"
 aunpack "./$version.tar.gz"
 
 cd "./newsboat-$version" || exit 1

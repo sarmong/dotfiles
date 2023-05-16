@@ -9,7 +9,7 @@ script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 mkdir -p ~/.local/src/tmux
 cd ~/.local/src/tmux || exit 1
 
-wget "https://github.com/tmux/tmux/releases/download/$version/tmux-$version.tar.gz"
+curl --remote-name --location "https://github.com/tmux/tmux/releases/download/$version/tmux-$version.tar.gz"
 aunpack "./tmux-$version.tar.gz"
 
 cd "./tmux-$version" || exit 1
