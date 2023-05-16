@@ -25,3 +25,8 @@ sudo gpasswd -a "$USER" input
 # It might be not needed. If libinput-gestures still don't work,
 # I'll need to find a different solution. Adding `&& exit` seems to not help either.
 ## newgrp input
+
+tldr --update
+fnm install 18
+chsh -s "$(which zsh)"
+chsh -s "$(which zsh)" "$(whoami)"
