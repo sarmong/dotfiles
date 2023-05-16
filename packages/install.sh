@@ -4,6 +4,9 @@
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 cd "$script_dir" || exit 1
 
+log_dir="$script_dir/logs"
+[ ! -d "$log_dir" ] && mkdir "$log_dir"
+
 # https://stackoverflow.com/questions/16843382/colored-shell-script-output-library
 red='\e[0;31m'
 green='\e[0;32m'
@@ -17,7 +20,7 @@ install() {
   command="$1"
   package="$2"
   echo -e "$green Installing $bi_cyan$package$nocol..."
-  if ! $command "$package" >>output.log 2>>errors.log; then
+  if ! $command "$package" >>"$log_dir"/output.log 2>>"$log_dir"/errors.log; then
     echo -e "$red An error occured"
     failed_packages+=("$package")
   else
@@ -36,7 +39,7 @@ aur() {
 finalize() {
   echo -e "\n"
   echo -e "$red The following packages failed to install: $nocol"
-  printf "%s\n" "${failed_packages[@]}" | tee -a ./errors.log
+  printf "%s\n" "${failed_packages[@]}" | tee -a "$log_dir"/errors.log
 }
 
 install_paru() {
@@ -49,9 +52,9 @@ install_paru() {
 
   mkdir -p ~/.local/src
   cd ~/.local/src || exit 1
-  git clone https://aur.archlinux.org/paru.git >>./output.log
+  git clone https://aur.archlinux.org/paru.git >>"$log_dir"/output.log
   cd paru || exit 1
-  makepkg --noconfirm -si >>./output.log
+  makepkg --noconfirm -si >>"$log_dir"/output.log
   cd "$script_dir" || exit 1
 }
 
