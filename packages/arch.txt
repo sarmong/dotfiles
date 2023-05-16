@@ -221,7 +221,6 @@ surf                          a
 libreoffice-still
 protonvpn                     a
 kazam                         a
-kooha
 simplescreenrecorder
 goldendict-git                a
 skypeforlinux-stable-bin      a
