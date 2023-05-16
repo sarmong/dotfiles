@@ -8,7 +8,6 @@ req("nvim-treesitter.configs").setup({
     "css",
     "dockerfile",
     "go",
-    "help",
     "html",
     "http",
     "java",
