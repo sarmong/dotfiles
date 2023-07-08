@@ -1,40 +1,107 @@
 local nvim_tree = req("nvim-tree")
 local api = req("nvim-tree.api")
 
-local keymappings = {
-  -- mappings
-  { key = { "o" }, action = "tabnew" },
-  { key = { "<CR>", "l", "<2-LeftMouse>" }, action = "edit" },
-  { key = "<Tab>", action = "preview" },
-  { key = { "<C-]>", "<2-RightMouse>" }, action = "cd" },
-  { key = "v", action = "vsplit" },
-  { key = "s", action = "split" },
-  { key = { "h", "<BS>", "<S-CR>" }, action = "close_node" },
-  { key = "I", action = "toggle_git_ignored" },
-  { key = "H", action = "toggle_dotfiles" },
-  { key = "R", action = "refresh" },
-  { key = "a", action = "create" },
-  { key = "d", action = "trash" },
-  { key = "D", action = "remove" },
-  { key = "r", action = "rename" },
-  { key = "<C-r>", action = "full_rename" },
-  { key = "x", action = "cut" },
-  { key = "c", action = "copy" },
-  { key = "p", action = "paste" },
-  { key = "[c", action = "prev_git_item" },
-  { key = "]c", action = "next_git_item" },
-  { key = "-", action = "dir_up" },
-  { key = "q", action = "close" },
-  { key = "P", action = "parent_node" },
-  { key = "y", action = "copy_name" },
-  { key = "Y", action = "copy_path" },
-  { key = "?", action = "toggle_help" },
-  { key = "W", action = "collapse_all" },
-  { key = "s", action = "system_open" },
-  { key = "S", action = "search_node" },
-  { key = ".", action = "run_file_command" },
-  { key = "K", action = "toggle_file_info" },
-}
+local function on_attach(bufnr)
+  local function m(lhs, rhs, desc)
+    map("n", lhs, rhs, {
+      desc = "nvim-tree: " .. desc,
+      buffer = bufnr,
+    })
+  end
+
+  -- Default mappings
+  m("<C-]>", api.tree.change_root_to_node, "CD")
+  m("<C-e>", api.node.open.replace_tree_buffer, "Open: In Place")
+  m("<C-k>", api.node.show_info_popup, "Info")
+  m("<C-r>", api.fs.rename_sub, "Rename: Omit Filename")
+  m("<C-t>", api.node.open.tab, "Open: New Tab")
+  m("<C-v>", api.node.open.vertical, "Open: Vertical Split")
+  m("<C-x>", api.node.open.horizontal, "Open: Horizontal Split")
+  m("<BS>", api.node.navigate.parent_close, "Close Directory")
+  m("<CR>", api.node.open.edit, "Open")
+  m("<Tab>", api.node.open.preview, "Open Preview")
+  m(">", api.node.navigate.sibling.next, "Next Sibling")
+  m("<", api.node.navigate.sibling.prev, "Previous Sibling")
+  m(".", api.node.run.cmd, "Run Command")
+  m("-", api.tree.change_root_to_parent, "Up")
+  m("a", api.fs.create, "Create")
+  m("bd", api.marks.bulk.delete, "Delete Bookmarked")
+  m("bmv", api.marks.bulk.move, "Move Bookmarked")
+  m("B", api.tree.toggle_no_buffer_filter, "Toggle No Buffer")
+  m("c", api.fs.copy.node, "Copy")
+  m("C", api.tree.toggle_git_clean_filter, "Toggle Git Clean")
+  m("[c", api.node.navigate.git.prev, "Prev Git")
+  m("]c", api.node.navigate.git.next, "Next Git")
+  m("d", api.fs.remove, "Delete")
+  m("D", api.fs.trash, "Trash")
+  m("E", api.tree.expand_all, "Expand All")
+  m("e", api.fs.rename_basename, "Rename: Basename")
+  m("]e", api.node.navigate.diagnostics.next, "Next Diagnostic")
+  m("[e", api.node.navigate.diagnostics.prev, "Prev Diagnostic")
+  m("F", api.live_filter.clear, "Clean Filter")
+  m("f", api.live_filter.start, "Filter")
+  m("g?", api.tree.toggle_help, "Help")
+  m("gy", api.fs.copy.absolute_path, "Copy Absolute Path")
+  m("H", api.tree.toggle_hidden_filter, "Toggle Dotfiles")
+  m("I", api.tree.toggle_gitignore_filter, "Toggle Git Ignore")
+  m("J", api.node.navigate.sibling.last, "Last Sibling")
+  m("K", api.node.navigate.sibling.first, "First Sibling")
+  m("m", api.marks.toggle, "Toggle Bookmark")
+  m("o", api.node.open.edit, "Open")
+  m("O", api.node.open.no_window_picker, "Open: No Window Picker")
+  m("p", api.fs.paste, "Paste")
+  m("P", api.node.navigate.parent, "Parent Directory")
+  m("q", api.tree.close, "Close")
+  m("r", api.fs.rename, "Rename")
+  m("R", api.tree.reload, "Refresh")
+  m("s", api.node.run.system, "Run System")
+  m("S", api.tree.search_node, "Search")
+  m("U", api.tree.toggle_custom_filter, "Toggle Hidden")
+  m("W", api.tree.collapse_all, "Collapse")
+  m("x", api.fs.cut, "Cut")
+  m("y", api.fs.copy.filename, "Copy Name")
+  m("Y", api.fs.copy.relative_path, "Copy Relative Path")
+  m("<2-LeftMouse>", api.node.open.edit, "Open")
+  m("<2-RightMouse>", api.tree.change_root_to_node, "CD")
+
+  -- Custom mappings
+  m("o", api.node.open.tab, "Open: New Tab")
+  m("<CR>", api.node.open.edit, "Open")
+  m("l", api.node.open.edit, "Open")
+  m("<2-LeftMouse>", api.node.open.edit, "Open")
+  m("<Tab>", api.node.open.preview, "Open Preview")
+  m("<C-]>", api.tree.change_root_to_node, "CD")
+  m("<2-RightMouse>", api.tree.change_root_to_node, "CD")
+  m("v", api.node.open.vertical, "Open: Vertical Split")
+  m("s", api.node.open.horizontal, "Open: Horizontal Split")
+  m("h", api.node.navigate.parent_close, "Close Directory")
+  m("<BS>", api.node.navigate.parent_close, "Close Directory")
+  m("<S-CR>", api.node.navigate.parent_close, "Close Directory")
+  m("I", api.tree.toggle_gitignore_filter, "Toggle Git Ignore")
+  m("H", api.tree.toggle_hidden_filter, "Toggle Dotfiles")
+  m("R", api.tree.reload, "Refresh")
+  m("a", api.fs.create, "Create")
+  m("d", api.fs.trash, "Trash")
+  m("D", api.fs.remove, "Delete")
+  m("r", api.fs.rename, "Rename")
+  m("<C-r>", api.fs.rename_sub, "Rename: Omit Filename")
+  m("x", api.fs.cut, "Cut")
+  m("c", api.fs.copy.node, "Copy")
+  m("p", api.fs.paste, "Paste")
+  m("[c", api.node.navigate.git.prev, "Prev Git")
+  m("]c", api.node.navigate.git.next, "Next Git")
+  m("-", api.tree.change_root_to_parent, "Up")
+  m("q", api.tree.close, "Close")
+  m("P", api.node.navigate.parent, "Parent Directory")
+  m("y", api.fs.copy.filename, "Copy Name")
+  m("Y", api.fs.copy.relative_path, "Copy Relative Path")
+  m("?", api.tree.toggle_help, "Help")
+  m("W", api.tree.collapse_all, "Collapse")
+  m("s", api.node.run.system, "Run System")
+  m("S", api.tree.search_node, "Search")
+  m(".", api.node.run.cmd, "Run Command")
+  m("K", api.node.show_info_popup, "Info")
+end
 
 nvim_tree.setup({
   disable_netrw = true,
@@ -55,9 +122,7 @@ nvim_tree.setup({
   view = {
     side = "right",
     width = 50,
-    mappings = {
-      list = keymappings,
-    },
+    debounce_delay = 100,
   },
   renderer = {
     highlight_git = true, -- will enable file highlight for git attributes (can be used without the icons).
@@ -108,6 +173,7 @@ nvim_tree.setup({
       },
     },
   },
+  on_attach = on_attach,
 })
 
 -- Close vim if nvim-tree is the last buffer
