@@ -100,7 +100,7 @@ packer.startup(function(use)
   use({ "tpope/vim-fugitive" })
   use({ "f-person/git-blame.nvim" }) -- consider using zivyangll/git-blame.vim to show at the bottom
   use({ "lewis6991/gitsigns.nvim" }) -- git lines on the left
-  use({ "TimUntersberger/neogit" })
+  use({ "NeogitOrg/neogit" })
   use({ "sindrets/diffview.nvim" })
   use({ "ruifm/gitlinker.nvim" })
   use({ "pwntester/octo.nvim" })
@@ -115,7 +115,8 @@ packer.startup(function(use)
     },
   })
   use({ "jose-elias-alvarez/null-ls.nvim" })
-  use({ "j-hui/fidget.nvim" })
+  -- @TODO remove tag when it's updated
+  use({ "j-hui/fidget.nvim", tag = "legacy" })
 
   -- Other language features --
   use({ "jose-elias-alvarez/typescript.nvim" })
