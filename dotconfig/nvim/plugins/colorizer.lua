@@ -1,5 +1,12 @@
 req("colorizer").setup({
-  filetypes = { "*" },
+  filetypes = {
+    "css",
+    "scss",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+  },
   user_default_options = {
     RGB = true, -- #fff hex codes
     RRGGBB = true, -- #RRGGBB hex codes
