@@ -6,7 +6,6 @@ path=$(mpvc --format '%path%')
 if [[ $path = https://* ]]; then
   url="$path"
 else
-  path=$(mpvc --format '%path%')
   tags=$(ffprobe -v quiet -print_format json -show_format "$path" | jq -r '.format.tags')
   url=$(echo "$tags" | jq -r '.PURL // .comment') # fallback
 fi
