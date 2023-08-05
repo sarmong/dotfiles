@@ -1,8 +1,22 @@
 req("window-picker").setup({
   autoselect_one = true,
   include_current_win = true,
-  current_win_hl_color = "#076678",
-  other_win_hl_color = "#076678",
+  highlights = {
+    statusline = {
+      focused = {
+        bg = "#076678",
+      },
+      unfocused = {
+        bg = "#076678",
+      },
+    },
+    winbar = {
+      focused = { bg = "#076678" },
+      unfocused = {
+        bg = "#076678",
+      },
+    },
+  },
   filter_rules = {
     bo = {
       filetype = { "NvimTree", "neo-tree", "notify", "qf" },
