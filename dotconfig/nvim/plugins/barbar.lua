@@ -33,7 +33,7 @@ local fns = {
   end,
 
   close = function()
-    vim.cmd("BufferClose")
+    vim.cmd("BufDel")
   end,
 
   go_to = function(n)
