@@ -117,7 +117,7 @@ local local_keys = {
   },
   {
     description = "toggle sticky",
-    modifiers = { super, shift },
+    modifiers = { super, ctrl },
     key = "s",
     group = "client",
     on_press = function(c)
