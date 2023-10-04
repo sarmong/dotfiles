@@ -28,6 +28,7 @@ packer.startup(function(use)
   use({ "windwp/nvim-autopairs" })
   use({ "tpope/vim-surround" })
   use({ "bkad/CamelCaseMotion" })
+  use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 
   use({ "fedepujol/move.nvim" })
   -- use({ "andymass/vim-matchup", commit = commits.matchup }) -- perhaps not that essential
