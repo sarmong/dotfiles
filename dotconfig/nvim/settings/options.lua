@@ -61,7 +61,6 @@ local options = {
 }
 -- stylua: ignore end
 
-
 for opt, value in pairs(options) do
   vim.opt[opt] = value
 end
