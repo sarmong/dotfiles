@@ -108,6 +108,7 @@ local mappings = {
     w = { ":setlocal wrap!<cr>", "toggle wrap" },
     t = { ":AerialToggle<cr>", "code tree" },
     s = { fns.toggle_signcolumn, "toggle signcolumn" },
+    f = { fns.toggle_foldcolumn, "toggle foldcolumn" },
   },
 
   -- Buffer
