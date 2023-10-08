@@ -191,8 +191,8 @@ local mappings = {
     t = { telescope.text, "text" },
     T = {
       function()
-        require("telescope.builtin").live_grep({
-          cwd = fn.finddir(".git/..", fn.expand("%:p:h") .. ";"),
+        telescope.text({
+          search_dirs = { fn.finddir(".git/..", fn.expand("%:p:h") .. ";") },
         })
       end,
       "text in root",
