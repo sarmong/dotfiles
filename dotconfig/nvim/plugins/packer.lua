@@ -19,6 +19,10 @@ packer.startup(function(use)
       "nvim-telescope/telescope-project.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
       "nvim-telescope/telescope-live-grep-args.nvim",
+      {
+        "nvim-telescope/telescope-smart-history.nvim",
+        requires = "kkharji/sqlite.lua",
+      },
     },
   })
   use({ "nvim-lualine/lualine.nvim" })
