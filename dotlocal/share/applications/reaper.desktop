@@ -1,0 +1,8 @@
+[Desktop Entry]
+
+Type=Application
+Version=1.0
+Name=ReaperWow
+GenericName=DAW
+Exec=/home/michael/.local/src/reaper617.AppImage
+Icon=kdenlive-icon
