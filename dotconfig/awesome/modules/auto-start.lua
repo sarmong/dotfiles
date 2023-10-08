@@ -2,20 +2,20 @@ local awful = require("awful")
 
 local apps = {
   -- Essentials
+  "picom --daemon",
+
   "lxpolkit",
   "nm-applet --indicator", -- network tray
   "volctl", -- audiocontrol tray
   "xfce4-power-manager", -- power manager tray
   "udiskie --smart-tray", -- mounts drives automatically
-  "picom",
 
   -- Applications
-  "nextcloud",
-  "libinput-gestures-setup restart",
+  -- "libinput-gestures-setup restart",
   "CM_SELECTIONS='clipboard' clipmenud",
   "redshift",
   -- "safeeyes",
-  "aw-qt",
+  -- "aw-qt",
   "conky",
 
   -- Configuration
