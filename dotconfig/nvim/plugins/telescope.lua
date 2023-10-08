@@ -11,6 +11,13 @@ telescope.setup({
     preview = {
       timeout = 1000,
     },
+    cache_picker = {
+      num_pickers = 20,
+    },
+    history = {
+      path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
+      limit = 100,
+    },
     path_display = { "truncate" },
     sorting_strategy = "ascending",
     selection_strategy = "reset",
@@ -143,6 +150,7 @@ telescope.load_extension("project")
 telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("live_grep_args")
+telescope.load_extension("smart_history")
 
 return {
   oldfiles = function()
@@ -170,9 +178,9 @@ return {
     end
   end,
 
-  text = function()
+  text = function(args)
     if vim.bo.filetype ~= "NvimTree" then
-      telescope.extensions.live_grep_args.live_grep_args()
+      telescope.extensions.live_grep_args.live_grep_args(args)
     else
       local tree = req("nvim-tree.lib")
       local node = tree.get_node_at_cursor()
