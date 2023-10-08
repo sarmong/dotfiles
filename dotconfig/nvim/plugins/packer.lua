@@ -35,7 +35,8 @@ packer.startup(function(use)
   use({ "ahmedkhalf/project.nvim" }) -- automagically switches root directory
   use({ "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } })
   use({ "lukas-reineke/indent-blankline.nvim" })
-  use({ "psliwka/vim-smoothie" }) -- smooth scrolling
+  use({ "sarmong/vim-smoothie" }) -- smooth scrolling
+
   use({
     "kevinhwang91/nvim-bqf",
     ft = "qf",
