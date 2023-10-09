@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+name="$1"
+entries="$2" # @TODO accept from stdin (pipe)
+rofi_options="${*:3}"
+
+DATA_DIR="$XDG_DATA_HOME/frece"
+DB_FILE="$DATA_DIR/$name.db"
+ENTRIES_FILE="/tmp/frece_dir_entries.txt"
+
+echo "$entries" >"$ENTRIES_FILE"
+
+# Update DB
+[ ! -d "$DATA_DIR" ] && mkdir -p "$DATA_DIR"
+if [ ! -f "$DB_FILE" ]; then
+  frece init "$DB_FILE" "$ENTRIES_FILE"
+else
+  frece update "$DB_FILE" "$ENTRIES_FILE" --purge-old
+fi
+
+selected=$(frece print "$DB_FILE" | rofi -dmenu "$rofi_options")
+
+[ -z "$selected" ] && exit 1
+
+echo "$selected"
+
+frece increment "$DB_FILE" "$selected"
+rm "$ENTRIES_FILE"

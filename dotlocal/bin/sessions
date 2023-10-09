@@ -1,8 +1,7 @@
 #!/bin/sh
 
-sessions=$(ls ~/docs/work)
-
-selected=$(echo "$sessions" | rofi -dmenu | awk -F ':' '{print $1}')
+items=$(ls ~/docs/work)
+selected=$(rofi-frecency "sessions" "$items")
 
 [ -z "$selected" ] && exit 1
 

@@ -29,6 +29,7 @@ commands=(
 declare -A other
 other["file-manager"]="$TERMINAL --class centered -e $SHELL -c lf"
 
-command=$(printf "%s\n" "${commands[@]}" | rofi -dmenu -l 7 -p "Command to run")
+commands_string=$(printf "%s\n" "${commands[@]}")
+command=$(rofi-frecency "scripts" "$commands_string" -l 7 -p "Command to run")
 
 $command || ${other["$command"]}
