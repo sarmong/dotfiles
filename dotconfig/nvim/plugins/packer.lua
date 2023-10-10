@@ -142,7 +142,8 @@ packer.startup(function(use)
   use({
     "sarmong/headlines.nvim",
     config = function()
-      require("headlines").setup()
+      -- @TODO fix (See PR)
+      -- require("headlines").setup()
     end,
   })
 
