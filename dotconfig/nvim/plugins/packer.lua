@@ -194,6 +194,7 @@ packer.startup(function(use)
   use({ "sarmong/conky-syntax.vim" })
   use({ "elkowar/yuck.vim" })
   use({ "fladson/vim-kitty" })
+  use({ "xuhdev/vim-latex-live-preview" })
   use({
     "danymat/neogen",
     config = function()
