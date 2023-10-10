@@ -36,6 +36,12 @@ alias grep="grep --color=auto"
 alias fgrep="grep -F --color=auto"
 alias egrep="grep -E --color=auto"
 alias mv="mv -i"
+mvto() {
+  to=$(fd . ~ --type d | fzf)
+  [ -z "$to" ] && exit 1
+  command mv -i "$@" "$to"
+}
+
 alias rm="rm -I"
 alias t="trash"
 alias c="clear"
