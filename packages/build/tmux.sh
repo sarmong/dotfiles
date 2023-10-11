@@ -9,10 +9,13 @@ script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 mkdir -p ~/.local/src/tmux
 cd ~/.local/src/tmux || exit 1
 
-curl --remote-name --location "https://github.com/tmux/tmux/releases/download/$version/tmux-$version.tar.gz"
-aunpack "./tmux-$version.tar.gz"
+# curl --remote-name --location "https://github.com/tmux/tmux/releases/download/$version/tmux-$version.tar.gz"
+# aunpack "./tmux-$version.tar.gz"
+git clone --depth=1 https://github.com/tmux/tmux.git
+cd tmux || exit 1
+sh autogen.sh
 
-cd "./tmux-$version" || exit 1
+# cd "./tmux-$version" || exit 1
 
 # fixes c-i and tab difference for neovim
 git apply "$script_dir"/tmux-patch.diff
