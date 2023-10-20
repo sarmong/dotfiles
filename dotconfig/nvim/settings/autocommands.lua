@@ -56,5 +56,16 @@ autocmd("VimResized", {
 autocmd({ "BufNewFile", "BufRead" }, {
   pattern = { "tsconfig*" },
   group = "jsonc",
-  command = "set filetype=jsonc",
+  command = "set gcype=jsonc",
+})
+
+autocmd("FileType", {
+  pattern = "scratch",
+  group = "scratch",
+  callback = function()
+    map("n", "gf", function()
+      local path = vim.fn.expand("<cfile>")
+      req("plugins.window-picker").pick(path)
+    end)
+  end,
 })

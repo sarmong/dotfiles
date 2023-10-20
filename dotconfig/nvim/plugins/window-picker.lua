@@ -19,14 +19,25 @@ req("window-picker").setup({
   },
   filter_rules = {
     bo = {
-      filetype = { "NvimTree", "neo-tree", "notify", "qf" },
+      filetype = { "NvimTree", "neo-tree", "notify", "qf", "scratch" },
       buftype = { "terminal" },
     },
   },
 })
 
-command("Pick", function(e)
+local function pick(file)
   local picked = req("window-picker").pick_window()
-  vim.api.nvim_set_current_win(picked)
-  vim.cmd("e " .. e.fargs[1])
+  if not picked then
+    return
+  end
+  a.nvim_set_current_win(picked)
+  cmd("e " .. file)
+end
+
+command("Pick", function(e)
+  pick(e.fargs[1])
 end, { nargs = "?", complete = "file" })
+
+return {
+  pick = pick,
+}
