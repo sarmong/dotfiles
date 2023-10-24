@@ -1,3 +1,23 @@
 #!/bin/sh
 
-yt-dlp --embed-metadata -S "res:1080" --exec before_dl:"notify-send 'Started download'" --exec after_move:"notify-send 'Finished downloading'" "$@"
+flags=$(getopt -l "copy" -o "c" -a -- "$@")
+eval set -- "$flags"
+
+other_options=""
+
+echo "$flags"
+
+for _ in $flags; do
+  case "$1" in
+    -c | --clip)
+      other_options="$other_options --exec after_move:fcp"
+      ;;
+
+    --)
+      # shellcheck disable=2086
+      yt-dlp --embed-metadata -S "res:1080" --exec before_dl:"notify-send 'Started download'" --exec after_move:"notify-send 'Finished downloading'" $other_options "$@"
+      ;;
+  esac
+
+  shift
+done
