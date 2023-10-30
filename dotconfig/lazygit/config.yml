@@ -1,0 +1,4 @@
+os:
+  edit: ~/.config/lazygit/open-nvim.sh {{filename}}
+  # @TODO
+  # editInTerminal: false
