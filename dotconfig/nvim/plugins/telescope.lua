@@ -102,13 +102,13 @@ telescope.setup({
     buffers = {
       mappings = {
         n = {
-          ["<CR>"] = actions.select_drop,
-          ["<C-CR>"] = actions.select_default,
+          ["<CR>"] = actions.select_default,
+          ["<C-CR>"] = actions.select_drop,
           ["<C-y>"] = actions.delete_buffer,
         },
         i = {
-          ["<CR>"] = actions.select_drop,
-          ["<C-CR>"] = actions.select_default,
+          ["<CR>"] = actions.select_default,
+          ["<C-CR>"] = actions.select_drop,
           ["<C-y>"] = actions.delete_buffer,
         },
       },
