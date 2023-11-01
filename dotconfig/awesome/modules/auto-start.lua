@@ -10,6 +10,8 @@ local apps = {
   "xfce4-power-manager", -- power manager tray
   "udiskie --smart-tray", -- mounts drives automatically
 
+  "dunst",
+
   -- Applications
   -- "libinput-gestures-setup restart",
   "CM_SELECTIONS='clipboard' clipmenud",
