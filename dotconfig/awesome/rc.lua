@@ -1,3 +1,5 @@
+package.loaded["naughty.dbus"] = {}
+
 local awful = require("awful")
 local conf_dir = awful.util.getdir("config")
 package.path = package.path
