@@ -31,7 +31,15 @@ local keys = {
     modifiers = { super },
     key = "z",
     on_press = function()
-      quake:toggle()
+      quake.dropdown:toggle()
+    end,
+  },
+  {
+    description = "Open scratchpad",
+    modifiers = { super },
+    key = "a",
+    on_press = function()
+      quake.scratch:toggle()
     end,
   },
   {
