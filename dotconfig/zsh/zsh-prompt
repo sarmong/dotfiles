@@ -1,16 +1,30 @@
 #!/usr/bin/env zsh
 
-# Solarized colors, taken from http://git.io/solarized-colors.
-black=0
-blue=33
-cyan=37
-green=64
-orange=166
-purple=125
-red=124
-violet=61
-white=15
-yellow=136
+function f() { echo "%F{$1}" }
+
+# # gruvbox faded
+# black=$(f 0)
+# blue=$(f 24)
+# cyan=$(f 66)
+# green=$(f 100)
+# orange=$(f 130)
+# purple=$(f 96)
+# red=$(f 88)
+# violet=$(f 61)
+# white=$(f 15)
+# yellow=$(f 136)
+
+# Solarized
+black=$(f 0)
+blue=$(f 33)
+cyan=$(f 37)
+green=$(f 64)
+orange=$(f 166)
+purple=$(f 125)
+red=$(f 124)
+violet=$(f 61)
+white=$(f 15)
+yellow=$(f 136)
 
 prompt_git() {
   local s='';
@@ -87,15 +101,15 @@ precmd() {
 PROMPT=""
 PROMPT+=$'\n'
 PROMPT+="%B"
-PROMPT+="%F{$orange}%n"
-PROMPT+="%F{$white}@"
-PROMPT+="%F{$yellow}%M"
-PROMPT+="%F{$white} in "
-PROMPT+="%F{$green}%~"
+PROMPT+="$orange%n"
+PROMPT+="$white@"
+PROMPT+="$yellow%M"
+PROMPT+="$white in "
+PROMPT+="$green%~"
 PROMPT+='${NODE_V}'
 PROMPT+='${GIT_INFO} '
 PROMPT+=$'\n'
 PROMPT+='${VIMODE} '
-PROMPT+="%F{$white}$%b "
+PROMPT+="$white$%b "
 PROMPT+="%{$reset_color%}"
 
