@@ -11,24 +11,26 @@
 [branch "upstream"]
 	rebase = true
 [alias]
-  co = checkout
-  br = branch
-  ca = commit -am
-  s = status
-  cm = commit -m
+  co  = checkout
+  br  = branch
+  ca  = commit -am
+  s   = status
+  cm  = commit -m
   cam = commit --amend --no-edit
-  l = log --all --graph --decorate --oneline
-  wt = worktree
+  l   = log --graph
+  ll  = log --graph --decorate --oneline
+  lb  = log master..HEAD
+  ln  = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
+  wt  = worktree
 
   unstage = reset HEAD --
 
-  undo = reset --soft HEAD^ #undo a commit
+  undo = reset --soft HEAD^ # undo a commit
 
   sl = stash list --pretty=format:\"%C(red)%h%C(reset) - %C(dim yellow)(%C(bold magenta)%gd%C(dim yellow))%C(reset) %<(70,trunc)%s %C(green)(%cr)%C(bold blue)<%an>%C(reset)\"
 
   discard = !git stash save --keep-index --include-untracked && git stash drop
-
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 
   dd = diff --dirstat --find-copies --find-renames --histogram --color
 
