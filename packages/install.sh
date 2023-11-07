@@ -7,6 +7,17 @@ cd "$script_dir" || exit 1
 log_dir="$script_dir/logs"
 [ ! -d "$log_dir" ] && mkdir "$log_dir"
 
+os=$(grep -oP '^ID=\K\w+' </etc/os-release)
+
+if [ "$os" = 'arch' ]; then
+  packages_file="./arch.txt"
+elif [ "$os" = 'debian' ]; then
+  packages_file="./debian.txt"
+else
+  echo "$red $os is not currently supported"
+  exit 1
+fi
+
 # https://stackoverflow.com/questions/16843382/colored-shell-script-output-library
 red='\e[0;31m'
 green='\e[0;32m'
@@ -36,6 +47,14 @@ aur() {
   install "paru -S --noconfirm --needed" "$1"
 }
 
+apt() {
+  install "apt-get install" "$1"
+}
+
+pstall() {
+  install "pacstall -I" "$1"
+}
+
 finalize() {
   echo -e "\n"
   echo -e "$red The following packages failed to install: $nocol"
@@ -58,22 +77,55 @@ install_paru() {
   cd "$script_dir" || exit 1
 }
 
+install_pacstall() {
+  if command -v pacstall >/dev/null; then
+    echo -e "$red Pacstall already installed$nocol"
+    return
+  fi
+
+  echo -e "$red Pacstall not found, downloading the script:$nocol"
+  curl -fSL https://pacstall.dev/q/install -o ./pacstall-install.sh
+  echo -e "$green Now, manually VERIFY the script and run:"
+  echo -e "$bi_cyan sudo bash -c ./pacstall-install.sh"
+  exit 0
+}
+
 trap 'finalize && exit 1' SIGTERM SIGINT SIGQUIT
 
-sudo pacman -Syy
-install_paru
+if [ "$os" == 'arch' ]; then
+  sudo pacman -Syy
+  install_paru
+fi
 
-to_install=$(sed 's/#.*$//g' "./arch.txt" | sed '/^$/d')
+if [ "$os" == 'debian' ]; then
+  pacstall -A https://raw.githubusercontent.com/sarmong/pacstall-sarmong/master
+fi
+
+to_install=$(sed 's/#.*$//g' "$packages_file" | sed '/^$/d')
 
 IFS=$'\n'
 for package in $to_install; do
   flag=$(echo "$package" | awk '{ print $2 }')
   package_name=$(echo "$package" | awk '{ print $1 }')
 
-  if [ "$flag" = "a" ]; then
-    aur "$package_name"
-  else
-    pac "$package_name"
+  if [ "$os" = 'arch' ]; then
+    if [ "$flag" = "a" ]; then
+      aur "$package_name"
+    else
+      pac "$package_name"
+    fi
+  fi
+
+  if [ "$os" = 'debian' ]; then
+    if [ "$flag" = "n" ]; then
+      continue
+    fi
+
+    if [ "$flag" = "p" ]; then
+      pstall "$package_name"
+    fi
+
+    apt "$package_name"
   fi
 done
 
