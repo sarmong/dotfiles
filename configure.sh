@@ -1,8 +1,5 @@
 #!/bin/sh
 
-curl -fLo "$XDG_DATA_HOME"/vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 sudo ln -sfT /bin/dash /bin/sh
 
 "$XDG_BIN_DIR"/services/ufw/init.sh
