@@ -1,0 +1,220 @@
+# vim:ft=conf
+
+# efibootmgr               # check if needed
+
+git
+curl
+wget
+vim
+neovim
+openssh
+man-db
+mlocate
+zsh
+dash
+cronie
+
+ufw
+
+xorg
+xdotool
+wmctrl
+# wmutils-git                  # don't pretty much use
+wmname
+xdo
+
+lightdm
+slick-greeter
+
+awesome-git                   p # pacstall
+dunst
+betterlockscreen              m # add to pacstall, manual meanwhile
+picom
+arandr
+autorandr
+lxsession
+
+## Themes
+lxappearance
+gtk-theme-arc-gruvbox-git     n
+papirus-icon-theme
+qt5ct
+adwaita-qt6
+adwaita-qt5                   n
+
+## Fonts
+fonts-noto
+fonts-font-awesome            n
+nerd-fonts-complete           n
+font-manager
+fonts-noto-color-emoji        # check if that's it # provide emojis for terminal and polybar
+# ttf a-twemoji
+# ttf-joypixels
+
+## Keyboard
+keyd                          p # in pacstall-sarmong, check if works
+xkblayout-state-git           p # in pacstall-sarmong, check if works
+inputplug
+
+## Audio
+pulseaudio
+volctl                        p # in pacstall-sarmong, check if works      # Volume System Tray
+pulsemixer  # Pulse Audio TUI
+pavucontrol # Pulse Audio Volume Control GUI
+pamixer     # Pulse Audio CLI
+playerctl
+
+blueman  # Blueman is a GUI for bluez
+bluez
+bluez-utils
+
+budgie-network-manager-applet
+gnome-keyring # Should start systemd service automatically
+
+xfce4-power-manager
+mate-system-monitor
+bottom                         # in pacstall-sarmong, check if works
+conky
+udiskie                        # Automounts external drives
+
+caja
+xarchiver
+lf
+ueberzug
+
+trash-cli
+
+dmenu
+rofi
+# rofi-calc                     n
+# libqalculate                  n
+frece                         # Needed or else scripts won't work. Manual install
+
+clipmenu-git                  # in pacstall-sarmong, check if works
+
+libinput-gestures             # nowhere, not critical
+
+feh
+nsxiv
+libimage-exiftool-perl
+mediainfo
+zathura
+# zathura-pdf-mupdf           # this one can't be found
+zathura-pdf-poppler           # substituting with this
+zathura-djvu
+pandoc
+flameshot
+scrot
+mpv
+# mpvc-git                      # already vendored
+mpd
+mpc
+ncmpcpp
+mpdris2
+
+alacritty
+kitty
+tmux
+
+xclip
+powertop
+auto-cpufreq                   n # manual
+brightnessctl
+
+newsboat
+urlscan
+
+### --- Useful CLI utils --- ###
+
+ffmpeg
+ffmpegthumbnailer
+imagemagick
+lynx
+
+jq
+tree
+speedtest-cli
+colordiff
+fzf
+fd-deb                        p # or fd-find from apt but need to link manually
+bat
+yt-dlp
+ytfzf
+ripgrep
+thefuck
+zoxide
+atool
+unrar
+unzip
+zip
+p7zip
+# massren                   a
+moreutils # Provides vidir packages for mass renaming
+fdupes
+dragon-drop                   # in pacstall-sarmong, check if works
+handlr
+libfile-mimeinfo-perl
+selectdefaultapplication-git  n
+neofetch
+unclutter
+dua-cli                       n
+uglify-js                     n
+entr
+jira-cli-bin                  n
+tokei                         n
+
+pass
+
+###############################################
+
+### --- Programming tools --- ###
+## Install system version of node
+nodejs
+fnm-bin                       n
+yarn
+httpie
+postman-bin                   n
+tig
+zeal                          # Documentation browser
+
+github-cli                    n
+
+vscodium-bin                  n
+
+tealdeer
+shellcheck
+
+### --- Install Applications --- ###
+
+timeshift
+safeeyes
+activitywatch-bin             n
+xprintidle
+redshift
+# redshift-gtk                a
+
+firefox
+brave-bin                     n
+surf
+
+libreoffice
+protonvpn                     n
+kazam
+simplescreenrecorder
+goldendict
+skypeforlinux-stable-bin      n
+slack-desktop                 n
+zoom                          n
+telegram-desktop
+qbittorrent
+webcamoid
+monero-gui                    n
+freetube-bin                  n
+
+# nextcloud-client
+syncthing
+
+spotify                       n
+
+neofetch
+onefetch                      n
