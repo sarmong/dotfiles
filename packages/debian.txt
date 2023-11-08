@@ -26,9 +26,9 @@ xdo
 lightdm
 slick-greeter
 
-awesome-git                   p # pacstall
+awesome-git                   p
 dunst
-betterlockscreen              m # add to pacstall, manual meanwhile
+betterlockscreen              n
 picom
 arandr
 autorandr
@@ -36,23 +36,23 @@ lxsession
 
 ## Themes
 lxappearance
-gtk-theme-arc-gruvbox-git     n
+gtk-theme-arc-gruvbox-git     x
 papirus-icon-theme
 qt5ct
 adwaita-qt6
-adwaita-qt5                   n
+adwaita-qt5                   x
 
 ## Fonts
 fonts-noto
-fonts-font-awesome            n
-nerd-fonts-complete           n
+font-awesome                  n
+nerdfonts                     n
 font-manager
 fonts-noto-color-emoji        # check if that's it # provide emojis for terminal and polybar
 # ttf a-twemoji
 # ttf-joypixels
 
 ## Keyboard
-keyd                          p # in pacstall-sarmong, check if works
+keyd                          n # in pacstall-sarmong, check if works
 xkblayout-state-git           p # in pacstall-sarmong, check if works
 inputplug
 
@@ -86,13 +86,13 @@ trash-cli
 
 dmenu
 rofi
-# rofi-calc                     n
-# libqalculate                  n
-frece                         # Needed or else scripts won't work. Manual install
+rofi-calc                     n
+# libqalculate                n
+frece                         n # Needed or else scripts won't work. Manual install
 
 clipmenu-git                  # in pacstall-sarmong, check if works
 
-libinput-gestures             # nowhere, not critical
+libinput-gestures             n
 
 feh
 nsxiv
@@ -154,13 +154,13 @@ fdupes
 dragon-drop                   # in pacstall-sarmong, check if works
 handlr
 libfile-mimeinfo-perl
-selectdefaultapplication-git  n
+selectdefaultapplication      n
 neofetch
 unclutter
-dua-cli                       n
-uglify-js                     n
+dua                           n
+nodePackages_latest.uglify-js n
 entr
-jira-cli-bin                  n
+jira-cli-go                   n
 tokei                         n
 
 pass
@@ -170,16 +170,15 @@ pass
 ### --- Programming tools --- ###
 ## Install system version of node
 nodejs
-fnm-bin                       n
+fnm                           n
 yarn
 httpie
-postman-bin                   n
 tig
 zeal                          # Documentation browser
 
-github-cli                    n
+gh                            n
 
-vscodium-bin                  n
+vscodium                      n
 
 tealdeer
 shellcheck
@@ -188,28 +187,28 @@ shellcheck
 
 timeshift
 safeeyes
-activitywatch-bin             n
+activitywatch                 n
 xprintidle
 redshift
 # redshift-gtk                a
 
 firefox
-brave-bin                     n
+brave                         n
 surf
 
 libreoffice
-protonvpn                     n
+protonvpn-gui                 n
 kazam
 simplescreenrecorder
 goldendict
-skypeforlinux-stable-bin      n
-slack-desktop                 n
-zoom                          n
-telegram-desktop
+# skypeforlinux-stable-bin      n
+# slack-desktop                 n
+# zoom                          n
+telegram-desktop                n # todo install unstable
 qbittorrent
 webcamoid
 monero-gui                    n
-freetube-bin                  n
+freetube                      n
 
 # nextcloud-client
 syncthing
