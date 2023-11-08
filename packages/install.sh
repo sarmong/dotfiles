@@ -91,7 +91,7 @@ install_pacstall() {
   curl -fSL https://pacstall.dev/q/install -o ./pacstall-install.sh
   echo -e "$green Now, manually VERIFY the script and run:"
   echo -e "$bi_cyan sudo bash -c ./pacstall-install.sh"
-  exit 0
+  exit 1
 }
 
 install_nix() {
@@ -104,7 +104,7 @@ install_nix() {
   curl -L https://nixos.org/nix/install -o ./nix-install.sh
   echo -e "$green Now, manually VERIFY the script and run:"
   echo -e "$bi_cyan sh ./nix-install.sh --daemon"
-  exit 0
+  exit 1
 }
 
 trap 'finalize && exit 1' SIGTERM SIGINT SIGQUIT
