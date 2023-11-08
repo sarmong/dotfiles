@@ -37,11 +37,11 @@ aur() {
 }
 
 apt() {
-  install "sudo apt-get install" "$1"
+  install "sudo apt-get install -y" "$1"
 }
 
 pstall() {
-  install "pacstall -I" "$1"
+  install "pacstall -IP" "$1"
 }
 
 nix() {
