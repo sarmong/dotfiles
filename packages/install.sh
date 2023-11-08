@@ -15,6 +15,19 @@ log_dir="$script_dir/logs"
 
 os=$(grep -oP '^ID=\K\w+' </etc/os-release)
 
+finalize() {
+  echo -e "\n"
+  echo -e "$red The following packages failed to install: $nocol"
+  printf "FAILED: \n\n" >>"$log_dir"/packages.log
+  printf "%s\n" "${failed_packages[@]}" | tee -a "$log_dir"/packages.log
+
+  printf "\nINSTALLED: \n\n" >>"$log_dir"/packages.log
+  printf "%s\n" "${installed_packages[@]}" >>"$log_dir"/packages.log
+
+  printf "\nNOT INSTALLED: \n\n" >>"$log_dir"/packages.log
+  grep -Fxvf <(printf "%s\n" "${installed_packages[@]}") <(echo "$to_install") >>"$log_dir"/packages.log
+}
+
 pac() {
   install "sudo pacman -S --noconfirm --needed" "$1"
 }
@@ -24,7 +37,7 @@ aur() {
 }
 
 apt() {
-  install "apt-get install" "$1"
+  install "sudo apt-get install" "$1"
 }
 
 pstall() {
@@ -149,18 +162,5 @@ for package in $to_install; do
     installed_packages+=("$package")
   fi
 done
-
-finalize() {
-  echo -e "\n"
-  echo -e "$red The following packages failed to install: $nocol"
-  printf "FAILED: \n\n" >>"$log_dir"/packages.log
-  printf "%s\n" "${failed_packages[@]}" | tee -a "$log_dir"/packages.log
-
-  printf "\nINSTALLED: \n\n" >>"$log_dir"/packages.log
-  printf "%s\n" "${installed_packages[@]}" >>"$log_dir"/packages.log
-
-  printf "\nNOT INSTALLED: \n\n" >>"$log_dir"/packages.log
-  grep -Fxvf <(printf "%s\n" "${installed_packages[@]}") <(echo "$to_install") >>"$log_dir"/packages.log
-}
 
 finalize
