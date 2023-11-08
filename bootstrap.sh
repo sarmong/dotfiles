@@ -10,7 +10,8 @@ mkdir "$log_dir"
 ./packages/install.sh
 
 if [ $? -gt 0 ]; then
-  exit $?
+  echo -e '\e[0m'
+  exit 1
 fi
 
 ./packages/build/init.sh | tee -a "$log_dir"/bootstrap.log
