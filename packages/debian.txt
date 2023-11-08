@@ -6,7 +6,7 @@ git
 curl
 wget
 vim
-neovim
+neovim                       p
 openssh
 man-db
 mlocate
