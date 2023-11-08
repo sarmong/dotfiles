@@ -55,6 +55,10 @@ pstall() {
   install "pacstall -I" "$1"
 }
 
+nix() {
+  install "nix-env --install --attr" "nixpkgs.$1"
+}
+
 finalize() {
   echo -e "\n"
   echo -e "$red The following packages failed to install: $nocol"
@@ -90,6 +94,19 @@ install_pacstall() {
   exit 0
 }
 
+install_nix() {
+  if command -v nix-env >/dev/null; then
+    echo -e "$red Nix already installed$nocol"
+    return
+  fi
+
+  echo -e "$red Nix not found, downloading the script:$nocol"
+  curl -L https://nixos.org/nix/install -o ./nix-install.sh
+  echo -e "$green Now, manually VERIFY the script and run:"
+  echo -e "$bi_cyan sh ./nix-install.sh --daemon"
+  exit 0
+}
+
 trap 'finalize && exit 1' SIGTERM SIGINT SIGQUIT
 
 if [ "$os" == 'arch' ]; then
@@ -98,7 +115,9 @@ if [ "$os" == 'arch' ]; then
 fi
 
 if [ "$os" == 'debian' ]; then
+  install_pacstall
   pacstall -A https://raw.githubusercontent.com/sarmong/pacstall-sarmong/master
+  install_nix
 fi
 
 to_install=$(sed 's/#.*$//g' "$packages_file" | sed '/^$/d')
@@ -117,8 +136,12 @@ for package in $to_install; do
   fi
 
   if [ "$os" = 'debian' ]; then
-    if [ "$flag" = "n" ]; then
+    if [ "$flag" = "x" ]; then
       continue
+    fi
+
+    if [ "$flag" = "n" ]; then
+      nix "$package_name"
     fi
 
     if [ "$flag" = "p" ]; then
