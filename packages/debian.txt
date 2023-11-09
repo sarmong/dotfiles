@@ -19,7 +19,7 @@ ufw
 xorg
 xdotool
 wmctrl
-# wmutils-git                  # don't pretty much use
+wmutils                       p
 wmname
 xdo
 
@@ -52,13 +52,13 @@ fonts-noto-color-emoji        # check if that's it # provide emojis for terminal
 # ttf-joypixels
 
 ## Keyboard
-keyd                          n # in pacstall-sarmong, check if works
-xkblayout-state-git           p # in pacstall-sarmong, check if works
+keyd                          p
+xkblayout-state-git           p
 inputplug
 
 ## Audio
 pulseaudio
-volctl                        p # in pacstall-sarmong, check if works      # Volume System Tray
+volctl                        p
 pulsemixer  # Pulse Audio TUI
 pavucontrol # Pulse Audio Volume Control GUI
 pamixer     # Pulse Audio CLI
@@ -73,24 +73,23 @@ gnome-keyring # Should start systemd service automatically
 
 xfce4-power-manager
 mate-system-monitor
-bottom                         # in pacstall-sarmong, check if works
+bottom-deb                     p # in pacstall-sarmong, check if works
 conky
 udiskie                        # Automounts external drives
 
 caja
 xarchiver
-lf
+lf-bin                        p
 ueberzug
 
 trash-cli
 
 dmenu
 rofi
-rofi-calc                     n
-# libqalculate                n
-frece                         n # Needed or else scripts won't work. Manual install
+rofi-calc                     p
+frece                         p
 
-clipmenu-git                  # in pacstall-sarmong, check if works
+clipmenu-git                  p
 
 libinput-gestures             n
 
@@ -122,7 +121,7 @@ auto-cpufreq                   n # manual
 brightnessctl
 
 newsboat
-urlscan
+urlscan                        p
 
 ### --- Useful CLI utils --- ###
 
@@ -142,7 +141,7 @@ yt-dlp
 ytfzf
 ripgrep
 thefuck
-zoxide
+zoxide-deb                    p
 atool
 unrar
 unzip
@@ -151,8 +150,8 @@ p7zip
 # massren                   a
 moreutils # Provides vidir packages for mass renaming
 fdupes
-dragon-drop                   # in pacstall-sarmong, check if works
-handlr
+dragon-drop                   p
+handlr-bin                    p
 libfile-mimeinfo-perl
 selectdefaultapplication      n
 neofetch
@@ -174,6 +173,7 @@ fnm                           n
 yarn
 httpie
 tig
+lazygit                       p
 zeal                          # Documentation browser
 
 gh                            n
