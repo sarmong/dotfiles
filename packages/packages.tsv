@@ -24,3 +24,8 @@ cronie
 ufw				
 
 xorg				group
+xdotool				
+wmctrl				
+wmutils	p	wmutils-git	a	
+wmname				
+xdo				
