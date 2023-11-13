@@ -12,4 +12,4 @@ git		same
 curl		same	
 wget		same	
 vim		same	
-
+Flags: p - pacstall, a - AUR, n - Nix, x - skip
