@@ -1,5 +1,5 @@
-# Flags: p - pacstall, a - AUR, n - Nix, x - skip
-# Debian name,Debian flag,Arch name,Arch flag,global flag
+# Flags: p - pacstall; a - AUR; n - Nix; x - skip
+Debian name,Debian flag,Arch override,Arch flag
 
 ,,base,
 ,,base-devel,
