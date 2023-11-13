@@ -1,5 +1,3 @@
-# Flags: p - pacstall, a - AUR, n - Nix, x - skip
-# Debian name	Debian flag	Arch name	Arch flag	global flag
 
 		base	
 		base-devel	
@@ -62,12 +60,14 @@ fonts-noto-color-emoji		noto-fonts-emoji
 
 ## Keyboard	
 keyd	p	same	a
-xkblayout-state-git	p	same	git
-inputplug	
+xkblayout-state-git	p	same	a
+inputplug		same	a
 
 ## Audio	
-pulseaudio	
-volctl	p	
+pulseaudio		same	
+		pulseaudio-alsa	
+		pulseaudio-bluetooth	
+volctl	p	same	a
 # Pulse Audio TUI
 pulsemixer	
 # Pulse Audio Volume Control GUI
