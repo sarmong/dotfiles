@@ -1,4 +1,4 @@
-Debian name	Debian flag	Arch name	Arch flag	         p - pacstall, a - AUR, n - Nix, x - skip
+Debian name	Debian flag	Arch name	Arch flag	         p
 
 		base	
 		base-devel	
