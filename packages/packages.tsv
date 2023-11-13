@@ -29,3 +29,6 @@ wmctrl
 wmutils	p	wmutils-git	a	
 wmname				
 xdo				
+
+lightdm				
+slick-greeter		lightdm-slick-greeter	
