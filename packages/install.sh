@@ -72,12 +72,8 @@ install_pacstall() {
     return
   fi
 
-  echo -e "$red Pacstall not found, downloading the script:$nocol"
-  curl -fSL https://pacstall.dev/q/install -o ./pacstall-install.sh
-  chmod +x ./pacstall-install.sh
-  echo -e "$green Now, manually VERIFY the script and run:"
-  echo -e "$bi_cyan sudo bash -c ./pacstall-install.sh"
-  exit 1
+  echo -e "$red Pacstall not found, installing:$nocol"
+  sudo bash -c ./pacstall-install.sh
 }
 
 install_nix() {
@@ -122,7 +118,7 @@ else
   exit 1
 fi
 
-to_install=$(sed 's/#.*$//g' "$packages_file" | sed '/^$/d' | sed -i 1d)
+to_install=$(sed 's/#.*$//g' "$packages_file" | sed '/^$/d' | sed 1d)
 
 failed_packages=()
 installed_packages=()
