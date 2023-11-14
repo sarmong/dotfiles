@@ -158,7 +158,7 @@ unrar
 unzip				
 zip				
 p7zip				
-massren             x		x	
+massren			x	
 moreutils				Provides vidir packages for mass renaming
 fdupes				
 dragon-drop	p		a	
