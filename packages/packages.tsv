@@ -57,8 +57,8 @@ nerdfonts	x	nerd-fonts-complete	a
 font-manager				
 
 fonts-noto-color-emoji		noto-fonts-emoji		provides emojis for terminal and polybar
-# ttf atwemoji	
-# ttf-joypixels	
+ttf atwemoji	x		x	
+ttf-joypixels	x		x	
 
 Keyboard				
 keyd	p		a	
