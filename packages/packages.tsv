@@ -107,7 +107,7 @@ libinput-gestures	x		a
 
 feh				
 nsxiv			a	
-libimage-exiftool-perl		perl-image-exiftool
+libimage-exiftool-perl		perl-image-exiftool		
 mediainfo				
 zathura				
 zathura-pdf-mupdf		zathura-pdf-poppler		poppler not available on debian
