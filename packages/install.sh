@@ -138,7 +138,7 @@ for package in $to_install; do
     flag="$deb_flag"
   fi
 
-  if [ "$flag" = "x" ] || [ "$flag" = "n" ]; then
+  if [ -z "$package_name" ] || [ "$flag" = "x" ] || [ "$flag" = "n" ]; then
     continue
   fi
 
