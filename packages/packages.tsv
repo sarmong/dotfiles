@@ -60,7 +60,7 @@ fonts-noto-color-emoji		noto-fonts-emoji		provides emojis for terminal and polyb
 ttf atwemoji	x		x	
 ttf-joypixels	x		x	
 
-Keyboard				
+## Keyboard ##				
 keyd	p		a	
 xkblayout-state-git	p		a	
 inputplug			a	
@@ -98,7 +98,6 @@ trash-cli
 dmenu				
 rofi				
 rofi-calc	p			
-		libqalculate	x	Might be needed for rofi-calc
 frece	p		a	
 
 clipmenu-git	p		a	
@@ -110,7 +109,7 @@ nsxiv			a
 libimage-exiftool-perl		perl-image-exiftool		
 mediainfo				
 zathura				
-zathura-pdf-mupdf		zathura-pdf-poppler		poppler not available on debian
+zathura-pdf-mupdf				
 zathura-djvu				
 pandoc				
 flameshot				
@@ -191,7 +190,7 @@ vscodium-bin	x		a
 tealdeer				
 shellcheck				
 
-Applications				
+## Applications ##				
 timeshift				
 safeeyes			a	
 activitywatch-bin	x		a	
