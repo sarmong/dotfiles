@@ -35,7 +35,7 @@ slick-greeter		lightdm-slick-greeter
 
 awesome-git	p		a	
 dunst				
-betterlockscreen	x		a	
+betterlockscreen	p		a	
 picom				
 arandr				
 autorandr				
@@ -43,22 +43,22 @@ lxsession
 
 ## Themes ##				
 lxappearance				
-gtk-theme-arc-gruvbox-git	x		a	
+arc-gruvbox-gtk-theme-git	p	gtk-theme-arc-gruvbox-git	a	
 papirus-icon-theme				
 qt5ct				
-adwaita-qt6				
-adwaita-qt5	x			
+adwaita-qt6			x	
 
 ## Fonts ##				
 
 fonts-noto		noto-fonts		
-font-awesome	x	otf-font-awesome		
+fonts-font-awesome		otf-font-awesome		
 nerdfonts	x	nerd-fonts-complete	a	
+nerd-fonts-jetbrains-mono	p	ttf-jetbrains-mono-nerd		
+nerd-fonts-fira-code	p	ttf-firacode-nerd		
+nerd-fonts-fira-mono	p	otf-firamono-nerd		
 font-manager				
 
 fonts-noto-color-emoji		noto-fonts-emoji		provides emojis for terminal and polybar
-ttf atwemoji	x		x	
-ttf-joypixels	x		x	
 
 ## Keyboard ##				
 keyd	p		a	
@@ -127,7 +127,7 @@ tmux
 
 xclip				
 powertop				
-auto-cpufreq	x		a	
+auto-cpufreq	x		a	Is in pacstall, but install requires user interaction
 brightnessctl				
 
 newsboat				
@@ -157,7 +157,7 @@ unrar
 unzip				
 zip				
 p7zip				
-massren			x	
+massren	x		x	
 moreutils				Provides vidir packages for mass renaming
 fdupes				
 dragon-drop	p		a	
@@ -165,9 +165,9 @@ handlr-bin	p	handlr
 libfile-mimeinfo-perl		perl-file-mimeinfo		
 selectdefaultapplication	x	selectdefaultapplication-git	a	
 neofetch				
-onefetch	x			
+onefetch-bin	p	onefetch		
 unclutter				
-dua-cli	x			
+dua-cli-bin	p	dua-cli		
 uglify-js	x			
 entr				
 jira-cli-bin	x		a	
@@ -177,7 +177,7 @@ pass
 
 ## Programming tools ##				
 nodejs				System version of node
-fnm-bin	x		a	
+fnm-bin	p		a	
 yarn				
 httpie				
 tig				
@@ -185,7 +185,7 @@ lazygit	p
 github-cli	x			
 zeal			a	
 
-vscodium-bin	x		a	
+vscodium-deb	p	vscodium-bin	a	
 
 tealdeer				
 shellcheck				
@@ -198,8 +198,8 @@ xprintidle
 redshift				
 redshift-gtk	x		x	
 
-firefox				
-brave-bin	x		a	
+firefox-bin	p	firefox		
+brave-browser-deb	p	brave-bin	a	
 surf			a	
 
 libreoffice		libreoffice-still		
@@ -207,7 +207,7 @@ protonvpn-gui	x	protonvpn
 kazam			a	
 simplescreenrecorder				
 goldendict		goldendict-git		
-telegram-desktop	x			
+telegram-bin	p	telegram-desktop		
 qbittorrent				
 webcamoid			a	
 monero-gui	x			
@@ -215,9 +215,10 @@ freetube-bin	x
 
 ## Work Apps ##				
 skypeforlinux-stable-bin	x		x	
-slack-desktop	x		x	
-zoom	x		x	
+slack-deb	x	slack-desktop	x	
+zoom-deb	x	zoom	x	
+google-chrome-deb	x		x	
 
 syncthing				
 
-spotify	x		a	
+spotify-client-deb	p	spotify	a	
