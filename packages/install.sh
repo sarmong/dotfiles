@@ -13,6 +13,8 @@ script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 log_dir="$script_dir/logs"
 [ ! -d "$log_dir" ] && mkdir "$log_dir"
 
+packages_file="./packages.tsv"
+
 os=$(grep -oP '^ID=\K\w+' </etc/os-release)
 
 finalize() {
@@ -109,57 +111,61 @@ trap 'finalize && exit 1' SIGTERM SIGINT SIGQUIT
 cd "$script_dir" || exit 1
 
 if [ "$os" = 'arch' ]; then
-  packages_file="./arch.txt"
-
   sudo pacman -Syy
   install_paru
 elif [ "$os" = 'debian' ]; then
-  packages_file="./debian.txt"
-
   install_pacstall
   pacstall -A https://raw.githubusercontent.com/sarmong/pacstall-sarmong/master
-  install_nix
+  # install_nix
 else
   echo "$red $os is not currently supported"
   exit 1
 fi
 
-to_install=$(sed 's/#.*$//g' "$packages_file" | sed '/^$/d')
+to_install=$(sed 's/#.*$//g' "$packages_file" | sed '/^$/d' | sed -i 1d)
 
 failed_packages=()
 installed_packages=()
 
 IFS=$'\n'
 for package in $to_install; do
-  flag=$(echo "$package" | awk '{ print $2 }')
-  package_name=$(echo "$package" | awk '{ print $1 }')
+  deb_name=$(echo "$package" | awk -F$'\t' '{ print $1 }')
+  deb_flag=$(echo "$package" | awk -F$'\t' '{ print $2 }')
+  arch_name=$(echo "$package" | awk -F$'\t' '{ print ($3 == "" ? $1 : $3) }')
+  arch_flag=$(echo "$package" | awk -F$'\t' '{ print $4 }')
+
+  if [ "$os" = 'arch' ]; then
+    package_name="$arch_name"
+    flag="$arch_flag"
+  elif [ "$os" = 'debian' ]; then
+    package_name="$deb_name"
+    flag="$deb_flag"
+  fi
+
+  if [ "$flag" = "x" ] || [ "$flag" = "n" ]; then
+    continue
+  fi
 
   if [ "$os" = 'arch' ]; then
     if [ "$flag" = "a" ]; then
-      aur "$package_name"
+      aur "$arch_name"
     else
-      pac "$package_name"
+      pac "$arch_name"
     fi
   fi
 
   if [ "$os" = 'debian' ]; then
-    if [ "$flag" = "x" ]; then
-      continue
-    fi
-
-    if [ "$flag" = "n" ]; then
-      nix "$package_name"
-    elif [ "$flag" = "p" ]; then
-      pstall "$package_name"
+    if [ "$deb_flag" = "p" ]; then
+      pstall "$deb_name"
     else
-      apt "$package_name"
+      apt "$deb_name"
     fi
   fi
 
   if [ $? -gt 0 ]; then
-    failed_packages+=("$package")
+    failed_packages+=("$package_name")
   else
-    installed_packages+=("$package")
+    installed_packages+=("$package_name")
   fi
 done
 
