@@ -41,7 +41,7 @@ arandr
 autorandr				
 lxsession				
 
-				Themes
+## Themes ##				
 lxappearance				
 gtk-theme-arc-gruvbox-git	x		a	
 papirus-icon-theme				
@@ -49,7 +49,7 @@ qt5ct
 adwaita-qt6				
 adwaita-qt5	x			
 
-				Fonts
+## Fonts ##				
 
 fonts-noto		noto-fonts		
 font-awesome	x	otf-font-awesome		
@@ -65,7 +65,7 @@ keyd	p		a
 xkblayout-state-git	p		a	
 inputplug			a	
 
-				Audio
+## Audio ##				
 pulseaudio				
 		pulseaudio-alsa		
 		pulseaudio-bluetooth		
@@ -134,7 +134,7 @@ brightnessctl
 newsboat				
 urlscan	p			
 
-				Useful CLI utils
+## Useful CLI utils ##				
 
 ffmpeg				
 ffmpegthumbnailer				
@@ -176,7 +176,7 @@ tokei	x
 pass				
 		downgrade		Downgrade pacman packages
 
-				Programming tools
+## Programming tools ##				
 nodejs				System version of node
 fnm-bin	x		a	
 yarn				
@@ -214,7 +214,7 @@ webcamoid			a
 monero-gui	x			
 freetube-bin	x			
 
-				Work Apps
+## Work Apps ##				
 skypeforlinux-stable-bin	x		x	
 slack-desktop	x		x	
 zoom	x		x	
