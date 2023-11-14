@@ -1,0 +1,223 @@
+Debian name	Debian flag	Arch name	Arch flag	         p - pacstall, a - AUR, n - Nix, x - skip
+
+		base		
+		base-devel		
+		linux		
+		linux-firmware		
+		grub		
+		efibootmgr		
+		networkmanager		
+
+git				
+curl				
+wget				
+vim				
+neovim	p			
+openssh				
+man-db				
+		man-pages		
+mlocate				
+zsh				
+dash				
+cronie				
+
+ufw				
+
+xorg				group
+xdotool				
+wmctrl				
+wmutils	p	wmutils-git	a	
+wmname				
+xdo				
+
+lightdm				
+slick-greeter		lightdm-slick-greeter		
+
+awesome-git	p		a	
+dunst				
+betterlockscreen	x		a	
+picom				
+arandr				
+autorandr				
+lxsession				
+
+## Themes ##				
+lxappearance				
+gtk-theme-arc-gruvbox-git	x		a	
+papirus-icon-theme				
+qt5ct				
+adwaita-qt6				
+adwaita-qt5	x			
+
+## Fonts ##				
+
+fonts-noto		noto-fonts		
+font-awesome	x	otf-font-awesome		
+nerdfonts	x	nerd-fonts-complete	a	
+font-manager				
+
+fonts-noto-color-emoji		noto-fonts-emoji		provides emojis for terminal and polybar
+ttf atwemoji	x		x	
+ttf-joypixels	x		x	
+
+## Keyboard ##				
+keyd	p		a	
+xkblayout-state-git	p		a	
+inputplug			a	
+
+## Audio ##				
+pulseaudio				
+		pulseaudio-alsa		
+		pulseaudio-bluetooth		
+volctl	p		a	
+pulsemixer				Pulse Audio TUI
+pavucontrol				Pulse Audio Volume Control GUI
+pamixer				Pulse Audio CLI
+playerctl				
+
+blueman				Blueman is a GUI for bluez
+bluez				
+bluez-utils				
+
+budgie-network-manager-applet		network-manager-applet		
+gnome-keyring				Should start systemd service automatically
+
+xfce4-power-manager				
+mate-system-monitor				
+bottom-deb	p	bottom		
+conky				
+udiskie				
+
+caja				
+xarchiver				
+lf-bin	p	lf	a	
+ueberzug				
+
+trash-cli				
+
+dmenu				
+rofi				
+rofi-calc	p			
+frece	p		a	
+
+clipmenu-git	p		a	
+
+libinput-gestures	x		a	
+
+feh				
+nsxiv			a	
+libimage-exiftool-perl		perl-image-exiftool		
+mediainfo				
+zathura				
+zathura-pdf-mupdf				
+zathura-djvu				
+pandoc				
+flameshot				
+scrot				
+mpv				
+mpvc-git	x		x	Vendored, check diff
+mpd				
+mpc				
+ncmpcpp				
+mpdris2			a	
+
+alacritty				
+kitty				
+tmux				
+
+xclip				
+powertop				
+auto-cpufreq	x		a	
+brightnessctl				
+
+newsboat				
+urlscan	p			
+
+## Useful CLI utils ##				
+
+ffmpeg				
+ffmpegthumbnailer				
+imagemagick				
+lynx				
+
+jq				
+tree				
+speedtest-cli				
+colordiff				
+fzf				
+fd-deb	p	fd		or fd-find from apt but need to link manually
+bat				
+yt-dlp				
+ytfzf			a	
+ripgrep				
+thefuck				
+zoxide-deb	p	zoxide		
+atool			a	
+unrar				
+unzip				
+zip				
+p7zip				
+massren			x	
+moreutils				Provides vidir packages for mass renaming
+fdupes				
+dragon-drop	p		a	
+handlr-bin	p	handlr		
+libfile-mimeinfo-perl		perl-file-mimeinfo		
+selectdefaultapplication	x	selectdefaultapplication-git	a	
+neofetch				
+onefetch	x			
+unclutter				
+dua-cli	x			
+uglify-js	x			
+entr				
+jira-cli-bin	x		a	
+tokei	x			
+pass				
+		downgrade		Downgrade pacman packages
+
+## Programming tools ##				
+nodejs				System version of node
+fnm-bin	x		a	
+yarn				
+httpie				
+tig				
+lazygit	p			
+github-cli	x			
+zeal			a	
+
+vscodium-bin	x		a	
+
+tealdeer				
+shellcheck				
+
+## Applications ##				
+timeshift				
+safeeyes			a	
+activitywatch-bin	x		a	
+xprintidle				
+redshift				
+redshift-gtk	x		x	
+
+firefox				
+brave-bin	x		a	
+surf			a	
+
+libreoffice		libreoffice-still		
+protonvpn-gui	x	protonvpn		
+kazam			a	
+simplescreenrecorder				
+goldendict		goldendict-git		
+telegram-desktop	x			
+qbittorrent				
+webcamoid			a	
+monero-gui	x			
+freetube-bin	x			
+
+## Work Apps ##				
+skypeforlinux-stable-bin	x		x	
+slack-desktop	x		x	
+zoom	x		x	
+
+syncthing				
+
+spotify	x		a	
