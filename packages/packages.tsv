@@ -31,7 +31,7 @@ wmname
 xdo				
 
 lightdm				
-slick-greeter		lightdm-slick-greeter		
+lightdm-gtk-greeter				
 
 awesome-git	p		a	
 dunst				
