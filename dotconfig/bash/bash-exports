@@ -48,6 +48,7 @@ export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER=firefox
 exists bat && export PAGER=bat
+exists batcat && export PAGER=batcat
 export QT_QPA_PLATFORMTHEME="qt5ct" # required by qt5ct
 
 # Fixes issues with Java application(Webstorm) in tiling WM
@@ -59,6 +60,7 @@ export MANWIDTH="80"
 export MANROFFOPT="-c"
 # bat as manpager
 exists bat && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+exists batcat && export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 ## ==================== ##
 ## Programming settings ##
