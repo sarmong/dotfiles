@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
+#
+# A wrapper script to save a list of items in a DB and sort by frecency
 
 name="$1"
 entries="$2" # @TODO accept from stdin (pipe)
 rofi_options="${*:3}"
+
+if ! command -v frece &>/dev/null; then
+  echo "$entries" | rofi -dmenu "$rofi_options"
+fi
 
 DATA_DIR="$XDG_DATA_HOME/frece"
 DB_FILE="$DATA_DIR/$name.db"
