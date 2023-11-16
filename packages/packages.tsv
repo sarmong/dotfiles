@@ -128,7 +128,7 @@ tmux
 
 xclip				
 powertop				
-auto-cpufreq	x		a	Is in pacstall, but install requires user interaction
+auto-cpufreq	p		a	Is in pacstall, but install requires user interaction
 brightnessctl				
 
 newsboat				
