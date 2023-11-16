@@ -7,8 +7,18 @@ nocol='\e[0m'
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 cd "$script_dir" || exit 1
 
-to_install=$(sed 's/#.*$//g' "./arch.txt" | sed '/^$/d' | sort | awk '{ print $1 }')
-installed=$(pacman -Qqe)
+os=$(grep -oP '^ID=\K\w+' </etc/os-release)
+
+packages_file="$script_dir/packages.tsv"
+package_data=$(sed 's/#.*$//g' "$packages_file" | sed '/^$/d' | sed 1d)
+
+if [ "$os" = 'arch' ]; then
+  installed=$(pacman -Qqe)
+  to_install=$(echo "$package_data" | awk -F$'\t' '{ if ($4 != "x") print ($3 == "" ? $1 : $3) }')
+elif [ "$os" = 'debian' ]; then
+  installed=$(apt-mark showmanual | sed 's/-git\-bin//g')
+  to_install=$(echo "$package_data" | awk -F$'\t' '{  if ($2 != "x") print $1 }' | sed 's/-git\-bin//g')
+fi
 
 ## installed but not commited
 unlisted=$(grep -Fxvf <(echo "$to_install") <(echo "$installed"))
