@@ -13,7 +13,7 @@ curl
 wget				
 vim				
 neovim	p			
-openssh				
+openssh-client		openssh		
 man-db				
 		man-pages		
 mlocate				
@@ -66,18 +66,19 @@ xkblayout-state-git	p		a
 inputplug			a	
 
 ## Audio ##				
-pulseaudio				
-		pulseaudio-alsa		
-		pulseaudio-bluetooth		
+pipewire-audio			x	
+pulseaudio	x			
+	x	pulseaudio-alsa		
+pulseaudio-module-bluetooth	x	pulseaudio-bluetooth		
 volctl	p		a	
 pulsemixer				Pulse Audio TUI
 pavucontrol				Pulse Audio Volume Control GUI
 pamixer				Pulse Audio CLI
 playerctl				
 
-blueman				Blueman is a GUI for bluez
 bluez				
-bluez-utils				
+		bluez-utils		
+blueman				Blueman is a GUI for bluez
 
 budgie-network-manager-applet		network-manager-applet		
 gnome-keyring				Should start systemd service automatically
@@ -98,7 +99,7 @@ trash-cli
 dmenu				
 rofi				
 rofi-calc	p			
-frece	p		a	
+frece-bin	p	frece	a	
 
 clipmenu-git	p		a	
 
@@ -109,7 +110,7 @@ nsxiv			a
 libimage-exiftool-perl		perl-image-exiftool		
 mediainfo				
 zathura				
-zathura-pdf-mupdf				
+		zathura-pdf-mupdf		Mupdf is not in apt, poppler installed as dep of zathura
 zathura-djvu				
 pandoc				
 flameshot				
@@ -131,7 +132,7 @@ auto-cpufreq	x		a	Is in pacstall, but install requires user interaction
 brightnessctl				
 
 newsboat				
-urlscan	p			
+urlscan				
 
 ## Useful CLI utils ##				
 
@@ -153,7 +154,6 @@ ripgrep
 thefuck				
 zoxide-deb	p	zoxide		
 atool			a	
-unrar				
 unzip				
 zip				
 p7zip				
