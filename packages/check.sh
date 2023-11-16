@@ -13,11 +13,11 @@ packages_file="$script_dir/packages.tsv"
 package_data=$(sed 's/#.*$//g' "$packages_file" | sed '/^$/d' | sed 1d)
 
 if [ "$os" = 'arch' ]; then
-  installed=$(pacman -Qqe)
-  to_install=$(echo "$package_data" | awk -F$'\t' '{ if ($4 != "x") print ($3 == "" ? $1 : $3) }')
+  installed=$(pacman -Qqe | sort)
+  to_install=$(echo "$package_data" | awk -F$'\t' '{ if ($4 != "x") print ($3 == "" ? $1 : $3) }' | sort)
 elif [ "$os" = 'debian' ]; then
-  installed=$(apt-mark showmanual | sed 's/-git\-bin//g')
-  to_install=$(echo "$package_data" | awk -F$'\t' '{  if ($2 != "x") print $1 }' | sed 's/-git\-bin//g')
+  installed=$(apt-mark showmanual | sed 's/-git\-bin//g' | sort)
+  to_install=$(echo "$package_data" | awk -F$'\t' '{  if ($2 != "x") print $1 }' | sed 's/-git\-bin//g' | sort)
 fi
 
 ## installed but not commited
