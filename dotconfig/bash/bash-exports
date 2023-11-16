@@ -40,7 +40,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 
-export PATH="$XDG_BIN_DIR:$XDG_BIN_DIR/polybar:$PATH"
+export PATH="$XDG_BIN_DIR:$XDG_BIN_DIR/launchers:$PATH"
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=100000
 export HISTFILESIZE=1000000
