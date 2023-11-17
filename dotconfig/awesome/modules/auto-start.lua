@@ -26,8 +26,7 @@ local apps = {
   "inputplug -c $XDG_BIN_DIR/setup/keyboard/on-connect.sh",
   "$XDG_BIN_DIR/setup/screenlayout/init.sh",
   "unclutter",
-  -- @TODO turn on bluetooth depending on whether keyboard is connected
-  "bluetooth on",
+  "blueman-applet",
 }
 
 local function run_once(cmd)
