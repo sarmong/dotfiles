@@ -1,0 +1,73 @@
+#!/bin/sh
+
+div="---"
+
+set_output() {
+  sel_sink=$(printf "$sinks\\n$div\\nback\\n$div\\nexit" | rofi -G -dmenu -i -p "select output device")
+  case "$sel_sink" in
+    back) show_current ;;
+    exit) exit ;;
+    *) pactl set-default-sink $(pactl list sinks | grep -B 1 "$sel_sink" | awk -F': ' '/Name:/ {print $2}') ;;
+  esac
+  #kill -46 $(pidof dwmblocks)
+  show_current
+}
+
+set_input() {
+  sel_source=$(printf "$sources\\n$div\\nbluetooth profile\\n$div\\nback\\n$div\\nexit" | rofi -G -dmenu -i -p "select input device")
+  case "$sel_source" in
+    back) show_current ;;
+    exit) exit ;;
+    bluetooth*) set_bt_profile ;;
+    *) pactl set-default-source "$(pactl list sources | grep -B 1 "$sel_source" | awk -F': ' '/Name:/ {print $2}')" ;;
+  esac
+  #kill -46 $(pidof dwmblocks)
+  show_current
+}
+
+set_bt_profile() {
+  bt_sink=$(pactl list cards | awk -F'"' '/device.name.*bluez/ {print $2}')
+  [ -z "${bt_sink}" ] &&
+    {
+      notify-send -t 2000 -u critical "ﳌ no headphones connected"
+      exit
+    }
+  profile_chosen=$(printf "profile mSBC\\nprofile LDAC\\n$div\\nback\\nexit" | rofi -G -dmenu -i -p "select bluettoth profile")
+  case "$profile_chosen" in
+    back) show_current ;;
+    exit) exit ;;
+    profile*mSBC)
+      pactl set-card-profile $bt_sink headset-head-unit-msbc
+      pactl set-default-source $(pactl list sources short | awk '/bluez_input/ {print $2}')
+      ;;
+    profile*LDAC) pactl set-card-profile $bt_sink a2dp-sink-ldac ;;
+    *) show_current ;;
+  esac
+  pactl set-default
+}
+
+show_current() {
+  def_snk=$(pactl list | grep -A 1 "Name: $(pactl get-default-sink)\$" | awk -F': ' '/Description: / {print $2}')
+  def_src=$(pactl list | grep -A 1 "Name: $(pactl get-default-source)\$" | awk -F': ' '/Description: / {print $2}')
+  chosen=$(printf "output: $def_snk\\ninput:  $def_src" | rofi -G -dmenu -i -p "current audio devices")
+  if [ "$1" = "no_switch" ]; then
+    case "$chosen" in
+      *) notify-send -t 2000 -u critical "婢 no device to switch" ;;
+    esac
+  else
+    case "$chosen" in
+      output*) set_output ;;
+      input*) set_input ;;
+    esac
+  fi
+}
+
+sinks=$(pactl list sinks | awk -F': ' '/Description:/ {print $2}')
+sources=$(pactl list sources | grep -v 'Monitor of ' | awk -F': ' '/Description:/ {print $2}')
+[ "$(echo "$sinks" | wc -l)" -lt 2 ] &&
+  {
+    show_current no_switch
+    exit
+  }
+
+show_current
