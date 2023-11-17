@@ -21,6 +21,7 @@ commands=(
   "profile home"
   restart
   search
+  select-audio
   sessions
   testfile
   watch-later.sh
