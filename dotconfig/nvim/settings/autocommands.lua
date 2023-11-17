@@ -69,3 +69,18 @@ autocmd("FileType", {
     end)
   end,
 })
+
+autocmd("FileType", {
+  pattern = "tsv",
+  group = "tsv",
+  callback = function()
+    vim.opt_local.syntax = "conf"
+    -- vim.opt_local.comments = ":#"
+    -- vim.opt_local.commentstring = "# %s"
+    vim.opt_local.expandtab = false
+    vim.opt_local.shiftwidth = 20
+    vim.opt_local.softtabstop = 20
+    vim.opt_local.tabstop = 20
+    vim.opt_local.textwidth = 0
+  end,
+})
