@@ -21,6 +21,7 @@ packer.startup(function(use)
       "nvim-telescope/telescope-live-grep-args.nvim",
       {
         "nvim-telescope/telescope-smart-history.nvim",
+        -- Need libsqlite3-dev on debian
         requires = "kkharji/sqlite.lua",
       },
     },
