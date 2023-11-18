@@ -8,9 +8,11 @@ Debian name	Debian flag	Arch name	Arch flag	         p - pacstall, a - AUR, n - 
 		efibootmgr		
 		networkmanager		
 
+nala			x	
 git				
 curl				
 wget				
+htop				
 vim				
 neovim	p			
 libsqlite3-dev			x	Needed for telescope-smart-history to work properly
@@ -41,6 +43,7 @@ picom
 arandr				
 autorandr				
 lxsession				
+yad				
 
 ## Themes ##				
 lxappearance				
@@ -48,6 +51,8 @@ arc-gruvbox-gtk-theme-git	p	gtk-theme-arc-gruvbox-git	a
 papirus-icon-theme				
 qt5ct				
 adwaita-qt6			x	
+simp1e-gruvbox-dark-cursor-theme-git	p	xcursor-simp1e-gruvbox-dark	a	
+
 
 ## Fonts ##				
 
@@ -57,6 +62,7 @@ nerdfonts	x	nerd-fonts-complete	a
 nerd-fonts-jetbrains-mono	p	ttf-jetbrains-mono-nerd		
 nerd-fonts-fira-code	p	ttf-firacode-nerd		
 nerd-fonts-fira-mono	p	otf-firamono-nerd		
+fonts-ebgaramond		ebgaramond-otf	a	
 font-manager				
 
 fonts-noto-color-emoji		noto-fonts-emoji		provides emojis for terminal and polybar
@@ -110,10 +116,11 @@ feh
 nsxiv			a	
 libimage-exiftool-perl		perl-image-exiftool		
 mediainfo				
+evince				As a backup
 zathura				
 		zathura-pdf-mupdf		Mupdf is not in apt, poppler installed as dep of zathura
 zathura-djvu				
-pandoc				
+pandoc		pandoc-cli		
 flameshot				
 scrot				
 mpv				
@@ -142,6 +149,7 @@ ffmpegthumbnailer
 imagemagick				
 lynx				
 
+rsync				
 jq				
 tree				
 speedtest-cli				
@@ -160,7 +168,11 @@ zip
 p7zip				
 massren	x		x	
 moreutils				Provides vidir packages for mass renaming
+net-tools				
+parallel				
 fdupes				
+czkawka-cli-bin	p		a	
+czkawka-gui-bin	p		a	
 dragon-drop	p		a	
 handlr-bin	p	handlr		
 libfile-mimeinfo-perl		perl-file-mimeinfo		
@@ -213,6 +225,7 @@ qbittorrent
 webcamoid			a	
 monero-gui	x			
 freetube-bin	x			
+sonic-visualiser				
 
 ## Work Apps ##				
 skypeforlinux-stable-bin	x		x	
@@ -221,5 +234,6 @@ zoom-deb	x	zoom	x
 google-chrome-deb	x		x	
 
 syncthing				
+android-file-transfer				
 
 spotify-client-deb	p	spotify	a	
