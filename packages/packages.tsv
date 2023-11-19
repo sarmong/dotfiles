@@ -7,6 +7,7 @@ Debian name	Debian flag	Arch name	Arch flag	         p - pacstall, a - AUR, n - 
 		grub		
 		efibootmgr		
 		networkmanager		
+		cronie		
 
 nala			x	
 git				
@@ -22,7 +23,6 @@ man-db
 mlocate				
 zsh				
 dash				
-cronie				
 
 ufw				
 
@@ -32,6 +32,7 @@ wmctrl
 wmutils	p	wmutils-git	a	
 wmname				
 xdo				
+xvfb		xorg-server-xvfb		Needed to fake xorg server in tty
 
 lightdm				
 lightdm-gtk-greeter				

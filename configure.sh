@@ -31,6 +31,7 @@ fnm default lts/latest
 chsh -s "$(which zsh)"
 chsh -s "$(which zsh)" "$(whoami)"
 
+Xvfb &
 betterlockscreen -u "$XDG_DOTFILES_DIR/assets/lockscreen.png"
 luna.sh
 
