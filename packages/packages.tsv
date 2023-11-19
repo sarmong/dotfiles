@@ -58,7 +58,6 @@ simp1e-gruvbox-dark-cursor-theme-git	p	xcursor-simp1e-gruvbox-dark	a
 
 fonts-noto		noto-fonts		
 fonts-font-awesome		otf-font-awesome		
-nerdfonts	x	nerd-fonts-complete	a	
 nerd-fonts-jetbrains-mono	p	ttf-jetbrains-mono-nerd		
 nerd-fonts-fira-code	p	ttf-firacode-nerd		
 nerd-fonts-fira-mono	p	otf-firamono-nerd		
@@ -110,7 +109,7 @@ frece-bin	p	frece	a
 
 clipmenu-git	p		a	
 
-libinput-gestures	x		a	
+libinput-gestures	p		a	
 
 feh				
 nsxiv			a	
@@ -166,7 +165,6 @@ atool			a
 unzip				
 zip				
 p7zip				
-massren	x		x	
 moreutils				Provides vidir packages for mass renaming
 net-tools				
 parallel				
@@ -181,21 +179,20 @@ neofetch
 onefetch-bin	p	onefetch		
 unclutter				
 dua-cli-bin	p	dua-cli		
-uglify-js	x			
+uglifyjs		uglify-js		
 entr				
 jira-cli-bin	x		a	
-tokei	x			
+tokei-bin	p	tokei		
 pass				
 		downgrade		Downgrade pacman packages
 
 ## Programming tools ##				
-nodejs				System version of node
 fnm-bin	p		a	
 yarn				
 httpie				
 tig				
 lazygit	p			
-github-cli	x			
+github-cli-bin	p	github-cli		
 zeal			a	
 
 vscodium-deb	p	vscodium-bin	a	
@@ -209,14 +206,13 @@ safeeyes			a
 activitywatch-bin	x		a	
 xprintidle				
 redshift				
-redshift-gtk	x		x	
 
 firefox-bin	p	firefox		
 brave-browser-deb	p	brave-bin	a	
 surf			a	
 
 libreoffice		libreoffice-still		
-protonvpn-gui	x	protonvpn		
+protonvpn-gui	p	protonvpn		
 kazam			a	
 simplescreenrecorder				
 goldendict		goldendict-git		
@@ -224,7 +220,7 @@ telegram-bin	p	telegram-desktop
 qbittorrent				
 webcamoid			a	
 monero-gui	x			
-freetube-bin	x			
+freetube-deb	p	freetube-bin	a	
 sonic-visualiser				
 
 ## Work Apps ##				

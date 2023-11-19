@@ -25,6 +25,7 @@ sudo gpasswd -a "$USER" input
 ## newgrp input
 
 tldr --update
-fnm install 18
+fnm install lts/latest
+fnm default lts/latest
 chsh -s "$(which zsh)"
 chsh -s "$(which zsh)" "$(whoami)"
