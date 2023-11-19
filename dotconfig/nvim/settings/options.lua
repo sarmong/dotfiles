@@ -49,7 +49,7 @@ local options = {
   pumheight          =    20,                -- Number of items in completion menu
   completeopt        =    { "menu", "preview", "noselect", "noinsert" },
 
-  conceallevel       =    3,
+  conceallevel       =    2,
   timeoutlen         =    700,
 
   inccommand         =    "split",           -- Show split preview window
