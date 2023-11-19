@@ -32,3 +32,4 @@ chsh -s "$(which zsh)"
 chsh -s "$(which zsh)" "$(whoami)"
 
 betterlockscreen -u "$XDG_DOTFILES_DIR/assets/lockscreen.png"
+luna.sh
