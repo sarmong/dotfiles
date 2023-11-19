@@ -13,7 +13,7 @@ local apps = {
   "dunst",
 
   -- Applications
-  -- "libinput-gestures-setup restart",
+  "libinput-gestures-setup restart",
   "CM_SELECTIONS='clipboard' clipmenud",
   "redshift",
   -- "safeeyes",
