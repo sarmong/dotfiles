@@ -28,13 +28,12 @@ sudo gpasswd -a "$USER" input
 tldr --update
 fnm install lts/latest
 fnm default lts/latest
-chsh -s "$(which zsh)"
-chsh -s "$(which zsh)" "$(whoami)"
+sudo chsh -s "$(which zsh)"
+sudo chsh -s "$(which zsh)" "$(whoami)"
 
 Xvfb &
-export DISPLAY=":0"
-betterlockscreen -u "$XDG_DOTFILES_DIR/assets/lockscreen.png"
-luna.sh
+DISPLAY=":0" betterlockscreen -u "$XDG_DOTFILES_DIR/assets/lockscreen.png"
+DISPLAY=":0" luna.sh
 
 os=$(grep -oP '^ID=\K\w+' </etc/os-release)
 
