@@ -88,20 +88,14 @@ req("nvim-treesitter.configs").setup({
   },
 
   autotag = { enable = true },
+  -- @TODO causes file to be readonly, seek alternative
   rainbow = {
-    enable = true,
+    enable = false,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
-  },
-  -- @TODO this plugins integrades with commentary by default.
-  -- And only with gc. That's why it does'nt work with custom mappings
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-    config = { javascriptreact = { style_element = "{/*%s*/}" } },
   },
   -- @TODO I don't use other features from this module.
   -- consider finding separate smaller plugin for hightlight definitions (perhaps with native lsp)
@@ -143,6 +137,14 @@ parsers.ft_to_lang = function(ft)
   return ft_to_lang(ft)
 end
 
+vim.g.skip_ts_context_commentstring_module = true
+-- @TODO this plugins integrades with commentary by default.
+-- And only with gc. That's why it does'nt work with custom mappings
+req("ts_context_commentstring").setup({
+  enable = true,
+  enable_autocmd = false,
+  config = { javascriptreact = { style_element = "{/*%s*/}" } },
+})
 req("treesitter-context").setup({
   enable = true,
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
