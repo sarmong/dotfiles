@@ -1,24 +1,29 @@
-req("indent_blankline").setup({
-  -- for example, context is off by default, use this to turn it on
-  show_current_context = true,
-  show_current_context_start = true,
+req("ibl").setup({
+  indent = {
+    char = "▏",
+  },
+  exclude = {
+    buftypes = { "terminal" },
+    filetypes = {
+      "man",
+      "help",
+      "alpha",
+      "startify",
+      "dashboard",
+      "packer",
+      "neogitstatus",
+      "qf",
+    },
+  },
+  scope = {
+    enabled = true,
+  },
+  -- show_current_context_start = true,
 })
 
-vim.g.indent_blankline_buftype_exclude = { "terminal" }
-vim.g.indent_blankline_filetype_exclude = {
-  "man",
-  "help",
-  "alpha",
-  "startify",
-  "dashboard",
-  "packer",
-  "neogitstatus",
-  "qf",
-}
-vim.g.indent_blankline_char = "▏"
+-- Where the hell does all of this go in v3???
 vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_show_trailing_blankline_indent = false
-vim.g.indent_blankline_show_current_context = true
 vim.g.indent_blankline_context_patterns = {
   "class",
   "return",
