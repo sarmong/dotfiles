@@ -31,7 +31,7 @@ fnm default lts/latest
 sudo chsh -s "$(which zsh)"
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
-Xvfb &
+setsid Xvfb >/dev/null 2>&1 &
 DISPLAY=":0" betterlockscreen -u "$XDG_DOTFILES_DIR/assets/lockscreen.png"
 DISPLAY=":0" luna.sh
 
@@ -39,6 +39,8 @@ os=$(grep -oP '^ID=\K\w+' </etc/os-release)
 
 if [ "$os" = 'debian' ]; then
   ln -s "/media/$USER" "$HOME/drives"
+
+  systemctl --user mask xdg-desktop-portal-gtk.service
 elif [ "$os" = 'arch' ]; then
   ln -s "/run/media/$USER" "$HOME/drives"
 fi
