@@ -15,3 +15,5 @@ setopt auto_menu # show completion menu on successive tab press.
 setopt correct_all # spelling correction
 
 setopt nomatch
+
+unsetopt BEEP # turn off bell
