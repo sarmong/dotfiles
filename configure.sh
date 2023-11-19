@@ -32,6 +32,7 @@ chsh -s "$(which zsh)"
 chsh -s "$(which zsh)" "$(whoami)"
 
 Xvfb &
+export DISPLAY=":0"
 betterlockscreen -u "$XDG_DOTFILES_DIR/assets/lockscreen.png"
 luna.sh
 
