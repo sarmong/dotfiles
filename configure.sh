@@ -33,3 +33,11 @@ chsh -s "$(which zsh)" "$(whoami)"
 
 betterlockscreen -u "$XDG_DOTFILES_DIR/assets/lockscreen.png"
 luna.sh
+
+os=$(grep -oP '^ID=\K\w+' </etc/os-release)
+
+if [ "$os" = 'debian' ]; then
+  ln -s "/media/$USER" "$HOME/drives"
+elif [ "$os" = 'arch' ]; then
+  ln -s "/run/media/$USER" "$HOME/drives"
+fi
