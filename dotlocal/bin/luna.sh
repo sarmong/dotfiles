@@ -29,7 +29,7 @@ echo "Days: $age"
 
 text="Phase: $phase% Days: $age     "
 
-composite -gravity center "$image" "$XDG_NC_DIR"/pics/stars.tif wp.png
+composite -gravity center "$image" "$XDG_DOTFILES_DIR"/assets/stars.tif wp.png
 convert -fill '#b1ada7' -pointsize 50 -gravity east -draw "text 100,1200 '$text'" wp.png wp.png
 
 set-wp wp.png

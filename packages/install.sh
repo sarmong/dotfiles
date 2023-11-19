@@ -111,7 +111,7 @@ if [ "$os" = 'arch' ]; then
   install_paru
 elif [ "$os" = 'debian' ]; then
   install_pacstall
-  pacstall -A https://raw.githubusercontent.com/sarmong/pacstall-sarmong/master
+  yes 'y' | pacstall -A https://raw.githubusercontent.com/sarmong/pacstall-sarmong/master
   # install_nix
 else
   echo "$red $os is not currently supported"
