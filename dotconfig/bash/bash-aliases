@@ -5,12 +5,9 @@ exists thefuck && eval "$(thefuck --alias)"
 exists batcat && alias bat="batcat" # For Debian
 
 ## Package managers
-alias update="sudo apt update && sudo apt upgrade"
-alias aptinst="sudo apt install"
-alias aptsearch="apt search"
-alias aptremove="sudo apt remove"
-
 alias p="sudo pacman"
+alias a="sudo apt"
+alias n="sudo nala"
 
 ## Abbreviations
 
@@ -26,6 +23,7 @@ alias s="systemctl"
 alias ss="sudo systemctl"
 alias j="journalctl"
 alias se="sudoedit"
+alias lg="lazygit"
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
