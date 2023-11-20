@@ -31,6 +31,8 @@ fnm default lts/latest
 sudo chsh -s "$(which zsh)"
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
+sudo auto-cpufreq --install
+
 setsid Xvfb >/dev/null 2>&1 &
 DISPLAY=":0" betterlockscreen -u "$XDG_DOTFILES_DIR/assets/lockscreen.png"
 DISPLAY=":0" luna.sh
