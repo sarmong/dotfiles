@@ -12,6 +12,7 @@
 	rebase = true
 [alias]
   co  = checkout
+  sw  = switch
   br  = branch
   ca  = commit -am
   s   = status
