@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 commands=(
-  bluetooth
+  blatonn
   bookmark-add
   bookmarks
   copy-spotify-url
