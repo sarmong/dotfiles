@@ -121,7 +121,7 @@ packer.startup(function(use)
       "jayp0521/mason-null-ls.nvim",
     },
   })
-  use({ "jose-elias-alvarez/null-ls.nvim" })
+  use({ "nvimtools/none-ls.nvim" })
   -- @TODO remove tag when it's updated
   use({ "j-hui/fidget.nvim", tag = "legacy" })
 
