@@ -18,6 +18,7 @@ local servers = {
   "lua_ls",
   "tsserver",
   "vimls",
+  "volar",
 }
 
 for _, server in ipairs(servers) do
