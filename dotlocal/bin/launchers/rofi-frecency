@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 #
 # A wrapper script to save a list of items in a DB and sort by frecency
+# - You can pass an empty string as a second argument,
+# thus the script will act as a history - adding entries to the DB
+# - Type /// inside the rofi prompt during history mode
+# and this item will not be added to history
 
 name="$1"
 entries="$2" # @TODO accept from stdin (pipe)
@@ -20,7 +24,7 @@ echo "$entries" >"$ENTRIES_FILE"
 [ ! -d "$DATA_DIR" ] && mkdir -p "$DATA_DIR"
 if [ ! -f "$DB_FILE" ]; then
   frece init "$DB_FILE" "$ENTRIES_FILE"
-else
+elif [ -n "$entries" ]; then
   frece update "$DB_FILE" "$ENTRIES_FILE" --purge-old
 fi
 
@@ -28,7 +32,14 @@ selected=$(frece print "$DB_FILE" | rofi -dmenu "$rofi_options")
 
 [ -z "$selected" ] && exit 1
 
-echo "$selected"
+echo "${selected//\/\/\//}"
 
-frece increment "$DB_FILE" "$selected"
+if [[ "$selected" != *"///"* ]]; then
+  if [ -z "$entries" ]; then
+    frece add "$DB_FILE" "$selected"
+  fi
+
+  frece increment "$DB_FILE" "$selected"
+fi
+
 rm "$ENTRIES_FILE"
