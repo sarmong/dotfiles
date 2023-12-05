@@ -35,6 +35,9 @@
 
   dd = diff --dirstat --find-copies --find-renames --histogram --color
 
+  # sync forked repo
+  update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
+
 [url "https://"]
 	insteadOf = git://
 
