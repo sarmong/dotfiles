@@ -77,7 +77,7 @@ autoload -U colors && colors
 
 setopt prompt_subst
 
-right() {
+tools() {
   # Check if the current directory is in a Git repository.
   git rev-parse --is-inside-work-tree &>/dev/null || return;
 
@@ -95,10 +95,10 @@ PROMPT+="$white@"
 PROMPT+="$yellow%M"
 PROMPT+="$white in "
 PROMPT+="$green%~"
-PROMPT+='%b$(right)'
+PROMPT+='%b$(tools)'
 PROMPT+=$'\n'
 PROMPT+='${VIMODE} '
 PROMPT+="$white$%b "
 PROMPT+="%{$reset_color%}"
 
-# RPROMPT='$(right)'
+RPROMPT='%T'
