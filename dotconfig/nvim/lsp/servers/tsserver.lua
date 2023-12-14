@@ -1,5 +1,6 @@
 local functions = require("lsp.functions")
 local default_conf = req("lsp.servers.default")
+local helpers = req("lsp.servers.helpers")
 local util = req("lspconfig.util")
 
 req("typescript").setup({
@@ -28,5 +29,7 @@ req("typescript").setup({
     end,
 
     single_file_support = true,
+
+    autostart = ~helpers.isVueProject(),
   }),
 })
