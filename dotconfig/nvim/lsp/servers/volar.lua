@@ -1,4 +1,5 @@
 local default_conf = req("lsp.servers.default")
+local helpers = req("lsp.servers.helpers")
 
 return {
   filetypes = {
@@ -17,4 +18,6 @@ return {
 
     default_conf.on_attach(client, bufnr)
   end,
+
+  autostart = helpers.isVueProject(),
 }
