@@ -18,8 +18,9 @@ local options = {
   clipboard          =    "unnamedplus",
 
   wrap               =    true,
-  textwidth          =    100,
   linebreak          =    true,              -- Don't wrap in the middle of a word
+  breakindent        =    true,
+  textwidth          =    100,
 
   tabstop            =    2,                 -- Insert 2 spaces for a tab
   shiftwidth         =    2,                 -- Change the number of space characters inserted for indentation
