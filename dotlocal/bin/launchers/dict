@@ -1,9 +1,9 @@
 #!/bin/sh
 
-word=$(rofi -dmenu -p "Enter Word > ")
+word=$(rofi-frecency "dict" "" "Enter Word > ")
 
 while [ -n "$word" ]; do
-	json=$(curl "https://api.dictionaryapi.dev/api/v2/entries/en/$word" 2>/dev/null)
-	meanings=$(echo "$json" | jq '.[].meanings')
-	word=$(echo "$meanings" | jq 'map(.partOfSpeech as $p | (.definitions | map(.definition + " (" + $p + ")")))' | jq 'flatten' | jq '.[]' | rofi -dmenu)
+  json=$(curl "https://api.dictionaryapi.dev/api/v2/entries/en/$word" 2>/dev/null)
+  meanings=$(echo "$json" | jq '.[].meanings')
+  word=$(echo "$meanings" | jq 'map(.partOfSpeech as $p | (.definitions | map(.definition + " (" + $p + ")")))' | jq 'flatten' | jq '.[]' | rofi -dmenu)
 done
