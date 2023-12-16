@@ -20,7 +20,7 @@ libsqlite3-dev			x	Needed for telescope-smart-history to work properly
 openssh-client		openssh		
 man-db				
 		man-pages		
-mlocate				
+plocate				
 zsh				
 dash				
 
