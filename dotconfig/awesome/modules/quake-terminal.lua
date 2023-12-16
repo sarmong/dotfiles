@@ -19,7 +19,7 @@ local scratch = lain.util.quake({
   name = "Scratch",
   argname = "--class %s",
   extra = string.format(
-    "--working-directory %s -e %s -c 'nvim scratch.txt ; %s'",
+    "--working-directory %s -e %s -c 'nvim -c \"autocmd TextChanged,InsertLeave <buffer> silent write\" scratch.txt ; %s'",
     os.getenv("XDG_NC_DIR"),
     os.getenv("SHELL"),
     os.getenv("SHELL")
