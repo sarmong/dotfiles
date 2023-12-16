@@ -111,8 +111,9 @@ take() {
 }
 
 lf() {
+  [ -n "$1" ] && z "$1"
   tmp="$(mktemp)"
-  command lf -last-dir-path="$tmp" "$@"
+  command lf -last-dir-path="$tmp" "${@:2}"
   if [ -f "$tmp" ]; then
     dir="$(cat "$tmp")"
     rm -f "$tmp" >/dev/null
