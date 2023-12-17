@@ -111,7 +111,7 @@ take() {
 }
 
 lf() {
-  [ -n "$1" ] && z "$1"
+  [ -n "$1" ] && __zoxide_z "$1"
   tmp="$(mktemp)"
   command lf -last-dir-path="$tmp" "${@:2}"
   if [ -f "$tmp" ]; then
