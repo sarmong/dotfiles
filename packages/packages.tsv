@@ -186,6 +186,7 @@ jira-cli-bin	x		a
 tokei-bin	p	tokei		
 pass				
 		downgrade		Downgrade pacman packages
+		silicon		@TODO add to pacstall
 
 ## Programming tools ##				
 fnm-bin	p		a	
