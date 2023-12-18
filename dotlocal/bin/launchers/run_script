@@ -26,10 +26,13 @@ commands=(
   testfile
   watch-later.sh
   wifi-menu.sh
+  "code screenshot from cb"
 )
 
 declare -A other
 other["file-manager"]="$TERMINAL --class centered -e $SHELL -c lf"
+# @TODO improve and add to separate script
+other["code screenshot from cb"]="silicon --from-clipboard -l ts --to-clipboard"
 
 commands_string=$(printf "%s\n" "${commands[@]}")
 command=$(rofi-frecency "scripts" "$commands_string" -l 7 -p "Command to run")
