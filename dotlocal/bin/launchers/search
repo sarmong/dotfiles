@@ -18,6 +18,7 @@ websearch[youtube]="https://www.youtube.com/results?search_query="
 websearch[amazon]="https://www.amazon.com/s?k="
 websearch[ebay]="https://www.ebay.com/sch/i.html?&_nkw="
 websearch[gumtree]="https://www.gumtree.com/search?search_category=all&q="
+websearch[olx]="https://www.olx.ua/list/q-"
 # Linux
 websearch[archaur]="https://aur.archlinux.org/packages/?O=0&K="
 websearch[archpkg]="https://archlinux.org/packages/?sort=&q="
@@ -31,6 +32,6 @@ engine=$(rofi-frecency "search-engines" "$engine_names" -p 'Choose search engine
 
 url="${websearch[$engine]}"
 
-query=$(rofi-frecency "search-terms" "" -p "Enter search query ($engine):")
+query=$(rofi-frecency "search-$engine" "" -p "Enter search query ($engine):")
 
 firefox "${url}${query}"
