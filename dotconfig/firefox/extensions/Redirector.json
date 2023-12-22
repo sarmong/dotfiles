@@ -1,0 +1,211 @@
+{
+    "createdBy": "Redirector v3.5.3",
+    "createdAt": "2023-12-22T20:42:19.888Z",
+    "redirects": [
+        {
+            "description": "Youtu.be to Yewtu.be",
+            "exampleUrl": "https://youtu.be/video-id",
+            "exampleResult": "https://yewtu.be/watch?video-id",
+            "error": null,
+            "includePattern": "https://youtu.be/*",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://yewtu.be/watch?$1",
+            "patternType": "W",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Youtube.com to Yewtu.be",
+            "exampleUrl": "https://www.youtube.com/watch?v=video-id",
+            "exampleResult": "https://yewtu.be/watch?v=video-id",
+            "error": null,
+            "includePattern": "https://(www.)?youtube.com/watch\\?(.*)v=(.*)",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://yewtu.be/watch?$2v=$3",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Youtube shorts to Yewtu.be",
+            "exampleUrl": "https://www.youtube.com/shorts/video-id",
+            "exampleResult": "https://yewtu.be/watch?v=video-id",
+            "error": null,
+            "includePattern": "https://(www.)?youtube.com/shorts/(.*)",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://yewtu.be/watch?v=$2",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Youtube search to Yewtu.be",
+            "exampleUrl": "https://www.youtube.com/results?search_query=search-query",
+            "exampleResult": "https://yewtu.be/search?q=search-query",
+            "error": null,
+            "includePattern": "https://(www.)?youtube.com/results\\?search_query=(.*)",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://yewtu.be/search?q=$2",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Youtube channel page to Yewtu.be",
+            "exampleUrl": "https://www.youtube.com/@channel-id",
+            "exampleResult": "https://yewtu.be/@channel-id",
+            "error": null,
+            "includePattern": "https://(www.)?youtube.com/(channel/(.*)|@(.*))",
+            "excludePattern": ".*(playlist|membership).*",
+            "patternDesc": "",
+            "redirectUrl": "https://yewtu.be/$2",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Youtube embedded nocookie URL to yewtu.be (for RSS)",
+            "exampleUrl": "https://www.youtube-nocookie.com/embed/video-id",
+            "exampleResult": "https://yewtu.be/embed/video-id?player_style=youtube",
+            "error": null,
+            "includePattern": "https://(www.)?youtube-nocookie.com/embed/(.*)",
+            "excludePattern": ".*(playlist|membership).*",
+            "patternDesc": "",
+            "redirectUrl": "https://yewtu.be/embed/$2?player_style=youtube",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame",
+                "sub_frame"
+            ]
+        },
+        {
+            "description": "Twitter to Nitter",
+            "exampleUrl": "https://twitter.com/",
+            "exampleResult": "https://nitter.net/",
+            "error": null,
+            "includePattern": "^(?:https?://)(?:www\\.|mobile\\.|)twitter\\.com/(.*)",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://nitter.net/$1",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Music.youtube to Beatbump",
+            "exampleUrl": "https://music.youtube.com/id",
+            "exampleResult": "https://beatbump.io/id",
+            "error": null,
+            "includePattern": "https://music.youtube.com(/.*)?",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://beatbump.io$1",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Medium to scribe.rip",
+            "exampleUrl": "https://medium.com/anything",
+            "exampleResult": "https://scribe.rip/anything",
+            "error": null,
+            "includePattern": "https://(www.)?medium.com(/.*)?",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://scribe.rip$2",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Speedtest to LibreSpeed",
+            "exampleUrl": "https://speedtest.net",
+            "exampleResult": "https://librespeed.org",
+            "error": null,
+            "includePattern": "https://(www.)?speedtest.net(/.*)?",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://librespeed.org$2",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Genius to Dumb",
+            "exampleUrl": "https://genius.com",
+            "exampleResult": "https://dm.vern.cc",
+            "error": null,
+            "includePattern": "https://(www.)?genius.com(/.*)?",
+            "excludePattern": "https://(www.)?genius.com/albums/.*",
+            "patternDesc": "",
+            "redirectUrl": "https://dm.vern.cc$2",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Example redirect, try going to http://example.com/anywordhere",
+            "exampleUrl": "http://example.com/some-word-that-matches-wildcard",
+            "exampleResult": "https://google.com/search?q=some-word-that-matches-wildcard",
+            "error": null,
+            "includePattern": "http://example.com/*",
+            "excludePattern": "",
+            "patternDesc": "Any word after example.com leads to google search for that word.",
+            "redirectUrl": "https://google.com/search?q=$1",
+            "patternType": "W",
+            "processMatches": "noProcessing",
+            "disabled": true,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        }
+    ]
+}
