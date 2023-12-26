@@ -30,6 +30,7 @@ alias lg="lazygit"
 alias ls="ls -hGF --color=auto --group-directories-first"
 alias la="ls -A"
 alias ll="ls -Al"
+alias lsd="ls -d --indicator-style='none' */"
 alias grep="grep --color=auto"
 alias fgrep="grep -F --color=auto"
 alias egrep="grep -E --color=auto"
@@ -59,6 +60,14 @@ alias xopen="xdg-open"
 alias xo="xdg-open"
 alias mtype="file -b --mime-type"
 alias copy="xclip -sel clipboard"
+
+inf() {
+  uname -sr
+  uptime | sed 's/ //'
+  sensors | grep --color=never Pack
+  lscpu | grep 'CPU MHz:'
+  free -h | grep Mem | awk '{print "RAM: " $3+$5 " / " $2}'
+}
 
 lns() {
   target=$(readlink -f "$1")
