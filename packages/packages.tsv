@@ -194,6 +194,7 @@ yarn
 httpie				
 tig				
 lazygit	p			
+forgit	x		a	@TODO add to pacstall
 github-cli-bin	p	github-cli		
 zeal			a	
 
