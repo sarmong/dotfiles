@@ -216,7 +216,7 @@ local mappings = {
 
   x = {
     x = { "<:!chmod +x %<CR>", "make executable" },
-    c = { ":g/console.log/d<CR>", "Remove console.logs" },
+    c = { ":g/console.log/d<CR>:noh<CR>", "Remove console.logs" },
   },
 
   -- Fold
