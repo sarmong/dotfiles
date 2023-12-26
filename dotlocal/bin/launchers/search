@@ -24,6 +24,7 @@ websearch[archaur]="https://aur.archlinux.org/packages/?O=0&K="
 websearch[archpkg]="https://archlinux.org/packages/?sort=&q="
 websearch[archwiki]="https://wiki.archlinux.org/index.php?search="
 websearch[debianpkg]="https://packages.debian.org/search?suite=default&section=all&arch=any&searchon=names&keywords="
+websearch[alternativeto]="https://alternativeto.net/browse/search/?q="
 # Development
 websearch[github]="https://github.com/search?q="
 
