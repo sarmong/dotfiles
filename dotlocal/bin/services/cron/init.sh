@@ -11,8 +11,8 @@
 # * * * * *  command_to_execute
 
 jobs=(
-  "1 * * * * $HOME/.local/bin/run-cron.sh luna.sh"
-  "*/1 * * * * $HOME/.local/bin/run-cron.sh bat-notification"
+  "1 * * * * $HOME/.local/bin/wrappers/run-cron luna.sh"
+  "*/1 * * * * $HOME/.local/bin/wrappers/run-cron bat-notification"
 )
 
 (
