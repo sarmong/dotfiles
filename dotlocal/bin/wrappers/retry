@@ -1,0 +1,64 @@
+#!/bin/sh
+# Purpose: Rerun failing command automatically until it return status code 0
+# Usage: rerun --max-attempts 10 --interval 60 wget example.com
+# --
+# Arguments
+# --max-attempts | -m (optional): maximum number of attempts (default 3)
+# --interval | -i (optional): seconds between each retry (default 30)
+
+flags=$(getopt -l "max-attempts:,interval:" -o "m:i:" -a -- "$@")
+eval set -- "$flags"
+
+max_attempts=3
+retry_interval=30 # in seconds
+
+current_attempt=1
+
+run_command() {
+  command="$*"
+
+  while [ $current_attempt -le "$max_attempts" ]; do
+    echo "Attempting command (Attempt $current_attempt)..."
+
+    $command
+
+    exit_status=$?
+
+    if [ $exit_status -eq 0 ]; then
+      echo "Command succeeded!"
+      notify-send "Command succeeded!"
+      exit 0
+    else
+      echo "Command failed with exit status $exit_status. Retrying in $retry_interval seconds..."
+      sleep "$retry_interval"
+      current_attempt=$((current_attempt + 1))
+    fi
+  done
+
+  if [ $current_attempt -gt "$max_attempts" ]; then
+    echo "Max attempts reached. Command still failed."
+    exit 1
+  fi
+}
+
+trap "exit 1" INT
+
+for _ in $flags; do
+  case "$1" in
+    -m | --max-attempts)
+      shift
+      max_attempts="$1"
+      ;;
+    -i | --interval)
+      shift
+      retry_interval="$1"
+      ;;
+
+    --)
+      shift
+      run_command "$@"
+      ;;
+  esac
+
+  shift
+done
