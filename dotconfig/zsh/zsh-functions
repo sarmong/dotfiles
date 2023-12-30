@@ -10,7 +10,11 @@ function exists() {
 # Set second argument to true to only source the file in interactive shell
 function zsh_add_file() {
   [ "$2" = true ] && [[ $- != *i* ]] && return
-  [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+
+  case $1 in
+    /*) [ -f "$1" ] && source "$1" ;;
+    *) [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1" ;;
+  esac
 }
 
 function zsh_add_plugin() {
