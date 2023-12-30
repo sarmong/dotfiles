@@ -26,6 +26,8 @@ zle -N bracketed-paste bracketed-paste-magic
 
 compdef _setsid dis # Use setsid completion for dis
 
+zsh_add_file "/usr/share/zsh/plugins/forgit/forgit.plugin.zsh" true
+zsh_add_file "/usr/share/zsh/plugins/forgit/completions/git-forgit.zsh" true
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
