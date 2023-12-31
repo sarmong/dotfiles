@@ -35,6 +35,3 @@ for _, server in ipairs(servers) do
     )
   end
 end
-
--- has to go after null_ls
-require("mason-null-ls").setup({ automatic_installation = true })

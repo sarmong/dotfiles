@@ -2,52 +2,27 @@ local ts = req("typescript")
 
 local fns = {}
 
-local function has_formatting()
-  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
-
-  local has = false
-  for _, client in ipairs(clients) do
-    if client.server_capabilities.documentFormattingProvider then
-      has = true
-      break
-    end
-  end
-
-  return has
-end
-
 fns.format = function()
-  if has_formatting() then
-    vim.lsp.buf.format()
+  local formatted = req("conform").format()
+  if formatted then
     print("Formatted")
   else
-    print("No formatting server")
+    print("No formatting provider")
   end
 end
 
 fns.enable_format_on_save = function(silent)
   local config = req("lsp.config")
-  if not config.format_on_save then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      ---@TODO remove for only one buffer
-      group = vim.api.nvim_create_augroup("FormatOnSave", {}),
-      callback = fns.format,
-    })
-    config.format_on_save = true
+  config.format_on_save = true
 
-    if not silent then
-      print("Enabled formatting on save")
-    end
+  if not silent then
+    print("Enabled formatting on save")
   end
 end
 
 fns.disable_format_on_save = function()
   local config = req("lsp.config")
-  if config.format_on_save then
-    vim.api.nvim_del_augroup_by_name("FormatOnSave")
-    config.format_on_save = false
-    print("Disabled formatting on save")
-  end
+  config.format_on_save = false
 end
 
 fns.go_to_type_definition = function()
