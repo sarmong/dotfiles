@@ -150,7 +150,7 @@ telescope.load_extension("project")
 telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("live_grep_args")
-telescope.load_extension("smart_history")
+-- telescope.load_extension("smart_history")
 
 return {
   oldfiles = function()
