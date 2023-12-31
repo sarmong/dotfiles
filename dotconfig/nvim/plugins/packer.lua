@@ -119,9 +119,11 @@ packer.startup(function(use)
     requires = {
       "williamboman/mason-lspconfig.nvim",
       "jayp0521/mason-null-ls.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
   })
   use({ "nvimtools/none-ls.nvim" })
+  use({ "stevearc/conform.nvim" })
   -- @TODO remove tag when it's updated
   use({ "j-hui/fidget.nvim", tag = "legacy" })
 
