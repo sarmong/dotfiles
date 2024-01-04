@@ -1,11 +1,8 @@
-local telescope = require("plugins.telescope")
-local barbar = req("plugins.barbar")
-
 -- Unmap space and set leader key to space
 map("n", "<Space>", "<NOP>")
 vim.g.mapleader = " "
 
-map("n", "<C-p>", telescope.oldfiles)
+map("n", "<C-p>", req("plugins.telescope").oldfiles)
 
 -- better window movement
 map("n", "<C-h>", "<C-w>h")
@@ -89,18 +86,18 @@ map("v", "<A-h>", ":MoveHBlock(-1)<CR>")
 
 -- Buffers
 map("n", "<C-i>", "<C-i>") -- needed to distinguish tab and c-i in terminals that support it
-map("n", "<TAB>", barbar.next)
-map("n", "<S-TAB>", barbar.prev)
-map("n", "<A-.>", barbar.move_next)
-map("n", "<A-,>", barbar.move_prev)
-map("n", "<A-p>", barbar.pin)
+map("n", "<TAB>", req("plugins.barbar").next)
+map("n", "<S-TAB>", req("plugins.barbar").prev)
+map("n", "<A-.>", req("plugins.barbar").move_next)
+map("n", "<A-,>", req("plugins.barbar").move_prev)
+map("n", "<A-p>", req("plugins.barbar").pin)
 
-map("n", "<S-x>", barbar.close)
+map("n", "<S-x>", req("plugins.barbar").close)
 map("n", "<A-w>", ":w<CR>:BufferClose<CR>")
 
 for i = 1, 9 do
   map("n", "<A-" .. i .. ">", function()
-    barbar.go_to(i)
+    req("plugins.barbar").go_to(i)
   end)
 end
 
