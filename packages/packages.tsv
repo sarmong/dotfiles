@@ -71,6 +71,7 @@ fonts-noto-color-emoji		noto-fonts-emoji		provides emojis for terminal and polyb
 keyd	p		a	
 xkblayout-state-git	p		a	
 inputplug			a	
+xbindkeys				Used in scripts to dynamically set keybinds
 
 ## Audio ##				
 pipewire-audio			x	
@@ -123,6 +124,7 @@ zathura-djvu
 pandoc		pandoc-cli		
 flameshot				
 scrot				
+slop				Rectangle selection
 mpv				
 mpvc-git	x		x	Vendored, check diff
 mpd				

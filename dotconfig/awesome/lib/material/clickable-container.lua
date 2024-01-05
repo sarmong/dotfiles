@@ -1,9 +1,8 @@
 local wibox = require("wibox")
 
 function build(widget)
-  local container = wibox.widget({
-    widget,
-    widget = wibox.container.background,
+  local container = wibox.container.background({
+    widget = widget
   })
   local old_cursor, old_wibox
 

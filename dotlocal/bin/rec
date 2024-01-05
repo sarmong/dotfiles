@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+dir=$XDG_VIDEOS_DIR/screen-rec
+mkdir -p "$dir"
+
+output_file="$dir/$(date +"%Y-%m-%d_%H-%M-%S").mp4"
+
+selected_region=$(slop -f "%x %y %w %h" --color 0.8,0.8,0.8,0.3 -b 2 -c 1,1,1,1)
+read -r x y width height <<<"$selected_region"
+
+stop_recording() {
+  kill -SIGINT "$ffmpeg_pid"
+  wait "$ffmpeg_pid"
+  pkill xbindkeys
+
+  awesome-client 'status_widget:emit_signal("stop_rec")'
+  notify-send "Screen Recording" "Saved to: $output_file"
+
+  exit 0
+}
+
+trap "stop_recording" INT
+
+echo "\"kill -INT $$\"" >/tmp/xbindkeys_temp
+echo '  Control + Mod4 + q' >>/tmp/xbindkeys_temp
+xbindkeys -f /tmp/xbindkeys_temp
+
+awesome-client 'status_widget:emit_signal("start_rec")'
+
+ffmpeg -f x11grab -s "$width"x"$height" -i ":0.0+$x,$y" -r 30 -preset ultrafast -qp 0 "$output_file" &
+
+ffmpeg_pid=$!
+
+wait "$ffmpeg_pid"
+stop_recording
