@@ -19,8 +19,15 @@ req("window-picker").setup({
   },
   filter_rules = {
     bo = {
-      filetype = { "NvimTree", "neo-tree", "notify", "qf", "scratch" },
-      buftype = { "terminal" },
+      filetype = {
+        "NvimTree",
+        "neo-tree",
+        "neo-tree-popup",
+        "notify",
+        "qf",
+        "scratch",
+      },
+      buftype = { "terminal", "quickfix" },
     },
   },
 })
