@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#
+# @TODO blur selected region
 
 dir=$XDG_VIDEOS_DIR/screen-rec
 mkdir -p "$dir"
@@ -9,11 +11,22 @@ selected_region=$(slop -f "%x %y %w %h" --color 0.8,0.8,0.8,0.3 -b 2 -c 1,1,1,1)
 read -r x y width height <<<"$selected_region"
 
 stop_recording() {
+  ffmpeg_exit_code=$?
+
   kill -SIGINT "$ffmpeg_pid"
   wait "$ffmpeg_pid"
   pkill xbindkeys
 
   awesome-client 'status_widget:emit_signal("stop_rec")'
+  echo "$ffmpeg_exit_code"
+
+  # on SIGINT it can exit with code 255
+  if [ $ffmpeg_exit_code -eq 1 ]; then
+    rm "$output_file"
+    notify-send "Screen Recording" "Failed"
+    exit 1
+  fi
+
   notify-send "Screen Recording" "Saved to: $output_file"
 
   exit 0
