@@ -19,6 +19,7 @@ commands=(
   nothis
   "profile work"
   "profile home"
+  rec
   restart
   search
   select-audio

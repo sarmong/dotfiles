@@ -5,7 +5,7 @@ function _G.dump(o)
     local s = "{ "
     for k, v in pairs(o) do
       if type(k) ~= "number" then
-        k = '"' .. k .. '"'
+        k = '"' .. tostring(k) .. '"'
       end
       s = s .. "[" .. k .. "] = " .. dump(v) .. ","
     end
@@ -25,6 +25,6 @@ end
 function _G.log_to_file(text)
   local file = io.open("~/awesome.log", "a")
   io.output(file)
-  io.write("[" .. os.date() .. "] " .. text .. "\n")
+  io.write("[" .. os.date() .. "] " .. dump(text) .. "\n")
   io.close(file)
 end

@@ -3,6 +3,7 @@ local wibox = require("wibox")
 local Task_list = require("widgets.task-list")
 local Tag_list = require("widgets.tag-list")
 local Layout_box = require("widgets.layout-box")
+local rec_widget = require("widgets.rec")
 local Clock_widget = require("widgets.clock")
 local mat_icon_button = require("lib.material.icon-button")
 local mat_icon = require("lib.material.icon")
@@ -39,6 +40,7 @@ local top_panel = function(s)
         awful.widget.keyboardlayout(),
         systray,
         Layout_box(s),
+        rec_widget,
         Clock_widget(s),
       },
     },
