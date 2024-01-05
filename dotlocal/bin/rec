@@ -40,7 +40,7 @@ xbindkeys -f /tmp/xbindkeys_temp
 
 awesome-client 'status_widget:emit_signal("start_rec")'
 
-ffmpeg -f x11grab -s "$width"x"$height" -i ":0.0+$x,$y" -r 30 -preset ultrafast -qp 0 "$output_file" &
+ffmpeg -f x11grab -s "$width"x"$height" -i ":0.0+$x,$y" -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -r 30 -preset ultrafast -qp 0 "$output_file" &
 
 ffmpeg_pid=$!
 
