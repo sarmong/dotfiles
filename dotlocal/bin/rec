@@ -17,7 +17,7 @@ stop_recording() {
   wait "$ffmpeg_pid"
   pkill xbindkeys
 
-  awesome-client 'status_widget:emit_signal("stop_rec")'
+  awesome-client 'rec_widget:emit_signal("stop_rec")'
   echo "$ffmpeg_exit_code"
 
   # on SIGINT it can exit with code 255
@@ -34,11 +34,13 @@ stop_recording() {
 
 trap "stop_recording" INT
 
+echo $$ >/tmp/rec_pid
+
 echo "\"kill -INT $$\"" >/tmp/xbindkeys_temp
 echo '  Control + Mod4 + q' >>/tmp/xbindkeys_temp
 xbindkeys -f /tmp/xbindkeys_temp
 
-awesome-client 'status_widget:emit_signal("start_rec")'
+awesome-client 'rec_widget:emit_signal("start_rec")'
 
 ffmpeg -f x11grab -s "$width"x"$height" -i ":0.0+$x,$y" -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -r 30 -preset ultrafast -qp 0 "$output_file" &
 
