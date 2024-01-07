@@ -1,9 +1,10 @@
 local wibox = require("wibox")
+local gears = require("gears")
 
-function build(widget)
-  local container = wibox.container.background({
-    widget = widget
-  })
+local function build(widget, container_opts)
+  local container = wibox.container.background(gears.table.join({
+    widget = widget,
+  }, container_opts))
   local old_cursor, old_wibox
 
   container:connect_signal("mouse::enter", function()
