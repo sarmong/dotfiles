@@ -29,10 +29,10 @@ websearch[alternativeto]="https://alternativeto.net/browse/search/?q="
 websearch[github]="https://github.com/search?q="
 
 engine_names=$(printf "%s\n" "${!websearch[@]}")
-engine=$(rofi-frecency "search-engines" "$engine_names" -p 'Choose search engine:')
+engine=$(echo "$engine_names" | rofi-frecency "search-engines" -p 'Choose search engine:')
 
 url="${websearch[$engine]}"
 
-query=$(rofi-frecency "search-$engine" "" -p "Enter search query ($engine):")
+query=$(rofi-frecency "search-$engine" -p "Enter search query ($engine):")
 
 firefox "${url}${query}"
