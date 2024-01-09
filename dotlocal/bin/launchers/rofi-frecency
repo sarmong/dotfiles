@@ -8,8 +8,13 @@
 
 declare -a rofi_options
 name="$1"
-entries="$2" # @TODO accept from stdin (pipe)
-rofi_options=("${@:3}")
+rofi_options=("${@:2}")
+
+if [ -t 0 ]; then
+  entries=""
+else
+  entries="$(cat)" # get from a pipe
+fi
 
 if ! command -v frece &>/dev/null; then
   echo "$entries" | rofi -dmenu "${rofi_options[@]}"
