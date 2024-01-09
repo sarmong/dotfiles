@@ -3,7 +3,7 @@
 # The famous "get a menu of emojis to copy" script.
 
 # Get user selection via dmenu from emoji file.
-all_emojis=$(cut -d ';' -f1 "$XDG_BIN_DIR"/launchers/emojis/*)
+all_emojis=$(cut -d ';' -f1 "$XDG_BIN_DIR"/data/emojis/*)
 chosen=$(rofi-frecency "emojisasdf" "$all_emojis" -i -l 10 | sed "s/ .*//")
 
 # Exit if none chosen.
