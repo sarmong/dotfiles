@@ -1,6 +1,6 @@
 #!/bin/sh
 
-word=$(rofi-frecency "dict" "" "Enter Word > ")
+word=$(rofi-frecency "dict" -p "Enter Word > ")
 
 while [ -n "$word" ]; do
   json=$(curl "https://api.dictionaryapi.dev/api/v2/entries/en/$word" 2>/dev/null)

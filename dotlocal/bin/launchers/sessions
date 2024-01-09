@@ -1,7 +1,6 @@
 #!/bin/sh
 
-items=$(ls ~/docs/work)
-selected=$(rofi-frecency "sessions" "$items")
+selected=$(ls ~/docs/work | rofi-frecency "sessions")
 
 [ -z "$selected" ] && exit 1
 

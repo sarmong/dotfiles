@@ -36,6 +36,6 @@ other["file-manager"]="$TERMINAL --class centered -e $SHELL -c lf"
 other["code screenshot from cb"]="silicon --from-clipboard -l ts --to-clipboard"
 
 commands_string=$(printf "%s\n" "${commands[@]}")
-command=$(rofi-frecency "scripts" "$commands_string" -l 7 -p "Command to run")
+command=$(echo "$commands_string" | rofi-frecency "scripts" -l 7 -p "Command to run")
 
 $command || ${other["$command"]}
