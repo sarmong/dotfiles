@@ -1,9 +1,30 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-word=$(rofi-frecency "dict" -p "Enter Word > ")
+# List of words is taken from https://github.com/dwyl/english-words
+#
+declare -A urls
+urls[wiktionary]="https://en.wiktionary.org/w/index.php?search="
+urls[freedictionary]="https://freedictionary.org/?Query="
+urls[cambridge]="https://dictionary.cambridge.org/us/dictionary/english/"
+urls[thefreedictionary]="https://www.thefreedictionary.com/"
+site_names=$(printf "%s\n" "${!urls[@]}")
+
+## @TODO get the list from frece db, merge it with txt and get uniq
+words=$(cat "$XDG_BIN_DIR"/data/english_words.txt)
+word=$(echo "$words" | rofi -dmenu -p "Enter Word > " -matching prefix | sed 's/[[:space:]]*$//')
 
 while [ -n "$word" ]; do
   json=$(curl "https://api.dictionaryapi.dev/api/v2/entries/en/$word" 2>/dev/null)
-  meanings=$(echo "$json" | jq '.[].meanings')
-  word=$(echo "$meanings" | jq 'map(.partOfSpeech as $p | (.definitions | map(.definition + " (" + $p + ")")))' | jq 'flatten' | jq '.[]' | rofi -dmenu)
+  meanings=$(echo "$json" | jq '.[].meanings' | jq 'map(.partOfSpeech as $p | (.definitions | map(.definition + " (" + $p + ")")))' | jq 'flatten' | jq '.[]')
+  meanings=$(printf "%s\n%s" "$meanings" "$site_names")
+
+  new_word=$(printf "%s\n" "$meanings" | rofi -dmenu)
+  url="${urls[$new_word]}"
+
+  if [ -n "$url" ]; then
+    firefox "${url}${word}"
+    word=""
+  else
+    word="$new_word"
+  fi
 done
