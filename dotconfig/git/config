@@ -11,6 +11,7 @@
 [branch "upstream"]
 	rebase = true
 [alias]
+  cl  = clone
   co  = checkout
   sw  = switch
   br  = branch
