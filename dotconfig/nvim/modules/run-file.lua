@@ -18,7 +18,7 @@ local function get_command(file)
   return ({
     lua = { "lua", file },
     javascript = { "node", file },
-    typescript = { "ts-node", file },
+    typescript = { "ts-node", "-T", file },
     go = { "go", "run", file },
     python = { "python", file },
   })[vim.bo.filetype]
