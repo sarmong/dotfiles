@@ -8,6 +8,12 @@ mkdir -p "$dir"
 output_file="$dir/$(date +"%Y-%m-%d_%H-%M-%S").mp4"
 
 selected_region=$(slop -f "%x %y %w %h" --color 0.8,0.8,0.8,0.3 -b 2 -c 1,1,1,1)
+
+if [ "$?" -gt 0 ]; then
+  notify-send "Screen Recording" "Cancelled recording"
+  exit 1
+fi
+
 read -r x y width height <<<"$selected_region"
 
 stop_recording() {
@@ -27,7 +33,8 @@ stop_recording() {
     exit 1
   fi
 
-  notify-send "Screen Recording" "Saved to: $output_file"
+  notify-send "Screen Recording" "Copied file and saved to: $output_file"
+  fcp "$output_file"
 
   exit 0
 }
