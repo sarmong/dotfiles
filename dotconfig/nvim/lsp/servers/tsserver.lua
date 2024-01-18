@@ -30,6 +30,6 @@ req("typescript").setup({
 
     single_file_support = true,
 
-    autostart = ~helpers.isVueProject(),
+    autostart = not helpers.isVueProject(),
   }),
 })
