@@ -35,4 +35,6 @@ url="${websearch[$engine]}"
 
 query=$(rofi-frecency "search-$engine" -p "Enter search query ($engine):")
 
-firefox "${url}${query}"
+if [ -n "$query" ]; then
+  firefox "${url}${query}"
+fi

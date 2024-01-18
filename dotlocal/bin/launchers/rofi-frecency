@@ -6,9 +6,8 @@
 # - Type /// inside the rofi prompt during history mode
 # and this item will not be added to history
 
+subcommand_or_name="$1"
 declare -a rofi_options
-name="$1"
-rofi_options=("${@:2}")
 
 if [ -t 0 ]; then
   entries=""
@@ -20,32 +19,72 @@ if ! command -v frece &>/dev/null; then
   echo "$entries" | rofi -dmenu "${rofi_options[@]}"
 fi
 
-DATA_DIR="$XDG_DATA_HOME/frece"
-DB_FILE="$DATA_DIR/$name.db"
-ENTRIES_FILE="/tmp/frece_dir_entries.txt"
+get_db_file() {
+  DATA_DIR="$XDG_DATA_HOME/frece"
+  echo "$DATA_DIR/$1.db"
+}
 
-echo "$entries" >"$ENTRIES_FILE"
+update_db() {
+  DB_FILE="$1"
+  ENTRIES_FILE="/tmp/frece_dir_entries.txt"
+  echo "$entries" >"$ENTRIES_FILE"
 
-# Update DB
-[ ! -d "$DATA_DIR" ] && mkdir -p "$DATA_DIR"
-if [ ! -f "$DB_FILE" ]; then
-  frece init "$DB_FILE" "$ENTRIES_FILE"
-elif [ -n "$entries" ]; then
-  frece update "$DB_FILE" "$ENTRIES_FILE" --purge-old
-fi
-
-selected=$(frece print "$DB_FILE" | rofi -dmenu "${rofi_options[@]}")
-
-[ -z "$selected" ] && exit 1
-
-echo "${selected//\/\/\//}"
-
-if [[ "$selected" != *"///"* ]]; then
-  if [ -z "$entries" ]; then
-    frece add "$DB_FILE" "$selected"
+  [ ! -d "$DATA_DIR" ] && mkdir -p "$(dirname DB_FILE)"
+  if [ ! -f "$DB_FILE" ]; then
+    frece init "$DB_FILE" "$ENTRIES_FILE"
+  elif [ -n "$entries" ]; then
+    frece update "$DB_FILE" "$ENTRIES_FILE" --purge-old
   fi
 
-  frece increment "$DB_FILE" "$selected"
-fi
+  rm "$ENTRIES_FILE"
+}
 
-rm "$ENTRIES_FILE"
+get_sorted_entries() {
+  frece print "$1"
+}
+
+save_to_db() {
+  if [[ "$1" != *"///"* ]]; then
+    if ! get_sorted_entries "$1" | grep "$2" >/dev/null; then
+      frece add "$1" "$2"
+    fi
+
+    frece increment "$1" "$2"
+  fi
+}
+
+case "$subcommand_or_name" in
+  "get")
+    name="$2"
+    rofi_options=("${@:3}")
+    db_file="$(get_db_file "$name")"
+
+    update_db "$db_file"
+    get_sorted_entries "$db_file"
+    ;;
+  "update")
+    name="$2"
+    entry="$3"
+    rofi_options=("${@:4}")
+    db_file="$(get_db_file "$name")"
+
+    save_to_db "$db_file" "$entry"
+    ;;
+  *)
+    name="$1"
+    rofi_options=("${@:2}")
+    db_file="$(get_db_file "$name")"
+
+    if [ -n "$entries" ]; then
+      update_db "$db_file"
+    fi
+
+    selected=$(get_sorted_entries "$db_file" | rofi -dmenu "${rofi_options[@]}")
+
+    [ -z "$selected" ] && exit 1
+
+    echo "${selected//\/\/\//}"
+
+    save_to_db "$db_file" "$selected"
+    ;;
+esac
