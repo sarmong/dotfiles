@@ -1,7 +1,20 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-selected=$(ls ~/docs/work | rofi-frecency "sessions")
+work_projects=$(fd . "$HOME/docs/work" --max-depth 1 --type d)
+personal="$XDG_DOTFILES_DIR\n$XDG_NC_DIR"
 
-[ -z "$selected" ] && exit 1
+dirs="$work_projects\n$personal"
 
-"$TERMINAL" --directory ~/docs/work/"$selected" -e workplace "$selected"
+sorted=$(echo -e "$dirs" | rofi-frecency get "sessions")
+
+selected_idx=$(echo "$sorted" | xargs -n 1 basename | rofi -dmenu -format d)
+
+if [ -z "$selected_idx" ]; then
+  exit 1
+fi
+
+selected=$(echo "$sorted" | sed -n "${selected_idx}p")
+
+rofi-frecency update "sessions" "$selected"
+
+"$TERMINAL" --directory "$selected" -e workplace "$(basename "$selected")"
