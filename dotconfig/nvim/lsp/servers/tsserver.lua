@@ -9,6 +9,12 @@ req("typescript").setup({
     fallback = false, -- fall back to standard LSP definition on failure
   },
   server = vim.tbl_extend("force", default_conf, {
+    init_options = {
+      preferences = {
+        providePrefixAndSuffixTextForRename = false,
+        allowRenameOfImportPath = false,
+      },
+    },
     -- Prefer `.git` directory to avoid spawning new tsserver instance
     -- when going inside a package from node_modules
     root_dir = function(fname)
