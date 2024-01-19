@@ -10,8 +10,8 @@ IDE = not os.getenv("IS_SERVER")
 require("utils")
 req("impatient")
 
-req("settings")
 req("plugins")
+req("settings")
 
 if IDE then
   req("lsp")
