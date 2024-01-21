@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 work_projects=$(fd . "$HOME/docs/work" --max-depth 1 --type d)
-personal="$XDG_DOTFILES_DIR\n$XDG_NC_DIR"
+personal="$XDG_DOTFILES_DIR\n$XDG_NC_DIR/Vault"
 
 dirs="$work_projects\n$personal"
 
 sorted=$(echo -e "$dirs" | rofi-frecency get "sessions")
 
-selected_idx=$(echo "$sorted" | xargs -n 1 basename | rofi -dmenu -format d)
+selected_idx=$(echo "$sorted" | xargs -n 1 basename | rofi -dmenu -i -format d)
 
 if [ -z "$selected_idx" ]; then
   exit 1
