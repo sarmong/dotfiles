@@ -4,6 +4,17 @@ autocmd("VimEnter", {
   command = 'silent exec "!kill -s SIGWINCH $PPID"',
 })
 
+autocmd("BufReadPost", {
+  group = "Jump to the latest edit position",
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+
 autocmd({ "BufNewFile", "BufRead" }, {
   group = "rasi_ft",
   pattern = "*.rasi",
@@ -19,13 +30,19 @@ autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-autocmd("BufReadPost", {
-  group = "Jump to the latest edit position",
-  callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    local lcount = vim.api.nvim_buf_line_count(0)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+autocmd({ "BufReadPost" }, {
+  group = "Markdown title",
+  pattern = "*.md",
+  callback = function(event)
+    local fns = req("modules.functions")
+
+    if fns.is_buffer_empty(event.buf) then
+      local filename = fn.expand("%:t:r")
+      local heading = "# " .. fns.kebab_to_sentence(filename)
+
+      a.nvim_buf_set_lines(event.buf, 0, 3, false, { heading, "", "" })
+      a.nvim_win_set_cursor(0, { 3, 0 })
+      vim.opt_local.modified = true
     end
   end,
 })

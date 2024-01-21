@@ -21,4 +21,29 @@ function M.toggle_foldcolumn()
   toggle_option("foldcolumn", "1", "0")
 end
 
+--- Checks if buffer has any content
+---@param bufnr ?number
+---@return boolean
+function M.is_buffer_empty(bufnr)
+  local lines = a.nvim_buf_get_lines(bufnr or 0, 0, -1, false)
+  return #lines == 1 and lines[1] == ""
+end
+
+--- Convert kebab case string into a sentence
+---@param kebabCase string
+---@return string
+function M.kebab_to_sentence(kebabCase)
+  local words = {}
+  for word in kebabCase:gmatch("[^%-]+") do
+    table.insert(words, word)
+  end
+
+  local sentence = words[1]:gsub("^%l", string.upper)
+  for i = 2, #words do
+    sentence = sentence .. " " .. words[i]
+  end
+
+  return sentence
+end
+
 return M
