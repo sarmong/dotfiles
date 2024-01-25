@@ -48,6 +48,8 @@
   prompt = true
 [mergetool "vimdiff"]
   cmd = nvim -d $BASE $LOCAL
+[rerere]
+  enabled = true
 
 [credential "https://github.com"]
 	helper = 
