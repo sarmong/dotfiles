@@ -83,7 +83,7 @@ local mappings = {
   f = { telescope.find_files, "find files" },
   M = { ":MarkdownPreviewToggle<cr>", "markdown preview" },
   u = { ":UndotreeToggle<cr>", "undo tree" },
-  p = { '"_dP', "super paste" },
+  P = { '"_dP', "super paste" },
   -- @TODO find another place for scratchpad
   -- p = { ":Scratch<cr>", "scratchpad" },
   h = { "<C-W>s", "split below" },
@@ -251,6 +251,11 @@ local mappings = {
     s = { req("harpoon.ui").toggle_quick_menu, "show marks" },
     n = { req("harpoon.ui").nav_next, "next mark" },
     p = { req("harpoon.ui").nav_prev, "prev mark" },
+  },
+
+  p = {
+    name = "play macro",
+    i = { "0cwimport<ESC>f=cf(from <ESC>f)x", "change requireJS to ESM" },
   },
 
   -- Git
