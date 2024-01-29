@@ -37,7 +37,7 @@ alias egrep="grep -E --color=auto"
 alias mv="mv -i"
 mvto() {
   to=$(fd . ~ --type d --type symlink --follow | fzf)
-  [ -z "$to" ] && exit 1
+  [ -z "$to" ] && return
   command mv -i "$@" "$to"
 }
 
