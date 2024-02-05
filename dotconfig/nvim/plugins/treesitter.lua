@@ -2,6 +2,7 @@ local parsers = req("nvim-treesitter.parsers")
 
 req("nvim-treesitter.configs").setup({
   ensure_installed = { --  "all" or a list of languages
+    "astro",
     "bash",
     "c",
     "comment",

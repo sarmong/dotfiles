@@ -3,6 +3,7 @@ require("conform").setup({
     lua = { "stylua" },
     sh = { "shfmt" },
     -- Use a sub-list to run only the first available formatter
+    astro = { { "prettierd", "prettier" } },
     javascript = { { "prettierd", "prettier" } },
     javascriptreact = { { "prettierd", "prettier" } },
     typescript = { { "prettierd", "prettier" } },
