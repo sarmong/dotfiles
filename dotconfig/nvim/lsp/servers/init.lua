@@ -7,6 +7,7 @@ require("mason-lspconfig").setup({ automatic_installation = true })
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
   "null_ls",
+  "astro",
   "bashls",
   "clangd",
   "cssls",
