@@ -31,6 +31,7 @@ local keys = {
     modifiers = { super },
     key = "z",
     on_press = function()
+      quake.scratch:close()
       quake.dropdown:toggle()
     end,
   },
@@ -39,6 +40,7 @@ local keys = {
     modifiers = { super },
     key = "a",
     on_press = function()
+      quake.dropdown:close()
       quake.scratch:toggle()
     end,
   },
