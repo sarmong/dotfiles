@@ -26,8 +26,9 @@ finalize() {
   printf "\nINSTALLED: \n\n" >>"$log_dir"/packages.log
   printf "%s\n" "${installed_packages[@]}" >>"$log_dir"/packages.log
 
-  printf "\nNOT INSTALLED: \n\n" >>"$log_dir"/packages.log
-  grep -Fxvf <(printf "%s\n" "${installed_packages[@]}") <(echo "$to_install") >>"$log_dir"/packages.log
+  ## This is confusing because "$to_install" has all the packages (from another distro and skipped (x) too)
+  # printf "\nNOT INSTALLED: \n\n" >>"$log_dir"/packages.log
+  # grep -Fxvf <(printf "%s\n" "${installed_packages[@]}") <(echo "$to_install") >>"$log_dir"/packages.log
 }
 
 pac() {
@@ -136,6 +137,7 @@ for package in $to_install; do
   elif [ "$os" = 'debian' ]; then
     package_name="$deb_name"
     flag="$deb_flag"
+
   fi
 
   if [ -z "$package_name" ] || [ "$flag" = "x" ] || [ "$flag" = "n" ]; then
@@ -157,6 +159,7 @@ for package in $to_install; do
       apt "$deb_name"
     fi
   fi
+
 
   if [ $? -gt 0 ]; then
     failed_packages+=("$package_name")
