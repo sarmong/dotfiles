@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-# https://svs.gsfc.nasa.gov/5048
+# https://svs.gsfc.nasa.gov/5187
 # https://svs.gsfc.nasa.gov/Gallery/moonphase.html
+# https://github.com/desertplant/moon-phase-background
 
 resolution="1920x1080"
 year=$(date -u +%Y)
-id="a005000/a005048"
+id="a005100/a005187"
 
 cd /tmp || exit 1
 
