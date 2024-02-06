@@ -192,7 +192,7 @@ pass
 
 ## Programming tools ##				
 fnm-bin	p		a	
-yarn				
+yarn	x			on Debian it installs cmdtest instead, so install with npm
 httpie				
 tig				
 lazygit	p			
