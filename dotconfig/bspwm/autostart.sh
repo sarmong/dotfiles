@@ -2,7 +2,7 @@
 
 pidof sxhkd && kill -s USR1 "$(pidof sxhkd)" || sxhkd &
 
-"$XDG_BIN_DIR/setup/screenlayout/init.sh" &
+"$XDG_BIN_DIR/setup/screenlayout.sh" &
 
 # run only on initial start
 if [ "$1" = 0 ]; then

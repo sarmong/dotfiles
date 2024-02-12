@@ -24,7 +24,7 @@ local apps = {
   "feh --bg-fill $XDG_PICTURES_DIR/wallpaper.png &",
   "$XDG_BIN_DIR/setup/keyboard/init.sh",
   "inputplug -c $XDG_BIN_DIR/setup/keyboard/on-connect.sh",
-  "$XDG_BIN_DIR/setup/screenlayout/init.sh",
+  "$XDG_BIN_DIR/setup/screenlayout.sh",
   "unclutter",
   "blueman-applet",
 }
