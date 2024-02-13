@@ -18,9 +18,9 @@ xkb_keymap {
     name[group3] = "Ukrainian";
 
     key <RALT> {
-      type[group1]="EIGHT_LEVEL_BY_CTRL",
-      type[group2]="EIGHT_LEVEL_BY_CTRL",
-      type[group3]="EIGHT_LEVEL_BY_CTRL",
+      type[group1]="LOCAL_EIGHT_LEVEL",
+      type[group2]="LOCAL_EIGHT_LEVEL",
+      type[group3]="LOCAL_EIGHT_LEVEL",
       symbols[group1] = [ ISO_First_Group, ISO_Last_Group, NoSymbol, NoSymbol, ISO_Prev_Group ],
       symbols[group2] = [ ISO_First_Group, ISO_Last_Group, NoSymbol, NoSymbol, ISO_Next_Group ],
       symbols[group3] = [ ISO_First_Group, ISO_Last_Group ]
