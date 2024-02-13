@@ -13,7 +13,7 @@ if [ "$second_monitor" ]; then
     xrandr --output eDP-1 --mode "$laptop_resolution" --pos 1920x470 --rotate normal --output "$second_monitor" --primary --mode 1920x1080 --pos 0x0 --rotate normal
   fi
 else
-  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off --output DP-2-1 --off --output DP-2-2 --off --output DP-2-3 --off
+  xrandr --output eDP-1 --primary --mode "$laptop_resolution" --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off --output DP-2-1 --off --output DP-2-2 --off --output DP-2-3 --off
 fi
 
 feh --bg-fill "$XDG_PICTURES_DIR/wallpaper.png" &
