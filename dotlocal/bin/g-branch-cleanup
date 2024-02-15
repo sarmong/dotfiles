@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+## Remove branches that have bee squashed and merged on remote
+
+should_delete="$1"
+
+git checkout -q master
+
+branches=$(git for-each-ref refs/heads/ "--format=%(refname:short)")
+
+while read -r branch; do
+  mergeBase=$(git merge-base master "$branch")
+
+  rev_parse=$(git rev-parse "$branch^{tree}")
+  tree=$(git commit-tree "$rev_parse" -p "$mergeBase" -m _)
+
+  if [[ $(git cherry master "$tree") == "-"* ]]; then
+    has_branches_to_delete=true
+
+    if [ "$should_delete" = "-d" ]; then
+      git branch -D "$branch"
+    else
+      echo "$branch is merged into master and can be deleted"
+    fi
+  fi
+done < <(echo "$branches")
+
+if [ -n "$has_branches_to_delete" ] && [ "$should_delete" != "-d" ]; then
+  echo -e "\nUse -d to delete the printed branches"
+elif [ -z "$has_branches_to_delete" ]; then
+  echo "Nothing to remove"
+fi
