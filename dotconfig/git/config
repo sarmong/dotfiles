@@ -39,6 +39,8 @@
   # sync forked repo
   update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
 
+  cleanup = !g-branch-cleanup
+
 [url "https://"]
 	insteadOf = git://
 
