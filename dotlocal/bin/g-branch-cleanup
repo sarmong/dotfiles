@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Remove branches that have bee squashed and merged on remote
+## Remove branches that have been squashed and merged on remote
 
 should_delete="$1"
 

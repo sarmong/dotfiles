@@ -1,15 +1,55 @@
-# This is Git's per-user configuration file.
 [core]
-  pager = "bat --plain"
+  pager = "delta"
   excludesfile = "~/.config/git/gitignore_global"
 [init]
-	defaultBranch = master
+  defaultBranch = master
+[help]
+  autocorrect = 10
+
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color
+[diff]
+  algorithm = histogram
+
+[merge]
+  tool = vimdiff
+  conflictstyle = zdiff3
+  colorMoved = default # for git-delta
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL
+[rerere]
+  enabled = true
+
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
+  sort = -committerdate
 [branch "master"]
-	rebase = true
+  rebase = true
 [branch "upstream"]
-	rebase = true
+  rebase = true
+
+[fetch]
+  prune = true # autoremove branches removed on remote
+[push]
+  autoSetupRemote = true
+[url "git@github.com:"]
+  insteadOf = "https://github.com/"
+  insteadOf = "gh:"
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+
+[include]
+    path = ~/.config/git/git-personal.conf
+[includeIf "gitdir:~/docs/work/"]
+    path = ~/.config/git/git-work.conf
+
 [alias]
   cl  = clone
   co  = checkout
@@ -40,24 +80,3 @@
   update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
 
   cleanup = !g-branch-cleanup
-
-[url "https://"]
-	insteadOf = git://
-
-[merge]
-  tool = vimdiff
-[mergetool]
-  prompt = true
-[mergetool "vimdiff"]
-  cmd = nvim -d $BASE $LOCAL
-[rerere]
-  enabled = true
-
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-
-[include]
-    path = ~/.config/git/git-personal.conf
-[includeIf "gitdir:~/docs/work/"]
-    path = ~/.config/git/git-work.conf

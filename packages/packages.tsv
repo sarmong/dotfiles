@@ -198,6 +198,8 @@ tig
 lazygit	p			
 forgit	x		a	@TODO add to pacstall
 github-cli-bin	p	github-cli		
+git-delta-deb	p	git-delta		
+
 zeal			a	
 
 vscodium-deb	p	vscodium-bin	a	
