@@ -116,7 +116,7 @@
             "redirectUrl": "https://nitter.net/$1",
             "patternType": "R",
             "processMatches": "noProcessing",
-            "disabled": false,
+            "disabled": true,
             "grouped": false,
             "appliesTo": [
                 "main_frame"
