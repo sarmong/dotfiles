@@ -63,6 +63,7 @@
   ll  = log --graph --decorate --oneline
   lb  = log master..HEAD
   ln  = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  fpush = push --force-with-lease --force-if-uncludes
 
   wt  = worktree
 
