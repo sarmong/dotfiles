@@ -18,6 +18,7 @@ sudo systemctl enable bluetooth
 sudo systemctl enable cronie
 sudo systemctl enable betterlockscreen@"$USER"
 sudo systemctl enable syncthing@"$USER"
+systemctl enable --user ssh-agent
 
 sudo gpasswd -a "$USER" input
 # This command seems to create a new shell and
