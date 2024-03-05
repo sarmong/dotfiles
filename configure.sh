@@ -8,6 +8,7 @@ sudo ln -sfT /bin/dash /bin/sh
 "$XDG_BIN_DIR"/services/suspend/init.sh
 "$XDG_BIN_DIR"/services/audio/init.sh
 "$XDG_BIN_DIR"/services/cron/init.sh
+"$XDG_BIN_DIR"/services/geoclue/init.sh
 
 "$XDG_BIN_DIR"/setup/touchpad/init.sh
 
