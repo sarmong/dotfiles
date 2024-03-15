@@ -38,7 +38,7 @@
 [push]
   autoSetupRemote = true
 [url "git@github.com:"]
-  insteadOf = "https://github.com/"
+  # insteadOf = "https://github.com/"
   insteadOf = "gh:"
 
 [credential "https://github.com"]
