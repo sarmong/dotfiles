@@ -1,5 +1,8 @@
 #!/bin/sh
 
+sudo apt install -y libevent-dev bison byacc
+sudo apt-mark auto libevent-dev bison byacc # mark as dependency (like pacman -S --asdeps)
+
 # see https://github.com/tmux/tmux/issues/2705
 version="3.3a"
 
