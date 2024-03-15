@@ -165,6 +165,7 @@ local mappings = {
     name = "search",
     B = { ":Telescope git_branches<cr>", "git branches" },
     b = { ":Telescope buffers<cr>", "buffers" },
+    c = { ":Telescope command_history<cr>", "history" },
     d = {
       ":Telescope diagnostics bufnr=0<cr>",
       "document_diagnostics",
@@ -182,7 +183,7 @@ local mappings = {
       end,
       "files in root",
     },
-    c = { ":Telescope command_history<cr>", "history" },
+    g = { ":Telescope git_status<cr>", "git status" },
     h = { ":Telescope help_tags<cr>", "vim help" },
     i = { ":Telescope media_files<cr>", "media files" },
     m = { ":Telescope marks<cr>", "marks" },
