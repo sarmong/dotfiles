@@ -2,13 +2,14 @@
 
 user="michael"
 
-if id -u "$user"; then
+if ! id -u "$user"; then
   adduser "$user"
   adduser "$user" sudo
 
   read -r -p "Do you want to add www user? [y/N]" yn
   if [ "$yn" = "Y" ] || [ "$yn" = "y" ]; then
     adduser www
+    mkdir /var/www
     chown www:www /var/www
     echo "Added www user."
   fi
@@ -20,9 +21,16 @@ if id -u "$user"; then
   3. ssh $user@[ip]
   4. Run this file again
   "
-
   exit 0
 fi
+
+echo "Cloning dotfiles...."
+
+mkdir ~/docs
+cd ~/docs || exit
+
+git clone https://github.com/sarmong/dotfiles.git
+cd dotfiles || exit
 
 echo "Updating sudo to use vim by default"
 
@@ -35,9 +43,7 @@ PermitRootLogin no
 PasswordAuthentication no
 X11Forwarding no" | sudo tee -a /etc/ssh/sshd_config
 
-PermitRootLogin no
-PasswordAuthentication no
-X11Forwarding no
+sudo systemctl reload sshd
 
 echo "Installing packages: "
 
@@ -56,6 +62,13 @@ echo "Linking files..."
 
 ./link.sh
 
-echo "Changin shell to zsh..."
+echo "Changing shell to zsh..."
 
-sudo chsh -s /usr/bin/zsh
+chsh -s /usr/bin/zsh
+
+echo "Adding user to docker group..."
+
+sudo usermod -aG docker "$USER"
+newgrp docker # applies the changes to the group
+
+echo "Open another terminal window and check if you can login"
