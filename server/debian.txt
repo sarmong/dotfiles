@@ -3,10 +3,14 @@
 git
 zsh
 psmisc # provides killall
-trash-cli
+rsync
 
+vim
+neovim
+lf
 zoxide
 fzf
+trash-cli
 
 ufw
 nginx
