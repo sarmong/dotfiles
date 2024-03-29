@@ -85,6 +85,11 @@ else
   unset NODE_EXTRA_CA_CERTS
 fi
 
+export BUN_INSTALL="$XDG_DATA_HOME/bun"
+if [ -d "$BUN_INSTALL" ]; then
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
 # Rust
 # ===============
 
