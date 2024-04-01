@@ -163,8 +163,8 @@ local mappings = {
   -- Search
   s = {
     name = "search",
-    B = { ":Telescope git_branches<cr>", "git branches" },
     b = { ":Telescope buffers<cr>", "buffers" },
+    B = { telescope.text_in_open_buffers, "text in open [B]uffers" },
     c = { ":Telescope command_history<cr>", "history" },
     d = {
       ":Telescope diagnostics bufnr=0<cr>",

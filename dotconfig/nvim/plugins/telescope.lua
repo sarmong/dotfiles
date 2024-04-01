@@ -161,10 +161,13 @@ return {
     })
   end,
 
-  find_files = function()
+  find_files = function(options)
     if vim.bo.filetype ~= "NvimTree" then
-      builtin.find_files({ hidden = true })
+      builtin.find_files(
+        vim.tbl_extend("force", { hidden = true }, options or {})
+      )
     else
+      -- Search inside the focused dir in nvim-tree
       local tree = req("nvim-tree.lib")
       local node = tree.get_node_at_cursor()
       if node then
@@ -192,5 +195,9 @@ return {
         })
       end
     end
+  end,
+
+  text_in_open_buffers = function()
+    builtin.live_grep({ grep_open_files = true })
   end,
 }
