@@ -3,10 +3,12 @@ local parsers = req("nvim-treesitter.parsers")
 req("nvim-treesitter.configs").setup({
   ensure_installed = { --  "all" or a list of languages
     "astro",
+    "awk",
     "bash",
     "c",
     "comment",
     "css",
+    "csv",
     "dockerfile",
     "go",
     "html",
@@ -17,6 +19,7 @@ req("nvim-treesitter.configs").setup({
     "json",
     "json5",
     "jsonc",
+    "jq",
     "latex",
     "lua",
     "make",
@@ -34,6 +37,7 @@ req("nvim-treesitter.configs").setup({
     "sql",
     "toml",
     "tsx",
+    "tsv",
     "typescript",
     "vim",
     "vue",
