@@ -73,7 +73,7 @@ autocmd("VimResized", {
 autocmd({ "BufNewFile", "BufRead" }, {
   pattern = { "tsconfig*" },
   group = "jsonc",
-  command = "set gcype=jsonc",
+  command = "set filetype=jsonc",
 })
 
 autocmd("FileType", {
