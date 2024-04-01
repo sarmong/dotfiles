@@ -14,6 +14,7 @@ local servers = {
   "cssmodules_ls",
   "eslint",
   "gopls",
+  "metals",
   "pylsp",
   "pyright",
   "lua_ls",

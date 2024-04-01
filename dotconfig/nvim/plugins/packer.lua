@@ -126,6 +126,12 @@ packer.startup(function(use)
   use({ "stevearc/conform.nvim" })
   -- @TODO remove tag when it's updated
   use({ "j-hui/fidget.nvim", tag = "legacy" })
+  use({
+    "scalameta/nvim-metals",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
 
   -- Other language features --
   use({ "jose-elias-alvarez/typescript.nvim" })
