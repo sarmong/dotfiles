@@ -29,6 +29,7 @@ req("nvim-treesitter.configs").setup({
     "rasi",
     "regex",
     "rust",
+    "scala",
     "scss",
     "sql",
     "toml",
