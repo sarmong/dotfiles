@@ -68,7 +68,14 @@ chsh -s /usr/bin/zsh
 
 echo "Adding user to docker group..."
 
-sudo usermod -aG docker "$USER"
+if command docker >/dev/null 2>&1; then
+  sudo usermod -aG docker "$USER"
+
+  if id www >/dev/null 2>&1; then
+    sudo usermod -aG docker www
+  fi
+fi
+
 newgrp docker # applies the changes to the group
 
 echo "Open another terminal window and check if you can login"
