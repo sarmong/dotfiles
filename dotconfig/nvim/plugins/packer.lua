@@ -133,6 +133,13 @@ packer.startup(function(use)
       "nvim-lua/plenary.nvim",
     },
   })
+  use({
+    "antosha417/nvim-lsp-file-operations",
+    requires = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-tree.lua" },
+    config = function()
+      require("lsp-file-operations").setup({ debug = false })
+    end,
+  })
 
   -- Other language features --
   use({ "jose-elias-alvarez/typescript.nvim" })
