@@ -1,19 +1,26 @@
 #!/bin/sh
 
-project="$1"
+path="${1:-$(pwd)}"
+working_dir=$(realpath "$path")
+project="$(basename "$working_dir" | tr '.:' '_')" # tmux itself does the replacing
+is_in_tmux=$2
 
 if ! tmux has-session -t "$project" 2>/dev/null; then
-  tmux new-session -d -s "$project"
+  tmux new-session -c "$working_dir" -d -s "$project"
 
   tmux rename-window 'neovim'
   tmux send-keys 'nvim' C-m
 
-  tmux new-window -a -n server
+  tmux new-window -c "$working_dir" -a -n server
 
-  tmux new-window -a -n shell
+  tmux new-window -c "$working_dir" -a -n shell
   tmux send-keys 'git status' C-m
 
   tmux select-window -t 1
 fi
 
-tmux attach-session -t "$project"
+if [ -n "$TMUX" ] || [ -n "$is_in_tmux" ]; then
+  tmux switch-client -t "$project"
+else
+  tmux attach-session -t "$project"
+fi

@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 
-work_projects=$(fd . "$HOME/docs/work" --max-depth 1 --type d)
+if [ -n "$TMUX" ]; then
+  is_in_tmux=true
+else
+  focused_window_id=$(xdotool getactivewindow)
+  window_class=$(xprop -id "$focused_window_id" WM_CLASS | awk '{print $4}')
+  pid=$(xdotool getwindowpid "$focused_window_id")
+  tmux_running=$(pstree -p "$pid" | grep "tmux")
+
+  ## Need ** because window_class is surrounded with ""
+  if [[ "$window_class" == *"$TERMINAL"* ]] && [ -n "$tmux_running" ]; then
+    is_in_tmux=true
+  fi
+fi
+
+work_projects=$(fd . "$HOME/docs/tech" --max-depth 1 --type d)
 personal="$XDG_DOTFILES_DIR\n$XDG_NC_DIR/Vault"
 
 dirs="$work_projects\n$personal"
@@ -10,11 +24,15 @@ sorted=$(echo -e "$dirs" | rofi-frecency get "sessions")
 selected_idx=$(echo "$sorted" | xargs -n 1 basename | rofi -dmenu -i -format d)
 
 if [ -z "$selected_idx" ]; then
-  exit 1
+  exit 0
 fi
 
 selected=$(echo "$sorted" | sed -n "${selected_idx}p")
 
 rofi-frecency update "sessions" "$selected"
 
-"$TERMINAL" --directory "$selected" -e workplace "$(basename "$selected")"
+if [ -n "$is_in_tmux" ]; then
+  workplace "$selected" "$is_in_tmux"
+else
+  "$TERMINAL" --directory "$selected" -e "$SHELL" -c "workplace ; $SHELL"
+fi
