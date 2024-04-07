@@ -238,6 +238,10 @@ local mappings = {
 
   -- Marks
   m = {
+    b = {
+      req("buffer_manager.ui").toggle_quick_menu,
+      "show [b]uffers",
+    },
     a = {
       function()
         print(

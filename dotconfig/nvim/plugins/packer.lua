@@ -78,6 +78,7 @@ packer.startup(function(use)
   -- IDE features --
   ------------------
   use({ "romgrk/barbar.nvim" })
+  use({ "j-morano/buffer_manager.nvim" })
   use({ "kyazdani42/nvim-tree.lua" })
   use({ "ojroques/nvim-bufdel" })
   use({ "mg979/vim-visual-multi" })
