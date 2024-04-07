@@ -15,6 +15,7 @@ local servers = {
   "eslint",
   "gopls",
   "metals",
+  "htmx",
   "pylsp",
   "pyright",
   "lua_ls",
