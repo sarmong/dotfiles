@@ -6,8 +6,29 @@ exists batcat && alias bat="batcat" # For Debian
 
 ## Package managers
 alias p="sudo pacman"
-alias a="sudo apt"
-alias n="sudo nala"
+a() {
+  cmd="apt"
+  if [ "$1" = "nala" ]; then
+    cmd="nala"
+    shift
+  fi
+  if [[ "install" == $1* ]]; then
+    shift
+    sudo "$cmd" install "$@"
+  elif [[ "remove" == $1* ]]; then
+    shift
+    sudo "$cmd" remove "$@"
+  elif [[ "search" == $1* ]]; then
+    shift
+    "$cmd" search "$@"
+  elif [[ "show" == $1* ]]; then
+    shift
+    "$cmd" show "$@"
+  else
+    "$cmd" "$@"
+  fi
+}
+alias n="a nala"
 
 ## Abbreviations
 
