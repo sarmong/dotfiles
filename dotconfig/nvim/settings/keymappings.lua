@@ -86,6 +86,8 @@ map("v", "<A-h>", ":MoveHBlock(-1)<CR>")
 
 -- Buffers
 map("n", "<C-i>", "<C-i>") -- needed to distinguish tab and c-i in terminals that support it
+map("n", "<tab>", "<nop>")
+
 map("n", "<C-TAB>", ":bnext<cr>")
 map("n", "<C-S-TAB>", ":bprev<cr>")
 map("n", "<A-.>", req("plugins.barbar").move_next)
