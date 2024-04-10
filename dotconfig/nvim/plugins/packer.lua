@@ -142,7 +142,10 @@ packer.startup(function(use)
   })
 
   -- Other language features --
-  use({ "jose-elias-alvarez/typescript.nvim" })
+  use({
+    "pmizio/typescript-tools.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+  })
   use({ "folke/lua-dev.nvim" }) -- @TODO this is currently not used
   use({
     "git@github.com:sarmong/markdown.nvim.git",

@@ -1,4 +1,4 @@
-local ts = req("typescript")
+local ts = req("typescript-tools.api")
 
 local fns = {}
 
@@ -71,17 +71,17 @@ fns.toggle_virtual_text = function()
 end
 
 fns.go_to_source_definition = function()
-  vim.cmd("TypescriptGoToSourceDefinition")
+  vim.cmd("TSToolsGoToSourceDefinition")
 end
 
 fns.rename_file = function()
   vim.cmd("TypescriptRenameFile")
 end
 
-fns.fix_all = ts.actions.fixAll
-fns.add_missing_imports = ts.actions.addMissingImports
-fns.organize_imports = ts.actions.organizeImports
-fns.remove_unused = ts.actions.removeUnused
+fns.fix_all = ts.fix_all
+fns.add_missing_imports = ts.add_missing_imports
+fns.organize_imports = ts.organize_imports
+fns.remove_unused = ts.remove_unused
 
 fns.rename_qf = function(err, method, result, ...)
   vim.lsp.handlers["textDocument/rename"](err, method, result, ...)
