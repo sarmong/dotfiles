@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+launcher="${1:-rofi}"
+
 if [ -n "$TMUX" ]; then
   is_in_tmux=true
 else
@@ -14,20 +16,31 @@ else
   fi
 fi
 
-work_projects=$(fd . "$HOME/docs/tech" --max-depth 1 --type d)
+work_projects=$(find "$HOME/docs/work" "$HOME/docs/tech" -mindepth 1 -maxdepth 1 -type d)
 personal="$XDG_DOTFILES_DIR\n$XDG_NC_DIR/Vault"
 
 dirs="$work_projects\n$personal"
 
+opened_sessions=$(tmux ls -F '#{session_name}')
 sorted=$(echo -e "$dirs" | rofi-frecency get "sessions")
+sessions_without_dir=$(echo -e "$opened_sessions" | grep -v -F "$(echo "$sorted" | xargs -n 1 basename)")
 
-selected_idx=$(echo "$sorted" | xargs -n 1 basename | rofi -dmenu -i -format d)
+all=$([ -n "$sessions_without_dir" ] && echo -e "$sessions_without_dir\n$sorted" || echo -e "$sorted")
 
-if [ -z "$selected_idx" ]; then
-  exit 0
+if [ "$launcher" = "fzf" ]; then
+  selected=$(echo -e "$all" | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})")
+
+  if [ -z "$selected" ]; then
+    exit 0
+  fi
+else
+  selected_idx=$(echo -e "$all" | xargs -n 1 basename | rofi -dmenu -i -format d)
+  if [ -z "$selected_idx" ]; then
+    exit 0
+  fi
+
+  selected=$(echo "$all" | sed -n "${selected_idx}p")
 fi
-
-selected=$(echo "$sorted" | sed -n "${selected_idx}p")
 
 rofi-frecency update "sessions" "$selected"
 
