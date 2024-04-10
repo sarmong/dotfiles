@@ -178,7 +178,12 @@ local mappings = {
     F = {
       function()
         req("telescope.builtin").find_files({
-          cwd = fn.finddir(".git/..", fn.expand("%:p:h") .. ";"),
+          cwd = vim.fs.dirname(
+            vim.fs.find(
+              { "package-lock.json", "yarn.lock", ".git" },
+              { upward = true, stop = vim.loop.os_homedir() }
+            )[1]
+          ),
         })
       end,
       "files in root",
