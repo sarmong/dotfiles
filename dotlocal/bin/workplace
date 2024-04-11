@@ -5,7 +5,7 @@ working_dir=$(realpath "$path")
 project="$(basename "$working_dir" | tr '.:' '_')" # tmux itself does the replacing
 is_in_tmux=$2
 
-if ! tmux has-session -t "$project" 2>/dev/null; then
+if ! tmux has-session -t="$project" 2>/dev/null; then
   tmux new-session -c "$working_dir" -d -s "$project"
 
   tmux rename-window 'neovim'
