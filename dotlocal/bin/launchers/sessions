@@ -44,6 +44,27 @@ fi
 
 rofi-frecency update "sessions" "$selected"
 
+if [ -d "$selected/.bare" ]; then
+  cd "$selected" || exit
+  worktrees=$(git worktree list | sed 1d)
+
+  if [ "$launcher" = "fzf" ]; then
+    selected=$(echo "$worktrees" | awk '{print $1, $3}' | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})" | awk '{print $1}')
+
+    if [ -z "$selected" ]; then
+      exit 0
+    fi
+  else
+    selected_idx=$(echo "$worktrees" | awk '{cmd="basename \"" $1 "\""; cmd | getline col1; close(cmd); print col1, $3}' | rofi -dmenu -i -format d)
+
+    if [ -z "$selected_idx" ]; then
+      exit 0
+    fi
+
+    selected=$(echo "$worktrees" | sed -n "${selected_idx}p" | awk '{print $1}')
+  fi
+fi
+
 if [ -n "$is_in_tmux" ]; then
   workplace "$selected" "$is_in_tmux"
 else
