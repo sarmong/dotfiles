@@ -78,8 +78,10 @@ autoload -U colors && colors
 setopt prompt_subst
 
 tools() {
-  # Check if the current directory is in a Git repository.
-  git rev-parse --is-inside-work-tree &>/dev/null || return;
+  if ! git rev-parse &>/dev/null || [ $(git rev-parse --is-inside-work-tree) = 'false' ]; then
+    return
+  fi
+
 
   git=$(git_status)
   nodev=$(node_version)
