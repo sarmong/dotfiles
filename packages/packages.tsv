@@ -153,6 +153,7 @@ lynx
 
 rsync				
 jq				
+jqp-bin	p		x		
 tree				
 speedtest-cli				
 colordiff				
