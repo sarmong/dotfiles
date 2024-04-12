@@ -122,7 +122,10 @@ packer.startup(function(use)
       "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
   })
-  use({ "nvimtools/none-ls.nvim" })
+  use({
+    "nvimtools/none-ls.nvim",
+    requires = { "gbprod/none-ls-shellcheck.nvim" },
+  })
   use({ "stevearc/conform.nvim" })
   -- @TODO remove tag when it's updated
   use({ "j-hui/fidget.nvim", tag = "legacy" })
