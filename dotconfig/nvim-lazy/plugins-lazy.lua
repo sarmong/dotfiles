@@ -128,7 +128,7 @@ req("lazy").setup({
   },
   { "stevearc/conform.nvim" },
   -- @TODO remove tag when it's updated
-  { "j-hui/fidget.nvim", tag = "legacy" },
+  { "j-hui/fidget.nvim" },
   { "scalameta/nvim-metals", dependencies = { "nvim-lua/plenary.nvim" } },
   {
     "antosha417/nvim-lsp-file-operations",
@@ -152,7 +152,7 @@ req("lazy").setup({
   -- },
   {
     "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
+    build = "cd app && npm ci",
     ft = "markdown",
   },
 
