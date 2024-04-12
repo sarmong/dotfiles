@@ -19,6 +19,3 @@ null_ls.setup({
     default_conf.on_attach(client, bufnr)
   end,
 })
-
--- has to go after null_ls
-require("mason-null-ls").setup({ automatic_installation = true })

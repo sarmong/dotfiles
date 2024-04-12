@@ -119,7 +119,6 @@ packer.startup(function(use)
     "williamboman/mason.nvim",
     requires = {
       "williamboman/mason-lspconfig.nvim",
-      "jayp0521/mason-null-ls.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
   })

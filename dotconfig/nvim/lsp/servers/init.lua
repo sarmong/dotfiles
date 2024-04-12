@@ -1,12 +1,8 @@
 local lspconfig = req("lspconfig")
 local default_config = req("lsp.servers.default")
 
-require("mason").setup()
-require("mason-lspconfig").setup({ automatic_installation = true })
-
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
-  "null_ls",
   "astro",
   "bashls",
   "clangd",
@@ -14,7 +10,6 @@ local servers = {
   "cssmodules_ls",
   "eslint",
   "gopls",
-  "metals",
   "htmx",
   "pylsp",
   "pyright",
@@ -23,6 +18,12 @@ local servers = {
   "vimls",
   "volar",
 }
+
+require("mason").setup()
+require("mason-lspconfig").setup({ ensure_installed = servers })
+
+req("lsp.servers.null_ls")
+req("lsp.servers.metals")
 
 for _, server in ipairs(servers) do
   local ok, server_config = pcall(require, "lsp.servers." .. server)
