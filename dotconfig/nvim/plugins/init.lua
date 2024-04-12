@@ -22,3 +22,4 @@ req("plugins.ufo")
 
 req("plugins.colorizer")
 req("plugins.window-picker")
+req("plugins.vim-markdown")
