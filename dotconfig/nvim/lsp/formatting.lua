@@ -41,16 +41,3 @@ require("conform").setup({
     },
   },
 })
-
-local function extractNames(tableList)
-  local names = {}
-  for _, tbl in ipairs(tableList) do
-    table.insert(names, tbl.name)
-  end
-  return names
-end
-
-require("mason-tool-installer").setup({
-  ensure_installed = extractNames(req("conform").list_all_formatters()),
-  run_on_start = false,
-})
