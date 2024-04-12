@@ -119,7 +119,6 @@ req("lazy").setup({
     "williamboman/mason.nvim",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
-      "jayp0521/mason-null-ls.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
   },
