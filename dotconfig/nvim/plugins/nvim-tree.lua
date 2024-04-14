@@ -109,7 +109,6 @@ nvim_tree.setup({
   hijack_cursor = true,
   filters = {
     dotfiles = true,
-    exclude = { ".config", ".local" },
   },
   -- needed for project.nvim
   update_cwd = true,
