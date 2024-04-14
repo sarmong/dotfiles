@@ -1,17 +1,4 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-
-vim.opt.rtp:prepend(lazypath)
-req("lazy").setup({
+return {
   { "nvim-lua/plenary.nvim" }, -- required by many plugins
   { "nvim-tree/nvim-web-devicons" },
 
@@ -50,7 +37,7 @@ req("lazy").setup({
     "kevinhwang91/nvim-bqf",
     ft = "qf",
     config = function()
-      require("plugins.bqf")
+      require("plugins-olds.bqf")
     end,
   },
   { "mbbill/undotree" },
@@ -218,4 +205,4 @@ req("lazy").setup({
       require("neogen").setup({})
     end,
   },
-})
+}

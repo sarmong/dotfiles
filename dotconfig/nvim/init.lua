@@ -9,6 +9,7 @@ IDE = not os.getenv("IS_SERVER")
 
 require("utils")
 
+req("lazy-config")
 req("plugins")
 req("settings")
 
