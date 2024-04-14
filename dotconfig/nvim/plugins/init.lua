@@ -1,4 +1,4 @@
-req("plugins.packer")
+req("plugins.lazy")
 
 req("plugins.treesitter")
 req("plugins.git")

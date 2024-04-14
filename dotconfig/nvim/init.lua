@@ -8,7 +8,6 @@ package.path = config_dir
 IDE = not os.getenv("IS_SERVER")
 
 require("utils")
-req("impatient")
 
 req("plugins")
 req("settings")
