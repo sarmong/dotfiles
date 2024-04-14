@@ -39,7 +39,6 @@ export STACK_ROOT="$XDG_DATA_HOME"/stack
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : exists("$NVIM_APPNAME") ? "$XDG_CONFIG_HOME/$NVIM_APPNAME/init.lua" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
-export NVIM_APPNAME="nvim-lazy"
 export TIMEWARRIORDB="$XDG_NC_DIR/Documents/timewarrior"
 
 export PATH="$XDG_BIN_DIR:$XDG_BIN_DIR/launchers:$XDG_BIN_DIR/wrappers:$PATH"
