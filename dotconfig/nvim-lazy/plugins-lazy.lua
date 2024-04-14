@@ -79,7 +79,7 @@ req("lazy").setup({
   ------------------
   { "romgrk/barbar.nvim" },
   { "j-morano/buffer_manager.nvim" },
-  { "kyazdani42/nvim-tree.lua" },
+  { "nvim-tree/nvim-tree.lua" },
   { "ojroques/nvim-bufdel" },
   { "mg979/vim-visual-multi" },
   { "windwp/nvim-spectre" }, -- search and replace
