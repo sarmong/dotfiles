@@ -1,4 +1,4 @@
-require("octo").setup({
+req("octo").setup({
   default_remote = { "upstream", "origin" }, -- order to try remotes
   ssh_aliases = {}, -- SSH aliases. e.g. `ssh_aliases = {["github.com-work"] = "github.com"}`
   snippet_context_lines = 4, -- number or lines around commented lines
@@ -178,5 +178,8 @@ require("octo").setup({
         desc = "toggle viewer viewed state",
       },
     },
+  },
+  suppress_missing_scope = {
+    projects_v2 = true,
   },
 })
