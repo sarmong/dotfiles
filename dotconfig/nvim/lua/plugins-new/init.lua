@@ -136,14 +136,6 @@ return {
     build = "yarn install --frozen-lockfile && yarn compile",
   },
 
-  -- Color
-  { "AlphaTechnolog/onedarker.nvim" },
-  { "navarasu/onedark.nvim" },
-  { "folke/tokyonight.nvim" },
-  { "ellisonleao/gruvbox.nvim" },
-  { "sainnhe/gruvbox-material" },
-  -- "christianchiarulli/nvcode-color-schemes.vim",
-
   { "Pocco81/TrueZen.nvim" },
   { "martinlroth/vim-devicetree" },
   { "sarmong/lf-vim" },
