@@ -5,7 +5,6 @@ local git = req("plugins.git").git
 local gitsigns = req("plugins.git").gitsigns
 local github = req("plugins.git").github
 local lsp_fns = req("lsp.functions")
-local alpha = req("plugins.alpha")
 local nvim_tree = req("plugins.nvim-tree")
 local barbar = req("plugins.barbar")
 local spectre = req("plugins.spectre")
@@ -78,7 +77,6 @@ wk.setup({
 })
 
 local mappings = {
-  [";"] = { alpha.open_home_page, "home screen" },
   e = { nvim_tree.toggle, "filetree" },
   f = { telescope.find_files, "find files" },
   M = { ":MarkdownPreviewToggle<cr>", "markdown preview" },
