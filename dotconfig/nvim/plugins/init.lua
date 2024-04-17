@@ -1,20 +1,14 @@
 req("plugins.treesitter")
 req("plugins.git")
 req("plugins.comment")
-req("plugins.telescope")
 
-req("plugins.nvim-tree")
-req("plugins.barbar")
 req("plugins.which-key")
 
-req("plugins.project")
 req("plugins.matchup")
 req("plugins.autopairs")
 req("plugins.visual-multi")
 req("plugins.spectre")
-req("plugins.marks")
 req("plugins.ufo")
 
 req("plugins.colorizer")
-req("plugins.window-picker")
 req("plugins.vim-markdown")

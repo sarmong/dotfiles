@@ -82,7 +82,7 @@ autocmd("FileType", {
   callback = function()
     map("n", "gf", function()
       local path = vim.fn.expand("<cfile>")
-      req("plugins.window-picker").pick(path)
+      PickWindow(path)
     end)
   end,
 })

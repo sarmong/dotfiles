@@ -36,11 +36,13 @@ local langmap = { A = "Ф", B = "И", C = "С", D = "В", E = "У", F = "А", G 
 ---@param mode string | table
 ---@param lhs string
 ---@param rhs string | function
----@param opts? table
-function map(mode, lhs, rhs, opts)
+---@param optsOrDesc? table | string descriptions string or options table
+function map(mode, lhs, rhs, optsOrDesc)
   local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
+  if type(optsOrDesc) == "string" then
+    options.desc = optsOrDesc
+  elseif type(optsOrDesc) == "table" then
+    options = vim.tbl_extend("force", options, optsOrDesc)
   end
   vim.keymap.set(mode, lhs, rhs, options)
 

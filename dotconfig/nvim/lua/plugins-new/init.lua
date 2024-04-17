@@ -3,20 +3,6 @@ return {
   { "nvim-tree/nvim-web-devicons" },
 
   { "folke/which-key.nvim" },
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-media-files.nvim",
-      "nvim-telescope/telescope-project.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "nvim-telescope/telescope-live-grep-args.nvim",
-      {
-        "nvim-telescope/telescope-smart-history.nvim",
-        -- Need libsqlite3-dev on debian
-        dependencies = "kkharji/sqlite.lua",
-      },
-    },
-  },
 
   -- Quality of life improvements --
 
@@ -27,7 +13,6 @@ return {
 
   { "fedepujol/move.nvim" },
   -- { "andymass/vim-matchup", commit = commits.matchup }, -- perhaps not that essential
-  { "ahmedkhalf/project.nvim" }, -- automagically switches root directory
   { "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
   { "sarmong/vim-smoothie" }, -- smooth scrolling
 
@@ -35,11 +20,10 @@ return {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
     config = function()
-      require("plugins-olds.bqf")
+      require("plugins.bqf")
     end,
   },
   { "mbbill/undotree" },
-  { "ThePrimeagen/harpoon" },
   { "azabiong/vim-highlighter" },
   {
     "mtth/scratch.vim",
@@ -49,17 +33,11 @@ return {
     end,
   },
   -- { "lewis6991/impatient.nvim" },
-  { "chentoast/marks.nvim" },
   { "NvChad/nvim-colorizer.lua" },
-  { "s1n7ax/nvim-window-picker" },
 
   ------------------
   -- IDE features --
   ------------------
-  { "romgrk/barbar.nvim" },
-  { "j-morano/buffer_manager.nvim" },
-  { "nvim-tree/nvim-tree.lua" },
-  { "ojroques/nvim-bufdel" },
   { "mg979/vim-visual-multi" },
   { "windwp/nvim-spectre" }, -- search and replace
   {
@@ -75,12 +53,6 @@ return {
   { "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } },
 
   { "ThePrimeagen/refactoring.nvim" },
-  {
-    "stevearc/aerial.nvim",
-    config = function()
-      require("aerial").setup({})
-    end,
-  },
 
   -- Git
   { "tpope/vim-fugitive" },

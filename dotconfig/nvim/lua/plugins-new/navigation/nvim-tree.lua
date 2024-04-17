@@ -1,7 +1,6 @@
-local nvim_tree = req("nvim-tree")
-local api = req("nvim-tree.api")
-
 local function on_attach(bufnr)
+  local api = req("nvim-tree.api")
+
   local function m(lhs, rhs, desc)
     map("n", lhs, rhs, {
       desc = "nvim-tree: " .. desc,
@@ -103,94 +102,100 @@ local function on_attach(bufnr)
   m("K", api.node.show_info_popup, "Info")
 end
 
-nvim_tree.setup({
-  disable_netrw = true,
-  hijack_netrw = true,
-  hijack_cursor = true,
-  filters = {
-    dotfiles = true,
-  },
-  -- needed for project.nvim
-  update_cwd = true,
-  -- @TODO unknown option
-  -- respect_buf_cwd = true,
-  update_focused_file = {
-    enable = true,
-    update_cwd = true,
-  },
-  view = {
-    side = "right",
-    width = 50,
-    debounce_delay = 100,
-  },
-  renderer = {
-    highlight_git = true, -- will enable file highlight for git attributes (can be used without the icons).
-    highlight_opened_files = "icon", -- none, icon, name, all -- will enable folder and file icon highlight for opened files/directories.
-    group_empty = true, -- compact folders that only contain a single folder into one node in the file tree
-    indent_markers = {
-      enable = true, -- this option shows indent markers when folders are open
-    },
-    special_files = {
-      ["README.md"] = 1,
-      ["Makefile"] = 1,
-      ["package.json"] = 1,
-    }, -- List of filenames that gets highlighted with NvimTreeSpecialFile
-    icons = {
-      glyphs = {
-        default = "",
-        symlink = "",
-        git = {
-          unstaged = "",
-          staged = "✓",
-          unmerged = "",
-          renamed = "➜",
-          untracked = "",
-        },
-        folder = {
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-        },
-      },
-    },
-  },
-  diagnostics = {
-    enable = true,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    },
-  },
-  actions = {
-    open_file = {
-      window_picker = {
-        picker = req("window-picker").pick_window,
-      },
-    },
-  },
-  on_attach = on_attach,
-})
-
--- Close vim if nvim-tree is the last buffer
-autocmd("BufEnter", {
-  nested = true,
-  group = "NvimTree - close vim",
-  callback = function()
-    if
-      #vim.api.nvim_list_wins() == 1
-      and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil
-    then
-      vim.cmd("quit")
-    end
-  end,
-})
-
 return {
-  toggle = function()
-    api.tree.toggle()
-  end,
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      disable_netrw = true,
+      hijack_netrw = true,
+      hijack_cursor = true,
+      filters = {
+        dotfiles = true,
+      },
+      -- needed for project.nvim
+      update_cwd = true,
+      -- @TODO unknown option
+      -- respect_buf_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_cwd = true,
+      },
+      view = {
+        side = "right",
+        width = 50,
+        debounce_delay = 100,
+      },
+      renderer = {
+        highlight_git = true, -- will enable file highlight for git attributes (can be used without the icons).
+        highlight_opened_files = "icon", -- none, icon, name, all -- will enable folder and file icon highlight for opened files/directories.
+        group_empty = true, -- compact folders that only contain a single folder into one node in the file tree
+        indent_markers = {
+          enable = true, -- this option shows indent markers when folders are open
+        },
+        special_files = {
+          ["README.md"] = 1,
+          ["Makefile"] = 1,
+          ["package.json"] = 1,
+        }, -- List of filenames that gets highlighted with NvimTreeSpecialFile
+        icons = {
+          glyphs = {
+            default = "",
+            symlink = "",
+            git = {
+              unstaged = "",
+              staged = "✓",
+              unmerged = "",
+              renamed = "➜",
+              untracked = "",
+            },
+            folder = {
+              default = "",
+              open = "",
+              empty = "",
+              empty_open = "",
+              symlink = "",
+            },
+          },
+        },
+      },
+      diagnostics = {
+        enable = true,
+        icons = {
+          hint = "",
+          info = "",
+          warning = "",
+          error = "",
+        },
+      },
+      actions = {
+        open_file = {
+          window_picker = {
+            picker = function(...)
+              return req("window-picker").pick_window(...)
+            end,
+          },
+        },
+      },
+      on_attach = on_attach,
+    },
+    config = function(_, opts)
+      req("nvim-tree").setup(opts)
+
+      map("n", "<leader>e", req("nvim-tree.api").tree.toggle, "filetree")
+
+      -- Close vim if nvim-tree is the last buffer
+      autocmd("BufEnter", {
+        nested = true,
+        group = "NvimTree - close vim",
+        callback = function()
+          if
+            #vim.api.nvim_list_wins() == 1
+            and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil
+          then
+            vim.cmd("quit")
+          end
+        end,
+      })
+    end,
+  },
 }
