@@ -1,18 +1,14 @@
-local project = req("plugins.project")
 local wk = req("which-key")
 local colorscheme = req("settings.colorscheme")
 local git = req("plugins.git").git
 local gitsigns = req("plugins.git").gitsigns
 local github = req("plugins.git").github
 local lsp_fns = req("lsp.functions")
-local nvim_tree = req("plugins.nvim-tree")
-local barbar = req("plugins.barbar")
 local spectre = req("plugins.spectre")
 local colorizer = req("plugins.colorizer")
 local true_zen = req("plugins.true_zen")
 local refactoring = req("plugins.refactoring")
 local fns = req("modules.functions")
-local telescope = require("plugins.telescope")
 
 vim.opt.timeoutlen = 700
 
@@ -77,8 +73,6 @@ wk.setup({
 })
 
 local mappings = {
-  e = { nvim_tree.toggle, "filetree" },
-  f = { telescope.find_files, "find files" },
   M = { ":MarkdownPreviewToggle<cr>", "markdown preview" },
   u = { ":UndotreeToggle<cr>", "undo tree" },
   P = { '"_dP', "super paste" },
@@ -104,28 +98,8 @@ local mappings = {
     v = { ":Codi!!<cr>", "toggle virtual repl" },
     b = { colorscheme.toggle_background, "toggle background" },
     w = { ":setlocal wrap!<cr>", "toggle wrap" },
-    t = { ":AerialToggle<cr>", "code tree" },
     s = { fns.toggle_signcolumn, "toggle signcolumn" },
     f = { fns.toggle_foldcolumn, "toggle foldcolumn" },
-  },
-
-  -- Buffer
-  b = {
-    name = "buffer",
-    n = { barbar.next_buf, "next buffer" },
-    p = { barbar.prev_buf, "prev buffer" },
-    -- close
-    c = {
-      name = "close",
-      c = { barbar.close_all_but_current, "all but current" },
-      p = { barbar.close_all_but_pinned, "all but pinned" },
-      l = { barbar.close_all_to_the_left, "all to the left" },
-      r = { barbar.close_all_to_the_right, "all to the right" },
-    },
-    o = {
-      name = "order",
-      d = { barbar.order_by_directory, "by directory" },
-    },
   },
 
   -- Config
@@ -135,12 +109,6 @@ local mappings = {
     s = {
       ":source $MYVIMRC<cr>:echo 'Loaded config'<cr>",
       "source nvim config",
-    },
-    -- Project
-    p = {
-      name = "project",
-      m = { project.use_monorepo, "monorepo" },
-      p = { project.use_package, "package" },
     },
   },
 
@@ -161,60 +129,10 @@ local mappings = {
   -- Search
   s = {
     name = "search",
-    b = { ":Telescope buffers<cr>", "buffers" },
-    B = { telescope.text_in_open_buffers, "text in open [B]uffers" },
-    c = { ":Telescope command_history<cr>", "history" },
-    d = {
-      ":Telescope diagnostics bufnr=0<cr>",
-      "document_diagnostics",
-    },
-    D = {
-      ":Telescope diagnostics<cr>",
-      "workspace_diagnostics",
-    },
-    f = { telescope.find_files, "files" },
-    F = {
-      function()
-        req("telescope.builtin").find_files({
-          cwd = vim.fs.dirname(
-            vim.fs.find(
-              { "package-lock.json", "yarn.lock", ".git" },
-              { upward = true, stop = vim.loop.os_homedir() }
-            )[1]
-          ),
-        })
-      end,
-      "files in root",
-    },
-    g = { ":Telescope git_status<cr>", "git status" },
-    h = { ":Telescope help_tags<cr>", "vim help" },
-    i = { ":Telescope media_files<cr>", "media files" },
-    m = { ":Telescope marks<cr>", "marks" },
-    M = { ":Telescope man_pages<cr>", "man_pages" },
-    o = { ":Telescope vim_options<cr>", "vim_options" },
-    t = { telescope.text, "text" },
-    T = {
-      function()
-        telescope.text({
-          search_dirs = { fn.finddir(".git/..", fn.expand("%:p:h") .. ";") },
-        })
-      end,
-      "text in root",
-    },
-    w = { ":Telescope grep_string<cr>", "word" },
     r = {
       name = "replace",
       s = { spectre.search, "search and replace" },
       w = { spectre.search_word, "search and replace word" },
-    },
-    R = { ":Telescope registers<cr>", "registers" },
-    u = { ":Telescope colorscheme<cr>", "colorschemes" },
-    p = { ":Telescope projects<cr>", "projects" },
-    s = {
-      function()
-        require("telescope.builtin").resume({ initial_mode = "normal" })
-      end,
-      "previous search",
     },
   },
 
@@ -237,28 +155,6 @@ local mappings = {
     ["4"] = { ":set foldlevel=4<cr>", "level4" },
     ["5"] = { ":set foldlevel=5<cr>", "level5" },
     ["6"] = { ":set foldlevel=6<cr>", "level6" },
-  },
-
-  -- Marks
-  m = {
-    b = {
-      req("buffer_manager.ui").toggle_quick_menu,
-      "show [b]uffers",
-    },
-    a = {
-      function()
-        print(
-          "Added "
-            .. string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd(), "")
-            .. " to the harpoon"
-        )
-        req("harpoon.mark").add_file()
-      end,
-      "add mark",
-    },
-    s = { req("harpoon.ui").toggle_quick_menu, "show marks" },
-    n = { req("harpoon.ui").nav_next, "next mark" },
-    p = { req("harpoon.ui").nav_prev, "prev mark" },
   },
 
   p = {
@@ -327,11 +223,6 @@ wk.register(
     [")"] = { "<esc>`>a)<esc>`<i(<esc>gvll", "surround" },
     ["{"] = { "<esc>`>a}<esc>`<i{<esc>gvll", "surround" },
     ["}"] = { "<esc>`>a}<esc>`<i{<esc>gvll", "surround" },
-
-    -- Search
-    s = vim.tbl_extend("force", mappings.s, {
-      t = { "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", "text" },
-    }),
 
     -- Refactoring
     r = {
