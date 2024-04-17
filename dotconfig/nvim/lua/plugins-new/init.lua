@@ -42,13 +42,6 @@ return {
   { "windwp/nvim-spectre" }, -- search and replace
   {
     "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup({
-        pre_hook = require(
-          "ts_context_commentstring.integrations.comment_nvim"
-        ).create_pre_hook(),
-      })
-    end,
   },
   { "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } },
 
@@ -104,16 +97,6 @@ return {
       -- require("headlines").setup()
     end,
   },
-
-  -- Treesitter --
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  { "p00f/nvim-ts-rainbow" }, -- rainbow parantheses
-  { "nvim-treesitter/nvim-treesitter-context" },
-  { "JoosepAlviste/nvim-ts-context-commentstring" },
-  { "windwp/nvim-ts-autotag" },
-  { "nvim-treesitter/nvim-treesitter-refactor" },
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 
   -- Completion --
   { "hrsh7th/nvim-cmp" }, -- @TODO Integrate with autopairs
