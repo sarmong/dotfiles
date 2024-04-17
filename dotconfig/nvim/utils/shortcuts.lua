@@ -53,3 +53,8 @@ end
 a = vim.api
 fn = vim.fn
 cmd = vim.cmd
+cmd.bind = function(cmd)
+  return function()
+    vim.cmd(cmd)
+  end
+end
