@@ -54,15 +54,6 @@ return {
 
   { "ThePrimeagen/refactoring.nvim" },
 
-  -- Git
-  { "tpope/vim-fugitive" },
-  { "f-person/git-blame.nvim" }, -- consider using zivyangll/git-blame.vim to show at the bottom
-  { "lewis6991/gitsigns.nvim" }, -- git lines on the left
-  { "NeogitOrg/neogit" },
-  { "sindrets/diffview.nvim" },
-  { "ruifm/gitlinker.nvim" },
-  { "pwntester/octo.nvim" },
-
   -- LSP --
   { "neovim/nvim-lspconfig" },
   {
