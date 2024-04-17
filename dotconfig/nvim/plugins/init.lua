@@ -5,13 +5,10 @@ req("plugins.telescope")
 
 req("plugins.nvim-tree")
 req("plugins.barbar")
-req("plugins.lualine")
 req("plugins.which-key")
 
 req("plugins.project")
 req("plugins.matchup")
-req("plugins.alpha")
-req("plugins.indent-blankline")
 req("plugins.autopairs")
 req("plugins.visual-multi")
 req("plugins.spectre")

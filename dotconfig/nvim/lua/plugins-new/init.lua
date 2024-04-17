@@ -17,7 +17,6 @@ return {
       },
     },
   },
-  { "nvim-lualine/lualine.nvim" },
 
   -- Quality of life improvements --
 
@@ -30,7 +29,6 @@ return {
   -- { "andymass/vim-matchup", commit = commits.matchup }, -- perhaps not that essential
   { "ahmedkhalf/project.nvim" }, -- automagically switches root directory
   { "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
-  { "lukas-reineke/indent-blankline.nvim" },
   { "sarmong/vim-smoothie" }, -- smooth scrolling
 
   {
@@ -41,12 +39,6 @@ return {
     end,
   },
   { "mbbill/undotree" },
-  {
-    "stevearc/dressing.nvim",
-    config = function()
-      require("dressing").setup({ input = { insert_only = false } })
-    end,
-  },
   { "ThePrimeagen/harpoon" },
   { "azabiong/vim-highlighter" },
   {
@@ -80,7 +72,6 @@ return {
       })
     end,
   },
-  { "goolord/alpha-nvim" },
   { "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } },
 
   { "ThePrimeagen/refactoring.nvim" },
