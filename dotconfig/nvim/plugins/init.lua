@@ -1,5 +1,4 @@
 req("plugins.treesitter")
-req("plugins.git")
 req("plugins.comment")
 
 req("plugins.which-key")

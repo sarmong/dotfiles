@@ -1,8 +1,5 @@
 local wk = req("which-key")
 local colorscheme = req("settings.colorscheme")
-local git = req("plugins.git").git
-local gitsigns = req("plugins.git").gitsigns
-local github = req("plugins.git").github
 local lsp_fns = req("lsp.functions")
 local spectre = req("plugins.spectre")
 local colorizer = req("plugins.colorizer")
@@ -160,29 +157,6 @@ local mappings = {
   p = {
     name = "play macro",
     i = { "0cwimport<ESC>f=cf(from <ESC>f)x", "change requireJS to ESM" },
-  },
-
-  -- Git
-  g = {
-    name = "git",
-    b = { git.toggle_blame, "blame" },
-    B = { github.open_file, "browse" },
-    d = { git.open_diff_vsplit, "diff" },
-    j = { gitsigns.next_hunk, "next hunk" },
-    k = { gitsigns.prev_hunk, "prev hunk" },
-    l = { git.show_log, "log" },
-    r = { gitsigns.reset_hunk, "reset hunk" },
-    R = { gitsigns.reset_buffer, "reset buffer" },
-    s = { gitsigns.stage_hunk, "stage hunk" },
-    S = { git.show_status, "status" },
-    u = { gitsigns.undo_stage_hunk, "undo stage hunk" },
-    w = { gitsigns.toggle_word_diff, "toggle word diff" },
-    p = { gitsigns.preview_hunk, "preview_hunk" },
-    o = { github.open_repo, "open repo" },
-    O = { github.open_line_url, "open line url" },
-    y = { github.yank_repo, "yank repo url" },
-    Y = { github.yank_line_url, "yank line url" },
-    n = { git.open_neogit, "neogit" },
   },
 
   -- LSP
