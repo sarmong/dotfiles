@@ -9,8 +9,29 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     lazypath,
   })
 end
+vim.opt.rtp:prepend(lazypath)
 
 -- @TODO change loading order to not have this here
 vim.g.mapleader = " "
-vim.opt.rtp:prepend(lazypath)
-req("lazy").setup("plugins-new")
+
+-- Let lazy handle nested directories too (1 level)
+local plugins_root = "plugins-new"
+local imports = { { import = plugins_root } }
+
+local plugins_path = vim.fn.stdpath("config") .. "/lua/" .. plugins_root
+local dir_iter = vim.fs.dir(plugins_path)
+while true do
+  local name, type = dir_iter()
+  if name == nil then
+    break
+  end
+  if type == "directory" then
+    table.insert(imports, { import = plugins_root .. "." .. name })
+  end
+end
+
+req("lazy").setup(imports, {
+  dev = {
+    path = "~/docs/tech",
+  },
+})
