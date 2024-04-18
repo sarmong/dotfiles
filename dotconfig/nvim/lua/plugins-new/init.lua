@@ -77,26 +77,6 @@ return {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  { "folke/lua-dev.nvim" }, -- @TODO this is currently not used
-  -- {
-  --   "git@github.com:sarmong/markdown.nvim.git",
-  --   config = function()
-  --     require("markdown").setup({})
-  --   end,
-  -- },
-  {
-    "iamcco/markdown-preview.nvim",
-    build = "cd app && npx --yes yarn install",
-    ft = "markdown",
-  },
-
-  {
-    "sarmong/headlines.nvim",
-    config = function()
-      -- @TODO fix (See PR)
-      -- require("headlines").setup()
-    end,
-  },
 
   -- Completion --
   { "hrsh7th/nvim-cmp" }, -- @TODO Integrate with autopairs
@@ -120,14 +100,7 @@ return {
   },
 
   { "Pocco81/TrueZen.nvim" },
-  { "martinlroth/vim-devicetree" },
-  { "sarmong/lf-vim" },
-  { "sarmong/newsboat.vim" },
-  { "kovetskiy/sxhkd-vim" },
-  { "sarmong/conky-syntax.vim" },
-  { "elkowar/yuck.vim" },
-  { "fladson/vim-kitty" },
-  -- { "xuhdev/vim-latex-live-preview" },
+
   {
     "danymat/neogen",
     config = function()
