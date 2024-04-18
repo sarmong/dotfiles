@@ -1,38 +1,35 @@
-vim.cmd([[set runtimepath=$VIMRUNTIME]])
-vim.cmd([[set packpath=/tmp/nvim-min/site]])
-local package_root = "/tmp/nvim-min/site/pack"
-local install_path = package_root .. "/packer/start/packer.nvim"
-local function load_plugins()
-  require("packer").startup({
-    {
-      "wbthomason/packer.nvim",
-      -- ADD PLUGINS THAT ARE _NECESSARY_ FOR REPRODUCING THE ISSUE
-    },
-    config = {
-      package_root = package_root,
-      compile_path = install_path .. "/plugin/packer_compiled.lua",
-      display = { non_interactive = true },
-    },
-  })
+local root = vim.fn.fnamemodify("./.repro", ":p")
+
+-- set stdpaths to use .repro
+for _, name in ipairs({ "config", "data", "state", "cache" }) do
+  vim.env[("XDG_%s_HOME"):format(name:upper())] = root .. "/" .. name
 end
 
-if vim.fn.isdirectory(install_path) == 0 then
-  print("Installing plugins...")
+-- bootstrap lazy
+local lazypath = root .. "/plugins/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
-    "--depth=1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
   })
 end
+vim.opt.runtimepath:prepend(lazypath)
 
-load_plugins()
-require("packer").sync()
-vim.cmd([[autocmd User PackerComplete ++once echo "Ready!" | lua setup()]])
+-- install plugins
+local plugins = {
+  -- do not remove the colorscheme!
+  "folke/tokyonight.nvim",
+  -- add any other pugins here
+}
+require("lazy").setup(plugins, {
+  root = root .. "/plugins",
+})
 
+-- add anything else here
 vim.opt.termguicolors = true
-vim.opt.cursorline = true
-
--- MODIFY SETTINGS THAT ARE _NECESSARY_ FOR REPRODUCING THE ISSUE
-_G.setup = function() end
+-- do not remove the colorscheme!
+vim.cmd([[colorscheme tokyonight]])
