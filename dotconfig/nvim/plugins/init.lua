@@ -9,4 +9,3 @@ req("plugins.spectre")
 req("plugins.ufo")
 
 req("plugins.colorizer")
-req("plugins.vim-markdown")
