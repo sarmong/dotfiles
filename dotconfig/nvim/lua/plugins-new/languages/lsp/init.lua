@@ -59,7 +59,7 @@ return {
         group = "LspAttachDefault",
         callback = function(ev)
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
-          default_config.on_attach(client.ev.buf)
+          default_config.on_attach(client, ev.buf)
         end,
       })
 
