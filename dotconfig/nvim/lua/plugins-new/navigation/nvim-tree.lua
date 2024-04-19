@@ -5,6 +5,7 @@ local function on_attach(bufnr)
     map("n", lhs, rhs, {
       desc = "nvim-tree: " .. desc,
       buffer = bufnr,
+      nowait = true,
     })
   end
 
