@@ -1,3 +1,52 @@
+local fns = {
+  open_repo = function()
+    local current_mode = vim.api.nvim_get_mode()["mode"]
+
+    if current_mode == "v" then
+      local text = req("utils.get-visual-selection")()
+
+      local url = "https://github.com/" .. text
+      vim.fn.system("xdg-open " .. url)
+    else
+      req("gitlinker").get_repo_url({
+        action_callback = req("gitlinker").actions.open_in_browser,
+      })
+    end
+  end,
+
+  open_line_url = function()
+    local current_mode = vim.api.nvim_get_mode()["mode"]
+
+    req("gitlinker").get_buf_range_url(
+      string.lower(current_mode),
+      { action_callback = req("gitlinker").actions.open_in_browser }
+    )
+  end,
+
+  yank_repo = function()
+    local current_mode = vim.api.nvim_get_mode()["mode"]
+
+    if current_mode == "v" then
+      local text = req("utils.get-visual-selection")()
+
+      local url = "https://github.com/" .. text
+      vim.fn.setreg("+", url)
+    else
+      req("gitlinker").get_repo_url({
+        action_callback = req("gitlinker").actions.copy_to_clipboard,
+      })
+    end
+  end,
+
+  yank_line_url = function()
+    local current_mode = vim.api.nvim_get_mode()["mode"]
+
+    req("gitlinker").get_buf_range_url(
+      string.lower(current_mode),
+      { action_callback = req("gitlinker").actions.copy_to_clipboard }
+    )
+  end,
+}
 return {
   { "tpope/vim-fugitive" },
   {
@@ -33,65 +82,16 @@ return {
         -- print the url after performing the action
         print_url = true,
       },
-      mappings = nil,
-    },
-    fns = {
-      open_repo = function()
-        local current_mode = vim.api.nvim_get_mode()["mode"]
-
-        if current_mode == "v" then
-          local text = req("utils.get-visual-selection")()
-
-          local url = "https://github.com/" .. text
-          vim.fn.system("xdg-open " .. url)
-        else
-          req("gitlinker").get_repo_url({
-            action_callback = req("gitlinker").actions.open_in_browser,
-          })
-        end
-      end,
-
-      open_line_url = function()
-        local current_mode = vim.api.nvim_get_mode()["mode"]
-
-        req("gitlinker").get_buf_range_url(
-          string.lower(current_mode),
-          { action_callback = req("gitlinker").actions.open_in_browser }
-        )
-      end,
-
-      yank_repo = function()
-        local current_mode = vim.api.nvim_get_mode()["mode"]
-
-        if current_mode == "v" then
-          local text = req("utils.get-visual-selection")()
-
-          local url = "https://github.com/" .. text
-          vim.fn.setreg("+", url)
-        else
-          req("gitlinker").get_repo_url({
-            action_callback = req("gitlinker").actions.copy_to_clipboard,
-          })
-        end
-      end,
-
-      yank_line_url = function()
-        local current_mode = vim.api.nvim_get_mode()["mode"]
-
-        req("gitlinker").get_buf_range_url(
-          string.lower(current_mode),
-          { action_callback = req("gitlinker").actions.copy_to_clipboard }
-        )
-      end,
+      mappings = "<nop>",
     },
     config = function(spec, opts)
       local gl = req("gitlinker")
       gl.setup(opts)
 
-      map("n", "<leader>go", spec.fns.open_repo, "open repo")
-      map("n", "<leader>gO", spec.fns.open_line_url, "open line url")
-      map("n", "<leader>gy", spec.fns.yank_repo, "yank repo")
-      map("n", "<leader>gY", spec.fns.yank_repo, "yarnk line url")
+      map("n", "<leader>go", fns.open_repo, "open repo")
+      map("n", "<leader>gO", fns.open_line_url, "open line url")
+      map("n", "<leader>gy", fns.yank_repo, "yank repo")
+      map("n", "<leader>gY", fns.yank_repo, "yarnk line url")
     end,
   },
 }
