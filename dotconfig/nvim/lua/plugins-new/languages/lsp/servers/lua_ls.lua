@@ -1,5 +1,3 @@
-local default_conf = req("lsp.servers.default")
-
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -15,8 +13,6 @@ return {
     -- disable formatting with sumneko_lua, so that null-ls will handle it
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
-
-    default_conf.on_attach(client, bufnr)
   end,
 
   settings = {
