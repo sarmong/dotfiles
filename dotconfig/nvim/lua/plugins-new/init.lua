@@ -16,13 +16,6 @@ return {
   { "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
   { "sarmong/vim-smoothie" }, -- smooth scrolling
 
-  {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-    config = function()
-      require("plugins.bqf")
-    end,
-  },
   { "mbbill/undotree" },
   { "azabiong/vim-highlighter" },
   {
