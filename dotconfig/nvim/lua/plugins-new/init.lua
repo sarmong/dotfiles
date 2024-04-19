@@ -14,7 +14,6 @@ return {
   { "fedepujol/move.nvim" },
   -- { "andymass/vim-matchup", commit = commits.matchup }, -- perhaps not that essential
   { "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
-  { "sarmong/vim-smoothie" }, -- smooth scrolling
 
   { "mbbill/undotree" },
   { "azabiong/vim-highlighter" },
