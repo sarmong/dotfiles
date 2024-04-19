@@ -47,22 +47,6 @@ return {
 
   { "ThePrimeagen/refactoring.nvim" },
 
-  -- LSP --
-  { "neovim/nvim-lspconfig" },
-  {
-    "williamboman/mason.nvim",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-    },
-  },
-  {
-    "nvimtools/none-ls.nvim",
-    dependencies = { "gbprod/none-ls-shellcheck.nvim" },
-  },
-  { "stevearc/conform.nvim" },
-  -- @TODO remove tag when it's updated
-  { "j-hui/fidget.nvim" },
   { "scalameta/nvim-metals", dependencies = { "nvim-lua/plenary.nvim" } },
   {
     "antosha417/nvim-lsp-file-operations",
@@ -70,33 +54,6 @@ return {
     config = function()
       require("lsp-file-operations").setup({ debug = false })
     end,
-  },
-
-  -- Other language features --
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-
-  -- Completion --
-  { "hrsh7th/nvim-cmp" }, -- @TODO Integrate with autopairs
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/cmp-path" },
-  { "hrsh7th/cmp-cmdline" },
-  { "ray-x/cmp-treesitter" },
-
-  { "lukas-reineke/cmp-rg" },
-
-  -- Snippets --
-  { "L3MON4D3/LuaSnip" },
-  { "saadparwaiz1/cmp_luasnip" },
-
-  { "rafamadriz/friendly-snippets" },
-  { "ChristianChiarulli/html-snippets" },
-  {
-    "dsznajder/vscode-es7-javascript-react-snippets",
-    build = "yarn install --frozen-lockfile && yarn compile",
   },
 
   { "Pocco81/TrueZen.nvim" },

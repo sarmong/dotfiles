@@ -1,6 +1,5 @@
 local wk = req("which-key")
 local colorscheme = req("settings.colorscheme")
-local lsp_fns = req("lsp.functions")
 local spectre = req("plugins.spectre")
 local colorizer = req("plugins.colorizer")
 local true_zen = req("plugins.true_zen")
@@ -157,26 +156,6 @@ local mappings = {
   p = {
     name = "play macro",
     i = { "0cwimport<ESC>f=cf(from <ESC>f)x", "change requireJS to ESM" },
-  },
-
-  -- LSP
-  l = {
-    name = "LSP",
-    F = { lsp_fns.format, "format" },
-    e = { lsp_fns.enable_format_on_save, "enable format on save" },
-    d = { lsp_fns.disable_format_on_save, "disable format on save" },
-    t = { lsp_fns.go_to_type_definition, "go to type definition" },
-    s = { lsp_fns.go_to_source_definition, "go to source" },
-    r = { lsp_fns.rename, "rename" },
-    a = { lsp_fns.code_action, "action" },
-    f = { lsp_fns.open_float, "open float" },
-    Q = { lsp_fns.set_loc_list, "set loc list" },
-    q = { lsp_fns.fix_all, "quickfix all" },
-    v = { lsp_fns.toggle_virtual_text, "toggle virtual text" },
-    i = { lsp_fns.add_missing_imports, "add missing imports" },
-    o = { lsp_fns.organize_imports, "organize imports" },
-    R = { lsp_fns.rename_file, "rename file" },
-    u = { lsp_fns.remove_unused, "remove unused" },
   },
 
   -- True Zen

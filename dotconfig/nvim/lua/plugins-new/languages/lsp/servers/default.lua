@@ -1,7 +1,34 @@
-local capabilities = req("lsp.cmp")
-local fns = req("lsp.functions")
+local rename_with_qf = function(err, method, result, ...)
+  vim.lsp.handlers["textDocument/rename"](err, method, result, ...)
+  local changes = method.changes or method.documentChanges
 
-local on_attach = function(client, bufnr, elses)
+  if not changes or vim.tbl_count(changes) < 2 then
+    return
+  end
+
+  local entries = {}
+  for uri, edits in pairs(changes) do
+    local bufnr = vim.uri_to_bufnr(uri)
+
+    for _, edit in ipairs(edits) do
+      local start_line = edit.range.start.line + 1
+      local line =
+        vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
+
+      table.insert(entries, {
+        bufnr = bufnr,
+        lnum = start_line,
+        col = edit.range.start.character + 1,
+        text = line,
+      })
+    end
+  end
+
+  vim.fn.setqflist(entries, " ")
+  vim.cmd.copen()
+end
+
+local on_attach = function(client, bufnr)
   local opts = { buffer = bufnr }
 
   if client.supports_method("textDocument/hover") then
@@ -41,6 +68,10 @@ local on_init = function(client)
   end
 end
 
+local capabilities = req("cmp_nvim_lsp").default_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
+
 local default_config = {
   on_attach = on_attach,
   on_init = on_init,
@@ -49,7 +80,7 @@ local default_config = {
   },
   capabilities = capabilities,
   handlers = {
-    ["textDocument/rename"] = fns.rename_qf,
+    ["textDocument/rename"] = rename_with_qf,
   },
 }
 

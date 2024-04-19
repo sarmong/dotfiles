@@ -1,6 +1,6 @@
-local functions = require("lsp.functions")
-local default_conf = req("lsp.servers.default")
-local helpers = req("lsp.servers.helpers")
+local ts_tools_api = req("typescript-tools.api")
+local default_conf = req("plugins-new.languages.lsp.servers.default")
+local helpers = req("plugins-new.languages.lsp.servers.helpers")
 local util = req("lspconfig.util")
 
 req("typescript-tools").setup({
@@ -17,10 +17,8 @@ req("typescript-tools").setup({
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
 
-    default_conf.on_attach(client, bufnr)
-
     -- go_to_source_definition doesn't list .d.ts files
-    map("n", "gd", functions.go_to_source_definition, { buffer = bufnr })
+    map("n", "gd", ts_tools_api.go_to_source_definition, { buffer = bufnr })
   end,
 
   single_file_support = true,
