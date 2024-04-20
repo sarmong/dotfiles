@@ -14,7 +14,7 @@ return {
 
     config = function()
       local null_ls = req("null-ls")
-      local default_conf = req("plugins-new.languages.lsp.servers.default")
+      local default_conf = req("plugins.languages.lsp.servers.default")
 
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
       null_ls.setup({

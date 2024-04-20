@@ -1,4 +1,4 @@
-local helpers = req("plugins-new.languages.lsp.servers.helpers")
+local helpers = req("plugins.languages.lsp.servers.helpers")
 
 return {
   filetypes = {

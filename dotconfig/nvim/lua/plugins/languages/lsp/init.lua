@@ -34,11 +34,11 @@ return {
     "neovim/nvim-lspconfig",
     cond = not os.getenv("IS_SERVER"),
     config = function()
-      local default_config = req("plugins-new.languages.lsp.servers.default")
+      local default_config = req("plugins.languages.lsp.servers.default")
 
       for _, server in ipairs(servers) do
         local ok, server_config =
-          pcall(require, "plugins-new.languages.lsp.servers." .. server)
+          pcall(require, "plugins.languages.lsp.servers." .. server)
 
         -- if file loaded correctly and didn't return a table,
         -- no need to setup with lspconfig, server was already set up in a file
@@ -105,7 +105,7 @@ return {
     "scalameta/nvim-metals",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      req("plugins-new.languages.lsp.servers.metals") -- is not in mason
+      req("plugins.languages.lsp.servers.metals") -- is not in mason
     end,
   },
   { "j-hui/fidget.nvim", opts = {} },

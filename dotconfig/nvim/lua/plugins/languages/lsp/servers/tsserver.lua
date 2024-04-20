@@ -1,6 +1,6 @@
 local ts_tools_api = req("typescript-tools.api")
-local default_conf = req("plugins-new.languages.lsp.servers.default")
-local helpers = req("plugins-new.languages.lsp.servers.helpers")
+local default_conf = req("plugins.languages.lsp.servers.default")
+local helpers = req("plugins.languages.lsp.servers.helpers")
 local util = req("lspconfig.util")
 
 req("typescript-tools").setup({

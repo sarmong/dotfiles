@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 -- Let lazy handle nested directories too (1 level)
-local plugins_root = "plugins-new"
+local plugins_root = "plugins"
 local imports = { { import = plugins_root } }
 
 local plugins_path = vim.fn.stdpath("config") .. "/lua/" .. plugins_root
