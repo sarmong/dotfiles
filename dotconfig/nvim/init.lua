@@ -8,7 +8,6 @@ package.path = config_dir
 require("utils")
 
 req("lazy-config")
-req("plugins")
 req("settings")
 
 -- vim.cmd("source " .. config_dir .. "/utils/quitdialog.vim")

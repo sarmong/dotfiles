@@ -34,8 +34,6 @@ return {
     "neovim/nvim-lspconfig",
     cond = not os.getenv("IS_SERVER"),
     config = function()
-      req("plugins-new.languages.lsp.servers.metals") -- is not in mason
-
       local default_config = req("plugins-new.languages.lsp.servers.default")
 
       for _, server in ipairs(servers) do
@@ -102,6 +100,13 @@ return {
     "pmizio/typescript-tools.nvim",
     cond = not os.getenv("IS_SERVER"),
     dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "scalameta/nvim-metals",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      req("plugins-new.languages.lsp.servers.metals") -- is not in mason
+    end,
   },
   { "j-hui/fidget.nvim", opts = {} },
 }
