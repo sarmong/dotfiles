@@ -100,6 +100,7 @@ return {
     cond = not os.getenv("IS_SERVER"),
     dependencies = { "nvim-lua/plenary.nvim" },
   },
+  { "dmmulroy/ts-error-translator.nvim", opts = {} },
   {
     "scalameta/nvim-metals",
     dependencies = { "nvim-lua/plenary.nvim" },
