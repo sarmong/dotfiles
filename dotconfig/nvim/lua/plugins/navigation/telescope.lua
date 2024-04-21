@@ -61,6 +61,7 @@ return {
         -- Need libsqlite3-dev on debian
         dependencies = "kkharji/sqlite.lua",
       },
+      "polirritmico/telescope-lazy-plugins.nvim",
     },
 
     opts = function()
@@ -232,6 +233,7 @@ return {
       telescope.load_extension("fzf")
       telescope.load_extension("live_grep_args")
       -- telescope.load_extension("smart_history")
+      telescope.load_extension("lazy_plugins")
 
       map("n", "<C-p>", fns.oldfiles, "oldfiles")
 
@@ -239,7 +241,6 @@ return {
 
       mapl({
         s = {
-          name = "search",
           b = { ":Telescope buffers<cr>", "buffers" },
           B = { fns.text_in_open_buffers, "text in open [B]uffers" },
           c = { ":Telescope command_history<cr>", "history" },
@@ -285,7 +286,7 @@ return {
           w = { ":Telescope grep_string<cr>", "word" },
           R = { ":Telescope registers<cr>", "registers" },
           u = { ":Telescope colorscheme<cr>", "colorschemes" },
-          p = { ":Telescope projects<cr>", "projects" },
+          p = { ":Telescope lazy_plugins<cr>", "projects" },
           s = {
             function()
               require("telescope.builtin").resume({ initial_mode = "normal" })
