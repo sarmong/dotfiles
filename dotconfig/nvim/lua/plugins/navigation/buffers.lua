@@ -2,14 +2,14 @@ return {
   {
     "j-morano/buffer_manager.nvim",
     config = function()
-      req("which-key").register({
+      mapl({
         m = {
           b = {
             req("buffer_manager.ui").toggle_quick_menu,
             "show [b]uffers",
           },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
   -- bufdel
@@ -52,7 +52,7 @@ return {
         map("n", "<A-" .. i .. ">", cmd.bind("BufferGoto " .. i))
       end
 
-      req("which-key").register({
+      mapl({
         b = {
           name = "buffer",
           n = { cmd.bind("BufferNext"), "next buffer" },
@@ -69,7 +69,7 @@ return {
             d = { cmd.bind("BufferOrderByDirectory"), "by directory" },
           },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
 }

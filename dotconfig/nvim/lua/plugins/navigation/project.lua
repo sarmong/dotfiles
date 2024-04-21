@@ -13,9 +13,8 @@ return {
 
       req("project_nvim").setup(default_config)
 
-      req("which-key").register({
+      mapl({
         p = {
-          name = "project",
           m = {
             function()
               req("project_nvim").setup(
@@ -43,7 +42,7 @@ return {
             "package",
           },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
 }

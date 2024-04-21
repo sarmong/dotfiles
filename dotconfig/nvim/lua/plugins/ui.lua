@@ -202,6 +202,11 @@ return {
       },
       -- show_current_context_start = true,
     },
+    config = function(_, opts)
+      req("ibl").setup(opts)
+
+      map("n", "<leader>ai", cmd.bind("IBLToggle"), "[i]ndent-blankline toggle")
+    end,
   },
 
   {

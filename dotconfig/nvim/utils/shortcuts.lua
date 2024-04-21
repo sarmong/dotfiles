@@ -52,6 +52,72 @@ function map(mode, lhs, rhs, optsOrDesc)
   end
 end
 
+function flatten_map(table)
+  local result = {}
+
+  local function traverse(tbl, path)
+    for key, value in pairs(tbl) do
+      local newPath = path .. key
+      if type(value) == "table" then
+        if value[1] then
+          result[newPath] = value
+        else
+          traverse(value, newPath)
+        end
+      else
+        if key == "name" then
+          req("which-key").register({ [path] = value })
+        else
+          result[newPath] = value
+        end
+      end
+    end
+  end
+
+  traverse(table, "")
+  return result
+end
+
+--- Create keymappings from a table
+---@param keys_tbl_or_mode table | string
+---@param opts_or_keys_tbl? table
+---@param opts? table
+function mapt(keys_tbl_or_mode, opts_or_keys_tbl, opts)
+  local keys_tbl
+  local global_mode = "n"
+  if type(keys_tbl_or_mode) == "string" then
+    global_mode = keys_tbl_or_mode
+    keys_tbl = opts_or_keys_tbl
+    opts = opts or {}
+  elseif keys_tbl_or_mode[1] then
+    global_mode = keys_tbl_or_mode[1]
+    keys_tbl = opts_or_keys_tbl
+    opts = opts or {}
+  else
+    keys_tbl = keys_tbl_or_mode
+    opts = vim.tbl_extend("force", opts or {}, opts_or_keys_tbl or {})
+  end
+
+  local merged_tbl = flatten_map(keys_tbl)
+
+  local prefix = opts.prefix or ""
+
+  for lhs, value in pairs(merged_tbl) do
+    local mode = value.mode or global_mode
+    map(mode, prefix .. lhs, value[1], value[2])
+  end
+end
+
+--- Create leader keymappings from a table
+---@param keys_tbl_or_mode table | string
+---@param opts_or_keys_tbl? table
+---@param opts? table
+function mapl(keys_tbl_or_mode, opts_or_keys_tbl, opts)
+  opts = opts or {}
+  opts.prefix = "<leader>"
+  mapt(keys_tbl_or_mode, opts_or_keys_tbl, opts)
+end
+
 a = vim.api
 fn = vim.fn
 cmd = vim.cmd

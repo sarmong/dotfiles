@@ -26,6 +26,13 @@ return {
     build = "cd app && npx --yes yarn install",
     ft = "markdown",
     init = function()
+      map(
+        "n",
+        "<leader>M",
+        cmd.bind("MarkdownPreviewToogle"),
+        "[M]arkdown preview"
+      )
+
       -- set to 1, nvim will open the preview window after entering the markdown buffer
       vim.g.mkdp_auto_start = 0
 

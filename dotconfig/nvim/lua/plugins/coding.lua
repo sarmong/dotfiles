@@ -88,9 +88,8 @@ return {
         },
       })
 
-      req("which-key").register({
+      mapl({
         r = {
-          name = "refactoring",
           i = { refactoring_fns.inline_var, "inline variable" },
           b = {
             name = "block",
@@ -104,11 +103,10 @@ return {
           v = { refactoring_fns.print_var, "print variable" },
           c = { refactoring_fns.debug_cleanup, "debug cleanup" },
         },
-      }, { prefix = "<leader>" })
+      })
 
-      req("which-key").register({
+      mapl("v", {
         r = {
-          name = "refactoring",
           e = { refactoring_fns.extract_fn, "extract function" },
           f = {
             refactoring_fns.extract_fn_to_file,
@@ -117,12 +115,11 @@ return {
           v = { refactoring_fns.extract_var, "extract variable" },
           i = { refactoring_fns.inline_var, "inline variable" },
         },
-      }, { mode = "v", prefix = "<leader>" })
+      })
     end,
   },
 
   {
-
     "numToStr/Comment.nvim",
     config = function()
       -- taken from https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
@@ -169,11 +166,11 @@ return {
         },
       })
 
-      req("which-key").register({
+      mapl({
         a = {
           c = { cmd.bind("ColorizerToggle"), "colorizer" },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
 
@@ -184,7 +181,7 @@ return {
 
       spectre.setup({})
 
-      req("which-key").register({
+      mapl({
         s = {
           r = {
             name = "replace",
@@ -197,7 +194,7 @@ return {
             },
           },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
 }

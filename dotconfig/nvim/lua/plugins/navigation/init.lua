@@ -3,11 +3,11 @@ return {
     "stevearc/aerial.nvim",
     config = function()
       req("aerial").setup({})
-      req("which-key").register({
+      mapl({
         a = {
           t = { req("aerial").toggle, "code tree" },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
   {
@@ -90,9 +90,8 @@ return {
   {
     "ThePrimeagen/harpoon",
     config = function()
-      req("which-key").register({
+      mapl({
         m = {
-          name = "marks",
           a = {
             function()
               print(
@@ -112,7 +111,7 @@ return {
           n = { req("harpoon.ui").nav_next, "next mark" },
           p = { req("harpoon.ui").nav_prev, "prev mark" },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
 }

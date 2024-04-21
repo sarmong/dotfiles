@@ -6,7 +6,12 @@ return {
 
   { "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },
 
-  { "mbbill/undotree" },
+  {
+    "mbbill/undotree",
+    config = function()
+      map("n", "<leader>u", cmd.bind("UndoTreeToggle"), "[u]ndo tree")
+    end,
+  },
   {
     "mtth/scratch.vim",
     config = function()
