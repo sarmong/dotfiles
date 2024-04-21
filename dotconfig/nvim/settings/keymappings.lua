@@ -1,6 +1,24 @@
+local colorscheme = req("settings.colorscheme")
+local fns = req("modules.functions")
+
 -- Unmap space and set leader key to space
 map("n", "<Space>", "<NOP>")
 vim.g.mapleader = " "
+
+req("which-key").register({
+  a = { name = "[a]ctions" },
+  b = { name = "[b]uffer" },
+  F = { name = "[F]old" },
+  g = { name = "[g]it" },
+  l = { name = "[l]sp" },
+  m = { name = "[m]arks" },
+  p = { name = "[p]roject" },
+  r = { name = "[r]efactoring" },
+  s = { name = "[s]earch" },
+  t = { name = "[t]reesitter" },
+  w = { name = "[w]rap" },
+  x = { name = "misc" },
+}, { prefix = "<leader>" })
 
 -- better window movement
 map("n", "<C-h>", "<C-w>h")
@@ -16,8 +34,6 @@ map("n", "w", "<Plug>CamelCaseMotion_w")
 map("n", "<C-s>", ":update<CR>")
 map("i", "<C-s>", "<Esc>:update<CR>")
 map("v", "<C-s>", "<Esc>:update<CR>")
-
-map("i", "<C-u>", "<esc>viwUea")
 
 map({ "n", "v" }, "H", "^")
 map({ "n", "v" }, "L", "$")
@@ -67,28 +83,67 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- Move selected line / block of text in visual mode
-map("x", "K", ":move '<-2<CR>gv-gv")
-map("x", "J", ":move '>+1<CR>gv-gv")
+map("x", "K", ":move '<-2<CR>gv=gv")
+map("x", "J", ":move '>+1<CR>gv=gv")
 
 map("o", "p", "i{")
 map("o", "P", "i(")
 
-map("n", "<A-j>", ":MoveLine(1)<CR>")
-map("n", "<A-k>", ":MoveLine(-1)<CR>")
-map("n", "<A-l>", ":MoveHChar(1)<CR>")
-map("v", "<A-j>", ":MoveBlock(1)<CR>")
-map("v", "<A-k>", ":MoveBlock(-1)<CR>")
-map("n", "<A-h>", ":MoveHChar(-1)<CR>")
-map("v", "<A-l>", ":MoveHBlock(1)<CR>")
-map("v", "<A-h>", ":MoveHBlock(-1)<CR>")
+local function wrapn(char_l, char_r)
+  char_r = char_r or char_l
+  return "viw<esc>a" .. char_r .. "<esc>bi" .. char_l .. "<esc>lel"
+end
 
--- Buffers
+local function wrapv(char_l, char_r)
+  char_r = char_r or char_l
+  return "<esc>`>a" .. char_r .. "<esc>`<i" .. char_l .. "<esc>gvll"
+end
+
+local chars =
+  { '"', "'", { "(", ")" }, { "{", "}" }, { "[", "]" }, { "<", ">" } }
+
+for _, char in ipairs(chars) do
+  if type(char) == "table" then
+    local char_l = char[1]
+    local char_r = char[2]
+    map("n", "<leader>w" .. char_l, wrapn(char_l, char_r), "wrap in " .. char_l)
+    map("n", "<leader>w" .. char_r, wrapn(char_l, char_r), "wrap in " .. char_l)
+    map("v", "<leader>w" .. char_l, wrapv(char_l, char_r), "wrap in " .. char_l)
+    map("v", "<leader>w" .. char_r, wrapv(char_l, char_r), "wrap in " .. char_l)
+  else
+    map("n", "<leader>w" .. char, wrapn(char), "wrap in " .. char)
+    map("v", "<leader>w" .. char, wrapv(char), "wrap in " .. char)
+  end
+end
+
+mapl({
+  P = { '"_dP', "super paste" },
+  h = { "<C-W>s", "split below" },
+  v = { "<C-W>v", "split right" },
+  k = { "K", "view help" },
+
+  -- Actions
+  a = {
+    n = { ":set nonumber!<cr>", "line-numbers" },
+    r = { ":set norelativenumber!<cr>", "relative line nums" },
+    b = { colorscheme.toggle_background, "toggle background" },
+    w = { ":setlocal wrap!<cr>", "toggle wrap" },
+    s = { fns.toggle_signcolumn, "toggle signcolumn" },
+    f = { fns.toggle_foldcolumn, "toggle foldcolumn" },
+  },
+
+  x = {
+    x = { "<:!chmod +x %<CR>", "make executable" },
+    c = { ":g/console.log/d<CR>:noh<CR>", "Remove console.logs" },
+    i = { "0cwimport<ESC>f=cf(from <ESC>f)x", "change requireJS to ESM" },
+  },
+})
+
 map("n", "<C-i>", "<C-i>") -- needed to distinguish tab and c-i in terminals that support it
 map("n", "<tab>", "<nop>")
 
 -- When pressing * in visual mode - search for the selected text, and not the word
-vim.api.nvim_exec(
-  [[
+cmd([[
     function! s:VSetSearch()
       let temp = @@
       norm! gvy
@@ -101,6 +156,4 @@ vim.api.nvim_exec(
 
     vnoremap * :<C-u>call <SID>VSetSearch()<CR>/<CR>
     vnoremap # :<C-u>call <SID>VSetSearch()<CR>?<CR>
-  ]],
-  false
-)
+  ]])

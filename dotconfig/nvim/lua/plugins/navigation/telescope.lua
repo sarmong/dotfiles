@@ -237,7 +237,7 @@ return {
 
       map("n", "<leader>f", fns.find_files, "find files")
 
-      req("which-key").register({
+      mapl({
         s = {
           name = "search",
           b = { ":Telescope buffers<cr>", "buffers" },
@@ -293,7 +293,7 @@ return {
             "previous search",
           },
         },
-      }, { prefix = "<leader>" })
+      })
 
       map(
         "v",

@@ -73,9 +73,8 @@ return {
       local gitsigns = req("gitsigns")
       gitsigns.setup(opts)
 
-      req("which-key").register({
+      mapl({
         g = {
-          name = "git",
           j = { gitsigns.next_hunk, "next hunk" },
           k = { gitsigns.prev_hunk, "prev hunk" },
           r = { gitsigns.reset_hunk, "reset hunk" },
@@ -92,7 +91,7 @@ return {
             "show blame in hover",
           },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
 }

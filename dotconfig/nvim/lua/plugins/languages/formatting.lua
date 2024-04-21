@@ -56,7 +56,7 @@ return {
     config = function(_, opts)
       req("conform").setup(opts)
 
-      req("which-key").register({
+      mapl({
         l = {
           F = {
             function()

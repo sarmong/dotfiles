@@ -75,14 +75,13 @@ return {
       vim.lsp.handlers["textDocument/hover"] =
         vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
-      req("which-key").register({
+      mapl({
         l = {
-          name = "LSP",
-          t = { vim.lsp.buf.go_to_type_definition, "go to type definition" },
+          t = { vim.lsp.buf.type_definition, "go to type definition" },
           r = { vim.lsp.buf.rename, "rename" },
           a = { vim.lsp.buf.code_action, "action" },
-          f = { vim.lsp.buf.open_float, "open float" },
-          Q = { vim.diagnostic.set_loc_list, "set loc list" },
+          f = { vim.diagnostic.open_float, "open float" },
+          Q = { vim.diagnostic.setloclist, "set loc list" },
           v = {
             function()
               vim.diagnostic.config({
@@ -92,7 +91,7 @@ return {
             "toggle virtual text",
           },
         },
-      }, { prefix = "<leader>" })
+      })
     end,
   },
 
