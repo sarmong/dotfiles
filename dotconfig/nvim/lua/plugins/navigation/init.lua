@@ -115,16 +115,33 @@ return {
     end,
   },
   {
-
-    "numToStr/Navigator.nvim",
+    "mrjones2014/smart-splits.nvim",
+    version = ">=1.0.0",
     config = function()
-      local nav = req("Navigator")
-      nav.setup()
+      local ss = req("smart-splits")
+      ss.setup({
+        at_edge = "stop",
+      })
 
-      map("n", "<C-h>", nav.left)
-      map("n", "<C-j>", nav.down)
-      map("n", "<C-k>", nav.up)
-      map("n", "<C-l>", nav.right)
+      -- Note: keep these maps in sync with tmux.conf send-keys
+
+      map("n", "<C-h>", ss.move_cursor_left, "move to left window")
+      map("n", "<C-j>", ss.move_cursor_down, "move to bottom window")
+      map("n", "<C-k>", ss.move_cursor_up, "move to top window")
+      map("n", "<C-l>", ss.move_cursor_right, "move to right window")
+      map("n", "<C-\\>", ss.move_cursor_previous, "move to prev window")
+
+      -- these keymaps will also accept a range,
+      -- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
+      map("n", "<C-Left>", ss.resize_left, "resize window left")
+      map("n", "<C-Down>", ss.resize_down, "resize window down")
+      map("n", "<C-Up>", ss.resize_up, "resize window up")
+      map("n", "<C-Right>", ss.resize_right, "resize window right")
+
+      map("n", "<leader><leader>h", ss.swap_buf_left, "swap buffer left")
+      map("n", "<leader><leader>j", ss.swap_buf_down, "swap buffer down")
+      map("n", "<leader><leader>k", ss.swap_buf_up, "swap buffer up")
+      map("n", "<leader><leader>l", ss.swap_buf_right, "swap buffer right")
     end,
   },
 }
