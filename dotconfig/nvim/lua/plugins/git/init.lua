@@ -88,10 +88,10 @@ return {
       local gl = req("gitlinker")
       gl.setup(opts)
 
-      map("n", "<leader>go", fns.open_repo, "open repo")
-      map("n", "<leader>gO", fns.open_line_url, "open line url")
-      map("n", "<leader>gy", fns.yank_repo, "yank repo")
-      map("n", "<leader>gY", fns.yank_repo, "yarnk line url")
+      map({ "n", "v" }, "<leader>go", fns.open_repo, "open repo")
+      map({ "n", "v" }, "<leader>gO", fns.open_line_url, "open line url")
+      map({ "n", "v" }, "<leader>gy", fns.yank_repo, "yank repo")
+      map({ "n", "v" }, "<leader>gY", fns.yank_line_url, "yarnk line url")
     end,
   },
 }
