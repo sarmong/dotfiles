@@ -7,5 +7,4 @@ return {
   { "elkowar/yuck.vim" },
   { "fladson/vim-kitty" },
   -- { "xuhdev/vim-latex-live-preview" },
-  { "folke/neodev.nvim", opts = {} }, -- @TODO make it work
 }
