@@ -7,3 +7,5 @@ cd "$script_dir" || exit 1
 
 ./tmux.sh
 ./newsboat.sh
+
+bob use latest
