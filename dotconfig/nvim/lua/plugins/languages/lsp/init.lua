@@ -32,6 +32,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "folke/neodev.nvim" },
     cond = not os.getenv("IS_SERVER"),
     config = function()
       local default_config = req("plugins.languages.lsp.servers.default")

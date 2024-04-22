@@ -8,6 +8,8 @@ table.insert(library, "/usr/share/nvim/runtime/lua")
 table.insert(library, "/usr/share/nvim/runtime/lua/lsp")
 table.insert(library, "/usr/share/awesome/lib")
 
+req("neodev").setup({})
+
 return {
   on_attach = function(client, bufnr)
     -- disable formatting with sumneko_lua, so that null-ls will handle it
