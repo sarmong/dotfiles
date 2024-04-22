@@ -65,13 +65,6 @@ map("n", "tn", ":tabnext<CR>")
 map("n", "tp", ":tabprevious<CR>")
 map("n", "td", ":tabclose<CR>")
 
--- @TODO fix this - interferes with visual-multi plugin
--- resize with arrows
-map("n", "<C-Up>", ":resize -2<CR>")
-map("n", "<C-Down>", ":resize +2<CR>")
-map("n", "<C-Left>", ":vertical resize -2<CR>")
-map("n", "<C-Right>", ":vertical resize +2<CR>")
-
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
