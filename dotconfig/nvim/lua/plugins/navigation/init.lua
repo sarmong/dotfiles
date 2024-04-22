@@ -114,4 +114,17 @@ return {
       })
     end,
   },
+  {
+
+    "numToStr/Navigator.nvim",
+    config = function()
+      local nav = req("Navigator")
+      nav.setup()
+
+      map("n", "<C-h>", nav.left)
+      map("n", "<C-j>", nav.down)
+      map("n", "<C-k>", nav.up)
+      map("n", "<C-l>", nav.right)
+    end,
+  },
 }

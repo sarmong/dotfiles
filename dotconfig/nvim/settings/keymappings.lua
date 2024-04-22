@@ -20,12 +20,6 @@ req("which-key").register({
   x = { name = "misc" },
 }, { prefix = "<leader>" })
 
--- better window movement
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-l>", "<C-w>l")
-
 map("n", "w", "<Plug>CamelCaseMotion_w")
 
 -- save doc using Ctrl+s. If this doesn't work add this two lines to bash_profile: (or just the second)
