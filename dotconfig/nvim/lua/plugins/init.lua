@@ -9,7 +9,7 @@ return {
   {
     "mbbill/undotree",
     config = function()
-      map("n", "<leader>u", cmd.bind("UndoTreeToggle"), "[u]ndo tree")
+      map("n", "<leader>u", cmd.bind("UndotreeToggle"), "[u]ndo tree")
     end,
   },
   {
