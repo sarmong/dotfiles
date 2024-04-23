@@ -19,3 +19,5 @@ dotconfig/mpd/database
 dotconfig/mpd/sticker.sql
 dotconfig/ncmpcpp/error.log
 dotconfig/lazygit/state.yml
+dotconfig/tmux/plugins/*
+!dotconfig/tmux/plugins/tpm
