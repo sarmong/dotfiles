@@ -31,6 +31,11 @@ while true do
 end
 
 req("lazy").setup(imports, {
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
+
   dev = {
     path = "~/docs/tech",
   },
