@@ -73,6 +73,28 @@ map("v", ">", ">gv")
 map("x", "K", ":move '<-2<CR>gv=gv")
 map("x", "J", ":move '>+1<CR>gv=gv")
 
+map("n", "J", function()
+  vim.cmd("normal! mzJ")
+
+  local col = vim.fn.col(".")
+  local context = string.sub(vim.fn.getline("."), col - 1, col + 1)
+  vim.print(context)
+
+  if
+    context == ") ."
+    or context == ") :"
+    or context:match("%( .")
+    or context:match(". ,")
+    or context:match("%w %.")
+  then
+    vim.cmd("undojoin | normal! x")
+  elseif context == ",)" then
+    vim.cmd("undojoin | normal! hx")
+  end
+
+  vim.cmd("normal! `z")
+end)
+
 map("o", "p", "i{")
 map("o", "P", "i(")
 
