@@ -7,6 +7,13 @@ _G.req = function(module_name)
 
   if not ok then
     print("There was a problem loading " .. module_name .. " module")
+
+    module = {}
+    setmetatable(module, {
+      __index = function()
+        return function() end
+      end,
+    })
   end
 
   return module, ok
