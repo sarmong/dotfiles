@@ -32,9 +32,14 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "folke/neodev.nvim" },
+    dependencies = {
+      "folke/neodev.nvim",
+      "neoconf.nvim",
+    },
     cond = not os.getenv("IS_SERVER"),
     config = function()
+      req("neoconf").setup() -- TODO this sucks
+
       local default_config = req("plugins.languages.lsp.servers.default")
 
       for _, server in ipairs(servers) do
