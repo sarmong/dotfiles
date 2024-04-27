@@ -52,7 +52,14 @@ req("typescript-tools").setup({
       providePrefixAndSuffixTextForRename = false,
       allowRenameOfImportPath = false,
     },
-    tsserver_file_preferences = {},
+    tsserver_file_preferences = {
+      includeInlayParameterNameHints = "all",
+      includeInlayEnumMemberValueHints = true,
+      includeInlayFunctionLikeReturnTypeHints = true,
+      includeInlayFunctionParameterTypeHints = true,
+      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayVariableTypeHints = true,
+    },
     -- mirror of VSCode's `typescript.suggest.completeFunctionCalls`
     complete_function_calls = true,
     include_completions_with_insert_text = true,
