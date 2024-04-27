@@ -157,7 +157,7 @@ jqp-bin	p		x
 tree				
 speedtest-cli				
 colordiff				
-fzf				
+fzf-bin	p	fzf		
 fd-deb	p	fd		or fd-find from apt but need to link manually
 bat				
 yt-dlp				
