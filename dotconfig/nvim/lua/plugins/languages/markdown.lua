@@ -7,7 +7,6 @@ return {
   -- },
   {
     "jakewvincent/mkdnflow.nvim",
-    dev = true,
     config = function()
       req("mkdnflow").setup({
         modules = {
