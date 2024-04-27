@@ -21,7 +21,7 @@ a() {
   elif [[ "search" == $1* ]]; then
     shift
     "$cmd" search "$@"
-  elif [[ "show" == $1* ]]; then
+  elif [[ "show" == $1* ]] || [[ "info" == $1* ]]; then
     shift
     "$cmd" show "$@"
   else
@@ -102,7 +102,7 @@ alias ec="pushd \$XDG_DOTFILES_DIR >/dev/null && fzf | xargs nvim && popd >/dev/
 
 alias yta="yt-dlp --embed-metadata -f 'ba'" # Download audio
 play() {
-  mpv "$1" &
+  umpv "$1" &
   disown
 }
 
