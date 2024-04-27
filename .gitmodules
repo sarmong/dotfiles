@@ -1,3 +1,6 @@
 [submodule "lain"]
 	path = dotconfig/awesome/lib/lain
 	url = https://github.com/sarmong/lain.git
+[submodule "tpm"]
+	path = dotconfig/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
