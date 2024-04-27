@@ -12,6 +12,7 @@ return {
       }
 
       req("project_nvim").setup(default_config)
+      req("telescope").load_extension("projects")
 
       mapl({
         p = {

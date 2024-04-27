@@ -54,7 +54,10 @@ return {
     dependencies = {
       "nvim-telescope/telescope-media-files.nvim",
       "nvim-telescope/telescope-project.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      },
       "nvim-telescope/telescope-live-grep-args.nvim",
       {
         "nvim-telescope/telescope-smart-history.nvim",
@@ -84,7 +87,22 @@ return {
             path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
             limit = 100,
           },
-          path_display = { "truncate" },
+          path_display = function(_, path)
+            local dirs = vim.split(path, "/")
+            local filename = table.remove(dirs, #dirs)
+
+            local tail = table.concat(dirs, "/")
+
+            tail = string.gsub(path, "^packages", "p")
+            -- Prevents a toplevel filename to have a trailing whitespace
+            local transformed_path = vim.trim(filename .. " " .. tail)
+
+            local path_style = {
+              { { #filename, #transformed_path }, "TelescopeResultsComment" },
+            }
+
+            return transformed_path, path_style
+          end,
           sorting_strategy = "ascending",
           selection_strategy = "reset",
           vimgrep_arguments = {
@@ -103,7 +121,7 @@ return {
           layout_config = {
             prompt_position = "top",
           },
-          layout_strategy = "horizontal",
+          layout_strategy = "flex",
           layout_defaults = {
             horizontal = { mirror = false },
             vertical = { mirror = false },
@@ -138,7 +156,6 @@ return {
             "╰",
           },
           color_devicons = true,
-          use_less = true,
           set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
           file_previewer = previewers.vim_buffer_cat.new,
           grep_previewer = previewers.vim_buffer_vimgrep.new,
@@ -217,6 +234,11 @@ return {
                 }),
               },
             },
+            path_display = {
+              filename_first = {
+                reverse_directories = false,
+              },
+            },
           },
         },
       }
@@ -228,10 +250,7 @@ return {
       telescope.setup(opts)
 
       telescope.load_extension("media_files")
-      -- This is a separate plugin
       telescope.load_extension("project")
-      -- This one's coming from project.nvim
-      telescope.load_extension("projects")
       telescope.load_extension("fzf")
       telescope.load_extension("live_grep_args")
       -- telescope.load_extension("smart_history")
