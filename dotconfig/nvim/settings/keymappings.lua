@@ -109,7 +109,7 @@ local function wrapv(char_l, char_r)
 end
 
 local chars =
-  { '"', "'", { "(", ")" }, { "{", "}" }, { "[", "]" }, { "<", ">" } }
+  { '"', "'", "`", { "(", ")" }, { "{", "}" }, { "[", "]" }, { "<", ">" } }
 
 for _, char in ipairs(chars) do
   if type(char) == "table" then
