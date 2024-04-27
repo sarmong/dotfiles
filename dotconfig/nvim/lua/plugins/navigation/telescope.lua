@@ -166,7 +166,8 @@ return {
           mappings = {
             -- To disable a keymap, put [map] = false
             i = {
-              ["<esc><esc>"] = actions.close,
+              ["<C-c>"] = false,
+              ["Q"] = actions.close,
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
               ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
@@ -177,9 +178,11 @@ return {
               ["<C-CR>"] = function(prompt_bufnr)
                 action_set.edit(prompt_bufnr, "Pick")
               end,
+              ["<C-Space>"] = actions.to_fuzzy_refine,
             },
             n = {
-              ["<esc><esc>"] = actions.close,
+              ["<Esc>"] = false,
+              ["Q"] = actions.close,
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
               ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
@@ -188,6 +191,7 @@ return {
               ["<C-CR>"] = function(prompt_bufnr)
                 action_set.edit(prompt_bufnr, "Pick")
               end,
+              ["<C-Space>"] = actions.to_fuzzy_refine,
             },
           },
         },
