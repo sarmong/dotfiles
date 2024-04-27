@@ -74,7 +74,7 @@ local capabilities = req("cmp_nvim_lsp").default_capabilities(
 
 local default_config = {
   on_attach = on_attach,
-  on_init = on_init,
+  -- on_init = on_init,
   flags = {
     debounce_text_changes = 150,
   },
