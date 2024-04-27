@@ -7,7 +7,7 @@ local servers = {
   "cssmodules_ls",
   "eslint",
   "gopls",
-  "htmx",
+  -- "htmx",
   "pylsp",
   "pyright",
   "lua_ls",
