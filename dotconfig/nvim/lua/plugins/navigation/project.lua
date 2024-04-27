@@ -5,8 +5,10 @@ return {
       local default_config = {
         detection_methods = { "pattern", "lsp" },
         patterns = {
-          "package.json",
+          "package-lock.json",
+          "yarn.lock",
           ".git",
+          "package.json",
         },
         show_hidden = true,
       }
