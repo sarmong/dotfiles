@@ -13,6 +13,7 @@ local apps = {
   "dunst",
 
   "flameshot &", -- https://github.com/flameshot-org/flameshot/issues/1446#issuecomment-1301471019
+  "playerctld", -- will update the last active player
   -- Applications
   "libinput-gestures-setup restart",
   "CM_SELECTIONS='clipboard' clipmenud",
