@@ -1,7 +1,12 @@
 return {
   { "nvim-lua/plenary.nvim" }, -- required by many plugins
   { "nvim-tree/nvim-web-devicons" },
-
+  {
+    "sarmong/neoconf.nvim",
+    priority = 50000,
+    dependencies = { "neovim/nvim-lspconfig" },
+    -- setup is in lspconfig because otherwise it ddoesn't work
+  },
   -- Quality of life improvements --
 
   { "lambdalisue/suda.vim", cmd = { "SudaWrite", "SudaRead" } },

@@ -62,6 +62,7 @@ return {
         dependencies = "kkharji/sqlite.lua",
       },
       "polirritmico/telescope-lazy-plugins.nvim",
+      { "sarmong/neoconf.nvim", optional = true },
     },
 
     opts = function()
@@ -108,7 +109,7 @@ return {
             vertical = { mirror = false },
           },
           file_sorter = sorters.get_fuzzy_file,
-          file_ignore_patterns = {
+          file_ignore_patterns = vim.tbl_flatten({
             "node_modules",
             "%.git",
             "yarn.lock",
@@ -116,7 +117,8 @@ return {
             "%.yarn",
             "!%.config",
             "!%.local",
-          },
+            vim.tbl_keys(req("neoconf").get("vscode.search.exclude") or {}),
+          }),
           generic_sorter = sorters.get_generic_fuzzy_sorter,
           shorten_path = true,
           winblend = 0,
