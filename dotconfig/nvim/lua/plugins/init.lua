@@ -3,9 +3,9 @@ return {
   { "nvim-tree/nvim-web-devicons" },
   {
     "sarmong/neoconf.nvim",
-    priority = 50000,
-    dependencies = { "neovim/nvim-lspconfig" },
-    -- setup is in lspconfig because otherwise it ddoesn't work
+    config = function()
+      req("neoconf").setup()
+    end,
   },
   -- Quality of life improvements --
 

@@ -32,14 +32,15 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    -- priority causes neoconf to setup before lspconfig
+    -- how? fucking magic
+    priority = 50000,
     dependencies = {
       "folke/neodev.nvim",
       "neoconf.nvim",
     },
     cond = not os.getenv("IS_SERVER"),
     config = function()
-      req("neoconf").setup() -- TODO this sucks
-
       local default_config = req("plugins.languages.lsp.servers.default")
 
       for _, server in ipairs(servers) do
