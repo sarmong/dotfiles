@@ -327,12 +327,11 @@ return {
         },
       })
 
-      map(
-        "v",
-        "<leader>st",
-        "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>",
-        "selected text"
-      )
+      map("v", "<leader>st", function()
+        req("telescope").extensions.live_grep_args.live_grep_args({
+          default_text = get_visual_selection(),
+        })
+      end, "selected text")
     end,
   },
 }
