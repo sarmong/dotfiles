@@ -113,13 +113,8 @@ return {
       filters = {
         dotfiles = true,
       },
-      -- needed for project.nvim
-      update_cwd = true,
-      -- @TODO unknown option
-      -- respect_buf_cwd = true,
       update_focused_file = {
         enable = true,
-        update_cwd = true,
       },
       view = {
         side = "right",
