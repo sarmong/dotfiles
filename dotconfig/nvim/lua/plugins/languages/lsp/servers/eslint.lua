@@ -1,15 +1,6 @@
-local util = req("lspconfig.util")
-
 return {
   root_dir = function(fname)
-    return util.root_pattern(
-      "package-lock.json",
-      "yarn.lock",
-      ".git",
-      "package.json",
-      "tsconfig.json",
-      "jsconfig.json"
-    )(fname)
+    return req("modules.root-dir").get_project_root()
   end,
   on_attach = function(client, bufnr)
     -- disable formatting, so that null-ls will handle it
