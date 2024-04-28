@@ -1,3 +1,6 @@
+local get_visual_selection = req("utils.get-visual-selection")
+local root_dir = req("modules.root-dir")
+
 local fns = {
   oldfiles = function()
     req("telescope.builtin").oldfiles({
@@ -10,7 +13,11 @@ local fns = {
   find_files = function(options)
     if vim.bo.filetype ~= "NvimTree" then
       req("telescope.builtin").find_files(
-        vim.tbl_extend("force", { hidden = true }, options or {})
+        vim.tbl_extend(
+          "force",
+          { hidden = true, cwd = root_dir.get_subpackage_root() },
+          options or {}
+        )
       )
     else
       -- Search inside the focused dir in nvim-tree
@@ -27,9 +34,15 @@ local fns = {
     end
   end,
 
-  text = function(args)
+  text = function(options)
     if vim.bo.filetype ~= "NvimTree" then
-      req("telescope").extensions.live_grep_args.live_grep_args(args)
+      req("telescope").extensions.live_grep_args.live_grep_args(
+        vim.tbl_extend(
+          "force",
+          { cwd = root_dir.get_subpackage_root() },
+          options or {}
+        )
+      )
     else
       local tree = req("nvim-tree.lib")
       local node = tree.get_node_at_cursor()
@@ -281,12 +294,7 @@ return {
           F = {
             function()
               req("telescope.builtin").find_files({
-                cwd = vim.fs.dirname(
-                  vim.fs.find(
-                    { "package-lock.json", "yarn.lock", ".git" },
-                    { upward = true, stop = vim.loop.os_homedir() }
-                  )[1]
-                ),
+                cwd = root_dir.get_project_root(),
               })
             end,
             "files in root",
@@ -301,12 +309,7 @@ return {
           T = {
             function()
               fns.text({
-                cwd = vim.fs.dirname(
-                  vim.fs.find(
-                    { "package-lock.json", "yarn.lock", ".git" },
-                    { upward = true, stop = vim.loop.os_homedir() }
-                  )[1]
-                ),
+                cwd = root_dir.get_subpackage_root(),
               })
             end,
             "text in root",

@@ -1,6 +1,7 @@
 return {
   {
     "ahmedkhalf/project.nvim",
+    enabled = false,
     config = function()
       local default_config = {
         detection_methods = { "pattern", "lsp" },
