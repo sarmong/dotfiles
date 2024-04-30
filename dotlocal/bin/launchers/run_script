@@ -25,6 +25,7 @@ commands=(
   select-audio
   sessions
   testfile
+  toggle-theme
   watch-later.sh
   wifi-menu.sh
   "code screenshot from cb"
