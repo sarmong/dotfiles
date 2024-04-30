@@ -1,0 +1,45 @@
+#!/bin/sh
+
+state_file="${XDG_STATE_HOME:-$HOME/.local/state}/current_theme"
+current_theme=$(cat "$state_file")
+
+tmux_dir="$XDG_CONFIG_HOME/tmux/colors"
+kitty_dir="$XDG_CONFIG_HOME/kitty/themes"
+nvim_dir="$XDG_CONFIG_HOME/nvim/settings/colorscheme"
+
+if [ ! -d "$tmux_dir" ] || [ ! -d "$kitty_dir" ] || [ ! -d "$nvim_dir" ]; then
+  echo "Dir not found"
+  exit 1
+fi
+
+if [ "$current_theme" = "light" ]; then
+  echo "setting dark"
+  ln -sf "$tmux_dir/gruvbox-dark.conf" "$tmux_dir/current-theme.conf"
+
+  ln -sf "$kitty_dir/gruvbox-dark.conf" "$kitty_dir/current-theme.conf"
+
+  ln -sf "$nvim_dir/dark.lua" "$nvim_dir/current.lua"
+
+  echo "dark" >"$state_file"
+else
+  echo "setting light"
+  ln -sf "$tmux_dir/gruvbox-light.conf" "$tmux_dir/current-theme.conf"
+
+  ln -sf "$kitty_dir/gruvbox-material-light-soft.conf" "$kitty_dir/current-theme.conf"
+
+  ln -sf "$nvim_dir/light.lua" "$nvim_dir/current.lua"
+
+  echo "light" >"$state_file"
+fi
+
+kill -USR1 $(pgrep kitty)
+
+tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
+tmux display 'Config sourced'
+
+kill -USR1 $(pgrep nvim)
+
+# if [ "$(tmux display-message -p '#{@pane-is-vim}')" = 1 ]; then
+#   echo "loading nvim"
+#   tmux send-keys ":lua dofile('$XDG_CONFIG_HOME/nvim/settings/colorscheme/current.lua')" KPEnter
+# fi
