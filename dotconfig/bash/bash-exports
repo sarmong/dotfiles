@@ -11,6 +11,7 @@ exists() {
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.local/cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 # if something doesn't work, consider unsetting this var (e.g. with flatpacks)
 export XDG_DATA_DIRS="$HOME/.local/xdg:/usr/local/share:/usr/share:$XDG_DATA_DIRS"
 . "$XDG_CONFIG_HOME/user-dirs.dirs"
