@@ -55,15 +55,14 @@
 ;                      (#offset-first-n! @punctuation.special 1)
 ;                      (#set! conceal "→"))))))))))))
 
-; Checkbox list items
 ((task_list_marker_unchecked)
  @text.todo.unchecked
  (#offset! @text.todo.unchecked 0 -2 0 0)
- (#set! conceal "✘"))
+ (#set! conceal " "))
 ((task_list_marker_checked)
  @text.todo.checked
- (#offset! @text.todo.checked 0 -2 0 0)
- (#set! conceal "✔"))
+ (#offset! @text.todo.checked 0 -2 0 0) ; :h offset!
+ (#set! conceal "✔ "))
 (list_item (task_list_marker_checked) (_) @comment)
 
 ; Tables
