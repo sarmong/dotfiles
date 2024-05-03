@@ -13,9 +13,9 @@
   [
     "["
   ] @markup.link
-  (#set! conceal ""))
+  (#set! conceal "["))
 (shortcut_link
   [
     "]"
   ] @markup.link
-  (#set! conceal ""))
+  (#set! conceal "]"))
