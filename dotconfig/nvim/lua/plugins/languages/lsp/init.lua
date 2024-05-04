@@ -19,6 +19,7 @@ local servers = {
 return {
   {
     "williamboman/mason.nvim",
+    event = "VeryLazy",
     cond = not os.getenv("IS_SERVER"),
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
@@ -33,6 +34,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     -- priority causes neoconf to setup before lspconfig
     -- how? fucking magic
     priority = 50000,
@@ -105,16 +107,18 @@ return {
 
   {
     "pmizio/typescript-tools.nvim",
+    event = "VeryLazy",
     cond = not os.getenv("IS_SERVER"),
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  { "dmmulroy/ts-error-translator.nvim", opts = {} },
+  { "dmmulroy/ts-error-translator.nvim", event = "VeryLazy", opts = {} },
   {
     "scalameta/nvim-metals",
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       req("plugins.languages.lsp.servers.metals") -- is not in mason
     end,
   },
-  { "j-hui/fidget.nvim", opts = {} },
+  { "j-hui/fidget.nvim", event = "VeryLazy", opts = {} },
 }

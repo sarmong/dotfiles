@@ -7,6 +7,7 @@ return {
   -- },
   {
     "jakewvincent/mkdnflow.nvim",
+    event = "VeryLazy",
     config = function()
       req("mkdnflow").setup({
         modules = {
@@ -140,6 +141,7 @@ return {
   },
   {
     "sarmong/headlines.nvim",
+    event = "VeryLazy",
     config = function()
       -- @TODO fix (See PR)
       -- require("headlines").setup()
@@ -147,6 +149,7 @@ return {
   },
   {
     "iamcco/markdown-preview.nvim",
+    event = "VeryLazy",
     build = "cd app && npx --yes yarn install",
     ft = "markdown",
     init = function()

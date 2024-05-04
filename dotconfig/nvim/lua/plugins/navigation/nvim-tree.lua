@@ -106,6 +106,7 @@ end
 return {
   {
     "nvim-tree/nvim-tree.lua",
+    event = "VeryLazy",
     opts = {
       disable_netrw = true,
       hijack_netrw = true,

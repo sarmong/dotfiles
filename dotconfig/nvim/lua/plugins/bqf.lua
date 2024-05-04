@@ -1,5 +1,6 @@
 return {
   "kevinhwang91/nvim-bqf",
+  event = "VeryLazy",
   ft = "qf",
   opts = {
     auto_enable = true, -- enable nvim-bqf in quickfix window automatically
