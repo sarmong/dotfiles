@@ -46,4 +46,23 @@ function M.kebab_to_sentence(kebabCase)
   return sentence
 end
 
+function M.qf_modified_bufs()
+  local all_bufs = a.nvim_list_bufs()
+
+  local qf_items = {}
+  for _, bufnr in ipairs(all_bufs) do
+    if a.nvim_buf_get_option(bufnr, "modified") then
+      table.insert(qf_items, {
+        bufnr = bufnr,
+      })
+    end
+  end
+
+  vim.fn.setqflist({}, " ", {
+    title = "Modified buffers",
+    items = qf_items,
+  })
+  vim.cmd.copen()
+end
+
 return M
