@@ -1,5 +1,6 @@
 local run_file = req("modules.run-file")
 local npm_run = req("modules.npm-run")
+local fns = req("modules.functions")
 
 command("RunFile", run_file)
 command("NpmRun", npm_run)
@@ -15,3 +16,7 @@ command("Redir", function(ctx)
   vim.api.nvim_buf_set_lines(0, -1, -1, false, sliced)
   vim.opt_local.modified = false
 end, { nargs = "+", complete = "command" })
+
+command("QfModifiedBufs", function()
+  fns.qf_modified_bufs()
+end)
