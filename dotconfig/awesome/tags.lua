@@ -6,7 +6,7 @@ local tags = {
   {
     icon = icons.firefox,
     type = "browser",
-    screen = 1,
+    -- screen = 1,
     index = 1,
     get_default_app = function()
       return os.getenv("BROWSER")
@@ -15,7 +15,7 @@ local tags = {
   {
     icon = icons.code,
     type = "code",
-    screen = 1,
+    -- screen = 1,
     index = 2,
     get_default_app = function()
       return os.getenv("TERMINAL")
@@ -24,7 +24,7 @@ local tags = {
   {
     icon = icons.code,
     type = "code2",
-    screen = 1,
+    -- screen = 1,
     index = 3,
     get_default_app = function()
       return os.getenv("TERMINAL")
@@ -33,7 +33,7 @@ local tags = {
   {
     icon = icons.folder,
     type = "files",
-    screen = 1,
+    -- screen = 1,
     index = 8,
     get_default_app = function()
       return "thunar"
@@ -42,7 +42,7 @@ local tags = {
   {
     icon = icons.social,
     type = "social",
-    screen = 1,
+    -- screen = 1,
     index = 9,
     get_default_app = function()
       return "telegram-desktop"
@@ -51,7 +51,7 @@ local tags = {
   {
     icon = icons.music,
     type = "music",
-    screen = 1,
+    -- screen = 1,
     index = 10,
     get_default_app = function()
       return "slack"
