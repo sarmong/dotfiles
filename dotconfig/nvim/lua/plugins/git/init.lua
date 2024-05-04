@@ -48,9 +48,10 @@ local fns = {
   end,
 }
 return {
-  { "tpope/vim-fugitive" },
+  { "tpope/vim-fugitive", event = "VeryLazy" },
   {
     "f-person/git-blame.nvim",
+    event = "VeryLazy",
     opts = { enabled = false },
     config = function(_, opts)
       req("gitblame").setup(opts)
@@ -60,6 +61,7 @@ return {
   },
   {
     "NeogitOrg/neogit",
+    event = "VeryLazy",
     opts = {
       integrations = {
         diffview = true,
@@ -72,9 +74,10 @@ return {
       map("n", "<leader>gn", req("neogit").open, "neogit")
     end,
   },
-  { "sindrets/diffview.nvim" },
+  { "sindrets/diffview.nvim", event = "VeryLazy" },
   {
     "ruifm/gitlinker.nvim",
+    event = "VeryLazy",
     opts = {
       opts = {
         -- adds current line nr in the url for normal mode

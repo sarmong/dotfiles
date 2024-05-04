@@ -1,6 +1,7 @@
 return {
   {
     "j-morano/buffer_manager.nvim",
+    event = "VeryLazy",
     config = function()
       mapl({
         m = {
@@ -15,6 +16,7 @@ return {
   -- bufdel
   {
     "ojroques/nvim-bufdel",
+    event = "VeryLazy",
     opts = {
       -- @TODO open issue to open on the right
       next = "alternate",
@@ -23,6 +25,7 @@ return {
   -- barbar
   {
     "romgrk/barbar.nvim",
+    event = "VeryLazy",
     dependencies = {
       "lewis6991/gitsigns.nvim",
       "nvim-tree/nvim-web-devicons",

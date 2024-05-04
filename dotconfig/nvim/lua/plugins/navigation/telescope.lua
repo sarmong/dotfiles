@@ -64,6 +64,7 @@ local fns = {
 return {
   {
     "nvim-telescope/telescope.nvim",
+    event = "VeryLazy",
     dependencies = {
       "nvim-telescope/telescope-media-files.nvim",
       "nvim-telescope/telescope-project.nvim",

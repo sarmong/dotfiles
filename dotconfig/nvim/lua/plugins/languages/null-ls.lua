@@ -9,6 +9,7 @@ end
 return {
   {
     "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
     cond = not os.getenv("IS_SERVER"),
     dependencies = { "gbprod/none-ls-shellcheck.nvim" },
 
@@ -38,6 +39,7 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    event = "VeryLazy",
     opts = function(_, opts)
       opts.tools = opts.tools or {}
       vim.list_extend(opts.tools, extractNames(req("null-ls").get_sources()))

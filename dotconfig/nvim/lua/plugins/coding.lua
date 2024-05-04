@@ -39,6 +39,7 @@ local refactoring_fns = {
 return {
   {
     "mg979/vim-visual-multi",
+    event = "VeryLazy",
     init = function()
       -- disable all mappings expect for C-n
       -- This way, it will not interfere with C-up and C-down for window resizing
@@ -46,19 +47,25 @@ return {
     end,
   },
 
-  { "metakirby5/codi.vim", cmd = { "Codi", "CodiUpdate" } },
+  {
+    "metakirby5/codi.vim",
+    event = "VeryLazy",
+    cmd = { "Codi", "CodiUpdate" },
+  },
 
-  { "bkad/CamelCaseMotion" },
+  { "bkad/CamelCaseMotion", event = "VeryLazy" },
   {
     "danymat/neogen",
+    event = "VeryLazy",
     opts = {},
     cmd = "Neogen",
   },
 
-  { "azabiong/vim-highlighter" },
-  { "tpope/vim-surround" },
+  { "azabiong/vim-highlighter", event = "VeryLazy" },
+  { "tpope/vim-surround", event = "VeryLazy" },
   {
     "windwp/nvim-autopairs",
+    event = "VeryLazy",
     config = function()
       local npairs = req("nvim-autopairs")
       local Rule = req("nvim-autopairs.rule")
@@ -76,6 +83,7 @@ return {
 
   {
     "ThePrimeagen/refactoring.nvim",
+    event = "VeryLazy",
     config = function()
       req("refactoring").setup({
         print_var_statements = {
@@ -121,6 +129,7 @@ return {
 
   {
     "numToStr/Comment.nvim",
+    event = "VeryLazy",
     config = function()
       -- taken from https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
       req("Comment").setup({
@@ -143,6 +152,7 @@ return {
 
   {
     "NvChad/nvim-colorizer.lua",
+    event = "VeryLazy",
     config = function()
       req("colorizer").setup({
         filetypes = {
@@ -176,6 +186,7 @@ return {
 
   {
     "nvim-pack/nvim-spectre",
+    event = "VeryLazy",
     config = function()
       local spectre = req("spectre")
 

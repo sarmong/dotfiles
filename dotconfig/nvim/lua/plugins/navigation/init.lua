@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/aerial.nvim",
+    event = "VeryLazy",
     config = function()
       req("aerial").setup({})
       mapl({
@@ -66,6 +67,7 @@ return {
   },
   {
     "chentoast/marks.nvim",
+    event = "VeryLazy",
     opts = {
       sign_priority = { lower = 5, upper = 5, builtin = 5, bookmark = 4 }, -- lower priority than gitsigns
       default_mappings = true,
@@ -89,6 +91,7 @@ return {
   },
   {
     "ThePrimeagen/harpoon",
+    event = "VeryLazy",
     config = function()
       mapl({
         m = {
@@ -116,6 +119,7 @@ return {
   },
   {
     "mrjones2014/smart-splits.nvim",
+    event = "VeryLazy",
     version = ">=1.0.0",
     config = function()
       local ss = req("smart-splits")

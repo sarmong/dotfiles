@@ -1,5 +1,5 @@
 return {
-  { "sarmong/vim-smoothie" },
+  { "sarmong/vim-smoothie", event = "VeryLazy" },
   {
     "karb94/neoscroll.nvim",
     enabled = false,

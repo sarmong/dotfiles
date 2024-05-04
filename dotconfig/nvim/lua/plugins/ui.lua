@@ -1,6 +1,7 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local colors = {
@@ -172,13 +173,15 @@ return {
   },
   {
     "stevearc/dressing.nvim",
+    event = "VeryLazy",
     opts = {
       { input = { insert_only = false } },
     },
   },
-  { "Pocco81/TrueZen.nvim" },
+  { "Pocco81/TrueZen.nvim", event = "VeryLazy" },
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "VeryLazy",
     main = "ibl",
     opts = {
       indent = {
@@ -211,6 +214,7 @@ return {
 
   {
     "kevinhwang91/nvim-ufo",
+    event = "VeryLazy",
     dependencies = "kevinhwang91/promise-async",
     config = function()
       vim.o.foldcolumn = "0" -- '0' is not bad

@@ -1,6 +1,7 @@
 return {
   {
     "pwntester/octo.nvim",
+    event = "VeryLazy",
     opts = {
       default_remote = { "upstream", "origin" }, -- order to try remotes
       ssh_aliases = {}, -- SSH aliases. e.g. `ssh_aliases = {["github.com-work"] = "github.com"}`
