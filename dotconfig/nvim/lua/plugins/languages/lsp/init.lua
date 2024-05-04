@@ -26,8 +26,9 @@ return {
     },
     config = function(_, opts)
       req("mason").setup()
-      req("mason-lspconfig").setup({ ensure_installed = servers })
-      req("mason-tool-installer").setup({ ensure_installed = opts.tools })
+      req("mason-tool-installer").setup({
+        ensure_installed = vim.list_extend(servers, opts.tools),
+      })
     end,
   },
   {
