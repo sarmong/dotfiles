@@ -69,6 +69,7 @@ return {
               end
             end,
             "[F]ormat",
+            mode = { "n", "v" },
           },
 
           e = {
