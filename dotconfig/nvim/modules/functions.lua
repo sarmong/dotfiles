@@ -51,7 +51,7 @@ function M.qf_modified_bufs()
 
   local qf_items = {}
   for _, bufnr in ipairs(all_bufs) do
-    if a.nvim_buf_get_option(bufnr, "modified") then
+    if a.nvim_get_option_value("modified", { buf = bufnr }) then
       table.insert(qf_items, {
         bufnr = bufnr,
       })
