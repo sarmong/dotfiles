@@ -152,7 +152,10 @@ return {
           startify_config.section.mru_cwd,
           startify_config.section.mru,
           { type = "padding", val = 1 },
-          startify_config.section.bottom_buttons,
+          {
+            type = "group",
+            val = { startify_config.button("Q", "Quit", "<cmd>q <CR>") },
+          },
           startify_config.section.footer,
         },
         opts = {
