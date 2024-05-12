@@ -152,3 +152,25 @@ lf() {
     fi
   fi
 }
+
+man() {
+  if type bat &>/dev/null; then
+    command="bat"
+  elif type batcat &>/dev/null; then
+    command="batcat"
+  else
+    command man "$@"
+    return
+  fi
+
+  state_file="${XDG_STATE_HOME:-$HOME/.local/state}/current_theme"
+  current_theme=$(cat "$state_file")
+
+  if [ "$current_theme" = "light" ]; then
+    theme="gruvbox-light"
+  else
+    theme="gruvbox-dark"
+  fi
+
+  MANPAGER="sh -c 'col -bx | $command --theme='$theme' -l man -p'" command man "$@"
+}
