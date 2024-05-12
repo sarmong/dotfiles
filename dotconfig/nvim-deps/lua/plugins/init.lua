@@ -25,19 +25,4 @@ vim.g.scratch_persistence_file = cache_dir .. "/nvim/scratch_file"
 -- IDE features --
 ------------------
 
-autocmd("FileType", {
-  pattern = "markdown",
-  group = "markdown",
-  callback = function()
-    Plugin({
-      source = "antosha417/nvim-lsp-file-operations",
-      depends = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-tree.lua" },
-    })
-
-    require("lsp-file-operations").setup({ debug = false })
-  end,
-})
--- later(function()
--- end)
-
 Plugin("Pocco81/TrueZen.nvim")
