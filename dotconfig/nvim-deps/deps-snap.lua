@@ -52,7 +52,6 @@ return {
   ["nvim-bufdel"] = "523d58e94e7212fff3e05c247b962dc8f93bcfde",
   ["nvim-cmp"] = "8f3c541407e691af6163e2447f3af1bd6e17f9a3",
   ["nvim-colorizer.lua"] = "85855b38011114929f4058efc97af1059ab3e41d",
-  ["nvim-lsp-file-operations"] = "223aca86b737dc66e9c51ebcda8788a8d9cc6cf2",
   ["nvim-lspconfig"] = "ee450e6a9364fc740236166dd57aaca1ec7cdb48",
   ["nvim-metals"] = "c6268555d0b471262af78818f11a086ddf30688b",
   ["nvim-spectre"] = "4651801ba37a9407b7257287aec45b6653ffc5e9",
