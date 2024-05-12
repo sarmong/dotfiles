@@ -32,7 +32,7 @@ M.get_project_root = function()
     -- TODO 0.10 change to async
     ok, res = pcall(vim.system, config.monorepo.command, {})
     if ok and res:wait().code == 0 then
-      return res:wait().stdout
+      return vim.trim(res:wait().stdout)
     end
   else
     ok, res = pcall(vim.fn.system, config.monorepo.command)
