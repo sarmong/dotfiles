@@ -1,0 +1,406 @@
+# This is your rocks.nvim plugins declaration file.
+# Here is a small yet pretty detailed example on how to use it:
+#
+# [plugins]
+# nvim-treesitter = "semver_version"  # e.g. "1.0.0"
+
+# List of non-Neovim rocks.
+# This includes things like `toml` or other lua packages.
+[rocks]
+
+# List of Neovim plugins to install alongside their versions.
+# If the plugin name contains a dot then you must add quotes to the key name!
+[plugins]
+"rocks.nvim" = "2.27.1"
+neorg = "8.4.0"
+"image.nvim" = "1.2.0"
+"fugit2.nvim" = "0.1.0"
+
+[plugins."rocks-git.nvim"]
+version = "1.5.0"
+
+[plugins."which-key.nvim"]
+git = "folke/which-key.nvim"
+
+[plugins."nvim-web-devicons"]
+git = "nvim-tree/nvim-web-devicons"
+opt = true
+
+[plugins."lualine.nvim"]
+git = "nvim-lualine/lualine.nvim"
+opt = true
+
+[plugins."alpha-nvim"]
+git = "goolord/alpha-nvim"
+
+[plugins."dressing.nvim"]
+git = "stevearc/dressing.nvim"
+opt = true
+
+[plugins."TrueZen.nvim"]
+git = "Pocco81/TrueZen.nvim"
+opt = true
+
+[plugins."indent-blankline.nvim"]
+git = "lukas-reineke/indent-blankline.nvim"
+opt = true
+
+[plugins."promise-async"]
+git = "kevinhwang91/promise-async"
+opt = true
+
+[plugins."nvim-ufo"]
+git = "kevinhwang91/nvim-ufo"
+opt = true
+
+[plugins."gruvbox-material"]
+git = "sainnhe/gruvbox-material"
+
+[plugins."everforest"]
+git = "sainnhe/everforest"
+opt = true
+
+[plugins."nvim"]
+git = "catppuccin/nvim"
+opt = true
+
+[plugins."gruvbox.nvim"]
+git = "ellisonleao/gruvbox.nvim"
+opt = true
+
+[plugins."onedarker.nvim"]
+git = "AlphaTechnolog/onedarker.nvim"
+opt = true
+
+[plugins."onedark.nvim"]
+git = "navarasu/onedark.nvim"
+opt = true
+
+[plugins."tokyonight.nvim"]
+git = "folke/tokyonight.nvim"
+opt = true
+
+[plugins."plenary.nvim"]
+git = "nvim-lua/plenary.nvim"
+opt = true
+
+[plugins."nvim-lspconfig"]
+git = "neovim/nvim-lspconfig"
+opt = true
+
+[plugins."neoconf.nvim"]
+git = "sarmong/neoconf.nvim"
+opt = true
+
+[plugins."suda.vim"]
+git = "lambdalisue/suda.vim"
+opt = true
+
+[plugins."undotree"]
+git = "mbbill/undotree"
+opt = true
+
+[plugins."scratch.vim"]
+git = "mtth/scratch.vim"
+opt = true
+
+[plugins."buffer_manager.nvim"]
+git = "j-morano/buffer_manager.nvim"
+opt = true
+
+[plugins."nvim-bufdel"]
+git = "ojroques/nvim-bufdel"
+opt = true
+
+[plugins."gitsigns.nvim"]
+git = "lewis6991/gitsigns.nvim"
+opt = true
+
+[plugins."barbar.nvim"]
+git = "romgrk/barbar.nvim"
+opt = true
+
+[plugins."vim-smoothie"]
+git = "sarmong/vim-smoothie"
+opt = true
+
+[plugins."vim-visual-multi"]
+git = "mg979/vim-visual-multi"
+opt = true
+
+[plugins."codi.vim"]
+git = "metakirby5/codi.vim"
+opt = true
+
+[plugins."neogen"]
+git = "danymat/neogen"
+opt = true
+
+[plugins."CamelCaseMotion"]
+git = "bkad/CamelCaseMotion"
+opt = true
+
+[plugins."vim-highlighter"]
+git = "azabiong/vim-highlighter"
+opt = true
+
+[plugins."vim-surround"]
+git = "tpope/vim-surround"
+opt = true
+
+[plugins."nvim-autopairs"]
+git = "windwp/nvim-autopairs"
+opt = true
+
+[plugins."refactoring.nvim"]
+git = "ThePrimeagen/refactoring.nvim"
+opt = true
+
+[plugins."nvim-ts-context-commentstring"]
+git = "JoosepAlviste/nvim-ts-context-commentstring"
+opt = true
+
+[plugins."Comment.nvim"]
+git = "numToStr/Comment.nvim"
+opt = true
+
+[plugins."nvim-colorizer.lua"]
+git = "NvChad/nvim-colorizer.lua"
+opt = true
+
+[plugins."nvim-spectre"]
+git = "nvim-pack/nvim-spectre"
+opt = true
+
+[plugins."nvim-bqf"]
+git = "kevinhwang91/nvim-bqf"
+opt = true
+
+[plugins."aerial.nvim"]
+git = "stevearc/aerial.nvim"
+opt = true
+
+[plugins."nvim-window-picker"]
+git = "s1n7ax/nvim-window-picker"
+opt = true
+
+[plugins."marks.nvim"]
+git = "chentoast/marks.nvim"
+opt = true
+
+[plugins."harpoon"]
+git = "ThePrimeagen/harpoon"
+opt = true
+
+[plugins."smart-splits.nvim"]
+git = "mrjones2014/smart-splits.nvim"
+opt = true
+
+[plugins."nvim-tree.lua"]
+git = "nvim-tree/nvim-tree.lua"
+opt = true
+
+
+[plugins."friendly-snippets"]
+git = "rafamadriz/friendly-snippets"
+opt = true
+
+[plugins."html-snippets"]
+git = "ChristianChiarulli/html-snippets"
+opt = true
+
+[plugins."vscode-es7-javascript-react-snippets"]
+git = "dsznajder/vscode-es7-javascript-react-snippets"
+opt = true
+
+[plugins."LuaSnip"]
+git = "L3MON4D3/LuaSnip"
+opt = true
+
+[plugins."conform.nvim"]
+git = "stevearc/conform.nvim"
+opt = true
+
+[plugins."none-ls.nvim"]
+git = "nvimtools/none-ls.nvim"
+opt = true
+
+[plugins."none-ls-shellcheck.nvim"]
+git = "gbprod/none-ls-shellcheck.nvim"
+opt = true
+
+[plugins."mason.nvim"]
+git = "williamboman/mason.nvim"
+opt = true
+
+[plugins."mason-lspconfig.nvim"]
+git = "williamboman/mason-lspconfig.nvim"
+opt = true
+
+[plugins."mason-tool-installer.nvim"]
+git = "WhoIsSethDaniel/mason-tool-installer.nvim"
+opt = true
+
+[plugins."neodev.nvim"]
+git = "folke/neodev.nvim"
+opt = true
+
+[plugins."typescript-tools.nvim"]
+git = "pmizio/typescript-tools.nvim"
+opt = true
+
+[plugins."ts-error-translator.nvim"]
+git = "dmmulroy/ts-error-translator.nvim"
+opt = true
+
+[plugins."nvim-metals"]
+git = "scalameta/nvim-metals"
+opt = true
+
+[plugins."fidget.nvim"]
+git = "j-hui/fidget.nvim"
+opt = true
+
+[plugins."telescope-media-files.nvim"]
+git = "nvim-telescope/telescope-media-files.nvim"
+opt = true
+
+[plugins."telescope-project.nvim"]
+git = "nvim-telescope/telescope-project.nvim"
+opt = true
+
+[plugins."telescope-fzf-native.nvim"]
+git = "nvim-telescope/telescope-fzf-native.nvim"
+opt = true
+
+[plugins."telescope-live-grep-args.nvim"]
+git = "nvim-telescope/telescope-live-grep-args.nvim"
+opt = true
+
+[plugins."sqlite.lua"]
+git = "kkharji/sqlite.lua"
+opt = true
+
+[plugins."telescope-smart-history.nvim"]
+git = "nvim-telescope/telescope-smart-history.nvim"
+opt = true
+
+[plugins."telescope-lazy-plugins.nvim"]
+git = "polirritmico/telescope-lazy-plugins.nvim"
+opt = true
+
+[plugins."telescope.nvim"]
+git = "nvim-telescope/telescope.nvim"
+opt = true
+
+[plugins."mkdnflow.nvim"]
+git = "jakewvincent/mkdnflow.nvim"
+opt = true
+
+[plugins."markdown-preview.nvim"]
+git = "iamcco/markdown-preview.nvim"
+opt = true
+
+[plugins."vim-devicetree"]
+git = "martinlroth/vim-devicetree"
+opt = true
+
+[plugins."lf-vim"]
+git = "sarmong/lf-vim"
+opt = true
+
+[plugins."newsboat.vim"]
+git = "sarmong/newsboat.vim"
+opt = true
+
+[plugins."sxhkd-vim"]
+git = "kovetskiy/sxhkd-vim"
+opt = true
+
+[plugins."conky-syntax.vim"]
+git = "sarmong/conky-syntax.vim"
+opt = true
+
+[plugins."yuck.vim"]
+git = "elkowar/yuck.vim"
+opt = true
+
+[plugins."vim-kitty"]
+git = "fladson/vim-kitty"
+opt = true
+
+[plugins."nvim-treesitter"]
+git = "nvim-treesitter/nvim-treesitter"
+opt = true
+
+[plugins."nvim-ts-rainbow"]
+git = "p00f/nvim-ts-rainbow"
+opt = true
+
+[plugins."nvim-ts-autotag"]
+git = "windwp/nvim-ts-autotag"
+opt = true
+
+[plugins."nvim-treesitter-refactor"]
+git = "nvim-treesitter/nvim-treesitter-refactor"
+opt = true
+
+[plugins."nvim-treesitter-textobjects"]
+git = "nvim-treesitter/nvim-treesitter-textobjects"
+opt = true
+
+[plugins."playground"]
+git = "nvim-treesitter/playground"
+opt = true
+
+[plugins."nvim-treesitter-context"]
+git = "nvim-treesitter/nvim-treesitter-context"
+opt = true
+
+[plugins."vim-fugitive"]
+git = "tpope/vim-fugitive"
+opt = true
+
+[plugins."git-blame.nvim"]
+git = "f-person/git-blame.nvim"
+opt = true
+
+[plugins."neogit"]
+git = "NeogitOrg/neogit"
+opt = true
+
+[plugins."diffview.nvim"]
+git = "sindrets/diffview.nvim"
+opt = true
+
+[plugins."gitlinker.nvim"]
+git = "ruifm/gitlinker.nvim"
+opt = true
+
+[plugins."octo.nvim"]
+git = "pwntester/octo.nvim"
+opt = true
+
+
+# nvim-ufo = "1.4.0"
+# nvim-spectre = "scm"
+# nvim-cokeline = "0.4.0"
+# nvim-scrollview = "5.0.0"
+#
+# [plugins."which-key.nvim"]
+# git = "folke/which-key.nvim"
+# opt = true
+# rev = "v1.6.0"
+
+# [plugins.nvim-web-devicons]
+# git = "nvim-tree/nvim-web-devicons"
+# rev = "v0.99"
+#
+# [plugins."mkdnflow.nvim"]
+# git = "jakewvincent/mkdnflow.nvim"
+# opt = true
+#
+# [plugins.nvim-lspconfig]
+# git = "neovim/nvim-lspconfig"
+# rev = "v0.1.7"
+# opt = true
