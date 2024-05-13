@@ -18,3 +18,15 @@ _G.req = function(module_name)
 
   return module, ok
 end
+
+_G.lreq = function(module_name)
+  local module = {}
+
+  setmetatable(module, {
+    __index = function(_, method)
+      return req(module_name)[method]
+    end,
+  })
+
+  return module
+end
