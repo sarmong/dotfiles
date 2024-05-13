@@ -127,3 +127,30 @@ autocmd("FileType", {
     vim.opt_local.textwidth = 0
   end,
 })
+
+autocmd("VimEnter", {
+  callback = function()
+    local repo = vim.fn.argv()[1]
+    if not (repo and vim.startswith(repo, "gh:")) then
+      return
+    end
+
+    local dir = "/tmp/repos/" .. repo:match("/([^/]+)$")
+
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.print("Cloning " .. repo:sub(3) .. " into " .. dir .. "...")
+      vim.fn.system("git clone " .. repo .. " --depth=1 " .. dir)
+    end
+
+    vim.cmd.cd(dir)
+    req("alpha").start()
+
+    autocmd("VimLeave", {
+      callback = function()
+        vim.print("Cleaning up")
+        vim.fn.delete(dir, "rf")
+        vim.cmd("sleep 10m") -- @TODO prevents exit error, remove after 0.10
+      end,
+    })
+  end,
+})
