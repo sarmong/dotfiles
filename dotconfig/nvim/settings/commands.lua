@@ -20,3 +20,15 @@ end, { nargs = "+", complete = "command" })
 command("QfModifiedBufs", function()
   fns.qf_modified_bufs()
 end)
+
+command("Source", function()
+  req("modules.reloader").source_file()
+end)
+
+command("Reload", function(ctx)
+  local opts = {}
+  if ctx.fargs[1] then
+    opts.name = ctx.fargs[1]
+  end
+  req("modules.reloader").reload_package(opts)
+end, { nargs = "?" })
