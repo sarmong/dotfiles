@@ -72,6 +72,7 @@ return {
   playground = "ba48c6a62a280eefb7c85725b0915e021a1a0749",
   ["plenary.nvim"] = "08e301982b9a057110ede7a735dd1b5285eb341f",
   ["promise-async"] = "93540c168c5ed2b030ec3e6c40ab8bbb85e36355",
+  ["qmk.nvim"] = "cfa6cecae362d23778cd97317d33ab12671e157c",
   ["refactoring.nvim"] = "d2786877c91aa409c824f27b4ce8a9f560dda60a",
   ["scratch.vim"] = "adf826b1ac067cdb4168cb6066431cff3a2d37a3",
   ["smart-splits.nvim"] = "7c8118c6d568cbf71ce5c253f028d5d68eb3a044",

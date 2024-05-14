@@ -54,6 +54,7 @@ deps.now(function()
     req("plugins.languages.null-ls")
 
     req("plugins.languages.lsp")
+    req("plugins.languages.debug")
     req("plugins.navigation.telescope")
     req("plugins.languages.markdown")
 

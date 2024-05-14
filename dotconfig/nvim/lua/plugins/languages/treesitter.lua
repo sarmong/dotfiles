@@ -12,6 +12,7 @@ return {
         "comment",
         "css",
         "csv",
+        "devicetree",
         "dockerfile",
         "go",
         "html",
