@@ -15,7 +15,7 @@ curl
 wget				
 htop				
 vim				
-bob-bin	p	neovim		
+	x	neovim		
 libsqlite3-dev			x	Needed for telescope-smart-history to work properly
 ssh		openssh		
 man-db				
