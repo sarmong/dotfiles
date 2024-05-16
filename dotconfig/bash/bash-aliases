@@ -95,7 +95,7 @@ lns() {
   ln -vs "$target" "$2"
 }
 
-alias v="nvim"
+alias v="NVIM_APPNAME=nvim-deps nvim"
 alias fo="fzf | xargs xdg-open"
 alias nb="newsboat"
 alias ec="pushd \$XDG_DOTFILES_DIR >/dev/null && fzf | xargs nvim && popd >/dev/null"
