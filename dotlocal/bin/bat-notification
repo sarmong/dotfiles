@@ -8,11 +8,11 @@ if [ "$(uname)" = "Linux" ]; then
   bat2status=$(cat /sys/class/power_supply/BAT1/status)
 
   if [ "$batlvl" -lt 30 ] && [ "$status" = "Discharging" ]; then
-    /usr/bin/notify-send "Charge your battery"
+    /usr/bin/notify-send "Charge your battery ($batlvl%)"
   fi
 
   if [ "$bat2lvl" -lt 30 ] && [ "$bat2status" = "Discharging" ]; then
-    /usr/bin/notify-send "Charge your battery"
+    /usr/bin/notify-send "Charge your battery ($bat2lvl%)"
   fi
 
 elif [ "$(uname)" = "Darwin" ]; then
