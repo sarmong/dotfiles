@@ -1,3 +1,4 @@
+vim.loader.enable()
 local config_dir = vim.api.nvim_eval("stdpath('config')")
 package.path = config_dir
   .. "/?.lua;"
@@ -7,7 +8,7 @@ package.path = config_dir
 
 require("utils")
 
-req("lazy-config")
+req("deps")
 req("settings")
 
 -- vim.cmd("source " .. config_dir .. "/utils/quitdialog.vim")
