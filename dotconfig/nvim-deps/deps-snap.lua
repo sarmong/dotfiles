@@ -52,8 +52,12 @@ return {
   ["nvim-bufdel"] = "523d58e94e7212fff3e05c247b962dc8f93bcfde",
   ["nvim-cmp"] = "8f3c541407e691af6163e2447f3af1bd6e17f9a3",
   ["nvim-colorizer.lua"] = "85855b38011114929f4058efc97af1059ab3e41d",
+  ["nvim-dap"] = "5a2f7121869394502521c52b2bc581ab22c69447",
+  ["nvim-dap-ui"] = "5934302d63d1ede12c0b22b6f23518bb183fc972",
+  ["nvim-dap-vscode-js"] = "03bd29672d7fab5e515fc8469b7d07cc5994bbf6",
   ["nvim-lspconfig"] = "9a5a3ebd63b0bf7f8528ed2ca65c8c8bcd2bbeae",
   ["nvim-metals"] = "c6268555d0b471262af78818f11a086ddf30688b",
+  ["nvim-nio"] = "8765cbc4d0c629c8158a5341e1b4305fd93c3a90",
   ["nvim-spectre"] = "4651801ba37a9407b7257287aec45b6653ffc5e9",
   ["nvim-tree.lua"] = "64f61e4c913047a045ff90bd188dd3b54ee443cf",
   ["nvim-treesitter"] = "da0efd7398713a3177da5ce8690f0e5c5415763d",
@@ -98,6 +102,7 @@ return {
   ["vim-surround"] = "3d188ed2113431cf8dac77be61b842acb64433d9",
   ["vim-visual-multi"] = "b84a6d42c1c10678928b0bf8327f378c8bc8af5a",
   ["vscode-es7-javascript-react-snippets"] = "185bb91a0b692c54136663464e8225872c434637",
+  ["vscode-js-debug"] = "7349abcd0aaf72375645a4a876afab6479e0ed7e",
   ["which-key.nvim"] = "4433e5ec9a507e5097571ed55c02ea9658fb268a",
   ["yuck.vim"] = "9b5e0370f70cc30383e1dabd6c215475915fe5c3"
 }
