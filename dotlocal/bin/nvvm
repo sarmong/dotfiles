@@ -1,0 +1,47 @@
+#!/bin/sh
+
+dir=${XDG_DATA_HOME:-$HOME/.local/share}/nvvm
+bin_dir=$dir/bin
+lib_dir=$dir/lib
+
+[ ! -d "$bin_dir" ] && mkdir -p "$bin_dir"
+[ ! -d "$lib_dir" ] && mkdir -p "$lib_dir"
+
+command="$1"
+
+list() {
+  # gh api --method GET /repos/neovim/neovim/releases
+  gh release list --limit 15 --json tagName -R neovim/neovim | jq -r '.[].tagName' | tac
+}
+
+use() {
+  name="$1"
+
+  if [ ! -f "$lib_dir/$name.appimage" ]; then
+    install "$name"
+  fi
+
+  ln -sf "$lib_dir/$name.appimage" "$bin_dir/nvim"
+  chmod +x "$bin_dir/nvim"
+}
+
+install() {
+  version="$1"
+
+  curl --location "https://github.com/neovim/neovim/releases/download/$version/nvim.appimage" --output "$lib_dir/$version.appimage"
+
+  [ ! -L "$bin_dir/nvim" ] && use "$version"
+}
+
+shift
+case "$command" in
+  install)
+    install "$@"
+    ;;
+  use)
+    use "$@"
+    ;;
+  list)
+    list "$@"
+    ;;
+esac
