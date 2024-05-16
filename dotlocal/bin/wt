@@ -1,0 +1,16 @@
+#!/bin/sh
+
+new_wt=$1
+
+if [ "$(git rev-parse --is-bare-repository)" = "true" ] && [ "$(git rev-parse --is-inside-work-tree)" = "false" ]; then
+  root=$(pwd)
+else
+  root="$(git rev-parse --show-toplevel)/.."
+fi
+wt_dir="$root/$new_wt"
+master=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+
+git worktree add "$wt_dir" -b "$new_wt" "$master"
+
+# to clone node_modules, dist, etc.
+rsync --archive "$master/" "$wt_dir"
