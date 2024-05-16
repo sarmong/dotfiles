@@ -1,40 +1,28 @@
-return {
-  { "nvim-lua/plenary.nvim" }, -- required by many plugins
-  { "nvim-tree/nvim-web-devicons" },
-  {
-    "sarmong/neoconf.nvim",
-    event = "VeryLazy",
-    config = function()
-      req("neoconf").setup()
-    end,
-  },
-  -- Quality of life improvements --
+local later = req("mini.deps").later
 
-  {
-    "lambdalisue/suda.vim",
-    event = "VeryLazy",
-    cmd = { "SudaWrite", "SudaRead" },
-  },
+Plugin("nvim-lua/plenary.nvim") -- required by many plugins
 
-  {
-    "mbbill/undotree",
-    event = "VeryLazy",
-    config = function()
-      map("n", "<leader>u", cmd.bind("UndotreeToggle"), "[u]ndo tree")
-    end,
-  },
-  {
-    "mtth/scratch.vim",
-    event = "VeryLazy",
-    config = function()
-      local cache_dir = os.getenv("XDG_CACHE_HOME")
-      vim.g.scratch_persistence_file = cache_dir .. "/nvim/scratch_file"
-    end,
-  },
+Plugin("nvim-tree/nvim-web-devicons")
 
-  ------------------
-  -- IDE features --
-  ------------------
+Plugin({
+  source = "sarmong/neoconf.nvim",
+  depends = { "neovim/nvim-lspconfig" },
+})
+req("neoconf").setup()
 
-  { "Pocco81/TrueZen.nvim", event = "VeryLazy" },
-}
+-- Quality of life improvements --
+
+Plugin("lambdalisue/suda.vim")
+
+Plugin("mbbill/undotree")
+map("n", "<leader>u", cmd.bind("UndotreeToggle"), "[u]ndo tree")
+
+Plugin("mtth/scratch.vim")
+local cache_dir = os.getenv("XDG_CACHE_HOME")
+vim.g.scratch_persistence_file = cache_dir .. "/nvim/scratch_file"
+
+------------------
+-- IDE features --
+------------------
+
+Plugin("Pocco81/TrueZen.nvim")

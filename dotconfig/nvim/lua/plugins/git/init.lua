@@ -47,54 +47,37 @@ local fns = {
     )
   end,
 }
-return {
-  { "tpope/vim-fugitive", event = "VeryLazy" },
-  {
-    "f-person/git-blame.nvim",
-    event = "VeryLazy",
-    opts = { enabled = false },
-    config = function(_, opts)
-      req("gitblame").setup(opts)
+Plugin("tpope/vim-fugitive")
+Plugin("f-person/git-blame.nvim")
+req("gitblame").setup({ enabled = false })
 
-      map("n", "<leader>gb", cmd.bind("GitBlameToggle"))
-    end,
-  },
-  {
-    "NeogitOrg/neogit",
-    event = "VeryLazy",
-    opts = {
-      integrations = {
-        diffview = true,
-      },
-      -- kind = "replace", -- temp fix for https://github.com/TimUntersberger/neogit/issues/389
-    },
-    config = function(_, opts)
-      req("neogit").setup(opts)
+map("n", "<leader>gb", cmd.bind("GitBlameToggle"))
 
-      map("n", "<leader>gn", req("neogit").open, "neogit")
-    end,
+Plugin("NeogitOrg/neogit")
+req("neogit").setup({
+  integrations = {
+    diffview = true,
   },
-  { "sindrets/diffview.nvim", event = "VeryLazy" },
-  {
-    "ruifm/gitlinker.nvim",
-    event = "VeryLazy",
-    opts = {
-      opts = {
-        -- adds current line nr in the url for normal mode
-        add_current_line_on_normal_mode = false,
-        -- print the url after performing the action
-        print_url = true,
-      },
-      mappings = "<nop>",
-    },
-    config = function(spec, opts)
-      local gl = req("gitlinker")
-      gl.setup(opts)
+  -- kind = "replace", -- temp fix for https://github.com/TimUntersberger/neogit/issues/389
+})
 
-      map({ "n", "v" }, "<leader>go", fns.open_repo, "open repo")
-      map({ "n", "v" }, "<leader>gO", fns.open_line_url, "open line url")
-      map({ "n", "v" }, "<leader>gy", fns.yank_repo, "yank repo")
-      map({ "n", "v" }, "<leader>gY", fns.yank_line_url, "yarnk line url")
-    end,
+map("n", "<leader>gn", req("neogit").open, "neogit")
+Plugin("sindrets/diffview.nvim")
+Plugin("ruifm/gitlinker.nvim")
+
+local gl = req("gitlinker")
+
+gl.setup({
+  opts = {
+    -- adds current line nr in the url for normal mode
+    add_current_line_on_normal_mode = false,
+    -- print the url after performing the action
+    print_url = true,
   },
-}
+  mappings = "<nop>",
+})
+
+map({ "n", "v" }, "<leader>go", fns.open_repo, "open repo")
+map({ "n", "v" }, "<leader>gO", fns.open_line_url, "open line url")
+map({ "n", "v" }, "<leader>gy", fns.yank_repo, "yank repo")
+map({ "n", "v" }, "<leader>gY", fns.yank_line_url, "yarnk line url")
