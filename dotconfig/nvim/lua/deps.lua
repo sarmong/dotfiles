@@ -1,6 +1,6 @@
 local path_package = vim.fn.stdpath("data") .. "/site/"
 local mini_path = path_package .. "pack/deps/start/mini.deps"
-if not vim.loop.fs_stat(mini_path) then
+if not vim.uv.fs_stat(mini_path) then
   vim.cmd('echo "Installing `mini.deps`" | redraw')
   local clone_cmd = {
     "git",

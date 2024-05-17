@@ -83,7 +83,7 @@ mapl({
       function()
         print(
           "Added "
-            .. string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd(), "")
+            .. string.gsub(vim.api.nvim_buf_get_name(0), vim.uv.cwd(), "")
             .. " to the harpoon"
         )
         req("harpoon.mark").add_file()
