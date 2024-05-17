@@ -3,7 +3,7 @@ local fns = {
     local current_mode = vim.api.nvim_get_mode()["mode"]
 
     if current_mode == "v" then
-      local text = req("utils.get-visual-selection")()
+      local text = req("utils.get-visual-selection")()[1]
 
       local url = "https://github.com/" .. text
       vim.ui.open(url)
@@ -27,7 +27,7 @@ local fns = {
     local current_mode = vim.api.nvim_get_mode()["mode"]
 
     if current_mode == "v" then
-      local text = req("utils.get-visual-selection")()
+      local text = req("utils.get-visual-selection")()[1]
 
       local url = "https://github.com/" .. text
       vim.fn.setreg("+", url)
