@@ -8,10 +8,9 @@ Plugin({
   "microsoft/vscode-js-debug",
   hooks = {
     post_install = function(spec)
-      vim.fn.system(
-        "cd "
-          .. spec.path
-          .. " && git checkout $(git tag -l 'v1.*' | tail -n1) && npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+      system(
+        "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+        { cwd = spec.path, detach = true, shell = true }
       )
     end,
   },

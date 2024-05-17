@@ -9,7 +9,7 @@ if not vim.loop.fs_stat(mini_path) then
     "https://github.com/echasnovski/mini.deps",
     mini_path,
   }
-  vim.fn.system(clone_cmd)
+  vim.system(clone_cmd):wait()
   vim.cmd("packadd mini.deps | helptags ALL")
   vim.cmd('echo "Installed `mini.deps`" | redraw')
 end

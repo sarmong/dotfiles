@@ -70,11 +70,7 @@ Plugin({
       source = "nvim-telescope/telescope-fzf-native.nvim",
       hooks = {
         post_install = function(spec)
-          vim.fn.system(
-            "cd "
-              .. spec.path
-              .. " && cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
-          )
+          system("make", { cwd = spec.path, detach = true }):wait()
         end,
       },
     },
