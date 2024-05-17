@@ -1,5 +1,5 @@
-local get_visual_selection = req("utils.get-visual-selection")
-local root_dir = req("modules.root-dir")
+local get_visual_selection = lreq("utils.get-visual-selection")
+local root_dir = lreq("modules.root-dir")
 
 local fns = {
   oldfiles = function()
@@ -330,6 +330,6 @@ mapl({
 
 map("v", "<leader>st", function()
   req("telescope").extensions.live_grep_args.live_grep_args({
-    default_text = get_visual_selection(),
+    default_text = get_visual_selection()[1],
   })
 end, "selected text")

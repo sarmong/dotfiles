@@ -1,8 +1,11 @@
 local function get_visual_selection()
   -- Yank current visual selection into the 'v' register
   -- Note that this makes no effort to preserve this register
-  vim.cmd('noau normal! "vy"')
-  return vim.fn.getreg("v")
+  -- vim.cmd('noau normal! "vy"')
+  -- return vim.fn.getreg("v")
+
+  -- another try
+  return vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."))
 
   -- @TODO figure out why it doesn't work in telescope
   -- local sel_start = vim.fn.getpos("'<")
