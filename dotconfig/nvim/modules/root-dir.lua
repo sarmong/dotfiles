@@ -36,7 +36,7 @@ M.get_project_root = function()
   local dir = vim.fs.dirname(
     vim.fs.find(
       config.monorepo.patterns,
-      { upward = true, stop = vim.loop.os_homedir() }
+      { upward = true, stop = vim.uv.os_homedir() }
     )[1]
   )
 
@@ -47,7 +47,7 @@ M.get_subpackage_root = function()
   local dir = vim.fs.dirname(
     vim.fs.find(
       config.module.patterns,
-      { upward = true, stop = vim.loop.os_homedir() }
+      { upward = true, stop = vim.uv.os_homedir() }
     )[1]
   )
 

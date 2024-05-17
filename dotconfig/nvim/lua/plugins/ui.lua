@@ -126,7 +126,7 @@ local startify_config = req("alpha.themes.startify")
 local session_file = "./Session.vim"
 
 local function file_exists(path)
-  local _, error = vim.loop.fs_stat(path)
+  local _, error = vim.uv.fs_stat(path)
   return error == nil
 end
 

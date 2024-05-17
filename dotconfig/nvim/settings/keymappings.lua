@@ -40,7 +40,7 @@ map("v", "S", '"hy:%s/<C-r>h//gc<left><left><left>', { silent = false })
 map("n", "gx", function()
   local url = fn.expand("<cfile>")
   if url:match("^https?://") then
-    vim.loop.spawn("xdg-open", { args = { url } })
+    vim.uv.spawn("xdg-open", { args = { url } })
   end
 end)
 
