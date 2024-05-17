@@ -59,6 +59,7 @@ return {
   ["nvim-metals"] = "c6268555d0b471262af78818f11a086ddf30688b",
   ["nvim-nio"] = "8765cbc4d0c629c8158a5341e1b4305fd93c3a90",
   ["nvim-spectre"] = "4651801ba37a9407b7257287aec45b6653ffc5e9",
+  ["nvim-notify"] = "d333b6f167900f6d9d42a59005d82919830626bf",
   ["nvim-tree.lua"] = "2bc725a3ebc23f0172fb0ab4d1134b81bcc13812",
   ["nvim-treesitter"] = "8012b55eee65eba1d1ee4df0a186d30e72dcbe65",
   ["nvim-treesitter-context"] = "6d076414ffedd80411cb0260da8da2788e816e33",
