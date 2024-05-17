@@ -33,23 +33,13 @@ M.get_project_root = function()
     return vim.trim(res:wait().stdout)
   end
 
-  local dir = vim.fs.dirname(
-    vim.fs.find(
-      config.monorepo.patterns,
-      { upward = true, stop = vim.uv.os_homedir() }
-    )[1]
-  )
+  local dir = vim.fs.root(0, config.monorepo.patterns)
 
   return dir
 end
 
 M.get_subpackage_root = function()
-  local dir = vim.fs.dirname(
-    vim.fs.find(
-      config.module.patterns,
-      { upward = true, stop = vim.uv.os_homedir() }
-    )[1]
-  )
+  local dir = vim.fs.root(0, config.module.patterns)
 
   if dir then
     return dir
