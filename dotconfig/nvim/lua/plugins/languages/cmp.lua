@@ -20,10 +20,9 @@ Plugin({
       source = "dsznajder/vscode-es7-javascript-react-snippets",
       hooks = {
         post_install = function(spec)
-          vim.fn.system(
-            "cd "
-              .. spec.path
-              .. " && npx --yes yarn install --frozen-lockfile && npx --yes yarn compile"
+          system(
+            "npx --yes yarn install --frozen-lockfile && npx --yes yarn compile",
+            { cwd = spec.path, detach = true, shell = true }
           )
         end,
       },

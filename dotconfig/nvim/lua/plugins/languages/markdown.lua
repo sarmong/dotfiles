@@ -146,7 +146,10 @@ Plugin({
   "iamcco/markdown-preview.nvim",
   hooks = {
     post_install = function(spec)
-      vim.fn.system("cd " .. spec.path .. "/app && npx --yes yarn install")
+      system(
+        "npx --yes yarn install",
+        { cwd = spec.path .. "/app", detach = true }
+      )
     end,
   },
 })

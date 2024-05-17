@@ -29,6 +29,27 @@ function command(name, fn, opts)
   vim.api.nvim_create_user_command(name, fn, opts)
 end
 
+---@class vim.SystemOpts
+---@field shell? boolean
+
+--- Wrapper around `vim.system` that accepts opts.shell
+---@param cmd string | string[]
+---@param opts?  vim.SystemOpts
+---@param on_exit? fun(res: vim.SystemCompleted)
+---@return vim.SystemObj
+function system(cmd, opts, on_exit)
+  if opts and opts.shell then
+    cmd = type(cmd) == "string" and cmd or vim.iter(cmd):join(" ")
+    cmd = { "sh", "-c", cmd }
+  end
+
+  if type(cmd) == "string" then
+    cmd = vim.split(cmd, " ")
+  end
+
+  return vim.system(cmd, opts, on_exit)
+end
+
 -- stylua: ignore
 local langmap = { A = "Ф", B = "И", C = "С", D = "В", E = "У", F = "А", G = "П", H = "Р", I = "Ш", J = "О", K = "Л", L = "Д", M = "Ь", N = "Т", O = "Щ", P = "З", Q = "Й", R = "К", S = "Ы", T = "Е", U = "Г", V = "М", W = "Ц", X = "Ч", Y = "Н", Z = "Я", a = "ф", b = "и", c = "с", d = "в", e = "у", f = "а", g = "п", h = "р", i = "ш", j = "о", k = "л", l = "д", m = "ь", n = "т", o = "щ", p = "з", q = "й", r = "к", s = "ы", t = "е", u = "г", v = "м", w = "ц", x = "ч", y = "н", z = "я", }
 

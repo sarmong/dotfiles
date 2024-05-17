@@ -27,18 +27,10 @@ M.set_root = function(dir)
 end
 
 M.get_project_root = function()
-  local ok, res
-  if fn.has("nvim-0.10") then
-    -- TODO 0.10 change to async
-    ok, res = pcall(vim.system, config.monorepo.command, {})
-    if ok and res:wait().code == 0 then
-      return vim.trim(res:wait().stdout)
-    end
-  else
-    ok, res = pcall(vim.fn.system, config.monorepo.command)
-    if ok then
-      return res
-    end
+  local ok, res = pcall(vim.system, config.monorepo.command, {})
+  -- @TODO change root async?
+  if ok and res:wait().code == 0 then
+    return vim.trim(res:wait().stdout)
   end
 
   local dir = vim.fs.dirname(

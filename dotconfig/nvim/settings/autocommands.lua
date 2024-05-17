@@ -139,7 +139,7 @@ autocmd("VimEnter", {
 
     if vim.fn.isdirectory(dir) == 0 then
       vim.print("Cloning " .. repo:sub(3) .. " into " .. dir .. "...")
-      vim.fn.system("git clone " .. repo .. " --depth=1 " .. dir)
+      vim.system({ "git", "clone", repo, "--depth=1", dir }):wait()
     end
 
     vim.cmd.cd(dir)

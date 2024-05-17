@@ -6,7 +6,7 @@ local fns = {
       local text = req("utils.get-visual-selection")()
 
       local url = "https://github.com/" .. text
-      vim.fn.system("xdg-open " .. url)
+      vim.system({ "xdg-open", url })
     else
       req("gitlinker").get_repo_url({
         action_callback = req("gitlinker").actions.open_in_browser,
