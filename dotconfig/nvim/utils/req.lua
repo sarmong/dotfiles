@@ -26,6 +26,9 @@ _G.lreq = function(module_name)
     __index = function(_, method)
       return req(module_name)[method]
     end,
+    __call = function(_, ...)
+      return req(module_name)(...)
+    end,
   })
 
   return module
