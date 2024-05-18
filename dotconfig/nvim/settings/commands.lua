@@ -32,3 +32,8 @@ command("Reload", function(ctx)
   end
   req("modules.reloader").reload_package(opts)
 end, { nargs = "?" })
+
+command("Cd", function()
+  local rd = req("modules.root-dir")
+  rd.set_root(rd.get_project_root())
+end)
