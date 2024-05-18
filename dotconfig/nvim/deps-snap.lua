@@ -74,7 +74,6 @@ return {
   ["octo.nvim"] = "5646539320cd62af6ff28f48ec92aeb724c68e18",
   ["onedark.nvim"] = "8e4b79b0e6495ddf29552178eceba1e147e6cecf",
   ["onedarker.nvim"] = "12141dbb59cfa8fbad53e6b8820d85d37c248f4b",
-  playground = "ba48c6a62a280eefb7c85725b0915e021a1a0749",
   ["plenary.nvim"] = "08e301982b9a057110ede7a735dd1b5285eb341f",
   ["promise-async"] = "93540c168c5ed2b030ec3e6c40ab8bbb85e36355",
   ["qmk.nvim"] = "cfa6cecae362d23778cd97317d33ab12671e157c",
