@@ -9,7 +9,6 @@ Plugin("p00f/nvim-ts-rainbow") -- rainbow parantheses
 Plugin("windwp/nvim-ts-autotag")
 Plugin("nvim-treesitter/nvim-treesitter-refactor")
 Plugin("nvim-treesitter/nvim-treesitter-textobjects")
-Plugin("nvim-treesitter/playground")
 Plugin("nvim-treesitter/nvim-treesitter-context")
 Plugin("JoosepAlviste/nvim-ts-context-commentstring")
 
@@ -144,24 +143,6 @@ local opts = {
   refactor = {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = true },
-  },
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-    keybindings = {
-      toggle_query_editor = "o",
-      toggle_hl_groups = "i",
-      toggle_injected_languages = "t",
-      toggle_anonymous_nodes = "a",
-      toggle_language_display = "I",
-      focus_language = "f",
-      unfocus_language = "F",
-      update = "R",
-      goto_node = "<cr>",
-      show_help = "?",
-    },
   },
 }
 req("nvim-treesitter.configs").setup(opts)
