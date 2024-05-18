@@ -1,3 +1,5 @@
+# vim:ft=gitconfig
+
 [core]
   pager = "delta"
   excludesfile = "~/.config/git/gitignore_global"
