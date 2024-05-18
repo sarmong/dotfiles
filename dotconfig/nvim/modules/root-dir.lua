@@ -26,20 +26,26 @@ M.set_root = function(dir)
   end
 end
 
-M.get_project_root = function()
-  local ok, res = pcall(vim.system, config.monorepo.command, {})
-  -- @TODO change root async?
+M.get_project_root = function(bufnr)
+  bufnr = bufnr or 0
+  -- @TODO consider pattern first, command second
+  local ok, res = pcall(
+    vim.system,
+    config.monorepo.command,
+    { cwd = a.nvim_buf_get_name(bufnr) }
+  )
   if ok and res:wait().code == 0 then
     return vim.trim(res:wait().stdout)
   end
 
-  local dir = vim.fs.root(0, config.monorepo.patterns)
+  local dir = vim.fs.root(bufnr, config.monorepo.patterns)
 
   return dir
 end
 
-M.get_subpackage_root = function()
-  local dir = vim.fs.root(0, config.module.patterns)
+M.get_subpackage_root = function(bufnr)
+  bufnr = bufnr or 0
+  local dir = vim.fs.root(bufnr, config.module.patterns)
 
   if dir then
     return dir
