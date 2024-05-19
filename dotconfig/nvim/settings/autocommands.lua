@@ -134,7 +134,6 @@ autocmd("VimEnter", {
       callback = function()
         vim.print("Cleaning up")
         vim.fn.delete(dir, "rf")
-        vim.cmd("sleep 10m") -- @TODO prevents exit error, remove after 0.10
       end,
     })
   end,
