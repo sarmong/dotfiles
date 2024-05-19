@@ -77,11 +77,8 @@ Plugin({
     "nvim-telescope/telescope-live-grep-args.nvim",
     {
       source = "nvim-telescope/telescope-smart-history.nvim",
-      -- Need libsqlite3-dev on debian
-      depends = { "kkharji/sqlite.lua" },
+      depends = { "kkharji/sqlite.lua" }, -- Need libsqlite3-dev on debian
     },
-    "polirritmico/telescope-lazy-plugins.nvim",
-    "sarmong/neoconf.nvim",
   },
 })
 
@@ -272,7 +269,6 @@ telescope.load_extension("project")
 telescope.load_extension("fzf")
 telescope.load_extension("live_grep_args")
 -- telescope.load_extension("smart_history")
-telescope.load_extension("lazy_plugins")
 
 map("n", "<C-p>", fns.oldfiles, "oldfiles")
 
@@ -318,7 +314,6 @@ mapl({
     w = { ":Telescope grep_string<cr>", "word" },
     R = { ":Telescope registers<cr>", "registers" },
     u = { ":Telescope colorscheme<cr>", "colorschemes" },
-    p = { ":Telescope lazy_plugins<cr>", "projects" },
     s = {
       function()
         require("telescope.builtin").resume({ initial_mode = "normal" })
