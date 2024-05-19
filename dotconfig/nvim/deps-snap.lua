@@ -84,7 +84,6 @@ return {
   ["suda.vim"] = "b97fab52f9cdeabe2bbb5eb98d82356899f30829",
   ["sxhkd-vim"] = "7b7937ff5c220fbef3bdd883d567513246516e06",
   ["telescope-fzf-native.nvim"] = "9ef21b2e6bb6ebeaf349a0781745549bbb870d27",
-  ["telescope-lazy-plugins.nvim"] = "61303ac4f441001f31beb62be247e9902e308812",
   ["telescope-live-grep-args.nvim"] = "731a046da7dd3adff9de871a42f9b7fb85f60f47",
   ["telescope-media-files.nvim"] = "0826c7a730bc4d36068f7c85cf4c5b3fd9fb570a",
   ["telescope-project.nvim"] = "1aaf16580a614601a7f7077d9639aeb457dc5559",
