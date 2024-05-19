@@ -1,7 +1,7 @@
-vim.cmd("let g:nvcode_termcolors=256")
-
-pcall(vim.cmd, "colorscheme gruvbox-material")
--- pcall(vim.cmd, "colorscheme catpuccin-latte")
+local _, ok = req("settings.colorscheme.current")
+if not ok then
+  pcall(vim.cmd.colorscheme, "gruvbox-material")
+end
 
 vim.g.gruvbox_material_foreground = "material"
 vim.g.gruvbox_material_background = "medium"
@@ -18,8 +18,6 @@ M.toggle_background = function()
     vim.opt.background = "dark"
   end
 end
-
-pcall(require, "settings.colorscheme.current")
 
 autocmd("Signal", {
   group = "Update colorscheme",
