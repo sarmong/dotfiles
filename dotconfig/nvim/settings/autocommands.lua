@@ -1,12 +1,3 @@
-autocmd("VimEnter", {
-  group = "Set root dir",
-  callback = function()
-    local rd = req("modules.root-dir")
-    local root = rd.get_project_root()
-    rd.set_root(root)
-  end,
-})
-
 autocmd("BufReadPost", {
   group = "Jump to the latest edit position",
   callback = function()
