@@ -5,21 +5,6 @@ local fns = req("modules.functions")
 map("n", "<Space>", "<NOP>")
 vim.g.mapleader = " "
 
-req("which-key").register({
-  a = { name = "[a]ctions" },
-  b = { name = "[b]uffer" },
-  F = { name = "[F]old" },
-  g = { name = "[g]it" },
-  l = { name = "[l]sp" },
-  m = { name = "[m]arks" },
-  p = { name = "[p]roject" },
-  r = { name = "[r]efactoring" },
-  s = { name = "[s]earch" },
-  t = { name = "[t]reesitter" },
-  w = { name = "[w]rap" },
-  x = { name = "misc" },
-}, { prefix = "<leader>" })
-
 map("n", "w", "<Plug>CamelCaseMotion_w")
 
 -- save doc using Ctrl+s. If this doesn't work add this two lines to bash_profile: (or just the second)

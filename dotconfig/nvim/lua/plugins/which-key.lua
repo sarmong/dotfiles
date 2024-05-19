@@ -72,3 +72,18 @@ wk.setup({
     v = { "j", "k" },
   },
 })
+
+wk.register({
+  a = { name = "[a]ctions" },
+  b = { name = "[b]uffer" },
+  F = { name = "[F]old" },
+  g = { name = "[g]it" },
+  l = { name = "[l]sp" },
+  m = { name = "[m]arks" },
+  p = { name = "[p]roject" },
+  r = { name = "[r]efactoring" },
+  s = { name = "[s]earch" },
+  t = { name = "[t]reesitter" },
+  w = { name = "[w]rap" },
+  x = { name = "misc" },
+}, { prefix = "<leader>" })
