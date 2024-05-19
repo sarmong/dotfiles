@@ -139,6 +139,13 @@ function mapl(keys_tbl_or_mode, opts_or_keys_tbl, opts)
   mapt(keys_tbl_or_mode, opts_or_keys_tbl, opts)
 end
 
+function Plugin(spec)
+  if spec[1] then
+    spec.source = spec[1]
+  end
+  req("mini.deps").add(spec)
+end
+
 a = vim.api
 fn = vim.fn
 cmd = vim.cmd
