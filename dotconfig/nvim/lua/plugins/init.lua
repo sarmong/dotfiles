@@ -1,28 +1,42 @@
-local later = req("mini.deps").later
+req("plugins.alpha")
+req("plugins.colorschemes")
 
-Plugin("nvim-lua/plenary.nvim") -- required by many plugins
+req("mini.deps").later(function()
+  Plugin({
+    source = "sarmong/neoconf.nvim",
+    depends = { "neovim/nvim-lspconfig" },
+  })
+  req("neoconf").setup()
 
-Plugin("nvim-tree/nvim-web-devicons")
+  Plugin("rcarriga/nvim-notify")
+  vim.notify = req("notify")
 
-Plugin({
-  source = "sarmong/neoconf.nvim",
-  depends = { "neovim/nvim-lspconfig" },
-})
-req("neoconf").setup()
+  Plugin("nvim-lua/plenary.nvim")
+  Plugin("nvim-tree/nvim-web-devicons")
 
--- Quality of life improvements --
+  req("plugins.which-key")
+  req("plugins.ui")
+  req("plugins.misc")
+  req("plugins.navigation.buffers")
+  req("plugins.scroll")
+  req("plugins.misc")
 
-Plugin("lambdalisue/suda.vim")
+  req("plugins.coding")
+  req("plugins.bqf")
+  req("plugins.navigation")
+  req("plugins.navigation.nvim-tree")
+  req("plugins.languages.cmp")
+  req("plugins.languages.formatting")
+  req("plugins.languages.null-ls")
 
-Plugin("mbbill/undotree")
-map("n", "<leader>u", cmd.bind("UndotreeToggle"), "[u]ndo tree")
+  req("plugins.languages.lsp")
+  req("plugins.languages.debug")
+  req("plugins.navigation.telescope")
+  req("plugins.languages.markdown")
 
-Plugin("mtth/scratch.vim")
-local cache_dir = os.getenv("XDG_CACHE_HOME")
-vim.g.scratch_persistence_file = cache_dir .. "/nvim/scratch_file"
-
-------------------
--- IDE features --
-------------------
-
-Plugin("Pocco81/TrueZen.nvim")
+  req("plugins.languages.misc")
+  req("plugins.languages.treesitter")
+  req("plugins.git")
+  req("plugins.git.gitsigns")
+  req("plugins.git.octo")
+end)
