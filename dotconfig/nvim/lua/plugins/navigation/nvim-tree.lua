@@ -115,6 +115,7 @@ req("nvim-tree").setup({
   update_focused_file = {
     enable = true,
   },
+  sync_root_with_cwd = true,
   view = {
     side = "right",
     width = 50,
