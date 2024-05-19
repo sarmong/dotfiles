@@ -1,9 +1,3 @@
--- Send WINdow CHanged signal to resize nvim properly when runnin alacritty -e nvim
-autocmd("VimEnter", {
-  group = "Resize nvim on window resize",
-  command = 'silent exec "!kill -s SIGWINCH $PPID"',
-})
-
 autocmd("VimEnter", {
   group = "Set root dir",
   callback = function()
