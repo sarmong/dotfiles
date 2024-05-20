@@ -35,6 +35,7 @@ local options = {
   ignorecase         =    true,
   smartcase          =    true,
 
+  tabline            =    " ", -- to avoid flicker on startup. Will be set by tabline plugin
   showtabline        =    2,
   winbar             =    "%m %t",
   signcolumn         =    "yes:1",
