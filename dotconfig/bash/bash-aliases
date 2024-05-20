@@ -154,10 +154,10 @@ lf() {
 }
 
 man() {
-  if type bat &>/dev/null; then
-    command="bat"
-  elif type batcat &>/dev/null; then
+  if type batcat &>/dev/null; then
     command="batcat"
+  elif type bat &>/dev/null; then
+    command="bat"
   else
     command man "$@"
     return
