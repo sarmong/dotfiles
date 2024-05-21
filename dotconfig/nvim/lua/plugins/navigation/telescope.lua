@@ -80,6 +80,7 @@ Plugin({
       depends = { "kkharji/sqlite.lua" }, -- Need libsqlite3-dev on debian
     },
     "catgoose/telescope-helpgrep.nvim",
+    "piersolenski/telescope-import.nvim",
   },
 })
 
@@ -270,6 +271,7 @@ telescope.load_extension("project")
 telescope.load_extension("fzf")
 telescope.load_extension("live_grep_args")
 telescope.load_extension("helpgrep")
+telescope.load_extension("import")
 -- telescope.load_extension("smart_history")
 
 map("n", "<C-p>", fns.oldfiles, "oldfiles")
