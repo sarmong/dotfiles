@@ -138,3 +138,22 @@ autocmd("VimEnter", {
     })
   end,
 })
+
+autocmd("InsertLeave", {
+  group = "detect-shebang",
+  callback = function()
+    if vim.opt.filetype:get() ~= "" then
+      return true
+    end
+
+    local is_on_first_line = a.nvim_win_get_cursor(0)[1] == 1
+    if not is_on_first_line then
+      return
+    end
+    local is_shebang = a.nvim_buf_get_lines(0, 0, 1, false)[1]:match("^#!")
+    if is_shebang then
+      vim.cmd("filetype detect")
+      return true
+    end
+  end,
+})
