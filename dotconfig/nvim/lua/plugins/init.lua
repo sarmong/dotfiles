@@ -8,9 +8,7 @@ req("mini.deps").later(function()
   })
   req("neoconf").setup()
 
-  Plugin("rcarriga/nvim-notify")
-  vim.notify = req("notify")
-
+  req("plugins.notify")
   Plugin("nvim-lua/plenary.nvim")
   Plugin("nvim-tree/nvim-web-devicons")
 
