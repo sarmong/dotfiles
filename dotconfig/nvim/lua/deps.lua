@@ -13,6 +13,7 @@ if not vim.uv.fs_stat(mini_path) then
   vim.cmd("packadd mini.deps | helptags ALL")
   vim.cmd('echo "Installed `mini.deps`" | redraw')
 end
+vim.opt.rtp:prepend(mini_path)
 
 vim.g.mapleader = " "
 require("mini.deps").setup({
