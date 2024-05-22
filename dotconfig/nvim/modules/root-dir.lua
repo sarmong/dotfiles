@@ -1,19 +1,13 @@
 local config = {
   monorepo = {
-    command = { "git", "rev-parse", "--show-toplevel" },
     patterns = {
-      ".git",
-      "Makefile",
-      "package-lock.json",
-      "yarn.lock",
-      ".markdownlint.jsonc",
+      { ".git" },
+      { "Makefile", "package-lock.json", "yarn.lock", ".markdownlint.jsonc" },
     },
   },
   module = {
     patterns = {
-      "package.json",
-      "tsconfig.json",
-      "jsconfig.json",
+      { "package.json", "tsconfig.json", "jsconfig.json" },
     },
   },
 }
@@ -28,27 +22,25 @@ end
 
 M.get_project_root = function(bufnr)
   bufnr = bufnr or 0
-  -- @TODO consider pattern first, command second
-  local ok, res = pcall(
-    vim.system,
-    config.monorepo.command,
-    { cwd = a.nvim_buf_get_name(bufnr) }
-  )
-  if ok and res:wait().code == 0 then
-    return vim.trim(res:wait().stdout)
+
+  for _, pattern in ipairs(config.monorepo.patterns) do
+    local dir = vim.fs.root(bufnr, pattern)
+
+    if dir then
+      return dir
+    end
   end
-
-  local dir = vim.fs.root(bufnr, config.monorepo.patterns)
-
-  return dir
 end
 
 M.get_subpackage_root = function(bufnr)
   bufnr = bufnr or 0
-  local dir = vim.fs.root(bufnr, config.module.patterns)
 
-  if dir then
-    return dir
+  for _, pattern in ipairs(config.module.patterns) do
+    local dir = vim.fs.root(bufnr, pattern)
+
+    if dir then
+      return dir
+    end
   end
 
   -- Will default to project root
