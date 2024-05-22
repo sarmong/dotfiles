@@ -121,7 +121,6 @@ req("dressing").setup({
   { input = { insert_only = false } },
 })
 
-Plugin("Pocco81/TrueZen.nvim")
 Plugin("lukas-reineke/indent-blankline.nvim")
 req("ibl").setup({
   indent = {

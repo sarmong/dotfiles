@@ -2,7 +2,6 @@ return {
   CamelCaseMotion = "de439d7c06cffd0839a29045a103fe4b44b15cdc",
   ["Comment.nvim"] = "0236521ea582747b58869cb72f70ccfa967d2e89",
   LuaSnip = "de1a287c9cb525ae52bc846e8f6207e5ef1da5ac",
-  ["TrueZen.nvim"] = "2b9e210e0d1a735e1fa85ec22190115dffd963aa",
   ["aerial.nvim"] = "97a838ccc03ba010a667cba49d9820f6823f4d51",
   ["alpha-nvim"] = "41283fb402713fc8b327e60907f74e46166f4cfd",
   ["barbar.nvim"] = "79f7d16578a167bdf5355725551ef7d90613a601",
