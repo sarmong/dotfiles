@@ -30,6 +30,7 @@ return {
   ["gruvbox-material"] = "aa8096277690db1e1807ec57812c2cf3d54bb37f",
   ["gruvbox.nvim"] = "96a8ec336fb48a11cefbd57508888361431aac26",
   harpoon = "ccae1b9bec717ae284906b0bf83d720e59d12b91",
+  ["highlight-undo.nvim"] = "1ea1c79372d7d93c88fd97543880927b7635e3d2",
   ["html-snippets"] = "6be86366426ae269ff811c7e399300db870e13e4",
   ["indent-blankline.nvim"] = "ece00d5fb44d196680a81fd2761062d2fa44663b",
   ["lf-vim"] = "01929dd7bd95ff24ad5a0c39a5c6f25ecfd4a560",
