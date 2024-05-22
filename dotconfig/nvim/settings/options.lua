@@ -15,7 +15,6 @@ local options = {
   splitright         =    true,              -- Vertical splits to the right
 
   undofile           =    true,
-  clipboard          =    "unnamedplus",
 
   wrap               =    true,
   linebreak          =    true,              -- Don't wrap in the middle of a word
