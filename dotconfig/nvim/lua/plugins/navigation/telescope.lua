@@ -7,6 +7,9 @@ local sorters = lreq("telescope.sorters")
 local previewers = lreq("telescope.previewers")
 local lga_actions = lreq("telescope-live-grep-args.actions")
 
+local get_relative_path = function(path)
+  return path:match("^" .. vim.uv.cwd() .. "/(.+)")
+end
 
 local fns = {
   oldfiles = function()
@@ -33,7 +36,9 @@ local fns = {
       if node then
         req("telescope.builtin").find_files({
           search_dirs = {
-            not node.open and node.parent.absolute_path or node.absolute_path,
+            get_relative_path(
+              not node.open and node.parent.absolute_path or node.absolute_path
+            ),
           },
           hidden = true,
         })
@@ -56,7 +61,9 @@ local fns = {
       if node then
         req("telescope").extensions.live_grep_args.live_grep_args({
           search_dirs = {
-            not node.open and node.parent.absolute_path or node.absolute_path,
+            get_relative_path(
+              not node.open and node.parent.absolute_path or node.absolute_path
+            ),
           },
         })
       end
