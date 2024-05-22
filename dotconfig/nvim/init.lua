@@ -12,4 +12,6 @@ req("deps")
 req("plugins")
 req("settings")
 
+req("modules.clipboard")
+
 -- vim.cmd("source " .. config_dir .. "/utils/quitdialog.vim")
