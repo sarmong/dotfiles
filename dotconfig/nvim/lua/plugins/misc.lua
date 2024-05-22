@@ -7,7 +7,6 @@ Plugin("mtth/scratch.vim")
 local cache_dir = os.getenv("XDG_CACHE_HOME")
 vim.g.scratch_persistence_file = cache_dir .. "/nvim/scratch_file"
 
-Plugin("Pocco81/TrueZen.nvim")
 Plugin("dstein64/vim-startuptime")
 
 Plugin("ariel-frischer/bmessages.nvim")
