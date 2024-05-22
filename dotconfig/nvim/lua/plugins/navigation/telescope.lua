@@ -1,5 +1,12 @@
 local get_visual_selection = lreq("utils.get-visual-selection")
 local root_dir = lreq("modules.root-dir")
+local actions = lreq("telescope.actions")
+local action_state = lreq("telescope.actions.state")
+local action_set = lreq("telescope.actions.set")
+local sorters = lreq("telescope.sorters")
+local previewers = lreq("telescope.previewers")
+local lga_actions = lreq("telescope-live-grep-args.actions")
+
 
 local fns = {
   oldfiles = function()
@@ -61,6 +68,23 @@ local fns = {
   end,
 }
 
+local function multi_select(prompt_bufnr)
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local multi_selection = picker:get_multi_selection()
+
+  if vim.tbl_isempty(multi_selection) then
+    actions.select_default(prompt_bufnr)
+    return
+  end
+
+  for _, val in ipairs(multi_selection) do
+    vim.cmd.badd(val[1])
+  end
+  actions.close(prompt_bufnr)
+
+  vim.cmd.edit(multi_selection[#multi_selection][1])
+end
+
 Plugin({
   source = "nvim-telescope/telescope.nvim",
   depends = {
@@ -83,12 +107,6 @@ Plugin({
     "piersolenski/telescope-import.nvim",
   },
 })
-
-local actions = req("telescope.actions")
-local action_set = req("telescope.actions.set")
-local sorters = req("telescope.sorters")
-local previewers = req("telescope.previewers")
-local lga_actions = req("telescope-live-grep-args.actions")
 
 local opts = {
   defaults = {
@@ -189,7 +207,7 @@ local opts = {
         ["<C-h>"] = actions.select_horizontal,
         ["<C-Down>"] = actions.cycle_history_next,
         ["<C-Up>"] = actions.cycle_history_prev,
-        ["<CR>"] = actions.select_default + actions.center,
+        ["<CR>"] = multi_select,
         ["<C-CR>"] = function(prompt_bufnr)
           action_set.edit(prompt_bufnr, "Pick")
         end,
@@ -202,7 +220,7 @@ local opts = {
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<C-h>"] = actions.select_horizontal,
-        ["<CR>"] = actions.select_default + actions.center,
+        ["<CR>"] = multi_select,
         ["<C-CR>"] = function(prompt_bufnr)
           action_set.edit(prompt_bufnr, "Pick")
         end,
