@@ -15,7 +15,15 @@ end
 ---@return number
 function autocmd(name, opts)
   if type(opts.group) == "string" then
-    opts = vim.tbl_extend("force", opts, { group = augroup(opts.group) })
+    local group_exists, commands =
+      pcall(a.nvim_get_autocmds, { group = opts.group })
+    local existing_group_id = group_exists and commands[1].group
+
+    opts = vim.tbl_extend(
+      "force",
+      opts,
+      { group = existing_group_id or augroup(opts.group) }
+    )
   end
   return vim.api.nvim_create_autocmd(name, opts)
 end
