@@ -61,7 +61,7 @@ return {
   ["nvim-nio"] = "8765cbc4d0c629c8158a5341e1b4305fd93c3a90",
   ["nvim-notify"] = "d333b6f167900f6d9d42a59005d82919830626bf",
   ["nvim-spectre"] = "50e96602153f14c913e1969aaf9720e080394eb3",
-  ["nvim-tree.lua"] = "2bc725a3ebc23f0172fb0ab4d1134b81bcc13812",
+  ["nvim-tree.lua"] = "e60118db9a072bb5cfb9353fab1d63f1a819848b",
   ["nvim-treesitter"] = "7c9c5bed8340031f8a6dad47a58a26eaf15b9a56",
   ["nvim-treesitter-context"] = "55e29081e73d2e4b2d62fb4dc3eebe21bf66a1e2",
   ["nvim-treesitter-refactor"] = "65ad2eca822dfaec2a3603119ec3cc8826a7859e",

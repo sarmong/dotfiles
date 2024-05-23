@@ -103,7 +103,7 @@ local function on_attach(bufnr)
   m("K", api.node.show_info_popup, "Info")
 end
 
-Plugin("nvim-tree/nvim-tree.lua")
+Plugin({ "sarmong/nvim-tree.lua", checkout = "dev" })
 
 req("nvim-tree").setup({
   disable_netrw = true,
