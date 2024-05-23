@@ -13,4 +13,4 @@ master=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 git worktree add "$wt_dir" -b "$new_wt" "$master"
 
 # to clone node_modules, dist, etc.
-rsync --archive "$master/" "$wt_dir"
+rsync --archive "$root/$master/" "$wt_dir"
