@@ -33,3 +33,14 @@ _G.lreq = function(module_name)
 
   return module
 end
+
+_G.lreq_submodule = function(module_ns)
+  local m = {}
+  setmetatable(m, {
+    __index = function(_, submodule)
+      local sm = req(module_ns .. "." .. submodule)
+      return sm
+    end,
+  })
+  return m
+end
