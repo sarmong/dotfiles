@@ -8,7 +8,7 @@ local previewers = lreq("telescope.previewers")
 local lga_actions = lreq("telescope-live-grep-args.actions")
 
 local get_relative_path = function(path)
-  return path:match("^" .. vim.uv.cwd() .. "/(.+)")
+  return path:match("^" .. vim.uv.cwd():gsub("%-", "%%-") .. "/(.+)")
 end
 
 local fns = {
