@@ -8,35 +8,37 @@ mapl({
 
 Plugin("s1n7ax/nvim-window-picker")
 req("window-picker").setup({
-  autoselect_one = true,
-  include_current_win = true,
   highlights = {
     statusline = {
-      focused = {
-        bg = "#076678",
-      },
-      unfocused = {
-        bg = "#076678",
-      },
+      focused = { bg = "#076678" },
+      unfocused = { bg = "#076678" },
     },
     winbar = {
       focused = { bg = "#076678" },
-      unfocused = {
-        bg = "#076678",
-      },
+      unfocused = { bg = "#076678" },
     },
   },
+
   filter_rules = {
+    autoselect_one = true,
+    include_current_win = true,
     bo = {
       filetype = {
+        "TelescopePrompt",
+        "TelescopeResults",
         "NvimTree",
         "neo-tree",
         "neo-tree-popup",
         "notify",
         "qf",
         "scratch",
+        "fidget",
       },
-      buftype = { "terminal", "quickfix" },
+      -- nofile is set on too many buffers, so remove if causes issues
+      buftype = { "terminal", "quickfix", "nofile" },
+    },
+    wo = {
+      winfixbuf = { true },
     },
   },
 })
