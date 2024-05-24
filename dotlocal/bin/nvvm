@@ -23,12 +23,28 @@ use() {
 
   ln -sf "$lib_dir/$name.appimage" "$bin_dir/nvim"
   chmod +x "$bin_dir/nvim"
+
+  echo "Now using neovim $name"
+}
+
+open() {
+  name="$1"
+
+  if [ ! -f "$lib_dir/$name.appimage" ]; then
+    install "$name"
+  fi
+
+  "$lib_dir/$name.appimage"
 }
 
 install() {
   version="$1"
 
   curl --location "https://github.com/neovim/neovim/releases/download/$version/nvim.appimage" --output "$lib_dir/$version.appimage"
+
+  chmod +x "$lib_dir/$version.appimage"
+
+  echo "Installed neovim $version"
 
   [ ! -L "$bin_dir/nvim" ] && use "$version"
 }
@@ -43,5 +59,8 @@ case "$command" in
     ;;
   list)
     list "$@"
+    ;;
+  open)
+    open "$@"
     ;;
 esac
