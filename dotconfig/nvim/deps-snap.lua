@@ -26,7 +26,7 @@ return {
   ["git-blame.nvim"] = "fb84fad97cd4b51caee3c865e8a33a0d413b77a8",
   ["gitlinker.nvim"] = "cc59f732f3d043b626c8702cb725c82e54d35c25",
   ["gitsigns.nvim"] = "805610a9393fa231f2c2b49cb521bfa413fadb3d",
-  ["gruvbox-material"] = "aa8096277690db1e1807ec57812c2cf3d54bb37f",
+  ["gruvbox-material"] = "848b4de6ab014d689d5c20790afebd7c32c1581b",
   ["gruvbox.nvim"] = "96a8ec336fb48a11cefbd57508888361431aac26",
   harpoon = "ccae1b9bec717ae284906b0bf83d720e59d12b91",
   ["highlight-undo.nvim"] = "1ea1c79372d7d93c88fd97543880927b7635e3d2",
