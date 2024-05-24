@@ -35,7 +35,12 @@ req("window-picker").setup({
         "fidget",
       },
       -- nofile is set on too many buffers, so remove if causes issues
-      buftype = { "terminal", "quickfix", "nofile" },
+      buftype = {
+        "terminal",
+        "quickfix",
+        -- "nofile"
+      },
+      -- buflisted = { false },
     },
     wo = {
       winfixbuf = { true },
