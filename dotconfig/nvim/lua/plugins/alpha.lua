@@ -5,23 +5,26 @@ Plugin({
 
 local startify_config = req("alpha.themes.startify")
 
-local session_file = "./Session.vim"
+local session_files = req("modules.sessions").list_session_files()
 
-local function file_exists(path)
-  local _, error = vim.uv.fs_stat(path)
-  return error == nil
+local btns = {}
+
+for key, value in ipairs(session_files) do
+  if key > 3 then
+    break
+  end
+  btns[key] = startify_config.button(
+    "r" .. key,
+    "Restore session " .. value,
+    "<cmd>lua req('modules.sessions').load_session('" .. value .. "')<CR>"
+  )
 end
+
+btns[#btns + 1] = startify_config.button("e", "New file", "<cmd>ene <CR>")
 
 local top_buttons = {
   type = "group",
-  val = {
-    file_exists(session_file) and startify_config.button(
-      "r",
-      "Restore previous session",
-      "<cmd>source " .. session_file .. "<CR>"
-    ) or nil,
-    startify_config.button("e", "New file", "<cmd>ene <CR>"),
-  },
+  val = btns,
 }
 
 local config = {

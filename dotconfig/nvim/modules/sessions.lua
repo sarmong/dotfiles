@@ -1,8 +1,10 @@
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 
 local get_sessions_dir = function()
-  local cwd = vim.uv.cwd():gsub("/", "__")
-  return vim.fs.joinpath(vim.fn.stdpath("state"), "sessions", cwd)
+  local cwd = vim.uv.cwd()
+  local _, last_idx = vim.uv.cwd():find(os.getenv("HOME"))
+  local dir = cwd:sub(last_idx + 2):gsub("/", "__")
+  return vim.fs.joinpath(vim.fn.stdpath("state"), "sessions", dir)
 end
 
 local list_session_files = function()
@@ -86,7 +88,11 @@ local list_sessions = function()
 end
 
 command("Mksession", function(ctx)
-  save_session("", ctx.fargs[1])
+  if ctx.fargs[1] then
+    save_session("", ctx.fargs[1])
+  else
+    save_session()
+  end
 end, {
   nargs = "?",
 })
@@ -110,3 +116,8 @@ end, {
   nargs = "?",
   bang = true,
 })
+
+return {
+  list_session_files = list_session_files,
+  load_session = load_session,
+}
