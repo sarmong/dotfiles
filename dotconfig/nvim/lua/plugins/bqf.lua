@@ -32,6 +32,9 @@ autocmd("FileType", {
   group = "Quickfix conf",
   pattern = "qf",
   callback = function()
+    vim.opt_local.buflisted = false
+    vim.opt_local.winfixbuf = true
+
     -- span qf window across all nvim width
     cmd.wincmd("J")
 
