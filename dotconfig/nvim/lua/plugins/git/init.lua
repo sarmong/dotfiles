@@ -33,7 +33,9 @@ local fns = {
       vim.fn.setreg("+", url)
     else
       req("gitlinker").get_repo_url({
-        action_callback = req("gitlinker").actions.copy_to_clipboard,
+        action_callback = function(url)
+          vim.fn.setreg("+", url)
+        end,
       })
     end
   end,
@@ -41,10 +43,11 @@ local fns = {
   yank_line_url = function()
     local current_mode = vim.api.nvim_get_mode()["mode"]
 
-    req("gitlinker").get_buf_range_url(
-      string.lower(current_mode),
-      { action_callback = req("gitlinker").actions.copy_to_clipboard }
-    )
+    req("gitlinker").get_buf_range_url(string.lower(current_mode), {
+      action_callback = function(url)
+        vim.fn.setreg("+", url)
+      end,
+    })
   end,
 }
 Plugin("tpope/vim-fugitive")
@@ -73,7 +76,11 @@ gl.setup({
     add_current_line_on_normal_mode = false,
     -- print the url after performing the action
     print_url = true,
+    action_callback = function(url)
+      vim.fn.setreg("+", url)
+    end,
   },
+
   mappings = "<nop>",
 })
 
