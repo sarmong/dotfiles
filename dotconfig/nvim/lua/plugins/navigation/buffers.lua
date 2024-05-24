@@ -30,7 +30,6 @@ req("barbar").setup({
   },
   exclude_ft = { "qf" },
 })
-req("barbar").setup(opts)
 
 map("n", "<C-TAB>", cmd.bind("BufferNext"))
 map("n", "<C-S-TAB>", cmd.bind("BufferPrevious"))
