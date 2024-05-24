@@ -92,6 +92,10 @@ local function multi_select(prompt_bufnr)
   vim.cmd.edit(multi_selection[#multi_selection][1])
 end
 
+local function pick_window_and_edit(prompt_bufnr)
+  action_set.edit(prompt_bufnr, "Pick")
+end
+
 Plugin({
   source = "nvim-telescope/telescope.nvim",
   depends = {
@@ -214,10 +218,7 @@ local opts = {
         ["<C-h>"] = actions.select_horizontal,
         ["<C-Down>"] = actions.cycle_history_next,
         ["<C-Up>"] = actions.cycle_history_prev,
-        ["<CR>"] = multi_select,
-        ["<C-CR>"] = function(prompt_bufnr)
-          action_set.edit(prompt_bufnr, "Pick")
-        end,
+        ["<CR>"] = actions.select_default + actions.center,
         ["<C-Space>"] = actions.to_fuzzy_refine,
       },
       n = {
@@ -227,10 +228,7 @@ local opts = {
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<C-h>"] = actions.select_horizontal,
-        ["<CR>"] = multi_select,
-        ["<C-CR>"] = function(prompt_bufnr)
-          action_set.edit(prompt_bufnr, "Pick")
-        end,
+        ["<CR>"] = actions.select_default + actions.center,
         ["<C-Space>"] = actions.to_fuzzy_refine,
       },
     },
@@ -253,6 +251,40 @@ local opts = {
     },
     grep_string = {
       initial_mode = "normal",
+      mappings = {
+        n = {
+          ["<CR>"] = pick_window_and_edit,
+          ["<C-CR>"] = multi_select,
+        },
+        i = {
+          ["<CR>"] = pick_window_and_edit,
+          ["<C-CR>"] = multi_select,
+        },
+      },
+    },
+    live_grep = {
+      mappings = {
+        n = {
+          ["<CR>"] = pick_window_and_edit,
+          ["<C-CR>"] = multi_select,
+        },
+        i = {
+          ["<CR>"] = pick_window_and_edit,
+          ["<C-CR>"] = multi_select,
+        },
+      },
+    },
+    find_files = {
+      mappings = {
+        n = {
+          ["<CR>"] = pick_window_and_edit,
+          ["<C-CR>"] = multi_select,
+        },
+        i = {
+          ["<CR>"] = pick_window_and_edit,
+          ["<C-CR>"] = multi_select,
+        },
+      },
     },
   },
   extensions = {
