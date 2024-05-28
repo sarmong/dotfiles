@@ -41,7 +41,7 @@ return {
   ["mason.nvim"] = "49ff59aded1047a773670651cfa40e76e63c6377",
   ["mini.deps"] = "544de24117a7e6355111fd1cf61c16d76a05b421",
   ["mkdnflow.nvim"] = "4c8890890426d57f20fc6d459c7631e0bbb50975",
-  ["neoconf.nvim"] = "881a3f48154c95870e5e1cc7f94d080352aac9f6",
+  ["neoconf.nvim"] = "9962671f2a35d8c5e8cc47eab99511280b8b712d",
   ["neodev.nvim"] = "ce9a2e8eaba5649b553529c5498acb43a6c317cd",
   neogen = "6de0add4805165317ab7d3d36b5cef48b1b865f3",
   neogit = "b93316d15c590377f50ca61e70e9129e4aa9b848",
