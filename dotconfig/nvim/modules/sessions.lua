@@ -2,8 +2,11 @@ vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 
 local get_sessions_dir = function()
   local cwd = vim.uv.cwd()
+  local dir = cwd
   local _, last_idx = vim.uv.cwd():find(os.getenv("HOME"))
-  local dir = cwd:sub(last_idx + 2):gsub("/", "__")
+  if last_idx then
+    dir = cwd:sub(last_idx + 2):gsub("/", "__")
+  end
   return vim.fs.joinpath(vim.fn.stdpath("state"), "sessions", dir)
 end
 
