@@ -211,7 +211,7 @@ local opts = {
       -- To disable a keymap, put [map] = false
       i = {
         ["<C-c>"] = false,
-        ["Q"] = actions.close,
+        -- ["Q"] = actions.close,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
@@ -367,7 +367,7 @@ mapl({
     T = {
       function()
         fns.text({
-          cwd = root_dir.get_subpackage_root(),
+          cwd = root_dir.get_project_root(),
         })
       end,
       "text in root",
