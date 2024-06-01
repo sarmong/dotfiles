@@ -17,7 +17,7 @@ function autocmd(name, opts)
   if type(opts.group) == "string" then
     local group_exists, commands =
       pcall(a.nvim_get_autocmds, { group = opts.group })
-    local existing_group_id = group_exists and commands[1].group
+    local existing_group_id = group_exists and commands[1] and commands[1].group
 
     opts = vim.tbl_extend(
       "force",
