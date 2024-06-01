@@ -41,6 +41,11 @@ export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : exi
 export PATH="$PATH:$XDG_DATA_HOME/bob/nvim-bin"
 export PATH="$PATH:$XDG_DATA_HOME/nvvm/bin"
 export TIMEWARRIORDB="$XDG_NC_DIR/Documents/timewarrior"
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
+export ANSIBLE_LOCAL_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
+export ANSIBLE_REMOTE_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
+export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
 export PATH="$XDG_BIN_DIR:$XDG_BIN_DIR/launchers:$XDG_BIN_DIR/wrappers:$PATH"
 export HISTCONTROL=ignoreboth:erasedups
