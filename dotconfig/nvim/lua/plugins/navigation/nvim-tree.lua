@@ -106,8 +106,8 @@ end
 Plugin({ "sarmong/nvim-tree.lua", checkout = "dev" })
 
 req("nvim-tree").setup({
-  disable_netrw = true,
-  hijack_netrw = true,
+  disable_netrw = false,
+  hijack_netrw = false,
   hijack_cursor = true,
   filters = {
     dotfiles = true,
