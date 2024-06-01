@@ -7,10 +7,11 @@ if [ "$(git rev-parse --is-bare-repository)" = "true" ] && [ "$(git rev-parse --
 else
   root="$(git rev-parse --show-toplevel)/.."
 fi
+default_branch=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 wt_dir="$root/$new_wt"
-master=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+default_dir=$root/$default_branch
 
-git worktree add "$wt_dir" -b "$new_wt" "$master"
+git worktree add "$wt_dir" -b "$new_wt" "$default_branch"
 
-# to clone node_modules, dist, etc.
-rsync --archive "$root/$master/" "$wt_dir"
+# Well...
+# find "$default_dir" -maxdepth 3 -name "dist" -name "node_modules" -type d -not -path "$default_dir/node_modules/*" -exec realpath -s --relative-to="$default_dir" {} + | rsync --archive --recursive --files-from=- "$default_dir/" "$wt_dir/" --dry-run --verbose
