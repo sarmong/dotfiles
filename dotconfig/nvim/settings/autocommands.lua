@@ -98,16 +98,10 @@ autocmd("FileType", {
   end,
 })
 
--- BufRead is not triggered for zipfile
-autocmd("BufReadCmd", {
-  pattern = { "zipfile:*/*node_modules/*" },
-  group = "node_modules",
-  callback = function()
-    vim.opt_local.bufhidden = "delete"
-  end,
-})
+-- BufRead is not triggered for zipfile,
+-- using own implementation of zip.vim
 autocmd("BufRead", {
-  pattern = { "*/node_modules/*" },
+  pattern = { "zipfile:*/*node_modules/*", "*/node_modules/*" },
   group = "node_modules",
   callback = function()
     vim.opt_local.bufhidden = "delete"
