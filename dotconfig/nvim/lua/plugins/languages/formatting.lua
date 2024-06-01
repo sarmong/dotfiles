@@ -24,6 +24,7 @@ local opts = {
     yaml = { { "prettierd", "prettier" } },
     graphql = { { "prettierd", "prettier" } },
     handlebars = { { "prettierd", "prettier" } },
+    python = { "black" },
   },
 
   format_on_save = function(bufnr)
