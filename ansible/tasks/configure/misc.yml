@@ -1,0 +1,77 @@
+# vim:ft=yaml.ansible
+
+- name: Enable other services
+  vars:
+    username: "{{ lookup('env', 'USER') }}"
+  block:
+    - name: services | enable other services
+      become: true
+      systemd_service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop:
+        - NetworkManager
+        # - auto-cpufreq
+        - bluetooth
+        - "syncthing@{{ username }}"
+
+    ## Shouldn't be started
+    - name: services | betterlocksreen
+      become: true
+      systemd_service:
+        name: "betterlockscreen@{{ username }}"
+        enabled: true
+
+    - name: services | user services
+      systemd_service:
+        name: "{{ item }}"
+        scope: user
+        state: started
+        enabled: true
+      loop:
+        - ssh-agent
+
+    - name: Change user shell
+      user:
+        name: "{{ username }}"
+        shell: /usr/bin/zsh
+        groups: input
+        append: true
+
+    - name: Use dash as POSIX shell
+      become: true
+      file:
+        src: /bin/dash
+        dest: /bin/sh
+        state: link
+
+    - name: Link external drives dir
+      file:
+        src: "/media/{{ username }}"
+        dest: ~/drives
+        state: link
+
+    - name: Mask GTK portal service (causes slow startup of gtk apps)
+      systemd_service:
+        name: xdg-desktop-portal-gtk
+        masked: true
+        scope: user
+
+    - name: Update tldr
+      command:
+        cmd: tldr --update
+        creates: ~/.local/cache/tealdeer
+
+    - name: Install node lts
+      shell:
+        cmd: "fnm install lts/latest && fnm default lts/latest"
+        creates: ~/.local/share/fnm/aliases/default
+
+    - name: Install auto-cpufreq if not running
+      become: true
+      vars:
+        auto_cpufreq_service: ansible_facts.services['auto-cpufreq.service']
+      command:
+        cmd: auto-cpufreq --install
+        creates: /etc/systemd/system/multi-user.target.wants/auto-cpufreq.service

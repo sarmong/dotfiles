@@ -1,0 +1,34 @@
+# vim:ft=yaml.ansible
+
+- name: Create {{ item.dest }} if needed
+  file:
+    path: "{{ item.dest }}"
+    state: directory
+
+- name: Find all in {{ item.src | basename }}
+  find:
+    paths: "{{ item.src }}"
+    file_type: any
+    follow: true
+    hidden: true
+  register: found_directories
+  when: not item.itself | default(false)
+
+- name: Use {{ item.src | basename }} as src if itself=true
+  set_fact:
+    found_directories:
+      files:
+        - path: "{{ item.src }}"
+      dirs: []
+  when: item.itself | default(false)
+
+- name: Create symbolic links for {{ item.dest }}
+  file:
+    src: "{{ dir_to_link.path }}"
+    dest: "{{ item.dest }}/{{ dir_to_link.path | basename }}"
+    state: link
+  loop: "{{ found_directories.files }}"
+  loop_control:
+    loop_var: dir_to_link
+    label:
+      "{{ dir_to_link.path | regex_replace('\/home\/\\w+\/(.*)', '~\/\\1') }}"

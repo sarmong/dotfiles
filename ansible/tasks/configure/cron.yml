@@ -1,0 +1,23 @@
+# vim:ft=yaml.ansible
+
+- name: Set up cronjobs
+  block:
+    - name: cron | wallpaper
+      cron:
+        name: Set wallpaper
+        job: "{{ ansible_env.HOME }}/.local/bin/wrappers/run-cron luna.sh"
+        minute: 1
+
+    - name: cron | battery
+      cron:
+        name: Notify about low battery
+        job:
+          "{{ ansible_env.HOME }}/.local/bin/wrappers/run-cron bat-notification"
+        minute: "*/1"
+
+    - name: cron | updatedb (for locate)
+      become: true
+      cron:
+        name: Notify about low battery
+        job: /usr/bin/updatedb
+        minute: 36
