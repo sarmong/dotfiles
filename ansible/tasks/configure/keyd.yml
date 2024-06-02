@@ -10,14 +10,14 @@
     # or link?? ( I do link now )
     - name: keyd | copy config file
       copy:
-        src: ~/.local/bin/services/keyd/default.conf
+        src: keyd-default.conf
         dest: /etc/keyd/default.conf
         mode: preserve
       when: ansible_hostname != 'air'
 
     - name: keyd | copy mac config file
       copy:
-        src: ~/.local/bin/services/keyd/mac.conf
+        src: keyd-mac.conf
         dest: /etc/keyd/default.conf
         mode: preserve
       when: ansible_hostname == 'air'

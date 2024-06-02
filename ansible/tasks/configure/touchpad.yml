@@ -13,6 +13,6 @@
 
     - name: touchpad | copy config file
       copy:
-        src: ~/.local/bin/setup/touchpad/99-overrides.conf
+        src: x-libinput.conf
         dest: "{{ dir }}/99-overrides.conf"
         mode: preserve

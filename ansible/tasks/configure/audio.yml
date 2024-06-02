@@ -12,7 +12,7 @@
 
     - name: bluetooth | mpris | copy service file
       copy:
-        src: ~/.local/bin/services/audio/mpris-proxy.service
+        src: mpris-proxy.service
         dest: "{{ dir }}/mpris-proxy.service"
         mode: preserve
 
