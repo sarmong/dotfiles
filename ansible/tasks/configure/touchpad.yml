@@ -1,0 +1,18 @@
+# vim:ft=yaml.ansible
+
+- name: Configure touchpad
+  become: true
+  vars:
+    dir: /etc/X11/xorg.conf.d
+  block:
+    - name: touchpad | create xorg.conf.d dir
+      file:
+        path: "{{ dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: touchpad | copy config file
+      copy:
+        src: ~/.local/bin/setup/touchpad/99-overrides.conf
+        dest: "{{ dir }}/99-overrides.conf"
+        mode: preserve

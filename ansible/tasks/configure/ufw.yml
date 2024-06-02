@@ -1,0 +1,43 @@
+# vim:ft=yaml.ansible
+
+- name: Configure ufw
+  become: true
+  block:
+    - name: ufw | packages
+      apt:
+        state: present
+        name: ufw
+
+    - name: ufw | deny all trafic
+      ufw:
+        policy: deny
+
+    - name: ufw | allow stuff
+      ufw:
+        name: "{{ item }}"
+        rule: allow
+      loop:
+        - qbittorrent
+        - syncthing
+
+    - name: ufw | allow local network
+      ufw:
+        src: 192.168.0.0/24
+        rule: allow
+
+    - name: ufw | limit ssh
+      ufw:
+        rule: limit
+        port: ssh
+        proto: tcp
+        src: 192.168.0.0/24
+
+    - name: ufw | enable ufw
+      ufw:
+        state: enabled
+
+    - name: ufw | enable ufw service
+      systemd_service:
+        state: started
+        enabled: true
+        name: ufw

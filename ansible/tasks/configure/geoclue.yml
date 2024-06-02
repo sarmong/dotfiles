@@ -1,0 +1,25 @@
+# vim:ft=yaml.ansible
+
+- name: Configure geoclue service (for redshift)
+  vars:
+    service_name: geoclue-agent
+    dir: ~/.config/systemd/user
+  block:
+    - name: geoclue | packages
+      apt:
+        name: geoclue-2.0
+
+    # or link?? ( I do link now )
+    - name: geoclue | copy service files
+      copy:
+        src: "~/.local/bin/services/geoclue/{{ service_name }}.service"
+        dest: "{{ dir }}/{{ service_name }}.service"
+        mode: preserve
+
+    - name: geoclue | enable service
+      systemd_service:
+        name: "{{ service_name }}"
+        daemon_reload: true
+        scope: user
+        state: started
+        enabled: true

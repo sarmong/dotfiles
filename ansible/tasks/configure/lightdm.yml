@@ -1,0 +1,29 @@
+# vim:ft=yaml.ansible
+
+- name: Configure lightdm
+  become: true
+  block:
+    - name: lightdm | packages
+      apt:
+        state: present
+        name:
+          - lightdm
+          - lightdm-gtk-greeter
+
+    - name: lightdm | copy config files
+      copy:
+        src: "{{ item }}"
+        dest: /etc/lightdm/"{{ item | basename }}"
+        mode: preserve
+      loop:
+        - ~/.local/bin/services/lightdm/lightdm.conf
+        - ~/.local/bin/services/lightdm/lightdm-gtk-greeter.conf
+        # - ~/.local/bin/services/lightdm/slick-greeter.conf
+        - ~/.local/bin/services/lightdm/wp.jpg
+        - ~/.local/bin/services/lightdm/Xsession
+
+    - name: lightdm | enable service
+      systemd_service:
+        state: started
+        enabled: true
+        name: lightdm

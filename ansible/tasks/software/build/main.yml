@@ -1,0 +1,15 @@
+# vim:ft=yaml.ansible
+
+- name: Use neovim stable
+  command:
+    cmd: ~/.local/bin/nvvm use stable
+    creates: ~/.local/share/nvvm/bin/nvim
+
+- name: Create src dir
+  file:
+    path: ~/.local/src
+    state: directory
+    mode: "0755"
+
+- import_tasks: newsboat.yml
+- import_tasks: tmux.yml

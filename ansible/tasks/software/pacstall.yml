@@ -1,0 +1,21 @@
+# vim:ft=yaml.ansible
+
+- name: pacstall | get installed version
+  command: pacstall -V
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+  register: pacstall_installed
+
+- name: pacstall | get deb file
+  when: pacstall_installed.rc != 0
+  get_url:
+    url: https://github.com/pacstall/pacstall/releases/download/5.1.1/pacstall-5.1.1.deb
+    dest: /tmp/pacstall.deb
+    checksum: sha256:5377ac0cda9ca4e9b51a4060cc6e3eb73e3de57b38d8b7d8ff7a9250ee23d1cc
+
+- name: pacstall | install
+  become: true
+  when: pacstall_installed.rc != 0
+  apt:
+    deb: /tmp/pacstall.deb

@@ -1,0 +1,73 @@
+# vim:ft=yaml.ansible
+
+# see https://github.com/tmux/tmux/issues/2705
+- name: tmux | get installed version
+  command: tmux -V
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+  register: tmux_installed
+
+- name: Build Tmux
+  # can try to be more sophisticated https://gist.github.com/andrewtimberlake/802bd8d285b3e18c5ebe
+  when: tmux_installed.rc != 0
+  vars:
+    version: 3.4
+    tmux_name: "tmux-{{ version }}"
+    tar_url:
+      "https://github.com/tmux/tmux/releases/download/{{ version }}/{{ tmux_name
+      }}.tar.gz"
+    tar_path: "/tmp/{{ tmux_name }}.tar.gz"
+    src_base_dir: "/home/michael/.local/src"
+    src_dir: "/home/michael/.local/src/{{ tmux_name }}"
+
+  block:
+    - name: Install tmux build-deps
+      become: true
+      apt:
+        state: build-dep
+        name: tmux
+
+    - name: Gets tarball
+      get_url:
+        url: "{{ tar_url }}"
+        dest: "{{ tar_path }}"
+      # register: tmux_tar
+
+    - name: Unarchive source
+      unarchive:
+        src: "{{ tar_path }}"
+        dest: "{{ src_base_dir }}"
+        copy: false
+      # when: tmux_tar.changed
+      register: tmux_src_dir
+
+    - name: Apply patch
+      ansible.posix.patch:
+        src: tmux.patch
+        basedir: "{{ src_dir }}"
+        strip: 1
+
+    - name: Build
+      shell: "./configure && make"
+      args:
+        chdir: "{{ src_dir }}"
+      when: tmux_src_dir.changed
+      register: tmux_built
+
+    - name: Installing
+      become: true
+      command: make install
+      args:
+        chdir: "{{ src_dir }}"
+      when: tmux_built.changed
+
+  rescue:
+    - name: Remove tar file
+      file:
+        path: "{{ tar_path }}"
+        state: absent
+
+    - name: Fail
+      fail:
+        msg: Failed to build newsboat

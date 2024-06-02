@@ -1,0 +1,28 @@
+# vim:ft=yaml.ansible
+
+- name: UI stuff
+  vars:
+    display: "{{ lookup('ansible.builtin.env', 'DISPLAY') }}"
+
+  block:
+    - name: ui | start fake x server
+      command:
+        cmd: Xvfb
+        creates: /tmp/.X0-lock # TODO double check
+      when: display == ""
+
+    - name: ui | set lockscreen wp
+      environment:
+        DISPLAY: ":0"
+      command:
+        # TODO path
+        cmd: betterlockscreen -u "~/docs/dotfiles/assets/lockscreen.png"
+        creates: ~/.local/cache/betterlockscreen
+
+    - name: ui | set wallpaper
+      environment:
+        DISPLAY: ":0"
+      command:
+        # TODO path
+        cmd: ~/.local/bin/luna.sh
+        creates: ~/media/pics/wallpaper.png

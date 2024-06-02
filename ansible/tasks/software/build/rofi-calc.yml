@@ -1,0 +1,55 @@
+# vim:ft=yaml.ansible
+
+# Can't build with pacstall
+- name: Build rofi-calc
+  hosts: localhost
+  vars:
+    version: 2.2.0
+    pkg_name: "rofi-calc-{{ version }}"
+    tar_url:
+      "https://github.com/svenstaro/rofi-calc/archive/refs/tags/v{{ version
+      }}.zip"
+    tar_path: "/tmp/{{ pkg_name }}.tar.gz"
+    src_base_dir: "/home/michael/.local/src"
+    src_dir: "/home/michael/.local/src/{{ pkg_name }}"
+
+  tasks:
+    - name: Install tmux build-deps
+      become: true
+      ansible.builtin.apt:
+        state: build-dep
+        name: tmux
+
+    - name: Gets tarball
+      get_url:
+        url: "{{ tar_url }}"
+        dest: "{{ tar_path }}"
+      # register: tmux_tar
+
+    - name: Unarchive source
+      unarchive:
+        src: "{{ tar_path }}"
+        dest: "{{ src_base_dir }}"
+        copy: false
+      # when: tmux_tar.changed
+      register: tmux_src_dir
+
+    - name: Apply patch
+      ansible.posix.patch:
+        src: tmux.patch
+        basedir: "{{ src_dir }}"
+        strip: 1
+
+    - name: Build
+      shell: "./configure && make"
+      args:
+        chdir: "{{ src_dir }}"
+      when: tmux_src_dir.changed
+      register: tmux_built
+
+    - name: Installing
+      become: true
+      command: make install
+      args:
+        chdir: "{{ src_dir }}"
+      when: tmux_built.changed
