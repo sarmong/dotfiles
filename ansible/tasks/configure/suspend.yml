@@ -10,8 +10,8 @@
         dest: "/etc/systemd/system/{{ item | basename }}"
         mode: preserve
       loop:
-        - ~/.local/bin/services/suspend/suspend.service
-        - ~/.local/bin/services/suspend/suspend.sh
+        - suspend.service
+        - suspend.sh
 
     - name: suspend | enable service
       systemd_service:

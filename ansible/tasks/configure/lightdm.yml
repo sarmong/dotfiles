@@ -16,11 +16,11 @@
         dest: /etc/lightdm/"{{ item | basename }}"
         mode: preserve
       loop:
-        - ~/.local/bin/services/lightdm/lightdm.conf
-        - ~/.local/bin/services/lightdm/lightdm-gtk-greeter.conf
-        # - ~/.local/bin/services/lightdm/slick-greeter.conf
-        - ~/.local/bin/services/lightdm/wp.jpg
-        - ~/.local/bin/services/lightdm/Xsession
+        - lightdm/lightdm.conf
+        - lightdm/lightdm-gtk-greeter.conf
+        # s/lightdm/slick-greeter.conf
+        - lightdm/wp.jpg
+        - lightdm/Xsession
 
     - name: lightdm | enable service
       systemd_service:

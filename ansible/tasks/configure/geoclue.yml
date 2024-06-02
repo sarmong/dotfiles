@@ -12,7 +12,7 @@
     # or link?? ( I do link now )
     - name: geoclue | copy service files
       copy:
-        src: "~/.local/bin/services/geoclue/{{ service_name }}.service"
+        src: "{{ service_name }}.service"
         dest: "{{ dir }}/{{ service_name }}.service"
         mode: preserve
 
