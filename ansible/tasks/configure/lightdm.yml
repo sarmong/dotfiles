@@ -24,6 +24,5 @@
 
     - name: lightdm | enable service
       systemd_service:
-        state: started
         enabled: true
         name: lightdm
