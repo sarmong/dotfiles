@@ -32,8 +32,10 @@ main() {
   _task "Install git, ansible, make"
   _cmd "sudo apt-get install -y git ansible make"
 
-  _task "Clone dotfiles"
-  _cmd "git clone --quiet https://github.com/sarmong/dotfiles.git $DOTFILES_DIR"
+  if [ ! -d "$DOTFILES_DIR" ]; then
+    _task "Clone dotfiles"
+    _cmd "git clone --quiet https://github.com/sarmong/dotfiles.git $DOTFILES_DIR"
+  fi
 
   cd "$DOTFILES_DIR" || exit 1
 
