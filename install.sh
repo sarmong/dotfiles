@@ -4,7 +4,7 @@
 ### CONFIGURATION ###
 #####################
 DOTFILES_DIR="$HOME/docs/dotfiles"
-DOTFILES_LOG="$HOME/.local/cache/dotfiles.log"
+LOG_PATH="$DOTFILES_DIR/log/install.log"
 
 ############
 ### MAIN ###
@@ -71,11 +71,12 @@ _task() {
   printf "%b [⧖] %s \n%b" "$BYELLOW" "$TASK" "$NC"
 }
 _cmd() {
-  if ! [ -f "$DOTFILES_LOG" ]; then
-    touch "$DOTFILES_LOG"
+  if ! [ -f "$LOG_PATH" ]; then
+    mkdir -p "$(dirname "$LOG_PATH")"
+    touch "$LOG_PATH"
   fi
   # hide stdout, on error we print and exit
-  if eval "$1" 1>/dev/null 2>"$DOTFILES_LOG"; then
+  if eval "$1" 1>/dev/null 2>"$LOG_PATH"; then
     return 0 # success
   fi
   # read error from log and add spacing
@@ -83,7 +84,7 @@ _cmd() {
 
   while read -r line; do
     printf "      %s\n" "$line"
-  done <"$DOTFILES_LOG"
+  done <"$LOG_PATH"
   printf "\n"
 
   exit 1

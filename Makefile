@@ -1,5 +1,7 @@
 ANSIBLE_PLAYBOOK = ansible/main.yml
-ANSIBLE_CONFIG_FILE = ansible/ansible.cfg
+ANSIBLE_CONFIG = ansible/ansible.cfg
+ANSIBLE_LOG_PATH = log/ansible.log
+ANSIBLE_CHECK_LOG_PATH = log/ansible-check.log
 
 .PHONY: init ansible
 
@@ -10,7 +12,9 @@ init:
 	@echo "Done."
 
 ansible:
-	ANSIBLE_CONFIG=$(ANSIBLE_CONFIG_FILE) ansible-playbook $(ANSIBLE_PLAYBOOK) --ask-become-pass $(ANSIBLE_ARGS)
+	@mkdir -p logs
+	ANSIBLE_CONFIG=$(ANSIBLE_CONFIG) ANSIBLE_LOG_PATH=$(ANSIBLE_LOG_PATH) ansible-playbook $(ANSIBLE_PLAYBOOK) --ask-become-pass
 
 ansible-check:
-	ANSIBLE_CONFIG=$(ANSIBLE_CONFIG_FILE) ansible-playbook $(ANSIBLE_PLAYBOOK) --ask-become-pass --check
+	@mkdir -p logs
+	ANSIBLE_CONFIG=$(ANSIBLE_CONFIG) ANSIBLE_LOG_PATH=$(ANSIBLE_CHECK_LOG_PATH) ansible-playbook $(ANSIBLE_PLAYBOOK) --ask-become-pass --check
