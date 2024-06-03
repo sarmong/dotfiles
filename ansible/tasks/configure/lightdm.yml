@@ -13,12 +13,12 @@
     - name: lightdm | copy config files
       copy:
         src: "{{ item }}"
-        dest: /etc/lightdm/"{{ item | basename }}"
+        dest: "/etc/lightdm/{{ item | basename }}"
         mode: preserve
       loop:
         - lightdm/lightdm.conf
         - lightdm/lightdm-gtk-greeter.conf
-        # s/lightdm/slick-greeter.conf
+        # lightdm/slick-greeter.conf
         - lightdm/wp.jpg
         - lightdm/Xsession
 
