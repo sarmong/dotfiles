@@ -4,6 +4,7 @@
 ### CONFIGURATION ###
 #####################
 DOTFILES_DIR="$HOME/docs/dotfiles"
+TEMP_LOG_PATH="/tmp/install.log"
 LOG_PATH="$DOTFILES_DIR/log/install.log"
 
 ############
@@ -21,16 +22,22 @@ main() {
   _task "Apt upgrade"
   _cmd "sudo apt-get -y upgrade"
 
-  _task "Install sudo, git, ansible"
-  _cmd "sudo apt-get install -y sudo git ansible"
+  _task "Install git, ansible"
+  _cmd "sudo apt-get install -y git ansible"
 
   _task "Clone dotfiles"
   _cmd "git clone --quiet https://github.com/sarmong/dotfiles.git $DOTFILES_DIR"
 
   cd "$DOTFILES_DIR" || exit 1
 
+  _task "Change url to "
+  _cmd "git remote set-url origin git@github.com:sarmong/dotfiles.git"
+
   _task "Initialize dotfiles repo"
   _cmd "make init"
+
+  _task "Saving logs into $LOG_PATH"
+  _cmd "mkdir -p $(dirname "$LOG_PATH") && cat $TEMP_LOG_PATH >>$LOG_PATH"
 
   _task_done
 
@@ -71,12 +78,12 @@ _task() {
   printf "%b [⧖] %s \n%b" "$BYELLOW" "$TASK" "$NC"
 }
 _cmd() {
-  if ! [ -f "$LOG_PATH" ]; then
-    mkdir -p "$(dirname "$LOG_PATH")"
-    touch "$LOG_PATH"
+  if ! [ -f "$TEMP_LOG_PATH" ]; then
+    mkdir -p "$(dirname "$TEMP_LOG_PATH")"
+    touch "$TEMP_LOG_PATH"
   fi
   # hide stdout, on error we print and exit
-  if eval "$1" 1>/dev/null 2>"$LOG_PATH"; then
+  if eval "$1" 1>/dev/null 2>"$TEMP_LOG_PATH"; then
     return 0 # success
   fi
   # read error from log and add spacing
@@ -84,7 +91,7 @@ _cmd() {
 
   while read -r line; do
     printf "      %s\n" "$line"
-  done <"$LOG_PATH"
+  done <"$TEMP_LOG_PATH"
   printf "\n"
 
   exit 1
