@@ -12,9 +12,16 @@ LOG_PATH="$DOTFILES_DIR/log/install.log"
 ############
 main() {
   current_user="$USER"
+  sudo_group="sudo"
 
-  su - root -c "apt-get install -y sudo && adduser $current_user sudo" >/dev/null
-  _task "Install sudo and add user to sudo group"
+  if ! id -nG "$current_user" | grep -qw "$sudo_group"; then
+    _task "Install sudo and add user to sudo group"
+    su - root -c "apt-get install -y sudo && adduser $current_user sudo" >/dev/null
+    printf "\n%b You need to relogin and restart script to use sudo. %b\n" "$BYELLOW" "$NC"
+    exit 0
+  fi
+
+  sudo echo "" # Prompt for password before running _task
 
   _task "Apt update"
   _cmd "sudo apt-get update"
@@ -22,15 +29,15 @@ main() {
   _task "Apt upgrade"
   _cmd "sudo apt-get -y upgrade"
 
-  _task "Install git, ansible"
-  _cmd "sudo apt-get install -y git ansible"
+  _task "Install git, ansible, make"
+  _cmd "sudo apt-get install -y git ansible make"
 
   _task "Clone dotfiles"
   _cmd "git clone --quiet https://github.com/sarmong/dotfiles.git $DOTFILES_DIR"
 
   cd "$DOTFILES_DIR" || exit 1
 
-  _task "Change url to "
+  _task "Change repo url to SSH"
   _cmd "git remote set-url origin git@github.com:sarmong/dotfiles.git"
 
   _task "Initialize dotfiles repo"
