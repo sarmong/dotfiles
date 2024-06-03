@@ -19,3 +19,9 @@
   when: pacstall_installed.rc != 0
   apt:
     deb: /tmp/pacstall.deb
+
+- name: pacstall | add personal repo
+  become: true
+  lineinfile:
+    path: /usr/share/pacstall/repo/pacstallrepo
+    line: https://raw.githubusercontent.com/sarmong/pacstall-sarmong/master
