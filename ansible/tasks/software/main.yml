@@ -136,7 +136,7 @@
       - protonvpn-gui
       - telegram-bin
       - freetube-deb
-      - spotify-client-deb
+    # - spotify-client-deb
     # - activitywatch-bin
     # - monero-gui
     # - skypeforlinux-stable-bin

@@ -33,6 +33,7 @@
         - ssh-agent
 
     - name: Change user shell
+      become: true
       user:
         name: "{{ username }}"
         shell: /usr/bin/zsh
@@ -45,6 +46,14 @@
         src: /bin/dash
         dest: /bin/sh
         state: link
+
+    - name: Create external drives dir
+      file:
+        path: "/media/{{ username }}"
+        owner: root
+        group: root
+        mode: "0750"
+        state: directory
 
     - name: Link external drives dir
       file:
