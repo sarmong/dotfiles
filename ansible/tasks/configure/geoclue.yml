@@ -6,6 +6,7 @@
     dir: ~/.config/systemd/user
   block:
     - name: geoclue | packages
+      become: true
       apt:
         name: geoclue-2.0
 
