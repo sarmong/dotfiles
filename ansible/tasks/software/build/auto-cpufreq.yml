@@ -1,0 +1,54 @@
+- name: auto-cpufreq | get installed version
+  command: auto-cpufreq --version
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+  register: auto_cpufreq_installed
+
+- name: Build auto-cpufreq
+  when: auto_cpufreq_installed.rc != 0
+  vars:
+    version: 2.3.0
+    pkg_name: "auto-cpufreq-{{ version }}"
+    tar_url:
+      "https://github.com/AdnanHodzic/auto-cpufreq/archive/refs/tags/v{{ version
+      }}.tar.gz"
+    tar_path: "/tmp/{{ pkg_name }}.tar.gz"
+    src_base_dir: "/home/michael/.local/src"
+    src_dir: "/home/michael/.local/src/{{ pkg_name }}"
+
+  block:
+    - name: auto-cpufreq | get tarball
+      get_url:
+        url: "{{ tar_url }}"
+        dest: "{{ tar_path }}"
+
+    - name: auto-cpufreq | unarchive source
+      unarchive:
+        src: "{{ tar_path }}"
+        dest: "{{ src_base_dir }}"
+        copy: false
+      register: unpacked
+
+    - name: auto-cpufreq | install
+      become: true
+      shell: "yes 'i' | ./auto-cpufreq-installer"
+      args:
+        chdir: "{{ src_dir }}"
+      when: unpacked.changed
+
+    - name: auto-cpufreq | install daemon
+      become: true
+      command:
+        cmd: auto-cpufreq --install
+        creates: /etc/systemd/system/multi-user.target.wants/auto-cpufreq.service
+
+  rescue:
+    - name: auto-cpufreq | remove tar file
+      file:
+        path: "{{ tar_path }}"
+        state: absent
+
+    - name: auto-cpufreq | fail
+      fail:
+        msg: Failed to install auto-cpufreq

@@ -11,5 +11,6 @@
     state: directory
     mode: "0755"
 
-- import_tasks: newsboat.yml
 - import_tasks: tmux.yml
+- import_tasks: auto-cpufreq.yml
+- import_tasks: newsboat.yml
