@@ -24,11 +24,12 @@
         enabled: true
         scope: user
 
+    ## TODO might not be needed when pipewire
     ## https://wiki.archlinux.org/title/bluetooth_headset
     ## https://askubuntu.com/questions/1405486/cant-control-bluetooth-volume-level-only-mute-or-full-volume
-    - name: bluetooth | disable absolute volume
-      become: true
-      lineinfile:
-        path: /etc/pulse/default.pa
-        regexp: "^load-module module-bluetooth-discover$"
-        line: load-module module-bluetooth-discover avrcp_absolute_volume=false
+    # - name: bluetooth | disable absolute volume
+    #   become: true
+    #   lineinfile:
+    #     path: /etc/pulse/default.pa
+    #     regexp: "^load-module module-bluetooth-discover$"
+    #     line: load-module module-bluetooth-discover avrcp_absolute_volume=false
