@@ -12,7 +12,6 @@
         enabled: true
       loop:
         - NetworkManager
-        # - auto-cpufreq
         - bluetooth
         - "syncthing@{{ username }}"
 
@@ -76,11 +75,3 @@
       shell:
         cmd: "fnm install lts/latest && fnm default lts/latest"
         creates: ~/.local/share/fnm/aliases/default
-
-    - name: Install auto-cpufreq if not running
-      become: true
-      vars:
-        auto_cpufreq_service: ansible_facts.services['auto-cpufreq.service']
-      command:
-        cmd: auto-cpufreq --install
-        creates: /etc/systemd/system/multi-user.target.wants/auto-cpufreq.service
