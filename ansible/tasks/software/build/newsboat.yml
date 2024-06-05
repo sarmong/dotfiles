@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 - name: newsboat | get installed version
   command: newsboat -V
   ignore_errors: true

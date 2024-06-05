@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 # Can't build with pacstall
 - name: Build rofi-calc
   hosts: localhost

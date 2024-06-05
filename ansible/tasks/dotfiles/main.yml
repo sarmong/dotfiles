@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 - name: Link dotfiles
   include_tasks: link.yml
   loop:

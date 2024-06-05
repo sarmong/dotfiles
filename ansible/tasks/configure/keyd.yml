@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 - name: Configure keyd
   become: true
   block:

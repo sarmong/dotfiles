@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 - name: pacstall | get installed version
   command: pacstall -V
   ignore_errors: true

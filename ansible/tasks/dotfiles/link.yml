@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 - name: Create {{ item.dest }} if needed
   file:
     path: "{{ item.dest }}"
