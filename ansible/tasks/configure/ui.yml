@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 - name: UI stuff
   vars:
     display: "{{ lookup('ansible.builtin.env', 'DISPLAY') }}"

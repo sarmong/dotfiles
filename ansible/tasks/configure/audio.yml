@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 - name: Control bluetooth from headphones
   vars:
     dir: ~/.config/systemd/user

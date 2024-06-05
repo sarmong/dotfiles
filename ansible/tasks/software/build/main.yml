@@ -1,5 +1,3 @@
-# vim:ft=yaml.ansible
-
 - name: Use neovim stable
   command:
     cmd: ~/.local/bin/nvvm use stable
