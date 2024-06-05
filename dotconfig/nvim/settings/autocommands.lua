@@ -123,15 +123,6 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("BufRead", {
-  pattern = { "*.yaml", "*.yml" },
-  callback = function(ev)
-    if vim.fn.search("hosts:\\|tasks:", "nw") >= 1 then
-      vim.opt.filetype = "yaml.ansible"
-    end
-  end,
-})
-
 autocmd("VimEnter", {
   callback = function()
     local repo = vim.fn.argv()[1]
