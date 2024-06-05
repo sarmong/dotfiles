@@ -37,7 +37,7 @@ case "$selected" in
   0) betterlockscreen --lock ;;
   1) eval "$quit_cmd" ;;
   2) systemctl suspend && betterlockscreen --lock ;;
-  3) systemctl hibernate ;;
+  3) systemctl hibernate && betterlockscreen --lock ;;
   4) systemctl reboot ;;
   5) systemctl poweroff ;;
   *) exit 1 ;;
