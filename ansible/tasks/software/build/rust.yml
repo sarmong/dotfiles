@@ -1,0 +1,21 @@
+- name: rust | get installed version
+  command: rustup -v
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+  register: rust_installed
+
+- name: rust | install
+  when: rust_installed.rc != 0
+
+  block:
+    - name: rust | get install script
+      get_url:
+        url: https://sh.rustup.rs
+        dest: /tmp/rustup.sh
+        mode: "0755"
+
+    - name: rust | run install script
+      command:
+        cmd: "/tmp/rustup.sh -y --no-modify-path"
+        creates: ~/.config/rust/cargo/bin/rustup

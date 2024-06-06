@@ -3,6 +3,7 @@
   tasks:
     - import_tasks: tasks/dotfiles/main.yml
 
+    - import_tasks: tasks/software/build/rust.yml
     - import_tasks: tasks/software/pacstall.yml
     - import_tasks: tasks/software/main.yml
     - import_tasks: tasks/software/build/main.yml
