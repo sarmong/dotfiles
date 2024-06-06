@@ -25,6 +25,7 @@
     src: "{{ dir_to_link.path }}"
     dest: "{{ item.dest }}/{{ dir_to_link.path | basename }}"
     state: link
+    force: "{{ (dir_to_link.path | basename) == 'mimeapps.list' }}"
   loop: "{{ found_directories.files }}"
   loop_control:
     loop_var: dir_to_link
