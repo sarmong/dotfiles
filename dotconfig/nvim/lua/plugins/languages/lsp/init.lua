@@ -45,12 +45,9 @@ vim.list_extend(tools, extractNames(req("null-ls").get_sources()))
 req("mason-tool-installer").setup({ ensure_installed = tools })
 req("mason-tool-installer").run_on_start()
 
-Plugin({
-  source = "neovim/nvim-lspconfig",
-  depends = {
-    "folke/neodev.nvim",
-  },
-})
+Plugin("neovim/nvim-lspconfig")
+Plugin("folke/lazydev.nvim")
+Plugin("Bilal2453/luvit-meta")
 
 Plugin("pmizio/typescript-tools.nvim")
 
