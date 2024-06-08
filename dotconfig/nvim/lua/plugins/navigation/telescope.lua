@@ -304,7 +304,13 @@ local opts = {
     live_grep_args = {
       auto_quoting = true, -- If the prompt value does not begin with ', " or - the entire prompt is treated as a single argument
       mappings = {
+        n = {
+          ["<CR>"] = pick_window_and_edit,
+          ["<C-CR>"] = multi_select,
+        },
         i = {
+          ["<CR>"] = pick_window_and_edit,
+          ["<C-CR>"] = multi_select,
           ["<C-o>"] = lga_actions.quote_prompt({
             postfix = ' --iglob "**/',
           }),
