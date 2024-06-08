@@ -8,7 +8,20 @@ table.insert(library, "/usr/share/nvim/runtime/lua")
 table.insert(library, "/usr/share/nvim/runtime/lua/lsp")
 table.insert(library, "/usr/share/awesome/lib")
 
-req("neodev").setup({})
+req("lazydev").setup({
+  library = {
+    { path = "luvit-meta/library", words = { "vim%.uv" } },
+  },
+  integrations = {
+    lspconfig = true,
+    cmp = true,
+  },
+  enabled = function(root_dir)
+    return vim.uv.fs_stat(root_dir .. "/deps-snap.lua")
+      or vim.uv.fs_stat(root_dir .. "/pkg.json")
+      or vim.uv.fs_stat(root_dir .. "/init.lua")
+  end,
+})
 
 return {
   on_attach = function(client, bufnr)
