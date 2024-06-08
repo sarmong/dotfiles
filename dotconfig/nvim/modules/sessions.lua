@@ -45,7 +45,7 @@ local save_session = function(suffix, name)
 end
 
 local load_session = function(session_file)
-  save_session("-auto")
+  local bufs_to_delete = {}
 
   for _, bufnr in ipairs(a.nvim_list_bufs()) do
     if
@@ -53,6 +53,15 @@ local load_session = function(session_file)
       and vim.api.nvim_buf_is_loaded(bufnr)
       and vim.api.nvim_get_current_buf() ~= bufnr
     then
+      table.insert(bufs_to_delete, bufnr)
+    end
+  end
+
+  if #bufs_to_delete > 0 then
+    save_session("-auto")
+
+    -- Delete all buffers to load session from scratch
+    for _, bufnr in ipairs(bufs_to_delete) do
       a.nvim_buf_delete(bufnr, {})
     end
   end
