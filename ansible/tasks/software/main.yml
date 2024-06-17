@@ -15,6 +15,7 @@
       - zsh
       - dash
       - ufw
+      - psmisc
 
 - name: Install DE packages
   become: true
