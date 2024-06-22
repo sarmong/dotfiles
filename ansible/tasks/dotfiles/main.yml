@@ -21,15 +21,17 @@
   loop:
     - ~/.config/systemd/user
 
-- name: Create npmrc
+- name: Create npm conf dir
   file:
-    path: ~/.config/npm/npmrc
-    state: touch
-    mode: "0644"
+    path: ~/.config/npm
+    state: directory
+    mode: "0755"
 - name: Corrent npmrc config (for XDG cleanup)
   lineinfile:
     path: ~/.config/npm/npmrc
     line: "{{ item }}"
+    mode: "0644"
+    create: true
   loop:
     - prefix="{{ ansible_env.HOME }}/.local/share/npm"
     - cache="{{ ansible_env.HOME }}/.local/cache/npm"
