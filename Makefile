@@ -11,6 +11,11 @@ init:
 	@git submodule update
 	@echo "Done."
 
+update:
+	git stash
+	git pull
+	make ansible
+
 ansible:
 	@scripts/ansible.sh
 
