@@ -179,7 +179,7 @@ local opts = {
       "%.yarn",
       "!%.config",
       "!%.local",
-      vim.tbl_keys(req("neoconf").get("vscode.search.exclude") or {}),
+      Pref.search.exclude,
     }),
     generic_sorter = sorters.get_generic_fuzzy_sorter,
     shorten_path = true,

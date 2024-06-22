@@ -1,7 +1,5 @@
-local _, ok = req("settings.colorscheme.current")
-if not ok then
-  pcall(vim.cmd.colorscheme, "gruvbox-material")
-end
+pcall(vim.cmd.colorscheme, Pref.ui.colorscheme)
+vim.opt.background = Pref.ui.background()
 
 vim.g.gruvbox_material_foreground = "material"
 vim.g.gruvbox_material_background = "medium"
@@ -21,8 +19,8 @@ autocmd("Signal", {
   group = "Update colorscheme",
   pattern = "SIGUSR1",
   callback = function()
-    package.loaded["settings.colorscheme.current"] = nil
-    pcall(require, "settings.colorscheme.current")
+    vim.opt.background = Pref.ui.background()
+    pcall(vim.cmd.colorscheme, Pref.ui.colorscheme)
     req("lualine").setup(req("lualine").get_config())
   end,
 })

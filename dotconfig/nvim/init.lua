@@ -8,6 +8,7 @@ package.path = config_dir
 
 require("utils")
 
+req("user-prefs")
 req("deps")
 req("plugins")
 req("settings")

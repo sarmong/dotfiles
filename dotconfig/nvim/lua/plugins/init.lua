@@ -2,12 +2,6 @@ req("plugins.alpha")
 req("plugins.colorschemes")
 
 req("mini.deps").later(function()
-  Plugin({
-    source = "sarmong/neoconf.nvim",
-    depends = { "neovim/nvim-lspconfig" },
-  })
-  req("neoconf").setup()
-
   req("plugins.notify")
   Plugin("nvim-lua/plenary.nvim")
   Plugin("nvim-tree/nvim-web-devicons")

@@ -1,5 +1,3 @@
-local format_on_save = true
-
 Plugin("stevearc/conform.nvim")
 
 local opts = {
@@ -29,7 +27,7 @@ local opts = {
 
   format_on_save = function(bufnr)
     local bufname = vim.api.nvim_buf_get_name(bufnr)
-    if not format_on_save or bufname:match("/node_modules/") then
+    if not Pref.ide.format_on_save or bufname:match("/node_modules/") then
       return
     end
 
@@ -64,7 +62,7 @@ mapl({
 
     e = {
       function(silent)
-        format_on_save = true
+        Pref.ide.format_on_save = true
 
         if not silent then
           print("Enabled formatting on save")
@@ -74,7 +72,7 @@ mapl({
     },
     d = {
       function()
-        format_on_save = false
+        Pref.ide.format_on_save = true
       end,
       "[d]isable format on save",
     },
