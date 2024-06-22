@@ -83,7 +83,7 @@ vim.diagnostic.config({
     prefix = "",
   },
   severity_sort = true,
-  virtual_text = false,
+  virtual_text = Pref.ide.virtual_text,
 })
 
 vim.lsp.handlers["textDocument/hover"] =
