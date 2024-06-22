@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 ## Checks if command exists
 exists() {
@@ -56,7 +56,7 @@ export BUN_INSTALL="$XDG_DATA_HOME/bun"
 if [ -d "$BUN_INSTALL" ]; then
   export PATH="$BUN_INSTALL/bin:$PATH"
   # bun completions
-  [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+  [ -s "$BUN_INSTALL/_bun" ] && . "$BUN_INSTALL/_bun"
 fi
 
 # Golang
