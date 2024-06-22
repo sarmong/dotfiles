@@ -6,47 +6,12 @@ exists() {
   return "$?"
 }
 
-## ~/ cleanup
-## See wiki for details - https://wiki.archlinux.org/title/XDG_Base_Directory
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.local/cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-# if something doesn't work, consider unsetting this var (e.g. with flatpacks)
-export XDG_DATA_DIRS="$HOME/.local/xdg:/usr/local/share:/usr/share:$XDG_DATA_DIRS"
-. "$XDG_CONFIG_HOME/user-dirs.dirs"
+[ -f "$HOME/.config/zsh/xdg-cleanup" ] && . "$HOME/.config/zsh/xdg-cleanup"
 
-export XDG_DOCUMENTS_DIR="$HOME/docs"
-export XDG_DOWNLOAD_DIR="$HOME/dls"
-export XDG_DESKTOP_DIR="$HOME/desktop"
-export XDG_PICTURES_DIR="$HOME/media/pics"
-export XDG_MUSIC_DIR="$HOME/media/music"
-export XDG_VIDEOS_DIR="$HOME/media/videos"
-export XDG_PUBLICSHARE_DIR="$HOME/docs/public"
-export XDG_TEMPLATES_DIR="$HOME/docs/templates"
-export XDG_DOTFILES_DIR="$HOME/docs/dotfiles"
-export XDG_BIN_DIR="$HOME/.local/bin"
-export XDG_NC_DIR="$HOME/docs/nc"
+export TIMEWARRIORDB="$XDG_NC_DIR/Documents/timewarrior"
 
-export LESSHISTFILE="-" # removes lesshist file
-# export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
-export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
-export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
-export STACK_ROOT="$XDG_DATA_HOME"/stack
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
-export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : exists("$NVIM_APPNAME") ? "$XDG_CONFIG_HOME/$NVIM_APPNAME/init.lua" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 export PATH="$PATH:$XDG_DATA_HOME/bob/nvim-bin"
 export PATH="$PATH:$XDG_DATA_HOME/nvvm/bin"
-export TIMEWARRIORDB="$XDG_NC_DIR/Documents/timewarrior"
-export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
-export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
-export ANSIBLE_LOCAL_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
-export ANSIBLE_REMOTE_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
-export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
-
 export PATH="$XDG_BIN_DIR:$XDG_BIN_DIR/launchers:$XDG_BIN_DIR/wrappers:$PATH"
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=100000
