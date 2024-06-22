@@ -20,3 +20,17 @@
     mode: "0755"
   loop:
     - ~/.config/systemd/user
+
+- name: Create npmrc
+  file:
+    path: ~/.config/npm/npmrc
+    state: touch
+    mode: "0644"
+- name: Corrent npmrc config (for XDG cleanup)
+  lineinfile:
+    path: ~/.config/npm/npmrc
+    line: "{{ item }}"
+  loop:
+    - prefix="{{ ansible_env.HOME }}/.local/share/npm"
+    - cache="{{ ansible_env.HOME }}/.local/cache/npm"
+    - init-module="{{ ansible_env.HOME }}/.config/npm/config/npm-init.js"
