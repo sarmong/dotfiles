@@ -36,3 +36,10 @@
     - prefix="{{ ansible_env.HOME }}/.local/share/npm"
     - cache="{{ ansible_env.HOME }}/.local/cache/npm"
     - init-module="{{ ansible_env.HOME }}/.config/npm/config/npm-init.js"
+
+- name: load env vars for login shell
+  become: true
+  copy:
+    src: user_env.sh
+    dest: /etc/profile.d/user_env.sh
+    mode: preserve
