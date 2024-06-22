@@ -1,0 +1,97 @@
+#!/bin/sh
+
+## https://wiki.archlinux.org/title/XDG_Base_Directory
+## https://github.com/b3nj5m1n/xdg-ninja
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.local/cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+# if something doesn't work, consider unsetting this var (e.g. with flatpacks)
+export XDG_DATA_DIRS="$HOME/.local/xdg:/usr/local/share:/usr/share:$XDG_DATA_DIRS"
+
+. "$XDG_CONFIG_HOME/user-dirs.dirs"
+export XDG_BIN_DIR="$HOME/.local/bin"
+export XDG_NC_DIR="$HOME/docs/nc"
+export XDG_DOCUMENTS_DIR="$HOME/docs"
+export XDG_DOWNLOAD_DIR="$HOME/dls"
+export XDG_DESKTOP_DIR="$HOME/desktop"
+export XDG_PICTURES_DIR="$HOME/media/pics"
+export XDG_MUSIC_DIR="$HOME/media/music"
+export XDG_VIDEOS_DIR="$HOME/media/videos"
+export XDG_PUBLICSHARE_DIR="$HOME/docs/public"
+export XDG_TEMPLATES_DIR="$HOME/docs/templates"
+export XDG_DOTFILES_DIR="$HOME/docs/dotfiles"
+
+## ~/.android
+export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
+
+## ~/.bash_history
+export HISTFILE="$XDG_STATE_HOME/bash/history"
+
+## ~/.icons
+export XCURSOR_PATH="/usr/share/icons:$XDG_DATA_HOME/icons"
+
+## ~/.kodi
+export KODI_DATA="$XDG_DATA_HOME/kodi"
+
+## ~/.bitmonero/
+# alias monerod=monerod --data-dir "$XDG_DATA_HOME"/bitmonero
+
+## ~/.terminfo
+export TERMINFO="$XDG_DATA_HOME/terminfo"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+
+## ~/.parallel
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+
+## ~/.python_history
+## see pythonrc file, remove after 3.13
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
+
+## ~/.sudo_as_admin_successful
+# /etc/sudoers.d/
+# Defaults !admin_flag
+
+## ~/.ts_node_repl_history
+export TS_NODE_HISTORY="$XDG_STATE_HOME"/ts_node_repl_history
+
+## ~/.wget-hsts
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+## ~/.wgetrc
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+
+## Removes ~/.lesshst (less)
+export LESSHISTFILE="-"
+
+## ~/.password-store (pass)
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+
+## ~/.gtkrc-2.0
+## Lxappearance will still create a file, move manually
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+
+## ~/.inputrc
+export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
+
+## ~/.stack (haskell)
+export STACK_ROOT="$XDG_DATA_HOME"/stack
+
+## ~/.npmrc
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+
+## ~/.node_repl_history
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+
+## Ansible
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
+export ANSIBLE_LOCAL_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
+export ANSIBLE_REMOTE_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
+export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
+
+# export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+
+## vim/nvim
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : exists("$NVIM_APPNAME") ? "$XDG_CONFIG_HOME/$NVIM_APPNAME/init.lua" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'

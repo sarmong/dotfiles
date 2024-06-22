@@ -19,4 +19,4 @@ else
   cp "$NEW" "$WALLPAPER"
 fi
 
-feh --bg-fill "$WALLPAPER"
+feh --no-fehbg --bg-fill "$WALLPAPER"
