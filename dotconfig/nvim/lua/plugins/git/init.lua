@@ -66,7 +66,7 @@ req("neogit").setup({
 
 map("n", "<leader>gn", req("neogit").open, "neogit")
 Plugin("sindrets/diffview.nvim")
-Plugin("linrongbin16/gitlinker.nvim")
+Plugin("ruifm/gitlinker.nvim")
 
 local gl = req("gitlinker")
 

@@ -24,7 +24,7 @@ return {
   ["fidget.nvim"] = "ef99df04a1c53a453602421bc0f756997edc8289",
   ["friendly-snippets"] = "dd2fd1281d4b22e7b4a5bfafa3e142d958e251f2",
   ["git-blame.nvim"] = "fb84fad97cd4b51caee3c865e8a33a0d413b77a8",
-  ["gitlinker.nvim"] = "542f51784f20107ef9ecdadc47825204837efed5",
+  ["gitlinker.nvim"] = "cc59f732f3d043b626c8702cb725c82e54d35c25",
   ["gitsigns.nvim"] = "805610a9393fa231f2c2b49cb521bfa413fadb3d",
   ["gruvbox-material"] = "848b4de6ab014d689d5c20790afebd7c32c1581b",
   ["gruvbox.nvim"] = "96a8ec336fb48a11cefbd57508888361431aac26",
