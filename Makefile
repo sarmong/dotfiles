@@ -12,9 +12,7 @@ init:
 	@echo "Done."
 
 ansible:
-	@mkdir -p logs
-	ANSIBLE_CONFIG=$(ANSIBLE_CONFIG) ANSIBLE_LOG_PATH=$(ANSIBLE_LOG_PATH) ansible-playbook $(ANSIBLE_PLAYBOOK) --ask-become-pass
+	@scripts/ansible.sh
 
 ansible-check:
-	@mkdir -p logs
-	ANSIBLE_CONFIG=$(ANSIBLE_CONFIG) ANSIBLE_LOG_PATH=$(ANSIBLE_CHECK_LOG_PATH) ansible-playbook $(ANSIBLE_PLAYBOOK) --ask-become-pass --check
+	@scripts/ansible.sh --check
