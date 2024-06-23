@@ -1,0 +1,9 @@
+- name: remove ~/.sudo_as_admin_successful
+  become: true
+  copy:
+    src: sudoers/admin-flag
+    dest: /etc/sudoers.d/admin-flag
+    validate: /usr/sbin/visudo -csf %s
+    owner: root
+    group: root
+    mode: "0440"

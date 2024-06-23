@@ -1,0 +1,4 @@
+# vim:ft=sudoers
+
+## Remove ~/.sudo_as_admin_successful
+Defaults !admin_flag
