@@ -17,4 +17,5 @@
     - import_tasks: tasks/configure/touchpad.yml
     - import_tasks: tasks/configure/ufw.yml
     - import_tasks: tasks/configure/ui.yml
+    - import_tasks: tasks/configure/sudoers.yml
     - import_tasks: tasks/configure/misc.yml

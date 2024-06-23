@@ -23,6 +23,13 @@ export XDG_PUBLICSHARE_DIR="$HOME/docs/public"
 export XDG_TEMPLATES_DIR="$HOME/docs/templates"
 export XDG_DOTFILES_DIR="$HOME/docs/dotfiles"
 
+## ~/.zshrc
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+## TODO doesn't work
+## ~/.xsession-errors
+export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+
 ## ~/.android
 export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
 alias adb='HOME="$XDG_DATA_HOME"/android adb'
