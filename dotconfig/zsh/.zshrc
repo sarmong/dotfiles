@@ -4,6 +4,7 @@ source "$ZDOTDIR"/zsh-functions
 fpath+="$ZDOTDIR/zfunc"
 
 zsh_add_file "zsh-exports"
+zsh_add_file "zsh-coding"
 zsh_add_file "zsh-options"
 zsh_add_file "zsh-completion"
 zsh_add_file "zsh-aliases"
