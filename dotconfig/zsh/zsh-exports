@@ -39,11 +39,6 @@ export MANROFFOPT="-c"
 
 [ -d "$XDG_DATA_HOME/npm/bin" ] && export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 
-## Might need for Ubuntu
-# export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
 exists fnm && eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
 
 if exists mkcert; then
