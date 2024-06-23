@@ -79,8 +79,3 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if [ -d "$XDG_DATA_HOME"/coursier ]; then
   export PATH="$PATH:$XDG_DATA_HOME/coursier/bin"
 fi
-
-if [ "$(uname)" != "Darwin" ] && [ -s "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-  export PATH="$PATH":/home/linuxbrew/.linuxbrew/bin
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
