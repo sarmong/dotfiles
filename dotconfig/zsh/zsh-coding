@@ -1,0 +1,40 @@
+## Node.js
+## ========
+
+[ -d "$XDG_DATA_HOME/npm/bin" ] && export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
+
+exists fnm && eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
+
+if exists mkcert; then
+  export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+else
+  unset NODE_EXTRA_CA_CERTS
+fi
+
+export BUN_INSTALL="$XDG_DATA_HOME/bun"
+if [ -d "$BUN_INSTALL" ]; then
+  export PATH="$BUN_INSTALL/bin:$PATH"
+  # bun completions
+  [ -s "$BUN_INSTALL/_bun" ] && . "$BUN_INSTALL/_bun"
+fi
+
+## Golang
+## ========
+
+export GOPATH="$XDG_DATA_HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+
+## Rust
+## ========
+
+export RUSTUP_HOME="$XDG_CONFIG_HOME"/rust/rustup
+export CARGO_HOME="$XDG_CONFIG_HOME"/rust/cargo
+
+export PATH="$HOME/.cargo/bin:$PATH"
+[ -f "$XDG_CONFIG_HOME/rust/cargo/env" ] && . "$XDG_CONFIG_HOME/rust/cargo/env"
+
+## Scala
+## ========
+if [ -d "$XDG_DATA_HOME"/coursier ]; then
+  export PATH="$PATH:$XDG_DATA_HOME/coursier/bin"
+fi
