@@ -1,8 +1,6 @@
 - name: Link dotfiles
   include_tasks: link.yml
   loop:
-    - src: ~/docs/dotfiles/home
-      dest: ~/
     - src: ~/docs/dotfiles/dotconfig
       dest: ~/.config
     - src: ~/docs/dotfiles/dotlocal/share/applications
@@ -37,9 +35,20 @@
     - cache="{{ ansible_env.HOME }}/.local/cache/npm"
     - init-module="{{ ansible_env.HOME }}/.config/npm/config/npm-init.js"
 
-- name: load env vars for login shell
+- name: load env vars for any login shell # lightdm reads this file
   become: true
   copy:
     src: user_env.sh
-    dest: /etc/profile.d/user_env.sh
+    dest: "{{ item }}"
     mode: preserve
+  loop:
+    - /etc/profile.d/user_env.sh
+    - /etc/zsh/user_env.sh
+
+- name: load env vars for zsh tty
+  become: true
+  blockinfile:
+    path: /etc/zsh/zshenv ## for some reason zprofile is not loaded
+    block: |
+      env_file="/etc/zsh/user_env.sh"
+      [ -f "$env_file" ] && . "$env_file"
