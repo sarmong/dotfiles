@@ -18,7 +18,7 @@ bspc subscribe monitor | while read -r line; do
         ~/.config/polybar/launch.sh >/dev/null 2>&1 &
       fi
 
-      feh --bg-fill "$XDG_PICTURES_DIR"/wallpaper.png
+      feh --no-fehbg --bg-fill "$XDG_PICTURES_DIR"/wallpaper.png
       killall -SIGUSR1 conky &
       ;;
 
@@ -37,7 +37,7 @@ bspc subscribe monitor | while read -r line; do
         killall -SIGUSR1 conky &
       fi
 
-      feh --bg-fill "$XDG_PICTURES_DIR"/wallpaper.png
+      feh --no-fehbg --bg-fill "$XDG_PICTURES_DIR"/wallpaper.png
       ;;
 
   esac
