@@ -56,7 +56,8 @@ export BUN_INSTALL="$XDG_DATA_HOME/bun"
 if [ -d "$BUN_INSTALL" ]; then
   export PATH="$BUN_INSTALL/bin:$PATH"
   # bun completions
-  [ -s "$BUN_INSTALL/_bun" ] && . "$BUN_INSTALL/_bun"
+  # TODO use only in zsh
+  # [ -s "$BUN_INSTALL/_bun" ] && . "$BUN_INSTALL/_bun"
 fi
 
 # Golang
