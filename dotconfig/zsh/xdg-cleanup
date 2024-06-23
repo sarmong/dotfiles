@@ -30,6 +30,10 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 ## ~/.xsession-errors
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
+## LightDM doesn't support?
+## ~/.Xauthority
+# export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+
 ## ~/.android
 export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
 alias adb='HOME="$XDG_DATA_HOME"/android adb'
@@ -98,7 +102,5 @@ export ANSIBLE_LOCAL_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
 export ANSIBLE_REMOTE_TEMP="${XDG_CACHE_HOME}/ansible/tmp"
 export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
-# export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
-
-## vim/nvim
+## ~/.vimrc
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : exists("$NVIM_APPNAME") ? "$XDG_CONFIG_HOME/$NVIM_APPNAME/init.lua" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
