@@ -7,9 +7,9 @@ zsh_add_file "zsh-exports"
 zsh_add_file "zsh-options"
 zsh_add_file "zsh-completion"
 zsh_add_file "zsh-aliases"
-zsh_add_file "zsh-prompt" true
-zsh_add_file "zsh-vim-mode" true
-zsh_add_file "zsh-local" true
+zsh_add_file "zsh-prompt"
+zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-local"
 
 
 HISTFILE="$XDG_CACHE_HOME"/zhistfile
@@ -28,8 +28,8 @@ zle -N bracketed-paste bracketed-paste-magic
 
 compdef _setsid dis # Use setsid completion for dis
 
-zsh_add_file "/usr/share/zsh/plugins/forgit/forgit.plugin.zsh" true
-zsh_add_file "/usr/share/zsh/plugins/forgit/completions/git-forgit.zsh" true
+zsh_add_file "/usr/share/zsh/plugins/forgit/forgit.plugin.zsh"
+zsh_add_file "/usr/share/zsh/plugins/forgit/completions/git-forgit.zsh"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"

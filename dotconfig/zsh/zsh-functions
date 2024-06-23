@@ -9,8 +9,6 @@ function exists() {
 # Function to source files if they exist
 # Set second argument to true to only source the file in interactive shell
 function zsh_add_file() {
-  [ "$2" = true ] && [[ $- != *i* ]] && return
-
   case $1 in
     /*) [ -f "$1" ] && source "$1" ;;
     *) [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1" ;;
