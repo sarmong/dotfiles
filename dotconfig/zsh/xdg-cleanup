@@ -30,7 +30,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 ## ~/.xsession-errors
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
-## LightDM doesn't support?
+## For DMs other than LightDM
 ## ~/.Xauthority
 # export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
