@@ -15,18 +15,30 @@ function zsh_add_file() {
   esac
 }
 
+function zsh_download_plugin_if_needed() {
+  REPO="$1"
+  PLUGIN_NAME="$2"
+
+  zdotdir_src=$(realpath --relative-to="$XDG_DOTFILES_DIR" $ZDOTDIR)
+  plugins_dir="$zdotdir_src/plugins"
+  [ ! -d "$plugins_dir" ] && mkdir -p "$plugins_dir"
+
+  if [ ! -d "$plugins_dir/$PLUGIN_NAME" ]; then
+    git submodule add --name "$PLUGIN_NAME" -- "https://github.com/$REPO.git" "$plugins_dir/$PLUGIN_NAME"
+  fi
+}
+
 function zsh_add_plugin() {
   [[ $- != *i* ]] && return
 
-  PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+  REPO="$1"
+  PLUGIN_NAME=$(echo $REPO | cut -d "/" -f 2)
   FILE_NAME="${2:-$PLUGIN_NAME}"
-  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
-    # For plugins
-    zsh_add_file "plugins/$PLUGIN_NAME/$FILE_NAME.plugin.zsh" ||
-      zsh_add_file "plugins/$PLUGIN_NAME/$FILE_NAME.zsh"
-  else
-    git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-  fi
+
+  zsh_download_plugin_if_needed "$REPO" "$PLUGIN_NAME"
+
+  zsh_add_file "plugins/$PLUGIN_NAME/$FILE_NAME.plugin.zsh" ||
+    zsh_add_file "plugins/$PLUGIN_NAME/$FILE_NAME.zsh"
 }
 
 function zsh_add_completion() {
