@@ -1,0 +1,6 @@
+xsetroot -cursor_name left_ptr
+xset s off -dpms
+/usr/local/bin/bt-connect &
+unclutter &
+
+exec /usr/bin/kodi-standalone

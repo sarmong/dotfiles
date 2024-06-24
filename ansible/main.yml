@@ -1,4 +1,4 @@
-- name: Bootstrap system
+- name: Bootstrap main system
   hosts: localhost
   tasks:
     - import_tasks: tasks/dotfiles/main.yml

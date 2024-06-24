@@ -1,0 +1,57 @@
+- name: install kodi-standalone-service
+  become: true
+  vars:
+    repo_dir: ~/.local/src/kodi-standalone-service
+
+  block:
+    - name: Clone repo
+      become: false
+      git:
+        repo: https://github.com/graysky2/kodi-standalone-service.git
+        dest: "{{ repo_dir }}"
+        version: v1.137
+        update: false
+
+    - name: asdf
+      make:
+        target: install
+        chdir: "{{ repo_dir }}"
+
+    - name: Gather available local users
+      getent:
+        database: passwd
+
+    - name: Create usr
+      command:
+        cmd: systemd-sysusers
+      when: kodi not in getent_passwd.keys()
+      changed_when: true
+
+    - name: create tmp
+      command:
+        cmd: systemd-tmpfiles --create
+        creates: /var/lib/kodi
+
+    - name: upda
+      lineinfile:
+        path: /etc/sysusers.d/kodi-standalone.conf
+        regexp: "^# m kodi dialout$"
+        line: "m kodi dialout"
+    - name: updaajj
+      lineinfile:
+        path: /etc/sysusers.d/kodi-standalone.conf
+        regexp: "^# m kodi render$"
+        line: "m kodi render"
+    - name: Fix systemd file
+      lineinfile:
+        path: /lib/systemd/system/kodi-x11.service
+        regexp:
+          "^ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -quiet
+          -nolisten tcp vt1$"
+        line: "ExecStart=/usr/bin/xinit -- :0 -quiet -nolisten tcp vt1"
+
+    - name: enable service
+      systemd_service:
+        name: kodi-x11
+        enabled: true
+        force: true

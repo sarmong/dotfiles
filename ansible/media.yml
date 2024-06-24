@@ -1,0 +1,92 @@
+- name: Bootstrap media system
+  hosts: localhost
+  tasks:
+    - import_tasks: tasks/dotfiles/main.yml
+
+    - name: Install packages
+      become: true
+      apt:
+        name:
+          - nala
+          - git
+          - curl
+          - wget
+          - htop
+          - vim
+          - ssh
+          - man-db
+          - plocate
+          - zsh
+          - dash
+          - ufw
+    - name: Install media packages
+      become: true
+      apt:
+        name:
+          - libinput10
+          - pipewire-audio
+          - pulsemixer
+          - xorg
+          - unclutter
+          - kodi
+          - mpv
+          - bluez
+          - blueman
+
+    - name: Copy bt-connect.sh
+      become: true
+      copy:
+        src: media/files/bt-connect.sh
+        dest: "/usr/local/bin/bt-connect"
+        mode: "0755"
+
+    - name: Copy bt-autoconnect.service
+      become: true
+      copy:
+        src: media/files/bt-autoconnect.service
+        dest: "/etc/systemd/system/bt-autoconnect.service"
+        mode: "0644"
+
+    - name: services
+      become: true
+      systemd_service:
+        name: "{{ item }}"
+        enabled: true
+      loop:
+        - bluetooth
+        - bt-autoconnect
+
+    - name: Copy .xinitrc
+      copy:
+        src: media/files/xinitrc
+        dest: "/var/lib/kodi/.xinitrc"
+        mode: "0644"
+        owner: kodi
+        group: kodi
+
+    - name: Copy playercorefactory
+      copy:
+        src: media/files/kodi-mpv.xml
+        dest: "/var/lib/kodi/.kodi/userdata/playercorefactory.xml"
+        mode: "0644"
+        owner: kodi
+        group: kodi
+
+    - name: Copy mpv conf
+      copy:
+        src: ~/.config/mpv
+        dest: "/var/lib/kodi/.config/mpv"
+        mode: preserve
+        owner: kodi
+        group: kodi
+
+    - import_tasks: tasks/configure/keyd.yml
+    - import_tasks: tasks/configure/ufw.yml
+
+    - name: Change user shell
+      become: true
+      user:
+        name: "{{ username }}"
+        shell: /usr/bin/zsh
+        groups: input
+        append: true
