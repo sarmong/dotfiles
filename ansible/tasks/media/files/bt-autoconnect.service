@@ -1,0 +1,11 @@
+[Unit]
+Description=Bluetooth Auto Connect
+After=bluetooth.service
+Requires=bluetooth.service
+
+[Service]
+ExecStart=/usr/local/bin/bt-connect
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
