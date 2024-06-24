@@ -4,3 +4,21 @@
 [submodule "tpm"]
 	path = dotconfig/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule "zsh-autosuggestions"]
+	path = dotconfig/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "zsh-syntax-highlighting"]
+	path = dotconfig/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zsh-history-substring-search"]
+	path = dotconfig/zsh/plugins/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search.git
+[submodule "zsh-fzf-history-search"]
+	path = dotconfig/zsh/plugins/zsh-fzf-history-search
+	url = https://github.com/joshskidmore/zsh-fzf-history-search.git
+[submodule "zsh-npm-scripts-autocomplete"]
+	path = dotconfig/zsh/plugins/zsh-npm-scripts-autocomplete
+	url = https://github.com/grigorii-zander/zsh-npm-scripts-autocomplete.git
+[submodule "zsh-notify"]
+	path = dotconfig/zsh/plugins/zsh-notify
+	url = https://github.com/marzocchi/zsh-notify.git

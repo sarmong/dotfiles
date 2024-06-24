@@ -8,7 +8,6 @@ dotconfig/ranger/history
 dotconfig/newsboat/pw
 dotconfig/newsboat/urls
 dotconfig/zsh/.zcompdump
-dotconfig/zsh/plugins
 dotconfig/zsh/zsh-local
 dotconfig/npm/npmrc
 dotconfig/mpv/watch_later
