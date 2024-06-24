@@ -41,28 +41,28 @@ local get_notify_fn = function(msg)
 end
 
 local cache = {}
-vim.notify = function(msg, log_level, user_opts)
-  local opts = user_opts or {}
-
-  for _, val in ipairs(group_notifs) do
-    if msg:match(val) then
-      opts = vim.tbl_extend("keep", user_opts or {}, {
-        replace = cache[val],
-        on_open = function(_, record)
-          cache[val] = record
-        end,
-        on_close = function()
-          cache[val] = nil
-        end,
-      })
-
-      cache[val] = req("notify").notify(msg, log_level, opts)
-      return
-    end
-  end
-
-  local notify = get_notify_fn(msg)
-  opts.title = opts.title or get_title(msg)
-  msg = replace_msg(msg)
-  notify(msg, log_level, opts)
-end
+-- vim.notify = function(msg, log_level, user_opts)
+--   local opts = user_opts or {}
+--
+--   for _, val in ipairs(group_notifs) do
+--     if msg:match(val) then
+--       opts = vim.tbl_extend("keep", user_opts or {}, {
+--         replace = cache[val],
+--         on_open = function(_, record)
+--           cache[val] = record
+--         end,
+--         on_close = function()
+--           cache[val] = nil
+--         end,
+--       })
+--
+--       cache[val] = req("notify").notify(msg, log_level, opts)
+--       return
+--     end
+--   end
+--
+--   local notify = get_notify_fn(msg)
+--   opts.title = opts.title or get_title(msg)
+--   msg = replace_msg(msg)
+--   notify(msg, log_level, opts)
+-- end
