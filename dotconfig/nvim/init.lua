@@ -15,5 +15,6 @@ req("settings")
 
 req("modules.clipboard")
 req("modules.sessions")
+req("modules.save-win-view")
 
 -- vim.cmd("source " .. config_dir .. "/utils/quitdialog.vim")
