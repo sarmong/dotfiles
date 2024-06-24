@@ -1,0 +1,4 @@
+# vim:ft=sudoers
+
+# Set default editor to vim, and do not allow visudo to use EDITOR/VISUAL.
+Defaults      editor=/usr/bin/vim, !env_editor

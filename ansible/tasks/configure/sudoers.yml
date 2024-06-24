@@ -1,9 +1,13 @@
-- name: remove ~/.sudo_as_admin_successful
+- name: sudoers.d configuration
   become: true
   copy:
-    src: sudoers/admin-flag
-    dest: /etc/sudoers.d/admin-flag
+    src: "sudoers/{{ item }}"
+    dest: "/etc/sudoers.d/{{ item }}"
     validate: /usr/sbin/visudo -csf %s
     owner: root
     group: root
     mode: "0440"
+  loop:
+    - admin-flag
+    - tty-tickets
+    - visudo-editor

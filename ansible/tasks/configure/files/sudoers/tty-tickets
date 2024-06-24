@@ -1,0 +1,4 @@
+# vim:ft=sudoers
+
+## Saves sudo passwords across terminals
+Defaults !tty_tickets
