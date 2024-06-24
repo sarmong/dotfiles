@@ -19,12 +19,11 @@ function zsh_download_plugin_if_needed() {
   REPO="$1"
   PLUGIN_NAME="$2"
 
-  zdotdir_src=$(realpath --relative-to="$XDG_DOTFILES_DIR" $ZDOTDIR)
-  plugins_dir="$zdotdir_src/plugins"
+  plugins_dir="$ZDOTDIR/plugins"
   [ ! -d "$plugins_dir" ] && mkdir -p "$plugins_dir"
 
   if [ ! -d "$plugins_dir/$PLUGIN_NAME" ]; then
-    git submodule add --name "$PLUGIN_NAME" -- "https://github.com/$REPO.git" "$plugins_dir/$PLUGIN_NAME"
+    git submodule add --name "$PLUGIN_NAME" -- "https://github.com/$REPO.git" "$(realpath --relative-to="$XDG_DOTFILES_DIR" $ZDOTDIR)/plugins/$PLUGIN_NAME"
   fi
 }
 
