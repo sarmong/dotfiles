@@ -23,7 +23,7 @@ local apps = {
   "conky",
 
   -- Configuration
-  "feh --no-fehbg --bg-fill $XDG_PICTURES_DIR/wallpaper.png &",
+  "set-wp &",
   "$XDG_BIN_DIR/setup/keyboard/init.sh",
   "inputplug -c $XDG_BIN_DIR/setup/keyboard/on-connect.sh",
   "$XDG_BIN_DIR/setup/screenlayout.sh",

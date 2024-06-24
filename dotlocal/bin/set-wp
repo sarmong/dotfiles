@@ -3,20 +3,22 @@
 NEW="$1"
 WALLPAPER=$XDG_PICTURES_DIR/wallpaper.png
 
-mimetype=$(file -i "$NEW" | awk -F: '{print $2}' | awk -F ';' '{print $1}' | xargs)
+if [ -n "$1" ]; then
+  mimetype=$(file -i "$NEW" | awk -F: '{print $2}' | awk -F ';' '{print $1}' | xargs)
 
-[ ! -d "$XDG_PICTURES_DIR" ] && mkdir -p "$XDG_PICTURES_DIR"
-[ ! -f "$WALLPAPER" ] && touch "$WALLPAPER"
+  [ ! -d "$XDG_PICTURES_DIR" ] && mkdir -p "$XDG_PICTURES_DIR"
+  [ ! -f "$WALLPAPER" ] && touch "$WALLPAPER"
 
-if [[ ! "$mimetype" =~ image/* ]]; then
-  echo "File not an image"
-  exit 1
-fi
+  if [[ ! "$mimetype" =~ image/* ]]; then
+    echo "File not an image"
+    exit 1
+  fi
 
-if [ "$mimetype" != "image/png" ]; then
-  convert "$NEW" "$WALLPAPER"
-else
-  cp "$NEW" "$WALLPAPER"
+  if [ "$mimetype" != "image/png" ]; then
+    convert "$NEW" "$WALLPAPER"
+  else
+    cp "$NEW" "$WALLPAPER"
+  fi
 fi
 
 feh --no-fehbg --bg-fill "$WALLPAPER"
