@@ -5,6 +5,7 @@ CACHE_PATH = vim.fn.stdpath("cache")
 -- vim.opt.whichwrap:append("<,>,[,],h,l") -- move to next line with theses keys
 
 vim.g.vim_markdown_fenced_languages = { "js=javascript" }
+vim.g.netrw_liststyle = 3
 
 -- stylua: ignore start
 local options = {
