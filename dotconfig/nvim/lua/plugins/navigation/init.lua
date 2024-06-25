@@ -19,6 +19,32 @@ req("window-picker").setup({
     },
   },
 
+  filter_func = function(window_ids, filter_rules)
+    return vim
+      .iter(window_ids)
+      :filter(function(winnr)
+        local winfixbuf = a.nvim_get_option_value("winfixbuf", { win = winnr })
+        local bufnr = a.nvim_win_get_buf(winnr)
+
+        if winfixbuf then
+          return false
+        end
+
+        local filetype = a.nvim_get_option_value("filetype", { buf = bufnr })
+        local buftype = a.nvim_get_option_value("buftype", { buf = bufnr })
+
+        if filetype == "alpha" then
+          return true
+        end
+
+        local matches_ft = vim.tbl_contains(filter_rules.bo.filetype, filetype)
+        local matches_bt = vim.tbl_contains(filter_rules.bo.buftype, buftype)
+
+        return not matches_ft and not matches_bt
+      end)
+      :totable()
+  end,
+
   filter_rules = {
     autoselect_one = true,
     include_current_win = true,
@@ -34,11 +60,10 @@ req("window-picker").setup({
         "scratch",
         "fidget",
       },
-      -- nofile is set on too many buffers, so remove if causes issues
       buftype = {
         "terminal",
         "quickfix",
-        -- "nofile"
+        "nofile",
       },
       -- buflisted = { false },
     },
