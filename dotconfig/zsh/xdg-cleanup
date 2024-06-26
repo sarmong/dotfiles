@@ -69,7 +69,7 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export TS_NODE_HISTORY="$XDG_STATE_HOME"/ts_node_repl_history
 
 ## ~/.wget-hsts
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
 ## ~/.wgetrc
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 
