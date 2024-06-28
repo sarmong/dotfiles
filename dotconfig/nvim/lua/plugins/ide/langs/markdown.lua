@@ -1,3 +1,15 @@
+local contrib = req("plugins.ide.contrib")
+
+contrib.mason({ "prettierd", "prettier" })
+contrib.ts_parsers({ "markdown", "markdown_inline" })
+contrib.formatters({ "markdown", "markdown.mdx" }, { "prettierd", "prettier" })
+contrib.null_ls_sources(function()
+  req("null-ls").register(
+    req("null-ls").builtins.diagnostics.markdownlint.with({
+      extra_args = { "--disable", "MD043" },
+    })
+  )
+end)
 -- {
 --   "git@github.com:sarmong/markdown.nvim.git",
 --   config = function()
