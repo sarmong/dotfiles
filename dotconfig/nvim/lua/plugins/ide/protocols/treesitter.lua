@@ -32,50 +32,7 @@ req("treesitter-context").setup({
 })
 
 local opts = {
-  ensure_installed = { --  "all" or a list of languages
-    "astro",
-    "awk",
-    "bash",
-    "c",
-    "comment",
-    "css",
-    "csv",
-    "dockerfile",
-    "go",
-    "html",
-    "http",
-    "java",
-    "javascript",
-    "jsdoc",
-    "json",
-    "json5",
-    "jsonc",
-    "jq",
-    "latex",
-    "lua",
-    "make",
-    "markdown",
-    "markdown_inline",
-    "org",
-    "proto",
-    "pug",
-    "python",
-    "query",
-    "rasi",
-    "regex",
-    "rust",
-    "scala",
-    "scss",
-    "sql",
-    "toml",
-    "tsx",
-    "tsv",
-    "typescript",
-    "vim",
-    "vimdoc",
-    "vue",
-    "yaml",
-  },
+  ensure_installed = req("plugins.ide.contrib").state.ts_parsers,
   highlight = {
     enable = true, -- false will disable the whole extension
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -147,21 +104,10 @@ local opts = {
 }
 req("nvim-treesitter.configs").setup(opts)
 
-local parsers = req("nvim-treesitter.parsers")
-
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 -- disable at startup
 vim.o.foldenable = false
-
--- Use bash treesitter for zsh filetypes
-local ft_to_lang = parsers.ft_to_lang
-parsers.ft_to_lang = function(ft)
-  if ft == "zsh" then
-    return "bash"
-  end
-  return ft_to_lang(ft)
-end
 
 -- Skip backwards compatibility routines and speed up loading
 vim.g.skip_ts_context_commentstring_module = true

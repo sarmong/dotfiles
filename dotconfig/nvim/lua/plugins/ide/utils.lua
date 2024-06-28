@@ -68,20 +68,29 @@ local on_init = function(client)
   end
 end
 
-local capabilities = req("cmp_nvim_lsp").default_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
+local get_default_lsp_config = function()
+  return {
+    on_attach = on_attach,
+    -- on_init = on_init,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    capabilities = req("cmp_nvim_lsp").default_capabilities(
+      vim.lsp.protocol.make_client_capabilities()
+    ),
+    handlers = {
+      ["textDocument/rename"] = rename_with_qf,
+    },
+  }
+end
 
-local default_config = {
-  on_attach = on_attach,
-  -- on_init = on_init,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  capabilities = capabilities,
-  handlers = {
-    ["textDocument/rename"] = rename_with_qf,
-  },
+local function isVueProject()
+  local matches =
+    vim.fs.find("App.vue", { type = "file", limit = 1, path = "src" })
+  return #matches >= 1
+end
+
+return {
+  get_default_lsp_config = get_default_lsp_config,
+  isVueProject = isVueProject,
 }
-
-return default_config
