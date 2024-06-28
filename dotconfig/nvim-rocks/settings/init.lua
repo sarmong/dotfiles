@@ -1,5 +1,0 @@
-req("settings.options")
-req("settings.keymappings")
-req("settings.colorscheme")
-req("settings.autocommands")
-req("settings.commands")
