@@ -1,1 +1,0 @@
-/home/michael/.config/nvim/settings/colorscheme/dark.lua
