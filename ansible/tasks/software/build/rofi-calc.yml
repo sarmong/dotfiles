@@ -1,6 +1,13 @@
-# Can't build with pacstall
+# see https://github.com/pacstall/pacstall-programs/issues/6149
+- name: rofi-calc | get installed version
+  command: ls /usr/lib/x86_64-linux-gnu/rofi/calc.so
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+  register: rofi_calc_installed
+
 - name: Build rofi-calc
-  hosts: localhost
+  when: rofi_calc_installed.rc != 0
   vars:
     version: 2.2.0
     pkg_name: "rofi-calc-{{ version }}"
@@ -11,43 +18,45 @@
     src_base_dir: "/home/michael/.local/src"
     src_dir: "/home/michael/.local/src/{{ pkg_name }}"
 
-  tasks:
-    - name: Install tmux build-deps
+  block:
+    - name: Install build-deps
       become: true
       ansible.builtin.apt:
-        state: build-dep
-        name: tmux
+        name:
+          - rofi-dev
+          - qalc
+          - libtool
+          - libtool-bin
 
     - name: Gets tarball
       get_url:
         url: "{{ tar_url }}"
         dest: "{{ tar_path }}"
-      # register: tmux_tar
 
     - name: Unarchive source
       unarchive:
         src: "{{ tar_path }}"
         dest: "{{ src_base_dir }}"
         copy: false
-      # when: tmux_tar.changed
       register: tmux_src_dir
 
-    - name: Apply patch
-      ansible.posix.patch:
-        src: tmux.patch
-        basedir: "{{ src_dir }}"
-        strip: 1
-
-    - name: Build
-      shell: "./configure && make"
+    - name: Prepare
+      shell: "mkdir m4 && autoreconf -i"
       args:
         chdir: "{{ src_dir }}"
-      when: tmux_src_dir.changed
-      register: tmux_built
+      # when: tmux_src_dir.changed
+      # register: tmux_built
+
+    - name: Prepare
+      shell: "mkdir build && cd build && ../configure && make"
+      args:
+        chdir: "{{ src_dir }}"
+      # when: tmux_src_dir.changed
+      # register: tmux_built
 
     - name: Installing
       become: true
       command: make install
       args:
-        chdir: "{{ src_dir }}"
-      when: tmux_built.changed
+        chdir: "{{ src_dir }}/build"
+      # when: tmux_built.changed
