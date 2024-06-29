@@ -9,13 +9,12 @@
     - name: cron | battery
       cron:
         name: Notify about low battery
-        job:
-          "{{ ansible_env.HOME }}/.local/bin/wrappers/run-cron bat-notification"
+        job: "{{ ansible_env.HOME }}/.local/bin/wrappers/run-cron bat-notification"
         minute: "*/1"
 
     - name: cron | updatedb (for locate)
       become: true
       cron:
-        name: Notify about low battery
-        job: /usr/bin/updatedb
+        name: updatedb
+        job: /usr/bin/updatedb -e "/timeshift"
         minute: 36
