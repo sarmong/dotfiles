@@ -21,7 +21,7 @@ end
 ---@param formatters table | string
 local register_formatters = function(filetypes, formatters)
   if type(filetypes) ~= "table" then
-    state.formatters[filetypes] = formatters
+    state.formatters[filetypes] = { formatters }
     return
   end
 
