@@ -29,8 +29,8 @@ main() {
   _task "Apt upgrade"
   _cmd "sudo apt-get -y upgrade"
 
-  _task "Install git, ansible, make"
-  _cmd "sudo apt-get install -y git ansible make"
+  _task "Install git, ansible"
+  _cmd "sudo apt-get install -y git ansible"
 
   if [ ! -d "$DOTFILES_DIR" ]; then
     _task "Clone dotfiles"
@@ -43,7 +43,7 @@ main() {
   _cmd "git remote set-url origin git@github.com:sarmong/dotfiles.git"
 
   _task "Initialize dotfiles repo"
-  _cmd "make init"
+  _cmd "./Taskfile init"
 
   _task "Saving logs into $LOG_PATH"
   _cmd "mkdir -p $(dirname "$LOG_PATH") && cat $TEMP_LOG_PATH >>$LOG_PATH"
@@ -51,11 +51,11 @@ main() {
   _task_done
 
   printf "\n%b Running ansible playbook... %b\n" "$BYELLOW" "$NC"
-  make ansible
+  ./Taskfile ansible
 
   # shellcheck disable=2181
   if [ "$?" -gt 0 ]; then
-    printf "\n%bAnsible failed, fix the issue and run %b'make ansible'\n%b" "$BRED" "$CYAN" "$NC"
+    printf "\n%bAnsible failed, fix the issue and run %b'./Taskfile ansible'\n%b" "$BRED" "$CYAN" "$NC"
   else
     printf "\n%b✓ Installation finished!%b\n" "$GREEN" "$NC"
     printf "%b▶ Please reboot your computer to complete the setup.%b\n" "$CYAN" "$NC"
