@@ -1,0 +1,5 @@
+- name: network | manage by NetworkManager
+  lineinfile:
+    path: /etc/NetworkManager/NetworkManager.conf
+    regexp: "^managed=false$"
+    line: "managed=true"
