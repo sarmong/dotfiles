@@ -1,0 +1,12 @@
+#!/bin/sh
+
+x=$(pwd)
+while [ "$x" != "$HOME" ]; do
+  file=$(find "$x" -maxdepth 1 -name Taskfile)
+  if [ -f "$file" ]; then
+    break
+  fi
+  x=$(dirname "$x")
+done
+
+"$file" "$@"
