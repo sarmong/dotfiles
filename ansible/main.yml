@@ -1,22 +1,30 @@
 - name: Bootstrap main system
   hosts: localhost
   tasks:
-    - import_tasks: tasks/dotfiles/main.yml
+    - name: dotfiles
+      tags: dotfiles
+      import_tasks: tasks/dotfiles/main.yml
 
-    - import_tasks: tasks/software/build/rust.yml
-    - import_tasks: tasks/software/pacstall.yml
-    - import_tasks: tasks/software/main.yml
-    - import_tasks: tasks/software/build/main.yml
+    - name: software
+      tags: software
+      block:
+        - import_tasks: tasks/software/build/rust.yml
+        - import_tasks: tasks/software/pacstall.yml
+        - import_tasks: tasks/software/main.yml
+        - import_tasks: tasks/software/build/main.yml
 
-    - import_tasks: tasks/configure/audio.yml
-    - import_tasks: tasks/configure/cron.yml
-    - import_tasks: tasks/configure/geoclue.yml
-    - import_tasks: tasks/configure/keyd.yml
-    - import_tasks: tasks/configure/lightdm.yml
-    - import_tasks: tasks/configure/suspend.yml
-    - import_tasks: tasks/configure/touchpad.yml
-    - import_tasks: tasks/configure/ufw.yml
-    - import_tasks: tasks/configure/ui.yml
-    - import_tasks: tasks/configure/sudoers.yml
-    - import_tasks: tasks/configure/misc.yml
-    - import_tasks: tasks/configure/network.yml
+    - name: configuration
+      tags: conf
+      block:
+        - import_tasks: tasks/configure/audio.yml
+        - import_tasks: tasks/configure/cron.yml
+        - import_tasks: tasks/configure/geoclue.yml
+        - import_tasks: tasks/configure/keyd.yml
+        - import_tasks: tasks/configure/lightdm.yml
+        - import_tasks: tasks/configure/suspend.yml
+        - import_tasks: tasks/configure/touchpad.yml
+        - import_tasks: tasks/configure/ufw.yml
+        - import_tasks: tasks/configure/ui.yml
+        - import_tasks: tasks/configure/sudoers.yml
+        - import_tasks: tasks/configure/misc.yml
+        - import_tasks: tasks/configure/network.yml
