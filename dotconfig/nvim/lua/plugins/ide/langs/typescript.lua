@@ -19,6 +19,10 @@ contrib.formatters({
 }, { "prettier", "prettierd" })
 contrib.ts_parsers({ "javascript", "typescript", "tsx", "jsdoc", "astro" })
 
+local get_lsp_root = function(fname)
+  return req("modules.root-dir").get_project_root() or vim.fs.dirname(fname)
+end
+
 contrib.setup(function()
   Plugin("dmmulroy/ts-error-translator.nvim")
   Plugin("pmizio/typescript-tools.nvim")
@@ -26,9 +30,7 @@ contrib.setup(function()
   req("ts-error-translator").setup({})
 
   req("typescript-tools").setup({
-    root_dir = function(fname)
-      return req("modules.root-dir").get_project_root()
-    end,
+    root_dir = get_lsp_root,
     on_attach = function(client, bufnr)
       -- disable formatting with tsserver, so that null-ls will handle it
       client.server_capabilities.documentFormattingProvider = false
@@ -113,9 +115,7 @@ contrib.lsp("volar", function()
       "json",
     },
 
-    root_dir = function(fname)
-      return req("modules.root-dir").get_project_root()
-    end,
+    root_dir = get_lsp_root,
 
     on_attach = function(client, bufnr)
       -- disable formatting, so that null-ls will handle it
@@ -129,9 +129,7 @@ end)
 
 contrib.lsp("eslint", function()
   return {
-    root_dir = function(fname)
-      return req("modules.root-dir").get_project_root()
-    end,
+    root_dir = get_lsp_root,
     on_attach = function(client, bufnr)
       -- disable formatting, so that null-ls will handle it
       client.server_capabilities.documentFormattingProvider = false
