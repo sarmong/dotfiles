@@ -48,3 +48,16 @@
     block: |
       env_file="/etc/zsh/user_env.sh"
       [ -f "$env_file" ] && . "$env_file"
+
+- name: Copy encrypted files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: preserve
+  loop:
+    - src: "{{ XDG_DOTFILES_DIR }}/dotconfig/zsh/zsh-local-enc"
+      dest: "{{ XDG_DOTFILES_DIR }}/dotconfig/zsh/zsh-local"
+    - src: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-work-enc.conf"
+      dest: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-work.conf"
+    - src: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-personal-enc.conf"
+      dest: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-personal.conf"
