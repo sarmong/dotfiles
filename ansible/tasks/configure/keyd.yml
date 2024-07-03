@@ -5,13 +5,13 @@
       pacstall:
         name: keyd
 
-    # or link?? ( I do link now )
     - name: keyd | copy config file
       copy:
         src: keyd-default.conf
         dest: /etc/keyd/default.conf
         mode: preserve
       when: ansible_hostname != 'air'
+      register: keyd_conf
 
     - name: keyd | copy mac config file
       copy:
@@ -19,9 +19,16 @@
         dest: /etc/keyd/default.conf
         mode: preserve
       when: ansible_hostname == 'air'
+      register: keyd_conf
 
     - name: keyd | enable service
       systemd_service:
         state: started
         enabled: true
         name: keyd
+
+    - name: keyd | restart service
+      systemd_service:
+        state: restarted
+        name: keyd
+      when: keyd_conf.changed
