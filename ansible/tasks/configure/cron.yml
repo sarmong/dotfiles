@@ -3,13 +3,13 @@
     - name: cron | wallpaper
       cron:
         name: Set wallpaper
-        job: "{{ ansible_env.XDG_BIN_DIR }}/wrappers/run-cron luna.sh"
+        job: "{{ XDG_BIN_DIR }}/wrappers/run-cron luna.sh"
         minute: 1
 
     - name: cron | battery
       cron:
         name: Notify about low battery
-        job: "{{ ansible_env.XDG_BIN_DIR }}/wrappers/run-cron bat-notification"
+        job: "{{ XDG_BIN_DIR }}/wrappers/run-cron bat-notification"
         minute: "*/1"
 
     - name: cron | updatedb (for locate)
