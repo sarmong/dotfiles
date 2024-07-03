@@ -14,6 +14,7 @@
     tar_url:
       "https://github.com/svenstaro/rofi-calc/archive/refs/tags/v{{ version
       }}.zip"
+    checksum: sha256:5f3ba0699ea8cf0f700b89b0ff95ae89540471540249d03f9b1057d92c69a9e2
     tar_path: "/tmp/{{ pkg_name }}.tar.gz"
     src_base_dir: "{{ XDG_SRC_DIR }}"
     src_dir: "{{ XDG_SRC_DIR }}/{{ pkg_name }}"
@@ -32,6 +33,7 @@
       get_url:
         url: "{{ tar_url }}"
         dest: "{{ tar_path }}"
+        checksum: "{{ checksum }}"
 
     - name: Unarchive source
       unarchive:

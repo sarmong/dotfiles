@@ -15,6 +15,7 @@
     tar_url:
       "https://github.com/tmux/tmux/releases/download/{{ version }}/{{ tmux_name
       }}.tar.gz"
+    checksum: sha256:551ab8dea0bf505c0ad6b7bb35ef567cdde0ccb84357df142c254f35a23e19aa
     tar_path: "/tmp/{{ tmux_name }}.tar.gz"
     src_base_dir: "{{ XDG_SRC_DIR }}"
     src_dir: "{{ XDG_SRC_DIR }}/{{ tmux_name }}"
@@ -30,6 +31,7 @@
       get_url:
         url: "{{ tar_url }}"
         dest: "{{ tar_path }}"
+        checksum: "{{ checksum }}"
       # register: tmux_tar
 
     - name: Unarchive source
