@@ -13,6 +13,7 @@
     tar_url:
       "https://github.com/AdnanHodzic/auto-cpufreq/archive/refs/tags/v{{ version
       }}.tar.gz"
+    checksum: sha256:dba5a29a23b209f4ab398fd355cd9214353699e59df83d3eeb001a83a659cb00
     tar_path: "/tmp/{{ pkg_name }}.tar.gz"
     src_base_dir: "{{ XDG_SRC_DIR }}"
     src_dir: "{{ XDG_SRC_DIR }}/{{ pkg_name }}"
@@ -22,6 +23,7 @@
       get_url:
         url: "{{ tar_url }}"
         dest: "{{ tar_path }}"
+        checksum: "{{ checksum }}"
 
     - name: auto-cpufreq | unarchive source
       unarchive:

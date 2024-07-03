@@ -10,7 +10,10 @@
   vars:
     version: r2.35
     newsboat_name: "newsboat-{{ version }}"
-    tar_url: "https://github.com/newsboat/newsboat/archive/refs/tags/{{version}}.tar.gz"
+    tar_url:
+      "https://github.com/newsboat/newsboat/archive/refs/tags/{{ version
+      }}.tar.gz"
+    checksum: sha256:ec1dae17e194a4a06fc05b4ceac7090a4aa573fa925132ab987a79dc591ef3e2
     tar_path: "/tmp/{{ version }}.tar.gz"
     src_base_dir: "{{ XDG_SRC_DIR }}"
     src_dir: "{{ XDG_SRC_DIR }}/{{ newsboat_name }}"
@@ -26,6 +29,7 @@
       get_url:
         url: "{{ tar_url }}"
         dest: "{{ tar_path }}"
+        checksum: "{{ checksum }}"
       register: newsboat_tar
 
     - name: Unarchive source
