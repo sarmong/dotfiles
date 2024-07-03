@@ -11,8 +11,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_DIRS="$HOME/.local/xdg:/usr/local/share:/usr/share:$XDG_DATA_DIRS"
 
 . "$XDG_CONFIG_HOME/user-dirs.dirs"
-export XDG_BIN_DIR="$HOME/.local/bin"
-export XDG_NC_DIR="$HOME/docs/nc"
 export XDG_DOCUMENTS_DIR="$HOME/docs"
 export XDG_DOWNLOAD_DIR="$HOME/dls"
 export XDG_DESKTOP_DIR="$HOME/desktop"
@@ -21,7 +19,11 @@ export XDG_MUSIC_DIR="$HOME/media/music"
 export XDG_VIDEOS_DIR="$HOME/media/videos"
 export XDG_PUBLICSHARE_DIR="$HOME/docs/public"
 export XDG_TEMPLATES_DIR="$HOME/docs/templates"
+
+export XDG_BIN_DIR="$HOME/.local/bin"
+export XDG_SRC_DIR="$HOME/.local/src"
 export XDG_DOTFILES_DIR="$HOME/docs/dotfiles"
+export XDG_NC_DIR="$HOME/docs/nc"
 
 ## ~/.zshrc
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

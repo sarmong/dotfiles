@@ -1,6 +1,6 @@
 - name: Control bluetooth from headphones
   vars:
-    dir: ~/.config/systemd/user
+    dir: "{{ XDG_CONFIG_HOME }}/systemd/user"
   block:
     - name: bluetooth | packages
       become: true

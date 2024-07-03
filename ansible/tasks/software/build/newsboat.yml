@@ -12,8 +12,8 @@
     newsboat_name: "newsboat-{{ version }}"
     tar_url: "https://github.com/newsboat/newsboat/archive/refs/tags/{{version}}.tar.gz"
     tar_path: "/tmp/{{ version }}.tar.gz"
-    src_base_dir: "/home/michael/.local/src"
-    src_dir: "/home/michael/.local/src/{{ newsboat_name }}"
+    src_base_dir: "{{ XDG_SRC_DIR }}"
+    src_dir: "{{ XDG_SRC_DIR }}/{{ newsboat_name }}"
 
   block:
     - name: Install newsboat build-deps

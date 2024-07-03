@@ -16,8 +16,8 @@
       "https://github.com/tmux/tmux/releases/download/{{ version }}/{{ tmux_name
       }}.tar.gz"
     tar_path: "/tmp/{{ tmux_name }}.tar.gz"
-    src_base_dir: "/home/michael/.local/src"
-    src_dir: "/home/michael/.local/src/{{ tmux_name }}"
+    src_base_dir: "{{ XDG_SRC_DIR }}"
+    src_dir: "{{ XDG_SRC_DIR }}/{{ tmux_name }}"
 
   block:
     - name: Install tmux build-deps

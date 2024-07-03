@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+script_dir="$(dirname "${BASH_SOURCE[0]}")"
+source "$script_dir/../dotconfig/zsh/xdg-cleanup"
+
 ANSIBLE_PLAYBOOK=ansible/local.yml
 ANSIBLE_CONFIG=ansible/ansible.cfg
 ANSIBLE_LOG_PATH=log/ansible.log
-ANSIBLE_CHECK_LOG_PATH=log/ansible-check.log
 
 DEVICE_ROLE_FILE=/var/lib/misc/ansible-role
 ROLES=(main server media)

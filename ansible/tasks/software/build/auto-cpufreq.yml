@@ -14,8 +14,8 @@
       "https://github.com/AdnanHodzic/auto-cpufreq/archive/refs/tags/v{{ version
       }}.tar.gz"
     tar_path: "/tmp/{{ pkg_name }}.tar.gz"
-    src_base_dir: "/home/michael/.local/src"
-    src_dir: "/home/michael/.local/src/{{ pkg_name }}"
+    src_base_dir: "{{ XDG_SRC_DIR }}"
+    src_dir: "{{ XDG_SRC_DIR }}/{{ pkg_name }}"
 
   block:
     - name: auto-cpufreq | get tarball

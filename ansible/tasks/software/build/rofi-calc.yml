@@ -15,8 +15,8 @@
       "https://github.com/svenstaro/rofi-calc/archive/refs/tags/v{{ version
       }}.zip"
     tar_path: "/tmp/{{ pkg_name }}.tar.gz"
-    src_base_dir: "/home/michael/.local/src"
-    src_dir: "/home/michael/.local/src/{{ pkg_name }}"
+    src_base_dir: "{{ XDG_SRC_DIR }}"
+    src_dir: "{{ XDG_SRC_DIR }}/{{ pkg_name }}"
 
   block:
     - name: Install build-deps

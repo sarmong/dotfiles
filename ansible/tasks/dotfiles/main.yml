@@ -1,13 +1,13 @@
 - name: Link dotfiles
   include_tasks: link.yml
   loop:
-    - src: ~/docs/dotfiles/dotconfig
-      dest: ~/.config
-    - src: ~/docs/dotfiles/dotlocal/share/applications
-      dest: ~/.local/share/applications
-    - src: ~/docs/dotfiles/dotlocal/xdg/icons
+    - src: "{{ XDG_DOTFILES_DIR }}/dotconfig"
+      dest: "{{ XDG_CONFIG_HOME }}"
+    - src: "{{ XDG_DOTFILES_DIR }}dotlocal/share/applications"
+      dest: "{{ XDG_DATA_HOME }}/applications"
+    - src: "{{ XDG_DOTFILES_DIR }}/dotlocal/xdg/icons"
       dest: ~/.local/xdg/icons
-    - src: ~/docs/dotfiles/dotlocal/bin
+    - src: "{{ XDG_DOTFILES_DIR }}/dotlocal/bin"
       dest: ~/.local
       itself: true
 
@@ -17,23 +17,19 @@
     state: directory
     mode: "0755"
   loop:
-    - ~/.config/systemd/user
+    - "{{ XDG_CONFIG_HOME }}/systemd/user"
+    - "{{ XDG_CONFIG_HOME }}/npm"
 
-- name: Create npm conf dir
-  file:
-    path: ~/.config/npm
-    state: directory
-    mode: "0755"
 - name: Corrent npmrc config (for XDG cleanup)
   lineinfile:
-    path: ~/.config/npm/npmrc
+    path: "{{ XDG_CONFIG_HOME }}/npm/npmrc"
     line: "{{ item }}"
     mode: "0644"
     create: true
   loop:
-    - prefix="{{ ansible_env.HOME }}/.local/share/npm"
-    - cache="{{ ansible_env.HOME }}/.local/cache/npm"
-    - init-module="{{ ansible_env.HOME }}/.config/npm/config/npm-init.js"
+    - prefix="{{ XDG_DATA_HOME }}/npm"
+    - cache="{{ XDG_CACHE_HOME }}/npm"
+    - init-module="{{ XDG_CONFIG_HOME }}/npm/config/npm-init.js"
 
 - name: load env vars for any login shell # lightdm reads this file
   become: true
