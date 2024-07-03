@@ -79,9 +79,9 @@
     - name: Update tldr
       command:
         cmd: tldr --update
-        creates: ~/.local/cache/tealdeer
+        creates: "{{ XDG_CACHE_HOME }}/tealdeer"
 
     - name: Install node lts
       shell:
         cmd: "fnm install lts/latest && fnm default lts/latest"
-        creates: ~/.local/share/fnm/aliases/default
+        creates: "{{ XDG_DATA_HOME }}/fnm/aliases/default"

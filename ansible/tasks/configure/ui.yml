@@ -6,21 +6,19 @@
     - name: ui | start fake x server
       command:
         cmd: Xvfb
-        creates: /tmp/.X0-lock # TODO double check
+        creates: /tmp/.X0-lock
       when: display == ""
 
     - name: ui | set lockscreen wp
       environment:
         DISPLAY: ":0"
       command:
-        # TODO path
-        cmd: betterlockscreen -u "~/docs/dotfiles/assets/lockscreen.png"
-        creates: ~/.local/cache/betterlockscreen
+        cmd: betterlockscreen -u "{{ XDG_DOTFILES_DIR }}/assets/lockscreen.png"
+        creates: "{{ XDG_CACHE_HOME }}/betterlockscreen"
 
     - name: ui | set wallpaper
       environment:
         DISPLAY: ":0"
       command:
-        # TODO path
-        cmd: ~/.local/bin/luna.sh
-        creates: ~/media/pics/wallpaper.png
+        cmd: "{{ XDG_BIN_DIR }}/luna.sh"
+        creates: "{{ ansible_env.XDG_PICTURES_DIR }}/wallpaper.png"

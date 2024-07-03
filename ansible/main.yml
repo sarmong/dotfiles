@@ -1,5 +1,12 @@
 - name: Bootstrap main system
   hosts: localhost
+  vars:
+    - XDG_CONFIG_HOME: "{{ ansible_env.XDG_CONFIG_HOME }}"
+    - XDG_DATA_HOME: "{{ ansible_env.XDG_DATA_HOME }}"
+    - XDG_CACHE_HOME: "{{ ansible_env.XDG_CACHE_HOME }}"
+    - XDG_BIN_DIR: "{{ ansible_env.XDG_BIN_DIR }}"
+    - XDG_SRC_DIR: "{{ ansible_env.XDG_SRC_DIR }}"
+    - XDG_DOTFILES_DIR: "{{ ansible_env.XDG_DOTFILES_DIR }}"
   tasks:
     - name: dotfiles
       tags: dotfiles

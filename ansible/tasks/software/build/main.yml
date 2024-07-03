@@ -1,11 +1,11 @@
 - name: Use neovim stable
   command:
-    cmd: ~/.local/bin/nvvm use stable
-    creates: ~/.local/share/nvvm/bin/nvim
+    cmd: "{{ XDG_BIN_DIR }}/nvvm use stable"
+    creates: "{{ XDG_DATA_HOME }}/nvvm/bin/nvim"
 
 - name: Create src dir
   file:
-    path: ~/.local/src
+    path: "{{ XDG_SRC_DIR }}"
     state: directory
     mode: "0755"
 
