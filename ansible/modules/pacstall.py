@@ -117,41 +117,6 @@ def build_command_prefix(
     return command
 
 
-def install_with_makepkg(module, package, extra_args, local_pkgbuild=None):
-    """
-    Install the specified package or a local PKGBUILD with makepkg
-    """
-    if not local_pkgbuild:
-        module.get_bin_path("fakeroot", required=True)
-        f = open_url(
-            "https://aur.archlinux.org/rpc/?v=5&type=info&arg={}".format(
-                urllib.parse.quote(package)
-            )
-        )
-        result = json.loads(f.read().decode("utf8"))
-        if result["resultcount"] != 1:
-            return (1, "", "package {} not found".format(package))
-        result = result["results"][0]
-        f = open_url("https://aur.archlinux.org/{}".format(result["URLPath"]))
-    with tempfile.TemporaryDirectory() as tmpdir:
-        if local_pkgbuild:
-            shutil.copytree(local_pkgbuild, tmpdir, dirs_exist_ok=True)
-            command = build_command_prefix("makepkg", extra_args)
-            rc, out, err = module.run_command(command, cwd=tmpdir, check_rc=True)
-        else:
-            tar = tarfile.open(mode="r|*", fileobj=f)
-            tar.extractall(tmpdir)
-            tar.close()
-            command = build_command_prefix(
-                "makepkg",
-                extra_args,
-            )
-            rc, out, err = module.run_command(
-                command, cwd=os.path.join(tmpdir, result["Name"]), check_rc=True
-            )
-    return (rc, out, err)
-
-
 def upgrade(module, extra_args):
     """
     Upgrade the whole system
