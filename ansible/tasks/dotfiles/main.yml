@@ -3,7 +3,7 @@
   loop:
     - src: "{{ XDG_DOTFILES_DIR }}/dotconfig"
       dest: "{{ XDG_CONFIG_HOME }}"
-    - src: "{{ XDG_DOTFILES_DIR }}dotlocal/share/applications"
+    - src: "{{ XDG_DOTFILES_DIR }}/dotlocal/share/applications"
       dest: "{{ XDG_DATA_HOME }}/applications"
     - src: "{{ XDG_DOTFILES_DIR }}/dotlocal/xdg/icons"
       dest: ~/.local/xdg/icons
@@ -61,3 +61,71 @@
       dest: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-work.conf"
     - src: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-personal-enc.conf"
       dest: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-personal.conf"
+
+- name: mimeapps.list
+  vars:
+    - browser:
+        "{{ (ansible_env.BROWSER == 'google-chrome-stable') |
+        ternary('google-chrome', 'firefox') }}"
+  lineinfile:
+    path: "{{ XDG_CONFIG_HOME }}/mimeapps.list"
+    line: "{{ item }}"
+    mode: "0644"
+    create: true
+  loop:
+    - "[Default Applications]"
+    - application/javascript=nvim.desktop;
+    - application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+    - application/x-shellscript=nvim.desktop;
+    - application/x-troff-man=nvim.desktop;
+    - text/plain=nvim.desktop;
+
+    - audio/aac=mpv.desktop;
+    - audio/flac=mpv.desktop;
+    - audio/m4a=mpv.desktop;
+    - audio/midi=mpv.desktop;
+    - audio/mp3=mpv.desktop;
+    - audio/mp4=mpv.desktop;
+    - audio/mpeg=mpv.desktop;
+    - audio/mpegurl=mpv.desktop;
+    - audio/mpg=mpv.desktop;
+    - audio/ogg=mpv.desktop;
+    - audio/opus=mpv.desktop;
+    - audio/wav=mpv.desktop;
+    - audio/webm=mpv.desktop;
+
+    - image/bmp=nsxiv.desktop;
+    - image/gif=nsxiv.desktop;
+    - image/jpeg=nsxiv.desktop;
+    - image/jpg=nsxiv.desktop;
+    - image/png=nsxiv.desktop;
+    - image/svg+xml=nsxiv.desktop;
+    - image/svg+xml-compressed=nsxiv.desktop;
+    - image/tiff=nsxiv.desktop;
+    - image/webp=nsxiv.desktop;
+    - image/x-icon=nsxiv.desktop;
+    - image/x-portable-pixmap=feh.desktop;
+    - image/x-tga=nsxiv.desktop;
+    - image/x-xbitmap=nsxiv.desktop;
+    - image/x-xpixmap=nsxiv.desktop;
+
+    - inode/directory=caja-folder-handler.desktop;
+
+    - video/avi=mpv.desktop;
+    - video/flv=mpv.desktop;
+    - video/mkv=mpv.desktop;
+    - video/mp4=mpv.desktop;
+    - video/mp4v-es=mpv.desktop;
+    - video/mpeg=mpv.desktop;
+    - video/mpeg-system=mpv.desktop;
+    - video/ogg=mpv.desktop;
+    - video/quicktime=mpv.desktop;
+    - video/webm=mpv.desktop;
+    - video/x-matroska=mpv.desktop;
+
+    - text/html={{ browser }}.desktop;
+    - application/xhtml+xml={{ browser }}.desktop;
+    - x-scheme-handler/about={{ browser }}.desktop;
+    - x-scheme-handler/http={{ browser }}.desktop;
+    - x-scheme-handler/https={{ browser }}.desktop;
+    - x-scheme-handler/unknown={{ browser }}.desktop;
