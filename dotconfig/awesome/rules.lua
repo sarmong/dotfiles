@@ -81,6 +81,14 @@ ruled.client.append_rules({
     },
   },
   {
+    rule = { instance = "caja", name = "File Operations" },
+    properties = {
+      placement = awful.placement.centered,
+      ontop = true,
+      floating = true,
+    },
+  },
+  {
     -- Event Tester is xev
     rule_any = { name = { "dragon", "Event Tester" } },
     properties = {
