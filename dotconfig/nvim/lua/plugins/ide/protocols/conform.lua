@@ -50,7 +50,7 @@ mapl({
     },
     d = {
       function()
-        Pref.ide.format_on_save = true
+        Pref.ide.format_on_save = false
       end,
       "[d]isable format on save",
     },
