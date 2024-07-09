@@ -75,7 +75,7 @@
   loop:
     - "[Default Applications]"
     - application/javascript=nvim.desktop;
-    - application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+    - application/pdf=org.pwmt.zathura.desktop;
     - application/x-shellscript=nvim.desktop;
     - application/x-troff-man=nvim.desktop;
     - text/plain=nvim.desktop;
