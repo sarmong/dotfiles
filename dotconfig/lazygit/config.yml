@@ -1,4 +1,7 @@
 os:
   edit: ~/.config/lazygit/open-nvim.sh {{filename}}
+  editAtLine: "~/.config/lazygit/open-nvim.sh {{filename}} {{line}}"
+  editAtLineAndWait: "~/.config/lazygit/open-nvim.sh {{filename}} {{line}} "
   # @TODO
   # editInTerminal: false
+promptToReturnFromSubprocess: false

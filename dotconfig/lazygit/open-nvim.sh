@@ -1,6 +1,8 @@
 #!/bin/sh
 
 full_path="$PWD/$1"
+line="$2"
+
 if [ -z "$TMUX" ]; then
   nvim "$full_path"
 else
@@ -13,4 +15,8 @@ else
   nvim --server "$socket" --remote-tab "$full_path"
 
   tmux select-window -t "$window_name"
+
+  if [ -n "$line" ]; then
+    tmux send-keys ":$line" C-m
+  fi
 fi
