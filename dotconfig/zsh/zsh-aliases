@@ -81,6 +81,7 @@ alias xopen="xdg-open"
 alias xo="xdg-open"
 alias mtype="file -b --mime-type"
 alias copy="xclip -sel clipboard"
+alias sshs='ssh $(grep -oP "Host \K\w+" "$HOME/.ssh/config" | fzf)'
 
 inf() {
   uname -sr
