@@ -5,4 +5,4 @@ export DISPLAY=:0
 
 . "$HOME"/.config/zsh/zsh-exports
 
-"$1"
+"$@"

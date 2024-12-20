@@ -27,9 +27,9 @@
     mode: "0644"
     create: true
   loop:
-    - prefix="{{ XDG_DATA_HOME }}/npm"
-    - cache="{{ XDG_CACHE_HOME }}/npm"
-    - init-module="{{ XDG_CONFIG_HOME }}/npm/config/npm-init.js"
+    - prefix={{ XDG_DATA_HOME }}/npm
+    - cache={{ XDG_CACHE_HOME }}/npm
+    - init-module={{ XDG_CONFIG_HOME }}/npm/config/npm-init.js
 
 - name: load env vars for any login shell # lightdm reads this file
   become: true
