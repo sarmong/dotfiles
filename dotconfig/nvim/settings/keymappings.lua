@@ -26,6 +26,10 @@ map("v", "S", '"hy:%s/<C-r>h//gc<left><left><left>', { silent = false })
 -- and close quickfix and loclist windows
 map("n", "<leader>q", ":noh<CR>:ccl<CR>:lcl<CR>")
 
+map("n", "<leader><leader>x", "<cmd>source %<CR>")
+map("n", "<leader>x", ":.lua<CR>")
+map("v", "<leader>x", ":lua<CR>")
+
 -- Search within visual selection
 map("v", "/", "<esc>/\\%V", { silent = false })
 
