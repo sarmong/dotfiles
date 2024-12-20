@@ -18,3 +18,11 @@
         name: updatedb
         job: /usr/bin/updatedb -e "/timeshift"
         minute: 36
+
+    - name: cron | Break reminders
+      cron:
+        name: Break reminder
+        job:
+          '{{ XDG_BIN_DIR }}/wrappers/run-cron notify-send -i {{ HOME
+          }}/dls/mind.png -t 60000 -u normal "Take a break"'
+        minute: "15,45"
