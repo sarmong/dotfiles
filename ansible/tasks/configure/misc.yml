@@ -85,3 +85,14 @@
       shell:
         cmd: "fnm install lts/latest && fnm default lts/latest"
         creates: "{{ XDG_DATA_HOME }}/fnm/aliases/default"
+
+- name: Copy cabin html
+  become: true
+  block:
+    - name: cabin | copy files
+      copy:
+        src: cabin-enc/
+        dest: /var/www/cabin
+        mode: preserve
+        owner: "{{ lookup('env', 'USER') }}"
+        group: "{{ lookup('env', 'USER') }}"
