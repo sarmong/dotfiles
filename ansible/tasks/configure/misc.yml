@@ -113,9 +113,7 @@
     - name:
         firefox | Start Firefox in headless mode with default-release profile to
         make it default
-      async: 5
-      poll: 0
-      command: firefox --headless -P default-release
+      shell: "firefox --headless -P default-release &"
       when: firefox_profile_check.matched == 0
 
     - name: Wait for Firefox to initialize profile
@@ -125,20 +123,27 @@
 
     - name: firefox | Kill the Firefox headless process
       ignore_errors: true
-      shell: "pkill -f 'firefox --headless'"
+      shell: "killall --wait --regexp 'firefox*'"
       changed_when: false
       when: firefox_profile_check.matched == 0
 
+    - name: firefox | find created *.default-release dir
+      find:
+        paths: "{{ HOME }}/.mozilla/firefox"
+        patterns: "*.default-release"
+        file_type: directory
+      register: firefox_created_dir
+
     - name: firefox | Create chrome dir
       file:
-        path: "{{ firefox_profile_check.files[0].path }}/chrome"
+        path: "{{ firefox_created_dir.files[0].path }}/chrome"
         state: directory
         mode: "0755"
 
     - name: firefox | copy config files
       copy:
         src: "{{ item.src }}"
-        dest: "{{ firefox_profile_check.files[0].path }}/{{ item.dest }}"
+        dest: "{{ firefox_created_dir.files[0].path }}/{{ item.dest }}"
       with_items:
         - { src: firefox/chrome/userChrome.css, dest: chrome/userChrome.css }
         - { src: firefox/chrome/userContent.css, dest: chrome/userContent.css }
