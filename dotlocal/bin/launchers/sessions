@@ -21,7 +21,7 @@ if [ "$launcher" = "fzf" ]; then
   fi
 else
   selected_idx=$(echo -e "$all" | xargs -n 1 basename | rofi -dmenu -i -format d)
-  if [ -z "$selected_idx" ]; then
+  if [ -z "$selected_idx" ] || [ "$selected_idx" -lt 1 ]; then
     exit 0
   fi
 
