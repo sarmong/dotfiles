@@ -210,5 +210,5 @@
       - tokei-bin
       - fnm-bin
       - lazygit
-      - github-cli-bin
+      # - github-cli-bin
       - git-delta-deb
