@@ -113,6 +113,8 @@
     - name:
         firefox | Start Firefox in headless mode with default-release profile to
         make it default
+      async: 5
+      poll: 0
       command: firefox --headless -P default-release
       when: firefox_profile_check.matched == 0
 
@@ -126,6 +128,12 @@
       shell: "pkill -f 'firefox --headless'"
       changed_when: false
       when: firefox_profile_check.matched == 0
+
+    - name: firefox | Create chrome dir
+      file:
+        path: "{{ firefox_profile_check.files[0].path }}/chrome"
+        state: directory
+        mode: "0755"
 
     - name: firefox | copy config files
       copy:
