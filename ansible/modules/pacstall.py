@@ -62,7 +62,7 @@ def_lang = ["env", "LC_ALL=C", "LANGUAGE=C"]
 
 cmds = {
     "add_repo": ["pacstall", "--add-repo"],
-    "check_installed": ["pacstall", "--query-info"],
+    "check_installed": ["pacstall", "--cache-info"],
     "install": ["pacstall", "--install", "--disable-prompts"],
     "update_cache": ["pacstall", "--update"],  # update pacstall
     "upgrade": ["pacstall", "--upgrade", "--disable-prompts"],  # upgrade packages
