@@ -21,3 +21,5 @@ api.mapkey("Y", "Md link", function () {
   const link = `[${title}](${url})`;
   navigator.clipboard.writeText(link);
 });
+
+settings.tabsThreshold = 0;
