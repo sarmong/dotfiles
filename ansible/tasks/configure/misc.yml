@@ -86,6 +86,14 @@
         cmd: "fnm install lts/latest && fnm default lts/latest"
         creates: "{{ XDG_DATA_HOME }}/fnm/aliases/default"
 
+- name: Copy SSH config
+  block:
+    - name: ssh | copy config
+      copy:
+        src: ssh-config
+        dest: ~/.ssh/
+        mode: preserve
+
 - name: Copy cabin html
   become: true
   block:
