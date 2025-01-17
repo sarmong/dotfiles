@@ -96,3 +96,42 @@
         mode: preserve
         owner: "{{ lookup('env', 'USER') }}"
         group: "{{ lookup('env', 'USER') }}"
+
+- name: firefox config
+  block:
+    - name: firefox | check if *.default-release user exists
+      find:
+        paths: "{{ HOME }}/.mozilla/firefox"
+        patterns: "*.default-release"
+        file_type: directory
+      register: firefox_profile_check
+
+    - name: firefox | Create default-release profile
+      command: firefox --createprofile default-release
+      when: firefox_profile_check.matched == 0
+
+    - name:
+        firefox | Start Firefox in headless mode with default-release profile to
+        make it default
+      command: firefox --headless -P default-release
+      when: firefox_profile_check.matched == 0
+
+    - name: Wait for Firefox to initialize profile
+      wait_for:
+        timeout: 2
+      when: firefox_profile_check.matched == 0
+
+    - name: firefox | Kill the Firefox headless process
+      ignore_errors: true
+      shell: "pkill -f 'firefox --headless'"
+      changed_when: false
+      when: firefox_profile_check.matched == 0
+
+    - name: firefox | copy config files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ firefox_profile_check.files[0].path }}/{{ item.dest }}"
+      with_items:
+        - { src: firefox/chrome/userChrome.css, dest: chrome/userChrome.css }
+        - { src: firefox/chrome/userContent.css, dest: chrome/userContent.css }
+        - { src: firefox/user.js, dest: user.js }
