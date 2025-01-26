@@ -9,6 +9,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 # if something doesn't work, consider unsetting this var (e.g. with flatpacks)
 export XDG_DATA_DIRS="$HOME/.local/xdg:/usr/local/share:/usr/share:$XDG_DATA_DIRS"
+export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$XDG_DATA_HOME/flatpak/exports/share:$XDG_DATA_DIRS"
 
 . "$XDG_CONFIG_HOME/user-dirs.dirs"
 export XDG_DOCUMENTS_DIR="$HOME/docs"
