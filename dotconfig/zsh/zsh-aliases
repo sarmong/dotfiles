@@ -118,7 +118,7 @@ alias myip="curl ipinfo.io/ip"
 alias week='date +%V'
 
 mcd() {
-  mkdir -pv "$@" && cd "${@:$#}" || exit
+  mkdir -pv "$@" && cd "${@:$#}"
 }
 
 takearchive() {
