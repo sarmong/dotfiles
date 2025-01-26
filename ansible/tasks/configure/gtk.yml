@@ -1,0 +1,43 @@
+- name: gtk themes
+  tags:
+    - gtk
+  vars:
+    - ARC_GRUVBOX_DIR: "{{ XDG_DATA_HOME }}/themes/Arc-Gruvbox"
+    - temp_dir: /tmp/arc-gruvbox-theme
+  block:
+    - name: gtk | gruvbox exists
+      stat:
+        path: "{{ ARC_GRUVBOX_DIR }} /index.theme"
+      register: theme_dir
+
+    - name: gtk | clone arc-gruvbox
+      when: not theme_dir.stat.exists
+      git:
+        repo: "https://github.com/sarmong/arc-gruvbox-theme.git"
+        dest: "{{ temp_dir }}"
+        update: false
+
+    - name: gtk | create directories
+      when: not theme_dir.stat.exists
+      file:
+        path: "{{ ARC_GRUVBOX_DIR }}"
+        state: directory
+        mode: "0755"
+
+    - name: gtk | copy gruvbox
+      when: not theme_dir.stat.exists
+      synchronize:
+        src: "{{ item }}"
+        dest: "{{ ARC_GRUVBOX_DIR }}"
+      loop:
+        - "{{ temp_dir }}/common/gtk-2.0"
+        - "{{ temp_dir }}/common/gtk-3.0"
+        - "{{ temp_dir }}/common/index.theme"
+        - "{{ temp_dir }}/common/index.theme-dark"
+        - "{{ temp_dir }}/common/index.theme-darker"
+
+    - name: gtk | update gtk-3 config
+      lineinfile:
+        path: "{{ XDG_CONFIG_HOME }}/gtk-3.0/settings.ini"
+        regexp: "^gtk-theme-name="
+        line: "gtk-theme-name=Arc-Gruvbox"
