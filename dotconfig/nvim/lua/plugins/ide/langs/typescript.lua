@@ -16,7 +16,7 @@ contrib.formatters({
   "typescriptreact",
   "vue",
   "astro",
-}, { "prettier", "prettierd" })
+}, { "prettierd" })
 contrib.ts_parsers({ "javascript", "typescript", "tsx", "jsdoc", "astro" })
 
 local get_lsp_root = function(fname)
