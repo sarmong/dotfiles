@@ -12,6 +12,7 @@ if ! tmux has-session -t="$project" 2>/dev/null; then
   tmux send-keys 'nvim' C-m
 
   tmux new-window -c "$working_dir" -a -n server
+  tmux send-keys "TMUX= tmux new-session -A -s nested-$project" C-m
 
   tmux new-window -c "$working_dir" -a -n shell
   tmux send-keys 'git status' C-m

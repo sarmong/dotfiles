@@ -1,0 +1,13 @@
+#!/bin/sh
+
+session_name="$1"
+
+case $session_name in
+  nested-*)
+    tmux send-keys -c "$session_name" " setopt IGNORE_EOF && clear" C-m # prevent Ctrl-D from killing zsh and session
+    tmux set-option status-right "nested"
+    tmux set-option status-left ""
+    tmux set-option window-status-current-format ""
+    tmux set-option status-style bg=default
+    ;;
+esac

@@ -14,6 +14,7 @@ local options = {
   termguicolors      =    true,
   splitbelow         =    true,              -- Horizontal splits below
   splitright         =    true,              -- Vertical splits to the right
+  splitkeep          =    "screen",
 
   undofile           =    true,
 

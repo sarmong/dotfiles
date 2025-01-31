@@ -55,6 +55,9 @@ function system(cmd, opts, on_exit)
     cmd = vim.split(cmd, " ")
   end
 
+  -- TODO
+  -- local res = vim.system(cmd, opts, on_exit):wait()
+  -- return res.stderr, res.stdout
   return vim.system(cmd, opts, on_exit)
 end
 
