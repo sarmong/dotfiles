@@ -9,7 +9,9 @@ dirs="$work_projects\n$personal"
 
 opened_sessions=$(tmux ls -F '#{session_name}')
 sorted=$(echo -e "$dirs" | rofi-frecency get "sessions")
-sessions_without_dir=$(echo -e "$opened_sessions" | grep -v -F "$(echo "$sorted" | xargs -n 1 basename)")
+sessions_without_dir=$(
+  comm -13 <(echo "$sorted" | xargs -n 1 basename | sort) <(echo "$opened_sessions" | sort) | grep -v "nested-"
+)
 
 all=$([ -n "$sessions_without_dir" ] && echo -e "$sessions_without_dir\n$sorted" || echo -e "$sorted")
 

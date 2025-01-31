@@ -1,0 +1,8 @@
+#!/bin/sh
+
+session_name="$1"
+nested_session_name="nested-$session_name"
+
+if ! tmux has-session -t "$session_name" 2>/dev/null && tmux has-session -t "$nested_session_name"; then
+  tmux kill-session -t "$nested_session_name"
+fi
