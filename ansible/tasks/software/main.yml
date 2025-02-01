@@ -219,3 +219,13 @@
       - lazygit
       # - github-cli-bin
       - git-delta-deb
+
+- name: pipx packages
+  tags:
+    - pipx
+  vars:
+    pipx_packages:
+      - git-filter-repo
+  community.general.pipx:
+    name: "{{ item }}"
+  with_items: "{{ pipx_packages }}"
