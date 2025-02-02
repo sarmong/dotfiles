@@ -1,0 +1,114 @@
+---
+binary_packages:
+  lazydocker:
+    name: lazydocker
+    version: 0.24.1
+    checksum: sha256:461cacf618e1020dff1d7896248c1c1f2267d5c25fb529755e4b9c43c5d1d4a5
+    url: https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Linux_x86_64.tar.gz
+    check_version_cmd: "lazydocker --version | sed -nE 's/Version: (.*)/\\1/p'"
+
+  czkawka-cli:
+    name: czkawka-cli
+    version: 6.1.0
+    checksum: sha256:0b29ae52f7072e76f083715e145a78500e738860597496a09ae334cc6ddde567
+    url: https://github.com/qarmin/czkawka/releases/download/6.1.0/linux_czkawka_cli
+    check_version_cmd: "czkawka-cli --version | sed -nE 's/czkawka (.*)/\\1/p'"
+
+  dua-cli:
+    name: dua
+    version: 2.20.1
+    checksum: sha256:2bb8b2a9bd3ea051a5f0c30bca6557a475c13794ca04fbc199b2def7f811be6e
+    url: https://github.com/Byron/dua-cli/releases/download/v2.20.1/dua-v2.20.1-x86_64-unknown-linux-musl.tar.gz
+    check_version_cmd: "dua --version | sed -nE 's/dua (.*)/\\1/p'"
+
+  fnm:
+    name: fnm
+    version: 1.35.1
+    checksum: sha256:cf2d34df1f1ed89742d75eba2920af376a756d1eee5eb319821d6dd1366ed9e1
+    url: https://github.com/Schniz/fnm/releases/download/v1.35.1/fnm-linux.zip
+    check_version_cmd: "fnm --version | sed -nE 's/fnm (.*)/\\1/p'"
+
+  frece:
+    name: frece
+    version: 1.0.6
+    checksum: sha256:64f2b12abc2c64fc03b4d63e661a4a37014f123ff96033af0e529a71849b49c2
+    url: https://github.com/YodaEmbedding/frece/releases/download/v1.0.6/x86_64-unknown-linux-gnu.tar.gz
+    check_version_cmd: "frece --version | sed -nE 's/frece (.*)/\\1/p'"
+
+  fzf:
+    name: fzf
+    version: 0.50.0
+    checksum: sha256:8fcefbcb085706de98f5fd23955ff343bd75eed826ec0a9c793bacba15ca9932
+    url: https://github.com/junegunn/fzf/releases/download/0.50.0/fzf-0.50.0-linux_amd64.tar.gz
+    check_version_cmd: "fzf --version | sed -nE 's/(.*) \\(\\w+\\)/\\1/p'"
+
+  handlr:
+    name: handlr
+    version: 0.6.4
+    checksum: sha256:287e119d75d8bbdb3416f2b3a0962f2625cd4eec946c67305af2069da31ffc91
+    url: https://github.com/chmln/handlr/releases/download/v0.6.4/handlr
+    check_version_cmd: "handlr --version | sed -nE 's/handlr (.*)/\\1/p'"
+
+  jqp:
+    name: jqp
+    version: 0.5.0
+    checksum: sha256:6892db2a83f4238cb5cf0b69ceb2318cef5aad1a7144ded27e7ff09dbb39a0b3
+    url: https://github.com/noahgorstein/jqp/releases/download/v0.5.0/jqp_Linux_x86_64.tar.gz
+    check_version_cmd: "jqp --version | sed -nE 's/jqp version (.*)/\\1/p'"
+
+  tokei:
+    name: tokei
+    version: 13.0.0
+    checksum: sha256:5c039120797e3e00168f245f9ea857001c647315ecaa9bd810dcb6d0b80409d4
+    url: https://github.com/XAMPPRocky/tokei/releases/download/v13.0.0-alpha.0/tokei-x86_64-unknown-linux-gnu.tar.gz
+    check_version_cmd: "tokei --version | sed -nE 's/tokei (.*)-.*/\\1/p'"
+
+  lf:
+    name: lf
+    version: r31
+    checksum: sha256:db529fbc0c9ba66d426d7acde95a3520ff67c02162b115415ec2c288b2867f02
+    url: https://github.com/gokcehan/lf/releases/download/r31/lf-linux-amd64.tar.gz
+    check_version_cmd: "lf --version | sed -nE 's/(.*)/\\1/p'"
+
+  fd:
+    name: fd
+    version: 8.7.1
+    checksum: sha256:eb8d4ba36e3c479aa09298a7a8bd7cff1f9c61a5d054bcc5654ee35de64cfdd5
+    url: https://github.com/sharkdp/fd/releases/download/v8.7.1/fd_8.7.1_amd64.deb
+    check_version_cmd: "fd --version | sed -nE 's/fd (.*)/\\1/p'"
+
+  zoxide:
+    name: zoxide
+    version: 0.9.6
+    checksum: sha256:e26117e6ef010f010dbe47cef4f5f72faa6a96dfd8cc723ce535d0614c16bb78
+    url: https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.6/zoxide_0.9.6-1_amd64.deb
+    check_version_cmd: "zoxide --version | sed -nE 's/zoxide (.*)/\\1/p'"
+
+  bottom:
+    name: btm
+    version: 0.9.6
+    checksum: sha256:34a095029d5c74ee577e2ceb01044a5361c8622f89cdcd24784d2fdfeeb92a53
+    url: https://github.com/ClementTsang/bottom/releases/download/0.9.6/bottom_0.9.6_amd64.deb
+    check_version_cmd: "btm --version | sed -nE 's/bottom (.*)/\\1/p'"
+
+  onefetch:
+    name: onefetch
+    version: 2.18.0
+    checksum: sha256:414d166e55e045a18d3a908cbe719cca08dabe5bfde45fa8aefce71099305a16
+    url: https://github.com/o2sh/onefetch/releases/download/2.18.0/onefetch-linux.tar.gz
+    check_version_cmd: "onefetch --version | sed -nE 's/onefetch (.*)/\\1/p'"
+
+  lazygit:
+    name: lazygit
+    version: 0.42.0
+    checksum: sha256:c3f8f1630fa9a0a00b68425c95879e059a42158425fd720b0b303e101d347d57
+    url: https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Linux_x86_64.tar.gz
+    check_version_cmd:
+      "lazygit --version | sed -nE 's/.*, version=(.*), os.*/\\1/p'"
+
+  git-delta:
+    name: git-delta
+    version: 0.17.0
+    checksum: sha256:e11c201107edc86212a8bfdf5ca51a7b5bd497008f1f57c4319a2746991ff7db
+    url: https://github.com/dandavison/delta/releases/download/0.17.0/git-delta_0.17.0_amd64.deb
+    check_version_cmd: "delta --version | sed -nE 's/delta (.*)/\\1/p'"

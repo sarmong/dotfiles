@@ -14,59 +14,28 @@
 - import_tasks: newsboat.yml
 - import_tasks: rofi-calc.yml
 
-- name: Install lazydocker
+- name: Load package variables
   tags:
+    - binary
+  include_vars: vars/binary_packages.yml
+
+- name: Install selected packages
+  tags:
+    - binary
+  include_tasks: install-binary.yml
+  loop:
     - lazydocker
-  become: true
-  vars:
-    - binary_name: lazydocker
-    - version: 0.24.1
-    - archive_checksum: sha256:461cacf618e1020dff1d7896248c1c1f2267d5c25fb529755e4b9c43c5d1d4a5
-    - archive_filename: lazydocker_{{ version }}_Linux_x86_64.tar.gz
-    - url:
-        https://github.com/jesseduffield/lazydocker/releases/download/v{{
-        version }}/{{ archive_filename }}
-
-  block:
-    - name: Check if binary exists and get current version
-      command: "{{ binary_name }} --version"
-      register: version_check
-      changed_when: false # Command is just for checking, never marks as changed
-      failed_when: false # Don't fail if binary doesn't exist yet
-      check_mode: false # Always run version check even in check mode
-
-    - name: Parse current version
-      set_fact:
-        current_version:
-          "{{ version_check.stdout | regex_search('Version:
-          ([0-9]+\\.[0-9]+\\.[0-9]+)', '\\1') | default('none', true) }}"
-      changed_when: false
-      failed_when: false
-      check_mode: false
-
-    - name: Download archive
-      get_url:
-        url: "{{ url }}"
-        dest: "/tmp/{{ archive_filename }}"
-        checksum: "{{ archive_checksum }}"
-        mode: "0644"
-      when: current_version != version
-
-    - name: Install new version
-      unarchive:
-        src: "/tmp/{{ archive_filename }}"
-        dest: /usr/local/bin
-        remote_src: true
-        mode: "0755"
-        owner: root
-        group: root
-      when: current_version != version
-
-    - name: Verify installed version
-      command: "{{ binary_name }} --version"
-      register: verify_version
-      failed_when: >
-        verify_version.rc != 0 or verify_version.stdout is not search('Version:
-        ' + version)
-      changed_when: false
-      check_mode: false
+    - czkawka-cli
+    - dua-cli
+    - fnm
+    - frece
+    - fzf
+    - handlr
+    - jqp
+    - tokei
+    - lf
+    - fd
+    - zoxide
+    - bottom
+    - lazygit
+    - git-delta

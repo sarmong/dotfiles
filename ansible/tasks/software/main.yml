@@ -194,31 +194,9 @@
     - version: 1.69.0
   become: true
   apt:
-    deb: https://downloads.rclone.org/v{{ version }}/rclone-v{{ version }}-linux-amd64.deb
-
-- name: pacstall | install cli utils
-  pacstall:
-    name:
-      # - mpvc-git
-      # - jira-cli-bin
-      # - yarn
-      # - forgit
-      - jqp-bin
-      - fzf-bin
-      - fd-deb
-      - zoxide-deb
-      - czkawka-cli-bin
-      - bottom-deb
-      - lf-bin
-      - frece-bin
-      - handlr-bin
-      - onefetch-bin
-      - dua-cli-bin
-      - tokei-bin
-      - fnm-bin
-      - lazygit
-      # - github-cli-bin
-      - git-delta-deb
+    deb:
+      https://downloads.rclone.org/v{{ version }}/rclone-v{{ version
+      }}-linux-amd64.deb
 
 - name: pipx packages
   become: true
