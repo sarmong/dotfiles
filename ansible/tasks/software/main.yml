@@ -188,6 +188,7 @@
       - tealdeer
       - shellcheck
       - yad
+      - pipx
 
 - name: Install rclone from url
   vars:
