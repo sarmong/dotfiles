@@ -129,7 +129,10 @@ end)
 
 contrib.lsp("eslint", function()
   return {
-    root_dir = get_lsp_root,
+    -- root_dir = get_lsp_root,
+    cmd_env = {
+      NODE_OPTIONS = "--max-old-space-size=8192",
+    },
     on_attach = function(client, bufnr)
       -- disable formatting, so that null-ls will handle it
       client.server_capabilities.documentFormattingProvider = false
