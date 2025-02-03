@@ -2,17 +2,24 @@
 
 path="${1:-$(pwd)}"
 working_dir=$(realpath "$path")
-project="$(basename "$working_dir" | tr '.:' '_')" # tmux itself does the replacing
+repo_or_worktree="$(basename "$working_dir" | tr '.:' '_')" # tmux itself does the replacing
 is_in_tmux=$2
 
-if ! tmux has-session -t="$project" 2>/dev/null; then
-  tmux new-session -c "$working_dir" -d -s "$project"
+if [ -d "$path/../.bare" ]; then
+  repo="$(basename "$(dirname "$path")")"
+  session_name="${repo_or_worktree}[${repo}]"
+else
+  session_name="$repo_or_worktree"
+fi
+
+if ! tmux has-session -t="$session_name" 2>/dev/null; then
+  tmux new-session -c "$working_dir" -d -s "$session_name"
 
   tmux rename-window 'neovim'
   tmux send-keys 'nvim' C-m
 
   tmux new-window -c "$working_dir" -a -n server
-  tmux send-keys "TMUX= tmux new-session -A -s nested-$project" C-m
+  tmux send-keys "TMUX= tmux new-session -A -s nested-$session_name" C-m
 
   tmux new-window -c "$working_dir" -a -n shell
   tmux send-keys 'git status' C-m
@@ -21,7 +28,7 @@ if ! tmux has-session -t="$project" 2>/dev/null; then
 fi
 
 if [ -n "$TMUX" ] || [ -n "$is_in_tmux" ]; then
-  tmux switch-client -t "$project"
+  tmux switch-client -t "$session_name"
 else
-  tmux attach-session -t "$project"
+  tmux attach-session -t "$session_name"
 fi

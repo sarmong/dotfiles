@@ -48,7 +48,7 @@ get_sorted_entries() {
 
 save_to_db() {
   if [[ "$1" != *"///"* ]]; then
-    if ! get_sorted_entries "$1" | grep "$2" >/dev/null; then
+    if ! get_sorted_entries "$1" | grep --fixed-strings "$2" >/dev/null; then
       frece add "$1" "$2"
     fi
 
