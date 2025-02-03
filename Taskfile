@@ -8,6 +8,9 @@ init() {
   echo "Initializing submodules..."
   git submodule init
   git submodule update
+
+  echo "Installing tmux plugins"
+  ./dotconfig/tmux/plugins/tpm/scripts/install_plugins.sh
   echo "Done."
 }
 

@@ -11,7 +11,9 @@
   tasks:
     - name: dotfiles
       tags: dotfiles
-      import_tasks: tasks/dotfiles/main.yml
+      block:
+        - import_tasks: tasks/dotfiles/main.yml
+        - import_tasks: tasks/dotfiles/tmux-plugins.yml
 
     - name: software
       tags: software
