@@ -1,0 +1,9 @@
+#!/bin/sh
+
+b=$(tput bold) # bold
+n=$(tput sgr0) # normal
+
+echo ""
+echo "${b}WARNING!${n}"
+echo "You rewrote history, now you might need to manually fix public repo's history."
+echo ""

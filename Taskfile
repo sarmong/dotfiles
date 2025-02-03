@@ -9,8 +9,12 @@ init() {
   git submodule init
   git submodule update
 
-  echo "Installing tmux plugins"
-  ./dotconfig/tmux/plugins/tpm/scripts/install_plugins.sh
+  echo "Cloning public repo..."
+  git clone git@github.com:sarmong/dotfiles.git "$XDG_SRC_DIR/dotfiles-public"
+
+  echo "Adding hooks..."
+  git config --local core.hooksPath .gitconfig/hooks
+
   echo "Done."
 }
 
@@ -26,6 +30,10 @@ ansible() {
 
 ansible-check() {
   scripts/ansible.sh --check "$@"
+}
+
+sync-public() {
+  scripts/sync-repos.sh
 }
 
 "$@"
