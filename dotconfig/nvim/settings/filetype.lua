@@ -12,8 +12,20 @@ local function match_pattern(path)
   end)
 end
 
+local function match_other_yml_files(path)
+  local patterns = { ".*docker%-compose%.ya?ml" }
+  return vim.iter(patterns):any(function(pattern)
+    return path:match(pattern)
+  end)
+end
+
 local function ansible_or_yaml(path)
-  return (is_ansible_root() or match_pattern(path)) and "yaml.ansible" or "yaml"
+  if not match_other_yml_files(path) then
+    return (is_ansible_root() or match_pattern(path)) and "yaml.ansible"
+      or "yaml"
+  end
+
+  return "yaml"
 end
 
 vim.filetype.add({
