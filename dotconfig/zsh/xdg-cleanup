@@ -107,3 +107,7 @@ export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
 ## ~/.vimrc
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : exists("$NVIM_APPNAME") ? "$XDG_CONFIG_HOME/$NVIM_APPNAME/init.lua" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
+
+## s3cmd
+# shellcheck disable=2139
+alias s3cmd="s3cmd --config=$XDG_CONFIG_HOME/s3cmd/config"
