@@ -18,6 +18,10 @@ if [ -d "$BUN_INSTALL" ]; then
   [ -s "$BUN_INSTALL/_bun" ] && . "$BUN_INSTALL/_bun"
 fi
 
+## Turso
+## =======
+export PATH="$PATH:$XDG_DATA_HOME/turso"
+
 ## Golang
 ## ========
 
