@@ -87,11 +87,12 @@
         creates: "{{ XDG_DATA_HOME }}/fnm/aliases/default"
 
 - name: Copy SSH config
+  tags: ssh
   block:
     - name: ssh | copy config
       copy:
         src: ssh-config
-        dest: ~/.ssh/
+        dest: ~/.ssh/config
         mode: preserve
 
 - name: Copy cabin html
