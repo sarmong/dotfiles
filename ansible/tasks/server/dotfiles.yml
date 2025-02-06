@@ -1,0 +1,27 @@
+- name: Set up dotfiles
+  block:
+    - name: Set correct env vars on login
+      tags:
+        - dotfiles
+        - zsh
+      become: true
+      blockinfile:
+        path: /etc/zsh/zshenv
+        block: |
+          env_file="$HOME/.config/zsh/zsh-exports"
+          [ -f "$env_file" ] && . "$env_file"
+
+    - name: Copy dotfiles
+      tags:
+        - dotfiles
+        - zsh
+      synchronize:
+        src: "{{ lookup('env', 'XDG_DOTFILES_DIR') }}/dotconfig/"
+        dest: "~/.config"
+
+    - name: Copy .local/bin
+      tags:
+        - dotfiles
+      synchronize:
+        src: "{{ lookup('env', 'XDG_DOTFILES_DIR') }}/dotlocal/bin/"
+        dest: "~/.local/bin"

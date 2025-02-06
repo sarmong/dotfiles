@@ -1,5 +1,7 @@
 - name: Configure ufw
   become: true
+  tags:
+    - ufw
   block:
     - name: ufw | packages
       apt:
@@ -17,11 +19,13 @@
       loop:
         - qbittorrent
         - syncthing
+      when: ansible_connection == "local"
 
     - name: ufw | allow local network
       ufw:
         src: 192.168.0.0/24
         rule: allow
+      when: ansible_connection == "local"
 
     - name: ufw | limit ssh
       ufw:
@@ -29,6 +33,23 @@
         port: ssh
         proto: tcp
         src: 192.168.0.0/24
+      when: ansible_connection == "local"
+
+    - name: ufw | allow ssh and nginx
+      ufw:
+        name: "{{ item }}"
+        rule: allow
+      loop:
+        - OpenSSH
+        - Nginx Full
+      when: group_names[0] == "vps"
+
+    - name: ufw | allow http ports
+      ufw:
+        rule: allow
+        port: "80,443"
+        proto: tcp
+      when: group_names[0] == "vps"
 
     - name: ufw | enable ufw
       ufw:

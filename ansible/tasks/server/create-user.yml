@@ -1,0 +1,86 @@
+- name: Create new user
+  block:
+    - name: Check if main user exists
+      command: "id -u {{ user }}"
+      register: user_check
+      ignore_errors: true
+      failed_when: false
+      changed_when: false
+
+    - name: "Check ansible_user"
+      fail:
+        msg: "User exists, change user in inventory file"
+      when: user_check.rc == 0 and ansible_user != user
+
+    - name: "Get new user password"
+      pause:
+        prompt: "Enter the password for the new user"
+        echo: false
+      register: result
+      when: user_check.rc == 1
+      no_log: true
+
+    - name: "Repeat new user password"
+      pause:
+        prompt: "Repeat the password: "
+        echo: false
+      register: result_check
+      when: user_check.rc == 1
+      no_log: true
+
+    - name: Set password
+      set_fact:
+        password: "{{ result.user_input }}"
+        password_check: "{{ result_check.user_input }}"
+      when: user_check.rc == 1
+      no_log: true
+
+    - name: Check passwords match
+      fail:
+        msg: "Passwords don't match"
+      when: user_check.rc == 1 and password != password_check
+
+    - name: Create new user
+      become: true
+      user:
+        name: "{{ user }}"
+        groups: sudo
+        append: true
+        password: "{{ password | password_hash('sha512') }}"
+      when: user_check.rc == 1
+
+    - name: Install SSH keys
+      block:
+        - name: Set correct permissions for .ssh directory
+          become: true
+          file:
+            path: "/home/{{ user }}/.ssh"
+            state: directory
+            owner: "{{ user }}"
+            group: "{{ user }}"
+            mode: "0700"
+
+        - name: Copy SSH keys from root to user
+          become: true
+          copy:
+            src: "{{ ansible_user_dir }}/.ssh/authorized_keys"
+            dest: "/home/{{ user }}/.ssh/authorized_keys"
+            remote_src: true
+            owner: "{{ user }}"
+            group: "{{ user }}"
+            mode: "0600"
+
+      rescue:
+        - name: Remove user
+          become: true
+          user:
+            name: "{{ user }}"
+            state: absent
+        - name: Fail
+          fail:
+            msg: "Error occured"
+
+    - name: Switch to new user for remaining tasks
+      set_fact:
+        ansible_user: "{{ user }}"
+        ansible_become_password: "{{ password }}"

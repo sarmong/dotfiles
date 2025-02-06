@@ -1,0 +1,100 @@
+- name: Bootstrap the VPS
+  hosts: vps
+  vars:
+    user: "{{ lookup('env', 'USER') }}"
+  tasks:
+    - name: Set user from ssh/config if not defined in inventory
+      set_fact:
+        ansible_user: "{{ ansible_user_id }}"
+      when: ansible_user is undefined
+
+    - name: Create new user
+      import_tasks: tasks/server/create-user.yml
+      when: ansible_user != user
+
+    - name: Update the package cache and upgrade
+      when: ansible_user == "root"
+      become: true
+      apt:
+        update_cache: true
+        upgrade: true
+
+    - name: Install basic packages
+      become: true
+      apt:
+        name:
+          - git
+          - zsh
+          - psmisc # for killall
+          - curl
+          - rsync
+          - sudo
+          - vim
+          - neovim
+          - lf
+          - zoxide
+          - fzf
+          - trash-cli
+
+    - name: Set zsh shell
+      become: true
+      user:
+        name: "{{ user }}"
+        shell: /usr/bin/zsh
+
+    - name: Configure sshd
+      become: true
+      lineinfile:
+        path: "/etc/ssh/sshd_config"
+        regex: "^(#)?{{ item.key }}"
+        line: "{{ item.key }} {{ item.value }}"
+        state: present
+      loop:
+        - { key: "PermitRootLogin", value: "no" }
+        - { key: "PasswordAuthentication", value: "no" }
+        - { key: "X11Forwarding", value: "no" }
+      notify:
+        - Restart ssh
+
+    - name: sudoers.d configuration
+      become: true
+      copy:
+        src: "tasks/configure/files/sudoers/{{ item }}"
+        dest: "/etc/sudoers.d/{{ item }}"
+        validate: /usr/sbin/visudo -csf %s
+        owner: root
+        group: root
+        mode: "0440"
+      loop:
+        - admin-flag
+        - visudo-editor
+
+    - import_tasks: tasks/server/dotfiles.yml
+
+  handlers:
+    - name: Restart ssh
+      become: true
+      service:
+        name: ssh
+        state: restarted
+
+    - name: Check nginx config
+      become: true
+      command: "nginx -t"
+      changed_when: false
+
+    - name: Restart nginx service
+      become: true
+      service:
+        name: nginx
+        state: restarted
+
+    - name: Restart docker service
+      become: true
+      service:
+        name: docker
+        state: restarted
+      # listen:
+
+    - name: Reset ssh connection
+      ansible.builtin.meta: reset_connection
