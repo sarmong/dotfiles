@@ -4,11 +4,13 @@
     user: "{{ lookup('env', 'USER') }}"
   tasks:
     - name: Set user from ssh/config if not defined in inventory
+      tags: always
       set_fact:
         ansible_user: "{{ ansible_user_id }}"
       when: ansible_user is undefined
 
     - name: Create new user
+      tags: always
       import_tasks: tasks/server/create-user.yml
       when: ansible_user != user
 
@@ -49,6 +51,7 @@
         regex: "^(#)?{{ item.key }}"
         line: "{{ item.key }} {{ item.value }}"
         state: present
+        validate: sshd -t -f %s
       loop:
         - { key: "PermitRootLogin", value: "no" }
         - { key: "PasswordAuthentication", value: "no" }
