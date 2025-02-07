@@ -132,7 +132,7 @@
       - vscodium-deb
       - firefox-bin
       - brave-browser-deb
-      - protonvpn-gui
+      # - protonvpn-gui
       - telegram-bin
       - freetube-deb
     # - spotify-client-deb
