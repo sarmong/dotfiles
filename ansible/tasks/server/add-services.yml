@@ -1,0 +1,51 @@
+- name: set up services
+  vars:
+    domains:
+      "{{ services | selectattr('domain', 'defined') | map(attribute='domain')
+      }}"
+    docker_confs:
+      "{{ services | selectattr('docker_conf', 'defined') |
+      map(attribute='docker_conf') }}"
+
+  block:
+    - name: Install caddy
+      include_tasks: caddy-install.yml
+      when: domains | length > 0
+
+    - name: Load proxy variables
+      include_vars:
+        dir: vars
+      when: domains | length > 0
+
+    - name: Include caddyfiles
+      become: true
+      template:
+        src: caddy-template.j2
+        dest: "/etc/caddy/sites/{{ item.domain.split('.')[0] }}.caddyfile"
+        mode: "0644"
+        validate: caddy validate --adapter caddyfile --config %s
+      vars:
+        service: "{{ item }}"
+        proxy_config: "{{ proxy_configs.get(item.docker_conf, false) }}"
+      loop: "{{ services | selectattr('domain', 'defined') }}"
+      notify: Restart caddy
+
+    - name: Ensure Caddy is started and enabled at boot
+      become: true
+      service:
+        name: caddy
+        state: started
+        enabled: true
+
+    - name: Install docker
+      include_tasks: docker-install.yml
+      when: docker_confs | length > 0
+
+    - name: Set up docker services
+      tags: docker
+      include_tasks: docker.yml
+      vars:
+        docker_conf: "{{ item.docker_conf }}"
+        app_port: "{{ item.port }}"
+        ci: "{{ item.ci | default(false) }}"
+      loop: "{{ services | selectattr('docker_conf', 'defined') }}"

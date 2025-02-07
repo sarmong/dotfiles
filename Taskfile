@@ -15,6 +15,9 @@ init() {
   echo "Adding hooks..."
   git config --local core.hooksPath .gitconfig/hooks
 
+  echo "Intalling required ansible collections..."
+  ansible-galaxy install -r ansible/requirements.yml
+
   echo "Done."
 }
 

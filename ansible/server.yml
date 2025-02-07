@@ -2,6 +2,7 @@
   hosts: vps
   vars:
     user: "{{ lookup('env', 'USER') }}"
+    launched_from_root: "{{ ansible_user == 'root' }}"
   tasks:
     - name: Set user from ssh/config if not defined in inventory
       tags: always
@@ -15,7 +16,7 @@
       when: ansible_user != user
 
     - name: Update the package cache and upgrade
-      when: ansible_user == "root"
+      when: launched_from_root
       become: true
       apt:
         update_cache: true
@@ -73,6 +74,8 @@
         - visudo-editor
 
     - import_tasks: tasks/server/dotfiles.yml
+    - import_tasks: tasks/server/services.yml
+    - import_tasks: tasks/configure/ufw.yml
 
   handlers:
     - name: Restart ssh
@@ -81,23 +84,18 @@
         name: ssh
         state: restarted
 
-    - name: Check nginx config
-      become: true
-      command: "nginx -t"
-      changed_when: false
-
-    - name: Restart nginx service
-      become: true
-      service:
-        name: nginx
-        state: restarted
-
     - name: Restart docker service
       become: true
       service:
         name: docker
         state: restarted
       # listen:
+
+    - name: Restart caddy
+      become: true
+      service:
+        name: caddy
+        state: restarted
 
     - name: Reset ssh connection
       ansible.builtin.meta: reset_connection

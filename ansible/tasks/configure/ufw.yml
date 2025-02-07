@@ -41,7 +41,6 @@
         rule: allow
       loop:
         - OpenSSH
-        - Nginx Full
       when: group_names[0] == "vps"
 
     - name: ufw | allow http ports

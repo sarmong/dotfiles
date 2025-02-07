@@ -1,0 +1,38 @@
+- name: Set up docker services
+  tags:
+    - docker
+  vars:
+    project_dir: "{{ ci | ternary(docker_conf, '~/docs/apps/' ~ docker_conf) }}"
+  block:
+    - name: Create app dir
+      file:
+        path: "{{ project_dir }}"
+        state: directory
+        mode: "0755"
+      when: not ci
+
+    - name: Deploy docker-compose files
+      synchronize:
+        src: "tasks/server/files/docker/{{ docker_conf }}/"
+        dest: "{{ project_dir }}"
+      register: updated_files
+      when: not ci
+
+    - name: add port
+      lineinfile:
+        path: "{{ project_dir }}/.env"
+        create: true
+        line: "PORT={{ app_port }}"
+        mode: "0644"
+      when: app_port is defined
+      register: updated_port
+
+    - name: Restart docker
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_dir }}"
+        state: restarted
+      when: updated_files.changed or updated_port.changed
+
+    - name: Start docker
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_dir }}"

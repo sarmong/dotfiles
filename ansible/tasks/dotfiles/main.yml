@@ -31,6 +31,7 @@
     - cache={{ XDG_CACHE_HOME }}/npm
     - init-module={{ XDG_CONFIG_HOME }}/npm/config/npm-init.js
 
+  # TODO: check if needed, seems like putting contents of user_env.sh into /etc/zsh/zshenv is enough (the followin task)
 - name: load env vars for any login shell # lightdm reads this file
   become: true
   copy:

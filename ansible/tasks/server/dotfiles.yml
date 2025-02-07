@@ -1,4 +1,5 @@
 - name: Set up dotfiles
+  tags: dotfiles
   block:
     - name: Set correct env vars on login
       tags:

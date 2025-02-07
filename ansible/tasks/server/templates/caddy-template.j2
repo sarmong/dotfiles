@@ -1,0 +1,22 @@
+{{ service.domain }} {
+
+     {% if service.port is defined %}
+     reverse_proxy 127.0.0.1:{{ service.port }} {% if proxy_config is defined %} {
+       {{ proxy_config }}
+     }
+     {% endif %}
+     {% elif service.path is defined %}
+      root * {{ service.path }}
+      file_server
+
+      @html path_regexp ^/(.*)\.html$
+      redir @html /{re.1} 301
+     {% endif %}
+
+
+     {% if service.auth | default(false) %}
+     basic_auth {
+       {{ auth_login }} {{ basic_auth }}
+     }
+    {% endif %}
+}
