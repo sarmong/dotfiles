@@ -1,41 +1,5 @@
-- name: Bootstrap main system
-  hosts: localhost
-  vars:
-    - HOME: "{{ ansible_env.HOME }}"
-    - XDG_CONFIG_HOME: "{{ ansible_env.XDG_CONFIG_HOME }}"
-    - XDG_DATA_HOME: "{{ ansible_env.XDG_DATA_HOME }}"
-    - XDG_CACHE_HOME: "{{ ansible_env.XDG_CACHE_HOME }}"
-    - XDG_BIN_DIR: "{{ ansible_env.XDG_BIN_DIR }}"
-    - XDG_SRC_DIR: "{{ ansible_env.XDG_SRC_DIR }}"
-    - XDG_DOTFILES_DIR: "{{ ansible_env.XDG_DOTFILES_DIR }}"
-  tasks:
-    - name: dotfiles
-      tags: dotfiles
-      block:
-        - import_tasks: tasks/dotfiles/main.yml
-        - import_tasks: tasks/dotfiles/tmux-plugins.yml
+- name: Localhost playbook
+  ansible.builtin.import_playbook: localhost.yml
 
-    - name: software
-      tags: software
-      block:
-        - import_tasks: tasks/software/build/rust.yml
-        - import_tasks: tasks/software/pacstall.yml
-        - import_tasks: tasks/software/main.yml
-        - import_tasks: tasks/software/build/main.yml
-
-    - name: configuration
-      tags: conf
-      block:
-        - import_tasks: tasks/configure/audio.yml
-        - import_tasks: tasks/configure/cron.yml
-        - import_tasks: tasks/configure/geoclue.yml
-        - import_tasks: tasks/configure/keyd.yml
-        - import_tasks: tasks/configure/lightdm.yml
-        - import_tasks: tasks/configure/suspend.yml
-        - import_tasks: tasks/configure/touchpad.yml
-        - import_tasks: tasks/configure/ufw.yml
-        - import_tasks: tasks/configure/ui.yml
-        - import_tasks: tasks/configure/sudoers.yml
-        - import_tasks: tasks/configure/misc.yml
-        - import_tasks: tasks/configure/network.yml
-        - import_tasks: tasks/configure/gtk.yml
+- name: VPS playbook
+  ansible.builtin.import_playbook: server.yml

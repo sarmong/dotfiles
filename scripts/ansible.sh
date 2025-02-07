@@ -5,8 +5,9 @@ set -euo pipefail
 script_dir="$(dirname "${BASH_SOURCE[0]}")"
 source "$script_dir/../dotconfig/zsh/xdg-cleanup"
 
-ANSIBLE_PLAYBOOK=ansible/local.yml
+ANSIBLE_PLAYBOOK=ansible/main.yml
 ANSIBLE_CONFIG=ansible/ansible.cfg
+ANSIBLE_INVENTORY=ansible/inventory.ini
 ANSIBLE_LOG_PATH=log/ansible.log
 
 VAULT_ENC_KEY_FILE="$XDG_DATA_HOME/ansible-key"
@@ -16,13 +17,11 @@ DEVICE_ROLE_FILE=/var/lib/misc/ansible-role
 ROLES=(main server media)
 
 main() {
-
-  saved_role=$(_get_saved_role)
-
-  ANSIBLE_PLAYBOOK="./ansible/$saved_role.yml"
+  # saved_role=$(_get_saved_role)
 
   ## Prompt for password beforehand. Ansible become should work
-  sudo echo ""
+  ## doesn't make sense for remote, think about it
+  # sudo echo ""
 
   if [ ! -f "$VAULT_ENC_KEY_FILE" ]; then
     echo -n "Enter main vault password: "
@@ -59,6 +58,8 @@ main() {
     ANSIBLE_LOG_PATH=$ANSIBLE_LOG_PATH \
     ansible-playbook "$ANSIBLE_PLAYBOOK" \
     --vault-pass-file="$VAULT_KEY_FILE" \
+    --inventory "$ANSIBLE_INVENTORY" \
+    --ask-become-pass \
     "$@"
 }
 

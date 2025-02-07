@@ -13,10 +13,11 @@
 
     - name: Deploy docker-compose files
       synchronize:
-        src: "tasks/server/files/docker/{{ docker_conf }}/"
+        src:
+          "tasks/server/files/docker/{{ docker_conf | basename
+          }}/docker-compose.yml"
         dest: "{{ project_dir }}"
       register: updated_files
-      when: not ci
 
     - name: add port
       lineinfile:
