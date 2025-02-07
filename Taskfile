@@ -9,8 +9,10 @@ init() {
   git submodule init
   git submodule update
 
-  echo "Cloning public repo..."
-  git clone git@github.com:sarmong/dotfiles.git "$XDG_SRC_DIR/dotfiles-public"
+  if [ ! -d "$XDG_SRC_DIR/dotfiles-public" ]; then
+    echo "Cloning public repo..."
+    git clone git@github.com:sarmong/dotfiles.git "$XDG_SRC_DIR/dotfiles-public"
+  fi
 
   echo "Adding hooks..."
   git config --local core.hooksPath .gitconfig/hooks
