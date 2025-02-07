@@ -1,0 +1,15 @@
+#!/bin/sh
+
+exclude_file=".sync_exclude"
+last_commit=$(git rev-parse HEAD)
+
+patch=$(git format-patch --stdout "$last_commit~..$last_commit" -- $(cat $exclude_file | awk '!/^#/ && NF' | sed 's/^/:^/'))
+
+changes=$(echo "$patch" | git apply --summary --allow-empty | sed 's/^/\t/')
+
+if [ -n "$changes" ]; then
+  echo ""
+  echo "The following files were modified and not excluded from sync:"
+  echo "$changes"
+  echo ""
+fi
