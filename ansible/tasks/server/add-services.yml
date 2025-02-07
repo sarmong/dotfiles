@@ -12,11 +12,6 @@
       include_tasks: caddy-install.yml
       when: domains | length > 0
 
-    - name: Load proxy variables
-      include_vars:
-        dir: vars
-      when: domains | length > 0
-
     - name: Include caddyfiles
       become: true
       template:
@@ -26,7 +21,7 @@
         validate: caddy validate --adapter caddyfile --config %s
       vars:
         service: "{{ item }}"
-        proxy_config: "{{ proxy_configs.get(item.docker_conf, false) }}"
+        proxy_config: "{{ proxy_configs.get(item.docker_conf) }}"
       loop: "{{ services | selectattr('domain', 'defined') }}"
       notify: Restart caddy
 

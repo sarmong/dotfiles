@@ -79,12 +79,14 @@
 
   handlers:
     - name: Restart ssh
+      tags: always
       become: true
       service:
         name: ssh
         state: restarted
 
     - name: Restart docker service
+      tags: always
       become: true
       service:
         name: docker
@@ -92,10 +94,12 @@
       # listen:
 
     - name: Restart caddy
+      tags: always
       become: true
       service:
         name: caddy
         state: restarted
 
     - name: Reset ssh connection
+      tags: always
       ansible.builtin.meta: reset_connection
