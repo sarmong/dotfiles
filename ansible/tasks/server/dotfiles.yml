@@ -11,6 +11,8 @@
         block: |
           env_file="$HOME/.config/zsh/zsh-exports"
           [ -f "$env_file" ] && . "$env_file"
+          export IS_SERVER=true
+          export APPIMAGE_EXTRACT_AND_RUN=1 # to run neovim appimage
 
     - name: Copy dotfiles
       tags:
@@ -26,3 +28,8 @@
       synchronize:
         src: "{{ lookup('env', 'XDG_DOTFILES_DIR') }}/dotlocal/bin/"
         dest: "~/.local/bin"
+
+    - name: Use neovim stable
+      command:
+        cmd: "~/.local/bin/nvvm use stable"
+        creates: "~/.local/share/nvvm/bin/nvim"

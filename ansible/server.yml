@@ -11,11 +11,11 @@
       when: ansible_user is undefined
 
     - name: Load variables
+      tags: always
       include_vars:
         dir: tasks/server/vars
 
     - name: Create new user
-      tags: always
       import_tasks: tasks/server/create-user.yml
 
     - name: Update the package cache and upgrade
@@ -33,14 +33,15 @@
           - zsh
           - psmisc # for killall
           - curl
+          - wget
           - rsync
           - sudo
           - vim
-          - neovim
           - lf
           - zoxide
           - fzf
           - trash-cli
+          - jq
 
     - name: Set zsh shell
       become: true

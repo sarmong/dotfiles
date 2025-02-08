@@ -1,7 +1,3 @@
-if os.getenv("IS_SERVER") then
-  return
-end
-
 Plugin("nvimtools/none-ls.nvim")
 
 local null_ls = req("null-ls")

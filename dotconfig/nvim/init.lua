@@ -6,6 +6,8 @@ package.path = config_dir
   .. "/?/init.lua;"
   .. package.path
 
+_G.lean_mode = os.getenv("NVIM_LEAN") or os.getenv("IS_SERVER")
+
 require("utils")
 
 req("user-prefs")

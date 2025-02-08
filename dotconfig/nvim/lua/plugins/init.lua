@@ -29,7 +29,9 @@ req("mini.deps").later(function()
 
   -- req("plugins.languages.misc")
   -- req("plugins.languages.treesitter")
-  req("plugins.git")
-  req("plugins.git.gitsigns")
-  req("plugins.git.octo")
+  if not _G.lean_mode then
+    req("plugins.git")
+    req("plugins.git.gitsigns")
+    req("plugins.git.octo")
+  end
 end)

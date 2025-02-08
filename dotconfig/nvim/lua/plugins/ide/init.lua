@@ -1,3 +1,7 @@
+if _G.lean_mode then
+  return
+end
+
 local plugins_root = "plugins.ide.langs"
 
 local plugins_path = vim.fn.stdpath("config")
