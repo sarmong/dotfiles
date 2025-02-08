@@ -11,9 +11,9 @@
           - curl
         state: present
 
-    - name: Ensure directory exists for /etc/apt/keyrings
+    - name: Ensure directory exists for /usr/share/keyrings
       file:
-        path: /etc/apt/keyrings
+        path: /usr/share/keyrings
         state: directory
         mode: "0755"
 
