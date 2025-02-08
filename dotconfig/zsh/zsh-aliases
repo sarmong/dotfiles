@@ -24,6 +24,12 @@ a() {
   elif [[ "show" == $1* ]] || [[ "info" == $1* ]]; then
     shift
     "$cmd" show "$@"
+  elif [[ "update" == $1* ]]; then
+    shift
+    sudo "$cmd" update "$@"
+  elif  [[ "upgrade" == $1* ]]; then
+    shift
+    sudo "$cmd" upgrade "$@"
   else
     "$cmd" "$@"
   fi
