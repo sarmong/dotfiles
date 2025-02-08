@@ -80,6 +80,7 @@
     - import_tasks: tasks/server/dotfiles.yml
     - import_tasks: tasks/server/services.yml
     - import_tasks: tasks/configure/ufw.yml
+    - import_tasks: tasks/server/fail2ban.yml
 
   handlers:
     - name: Restart ssh
@@ -107,3 +108,10 @@
     - name: Reset ssh connection
       tags: always
       ansible.builtin.meta: reset_connection
+
+    - name: Restart fail2ban
+      tags: always
+      become: true
+      service:
+        name: fail2ban
+        state: restarted

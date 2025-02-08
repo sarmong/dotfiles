@@ -1,0 +1,27 @@
+- name: Install fail2ban
+  become: true
+  apt:
+    name: fail2ban
+
+- name: fail2ban | Copy jail file
+  become: true
+  copy:
+    src: /etc/fail2ban/jail.conf
+    dest: /etc/fail2ban/jail.local
+    remote_src: true
+    mode: preserve
+
+- name: fail2ban | Fix backend
+  become: true
+  lineinfile:
+    path: /etc/fail2ban/jail.local
+    regexp: "^backend = auto$"
+    line: "backend = systemd"
+  notify: Restart fail2ban
+
+- name: Enable fail2ban service
+  become: true
+  service:
+    name: fail2ban
+    state: started
+    enabled: true
