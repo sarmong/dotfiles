@@ -43,12 +43,12 @@ main() {
     chmod 600 "$VAULT_KEY_FILE"
   fi
 
-  if [ -z "$saved_role" ] || [ ! -f "$ANSIBLE_PLAYBOOK" ]; then
-    role=$(_select "Select role: " "${ROLES[@]}")
-    ANSIBLE_PLAYBOOK="ansible/$role.yml"
-
-    _save_role "$role"
-  fi
+  # if [ -z "$saved_role" ] || [ ! -f "$ANSIBLE_PLAYBOOK" ]; then
+  #   role=$(_select "Select role: " "${ROLES[@]}")
+  #   ANSIBLE_PLAYBOOK="ansible/$role.yml"
+  #
+  #   _save_role "$role"
+  # fi
 
   mkdir -p "$(dirname $ANSIBLE_LOG_PATH)"
 
