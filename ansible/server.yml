@@ -10,10 +10,13 @@
         ansible_user: "{{ ansible_user_id }}"
       when: ansible_user is undefined
 
+    - name: Load variables
+      include_vars:
+        dir: tasks/server/vars
+
     - name: Create new user
       tags: always
       import_tasks: tasks/server/create-user.yml
-      when: ansible_user != user
 
     - name: Update the package cache and upgrade
       when: launched_from_root

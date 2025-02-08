@@ -1,4 +1,5 @@
-- name: Create new user
+- name: Create main user
+  when: ansible_user != user
   block:
     - name: Check if main user exists
       command: "id -u {{ user }}"
@@ -84,3 +85,28 @@
       set_fact:
         ansible_user: "{{ user }}"
         ansible_become_password: "{{ password }}"
+
+- name: Create ci user
+  become: true
+  block:
+    - name: Create new ci_user
+      user:
+        name: "{{ ci_user }}"
+        shell: /usr/bin/bash
+
+    - name: Copy SSH keys from root to ci_user
+      authorized_key:
+        user: "{{ ci_user }}"
+        key: "{{ lookup('file', '~/.ssh/' ~ ci_key ) }}"
+
+    - name: Add main user to ci group
+      user:
+        name: "{{ user }}"
+        groups: "{{ ci_user }}"
+        append: true
+
+    - name: Change /var/www permissions
+      file:
+        path: /var/www
+        state: directory
+        mode: "0775"
