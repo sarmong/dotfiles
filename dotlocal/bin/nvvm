@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 dir=${XDG_DATA_HOME:-$HOME/.local/share}/nvvm
 bin_dir=$dir/bin
@@ -7,7 +9,34 @@ lib_dir=$dir/lib
 [ ! -d "$bin_dir" ] && mkdir -p "$bin_dir"
 [ ! -d "$lib_dir" ] && mkdir -p "$lib_dir"
 
+cd "$lib_dir" || exit
+
 command="$1"
+
+checkchecksum() {
+  remote_file_url="$1"
+  wget --quiet --show-progress "$remote_file_url.sha256sum"
+
+  shasum_file="$(basename "$remote_file_url").sha256sum"
+
+  if ! sha256sum --check "$shasum_file"; then
+    rm "$shasum_file"
+    return 1
+  fi
+
+  rm "$shasum_file"
+}
+
+get_file_url() {
+  version="$1"
+  curl -s "https://api.github.com/repos/neovim/neovim/releases/tags/$version" | jq -r '.assets[] | select(.name == "nvim-linux-x86_64.appimage" or .name == "nvim.appimage") | .browser_download_url'
+}
+
+get_latest_version() {
+  version=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | jq -r .tag_name)
+
+  echo "$version"
+}
 
 list() {
   # gh api --method GET /repos/neovim/neovim/releases
@@ -15,16 +44,21 @@ list() {
 }
 
 use() {
-  name="$1"
+  version="$1"
+  version_number="$version"
 
-  if [ ! -f "$lib_dir/$name.appimage" ]; then
-    install "$name"
+  if [ "$version" = "latest" ] || [ "$version" = "stable" ]; then
+    version_number="$(get_latest_version)"
   fi
 
-  ln -sf "$lib_dir/$name.appimage" "$bin_dir/nvim"
+  if [ ! -f "$lib_dir/$version_number.appimage" ]; then
+    install "$version"
+  fi
+
+  ln -sf "$lib_dir/$version.appimage" "$bin_dir/nvim"
   chmod +x "$bin_dir/nvim"
 
-  echo "Now using neovim $name"
+  echo "Now using neovim $version"
 }
 
 open() {
@@ -39,14 +73,46 @@ open() {
 
 install() {
   version="$1"
+  version_number="$version"
 
-  curl --location "https://github.com/neovim/neovim/releases/download/$version/nvim.appimage" --output "$lib_dir/$version.appimage"
+  if [ "$version" = "latest" ] || [ "$version" = "stable" ]; then
+    version_number="$(get_latest_version)"
+  fi
 
-  chmod +x "$lib_dir/$version.appimage"
+  version_file="$lib_dir/$version_number.appimage"
 
-  echo "Installed neovim $version"
+  if [ -f "$version_file" ]; then
+    echo "Version $version_number already installed"
+    exit 0
+  fi
+
+  echo "Installing $version_number..."
+
+  remote_file_url="$(get_file_url "$version_number")"
+  default_installed_filename="$(basename "$remote_file_url")"
+
+  wget --quiet --show-progress "$remote_file_url"
+
+  if ! checkchecksum "$remote_file_url"; then
+    echo "ERROR"
+    rm "$default_installed_filename"
+    exit 1
+  fi
+
+  mv "$default_installed_filename" "$version_file"
+
+  chmod +x "$version_file"
+
+  if [ "$version" = "latest" ] || [ "$version" = "stable" ]; then
+    ln -sf "$version_file" "$lib_dir/stable.appimage"
+    ln -sf "$version_file" "$lib_dir/latest.appimage"
+  fi
+
+  echo "Installed neovim $version_number"
 
   [ ! -L "$bin_dir/nvim" ] && use "$version"
+
+  exit 0
 }
 
 shift
