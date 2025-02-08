@@ -154,3 +154,13 @@ binary_packages:
       vars.binary_packages['git-delta'].version }}/git-delta_{{
       vars.binary_packages['git-delta'].version }}_amd64.deb
     check_version_cmd: "delta --version | sed -nE 's/delta (.*)/\\1/p'"
+
+  rclone:
+    name: rclone
+    version: 1.69.0
+    checksum: sha256:5de54f24c74ece8592051b37067055ea155cc60aa3a20ed2a7a301c1f965a9d2
+    url:
+      https://downloads.rclone.org/v{{ vars.binary_packages['rclone'].version
+      }}/rclone-v{{ vars.binary_packages['rclone'].version }}-linux-amd64.deb
+
+    check_version_cmd: "rclone --version | sed -nE 's/rclone v(.*)/\\1/p'"

@@ -210,15 +210,6 @@
       - yad
       - pipx
 
-- name: Install rclone from url
-  vars:
-    - version: 1.69.0
-  become: true
-  apt:
-    deb:
-      https://downloads.rclone.org/v{{ version }}/rclone-v{{ version
-      }}-linux-amd64.deb
-
 - name: pipx packages
   become: true
   environment:
