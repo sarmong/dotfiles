@@ -1,5 +1,5 @@
 - name: Bootstrap media system
-  hosts: localhost
+  hosts: quad
   tasks:
     - import_tasks: tasks/dotfiles/main.yml
 

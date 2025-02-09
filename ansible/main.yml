@@ -3,3 +3,6 @@
 
 - name: VPS playbook
   ansible.builtin.import_playbook: server.yml
+
+- name: Media playbook
+  ansible.builtin.import_playbook: media.yml
