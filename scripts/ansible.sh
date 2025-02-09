@@ -79,7 +79,7 @@ reencrypt_file() {
 
   file="$1"
 
-  enc_file=$(grep -oP '## Encrypted with ansible vault - \K[\w/-]+' "$file")
+  enc_file=$(grep -oP "(?<=## Encrypted with ansible vault - ).*" "$file")
 
   ansible-vault encrypt --vault-pass-file $VAULT_KEY_FILE --output "$XDG_DOTFILES_DIR/$enc_file" "$file"
 }
