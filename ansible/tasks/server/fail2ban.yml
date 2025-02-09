@@ -8,6 +8,7 @@
   copy:
     src: /etc/fail2ban/jail.conf
     dest: /etc/fail2ban/jail.local
+    force: false
     remote_src: true
     mode: preserve
 
