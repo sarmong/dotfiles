@@ -8,7 +8,8 @@ source "$script_dir/../dotconfig/zsh/xdg-cleanup"
 ANSIBLE_PLAYBOOK=ansible/main.yml
 ANSIBLE_CONFIG=ansible/ansible.cfg
 ANSIBLE_INVENTORY=ansible/inventory.ini
-ANSIBLE_LOG_PATH=log/ansible.log
+
+ANSIBLE_LOG_PATH="log/$(date +"%y-%m")/$(date +"%d")/$(date +"%H-%M-%S").log"
 
 VAULT_ENC_KEY_FILE="$XDG_DATA_HOME/ansible-key"
 VAULT_KEY_FILE="/tmp/ansible-key"
