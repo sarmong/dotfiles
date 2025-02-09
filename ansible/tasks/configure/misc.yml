@@ -1,6 +1,6 @@
 - name: Enable other services
   vars:
-    username: "{{ lookup('env', 'USER') }}"
+    username: "{{ ansible_user }}"
   block:
     - name: set max_user_watches
       become: true

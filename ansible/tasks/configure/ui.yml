@@ -1,6 +1,6 @@
 - name: UI stuff
   vars:
-    display: "{{ lookup('ansible.builtin.env', 'DISPLAY') }}"
+    display: "{{ ansible_env.get('DISPLAY') }}"
 
   block:
     - name: ui | start fake x server
@@ -21,4 +21,4 @@
         DISPLAY: ":0"
       command:
         cmd: "{{ XDG_BIN_DIR }}/luna.sh"
-        creates: "{{ ansible_env.XDG_PICTURES_DIR }}/wallpaper.png"
+        creates: "{{ XDG_PICTURES_DIR }}/wallpaper.png"

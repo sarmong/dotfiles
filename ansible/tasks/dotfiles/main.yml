@@ -1,14 +1,16 @@
 - name: Link dotfiles
   include_tasks: link.yml
+  vars:
+    local_dotfiles: "{{ lookup('env', 'XDG_DOTFILES_DIR') }}"
   loop:
-    - src: "{{ XDG_DOTFILES_DIR }}/dotconfig"
+    - src: "{{ local_dotfiles }}/dotconfig"
       dest: "{{ XDG_CONFIG_HOME }}"
-    - src: "{{ XDG_DOTFILES_DIR }}/dotlocal/share/applications"
+    - src: "{{ local_dotfiles }}/dotlocal/share/applications"
       dest: "{{ XDG_DATA_HOME }}/applications"
-    - src: "{{ XDG_DOTFILES_DIR }}/dotlocal/xdg/icons"
-      dest: ~/.local/xdg/icons
-    - src: "{{ XDG_DOTFILES_DIR }}/dotlocal/bin"
-      dest: ~/.local
+    - src: "{{ local_dotfiles }}/dotlocal/xdg/icons"
+      dest: "{{ HOME }}/.local/xdg/icons"
+    - src: "{{ local_dotfiles }}/dotlocal/bin"
+      dest: "{{ HOME }}/.local"
       itself: true
 
 - name: Create directories
@@ -52,22 +54,22 @@
 
 - name: Copy encrypted files
   copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
+    src: "{{ lookup('env', 'XDG_DOTFILES_DIR') }}/{{ item.src }}"
+    dest: "{{ XDG_DOTFILES_DIR }}/{{ item.dest }}"
     mode: preserve
   loop:
-    - src: "{{ XDG_DOTFILES_DIR }}/dotconfig/zsh/zsh-local-enc"
-      dest: "{{ XDG_DOTFILES_DIR }}/dotconfig/zsh/zsh-local"
-    - src: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-work-enc.conf"
-      dest: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-work.conf"
-    - src: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-personal-enc.conf"
-      dest: "{{ XDG_DOTFILES_DIR }}/dotconfig/git/git-personal.conf"
+    - src: "dotconfig/zsh/zsh-local-enc"
+      dest: "dotconfig/zsh/zsh-local"
+    - src: "dotconfig/git/git-work-enc.conf"
+      dest: "dotconfig/git/git-work.conf"
+    - src: "dotconfig/git/git-personal-enc.conf"
+      dest: "dotconfig/git/git-personal.conf"
 
 - name: mimeapps.list
   vars:
-    - browser:
-        "{{ (ansible_env.BROWSER == 'google-chrome-stable') |
-        ternary('google-chrome', 'firefox') }}"
+    browser:
+      "{{ (ansible_env.BROWSER == 'google-chrome-stable') |
+      ternary('google-chrome', 'firefox') }}"
   lineinfile:
     path: "{{ XDG_CONFIG_HOME }}/mimeapps.list"
     line: "{{ item }}"

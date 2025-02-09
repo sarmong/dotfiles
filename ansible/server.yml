@@ -4,11 +4,11 @@
     user: "{{ lookup('env', 'USER') }}"
     launched_from_root: "{{ ansible_user == 'root' }}"
   tasks:
-    - name: Set user from ssh/config if not defined in inventory
+    - name: Set user facts
       tags: always
       set_fact:
-        ansible_user: "{{ ansible_user_id }}"
-      when: ansible_user is undefined
+        ansible_user: "{{ ansible_user_id }}" ## When there is no user in inventory
+        initial_user: "{{ ansible_user_id }}"
 
     - name: Load variables
       tags: always
@@ -19,7 +19,7 @@
       import_tasks: tasks/server/create-user.yml
 
     - name: Update the package cache and upgrade
-      when: launched_from_root
+      when: initial_user == 'root'
       become: true
       apt:
         update_cache: true

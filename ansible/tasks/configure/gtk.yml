@@ -7,7 +7,7 @@
   block:
     - name: gtk | gruvbox exists
       stat:
-        path: "{{ ARC_GRUVBOX_DIR }} /index.theme"
+        path: "{{ ARC_GRUVBOX_DIR }}/index.theme"
       register: theme_dir
 
     - name: gtk | clone arc-gruvbox
