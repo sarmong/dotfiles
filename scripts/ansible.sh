@@ -15,15 +15,44 @@ VAULT_ENC_KEY_FILE="$XDG_DATA_HOME/ansible-key"
 VAULT_KEY_FILE="/tmp/ansible-key"
 
 DEVICE_ROLE_FILE=/var/lib/misc/ansible-role
-ROLES=(main server media)
 
 main() {
-  # saved_role=$(_get_saved_role)
+  case "$1" in
+    reencrypt)
+      shift
+      reencrypt_file "$@"
+      ;;
+    gen_vault_pass)
+      shift
+      gen_vault_pass "$@"
+      ;;
+    *)
+      run_playbook "$@"
+      ;;
+  esac
+}
 
+run_playbook() {
   ## Prompt for password beforehand. Ansible become should work
   ## doesn't make sense for remote, think about it
   # sudo echo ""
 
+  gen_vault_pass
+
+  mkdir -p "$(dirname "$ANSIBLE_LOG_PATH")"
+
+  echo -e "\nRunning $ANSIBLE_PLAYBOOK..."
+
+  ANSIBLE_CONFIG=$ANSIBLE_CONFIG \
+    ANSIBLE_LOG_PATH=$ANSIBLE_LOG_PATH \
+    ansible-playbook "$ANSIBLE_PLAYBOOK" \
+    --vault-pass-file="$VAULT_KEY_FILE" \
+    --inventory "$ANSIBLE_INVENTORY" \
+    --ask-become-pass \
+    "$@"
+}
+
+gen_vault_pass() {
   if [ ! -f "$VAULT_ENC_KEY_FILE" ]; then
     echo -n "Enter main vault password: "
     read -rs password
@@ -43,25 +72,16 @@ main() {
     ansible-vault decrypt "$VAULT_ENC_KEY_FILE" --output "$VAULT_KEY_FILE"
     chmod 600 "$VAULT_KEY_FILE"
   fi
+}
 
-  # if [ -z "$saved_role" ] || [ ! -f "$ANSIBLE_PLAYBOOK" ]; then
-  #   role=$(_select "Select role: " "${ROLES[@]}")
-  #   ANSIBLE_PLAYBOOK="ansible/$role.yml"
-  #
-  #   _save_role "$role"
-  # fi
+reencrypt_file() {
+  gen_vault_pass
 
-  mkdir -p "$(dirname $ANSIBLE_LOG_PATH)"
+  file="$1"
 
-  echo -e "\nRunning $ANSIBLE_PLAYBOOK..."
+  enc_file=$(grep -oP '## Encrypted with ansible vault - \K[\w/-]+' "$file")
 
-  ANSIBLE_CONFIG=$ANSIBLE_CONFIG \
-    ANSIBLE_LOG_PATH=$ANSIBLE_LOG_PATH \
-    ansible-playbook "$ANSIBLE_PLAYBOOK" \
-    --vault-pass-file="$VAULT_KEY_FILE" \
-    --inventory "$ANSIBLE_INVENTORY" \
-    --ask-become-pass \
-    "$@"
+  ansible-vault encrypt --vault-pass-file $VAULT_KEY_FILE --output "$XDG_DOTFILES_DIR/$enc_file" "$file"
 }
 
 _get_saved_role() {
