@@ -9,17 +9,15 @@ lib_dir=$dir/lib
 [ ! -d "$bin_dir" ] && mkdir -p "$bin_dir"
 [ ! -d "$lib_dir" ] && mkdir -p "$lib_dir"
 
-cd "$lib_dir" || exit
-
 command="$1"
 
 checkchecksum() {
   remote_file_url="$1"
-  wget --quiet --show-progress "$remote_file_url.sha256sum"
+  shasum_file="$lib_dir/$(basename "$remote_file_url").sha256sum"
 
-  shasum_file="$(basename "$remote_file_url").sha256sum"
+  wget --quiet --show-progress --output-document="$shasum_file" "$remote_file_url.sha256sum"
 
-  if ! sha256sum --check "$shasum_file"; then
+  if ! (cd "$lib_dir" && sha256sum --check "$shasum_file"); then
     rm "$shasum_file"
     return 1
   fi
@@ -63,12 +61,13 @@ use() {
 
 open() {
   name="$1"
+  shift
 
   if [ ! -f "$lib_dir/$name.appimage" ]; then
     install "$name"
   fi
 
-  "$lib_dir/$name.appimage"
+  "$lib_dir/$name.appimage" "$@"
 }
 
 install() {
@@ -89,17 +88,17 @@ install() {
   echo "Installing $version_number..."
 
   remote_file_url="$(get_file_url "$version_number")"
-  default_installed_filename="$(basename "$remote_file_url")"
+  default_installed_filepath="$lib_dir/$(basename "$remote_file_url")"
 
-  wget --quiet --show-progress "$remote_file_url"
+  wget --quiet --show-progress --output-document="$default_installed_filepath" "$remote_file_url"
 
   if ! checkchecksum "$remote_file_url"; then
     echo "ERROR"
-    rm "$default_installed_filename"
+    # rm "$default_installed_filepath"
     exit 1
   fi
 
-  mv "$default_installed_filename" "$version_file"
+  mv "$default_installed_filepath" "$version_file"
 
   chmod +x "$version_file"
 
