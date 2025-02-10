@@ -100,11 +100,11 @@
     - name: Load xdg variables (with new loaded ansible_env)
       tags: always
       include_vars:
-        dir: vars
+        file: vars/xdg.yml
 
-    - name: Set variables as facts globally
+    - name: Extend ansible_env
       set_fact:
-        remote: "{{ remote }}"
+        ansible_env: "{{ ansible_env | combine(xdg) }}"
 
 - name: Create ci user
   become: true

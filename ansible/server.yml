@@ -10,7 +10,7 @@
         ansible_user: "{{ ansible_user_id }}" ## When there is no user in inventory
         initial_user: "{{ ansible_user_id }}"
 
-    - name: Load variables
+    - name: Load server variables
       tags: always
       include_vars:
         dir: tasks/server/vars

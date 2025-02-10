@@ -4,17 +4,18 @@
   block:
     - name: Read tmux.conf
       slurp:
-        src: "{{ XDG_CONFIG_HOME }}/tmux/tmux.conf"
+        src: "{{ ansible_env.XDG_CONFIG_HOME }}/tmux/tmux.conf"
       register: tmux_conf
 
     - name: Extract plugins, owners, and commits
       set_fact:
         plugins: >-
-          {{ tmux_conf['content'] | b64decode | regex_findall("set -g @plugin '([^/]+)/([^']+)' # (\w+)") }}
+          {{ tmux_conf['content'] | b64decode | regex_findall("set -g @plugin
+          '([^/]+)/([^']+)' # (\w+)") }}
 
     - name: Ensure each plugin is at the specified commit
       ansible.builtin.git:
         repo: "https://github.com/{{ item.0 }}/{{ item.1 }}.git"
-        dest: "{{ XDG_CONFIG_HOME }}/tmux/plugins/{{ item.1 }}"
+        dest: "{{ ansible_env.XDG_CONFIG_HOME }}/tmux/plugins/{{ item.1 }}"
         version: "{{ item.2 }}"
       loop: "{{ plugins }}"

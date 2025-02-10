@@ -1,28 +1,29 @@
-HOME: "{{ ansible_env.HOME }}"
-XDG_CONFIG_HOME:
-  "{{ lookup('env', 'XDG_CONFIG_HOME') | regex_replace(lookup('env', 'HOME'),
-  ansible_env.HOME) }}"
+xdg:
+  HOME: "{{ ansible_env.HOME }}"
+  XDG_CONFIG_HOME:
+    "{{ lookup('env', 'XDG_CONFIG_HOME') | regex_replace(lookup('env', 'HOME'),
+    ansible_env.HOME) }}"
 
-XDG_DATA_HOME:
-  "{{ lookup('env', 'XDG_DATA_HOME') | regex_replace(lookup('env', 'HOME'),
-  ansible_env.HOME) }}"
+  XDG_DATA_HOME:
+    "{{ lookup('env', 'XDG_DATA_HOME') | regex_replace(lookup('env', 'HOME'),
+    ansible_env.HOME) }}"
 
-XDG_CACHE_HOME:
-  "{{ lookup('env', 'XDG_CACHE_HOME') | regex_replace(lookup('env', 'HOME'),
-  ansible_env.HOME) }}"
+  XDG_CACHE_HOME:
+    "{{ lookup('env', 'XDG_CACHE_HOME') | regex_replace(lookup('env', 'HOME'),
+    ansible_env.HOME) }}"
 
-XDG_BIN_DIR:
-  "{{ lookup('env', 'XDG_BIN_DIR') | regex_replace(lookup('env', 'HOME'),
-  ansible_env.HOME) }}"
+  XDG_BIN_DIR:
+    "{{ lookup('env', 'XDG_BIN_DIR') | regex_replace(lookup('env', 'HOME'),
+    ansible_env.HOME) }}"
 
-XDG_SRC_DIR:
-  "{{ lookup('env', 'XDG_SRC_DIR') | regex_replace(lookup('env', 'HOME'),
-  ansible_env.HOME) }}"
+  XDG_SRC_DIR:
+    "{{ lookup('env', 'XDG_SRC_DIR') | regex_replace(lookup('env', 'HOME'),
+    ansible_env.HOME) }}"
 
-XDG_DOTFILES_DIR:
-  "{{ lookup('env', 'XDG_DOTFILES_DIR') | regex_replace(lookup('env', 'HOME'),
-  ansible_env.HOME) }}"
+  XDG_DOTFILES_DIR:
+    "{{ lookup('env', 'XDG_DOTFILES_DIR') | regex_replace(lookup('env', 'HOME'),
+    ansible_env.HOME) }}"
 
-XDG_PICTURES_DIR:
-  "{{ lookup('env', 'XDG_PICTURES_DIR') | regex_replace(lookup('env', 'HOME'),
-  ansible_env.HOME) }}"
+  XDG_PICTURES_DIR:
+    "{{ lookup('env', 'XDG_PICTURES_DIR') | regex_replace(lookup('env', 'HOME'),
+    ansible_env.HOME) }}"

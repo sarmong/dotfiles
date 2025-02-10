@@ -18,4 +18,4 @@
     - name: rust | run install script
       command:
         cmd: "/tmp/rustup.sh -y --no-modify-path"
-        creates: "{{ XDG_CONFIG_HOME }}/rust/cargo/bin/rustup"
+        creates: "{{ ansible_env.XDG_CONFIG_HOME }}/rust/cargo/bin/rustup"

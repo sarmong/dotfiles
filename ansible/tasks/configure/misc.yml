@@ -1,6 +1,6 @@
 - name: Enable other services
   vars:
-    username: "{{ ansible_user }}"
+    username: "{{ ansible_env.USER }}"
   block:
     - name: set max_user_watches
       become: true
@@ -79,12 +79,12 @@
     - name: Update tldr
       command:
         cmd: tldr --update
-        creates: "{{ XDG_CACHE_HOME }}/tealdeer"
+        creates: "{{ ansible_env.XDG_CACHE_HOME }}/tealdeer"
 
     - name: Install node lts
       shell:
         cmd: "fnm install lts/latest && fnm default lts/latest"
-        creates: "{{ XDG_DATA_HOME }}/fnm/aliases/default"
+        creates: "{{ ansible_env.XDG_DATA_HOME }}/fnm/aliases/default"
 
 - name: Copy SSH config
   tags: ssh
@@ -110,7 +110,7 @@
   block:
     - name: firefox | check if *.default-release user exists
       find:
-        paths: "{{ HOME }}/.mozilla/firefox"
+        paths: "{{ ansible_env.HOME }}/.mozilla/firefox"
         patterns: "*.default-release"
         file_type: directory
       register: firefox_profile_check
@@ -138,7 +138,7 @@
 
     - name: firefox | find created *.default-release dir
       find:
-        paths: "{{ HOME }}/.mozilla/firefox"
+        paths: "{{ ansible_env.HOME }}/.mozilla/firefox"
         patterns: "*.default-release"
         file_type: directory
       register: firefox_created_dir

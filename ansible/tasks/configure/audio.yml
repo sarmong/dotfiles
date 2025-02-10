@@ -1,6 +1,6 @@
 - name: Control bluetooth from headphones
   vars:
-    dir: "{{ XDG_CONFIG_HOME }}/systemd/user"
+    dir: "{{ ansible_env.XDG_CONFIG_HOME }}/systemd/user"
   block:
     - name: bluetooth | packages
       become: true

@@ -4,13 +4,13 @@
     local_dotfiles: "{{ lookup('env', 'XDG_DOTFILES_DIR') }}"
   loop:
     - src: "{{ local_dotfiles }}/dotconfig"
-      dest: "{{ XDG_CONFIG_HOME }}"
+      dest: "{{ ansible_env.XDG_CONFIG_HOME }}"
     - src: "{{ local_dotfiles }}/dotlocal/share/applications"
-      dest: "{{ XDG_DATA_HOME }}/applications"
+      dest: "{{ ansible_env.XDG_DATA_HOME }}/applications"
     - src: "{{ local_dotfiles }}/dotlocal/xdg/icons"
-      dest: "{{ HOME }}/.local/xdg/icons"
+      dest: "{{ ansible_env.HOME }}/.local/xdg/icons"
     - src: "{{ local_dotfiles }}/dotlocal/bin"
-      dest: "{{ HOME }}/.local"
+      dest: "{{ ansible_env.HOME }}/.local"
       itself: true
 
 - name: Create directories
@@ -19,19 +19,19 @@
     state: directory
     mode: "0755"
   loop:
-    - "{{ XDG_CONFIG_HOME }}/systemd/user"
-    - "{{ XDG_CONFIG_HOME }}/npm"
+    - "{{ ansible_env.XDG_CONFIG_HOME }}/systemd/user"
+    - "{{ ansible_env.XDG_CONFIG_HOME }}/npm"
 
 - name: Corrent npmrc config (for XDG cleanup)
   lineinfile:
-    path: "{{ XDG_CONFIG_HOME }}/npm/npmrc"
+    path: "{{ ansible_env.XDG_CONFIG_HOME }}/npm/npmrc"
     line: "{{ item }}"
     mode: "0644"
     create: true
   loop:
-    - prefix={{ XDG_DATA_HOME }}/npm
-    - cache={{ XDG_CACHE_HOME }}/npm
-    - init-module={{ XDG_CONFIG_HOME }}/npm/config/npm-init.js
+    - prefix={{ ansible_env.XDG_DATA_HOME }}/npm
+    - cache={{ ansible_env.XDG_CACHE_HOME }}/npm
+    - init-module={{ ansible_env.XDG_CONFIG_HOME }}/npm/config/npm-init.js
 
   # TODO: check if needed, seems like putting contents of user_env.sh into /etc/zsh/zshenv is enough (the followin task)
 - name: load env vars for any login shell # lightdm reads this file
@@ -55,7 +55,7 @@
 - name: Copy encrypted files
   copy:
     src: "{{ lookup('env', 'XDG_DOTFILES_DIR') }}/{{ item.src }}"
-    dest: "{{ XDG_DOTFILES_DIR }}/{{ item.dest }}"
+    dest: "{{ ansible_env.XDG_DOTFILES_DIR }}/{{ item.dest }}"
     mode: preserve
   loop:
     - src: "dotconfig/zsh/zsh-local-enc"
@@ -71,7 +71,7 @@
       "{{ (ansible_env.BROWSER == 'google-chrome-stable') |
       ternary('google-chrome', 'firefox') }}"
   lineinfile:
-    path: "{{ XDG_CONFIG_HOME }}/mimeapps.list"
+    path: "{{ ansible_env.XDG_CONFIG_HOME }}/mimeapps.list"
     line: "{{ item }}"
     mode: "0644"
     create: true

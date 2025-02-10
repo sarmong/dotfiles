@@ -13,12 +13,14 @@
       environment:
         DISPLAY: ":0"
       command:
-        cmd: betterlockscreen -u "{{ XDG_DOTFILES_DIR }}/assets/lockscreen.png"
-        creates: "{{ XDG_CACHE_HOME }}/betterlockscreen"
+        cmd:
+          betterlockscreen -u "{{ ansible_env.XDG_DOTFILES_DIR
+          }}/assets/lockscreen.png"
+        creates: "{{ ansible_env.XDG_CACHE_HOME }}/betterlockscreen"
 
     - name: ui | set wallpaper
       environment:
         DISPLAY: ":0"
       command:
-        cmd: "{{ XDG_BIN_DIR }}/luna.sh"
-        creates: "{{ XDG_PICTURES_DIR }}/wallpaper.png"
+        cmd: "{{ ansible_env.XDG_BIN_DIR }}/luna.sh"
+        creates: "{{ ansible_env.XDG_PICTURES_DIR }}/wallpaper.png"

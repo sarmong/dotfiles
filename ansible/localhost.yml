@@ -4,7 +4,11 @@
     - name: Load xdg vars
       tags: always
       include_vars:
-        dir: vars
+        file: vars/xdg.yml
+
+    - name: Extend ansible_env
+      set_fact:
+        ansible_env: "{{ ansible_env | combine(xdg) }}"
 
     - name: dotfiles
       tags: dotfiles
