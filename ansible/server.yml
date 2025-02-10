@@ -18,6 +18,27 @@
     - name: Create new user
       import_tasks: tasks/server/create-user.yml
 
+    - name: Update env vars for new user
+      block:
+        - name: Refresh environment variables (ansible_env)
+          setup:
+            gather_subset: env
+          when: initial_user != user
+
+        - name: Reassign ansible_env after setup
+          set_fact:
+            ansible_env: "{{ ansible_facts['env'] }}"
+          when: initial_user != user
+
+        - name: Load xdg variables (with new loaded ansible_env)
+          tags: always
+          include_vars:
+            file: vars/xdg.yml
+
+        - name: Extend ansible_env
+          set_fact:
+            ansible_env: "{{ ansible_env | combine(xdg) }}"
+
     - name: Update the package cache and upgrade
       when: initial_user == 'root'
       become: true

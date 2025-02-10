@@ -86,26 +86,6 @@
         ansible_user: "{{ user }}"
         ansible_become_password: "{{ password }}"
 
-- name: Update env vars for new user
-  when: initial_user != user
-  block:
-    - name: Refresh environment variables (ansible_env)
-      setup:
-        gather_subset: env
-
-    - name: Reassign ansible_env after setup
-      set_fact:
-        ansible_env: "{{ ansible_facts['env'] }}"
-
-    - name: Load xdg variables (with new loaded ansible_env)
-      tags: always
-      include_vars:
-        file: vars/xdg.yml
-
-    - name: Extend ansible_env
-      set_fact:
-        ansible_env: "{{ ansible_env | combine(xdg) }}"
-
 - name: Create ci user
   become: true
   block:
