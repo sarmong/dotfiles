@@ -20,7 +20,7 @@ export TERMINAL="kitty"
 export BROWSER=firefox
 export PAGER=less
 export QT_QPA_PLATFORMTHEME="qt5ct" # required by qt5ct
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket" # started by ssh-agent.service, instead of eval $(ssh-agent -s)
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/openssh_agent" # started by ssh-agent.service, instead of eval $(ssh-agent -s)
 
 # Fixes issues with Java application(Webstorm) in tiling WM
 export _JAVA_AWT_WM_NONREPARENTING=1
