@@ -56,6 +56,7 @@
           - curl
           - wget
           - rsync
+          - rsyslog # writes to /var/log/auth.log
           - sudo
           - vim
           - lf
