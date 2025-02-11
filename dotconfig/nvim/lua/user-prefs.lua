@@ -15,8 +15,16 @@ local get = function(...)
       return val
     end
   end
+  return {}
+end
 
-  return nil
+local get_table_keys = function(tab)
+  local keyset = {}
+  for k in pairs(tab) do
+    keyset[#keyset + 1] = k
+  end
+
+  return keyset
 end
 
 local get_current_theme = function()
@@ -40,7 +48,10 @@ _G.Pref = {
   },
 
   search = {
-    exclude = get("vscode.search.exclude") or {},
+    exclude = vim.list_extend(
+      get_table_keys(get("vscode.search.exclude")),
+      get("search.exclude")
+    ) or {},
   },
 
   ide = {
