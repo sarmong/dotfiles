@@ -11,22 +11,22 @@
         mode: "0755"
       when: not ci
 
-    - name: Deploy docker-compose files
-      synchronize:
-        src:
-          "tasks/server/files/docker/{{ docker_conf | basename
-          }}/docker-compose.yml"
-        dest: "{{ project_dir }}"
-      register: updated_files
-
     - name: add port
       lineinfile:
-        path: "{{ project_dir }}/.env"
+        path: "tasks/server/files/docker/{{ docker_conf | basename }}/.env"
         create: true
         line: "PORT={{ app_port }}"
         mode: "0644"
       when: app_port is defined
       register: updated_port
+      delegate_to: localhost
+
+    - name: Deploy docker-compose files
+      synchronize:
+        archive: false
+        src: "tasks/server/files/docker/{{ docker_conf | basename }}/"
+        dest: "{{ project_dir }}/"
+      register: updated_files
 
     - name: Restart docker
       community.docker.docker_compose_v2:
