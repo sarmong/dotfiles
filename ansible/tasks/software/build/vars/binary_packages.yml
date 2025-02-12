@@ -162,5 +162,14 @@ binary_packages:
     url:
       https://downloads.rclone.org/v{{ vars.binary_packages['rclone'].version
       }}/rclone-v{{ vars.binary_packages['rclone'].version }}-linux-amd64.deb
-
     check_version_cmd: "rclone --version | sed -nE 's/rclone v(.*)/\\1/p'"
+
+  pacstall:
+    name: pacstall
+    version: 6.1.0
+    checksum: sha256:3c8436eccaa584fd19884be3ae0297a80d8d884949654d9a365087f9b6f8c3b5
+    url:
+      https://github.com/pacstall/pacstall/releases/download/{{
+      vars.binary_packages['pacstall'].version }}/pacstall_{{
+      vars.binary_packages['pacstall'].version }}-pacstall1_all.deb
+    check_version_cmd: "pacstall --version | awk '{ print $1 }'"
