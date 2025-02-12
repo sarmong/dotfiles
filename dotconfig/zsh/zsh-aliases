@@ -105,9 +105,11 @@ lns() {
 alias v="nvim"
 nvims() {
   appname=$(find "$XDG_CONFIG_HOME/" -maxdepth 1 -name "nvim-*" -type d | fzf)
-
-  NVIM_APPNAME="$(basename "$appname")" nvim "$@"
+  if [ -n "$appname" ]; then
+    NVIM_APPNAME="$(basename "$appname")" nvim "$@"
+  fi
 }
+
 alias fo="fzf | xargs xdg-open"
 alias nb="newsboat"
 alias ec="pushd \$XDG_DOTFILES_DIR >/dev/null && fzf | xargs nvim && popd >/dev/null"
