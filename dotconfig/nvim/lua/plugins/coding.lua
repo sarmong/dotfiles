@@ -39,7 +39,6 @@ local refactoring_fns = {
 -- disable all mappings expect for C-n
 -- This way, it will not interfere with C-up and C-down for window resizing
 vim.g.VM_default_mappings = 0
-Plugin("mg979/vim-visual-multi")
 
 Plugin("metakirby5/codi.vim")
 

@@ -11,6 +11,7 @@ req("mini.deps").later(function()
   req("plugins.misc")
   req("plugins.navigation.buffers")
   req("plugins.scroll")
+  req("plugins.multicursor")
   req("plugins.misc")
 
   req("plugins.coding")
