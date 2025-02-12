@@ -50,16 +50,14 @@ M.get_config = function()
       redraw_on_resize = false,
       setup = function()
         autocmd("DirChanged", {
+          pattern = "*",
           group = "alpha_temp",
           callback = function()
-            req("alpha").redraw()
+            require("alpha").redraw()
+            vim.cmd("AlphaRemap")
           end,
         })
       end,
-      keymap = {
-        press = "<CR>",
-        queue_press = "<M-CR>",
-      },
     },
   }
   return config

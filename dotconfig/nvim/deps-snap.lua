@@ -3,7 +3,7 @@ return {
   ["Comment.nvim"] = "0236521ea582747b58869cb72f70ccfa967d2e89",
   LuaSnip = "de1a287c9cb525ae52bc846e8f6207e5ef1da5ac",
   ["aerial.nvim"] = "97a838ccc03ba010a667cba49d9820f6823f4d51",
-  ["alpha-nvim"] = "41283fb402713fc8b327e60907f74e46166f4cfd",
+  ["alpha-nvim"] = "de72250e054e5e691b9736ee30db72c65d560771",
   ["barbar.nvim"] = "79f7d16578a167bdf5355725551ef7d90613a601",
   ["bmessages.nvim"] = "cad159ee584932d1a631ca7c5a2e6e58d3e9981e",
   ["buffer_manager.nvim"] = "fd36131b2b3e0f03fd6353ae2ffc88cf920b3bbb",
