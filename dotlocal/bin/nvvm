@@ -11,7 +11,7 @@ lib_dir=$dir/lib
 
 command="$1"
 
-checkchecksum() {
+check_checksum_from_file() {
   remote_file_url="$1"
   shasum_file="$lib_dir/$(basename "$remote_file_url").sha256sum"
 
@@ -23,6 +23,31 @@ checkchecksum() {
   fi
 
   rm "$shasum_file"
+}
+
+check_checksum_from_description() {
+  file_url="$1"
+  filename="$(basename "$file_url")"
+
+  remote_checksum=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/tags/nightly" | jq '.body' | sed 's/\\n/\n/g' | grep "$filename$" | awk '{print $1}')
+
+  local_checksum=$(sha256sum "$lib_dir/$filename" | awk '{print $1}')
+
+  if [ "$remote_checksum" == "$local_checksum" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+check_checksum() {
+  url="$1"
+  version="$2"
+
+  if [ "$version" == "nightly" ]; then
+    check_checksum_from_description "$url"
+  else
+    check_checksum_from_file "$url"
+  fi
 }
 
 get_file_url() {
@@ -80,7 +105,7 @@ install() {
 
   version_file="$lib_dir/$version_number.appimage"
 
-  if [ -f "$version_file" ]; then
+  if [ -f "$version_file" ] && [ "$version" != "nightly" ]; then
     echo "Version $version_number already installed"
     exit 0
   fi
@@ -92,9 +117,9 @@ install() {
 
   wget --quiet --show-progress --output-document="$default_installed_filepath" "$remote_file_url"
 
-  if ! checkchecksum "$remote_file_url"; then
-    echo "ERROR"
-    # rm "$default_installed_filepath"
+  if ! check_checksum "$remote_file_url" "$version"; then
+    echo "ERROR: Checksum verification failed" >&2
+    rm "$default_installed_filepath"
     exit 1
   fi
 
