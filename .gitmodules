@@ -22,3 +22,6 @@
 [submodule "zsh-notify"]
 	path = dotconfig/zsh/plugins/zsh-notify
 	url = https://github.com/marzocchi/zsh-notify.git
+[submodule "git-extra-commands"]
+	path = dotconfig/zsh/plugins/git-extra-commands
+	url = https://github.com/unixorn/git-extra-commands.git
