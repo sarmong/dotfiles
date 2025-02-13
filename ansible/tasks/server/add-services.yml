@@ -1,5 +1,7 @@
 - name: set up services
+  tags: services
   vars:
+    services: "{{ services_by_host.get(ansible_host) }}"
     domains:
       "{{ services | selectattr('domain', 'defined') | map(attribute='domain')
       }}"
@@ -23,6 +25,8 @@
         service: "{{ item }}"
         proxy_config: "{{ proxy_configs.get(item.docker_conf) }}"
       loop: "{{ services | selectattr('domain', 'defined') }}"
+      loop_control:
+        label: "{{ item.domain }}"
       notify: Restart caddy
 
     - name: Ensure Caddy is started and enabled at boot
@@ -31,6 +35,7 @@
         name: caddy
         state: started
         enabled: true
+      when: domains | length > 0
 
     - name: Install docker
       include_tasks: docker-install.yml
@@ -44,3 +49,5 @@
         app_port: "{{ item.port }}"
         ci: "{{ item.ci | default(false) }}"
       loop: "{{ services | selectattr('docker_conf', 'defined') }}"
+      loop_control:
+        label: "{{ item.docker_conf }}"

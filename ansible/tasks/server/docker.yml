@@ -4,14 +4,14 @@
   vars:
     project_dir: "{{ ci | ternary(docker_conf, '~/docs/apps/' ~ docker_conf) }}"
   block:
-    - name: Create app dir
+    - name: docker | {{ docker_conf }} | Create app dir
       file:
         path: "{{ project_dir }}"
         state: directory
         mode: "0755"
       when: not ci
 
-    - name: add port
+    - name: docker | {{ docker_conf }} | add port
       lineinfile:
         path: "tasks/server/files/docker/{{ docker_conf | basename }}/.env"
         create: true
@@ -21,19 +21,19 @@
       register: updated_port
       delegate_to: localhost
 
-    - name: Deploy docker-compose files
+    - name: docker | {{ docker_conf }} | Deploy docker-compose files
       synchronize:
         archive: false
         src: "tasks/server/files/docker/{{ docker_conf | basename }}/"
         dest: "{{ project_dir }}/"
       register: updated_files
 
-    - name: Restart docker
+    - name: docker | {{ docker_conf }} | Restart docker
       community.docker.docker_compose_v2:
         project_src: "{{ project_dir }}"
         state: restarted
       when: updated_files.changed or updated_port.changed
 
-    - name: Start docker
+    - name: docker | {{ docker_conf }} | Start docker
       community.docker.docker_compose_v2:
         project_src: "{{ project_dir }}"

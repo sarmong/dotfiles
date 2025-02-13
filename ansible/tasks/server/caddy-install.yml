@@ -38,6 +38,8 @@
           [signed-by=/usr/share/keyrings/caddy-stable-archive-keyring.asc]
           https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version
           main
+      loop_control:
+        label: "{{ item.split(' ')[0] }}"
 
     - name: Install caddy
       apt:

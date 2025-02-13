@@ -1,4 +1,11 @@
 skip_list:
   - fqcn[action-core]
   - name[casing]
+  - name[template]
+
+# TODO: enable when splitting into roles
+# enable_list:
+#   - name[prefix]
+
+# vim:ft=yaml
 

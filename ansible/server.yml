@@ -100,7 +100,7 @@
         - visudo-editor
 
     - import_tasks: tasks/server/dotfiles.yml
-    - import_tasks: tasks/server/services.yml
+    - import_tasks: tasks/server/add-services.yml
     - import_tasks: tasks/configure/ufw.yml
     - import_tasks: tasks/server/fail2ban.yml
 
