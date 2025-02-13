@@ -20,5 +20,6 @@ req("modules.sessions")
 req("modules.save-win-view")
 req("modules.terminal")
 req("modules.vault-files")
+req("modules.bigfile")
 
 -- vim.cmd("source " .. config_dir .. "/utils/quitdialog.vim")
