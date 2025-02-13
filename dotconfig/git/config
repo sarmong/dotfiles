@@ -83,3 +83,9 @@
   update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
 
   cleanup = !g-branch-cleanup
+  # Show commits that haven't made it to master yet.
+  ahead-of-master = log --oneline origin/master..HEAD
+  # Fetch PRs - enables git checkout pull/123
+  fetch-pull-requests = fetch origin '+refs/pull/*/head:refs/remotes/origin/pull/*'
+  unpushed = log @{u}..
+  rebase-unpushed = rebase -i @{u}
