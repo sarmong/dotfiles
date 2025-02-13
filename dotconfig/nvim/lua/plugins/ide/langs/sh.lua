@@ -13,3 +13,13 @@ end)
 
 -- Use bash treesitter for zsh filetypes
 vim.treesitter.language.register("bash", "zsh")
+
+-- So that lsp tools above don't run on it, also see after/syntax/dotenv.vim
+vim.filetype.add({
+  filename = {
+    [".env"] = "dotenv",
+  },
+  pattern = {
+    ["%.env%.[%w_.-]+"] = "dotenv",
+  },
+})
