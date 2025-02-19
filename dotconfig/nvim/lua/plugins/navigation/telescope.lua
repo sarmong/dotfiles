@@ -73,6 +73,30 @@ local fns = {
   text_in_open_buffers = function()
     req("telescope.builtin").live_grep({ grep_open_files = true })
   end,
+
+  api = function(options)
+    local cur_word = vim.fn.expand("<cword>")
+    local create_api_name = ""
+    if cur_word:match(".*API$") then
+      local first = cur_word:sub(1, 1)
+      local rest = cur_word:sub(2)
+      create_api_name = "create" .. first:upper() .. rest
+
+      local create_api_file = vim.fs.find(
+        { create_api_name .. ".ts", create_api_name .. ".tsx" },
+        { path = "packages", type = "file" }
+      )
+      if create_api_file[1] then
+        vim.cmd.Pick(create_api_file[1])
+        return
+      end
+    end
+    req("telescope").extensions.live_grep_args.live_grep_args(
+      vim.tbl_extend("force", {
+        default_text = create_api_name,
+      }, options or {})
+    )
+  end,
 }
 
 local function multi_select(prompt_bufnr)
@@ -343,6 +367,7 @@ map("n", "<leader>f", fns.find_files, "find files")
 
 mapl({
   s = {
+    a = { fns.api, "api" },
     b = { ":Telescope buffers<cr>", "buffers" },
     B = { fns.text_in_open_buffers, "text in open [B]uffers" },
     c = { ":Telescope command_history<cr>", "history" },
