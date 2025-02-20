@@ -58,6 +58,10 @@ M.get_config = function()
           end,
         })
       end,
+      keymap = {
+        press = "<CR>",
+        queue_press = "<C-CR>",
+      },
     },
   }
   return config
