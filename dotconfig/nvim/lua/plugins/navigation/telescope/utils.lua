@@ -12,12 +12,18 @@ local function multi_select(prompt_bufnr)
     return
   end
 
-  for _, val in ipairs(multi_selection) do
-    vim.cmd.badd(val[1])
-  end
+  local filenames = vim.iter(multi_selection):map(function(v)
+    -- live_grep stores filename in filename and find_files in [1]
+    return v.filename and v.filename or v[1]
+  end)
+
   actions.close(prompt_bufnr)
 
-  vim.cmd.edit(multi_selection[#multi_selection][1])
+  vim.cmd.edit(filenames:rpeek())
+
+  filenames:each(function(file)
+    vim.cmd.badd(file)
+  end)
 end
 
 local function pick_window_and_edit(prompt_bufnr)
