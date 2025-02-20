@@ -161,6 +161,8 @@ function Plugin(spec)
   req("mini.deps").add(spec)
 end
 
+curry = req("utils.curry")
+
 a = vim.api
 fn = vim.fn
 cmd = vim.cmd
