@@ -125,6 +125,7 @@ Plugin({
   depends = {
     "nvim-telescope/telescope-media-files.nvim",
     "nvim-telescope/telescope-project.nvim",
+    "jmacadie/telescope-hierarchy.nvim",
     {
       source = "nvim-telescope/telescope-fzf-native.nvim",
       hooks = {
@@ -346,6 +347,7 @@ local opts = {
         },
       },
     },
+    hierarchy = {},
   },
 }
 
@@ -359,6 +361,7 @@ telescope.load_extension("fzf")
 telescope.load_extension("live_grep_args")
 telescope.load_extension("helpgrep")
 telescope.load_extension("import")
+telescope.load_extension("hierarchy")
 -- telescope.load_extension("smart_history")
 
 map("n", "<C-p>", fns.oldfiles, "oldfiles")
