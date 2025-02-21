@@ -7,6 +7,7 @@ local root_dir = lreq("modules.root-dir")
 local fns = curry("plugins.navigation.telescope.functions")
 local extensions = lreq("plugins.navigation.telescope.extensions")
 local opts = lreq("plugins.navigation.telescope.opts")
+local multigrep = req("plugins.navigation.telescope.multigrep")
 
 Plugin("nvim-telescope/telescope.nvim")
 
@@ -44,6 +45,7 @@ mapl({
     m = { builtins.marks(), "marks" },
     M = { builtins.man_pages(), "man_pages" },
     o = { builtins.vim_options(), "vim_options" },
+    r = { multigrep, "multigrep" },
     t = { fns.text(), "text" },
     T = { fns.text({ cwd = root_dir.get_project_root() }), "text in root" },
     w = { builtins.grep_string(), "word" },
