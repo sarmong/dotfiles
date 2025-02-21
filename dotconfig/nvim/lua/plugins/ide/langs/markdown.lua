@@ -10,6 +10,14 @@ contrib.null_ls_sources(function()
     })
   )
 end)
+
+Plugin("MeanderingProgrammer/render-markdown.nvim")
+contrib.cmp("render-markdown")
+-- setup later so that cmp is already available
+vim.schedule(function()
+  require("render-markdown.integ.cmp").setup()
+end)
+
 -- {
 --   "git@github.com:sarmong/markdown.nvim.git",
 --   config = function()
