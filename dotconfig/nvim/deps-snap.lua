@@ -89,6 +89,7 @@ return {
   ["sxhkd-vim"] = "7b7937ff5c220fbef3bdd883d567513246516e06",
   ["telescope-fzf-native.nvim"] = "9ef21b2e6bb6ebeaf349a0781745549bbb870d27",
   ["telescope-helpgrep.nvim"] = "641b2f1b4559a67731dc42fd84203817ebd6e2ce",
+  ["telescope-hierarchy.nvim"] = "20dcc78180a322e9617d5f86aef3838b8bf03b7f",
   ["telescope-import.nvim"] = "baa2d50be46c769a1cc942a9d5be049f314f4206",
   ["telescope-live-grep-args.nvim"] = "4122e146d199c0d6d1cfb359c76bc1250d522460",
   ["telescope-media-files.nvim"] = "0826c7a730bc4d36068f7c85cf4c5b3fd9fb570a",
