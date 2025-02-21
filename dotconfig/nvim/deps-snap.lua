@@ -93,7 +93,7 @@ return {
   ["telescope-live-grep-args.nvim"] = "4122e146d199c0d6d1cfb359c76bc1250d522460",
   ["telescope-media-files.nvim"] = "0826c7a730bc4d36068f7c85cf4c5b3fd9fb570a",
   ["telescope-project.nvim"] = "1aaf16580a614601a7f7077d9639aeb457dc5559",
-  ["telescope-smart-history.nvim"] = "81a4cceaa54d65d5f7c7c26178ee63b634d3e26d",
+  ["telescope-zf-native.nvim"] = "5721be27df11a19b9cd95e6a4887f16f26599802",
   ["telescope.nvim"] = "4aed63995a69e343b068c7469491a8d1592c339f",
   ["tokyonight.nvim"] = "7fc18e82575f5b482b758b6dddfe97b606819a20",
   ["ts-error-translator.nvim"] = "11ae55b28bde02663b5f983f59b0e3fd9c4e845b",

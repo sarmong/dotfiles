@@ -39,6 +39,9 @@ extension_opts.fzf = {
   -- the default case_mode is "smart_case"
 }
 
+Plugin("natecraddock/telescope-zf-native.nvim")
+load_extension("zf-native")
+
 Plugin("nvim-telescope/telescope-live-grep-args.nvim")
 load_extension("live_grep_args")
 
