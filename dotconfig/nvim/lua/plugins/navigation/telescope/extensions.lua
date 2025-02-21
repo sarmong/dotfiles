@@ -60,11 +60,6 @@ extension_opts.live_grep_args = {
       }),
     },
   },
-  path_display = {
-    filename_first = {
-      reverse_directories = false,
-    },
-  },
 }
 
 Plugin("catgoose/telescope-helpgrep.nvim")
