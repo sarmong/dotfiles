@@ -39,3 +39,8 @@ command("Cd", function()
   rd.set_root(root)
   req("nvim-tree.api").tree.change_root(root)
 end)
+
+command("Q", function()
+  req("modules.sessions").save_session("-auto")
+  vim.cmd.qa()
+end)

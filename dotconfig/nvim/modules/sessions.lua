@@ -132,4 +132,5 @@ end, {
 return {
   list_session_files = list_session_files,
   load_session = load_session,
+  save_session = save_session,
 }
