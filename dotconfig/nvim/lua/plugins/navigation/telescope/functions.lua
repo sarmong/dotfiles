@@ -15,7 +15,7 @@ local current_prompt_text = function()
       return action_state.get_current_picker(bufnr):_get_prompt()
     end
   end
-  return ""
+  return nil
 end
 
 M.oldfiles = function()
