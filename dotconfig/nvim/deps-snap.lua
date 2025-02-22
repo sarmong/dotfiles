@@ -16,7 +16,7 @@ return {
   ["cmp-treesitter"] = "958fcfa0d8ce46d215e19cc3992c542f576c4123",
   cmp_luasnip = "98d9cb5c2c38532bd9bdb481067b20fea8f32e90",
   ["codi.vim"] = "83b9859aaf8066d95892e01eb9c01571a4b325dd",
-  ["conform.nvim"] = "00f9d91391b04b1935e2f15948bd96cc111e7d3a",
+  ["conform.nvim"] = "a6f5bdb78caa305496357d17e962bbc4c0b392e2",
   ["conky-syntax.vim"] = "c008f3a9208b78f18c55b002eed1d45d0444cff0",
   ["diffview.nvim"] = "4516612fe98ff56ae0415a259ff6361a89419b0a",
   ["dressing.nvim"] = "2d7c2db2507fa3c4956142ee607431ddb2828639",

@@ -20,13 +20,15 @@ end
 ---@param filetypes table | string
 ---@param formatters table | string
 local register_formatters = function(filetypes, formatters)
+  formatters = type(formatters) == "string" and { formatters } or formatters
+  formatters.stop_after_first = true
   if type(filetypes) ~= "table" then
-    state.formatters[filetypes] = { formatters }
+    state.formatters[filetypes] = formatters
     return
   end
 
   for _, ft in ipairs(filetypes) do
-    state.formatters[ft] = { formatters }
+    state.formatters[ft] = formatters
   end
 end
 
