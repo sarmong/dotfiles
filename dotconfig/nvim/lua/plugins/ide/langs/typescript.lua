@@ -2,7 +2,7 @@ local contrib = req("plugins.ide.contrib")
 local helpers = req("plugins.ide.utils")
 
 contrib.mason({
-  "tsserver",
+  "ts_ls",
   "prettier",
   "prettierd",
   "volar",
