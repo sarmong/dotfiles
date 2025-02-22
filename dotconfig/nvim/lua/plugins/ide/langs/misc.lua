@@ -65,7 +65,7 @@ contrib.ts_parsers({
 contrib.formatters({ "graphql", "handlebars" }, { "prettierd", "prettier" })
 
 Plugin("martinlroth/vim-devicetree")
-Plugin("sarmong/lf-vim")
+Plugin("sarmong/lf-vim") -- TODO: remove when in stable - https://github.com/neovim/neovim/pull/30801
 Plugin("sarmong/newsboat.vim")
 Plugin("kovetskiy/sxhkd-vim")
 Plugin("sarmong/conky-syntax.vim")

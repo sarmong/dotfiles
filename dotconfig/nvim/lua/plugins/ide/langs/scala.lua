@@ -2,11 +2,6 @@ local contrib = req("plugins.ide.contrib")
 
 Plugin("scalameta/nvim-metals")
 
-contrib.mason({ "pylsp", "pyright", "black" })
-
-contrib.formatters("python", "black")
-contrib.ts_parsers("scala")
-
 contrib.setup(function()
   local metals_config = req("metals").bare_config()
 
