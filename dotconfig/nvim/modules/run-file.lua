@@ -16,6 +16,7 @@ end
 
 local function get_command(file)
   return ({
+    sh = { file },
     lua = { "lua", file },
     javascript = { "node", file },
     typescript = { "ts-node", "-T", file },
