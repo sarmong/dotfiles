@@ -41,6 +41,7 @@ command("Cd", function()
 end)
 
 command("Q", function()
+  vim.cmd.wa()
   req("modules.sessions").save_session("-auto")
   vim.cmd.qa()
 end)
