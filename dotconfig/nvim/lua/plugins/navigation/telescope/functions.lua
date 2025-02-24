@@ -106,4 +106,10 @@ M.api = function(options)
   )
 end
 
+M.word = function(options)
+  M.text(vim.tbl_extend("force", {
+    default_text = vim.fn.expand("<cword>"),
+  }, options or {}))
+end
+
 return M
