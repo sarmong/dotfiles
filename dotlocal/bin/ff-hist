@@ -1,0 +1,15 @@
+#!/bin/sh
+
+time_period="${1-"0 days"}"
+
+dir=$(find "$HOME/.mozilla/firefox" -maxdepth 1 -name "*.default-release" -print -quit)
+db="$dir"/places.sqlite
+
+query="\
+  SELECT p.url FROM moz_historyvisits AS h, moz_places AS p \
+  WHERE substr(h.visit_date, 0, 11) >= strftime('%s', date('now', '-$time_period')) \
+  AND p.id == h.place_id \
+  ORDER BY h.visit_date;"
+
+urls=$(sqlite3 "file://${db}?immutable=1" "${query}")
+echo "${urls}"
