@@ -8,6 +8,9 @@ mapl({
 
 Plugin("s1n7ax/nvim-window-picker")
 req("window-picker").setup({
+  picker_config = {
+    handle_mouse_click = true,
+  },
   highlights = {
     statusline = {
       focused = { bg = "#076678" },

@@ -74,7 +74,7 @@ return {
   ["nvim-ts-rainbow"] = "ef95c15a935f97c65a80e48e12fe72d49aacf9b9",
   ["nvim-ufo"] = "a52c92c3bbaa10f0c9b547a50adaa8c7d8b29f94",
   ["nvim-web-devicons"] = "1020869742ecb191f260818234517f4a1515cfe8",
-  ["nvim-window-picker"] = "0dfef64eaf063e1cd27983ab11a30e7bc5b74fac",
+  ["nvim-window-picker"] = "c2666501ac40ebe0c6afa06c066313b941057ee7",
   ["octo.nvim"] = "2940fdcc0e38eca401b1f0a2e229d500128ccfcd",
   ["onedark.nvim"] = "67a74c275d1116d575ab25485d1bfa6b2a9c38a6",
   ["onedarker.nvim"] = "12141dbb59cfa8fbad53e6b8820d85d37c248f4b",
