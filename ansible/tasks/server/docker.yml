@@ -24,6 +24,7 @@
     - name: docker | {{ docker_conf }} | Deploy docker-compose files
       synchronize:
         archive: false
+        recursive: true
         src: "tasks/server/files/docker/{{ docker_conf | basename }}/"
         dest: "{{ project_dir }}/"
       register: updated_files
