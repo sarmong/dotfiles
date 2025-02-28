@@ -7,6 +7,9 @@ vim.g.mapleader = " "
 
 map("n", "w", "<Plug>CamelCaseMotion_w")
 
+-- visually select last yanked or pasted text
+map("n", "gV", "`[v`]")
+
 -- save doc using Ctrl+s. If this doesn't work add this two lines to bash_profile: (or just the second)
 -- bind -r '\C-s'
 -- stty -ixon
