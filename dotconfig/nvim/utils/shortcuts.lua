@@ -117,30 +117,46 @@ end
 --- Create keymappings from a table
 ---@param keys_tbl_or_mode table | string
 ---@param opts_or_keys_tbl? table
----@param opts? table
-function mapt(keys_tbl_or_mode, opts_or_keys_tbl, opts)
+---@param global_opts? table
+function mapt(keys_tbl_or_mode, opts_or_keys_tbl, global_opts)
   local keys_tbl
   local global_mode = "n"
   if type(keys_tbl_or_mode) == "string" then
     global_mode = keys_tbl_or_mode
     keys_tbl = opts_or_keys_tbl
-    opts = opts or {}
+    global_opts = global_opts or {}
   elseif keys_tbl_or_mode[1] then
     global_mode = keys_tbl_or_mode[1]
     keys_tbl = opts_or_keys_tbl
-    opts = opts or {}
+    global_opts = global_opts or {}
   else
     keys_tbl = keys_tbl_or_mode
-    opts = vim.tbl_extend("force", opts or {}, opts_or_keys_tbl or {})
+    global_opts =
+      vim.tbl_extend("force", global_opts or {}, opts_or_keys_tbl or {})
   end
 
   local merged_tbl = flatten_map(keys_tbl)
 
-  local prefix = opts.prefix or ""
+  local prefix = global_opts.prefix or ""
 
   for lhs, value in pairs(merged_tbl) do
     local mode = value.mode or global_mode
-    map(mode, prefix .. lhs, value[1], value[2])
+    local opts = vim
+      .iter(vim.tbl_extend("force", global_opts, value))
+      :filter( -- filter out keys that cannot be passed to vim.keymap.set
+        function(key)
+          return type(key) ~= "number" and key ~= "prefix" and key ~= "mode"
+        end
+      )
+      :fold({}, function(acc, k, v)
+        acc[k] = v
+        return acc
+      end)
+    if type(value[2] == "string") then
+      opts.desc = opts.desc or value[2]
+    end
+
+    map(mode, prefix .. lhs, value[1], opts)
   end
 end
 
