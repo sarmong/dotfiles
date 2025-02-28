@@ -45,3 +45,10 @@ command("Q", function()
   req("modules.sessions").save_session("-auto")
   vim.cmd.qa()
 end)
+
+command("Dump", function(x)
+  vim.cmd(string.format("put =execute('%s')", x.args))
+end, {
+  nargs = "+",
+  desc = "Dump the output of a command at the cursor position",
+})
