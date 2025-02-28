@@ -25,6 +25,8 @@ map("n", "S", '"hyiw:%s/<C-r>h//gc<left><left><left>', { silent = false })
 map("v", "s", ":s//gc<Left><Left><Left>", { silent = false })
 map("v", "S", '"hy:%s/<C-r>h//gc<left><left><left>', { silent = false })
 
+map("n", "gl", "`.zz", "[l]ast edited position")
+
 -- turn off search highlights until next search
 -- and close quickfix and loclist windows
 map("n", "<leader>q", ":noh<CR>:ccl<CR>:lcl<CR>")
