@@ -26,6 +26,20 @@ map("v", "s", ":s//gc<Left><Left><Left>", { silent = false })
 map("v", "S", '"hy:%s/<C-r>h//gc<left><left><left>', { silent = false })
 
 map("n", "gl", "`.zz", "[l]ast edited position")
+mapl({
+  ["sre"] = {
+    ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>",
+    desc = "Search and replace word under cursor",
+    silent = false,
+  },
+})
+mapl("v", {
+  ["sre"] = {
+    '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
+    desc = "Search and replace for selected text",
+    silent = false,
+  },
+})
 
 -- turn off search highlights until next search
 -- and close quickfix and loclist windows
