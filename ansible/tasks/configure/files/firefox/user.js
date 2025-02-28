@@ -23,3 +23,7 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
 // Youtube fullscreen will open within the limits of the OS window
 user_pref("full-screen-api.ignore-widgets", true);
+
+// Privacy
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry", false);
