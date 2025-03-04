@@ -181,7 +181,6 @@
       - speedtest-cli
       - colordiff
       - bat
-      - yt-dlp
       - ytfzf
       - ripgrep
       - thefuck

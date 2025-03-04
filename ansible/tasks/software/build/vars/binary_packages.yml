@@ -173,3 +173,12 @@ binary_packages:
       vars.binary_packages['pacstall'].version }}/pacstall_{{
       vars.binary_packages['pacstall'].version }}-pacstall1_all.deb
     check_version_cmd: "pacstall --version | awk '{ print $1 }'"
+
+  yt-dlp:
+    name: yt-dlp
+    version: 2025.02.19
+    checksum: sha256:a3e45133e1960a2ecc3c575b8470ab0d48a52bd92eb1ee3b4b82698fb9a2fc48
+    url:
+      https://github.com/yt-dlp/yt-dlp/releases/download/{{
+      vars.binary_packages['yt-dlp'].version }}/yt-dlp_linux
+    check_version_cmd: "yt-dlp --version"
