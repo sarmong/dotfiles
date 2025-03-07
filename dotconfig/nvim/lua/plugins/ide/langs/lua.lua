@@ -55,6 +55,7 @@ contrib.lsp("lua_ls", function()
           enable = true,
           -- Get the language server to recognize the `vim` global
           globals = { "vim", "use", "awesome", "client", "root" },
+          unusedLocalExclude = { "_*" },
         },
         -- workspace = {
         --   -- Make the server aware of Neovim runtime files
