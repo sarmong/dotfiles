@@ -209,16 +209,11 @@
       - yad
       - pipx
 
-- name: pipx packages
-  become: true
-  environment:
-    PIPX_HOME: /opt/pipx
-    PIPX_BIN_DIR: /usr/local/bin
+- name: Install pipx
+  include_tasks: tasks/software/build/pipx.yml
   tags:
     - pipx
   vars:
-    pipx_packages:
-      - git-filter-repo
-  community.general.pipx:
-    name: "{{ item }}"
-  with_items: "{{ pipx_packages }}"
+    pipx_args:
+      - name: git-filter-repo
+      - name: beets
