@@ -1,3 +1,8 @@
+- name: Load package variables
+  tags:
+    - binary
+  include_vars: vars/binary_packages.yml
+
 - name: "{{ item }} | Install {{ item }}"
   become: true
   tags:
@@ -7,7 +12,7 @@
     url: "{{ binary_packages[item].url }}"
     version: "{{ binary_packages[item].version }}"
     checksum: "{{ binary_packages[item].checksum }}"
-    check_version_cmd: "{{ binary_packages[item].check_version_cmd }}"
+    check_version_cmd: "{{ binary_packages[item].get('check_version_cmd') }}"
     filename: "{{ url | urlsplit('path') | basename }}"
     is_deb_pkg:
       "{{ url | urlsplit('path') | basename | regex_search('\\.deb$') is not
@@ -25,10 +30,13 @@
       changed_when: false # Command is just for checking, never marks as changed
       failed_when: false # Don't fail if binary doesn't exist yet
       check_mode: false # Always run version check even in check mode
+      when: check_version_cmd
 
     - name: "{{ item }} | parse current version"
       set_fact:
-        current_version: "{{ version_check.stdout | default('none') }}"
+        current_version:
+          "{{ version_check is defined and version_check.stdout |
+          default('none') }}"
       changed_when: false
       failed_when: false
       check_mode: false
@@ -39,7 +47,7 @@
         dest: "/tmp/{{ filename }}"
         checksum: "{{ checksum }}"
         mode: "0644"
-      when: current_version != version
+      when: current_version is undefined or current_version != version
 
     - name: "{{ item }} | install from archive"
       when: is_archive and current_version != version
@@ -101,4 +109,4 @@
         verify_version.rc != 0 or verify_version.stdout != version
       changed_when: false
       check_mode: false
-      when: current_version != version
+      when: check_version_cmd and current_version != version

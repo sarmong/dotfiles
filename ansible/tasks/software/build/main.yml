@@ -14,11 +14,6 @@
 - import_tasks: newsboat.yml
 - import_tasks: rofi-calc.yml
 
-- name: Load package variables
-  tags:
-    - binary
-  include_vars: vars/binary_packages.yml
-
 - name: Install selected packages
   tags:
     - binary
