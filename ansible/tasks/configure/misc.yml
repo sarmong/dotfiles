@@ -32,6 +32,13 @@
         name: "betterlockscreen@{{ username }}"
         enabled: true
 
+    - name: services | copy ssh-agent2.serbive
+      copy:
+        src: ssh-agent2.service
+        dest:
+          "{{ ansible_env.XDG_CONFIG_HOME }}/systemd/user/ssh-agent2.service"
+        mode: preserve
+
     - name: services | user services
       systemd_service:
         name: "{{ item }}"
