@@ -135,3 +135,5 @@
     - x-scheme-handler/https={{ browser }}.desktop;
     - x-scheme-handler/unknown={{ browser }}.desktop;
     - x-scheme-handler/freetube=freetube.desktop
+    - x-scheme-handler/mpv=mpv-opener.desktop
+    - x-scheme-handler/umpv=mpv-opener.desktop

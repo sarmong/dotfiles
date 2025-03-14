@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=MPV Scheme Handler
+Exec=mpv-opener.sh %u
+StartupNotify=false
+NoDisplay=true
+MimeType=x-scheme-handler/mpv;x-scheme-handler/umpv;
