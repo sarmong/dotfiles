@@ -7,13 +7,13 @@ local state = {
   setup = {},
 }
 
-local push = function(tbl, itemOrArrayOfItems)
-  if type(itemOrArrayOfItems) ~= "table" then
-    table.insert(tbl, itemOrArrayOfItems)
-    return
-  end
-  for _, item in ipairs(itemOrArrayOfItems) do
-    table.insert(tbl, item)
+---@param tbl table
+---@param items table
+local _add_uniq = function(tbl, items)
+  for _, item in ipairs(items) do
+    if not vim.iter(tbl):find(item) then
+      table.insert(tbl, item)
+    end
   end
 end
 
@@ -32,11 +32,6 @@ local register_formatters = function(filetypes, formatters)
   end
 end
 
----@param parsers table | string
-local register_ts_parsers = function(parsers)
-  push(state.ts_parsers, parsers)
-end
-
 ---@param servers table | string
 ---@param config? function
 local register_lsp = function(servers, config)
@@ -50,19 +45,24 @@ local register_lsp = function(servers, config)
   end
 end
 
----@param tools table | string
-local register_mason = function(tools)
-  push(state.mason, tools)
+---@vararg string
+local register_ts_parsers = function(...)
+  _add_uniq(state.ts_parsers, { ... })
 end
 
----@param sources function
-local register_null_ls = function(sources)
-  push(state.null_ls, sources)
+---@vararg string
+local register_mason = function(...)
+  _add_uniq(state.mason, { ... })
+end
+
+---@param setup_fn function
+local register_null_ls = function(setup_fn)
+  table.insert(state.null_ls, setup_fn)
 end
 
 ---@param setup_fn function
 local register_setup = function(setup_fn)
-  push(state.setup, setup_fn)
+  table.insert(state.setup, setup_fn)
 end
 
 return {

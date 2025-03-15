@@ -1,11 +1,11 @@
 local contrib = req("plugins.ide.contrib")
 
 -- Ansible
-contrib.mason({ "ansible-language-server", "ansible-lint" })
+contrib.mason("ansible-language-server", "ansible-lint")
 contrib.lsp("ansiblels")
 
 -- YAML
-contrib.mason({ "prettierd", "prettierd" })
+contrib.mason("prettierd", "prettierd")
 contrib.formatters("yaml", { "prettierd", "prettier" })
 contrib.ts_parsers("yaml")
 
@@ -17,12 +17,12 @@ contrib.ts_parsers("c")
 -- VimScript
 contrib.mason("vim-language-server")
 contrib.lsp("vimls")
-contrib.ts_parsers({ "vim", "vimdoc" })
+contrib.ts_parsers("vim", "vimdoc")
 
 -- JSON
-contrib.mason({ "prettierd", "prettierd" })
+contrib.mason("prettierd", "prettierd")
 contrib.formatters({ "json", "jsonc" }, { "prettierd", "prettier" })
-contrib.ts_parsers({ "json", "json5", "jsonc" })
+contrib.ts_parsers("json", "json5", "jsonc")
 
 -- HTMX
 contrib.mason("htmx-lsp")
@@ -39,7 +39,7 @@ contrib.lsp("htmx", function()
 end)
 
 -- Other TS parser
-contrib.ts_parsers({
+contrib.ts_parsers(
   "awk",
   "comment",
   "csv",
@@ -58,8 +58,8 @@ contrib.ts_parsers({
   "rust",
   "sql",
   "toml",
-  "tsv",
-})
+  "tsv"
+)
 
 -- Other prettier fts
 contrib.formatters({ "graphql", "handlebars" }, { "prettierd", "prettier" })

@@ -1,14 +1,14 @@
 local contrib = req("plugins.ide.contrib")
 local helpers = req("plugins.ide.utils")
 
-contrib.mason({
+contrib.mason(
   "typescript-language-server",
   "prettier",
   "prettierd",
   "vue-language-server",
   "eslint-lsp",
-  "astro-language-server",
-})
+  "astro-language-server"
+)
 contrib.formatters({
   "javascript",
   "javascriptreact",
@@ -17,7 +17,7 @@ contrib.formatters({
   "vue",
   "astro",
 }, { "prettierd" })
-contrib.ts_parsers({ "javascript", "typescript", "tsx", "jsdoc", "astro" })
+contrib.ts_parsers("javascript", "typescript", "tsx", "jsdoc", "astro")
 
 local get_lsp_root = function(fname)
   return req("modules.root-dir").get_project_root() or vim.fs.dirname(fname)

@@ -1,7 +1,7 @@
 local contrib = req("plugins.ide.contrib")
 
-contrib.mason({ "gopls" })
-contrib.ts_parsers({ "go", "gotmpl" })
+contrib.mason("gopls")
+contrib.ts_parsers("go", "gotmpl")
 
 contrib.lsp("gopls", function()
   return {
