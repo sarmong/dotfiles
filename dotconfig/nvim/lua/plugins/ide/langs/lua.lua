@@ -49,6 +49,7 @@ contrib.lsp("lua_ls", function()
           -- path = runtime_path,
           special = {
             req = "require",
+            lreq = "require",
           },
         },
         diagnostics = {
