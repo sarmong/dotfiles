@@ -1,6 +1,6 @@
 local contrib = req("plugins.ide.contrib")
 
-contrib.mason({ "lua_ls", "stylua" })
+contrib.mason({ "lua-language-server", "stylua" })
 contrib.formatters("lua", "stylua")
 contrib.ts_parsers("lua")
 

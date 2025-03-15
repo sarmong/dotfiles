@@ -1,6 +1,6 @@
 local contrib = req("plugins.ide.contrib")
 
-contrib.mason({ "bashls", "shfmt" })
+contrib.mason({ "bash-language-server", "shfmt", "shellcheck" })
 contrib.formatters("sh", "shfmt")
 contrib.ts_parsers("bash")
 contrib.lsp("bashls")

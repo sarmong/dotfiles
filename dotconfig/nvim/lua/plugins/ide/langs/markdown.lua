@@ -1,6 +1,6 @@
 local contrib = req("plugins.ide.contrib")
 
-contrib.mason({ "prettierd", "prettier" })
+contrib.mason({ "prettierd", "prettier", "markdownlint" })
 contrib.ts_parsers({ "markdown", "markdown_inline" })
 contrib.formatters({ "markdown", "markdown.mdx" }, { "prettierd", "prettier" })
 contrib.null_ls_sources(function()

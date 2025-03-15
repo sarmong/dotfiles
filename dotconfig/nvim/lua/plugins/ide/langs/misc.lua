@@ -1,7 +1,7 @@
 local contrib = req("plugins.ide.contrib")
 
 -- Ansible
-contrib.mason({ "ansiblels", "ansible-lint" })
+contrib.mason({ "ansible-language-server", "ansible-lint" })
 contrib.lsp("ansiblels")
 
 -- YAML
@@ -15,7 +15,7 @@ contrib.lsp("clangd")
 contrib.ts_parsers("c")
 
 -- VimScript
-contrib.mason("vimls")
+contrib.mason("vim-language-server")
 contrib.lsp("vimls")
 contrib.ts_parsers({ "vim", "vimdoc" })
 
@@ -25,7 +25,7 @@ contrib.formatters({ "json", "jsonc" }, { "prettierd", "prettier" })
 contrib.ts_parsers({ "json", "json5", "jsonc" })
 
 -- HTMX
-contrib.mason("htmx")
+contrib.mason("htmx-lsp")
 contrib.lsp("htmx", function()
   return {
     filetypes = {

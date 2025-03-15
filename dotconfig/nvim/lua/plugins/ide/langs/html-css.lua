@@ -1,6 +1,12 @@
 local contrib = req("plugins.ide.contrib")
 
-contrib.mason({ "cssls", "cssmodules_ls", "prettierd", "prettier" })
+contrib.mason({
+  "css-lsp",
+  "cssmodules-language-server",
+  "prettierd",
+  "prettier",
+  "tailwindcss-language-server",
+})
 
 contrib.formatters({ "css", "scss", "less" }, { "prettierd", "prettier" })
 contrib.ts_parsers({ "css", "scss" })

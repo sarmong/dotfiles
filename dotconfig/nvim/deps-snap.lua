@@ -38,7 +38,6 @@ return {
   ["luvit-meta"] = "1df30b60b1b4aecfebc785aa98943db6c6989716",
   ["markdown-preview.nvim"] = "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
   ["marks.nvim"] = "bb25ae3f65f504379e3d08c8a02560b76eaf91e8",
-  ["mason-lspconfig.nvim"] = "1a31f824b9cd5bc6f342fc29e9a53b60d74af245",
   ["mason-tool-installer.nvim"] = "374c78d3ebb5c53f43ea6bd906b6587b5e899b9e",
   ["mason.nvim"] = "fc98833b6da5de5a9c5b1446ac541577059555be",
   ["mini.deps"] = "544de24117a7e6355111fd1cf61c16d76a05b421",

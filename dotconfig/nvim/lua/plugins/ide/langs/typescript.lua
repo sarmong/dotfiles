@@ -2,12 +2,12 @@ local contrib = req("plugins.ide.contrib")
 local helpers = req("plugins.ide.utils")
 
 contrib.mason({
-  "ts_ls",
+  "typescript-language-server",
   "prettier",
   "prettierd",
-  "volar",
-  "eslint",
-  "astro",
+  "vue-language-server",
+  "eslint-lsp",
+  "astro-language-server",
 })
 contrib.formatters({
   "javascript",
