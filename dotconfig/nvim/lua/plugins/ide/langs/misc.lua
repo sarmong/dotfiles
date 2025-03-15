@@ -49,7 +49,6 @@ contrib.ts_parsers(
   "jq",
   "latex",
   "make",
-  "org",
   "proto",
   "pug",
   "query",
