@@ -28,7 +28,7 @@ local function get_json_string(packages)
     end
   end
 
-  str = str .. "\n}"
+  str = str .. "\n}\n"
   return str
 end
 
