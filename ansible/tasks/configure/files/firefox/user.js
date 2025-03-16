@@ -1,5 +1,7 @@
 user_pref("extensions.pocket.enabled", false);
 user_pref("app.update.auto", false);
+user_pref("app.update.checkInstallTime", false);
+
 user_pref("browser.startup.homepage", "/var/www/cabin/index.html");
 
 user_pref("accessibility.typeaheadfind.enablesound", false);
