@@ -1,23 +1,4 @@
 ---
-- name: Firefox repo
-  become: true
-  block:
-    - name: Add Mozilla apt key
-      get_url:
-        url: https://packages.mozilla.org/apt/repo-signing-key.gpg
-        dest: /etc/apt/keyrings/packages.mozilla.org.asc
-        mode: "0644"
-        checksum: sha256:3ecc63922b7795eb23fdc449ff9396f9114cb3cf186d6f5b53ad4cc3ebfbb11f
-
-    - name: Add Mozilla repository
-      apt_repository:
-        repo:
-          deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc]
-          https://packages.mozilla.org/apt mozilla main
-        state: present
-        filename: mozilla
-        update_cache: true
-
 - name: Install base packages
   become: true
   apt:

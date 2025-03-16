@@ -20,6 +20,7 @@
       tags: software
       block:
         - import_tasks: tasks/software/build/rust.yml
+        - import_tasks: tasks/software/ppa.yml
         - import_tasks: tasks/software/main.yml
         - import_tasks: tasks/software/build/main.yml
 

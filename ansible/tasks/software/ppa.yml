@@ -1,0 +1,34 @@
+- name: Add ppa repos
+  vars:
+    repos:
+      - key_url: https://packages.mozilla.org/apt/repo-signing-key.gpg
+        key_file: packages.mozilla.org.asc
+        key_checksum: sha256:3ecc63922b7795eb23fdc449ff9396f9114cb3cf186d6f5b53ad4cc3ebfbb11f
+        repo:
+          deb [signed-by=/usr/share/keyrings/packages.mozilla.org.asc]
+          https://packages.mozilla.org/apt mozilla main
+        repo_file: mozilla
+
+  block:
+    - name: Install ppa
+      become: true
+      block:
+        - name: Ensure directory exists for /usr/share/keyrings
+          file:
+            path: /usr/share/keyrings
+            state: directory
+            mode: "0755"
+        - name: Add key
+          get_url:
+            url: "{{ item.key_url }}"
+            dest: "/usr/share/keyrings/{{ item.key_file }}"
+            mode: "0644"
+            checksum: "{{ item.key_checksum }}"
+          with_items: "{{ repos }}"
+        - name: Add repository
+          apt_repository:
+            repo: "{{ item.repo }}"
+            state: present
+            filename: "{{ item.repo_file }}"
+            update_cache: true
+          with_items: "{{ repos }}"
