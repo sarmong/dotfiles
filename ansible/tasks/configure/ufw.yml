@@ -19,13 +19,14 @@
       loop:
         - qbittorrent
         - syncthing
-      when: ansible_connection == "local"
+      when: group_names[0] == "lan"
+      failed_when: false
 
     - name: ufw | allow local network
       ufw:
         src: 192.168.0.0/24
         rule: allow
-      when: ansible_connection == "local"
+      when: group_names[0] == "lan"
 
     - name: ufw | limit ssh
       ufw:
@@ -33,7 +34,7 @@
         port: ssh
         proto: tcp
         src: 192.168.0.0/24
-      when: ansible_connection == "local"
+      when: group_names[0] == "lan"
 
     - name: ufw | allow ssh and nginx
       ufw:

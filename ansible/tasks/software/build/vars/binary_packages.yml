@@ -182,3 +182,13 @@ binary_packages:
       https://github.com/yt-dlp/yt-dlp/releases/download/{{
       vars.binary_packages['yt-dlp'].version }}/yt-dlp_linux
     check_version_cmd: "yt-dlp --version"
+
+  navidrome:
+    name: navidrome
+    version: 0.54.5
+    checksum:
+    url:
+      https://github.com/navidrome/navidrome/releases/download/v{{
+      vars.binary_packages['navidrome'].version }}/navidrome_{{
+      vars.binary_packages['navidrome'].version }}_linux_amd64.deb
+    check_version_cmd: "navidrome --version | awk '{ print $1 }'"

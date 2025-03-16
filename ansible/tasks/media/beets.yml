@@ -1,0 +1,39 @@
+- name: Install pipx
+  become: true
+  apt:
+    name:
+      - pipx
+
+- name: Install selected packages
+  tags:
+    - binary
+  include_tasks: tasks/software/build/install-binary.yml
+  loop:
+    - dua-cli
+
+- name: install beets
+  include_tasks: tasks/software/build/pipx.yml
+  tags:
+    - pipx
+  vars:
+    pipx_args:
+      - inject_packages:
+          - pylast # for fetchartist
+          - requests
+          - bs4
+        name: beets
+        state: inject
+
+- name: beets config
+  copy:
+    src: tasks/media/files/beets-config.yaml
+    dest: ~/.config/beets/config.yaml
+    mode: preserve
+
+- name: beets fetchartist config
+  copy:
+    src: tasks/media/files/fetchartist
+    dest: ~/fetchartist
+    mode: preserve
+
+  # sqlite3 beets_library.db "UPDATE items SET path = replace(path, 'old_path', 'new_path');"

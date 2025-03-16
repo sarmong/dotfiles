@@ -1,0 +1,26 @@
+---
+- name: Install lighttpd
+  apt:
+    name: lighttpd
+
+- name: Copy config
+  become: true
+  copy:
+    src: lighttpd.toml
+    dest: /etc/lighttpd/lighttpd.conf
+    mode: preserve
+  register: config_update
+
+- name: enable service
+  become: true
+  systemd_service:
+    name: lighttpd
+    enabled: true
+    state: started
+
+- name: lighttpd | restart service
+  become: true
+  systemd_service:
+    state: restarted
+    name: lighttpd
+  when: config_update.changed

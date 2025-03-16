@@ -1,0 +1,29 @@
+---
+- name: Install navidrome
+  tags:
+    - binary
+  include_tasks: tasks/software/build/install-binary.yml
+  loop:
+    - navidrome
+
+- name: Copy config
+  become: true
+  copy:
+    src: navidrome.toml
+    dest: /etc/navidrome/navidrome.toml
+    mode: preserve
+  register: config_update
+
+- name: enable service
+  become: true
+  systemd_service:
+    name: navidrome
+    enabled: true
+    state: started
+
+- name: navidrome | restart service
+  become: true
+  systemd_service:
+    state: restarted
+    name: navidrome
+  when: config_update.changed

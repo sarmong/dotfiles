@@ -1,0 +1,12 @@
+[Unit]
+Description=qBittorrent-nox Service
+After=network.target
+
+[Service]
+User=1000
+Group=1000
+ExecStart=/usr/bin/qbittorrent-nox
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

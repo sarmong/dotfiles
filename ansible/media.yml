@@ -1,7 +1,12 @@
 - name: Bootstrap media system
   hosts: quad
   tasks:
-    - import_tasks: tasks/dotfiles/main.yml
+    - name: Install selected packages
+      tags:
+        - binary
+      include_tasks: tasks/software/build/install-binary.yml
+      loop:
+        - dua-cli
 
     - name: Install packages
       become: true
@@ -19,6 +24,12 @@
           - zsh
           - dash
           - ufw
+          - lf
+          - tmux
+          - zoxide
+          - rsync
+          - jq
+
     - name: Install media packages
       become: true
       apt:
@@ -32,6 +43,17 @@
           - mpv
           - bluez
           - blueman
+
+    - name: Load xdg variables (with new loaded ansible_env)
+      tags: always
+      include_vars:
+        file: vars/xdg.yml
+
+    - name: Extend ansible_env
+      set_fact:
+        ansible_env: "{{ ansible_env | combine(xdg) }}"
+
+    - import_tasks: tasks/server/dotfiles.yml
 
     - name: Copy bt-connect.sh
       become: true
@@ -56,40 +78,19 @@
         - bluetooth
         - bt-autoconnect
 
-    - name: Copy .xinitrc
-      become: true
-      copy:
-        src: tasks/media/files/xinitrc
-        dest: "/var/lib/kodi/.xinitrc"
-        mode: "0644"
-        owner: kodi
-        group: kodi
-
-    - name: Copy playercorefactory
-      become: true
-      copy:
-        src: tasks/media/files/kodi-mpv.xml
-        dest: "/var/lib/kodi/.kodi/userdata/playercorefactory.xml"
-        mode: "0644"
-        owner: kodi
-        group: kodi
-
-    - name: Copy mpv conf
-      become: true
-      copy:
-        src: ~/.config/mpv
-        dest: "/var/lib/kodi/.config/mpv"
-        mode: preserve
-        owner: kodi
-        group: kodi
-
-    - import_tasks: tasks/configure/keyd.yml
-    - import_tasks: tasks/configure/ufw.yml
-
     - name: Change user shell
       become: true
       user:
         name: "{{ ansible_env.USER }}"
         shell: /usr/bin/zsh
-        groups: input
+        groups: input,kodi
         append: true
+
+    # - import_tasks: tasks/configure/keyd.yml
+    - import_tasks: tasks/configure/ufw.yml
+
+    - import_tasks: tasks/media/navidrome.yml
+    - import_tasks: tasks/media/qbittorrent.yml
+    - import_tasks: tasks/media/beets.yml
+    - import_tasks: tasks/media/kodi-standalone.yml
+    - import_tasks: tasks/media/lighttpd.yml

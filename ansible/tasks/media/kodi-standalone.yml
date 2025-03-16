@@ -1,9 +1,19 @@
 - name: install kodi-standalone-service
+  tags:
+    - kodi
   become: true
   vars:
     repo_dir: ~/.local/src/kodi-standalone-service
 
   block:
+
+    - name: rust | get installed version
+      command: kodi-standalone --version
+      ignore_errors: true
+      changed_when: false
+      failed_when: false
+      register: kodi_standalone_installed
+
     - name: Clone repo
       become: false
       git:
@@ -11,11 +21,13 @@
         dest: "{{ repo_dir }}"
         version: v1.137
         update: false
+      when: kodi_standalone_installed.rc != 0
 
     - name: asdf
       make:
         target: install
         chdir: "{{ repo_dir }}"
+      when: kodi_standalone_installed.rc != 0
 
     - name: Gather available local users
       getent:
@@ -24,7 +36,7 @@
     - name: Create usr
       command:
         cmd: systemd-sysusers
-      when: kodi not in getent_passwd.keys()
+      when: '"kodi" not in getent_passwd.keys()'
       changed_when: true
 
     - name: create tmp
@@ -55,3 +67,30 @@
         name: kodi-x11
         enabled: true
         force: true
+
+    - name: Copy .xinitrc
+      become: true
+      copy:
+        src: tasks/media/files/xinitrc
+        dest: "/var/lib/kodi/.xinitrc"
+        mode: "0644"
+        owner: kodi
+        group: kodi
+
+    - name: Copy playercorefactory
+      become: true
+      copy:
+        src: tasks/media/files/kodi-mpv.xml
+        dest: "/var/lib/kodi/.kodi/userdata/playercorefactory.xml"
+        mode: "0644"
+        owner: kodi
+        group: kodi
+
+    - name: Copy mpv conf
+      become: true
+      copy:
+        src: ~/.config/mpv
+        dest: "/var/lib/kodi/.config/mpv"
+        mode: preserve
+        owner: kodi
+        group: kodi

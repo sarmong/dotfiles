@@ -1,0 +1,50 @@
+---
+- name: qbittorrent
+  tags:
+    - qbittorrent
+  block:
+    - name: Install qbittorrent
+      become: true
+      apt:
+        name: qbittorrent-nox
+
+    - name: copy systemd service
+      become: true
+      copy:
+        src: tasks/media/files/qbittorrent-nox.service
+        dest: /etc/systemd/system/qbittorrent-nox.service
+        mode: preserve
+
+    - name: enable service
+      become: true
+      systemd_service:
+        name: qbittorrent-nox
+        enabled: true
+        state: started
+
+    - name: qbittorent config
+      lineinfile:
+        path: ~/.config/qBittorrent/qBittorrent.conf
+        line: program={{ ansible_env.HOME }}/import-torrent.sh \"%R\"
+        insertafter: "[AutoRun]"
+      register: config_update
+
+    - name: qbittorent watched folders
+      copy:
+        src: tasks/media/files/qbittorrent_watched_folders.json
+        dest: ~/.config/qBittorrent/watched_folders.json
+        mode: preserve
+      register: config_update
+
+    - name: qbittorrent | restart service
+      become: true
+      systemd_service:
+        state: restarted
+        name: qbittorrent-nox
+      when: config_update.changed
+
+    - name: qbittorent import script
+      copy:
+        src: tasks/media/files/import-torrent.sh
+        dest: ~/import-torrent.sh
+        mode: preserve
