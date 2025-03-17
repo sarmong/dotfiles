@@ -9,8 +9,11 @@ local plugins_path = vim.fn.stdpath("config")
   .. plugins_root:gsub("%.", "/")
 
 vim.iter(vim.fs.dir(plugins_path)):each(function(v)
-  local package_name = plugins_root .. "." .. v:match("^(.+)%.lua$")
-  req(package_name)
+  local plugin_name = v:match("^(.+)%.lua$")
+  if plugin_name then
+    local package_name = plugins_root .. "." .. plugin_name
+    req(package_name)
+  end
 end)
 
 req("plugins.ide.protocols.mason")
