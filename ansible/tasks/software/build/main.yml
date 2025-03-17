@@ -37,3 +37,4 @@
     - rclone
     - pacstall
     - yt-dlp
+    - ctpv ## image previewer for lf

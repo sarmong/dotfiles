@@ -192,3 +192,20 @@ binary_packages:
       vars.binary_packages['navidrome'].version }}/navidrome_{{
       vars.binary_packages['navidrome'].version }}_linux_amd64.deb
     check_version_cmd: "navidrome --version | awk '{ print $1 }'"
+
+  ctpv:
+    name: ctpv
+    type: build
+    version: 1.1
+    checksum: sha256:29e458fbc822e960f052b47a1550cb149c28768615cc2dddf21facc5c86f7463
+    url:
+      https://github.com/NikitaIvanovV/ctpv/archive/refs/tags/v{{
+      vars.binary_packages['ctpv'].version }}.tar.gz
+    check_version_cmd: "ctpv -v | awk '{ print $3 }'"
+    dependencies:
+      - libmagic-dev
+      - libcrypto++-dev
+    build_dir: ctpv-{{ vars.binary_packages['ctpv'].version }}
+    build_cmds:
+      - make
+      - make install
