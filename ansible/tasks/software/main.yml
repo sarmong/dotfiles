@@ -158,6 +158,7 @@
       - imagemagick
       - rsync
       - jq
+      - yq
       - tree
       - speedtest-cli
       - colordiff
