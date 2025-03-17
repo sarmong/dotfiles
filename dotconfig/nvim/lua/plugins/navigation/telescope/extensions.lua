@@ -72,6 +72,12 @@ Plugin("jmacadie/telescope-hierarchy.nvim")
 load_extension("hierarchy")
 extension_opts.hierarchy = {}
 
+Plugin({
+  "sarmong/telescope-all-recent.nvim",
+  depends = { "kkharji/sqlite.lua" },
+})
+req("telescope-all-recent").setup({})
+
 -- Plugin({
 --   source = "nvim-telescope/telescope-smart-history.nvim",
 --   depends = { "kkharji/sqlite.lua" }, -- Need libsqlite3-dev on debian

@@ -87,6 +87,7 @@ return {
   ["sqlite.lua"] = "d0ffd703b56d090d213b497ed4eb840495f14a11",
   ["suda.vim"] = "9adda7d195222d4e2854efb2a88005a120296c47",
   ["sxhkd-vim"] = "7b7937ff5c220fbef3bdd883d567513246516e06",
+  ["telescope-all-recent.nvim"] = "5b525eb8b45ffcbcef01923c04fe804a46ac1c34",
   ["telescope-fzf-native.nvim"] = "2a5ceff981501cff8f46871d5402cd3378a8ab6a",
   ["telescope-helpgrep.nvim"] = "f600baab96d36b91cdd4b0beb63414a01e1b9403",
   ["telescope-hierarchy.nvim"] = "b73b973803e2f3b6baef717fb7ba7e5d5711fe12",
