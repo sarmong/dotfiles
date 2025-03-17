@@ -1,5 +1,11 @@
 Plugin("stevearc/conform.nvim")
 
+-- There is custom prettierd binary that handles yarn pnp
+vim.env.PATH = os.getenv("XDG_SRC_DIR")
+  .. "/prettierd/bin"
+  .. ":"
+  .. vim.env.PATH
+
 local opts = {
   formatters_by_ft = req("plugins.ide.contrib").state.formatters,
 

@@ -1,0 +1,25 @@
+- name: install prettierd
+  tags:
+    - prettierd
+  vars:
+    dir: "{{ ansible_env.XDG_SRC_DIR }}/prettierd"
+  block:
+    - name: Clone repo
+      git:
+        repo: https://github.com/sarmong/prettierd.git
+        dest: "{{ dir }}"
+      register: prettierd_cloned
+
+    - name: Install
+      command: yarn install
+      args:
+        chdir: "{{ dir }}"
+      when: prettierd_cloned.changed
+      changed_when: true
+
+    - name: build
+      command: yarn build
+      args:
+        chdir: "{{ dir }}"
+      when: prettierd_cloned.changed
+      changed_when: true

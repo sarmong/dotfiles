@@ -13,6 +13,7 @@
 - import_tasks: auto-cpufreq.yml
 - import_tasks: newsboat.yml
 - import_tasks: rofi-calc.yml
+- import_tasks: prettierd.yml
 
 - name: Install selected packages
   tags:
