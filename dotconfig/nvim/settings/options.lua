@@ -17,6 +17,8 @@ local options = {
   splitkeep          =    "screen",
 
   undofile           =    true,
+  backup             =    true,
+  backupdir          =    os.getenv("XDG_STATE_HOME") .. "/nvim/backup//",
 
   wrap               =    true,
   linebreak          =    true,              -- Don't wrap in the middle of a word
