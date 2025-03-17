@@ -4,15 +4,15 @@
   include_vars: vars/binary_packages.yml
 
 - name: "{{ item }} | Install {{ item }}"
-  become: true
   tags:
     - binary
   vars:
-    pkg_name: "{{ binary_packages[item].name }}"
-    url: "{{ binary_packages[item].url }}"
-    version: "{{ binary_packages[item].version }}"
-    checksum: "{{ binary_packages[item].checksum }}"
-    check_version_cmd: "{{ binary_packages[item].get('check_version_cmd') }}"
+    pkg_spec: "{{ binary_packages[item] }}"
+    pkg_name: "{{ pkg_spec.name }}"
+    url: "{{ pkg_spec.url }}"
+    version: "{{ pkg_spec.version }}"
+    checksum: "{{ pkg_spec.checksum }}"
+    check_version_cmd: "{{ pkg_spec.get('check_version_cmd') }}"
     filename: "{{ url | urlsplit('path') | basename }}"
     is_deb_pkg:
       "{{ url | urlsplit('path') | basename | regex_search('\\.deb$') is not
@@ -23,6 +23,9 @@
     is_binary:
       "{{ url | urlsplit('path') | basename | regex_search('^[^.]+$') is not
       none }}"
+    extract_dir:
+      "{{ (pkg_spec.type == 'build') | ternary(ansible_env.HOME ~ '/.local/src/'
+      ~ pkg_name ~ '-' ~ version, '/tmp/' ~ pkg_name ~ '-' ~ version) }}"
   block:
     - name: "{{ item }} | check if binary exists and get current version"
       shell: "{{ check_version_cmd }}"
@@ -41,6 +44,16 @@
       failed_when: false
       check_mode: false
 
+    - name: "{{ item }} | install dependencies"
+      become: true
+      apt:
+        name: "{{ dep }}"
+      loop: "{{ pkg_spec.dependencies }}"
+      loop_control:
+        loop_var: dep
+      when:
+        pkg_spec.dependencies is defined and pkg_spec.dependencies | length > 0
+
     - name: "{{ item }} | download file"
       get_url:
         url: "{{ url }}"
@@ -54,24 +67,35 @@
       block:
         - name: "{{ item }} | create tmp dir"
           file:
-            path: /tmp/{{ pkg_name }}-{{ version }}
+            path: "{{ extract_dir }}"
             state: directory
             mode: "0755"
 
         - name: "{{ item }} | extract archive to temp directory"
           unarchive:
             src: "/tmp/{{ filename }}"
-            dest: /tmp/{{ pkg_name }}-{{ version }}
+            dest: "{{ extract_dir }}"
             remote_src: true
             mode: "0755"
 
+        - name: "{{ item }} | build"
+          become: true
+          command: "{{ cmd }}"
+          loop: "{{ pkg_spec.build_cmds }}"
+          loop_control:
+            loop_var: cmd
+          args:
+            chdir: "{{ extract_dir }}/{{ pkg_spec.build_dir }}"
+          when: "pkg_spec.type == 'build'"
+
         - name: "{{ item }} | find binary in extracted files"
           find:
-            paths: /tmp/{{ pkg_name }}-{{ version }}
+            paths: "{{ extract_dir }}"
             patterns: "{{ pkg_name }}"
             recurse: true
             file_type: file
           register: found_binaries
+          when: "pkg_spec.type != 'build'"
 
         - name: "{{ item }} | install binary to destination"
           copy:
@@ -81,13 +105,16 @@
             owner: root
             group: root
             remote_src: true
+          when: "pkg_spec.type != 'build'"
 
         - name: "{{ item }} | remove tmp dir"
           file:
-            path: /tmp/{{ pkg_name }}-{{ version }}
+            path: "{{ extract_dir }}"
             state: absent
+          when: "pkg_spec.type != 'build'"
 
     - name: "{{ item }} | copy binary to destination"
+      become: true
       copy:
         src: "/tmp/{{ filename }}"
         dest: "/usr/local/bin/{{ pkg_name }}"
@@ -98,6 +125,7 @@
       when: is_binary and current_version != version
 
     - name: "{{ item }} | install debian package"
+      become: true
       when: is_deb_pkg and current_version != version
       apt:
         deb: /tmp/{{ filename }}
