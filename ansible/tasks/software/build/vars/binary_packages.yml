@@ -209,3 +209,16 @@ binary_packages:
     build_cmds:
       - make
       - make install
+
+  kitty:
+    name: kitty
+    type: build
+    version: 0.40.0
+    checksum: sha256:041c6fedd9be2f257d64eee41099a19f1ea525c69214ded5e930ff96ccb6b8a4
+    extract_dir: "{{ ansible_env.XDG_SRC_DIR }}/kitty"
+    url:
+      https://github.com/kovidgoyal/kitty/releases/download/v{{
+      vars.binary_packages['kitty'].version }}/kitty-{{
+      vars.binary_packages['kitty'].version }}-x86_64.txz
+    check_version_cmd: "kitty --version | awk '{ print $2 }'"
+    post_install_task: tasks/software/build/kitty.yml

@@ -1,0 +1,32 @@
+- name: kitty | link binaries
+  become: true
+  file:
+    src: "{{ ansible_env.XDG_SRC_DIR }}/kitty/bin/{{ file }}"
+    dest: "/usr/local/bin/{{ file }}"
+    state: link
+  loop:
+    - kitty
+    - kitten
+  loop_control:
+    loop_var: file
+
+- name: kitty | link desktop files
+  become: true
+  file:
+    src: "{{ ansible_env.XDG_SRC_DIR }}/kitty/share/applications/{{ file }}"
+    dest: "/usr/local/share/applications/{{ file }}"
+    state: link
+  loop:
+    - kitty.desktop
+    - kitty-open.desktop
+  loop_control:
+    loop_var: file
+
+- name: kitty | link icon
+  become: true
+  file:
+    src:
+      "{{ ansible_env.XDG_SRC_DIR
+      }}/kitty/share/icons/hicolor/256x256/apps/kitty.png"
+    dest: "/usr/local/share/icons/hicolor/256x256/apps/kitty.png"
+    state: link
