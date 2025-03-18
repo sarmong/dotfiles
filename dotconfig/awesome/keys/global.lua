@@ -1,5 +1,6 @@
 local gears = require("gears")
 local naughty = require("naughty")
+local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local revelation = require("lib.revelation")
 
@@ -43,20 +44,38 @@ local globalKeys = {
   },
 
   {
-    description = "Previous notification",
+    description = "Close all notifications",
     modifiers = { super },
-    key = ",",
-    on_press = replay_last_notif,
+    key = ".",
+    on_press = function()
+      awful.spawn("dunstctl close-all")
+    end,
     group = "notifications",
   },
-
   {
     description = "Previous notification",
     modifiers = { super },
+    key = ",",
+    on_press = function()
+      awful.spawn("dunstctl history-pop")
+    end,
+    group = "notifications",
+  },
+  {
+    description = "Notification action",
+    modifiers = { super },
     key = "/",
     on_press = function()
-      package.loaded["modules.move-windows"] = nil
-      require("modules.move-windows")()
+      awful.spawn("dunstctl action")
+    end,
+    group = "notifications",
+  },
+  {
+    description = "Notification history",
+    modifiers = { super },
+    key = "n",
+    on_press = function()
+      awful.spawn("nothis")
     end,
     group = "notifications",
   },
