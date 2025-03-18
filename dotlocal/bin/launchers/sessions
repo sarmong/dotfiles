@@ -22,7 +22,7 @@ if [ "$launcher" = "fzf" ]; then
     exit 0
   fi
 else
-  selected_idx=$(echo -e "$all" | xargs -n 1 basename | rofi -dmenu -i -format d)
+  selected_idx=$(echo -e "$all" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d) ## without using {} xargs splits by spaces too
   if [ -z "$selected_idx" ] || [ "$selected_idx" -lt 1 ]; then
     exit 0
   fi
