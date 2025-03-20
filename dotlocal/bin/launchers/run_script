@@ -29,12 +29,20 @@ commands=(
   watch-later.sh
   wifi-menu.sh
   "code screenshot from cb"
+  "move wins to another screen"
+  "update screenlayout"
 )
 
 declare -A other
 other["file-manager"]="$TERMINAL --class centered -e $SHELL -c lf"
 # @TODO improve and add to separate script
 other["code screenshot from cb"]="silicon --from-clipboard -l ts --to-clipboard"
+
+move_wins() {
+  awesome-client "require('modules.move-windows').move_clients()"
+}
+other["move wins to another screen"]="move_wins"
+other["update screenlayout"]="$XDG_BIN_DIR/setup/screenlayout.sh"
 
 commands_string=$(printf "%s\n" "${commands[@]}")
 command=$(echo "$commands_string" | rofi-frecency "scripts" -l 7 -p "Command to run")

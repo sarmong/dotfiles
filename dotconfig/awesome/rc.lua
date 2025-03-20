@@ -9,6 +9,7 @@ package.path = package.path
   .. conf_dir
   .. "/lib/?/init.lua"
 
+require("modules.move-windows").connect()
 require("theme")
 
 require("utils")
