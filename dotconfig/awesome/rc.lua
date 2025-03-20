@@ -17,8 +17,8 @@ require("widgets.top-panel")
 
 require("modules")
 require("modules.notifications")
-require("modules.auto-start")
 require("modules.quake-terminal")
+awful.spawn("autostart.sh")
 
 require("rules")
 require("tags")
