@@ -67,6 +67,7 @@
       - libimage-exiftool-perl
       - mediainfo
       - unclutter
+      - sxhkd
 
 - name: pacstall | install DE packages
   pacstall:

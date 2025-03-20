@@ -11,22 +11,6 @@ local group_name = "apps"
 
 local keys = {
   {
-    description = "Open a terminal",
-    modifiers = { super },
-    key = "Return",
-    on_press = function()
-      awful.spawn.with_shell("$TERMINAL || kitty || alacritty || st")
-    end,
-  },
-  {
-    description = "Open a centered terminal",
-    modifiers = { super, ctrl },
-    key = "Return",
-    on_press = function()
-      awful.spawn.with_shell("$TERMINAL --class centered")
-    end,
-  },
-  {
     description = "Open dropdown terminal",
     modifiers = { super },
     key = "z",
@@ -44,62 +28,79 @@ local keys = {
       quake.scratch:toggle()
     end,
   },
-  {
-    description = "App launcher",
-    modifiers = { super },
-    key = "e",
-    on_press = function()
-      awful.spawn("rofi -show drun")
-    end,
-  },
-  {
-    description = "Select window to focus",
-    modifiers = { super },
-    key = "r",
-    on_press = function()
-      awful.spawn("rofi -show window")
-    end,
-  },
-  {
-    description = "Run script",
-    modifiers = { super },
-    key = "d",
-    on_press = function()
-      awful.spawn.with_shell("run_script")
-    end,
-  },
-  {
-    description = "Open tmux workspace",
-    modifiers = { super },
-    key = "x",
-    on_press = function()
-      awful.spawn.with_shell("sessions")
-    end,
-  },
-  {
-    description = "bookmark selector",
-    modifiers = { super },
-    key = "b",
-    on_press = function()
-      awful.spawn.with_shell("bookmarks $XDG_NC_DIR/Documents/bookmarks.txt")
-    end,
-  },
-  {
-    description = "Calculator",
-    modifiers = { super },
-    key = "c",
-    on_press = function()
-      awful.spawn.with_shell("rofi -show calc")
-    end,
-  },
-  {
-    description = "Power Menu",
-    modifiers = { super, shift },
-    key = "e",
-    on_press = function()
-      awful.spawn.with_shell("$XDG_BIN_DIR/rofi/power")
-    end,
-  },
+
+  -- {
+  --   description = "Open a terminal",
+  --   modifiers = { super },
+  --   key = "Return",
+  --   on_press = function()
+  --     awful.spawn.with_shell("$TERMINAL || kitty || alacritty || st")
+  --   end,
+  -- },
+  -- {
+  --   description = "Open a centered terminal",
+  --   modifiers = { super, ctrl },
+  --   key = "Return",
+  --   on_press = function()
+  --     awful.spawn.with_shell("$TERMINAL --class centered")
+  --   end,
+  -- },
+  -- {
+  --   description = "App launcher",
+  --   modifiers = { super },
+  --   key = "e",
+  --   on_press = function()
+  --     awful.spawn("rofi -show drun")
+  --   end,
+  -- },
+  -- {
+  --   description = "Select window to focus",
+  --   modifiers = { super },
+  --   key = "r",
+  --   on_press = function()
+  --     awful.spawn("rofi -show window")
+  --   end,
+  -- },
+  -- {
+  --   description = "Run script",
+  --   modifiers = { super },
+  --   key = "d",
+  --   on_press = function()
+  --     awful.spawn.with_shell("run_script")
+  --   end,
+  -- },
+  -- {
+  --   description = "Open tmux workspace",
+  --   modifiers = { super },
+  --   key = "x",
+  --   on_press = function()
+  --     awful.spawn.with_shell("sessions")
+  --   end,
+  -- },
+  -- {
+  --   description = "bookmark selector",
+  --   modifiers = { super },
+  --   key = "b",
+  --   on_press = function()
+  --     awful.spawn.with_shell("bookmarks $XDG_NC_DIR/Documents/bookmarks.txt")
+  --   end,
+  -- },
+  -- {
+  --   description = "Calculator",
+  --   modifiers = { super },
+  --   key = "c",
+  --   on_press = function()
+  --     awful.spawn.with_shell("rofi -show calc")
+  --   end,
+  -- },
+  -- {
+  --   description = "Power Menu",
+  --   modifiers = { super, shift },
+  --   key = "e",
+  --   on_press = function()
+  --     awful.spawn.with_shell("$XDG_BIN_DIR/rofi/power")
+  --   end,
+  -- },
   -- {
   --   description = "Log Out Screen",
   --   modifiers = { super, "Shift" },
@@ -108,51 +109,52 @@ local keys = {
   --     exit_screen_show()
   --   end,
   -- },
-  {
-    description = "Open clipboard menu",
-    modifiers = { super, ctrl },
-    key = "c",
-    on_press = function()
-      awful.spawn.with_shell("CM_LAUNCHER=rofi clipmenu")
-    end,
-  },
-  {
-    description = "Make a screenshot",
-    modifiers = { super },
-    key = "p",
-    on_press = function()
-      awful.spawn.with_shell("flameshot gui")
-    end,
-  },
-  {
-    description = "Make a screenshot",
-    modifiers = {},
-    key = "Print",
-    on_press = function()
-      awful.spawn.with_shell("flameshot gui")
-    end,
-  },
+  -- {
+  --   description = "Open clipboard menu",
+  --   modifiers = { super, ctrl },
+  --   key = "c",
+  --   on_press = function()
+  --     awful.spawn.with_shell("CM_LAUNCHER=rofi clipmenu")
+  --   end,
+  -- },
 
-  {
-    description = "Open dotfiles",
-    modifiers = { super, shift },
-    key = "c",
-    on_press = function()
-      awful.spawn.with_shell(
-        "$TERMINAL --working-directory $XDG_DOTFILES_DIR -e $SHELL -c 'nvim ; $SHELL'"
-      )
-    end,
-  },
-  {
-    description = "Open notes",
-    modifiers = { super, shift },
-    key = "n",
-    on_press = function()
-      awful.spawn.with_shell(
-        "$TERMINAL --working-directory $XDG_NC_DIR/Vault -e $SHELL -c 'nvim ; $SHELL'"
-      )
-    end,
-  },
+  -- {
+  --   description = "Make a screenshot",
+  --   modifiers = { super },
+  --   key = "p",
+  --   on_press = function()
+  --     awful.spawn.with_shell("flameshot gui")
+  --   end,
+  -- },
+  -- {
+  --   description = "Make a screenshot",
+  --   modifiers = {},
+  --   key = "Print",
+  --   on_press = function()
+  --     awful.spawn.with_shell("flameshot gui")
+  --   end,
+  -- },
+
+  -- {
+  --   description = "Open dotfiles",
+  --   modifiers = { super, shift },
+  --   key = "c",
+  --   on_press = function()
+  --     awful.spawn.with_shell(
+  --       "$TERMINAL --working-directory $XDG_DOTFILES_DIR -e $SHELL -c 'nvim ; $SHELL'"
+  --     )
+  --   end,
+  -- },
+  -- {
+  --   description = "Open notes",
+  --   modifiers = { super, shift },
+  --   key = "n",
+  --   on_press = function()
+  --     awful.spawn.with_shell(
+  --       "$TERMINAL --working-directory $XDG_NC_DIR/Vault -e $SHELL -c 'nvim ; $SHELL'"
+  --     )
+  --   end,
+  -- },
 }
 
 return gen_keys(keys, { group = group_name })

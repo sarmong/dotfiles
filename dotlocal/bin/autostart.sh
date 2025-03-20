@@ -9,7 +9,7 @@ run dunst
 run lxpolkit
 run nm-applet --indicator # network tray
 run picom --daemon
-# run sxhkd
+run sxhkd
 
 ## Configurations
 run "$XDG_BIN_DIR"/setup/screenlayout.sh

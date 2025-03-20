@@ -33,52 +33,52 @@ local globalKeys = {
     on_press = awesome.restart,
     group = "awesome",
   },
-  {
-    description = "Remove notifications",
-    modifiers = { super },
-    key = ".",
-    on_press = function()
-      naughty.destroy_all_notifications()
-    end,
-    group = "notifications",
-  },
+  -- {
+  --   description = "Remove notifications",
+  --   modifiers = { super },
+  --   key = ".",
+  --   on_press = function()
+  --     naughty.destroy_all_notifications()
+  --   end,
+  --   group = "notifications",
+  -- },
 
-  {
-    description = "Close all notifications",
-    modifiers = { super },
-    key = ".",
-    on_press = function()
-      awful.spawn("dunstctl close-all")
-    end,
-    group = "notifications",
-  },
-  {
-    description = "Previous notification",
-    modifiers = { super },
-    key = ",",
-    on_press = function()
-      awful.spawn("dunstctl history-pop")
-    end,
-    group = "notifications",
-  },
-  {
-    description = "Notification action",
-    modifiers = { super },
-    key = "/",
-    on_press = function()
-      awful.spawn("dunstctl action")
-    end,
-    group = "notifications",
-  },
-  {
-    description = "Notification history",
-    modifiers = { super },
-    key = "n",
-    on_press = function()
-      awful.spawn("nothis")
-    end,
-    group = "notifications",
-  },
+  -- {
+  --   description = "Close all notifications",
+  --   modifiers = { super },
+  --   key = ".",
+  --   on_press = function()
+  --     awful.spawn("dunstctl close-all")
+  --   end,
+  --   group = "notifications",
+  -- },
+  -- {
+  --   description = "Previous notification",
+  --   modifiers = { super },
+  --   key = ",",
+  --   on_press = function()
+  --     awful.spawn("dunstctl history-pop")
+  --   end,
+  --   group = "notifications",
+  -- },
+  -- {
+  --   description = "Notification action",
+  --   modifiers = { super },
+  --   key = "/",
+  --   on_press = function()
+  --     awful.spawn("dunstctl action")
+  --   end,
+  --   group = "notifications",
+  -- },
+  -- {
+  --   description = "Notification history",
+  --   modifiers = { super },
+  --   key = "n",
+  --   on_press = function()
+  --     awful.spawn("nothis")
+  --   end,
+  --   group = "notifications",
+  -- },
 }
 
 return gen_keys(globalKeys)

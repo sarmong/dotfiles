@@ -7,64 +7,64 @@ local group_name = "Media keys"
 local keys = {
 
   -- Brightness
-  {
-    description = "Increase brightness +10%",
-    key = "XF86MonBrightnessUp",
-    on_press = function()
-      awful.spawn("brightnessctl set +10%")
-    end,
-  },
-  {
-    description = "Decrease brightness -10%",
-    key = "XF86MonBrightnessDown",
-    on_press = function()
-      awful.spawn("brightnessctl set 10%-")
-    end,
-  },
+  -- {
+  --   description = "Increase brightness +10%",
+  --   key = "XF86MonBrightnessUp",
+  --   on_press = function()
+  --     awful.spawn("brightnessctl set +10%")
+  --   end,
+  -- },
+  -- {
+  --   description = "Decrease brightness -10%",
+  --   key = "XF86MonBrightnessDown",
+  --   on_press = function()
+  --     awful.spawn("brightnessctl set 10%-")
+  --   end,
+  -- },
 
   -- Volume control
-  {
-    description = "Volume up",
-    key = "XF86AudioRaiseVolume",
-    on_press = function()
-      awful.spawn("pulsemixer --change-volume +5")
-    end,
-  },
-  {
-    description = "Volume down",
-    key = "XF86AudioLowerVolume",
-    on_press = function()
-      awful.spawn("pulsemixer --change-volume -5")
-    end,
-  },
-  {
-    description = "Toggle mute",
-    key = "XF86AudioMute",
-    on_press = function()
-      awful.spawn("pulsemixer --toggle-mute")
-    end,
-  },
-  {
-    description = "Play/Pause audio",
-    key = "XF86AudioPlay",
-    on_press = function()
-      awful.spawn("playerctl play-pause")
-    end,
-  },
-  {
-    description = "Previous track",
-    key = "XF86AudioPrev",
-    on_press = function()
-      awful.spawn("playerctl previous")
-    end,
-  },
-  {
-    description = "Next track",
-    key = "XF86AudioNext",
-    on_press = function()
-      awful.spawn("playerctl next")
-    end,
-  },
+  -- {
+  --   description = "Volume up",
+  --   key = "XF86AudioRaiseVolume",
+  --   on_press = function()
+  --     awful.spawn("pulsemixer --change-volume +5")
+  --   end,
+  -- },
+  -- {
+  --   description = "Volume down",
+  --   key = "XF86AudioLowerVolume",
+  --   on_press = function()
+  --     awful.spawn("pulsemixer --change-volume -5")
+  --   end,
+  -- },
+  -- {
+  --   description = "Toggle mute",
+  --   key = "XF86AudioMute",
+  --   on_press = function()
+  --     awful.spawn("pulsemixer --toggle-mute")
+  --   end,
+  -- },
+  -- {
+  --   description = "Play/Pause audio",
+  --   key = "XF86AudioPlay",
+  --   on_press = function()
+  --     awful.spawn("playerctl play-pause")
+  --   end,
+  -- },
+  -- {
+  --   description = "Previous track",
+  --   key = "XF86AudioPrev",
+  --   on_press = function()
+  --     awful.spawn("playerctl previous")
+  --   end,
+  -- },
+  -- {
+  --   description = "Next track",
+  --   key = "XF86AudioNext",
+  --   on_press = function()
+  --     awful.spawn("playerctl next")
+  --   end,
+  -- },
   {
     description = "1 - Previous track",
     key = "KP_End",
