@@ -114,6 +114,7 @@
       - android-file-transfer
       # - newsboat
       - mpv
+      - socat ## needed for mpv socket control
       - mpd
       - mpc
       - ncmpcpp

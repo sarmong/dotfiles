@@ -41,6 +41,7 @@
           - unclutter
           - kodi
           - mpv
+          - socat ## needed for mpv socket control
           - bluez
           - blueman
 
