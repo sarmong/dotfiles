@@ -12,14 +12,24 @@ for _ in $flags; do
       ;;
 
     --)
-      # shellcheck disable=2086
-      yt-dlp --embed-metadata -S "res:1080" --exec before_dl:"notify-send 'Started download'" --exec after_move:"notify-send 'Finished downloading'" $other_options "$@"
-
-      exit_status=$?
+      shift
+      break
       ;;
   esac
-
   shift
 done
 
-exit "$exit_status"
+# shellcheck disable=2086
+yt-dlp \
+  --embed-metadata \
+  -S "res:1080" \
+  --exec before_dl:"notify-send 'Started download'" \
+  --exec after_move:"notify-send 'Finished downloading'" \
+  --sponsorblock-mark sponsor \
+  --write-auto-subs \
+  --embed-subs \
+  --embed-thumbnail \
+  --embed-chapters \
+  --embed-info-json \
+  $other_options \
+  "$@"
