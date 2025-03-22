@@ -55,9 +55,12 @@ extension_opts.live_grep_args = {
     i = {
       ["<CR>"] = utils.pick_window_and_edit,
       ["<C-CR>"] = utils.multi_select,
-      ["<C-o>"] = lga_actions.quote_prompt({
-        postfix = ' --iglob "**/',
-      }),
+      ["<C-o>"] = function(...)
+        lga_actions.quote_prompt({
+          postfix = ' --iglob **/**/**',
+        })(...)
+        vim.cmd("norm hhhi")
+      end,
     },
   },
 }
