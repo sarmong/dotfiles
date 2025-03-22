@@ -188,3 +188,19 @@ man() {
 
   MANPAGER="sh -c 'col -bx | $command --theme='$theme' -l man -p'" command man "$@"
 }
+
+## Global pipx option
+## TODO: added in 1.5.0, available in debian 13
+## https://github.com/pypa/pipx/issues/754#issuecomment-1871660321
+pipx() {
+  if [[ "$@" =~ '--global' ]] || [[ "$@" =~ '-g' ]]; then
+    args=()
+    for arg in "$@"; do
+      # Ignore bad argument
+      [[ $arg != '--global' ]] && [[ $arg != '-g' ]] && args+=("$arg")
+    done
+    command sudo PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin PIPX_MAN_DIR=/usr/local/share/man pipx "${args[@]}"
+  else
+    command pipx "$@"
+  fi
+}
