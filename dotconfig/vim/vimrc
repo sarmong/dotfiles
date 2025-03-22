@@ -58,6 +58,8 @@ set list
 set listchars=tab:>-,trail:•
 set scrolloff=4
 
+set paste " because xterm-kitty does not claim bracketed paste
+
 "" Keymaps
 
 let mapleader=" "
