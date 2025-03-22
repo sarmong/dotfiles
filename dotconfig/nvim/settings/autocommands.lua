@@ -126,7 +126,7 @@ autocmd("FileType", {
 autocmd("VimEnter", {
   callback = function()
     local repo = vim.fn.argv()[1]
-    if not (repo and vim.startswith(repo, "gh:")) then
+    if not (repo and vim.endswith(repo, ".git")) then
       return
     end
 
