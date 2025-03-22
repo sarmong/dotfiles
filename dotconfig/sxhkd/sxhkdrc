@@ -32,7 +32,7 @@ super + shift + e
 	"$XDG_BIN_DIR"/rofi/power
 
 super + control + c
-	CM_LAUNCHER=rofi clipmenu
+	clipmenu
 ## }}}
 
 ## NOTIFICATIONS {{{

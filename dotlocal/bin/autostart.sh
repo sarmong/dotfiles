@@ -21,7 +21,7 @@ run set-wp
 run unclutter
 
 ## Applications
-run CM_SELECTIONS='clipboard' clipmenud
+run clipmenud
 run conky
 run flameshot
 run redshift
