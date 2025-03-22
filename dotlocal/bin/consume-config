@@ -1,0 +1,25 @@
+#!/bin/sh
+
+source="$(realpath "$1")"
+
+case "$source" in
+  $XDG_CONFIG_HOME*)
+    file="$(realpath --relative-to="$XDG_CONFIG_HOME" "$source")"
+    dest="$XDG_DOTFILES_DIR/dotconfig/$file"
+    link=true
+    ;;
+  $XDG_BIN_DIR*)
+    file="$(realpath --relative-to="$XDG_BIN_DIR" "$source")"
+    dest="$XDG_DOTFILES_DIR/dotlocal/bin/$file"
+    ;;
+  *)
+    echo "Don't know what to do"
+    exit 1
+    ;;
+esac
+
+mv "$source" "$dest"
+
+if [ "$link" = true ]; then
+  ln -vs "$dest" "$source"
+fi
