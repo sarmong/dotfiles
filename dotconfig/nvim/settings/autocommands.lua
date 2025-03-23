@@ -22,6 +22,21 @@ autocmd({ "BufNewFile", "BufRead" }, {
     vim.opt_local.wrap = false
     vim.opt_local.textwidth = 80
     vim.opt_local.listchars = "tab:> "
+
+    autocmd("ModeChanged", {
+      group = "md update listchars",
+      pattern = "n:[vV]",
+      callback = function()
+        vim.opt_local.listchars = "tab:> ,trail:•"
+      end,
+    })
+    autocmd("ModeChanged", {
+      group = "md update listchars",
+      pattern = "[vV]:n",
+      callback = function()
+        vim.opt_local.listchars = "tab:> "
+      end,
+    })
   end,
 })
 
