@@ -21,6 +21,7 @@ autocmd({ "BufNewFile", "BufRead" }, {
   callback = function()
     vim.opt_local.wrap = false
     vim.opt_local.textwidth = 80
+    vim.opt_local.listchars = "tab:> "
   end,
 })
 
