@@ -1,5 +1,5 @@
 {
   "search": {
-    "exclude": ["dotlocal/bin/data"]
+    "exclude": ["dotlocal/bin/data", "dotconfig/zsh/plugins"]
   }
 }
