@@ -5,6 +5,7 @@ return {
   ["aerial.nvim"] = "3284a2cb858ba009c79da87d5e010ccee3c99c4d",
   ["alpha-nvim"] = "de72250e054e5e691b9736ee30db72c65d560771",
   ["barbar.nvim"] = "807bede7ef1d8e2ac5f108e9ac8123b1e2d321e3",
+  ["blink.cmp"] = "49f211fe5d729df53df4c042d7c3464cf47d199e",
   ["bmessages.nvim"] = "985c6973bc27888598a03f4766a2481248a599b2",
   ["buffer_manager.nvim"] = "03df0142e60cdf3827d270f01ccb36999d5a4e08",
   catppuccin = "4bb938bbba41d306db18bf0eb0633a5f28fd7ba0",

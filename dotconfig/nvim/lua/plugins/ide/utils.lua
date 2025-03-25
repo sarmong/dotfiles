@@ -75,9 +75,10 @@ local get_default_lsp_config = function()
     flags = {
       debounce_text_changes = 150,
     },
-    capabilities = req("cmp_nvim_lsp").default_capabilities(
-      vim.lsp.protocol.make_client_capabilities()
-    ),
+    -- capabilities = req("cmp_nvim_lsp").default_capabilities(
+    --   vim.lsp.protocol.make_client_capabilities()
+    -- ),
+    capabilities = req("blink.cmp").get_lsp_capabilities(),
     handlers = {
       ["textDocument/rename"] = rename_with_qf,
     },
