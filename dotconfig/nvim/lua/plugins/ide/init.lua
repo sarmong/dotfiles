@@ -17,6 +17,7 @@ vim.iter(vim.fs.dir(plugins_path)):each(function(v)
 end)
 
 req("plugins.ide.protocols.mason")
+req("plugins.ide.protocols.snippets")
 req("plugins.ide.protocols.cmp")
 req("plugins.ide.protocols.treesitter")
 req("plugins.ide.protocols.lsp")

@@ -10,28 +10,7 @@ Plugin({
   },
 })
 
-Plugin({
-  source = "L3MON4D3/LuaSnip",
-  depends = {
-    "saadparwaiz1/cmp_luasnip",
-    "rafamadriz/friendly-snippets",
-    "ChristianChiarulli/html-snippets",
-    {
-      source = "dsznajder/vscode-es7-javascript-react-snippets",
-      hooks = {
-        post_install = function(spec)
-          system(
-            "npx --yes yarn install --frozen-lockfile && npx --yes yarn compile",
-            { cwd = spec.path, detach = true, shell = true }
-          )
-        end,
-      },
-    },
-  },
-})
-
 local cmp = req("cmp")
-local luasnip = req("luasnip")
 
 local kind_icons = {
   Text = "",
@@ -64,7 +43,7 @@ local kind_icons = {
 cmp.setup({
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body) -- For `luasnip` users.
+      req("luasnip").lsp_expand(args.body)
     end,
   },
   window = { completion = { border = "single" } },
@@ -78,13 +57,13 @@ cmp.setup({
     ["<C-u>"] = cmp.mapping.scroll_docs(4),
 
     ["<C-l>"] = cmp.mapping(function()
-      if luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
+      if req("luasnip").expand_or_locally_jumpable() then
+        req("luasnip").expand_or_jump()
       end
     end, { "i", "s" }),
     ["<C-h>"] = cmp.mapping(function()
-      if luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
+      if req("luasnip").locally_jumpable(-1) then
+        req("luasnip").jump(-1)
       end
     end, { "i", "s" }),
 
@@ -166,44 +145,3 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   }),
 })
--- @TODO make it more explicit how the snippets are loaded
-req("luasnip.loaders.from_vscode").lazy_load()
-
-local fmt = require("luasnip.extras.fmt").fmt
-local i = luasnip.insert_node
-local d = luasnip.dynamic_node
-local sn = luasnip.snippet_node
-
-local get_random_color = function()
-  local colors = {
-    "red",
-    "green",
-    "yellow",
-    "orange",
-    "pink",
-    "brown",
-    "purple",
-  }
-  return colors[math.random(#colors)]
-end
-
-luasnip.add_snippets("javascript", {
-  luasnip.snippet(
-    "cvv",
-    fmt('console.log("%c{}: " + {}, "color: {}")', {
-      i(1),
-      d(2, function(args)
-        return sn(nil, { i(1, args[1]) })
-      end, { 1 }),
-      d(3, function()
-        return sn(nil, { i(1, get_random_color()) })
-      end),
-    })
-  ),
-})
-luasnip.filetype_extend("typescript", { "javascript" })
-luasnip.filetype_extend("javascriptreact", { "javascript" })
-luasnip.filetype_extend(
-  "typescriptreact",
-  { "javascript", "typescript", "javascriptreact" }
-)
