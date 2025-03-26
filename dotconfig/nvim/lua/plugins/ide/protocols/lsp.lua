@@ -29,8 +29,11 @@ vim.diagnostic.config({
   virtual_text = false,
 })
 
-vim.lsp.handlers["textDocument/hover"] =
-  vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+local orig_hover = vim.lsp.buf.hover
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.hover = function()
+  orig_hover({ border = "rounded" })
+end
 
 mapl({
   l = {
