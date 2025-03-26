@@ -25,18 +25,20 @@ contrib.formatters({ "json", "jsonc" }, { "prettierd", "prettier" })
 contrib.ts_parsers("json", "json5", "jsonc")
 
 -- HTMX
-contrib.mason("htmx-lsp")
-contrib.lsp("htmx", function()
-  return {
-    filetypes = {
-      "html",
-      "templ",
-      "javascriptreact",
-      "typescriptreact",
-      "astro",
-    },
-  }
-end)
+-- TODO: lsp.buf.hover merges output from all lsps in 0.11
+-- htmx-lsp errors and thus all hover doesn't work in ts/js
+-- contrib.mason("htmx-lsp")
+-- contrib.lsp("htmx", function()
+--   return {
+--     filetypes = {
+--       "html",
+--       "templ",
+--       "javascriptreact",
+--       "typescriptreact",
+--       "astro",
+--     },
+--   }
+-- end)
 
 -- Other TS parser
 contrib.ts_parsers(
