@@ -27,9 +27,16 @@ check_checksum_from_file() {
 
 check_checksum_from_description() {
   file_url="$1"
+  version="$2"
   filename="$(basename "$file_url")"
 
-  remote_checksum=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/tags/nightly" | jq '.body' | sed 's/\\n/\n/g' | grep "$filename$" | awk '{print $1}')
+  if [ "$version" == "latest" ]; then
+    version="stable"
+  fi
+
+  echo "Getting checksum from description..."
+
+  remote_checksum=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/tags/$version" | jq '.body' | sed 's/\\n/\n/g' | grep -E '\w{64}\s+nvim-linux-x86_64.appimage\\r' | awk '{print $1}')
 
   local_checksum=$(sha256sum "$lib_dir/$filename" | awk '{print $1}')
 
@@ -43,10 +50,8 @@ check_checksum() {
   url="$1"
   version="$2"
 
-  if [ "$version" == "nightly" ]; then
-    check_checksum_from_description "$url"
-  else
-    check_checksum_from_file "$url"
+  if ! check_checksum_from_file "$url"; then
+    check_checksum_from_description "$url" "$version"
   fi
 }
 
