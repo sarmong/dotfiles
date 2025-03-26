@@ -82,7 +82,7 @@ return {
   ["promise-async"] = "119e8961014c9bfaf1487bf3c2a393d254f337e2",
   ["qmk.nvim"] = "ad51cb15e607da0983fcf9882d38a2aafac32149",
   ["refactoring.nvim"] = "2101686f970cb0544065b73173f12d06d60da38a",
-  ["render-markdown.nvim"] = "57fa691b9e374c6539cc0340062dac8f42d4bd8b",
+  ["render-markdown.nvim"] = "84d413b0c432adaeaf3dcaac646638bd99d06aa6",
   ["scratch.vim"] = "adf826b1ac067cdb4168cb6066431cff3a2d37a3",
   ["smart-splits.nvim"] = "de1d5ed60c1407b7704495d7b3c8e262358728c9",
   ["sqlite.lua"] = "d0ffd703b56d090d213b497ed4eb840495f14a11",
