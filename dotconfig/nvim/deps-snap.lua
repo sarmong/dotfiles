@@ -49,7 +49,7 @@ return {
   neogit = "63124cf520ff24d09deb3b850e053908ab0fc66a",
   ["newsboat.vim"] = "5edcb4fd51533363c0e15a903528350a8af2bfc6",
   ["none-ls-shellcheck.nvim"] = "0f84461241e76e376a95fb7391deac82dc3efdbf",
-  ["none-ls.nvim"] = "f41624ea1a73f020ddbd33438f74abb95ea17d55",
+  ["none-ls.nvim"] = "a117163db44c256d53c3be8717f3e1a2a28e6299",
   ["notifier.nvim"] = "eea2d368ffd1b527e6f0c454c2cd907fd63420d8",
   ["nvim-autopairs"] = "68f0e5c3dab23261a945272032ee6700af86227a",
   ["nvim-bqf"] = "ebb6d2689e4427452180f17c53f29f7e460236f1",
