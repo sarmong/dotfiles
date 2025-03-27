@@ -205,6 +205,7 @@ binary_packages:
     dependencies:
       - libmagic-dev
       - libcrypto++-dev
+      - libssl-dev
     build_dir: ctpv-{{ vars.binary_packages['ctpv'].version }}
     build_cmds:
       - make
