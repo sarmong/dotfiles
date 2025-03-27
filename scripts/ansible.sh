@@ -3,7 +3,7 @@
 set -euo pipefail
 
 script_dir="$(dirname "${BASH_SOURCE[0]}")"
-source "$script_dir/../dotconfig/zsh/xdg-cleanup"
+source "$script_dir/../dotconfig/zsh/zsh-exports"
 
 ANSIBLE_PLAYBOOK=ansible/main.yml
 ANSIBLE_CONFIG=ansible/ansible.cfg
