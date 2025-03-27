@@ -35,9 +35,3 @@
         - "{{ temp_dir }}/common/index.theme"
         - "{{ temp_dir }}/common/index.theme-dark"
         - "{{ temp_dir }}/common/index.theme-darker"
-
-    - name: gtk | update gtk-3 config
-      copy:
-        src: gtk3-settings.ini
-        dest: "{{ ansible_env.XDG_CONFIG_HOME }}/gtk-3.0/settings.ini"
-        mode: preserve
