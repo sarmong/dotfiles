@@ -22,6 +22,13 @@
   loop_control:
     loop_var: file
 
+- name: kitty | create icons dir
+  become: true
+  file:
+    path: "/usr/local/share/icons/hicolor/256x256/apps"
+    state: directory
+    mode: "0755"
+
 - name: kitty | link icon
   become: true
   file:
