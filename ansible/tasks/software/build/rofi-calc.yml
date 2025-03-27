@@ -1,5 +1,7 @@
 # see https://github.com/pacstall/pacstall-programs/issues/6149
 - name: rofi-calc | get installed version
+  tags:
+    - rofi-calc
   command: ls /usr/lib/x86_64-linux-gnu/rofi/calc.so
   ignore_errors: true
   changed_when: false

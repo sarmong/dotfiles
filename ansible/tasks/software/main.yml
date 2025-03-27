@@ -130,7 +130,6 @@
       # - rofi-calc
       - clipmenu-git
       - libinput-gestures
-      - auto-cpufreq
       - czkawka-gui-bin
       - dragon-drop
       - vscodium-deb

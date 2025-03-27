@@ -64,6 +64,7 @@
         state: link
 
     - name: Create external drives dir
+      become: true
       file:
         path: "/media/{{ username }}"
         owner: root

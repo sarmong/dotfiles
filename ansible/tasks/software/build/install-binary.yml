@@ -9,6 +9,7 @@
   vars:
     pkg_spec: "{{ binary_packages[item] }}"
     pkg_name: "{{ pkg_spec.name }}"
+    pkg_type: "{{ pkg_spec.get('type') }}"
     url: "{{ pkg_spec.url }}"
     version: "{{ pkg_spec.version }}"
     checksum: "{{ pkg_spec.checksum }}"
@@ -24,7 +25,7 @@
       "{{ url | urlsplit('path') | basename | regex_search('^[^.]+$') is not
       none }}"
     extract_dir:
-      "{{ pkg_spec.extract_dir | default((pkg_spec.type == 'build') |
+      "{{ pkg_spec.extract_dir | default((pkg_type == 'build') |
       ternary(ansible_env.HOME ~ '/.local/src/' ~ pkg_name ~ '-' ~ version,
       '/tmp/' ~ pkg_name ~ '-' ~ version)) }}"
   block:
@@ -61,6 +62,7 @@
         dest: "/tmp/{{ filename }}"
         checksum: "{{ checksum }}"
         mode: "0644"
+        timeout: 100
       when: current_version is undefined or current_version != version
 
     - name: "{{ item }} | install from archive"
@@ -87,7 +89,7 @@
             loop_var: cmd
           args:
             chdir: "{{ extract_dir }}/{{ pkg_spec.build_dir }}"
-          when: "pkg_spec.build_cmds is defined and pkg_spec.type == 'build'"
+          when: "pkg_spec.build_cmds is defined and pkg_type == 'build'"
 
         - name: "{{ item }} | find binary in extracted files"
           find:
@@ -96,9 +98,10 @@
             recurse: true
             file_type: file
           register: found_binaries
-          when: "pkg_spec.type != 'build'"
+          when: "pkg_type != 'build'"
 
         - name: "{{ item }} | install binary to destination"
+          become: true
           copy:
             src: "{{ found_binaries.files[0].path }}"
             dest: "/usr/local/bin/{{ pkg_name }}"
@@ -106,13 +109,13 @@
             owner: root
             group: root
             remote_src: true
-          when: "pkg_spec.type != 'build'"
+          when: "pkg_type != 'build'"
 
         - name: "{{ item }} | remove tmp dir"
           file:
             path: "{{ extract_dir }}"
             state: absent
-          when: "pkg_spec.type != 'build'"
+          when: "pkg_type != 'build'"
 
     - name: "{{ item }} | copy binary to destination"
       become: true
