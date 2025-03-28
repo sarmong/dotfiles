@@ -62,6 +62,8 @@ contrib.ts_parsers(
   "tsv"
 )
 
+contrib.mason("tree-sitter-cli") -- required by latex ts parser
+
 -- Other prettier fts
 contrib.formatters({ "graphql", "handlebars" }, { "prettierd", "prettier" })
 
