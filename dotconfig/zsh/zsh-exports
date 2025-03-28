@@ -29,3 +29,5 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export MANWIDTH="80"
 # fixes formatting issues
 export MANROFFOPT="-c"
+
+[ -f "$HOME/.config/zsh/zsh-local" ] && . "$HOME/.config/zsh/zsh-local"
