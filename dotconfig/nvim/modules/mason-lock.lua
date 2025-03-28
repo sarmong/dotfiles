@@ -87,10 +87,7 @@ local function setup_hooks()
   })
   autocmd("User", {
     pattern = "MasonToolsUpdateCompleted",
-    callback = vim.schedule_wrap(function(e)
-      if not vim.tbl_isempty(e.data) then
-        save_lockfile()
-      end
+    callback = vim.schedule_wrap(function()
       mason_tool_installing = false
     end),
   })
