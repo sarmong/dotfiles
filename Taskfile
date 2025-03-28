@@ -38,7 +38,7 @@ ansible-check() {
 }
 
 sync-public() {
-  scripts/sync-repos.sh
+  scripts/sync-repos.sh "$@"
 }
 
 "$@"
