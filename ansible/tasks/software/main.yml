@@ -191,6 +191,7 @@
       - shellcheck
       - yad
       - pipx
+      - golang
 
 - name: Install pipx
   include_tasks: tasks/software/build/pipx.yml
