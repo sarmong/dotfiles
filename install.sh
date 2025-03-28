@@ -29,8 +29,8 @@ main() {
   _task "Apt upgrade"
   _cmd "sudo apt-get -y upgrade"
 
-  _task "Install git, ansible"
-  _cmd "sudo apt-get install -y git ansible"
+  _task "Install git, ansible, python3-watchdog" ## TODO: watchdog used by beautiful-output, check if needed
+  _cmd "sudo apt-get install -y git ansible python3-watchdog"
 
   if [ ! -d "$DOTFILES_DIR" ]; then
     _task "Clone dotfiles"
