@@ -19,9 +19,9 @@ _runn() {
     # Extract functions that do not start with an underscore
     functions=($(awk '
       /^[a-zA-Z_][a-zA-Z0-9_-]* *\(\)/ {
-        func = $1
-        sub(/ *\(.*/, "", func)
-        if (func !~ /^_/) print func
+        func_name = $0
+        sub(/ *\(\).*/, "", func_name)
+        if (func_name !~ /^_/) print func_name
       }
     ' "$file"))
   else
