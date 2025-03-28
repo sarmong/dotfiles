@@ -41,6 +41,8 @@ req("blink.cmp").setup({
   -- See :h blink-cmp-config-keymap for defining your own keymap
   keymap = { preset = "default" },
 
+  signature = { enabled = true },
+
   completion = {
     documentation = {
       auto_show = false,
