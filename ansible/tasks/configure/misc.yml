@@ -78,11 +78,14 @@
         dest: ~/drives
         state: link
 
-    - name: Mask GTK portal service (causes slow startup of gtk apps)
+    - name: Mask portal services 
       systemd_service:
-        name: xdg-desktop-portal-gtk
+        name: "{{ item }}"
         masked: true
         scope: user
+      loop:
+        - xdg-desktop-portal-gtk ## causes slow startup of gtk apps
+        - plasma-xdg-desktop-portal-kde ## slow startup of blueman-manager and tg
 
     - name: Update tldr
       command:
@@ -115,6 +118,8 @@
         group: "{{ lookup('env', 'USER') }}"
 
 - name: firefox config
+  tags:
+    - firefox
   block:
     - name: firefox | check if *.default-release user exists
       find:
