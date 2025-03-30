@@ -35,7 +35,7 @@ end, { nargs = "?" })
 
 command("Cd", function()
   local rd = req("modules.root-dir")
-  local root = rd.get_project_root()
+  local root = rd.get_project_root() or vim.fn.expand("%:p:h")
   rd.set_root(root)
   req("nvim-tree.api").tree.change_root(root)
 end)
