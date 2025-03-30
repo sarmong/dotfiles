@@ -53,7 +53,7 @@
       - playerctl
       - bluez
       - blueman
-      - budgie-network-manager-applet
+      - network-manager-gnome
       - gnome-keyring
       - xfce4-power-manager
       - mate-system-monitor
