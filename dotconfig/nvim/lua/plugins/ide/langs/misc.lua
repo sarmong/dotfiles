@@ -3,6 +3,7 @@ local contrib = req("plugins.ide.contrib")
 -- Ansible
 contrib.mason("ansible-language-server", "ansible-lint")
 contrib.lsp("ansiblels")
+contrib.formatters("yaml.ansible", "ansible-lint")
 
 -- YAML
 contrib.mason("prettierd", "prettierd")
