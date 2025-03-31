@@ -89,3 +89,5 @@
   fetch-pull-requests = fetch origin '+refs/pull/*/head:refs/remotes/origin/pull/*'
   unpushed = log @{u}..
   rebase-unpushed = rebase -i @{u}
+[merge "ours"]
+	driver = true
