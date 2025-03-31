@@ -35,3 +35,16 @@
         - "{{ temp_dir }}/common/index.theme"
         - "{{ temp_dir }}/common/index.theme-dark"
         - "{{ temp_dir }}/common/index.theme-darker"
+
+- name: set cursor theme
+  tags:
+    - cursor
+  become: true
+  block:
+    - name: install breeze theme
+      apt:
+        name: breeze-cursor-theme
+    - name: set alternative
+      alternatives:
+        name: x-cursor-theme
+        path: /etc/X11/cursors/breeze_cursors.theme
