@@ -31,6 +31,8 @@ if [ "$wm" == "bspwm" ]; then
   quit_cmd="bspc quit"
 elif [ "$wm" == "awesome" ]; then
   quit_cmd="echo 'awesome.quit()' | awesome-client"
+elif [ "$wm" == "qtile" ]; then
+  quit_cmd="qtile cmd-obj -o root -f shutdown"
 fi
 
 case "$selected" in

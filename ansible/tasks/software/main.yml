@@ -201,3 +201,4 @@
     pipx_args:
       - name: git-filter-repo
       - name: beets
+      - name: qtile

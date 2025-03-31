@@ -1,5 +1,7 @@
 ## TODO: use --global in Debian 13
 - name: pipx packages
+  tags:
+    - pipx
   become: true
   community.general.pipx: "{{ item }}"
   loop: "{{ pipx_args }}"
