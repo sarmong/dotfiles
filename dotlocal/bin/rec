@@ -51,6 +51,8 @@ awesome-client 'rec_widget:emit_signal("start_rec")'
 
 ffmpeg -f x11grab -s "$width"x"$height" -i ":0.0+$x,$y" -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -r 30 -preset ultrafast -qp 0 "$output_file" &
 
+## try to capture sound
+# ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -s "$width"x"$height" -i ":0.0+$x,$y" -f pulse -i "$(pactl get-default-sink).monitor" -c:v libx264 -preset ultrafast -c:a aac "$output_file" &
 ffmpeg_pid=$!
 
 wait "$ffmpeg_pid"
