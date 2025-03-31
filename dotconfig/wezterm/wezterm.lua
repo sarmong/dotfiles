@@ -15,6 +15,7 @@ config.font = wezterm.font("FiraCode Nerd Font", {
 })
 config.line_height = 1.5
 config.cell_width = 1
+config.enable_kitty_keyboard = true
 
 -- and finally, return the configuration to wezterm
 return config
