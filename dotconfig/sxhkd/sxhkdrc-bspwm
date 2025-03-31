@@ -1,59 +1,6 @@
-super + Return
-  $TERMINAL || kitty || alacritty || st
-
-super + control + Return
-  $TERMINAL --class centered
-
-## Launchers
-super + e
-  rofi -show drun -monitor -1
-
-super + r
-  rofi -show window -monitor -1
-
-super + d
-  run_script
-
-super + x
-	sessions
-
-super + b
-	bookmarks $XDG_NC_DIR/Documents/bookmarks.txt
-
-super + c
-	rofi -show calc
-
-super + shift + e
-	"$XDG_BIN_DIR"/rofi/power
-
-super + control + c
-	CM_LAUNCHER=rofi clipmenu
-
-## Shortcuts
-
-super + shift + c
-	$TERMINAL --working-directory $XDG_DOTFILES_DIR -e $SHELL -c 'nvim ; $SHELL'
-
-super + shift + n
-	$TERMINAL --working-directory $XDG_NC_DIR/Vault -e $SHELL -c 'nvim ; $SHELL'
-
-super + period
-	dunstctl close-all
-
-super + comma
-	dunstctl history-pop
-
-# TODO doesn't work?
-super + slash
-	dunstctl action
-
-super + n
-	nothis
-
 super + z
 	tdrop -ma -w 50% -h 440 -x 25% -y 35 $TERMINAL
 
-## -- BSPWM Bindings -- ##
 # Quit bspwm
 super + shift + Escape
   prompt "Are you sure you would like to quit this Xsession" "bspc quit"
@@ -162,49 +109,4 @@ ctrl + alt + shift + {h,j,k,l}
 super + {Left,Right,Up,Down}
   bspc node -v {-20 0,20 0,0 -20,0 20}
 
-#---System Control---#
-# super + shift + {r, s}
- #  prompt {"Are you sure you would like to reboot?" "sudo reboot", "Are you sure you would like to shutdown" "sudo shutdown"}
-
-# Lock the screen
-# super + shift + e
-#  betterlockscreen -l
-
-# super + shift + c
-#   toggleprogram "picom" "--experimental-backends"
-
-
-## Audio controls
-
-XF86AudioRaiseVolume
-	pulsemixer --change-volume +5
-
-XF86AudioLowerVolume
-	pulsemixer --change-volume -5
-
-XF86AudioMute
-	pulsemixer --toggle-mute
-
-{ XF86AudioPlay, alt + Up }
-	playerctl play-pause
-
-alt + Down
-	playerctl pause --all-players
-
-{ XF86AudioPrev, alt + Left }
-	playerctl previous
-
-{ XF86AudioNext, alt + Right }
-	playerctl next
-
-
-## Sreen brightness controls
-
-XF86MonBrightnessUp
-	brightnessctl set +10%
-
-XF86MonBrightnessDown
-	brightnessctl set 10%-
-
-super + p
-  flameshot gui
+# vim:foldmethod=marker ft=sxhkd

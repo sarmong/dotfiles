@@ -9,7 +9,16 @@ run dunst
 run lxpolkit
 run nm-applet --indicator # network tray
 run picom --daemon
-run sxhkd
+
+if ! pidof sxhkd; then
+  wm=$(wmctrl -m | head -1 | awk -F": " '{print $2}')
+
+  if [ "$wm" = "bspwm" ]; then
+    cat "$XDG_CONFIG_HOME/sxhkd/sxhkdrc" "$XDG_CONFIG_HOME/sxhkd/sxhkdrc-bspwm" | sxhkd -c /dev/stdin &
+  else
+    sxhkd &
+  fi
+fi
 
 ## Configurations
 run "$XDG_BIN_DIR"/setup/screenlayout.sh
