@@ -3,6 +3,7 @@
 configuration {
 	modi: "run,drun,window,combi,calc";
 	font: "mono 12";
+	monitor: "-1"; // start on focused monitor
 	location: 0;
 	yoffset: 0;
 	xoffset: 0;
