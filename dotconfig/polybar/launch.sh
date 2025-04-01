@@ -2,6 +2,8 @@
 
 polybar-msg cmd quit
 
+PATH="$PATH:$XDG_CONFIG_HOME/polybar/bin"
+
 monitors=$(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}')
 
 i=0

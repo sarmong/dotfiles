@@ -32,7 +32,7 @@ bspc config external_rules_command "$HOME/.config/bspwm/external_rules"
 ###---Autostart---###
 # "$XDG_CONFIG_HOME/bspwm/autostart.sh" "$1"
 
-PATH="$PATH:$XDG_BIN_DIR/polybar" "$XDG_CONFIG_HOME/polybar/launch.sh" &
+"$XDG_CONFIG_HOME/polybar/launch.sh" &
 autostart.sh &
 
 # for WebStorm to work correctly
