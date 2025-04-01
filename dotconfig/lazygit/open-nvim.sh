@@ -1,6 +1,6 @@
 #!/bin/sh
 
-full_path="$PWD/$1"
+full_path="$1"
 line="$2"
 
 if [ -z "$TMUX" ]; then
