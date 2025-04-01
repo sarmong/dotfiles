@@ -33,6 +33,8 @@ elif [ "$wm" == "awesome" ]; then
   quit_cmd="echo 'awesome.quit()' | awesome-client"
 elif [ "$wm" == "qtile" ]; then
   quit_cmd="qtile cmd-obj -o root -f shutdown"
+elif [ "$wm" == "i3" ]; then
+  quit_cmd="i3-msg exit"
 fi
 
 case "$selected" in
