@@ -82,7 +82,6 @@
             mode: "0755"
 
         - name: "{{ item }} | build"
-          become: true
           command: "{{ cmd }}"
           loop: "{{ pkg_spec.build_cmds }}"
           loop_control:

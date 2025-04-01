@@ -209,7 +209,7 @@ binary_packages:
     build_dir: ctpv-{{ vars.binary_packages['ctpv'].version }}
     build_cmds:
       - make
-      - make install
+      - sudo make install
 
   kitty:
     name: kitty
@@ -223,3 +223,19 @@ binary_packages:
       vars.binary_packages['kitty'].version }}-x86_64.txz
     check_version_cmd: "kitty --version | awk '{ print $2 }'"
     post_install_task: tasks/software/build/kitty.yml
+
+  windowlist:
+    name: windowlist
+    type: build
+    version: e8113efad7721af2c8749ed573ad7efd9420d68d4139bfa1a2e9b2b19c1854df ## hash of the binary for checking
+    git_commit: 662d2a9dec7d6aec3319219d11ac12670197a624
+    checksum: sha256:1c0c527d18259bf1cb2411a5c6d9ec4bea4288a2cc411a8e89bc4f5e538d16f1
+    extract_dir: "{{ ansible_env.get('XDG_SRC_DIR') }}/windowlist"
+    build_dir: windowlist-{{ vars.binary_packages['windowlist'].git_commit }}
+    url:
+      https://github.com/tuurep/windowlist/archive/{{
+      vars.binary_packages['windowlist'].git_commit }}.zip
+    check_version_cmd: "sha256sum {{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin/windowlist | awk '{print $1}'"
+    build_cmds:
+      - make
+      - make install DEST={{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin/windowlist
