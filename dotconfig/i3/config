@@ -23,8 +23,8 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
 bindsym $mod+m layout toggle split
 
 bindsym $mod+f floating toggle
@@ -51,6 +51,13 @@ set $w8 "8"
 set $w9 "9"
 set $w10 "10"
 
+workspace $w1 output primary
+workspace $w2 output primary
+workspace $w3 output primary
+workspace $w8 output primary
+workspace $w9 output primary
+workspace $w10 output primary
+
 # switch to workspace
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
@@ -63,6 +70,8 @@ bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace $w10
 
+# bindsym $mod+Shift+i workspace 10
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
 bindsym $mod+Shift+2 move container to workspace $w2
@@ -73,7 +82,17 @@ bindsym $mod+Shift+6 move container to workspace $w6
 bindsym $mod+Shift+7 move container to workspace $w7
 bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9
-bindsym $mod+Shift+0 move container to workspace $w10
+# bindsym $mod+Shift+0 move container to workspace $w10
+
+bindsym $mod+s exec ~/.config/i3/bin/switch_ws.py next
+bindsym $mod+w exec ~/.config/i3/bin/switch_ws.py prev
+bindsym $mod+Escape workspace back_and_forth
+
+bindsym $mod+Shift+s move container to workspace next
+bindsym $mod+Shift+w move container to workspace prev
+
+
+bindsym $mod+o exec ~/.config/i3/bin/toggle_screen.sh
 
 # reload the configuration file
 bindsym $mod+Ctrl+r reload
@@ -127,6 +146,7 @@ hide_edge_borders both # hides indicator line
 # finds out, if available)
 bar {
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        tray_output primary
         position top
         colors {
                 background $bg-color
@@ -138,5 +158,7 @@ bar {
               }
 }
 
+bindsym $mod+z exec tdrop -ma -w 50% -h 440 -x 25% -y 35 $TERMINAL --class dropdown-term
+for_window [class="dropdown-term"] floating enable
 
 exec_always autostart.sh
