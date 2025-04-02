@@ -1,0 +1,46 @@
+---
+- name: set up telegram
+  tags:
+    - telegram
+  block:
+    - name: telegram | install
+      become: true
+      pacstall:
+        name: telegram-bin
+
+    - name: telegram | create mimeapps.list
+      copy:
+        dest: "{{ ansible_env.XDG_CONFIG_HOME }}/tg-override-mimeapps.list"
+        content: |
+          [Default Applications]
+          text/html=firefox.desktop;
+          application/xhtml+xml=firefox.desktop;
+          x-scheme-handler/about=firefox.desktop;
+          x-scheme-handler/http=firefox.desktop;
+          x-scheme-handler/https=firefox.desktop;
+          x-scheme-handler/unknown=firefox.desktop;
+
+          # vim:ft=dosini
+        mode: "0644"
+
+    - name: telegram | link desktop file
+      file:
+        # src: ansible/tasks/software/build/files/org.telegram.desktop
+        src:
+          "{{ playbook_dir }}/tasks/software/build/files/org.telegram.desktop"
+        dest:
+          "{{ ansible_env.HOME }}/.local/share/applications/org.telegram.desktop"
+        state: link
+
+    ## Disables creating its own .desktop file on each startup
+    ## and opens link in firefox only
+    ## xdg-open -> xdg-mime query default -> tg-override-mimeapps.list
+    - name: telegram | create wrapper script
+      become: true
+      copy:
+        dest: /usr/local/bin/telegram
+        content: |
+          #!/bin/sh
+
+          DESKTOPINTEGRATION=1 XDG_CURRENT_DESKTOP=tg-override /usr/bin/telegram "$@"
+        mode: "0755"

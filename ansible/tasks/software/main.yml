@@ -135,7 +135,6 @@
       - vscodium-deb
       - brave-browser-deb
       # - protonvpn-gui
-      - telegram-bin
       - freetube-deb
     # - spotify-client-deb
     # - activitywatch-bin
