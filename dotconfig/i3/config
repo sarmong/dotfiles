@@ -165,7 +165,9 @@ bar {
     }
 }
 
-bindsym $mod+z exec tdrop -ma -w 50% -h 440 -x 25% -y 35 $TERMINAL --class dropdown-term
+bindsym $mod+z exec quake.sh term
+bindsym $mod+a exec quake.sh scratch
+
 for_window [class="dropdown-term"] floating enable
 
 exec_always autostart.sh
