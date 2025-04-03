@@ -80,6 +80,12 @@ gl.setup({
       vim.fn.setreg("+", url)
     end,
   },
+  callbacks = {
+    ["github-work.com"] = function(...)
+      local url = req("gitlinker.hosts").get_github_type_url(...)
+      return url:gsub("github%-work", "github")
+    end,
+  },
 
   mappings = "<nop>",
 })
