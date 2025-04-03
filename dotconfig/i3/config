@@ -128,37 +128,41 @@ mode "resize" {
 
 bindsym $mod+Shift+r mode "resize"
 
-# COLORS
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+set $lightgray #bdae93
 
-# window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-
-hide_edge_borders both # hides indicator line
-
+# class                 border       backgr      text          indicator  child_border
+client.focused          #32302f      #32302f     $lightgray    $purple    $darkgray
+client.focused_inactive #1b1b1b      #1b1b1b     $lightgray    $purple    $darkgray
+client.unfocused        #1b1b1b      #1b1b1b     $lightgray    $purple    $darkgray
+client.urgent           $red         $red        $white        $red       $red
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        tray_output primary
-        position top
-        colors {
-                background $bg-color
-                separator #757575
-                #                  border             background         text
-                focused_workspace  $bg-color          $bg-color          $text-color
-                inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-                urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-              }
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    tray_output primary
+    position top
+    colors {
+        # bar background color
+        background $bg
+        # text color used for blocks that do not have a color specified.
+        statusline $lightgray
+        # workspaces section            
+        #                    border  backgr. text
+        focused_workspace    $lightgray $lightgray $bg
+        inactive_workspace   $darkgray $darkgray $lightgray
+        active_workspace     $darkgray $darkgray $lightgray
+        urgent_workspace     $red $red $bg
+    }
 }
 
 bindsym $mod+z exec tdrop -ma -w 50% -h 440 -x 25% -y 35 $TERMINAL --class dropdown-term
