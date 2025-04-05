@@ -1,35 +1,28 @@
-local root = vim.fn.fnamemodify("./.repro", ":p")
+local root = vim.fn.fnamemodify("./nvim-debug-home", ":p")
 
--- set stdpaths to use .repro
 for _, name in ipairs({ "config", "data", "state", "cache" }) do
   vim.env[("XDG_%s_HOME"):format(name:upper())] = root .. "/" .. name
 end
 
--- bootstrap lazy
-local lazypath = root .. "/plugins/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  })
+local pack_path = vim.fn.stdpath("data") .. "/site/pack/plugins"
+
+local function install_plugin(slug)
+  local plugin_name = vim.fs.basename(slug)
+  local plugin_path = vim.fs.joinpath(pack_path, "opt", plugin_name)
+  if vim.fn.isdirectory(plugin_path) == 0 then
+    vim.print("Installing " .. plugin_name .. "...")
+    vim
+      .system({
+        "git",
+        "clone",
+        "https://github.com/" .. slug .. ".git",
+        "--filter=blob:none",
+        plugin_path,
+      })
+      :wait()
+  end
+
+  vim.cmd.packadd(plugin_name)
 end
-vim.opt.runtimepath:prepend(lazypath)
 
--- install plugins
-local plugins = {
-  -- do not remove the colorscheme!
-  "folke/tokyonight.nvim",
-  -- add any other pugins here
-}
-require("lazy").setup(plugins, {
-  root = root .. "/plugins",
-})
-
--- add anything else here
-vim.opt.termguicolors = true
--- do not remove the colorscheme!
-vim.cmd([[colorscheme tokyonight]])
+install_plugin("nvim-treesitter/nvim-treesitter")
