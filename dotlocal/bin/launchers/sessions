@@ -53,23 +53,30 @@ if [ -d "$selected/.bare" ]; then
   fi
 fi
 
-is_tmux_cliend_focused() {
-  focused_window_id=$(xdotool getactivewindow)
-  window_class=$(xprop -id "$focused_window_id" WM_CLASS | awk '{print $4}')
+get_tmux_client_var() {
+  is_child() {
+    child_id=$1
+    parent_id=$2
 
-  ## Need \"\" because window_class is surrounded with ""
-  if [[ "$window_class" != "\"$TERMINAL\"" ]]; then
+    while [ "$child_id" -ne 1 ]; do
+      if [ "$child_id" -eq "$parent_id" ]; then
+        return 0
+      fi
+      child_id=$(ps -o ppid= -p "$child_id")
+    done
     return 1
-  fi
+  }
 
-  pid=$(xdotool getwindowpid "$focused_window_id")
-  tmux_running=$(pstree -p "$pid" | grep "tmux")
+  window_pid="$(xdotool getactivewindow getwindowpid)"
+  clients="$(tmux list-clients -F "#{client_pid} #{pane_pid}")"
 
-  if [ -n "$tmux_running" ]; then
-    return 0
-  fi
-
-  return 1
+  echo "$clients" | while read -r client_pid pane_pid; do
+    if is_child "$client_pid" "$window_pid"; then
+      tmux_var=$(tr '\0' '\n' <"/proc/$pane_pid/environ" | rg "^TMUX=(.*)" -r '$1')
+      echo "$tmux_var"
+      break
+    fi
+  done
 }
 
 ## Changes tmux session name in the form of `worktree[repo]` into `repo/worktree`
@@ -81,8 +88,9 @@ if [[ "$selected" =~ ^([^[]+)\[([^]]+)\]$ ]]; then
   selected="$XDG_DOCUMENTS_DIR/work/$dir1/$dir2"
 fi
 
-if [ -n "$TMUX" ] || is_tmux_cliend_focused; then
-  workplace "$selected" true
+tmux_var="${TMUX:-$(get_tmux_client_var)}"
+if [ -n "$tmux_var" ]; then
+  TMUX=$tmux_var workplace "$selected"
 else
   "$TERMINAL" --directory "$selected" -e "$SHELL" -c "workplace ; $SHELL"
 fi
