@@ -3,9 +3,14 @@
 launcher="${1:-rofi}"
 
 main() {
-  all_sessions="$(get_all_sessions)"
+  TMUX="${TMUX:-$(get_tmux_client_var)}"
 
+  all_sessions="$(get_all_sessions)"
   selected_session=$(select_session "$all_sessions")
+
+  if [ -z "$selected_session" ]; then
+    exit
+  fi
 
   ## Changes tmux session name in the form of `worktree[repo]` into `repo/worktree`
   ## Tightly coupled with what workplace script does
@@ -16,9 +21,8 @@ main() {
     selected_session="$XDG_DOCUMENTS_DIR/work/$dir1/$dir2"
   fi
 
-  tmux_var="${TMUX:-$(get_tmux_client_var)}"
-  if [ -n "$tmux_var" ]; then
-    TMUX=$tmux_var workplace "$selected_session"
+  if [ -n "$TMUX" ]; then
+    TMUX="$TMUX" workplace "$selected_session"
   else
     "$TERMINAL" --directory "$selected_session" -e "$SHELL" -c "workplace ; $SHELL"
   fi
@@ -37,6 +41,11 @@ get_all_sessions() {
   )
 
   all=$([ -n "$sessions_without_dir" ] && echo -e "$sessions_without_dir\n$sorted" || echo -e "$sorted")
+  if [ -n "$TMUX" ]; then
+    session_name="$(tmux display-message -p '#S')"
+    all=$(echo "$all" | grep -v "/\?$session_name\$")
+  fi
+
   echo "$all"
 }
 
