@@ -111,7 +111,11 @@ req("marks").setup({
   },
 })
 
-Plugin("ThePrimeagen/harpoon")
+-- Plugin("ThePrimeagen/harpoon")
+Plugin("cbochs/grapple.nvim")
+
+vim.keymap.set("n", "<leader>ma", require("grapple").toggle)
+vim.keymap.set("n", "<leader>mA", require("grapple").toggle_tags)
 mapl({
   m = {
     a = {
@@ -119,15 +123,25 @@ mapl({
         print(
           "Added "
             .. string.gsub(vim.api.nvim_buf_get_name(0), vim.uv.cwd(), "")
-            .. " to the harpoon"
+            .. " to the grapple"
         )
-        req("harpoon.mark").add_file()
+        req("grapple").tag()
       end,
       "add mark",
     },
-    s = { req("harpoon.ui").toggle_quick_menu, "show marks" },
-    n = { req("harpoon.ui").nav_next, "next mark" },
-    p = { req("harpoon.ui").nav_prev, "prev mark" },
+    s = { req("grapple").toggle_tags, "show marks" },
+    n = {
+      function()
+        req("grapple").cycle_tags("next")
+      end,
+      "next mark",
+    },
+    p = {
+      function()
+        req("grapple").cycle_tags("prev")
+      end,
+      "prev mark",
+    },
   },
 })
 
