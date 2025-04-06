@@ -2,56 +2,87 @@
 
 launcher="${1:-rofi}"
 
-work_projects=$(find "$HOME/docs/work" "$HOME/docs/tech" -mindepth 1 -maxdepth 1 -type d)
-personal="$XDG_DOTFILES_DIR\n$XDG_NC_DIR/Vault"
+main() {
+  all_sessions="$(get_all_sessions)"
 
-dirs="$work_projects\n$personal"
+  selected_session=$(select_session "$all_sessions")
 
-opened_sessions=$(tmux ls -F '#{session_name}')
-sorted=$(echo -e "$dirs" | rofi-frecency get "sessions")
-sessions_without_dir=$(
-  comm -13 <(echo "$sorted" | xargs -n 1 basename | sort) <(echo "$opened_sessions" | sort) | grep -v "nested-"
-)
-
-all=$([ -n "$sessions_without_dir" ] && echo -e "$sessions_without_dir\n$sorted" || echo -e "$sorted")
-
-if [ "$launcher" = "fzf" ]; then
-  selected=$(echo -e "$all" | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})")
-
-  if [ -z "$selected" ]; then
-    exit 0
-  fi
-else
-  selected_idx=$(echo -e "$all" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d) ## without using {} xargs splits by spaces too
-  if [ -z "$selected_idx" ] || [ "$selected_idx" -lt 1 ]; then
-    exit 0
+  ## Changes tmux session name in the form of `worktree[repo]` into `repo/worktree`
+  ## Tightly coupled with what workplace script does
+  ## TODO: decouple
+  if [[ "$selected_session" =~ ^([^[]+)\[([^]]+)\]$ ]]; then
+    dir2="${BASH_REMATCH[1]}"
+    dir1="${BASH_REMATCH[2]}"
+    selected_session="$XDG_DOCUMENTS_DIR/work/$dir1/$dir2"
   fi
 
-  selected=$(echo "$all" | sed -n "${selected_idx}p")
-fi
+  tmux_var="${TMUX:-$(get_tmux_client_var)}"
+  if [ -n "$tmux_var" ]; then
+    TMUX=$tmux_var workplace "$selected_session"
+  else
+    "$TERMINAL" --directory "$selected_session" -e "$SHELL" -c "workplace ; $SHELL"
+  fi
+}
 
-rofi-frecency update "sessions" "$selected"
+get_all_sessions() {
+  work_projects=$(find "$HOME/docs/work" "$HOME/docs/tech" -mindepth 1 -maxdepth 1 -type d)
+  personal="$XDG_DOTFILES_DIR\n$XDG_NC_DIR/Vault"
 
-if [ -d "$selected/.bare" ]; then
-  cd "$selected" || exit
-  worktrees=$(git worktree list | sed 1d)
+  dirs="$work_projects\n$personal"
+
+  opened_sessions=$(tmux ls -F '#{session_name}')
+  sorted=$(echo -e "$dirs" | rofi-frecency get "sessions")
+  sessions_without_dir=$(
+    comm -13 <(echo "$sorted" | xargs -n 1 basename | sort) <(echo "$opened_sessions" | sort) | grep -v "nested-"
+  )
+
+  all=$([ -n "$sessions_without_dir" ] && echo -e "$sessions_without_dir\n$sorted" || echo -e "$sorted")
+  echo "$all"
+}
+
+select_session() {
+  all="$1"
 
   if [ "$launcher" = "fzf" ]; then
-    selected=$(echo "$worktrees" | awk '{print $1, $3}' | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})" | awk '{print $1}')
+    selected=$(echo -e "$all" | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})")
 
     if [ -z "$selected" ]; then
       exit 0
     fi
   else
-    selected_idx=$(echo "$worktrees" | awk '{cmd="basename \"" $1 "\""; cmd | getline col1; close(cmd); print col1, $3}' | rofi -dmenu -i -format d)
-
-    if [ -z "$selected_idx" ]; then
+    selected_idx=$(echo -e "$all" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d) ## without using {} xargs splits by spaces too
+    if [ -z "$selected_idx" ] || [ "$selected_idx" -lt 1 ]; then
       exit 0
     fi
 
-    selected=$(echo "$worktrees" | sed -n "${selected_idx}p" | awk '{print $1}')
+    selected=$(echo "$all" | sed -n "${selected_idx}p")
   fi
-fi
+
+  rofi-frecency update "sessions" "$selected"
+
+  if [ -d "$selected/.bare" ]; then
+    cd "$selected" || exit
+    worktrees=$(git worktree list | sed 1d)
+
+    if [ "$launcher" = "fzf" ]; then
+      selected=$(echo "$worktrees" | awk '{print $1, $3}' | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})" | awk '{print $1}')
+
+      if [ -z "$selected" ]; then
+        exit 0
+      fi
+    else
+      selected_idx=$(echo "$worktrees" | awk '{cmd="basename \"" $1 "\""; cmd | getline col1; close(cmd); print col1, $3}' | rofi -dmenu -i -format d)
+
+      if [ -z "$selected_idx" ]; then
+        exit 0
+      fi
+
+      selected=$(echo "$worktrees" | sed -n "${selected_idx}p" | awk '{print $1}')
+    fi
+  fi
+
+  echo "$selected"
+}
 
 get_tmux_client_var() {
   is_child() {
@@ -79,18 +110,4 @@ get_tmux_client_var() {
   done
 }
 
-## Changes tmux session name in the form of `worktree[repo]` into `repo/worktree`
-## Tightly coupled with what workplace script does
-## TODO: decouple
-if [[ "$selected" =~ ^([^[]+)\[([^]]+)\]$ ]]; then
-  dir2="${BASH_REMATCH[1]}"
-  dir1="${BASH_REMATCH[2]}"
-  selected="$XDG_DOCUMENTS_DIR/work/$dir1/$dir2"
-fi
-
-tmux_var="${TMUX:-$(get_tmux_client_var)}"
-if [ -n "$tmux_var" ]; then
-  TMUX=$tmux_var workplace "$selected"
-else
-  "$TERMINAL" --directory "$selected" -e "$SHELL" -c "workplace ; $SHELL"
-fi
+main "$@"
