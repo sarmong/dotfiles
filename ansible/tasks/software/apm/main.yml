@@ -1,0 +1,79 @@
+---
+## Ansible Package Manager
+- name: Load package variables
+  tags:
+    - apm
+  include_vars: vars/package_specs.yml
+
+- name: "{{ item }} | Install {{ item }}"
+  tags:
+    - apm
+  vars:
+    pkg_spec: "{{ binary_packages[item] }}"
+    check_version_cmd: "{{ pkg_spec.get('check_version_cmd') }}"
+    file_path: "/tmp/{{ pkg_spec.url | urlsplit('path') | basename }}"
+  block:
+    - name: "{{ item }} | check if binary exists and get current version"
+      shell: "{{ check_version_cmd }}"
+      register: version_check
+      changed_when: false # Command is just for checking, never marks as changed
+      failed_when: false # Don't fail if binary doesn't exist yet
+      check_mode: false # Always run version check even in check mode
+      when: check_version_cmd
+
+    - name: "{{ item }} | parse current version"
+      set_fact:
+        current_version:
+          "{{ version_check is defined and version_check.stdout |
+          default('none') }}"
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: "{{ item }} | install dependencies"
+      become: true
+      apt:
+        name: "{{ dep }}"
+      loop: "{{ pkg_spec.dependencies }}"
+      loop_control:
+        loop_var: dep
+      when:
+        pkg_spec.dependencies is defined and pkg_spec.dependencies | length > 0
+
+    - name: install
+      when: current_version is undefined or current_version != pkg_spec.version
+      block:
+      - name: "{{ item }} | download file"
+        get_url:
+          url: "{{ pkg_spec.url }}"
+          dest: "{{ file_path }}"
+          checksum: "{{ pkg_spec.checksum }}"
+          mode: "0644"
+          timeout: 100
+
+      - name: install binary
+        when: pkg_spec.type == 'binary'
+        include_tasks: binary.yml
+
+      - name: "{{ item }} | install debian package"
+        when: pkg_spec.type == 'deb'
+        become: true
+        apt:
+          deb: "{{ file_path }}"
+
+      - name: install build
+        when: pkg_spec.type == 'build'
+        include_tasks: build.yml
+
+    - name: "{{ item }} | post_install tasks"
+      include_tasks: "{{ pkg_spec.post_install_task }}"
+      when: pkg_spec.post_install_task is defined
+
+    - name: "{{ item }} | verify installed version"
+      shell: "{{ check_version_cmd }}"
+      register: verify_version
+      failed_when: >
+        verify_version.rc != 0 or verify_version.stdout != pkg_spec.version
+      changed_when: false
+      check_mode: false
+      when: check_version_cmd and current_version != pkg_spec.version

@@ -201,3 +201,31 @@
       - name: git-filter-repo
       - name: beets
       - name: qtile
+
+- name: Install apm packages
+  tags:
+    - apm
+  include_tasks: apm/main.yml
+  loop:
+    - lazydocker
+    - czkawka-cli
+    - dua-cli
+    - fnm
+    - frece
+    - fzf
+    - handlr
+    - jqp
+    - tokei
+    - lf
+    - fd
+    - zoxide
+    - bottom
+    - onefetch
+    - lazygit
+    - git-delta
+    - rclone
+    - pacstall
+    - yt-dlp
+    - ctpv ## image previewer for lf
+    - kitty
+    - windowlist

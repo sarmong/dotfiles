@@ -1,0 +1,60 @@
+- name: "{{ item }} | Install {{ item }}"
+  tags:
+    - apm
+  vars:
+    pkg_spec: "{{ binary_packages[item] }}"
+    pkg_name: "{{ pkg_spec.name }}"
+    is_archive:
+      "{{ pkg_spec.url | urlsplit('path') | basename |
+      regex_search('\\.(tar\\.gz|tgz|zip|txz)$') is not none }}"
+    extract_dir: "/tmp/{{ pkg_name }}"
+  block:
+    - name: "{{ item }} | install from archive"
+      when: is_archive
+      block:
+        - name: "{{ item }} | create tmp dir"
+          file:
+            path: "{{ extract_dir }}"
+            state: directory
+            mode: "0755"
+
+        - name: "{{ item }} | extract archive to temp directory"
+          unarchive:
+            src: "{{ file_path }}"
+            dest: "{{ extract_dir }}"
+            remote_src: true
+            mode: "0755"
+
+        - name: "{{ item }} | find binary in extracted files"
+          find:
+            paths: "{{ extract_dir }}"
+            patterns: "{{ pkg_name }}"
+            recurse: true
+            file_type: file
+          register: found_binaries
+
+        - name: "{{ item }} | install binary to destination"
+          become: true
+          copy:
+            src: "{{ found_binaries.files[0].path }}"
+            dest: "/usr/local/bin/{{ pkg_name }}"
+            mode: "0755"
+            owner: root
+            group: root
+            remote_src: true
+
+        - name: "{{ item }} | remove extract dir"
+          file:
+            path: "{{ extract_dir }}"
+            state: absent
+
+    - name: "{{ item }} | copy binary to destination"
+      become: true
+      copy:
+        src: "{{ file_path }}"
+        dest: "/usr/local/bin/{{ pkg_name }}"
+        mode: "0755"
+        owner: root
+        group: root
+        remote_src: true
+      when: not is_archive

@@ -1,7 +1,7 @@
 - name: kitty | link binaries
   become: true
   file:
-    src: "{{ ansible_env.XDG_SRC_DIR }}/kitty/bin/{{ file }}"
+    src: "{{ pkg_spec.extract_dir }}/bin/{{ file }}"
     dest: "/usr/local/bin/{{ file }}"
     state: link
   loop:
@@ -13,7 +13,7 @@
 - name: kitty | link desktop files
   become: true
   file:
-    src: "{{ ansible_env.XDG_SRC_DIR }}/kitty/share/applications/{{ file }}"
+    src: "{{ pkg_spec.extract_dir }}/share/applications/{{ file }}"
     dest: "/usr/local/share/applications/{{ file }}"
     state: link
   loop:
@@ -33,7 +33,6 @@
   become: true
   file:
     src:
-      "{{ ansible_env.XDG_SRC_DIR
-      }}/kitty/share/icons/hicolor/256x256/apps/kitty.png"
+      "{{ pkg_spec.extract_dir }}/share/icons/hicolor/256x256/apps/kitty.png"
     dest: "/usr/local/share/icons/hicolor/256x256/apps/kitty.png"
     state: link

@@ -3,8 +3,8 @@
   tasks:
     - name: Install selected packages
       tags:
-        - binary
-      include_tasks: tasks/software/build/install-binary.yml
+        - apm
+      include_tasks: tasks/software/apm/main.yml
       loop:
         - dua-cli
 

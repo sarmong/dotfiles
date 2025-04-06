@@ -1,0 +1,30 @@
+- name: "{{ item }} | Install {{ item }}"
+  tags:
+    - binary
+  vars:
+    src_dir: "~/.local/src"
+    extract_dest: "{{ pkg_spec.extract_dir | default(src_dir) }}"
+  block:
+    - name: "{{ item }} | create extract dir"
+      file:
+        path: "{{ extract_dest }}"
+        state: directory
+        mode: "0755"
+
+    - name: "{{ item }} | extract archive to temp directory"
+      unarchive:
+        src: "{{ file_path }}"
+        dest: "{{ extract_dest }}"
+        remote_src: true
+        mode: "0755"
+        list_files: true
+      register: unarchive_res
+
+    - name: "{{ item }} | build"
+      command: "{{ cmd }}"
+      loop: "{{ pkg_spec.build_cmds }}"
+      loop_control:
+        loop_var: cmd
+      args:
+        chdir: "{{ pkg_spec.extract_dir | default(src_dir ~ '/' ~ unarchive_res.files[0]) }}"
+      when: "pkg_spec.build_cmds is defined"
