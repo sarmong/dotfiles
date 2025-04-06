@@ -19,6 +19,9 @@ Plugin({
   },
 })
 
+Plugin("xzbdmw/colorful-menu.nvim")
+req("colorful-menu").setup({})
+
 req("blink.cmp").setup({
   enabled = function()
     return not vim.tbl_contains(
@@ -56,8 +59,19 @@ req("blink.cmp").setup({
       border = "single",
       draw = {
         columns = {
-          { "label", "label_description", gap = 1 },
-          { "kind_icon", "kind", "source_name", gap = 1 },
+          { "kind_icon" },
+          { "label", gap = 1 },
+          { "source_name", gap = 1 },
+        },
+        components = {
+          label = {
+            text = function(ctx)
+              return req("colorful-menu").blink_components_text(ctx)
+            end,
+            highlight = function(ctx)
+              return req("colorful-menu").blink_components_highlight(ctx)
+            end,
+          },
         },
       },
     },
