@@ -12,7 +12,7 @@ XDG_DATA_DIRS="${XDG_DATA_DIRS:-}"
 export XDG_DATA_DIRS="$HOME/.local/xdg:/usr/local/share:/usr/share:$XDG_DATA_DIRS"
 export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$XDG_DATA_HOME/flatpak/exports/share:$XDG_DATA_DIRS"
 
-. "$XDG_CONFIG_HOME/user-dirs.dirs"
+[ -f "$XDG_CONFIG_HOME/user-dirs.dirs" ] && . "$XDG_CONFIG_HOME/user-dirs.dirs"
 export XDG_DOCUMENTS_DIR="$HOME/docs"
 export XDG_DOWNLOAD_DIR="$HOME/dls"
 export XDG_DESKTOP_DIR="$HOME/desktop"
