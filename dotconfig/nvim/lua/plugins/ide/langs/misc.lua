@@ -3,7 +3,7 @@ local contrib = req("plugins.ide.contrib")
 -- Ansible
 contrib.mason("ansible-language-server", "ansible-lint")
 contrib.lsp("ansiblels")
-contrib.formatters("yaml.ansible", "ansible-lint")
+-- contrib.formatters("yaml.ansible", "ansible-lint")
 
 -- YAML
 contrib.mason("prettierd", "prettierd")
@@ -79,7 +79,7 @@ contrib.ts_parsers("devicetree")
 autocmd("BufEnter", {
   pattern = "*.keymap",
   group = "dts",
-  command = "TSBufDisable highlight"
+  command = "TSBufDisable highlight",
 })
 Plugin("martinlroth/vim-devicetree")
 Plugin("codethread/qmk.nvim")
