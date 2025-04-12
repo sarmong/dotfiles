@@ -257,3 +257,21 @@ binary_packages:
     build_cmds:
       - make
       - make install DEST={{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin/windowlist
+
+  supersonic:
+    name: supersonic
+    type: build
+    version: 0.15.1
+    checksum: sha256:9ca2658a4dd17f7b6868b16af798036f844b55d22bb9fa0e640c053f97164c7b
+    url:
+      https://github.com/dweymouth/supersonic/releases/download/v{{
+      vars.binary_packages['supersonic'].version }}/Supersonic-{{
+      vars.binary_packages['supersonic'].version }}-linux-x64-libmpv2.tar.xz
+    extract_dir:
+      "{{ ansible_env.XDG_SRC_DIR }}/supersonic-{{
+      vars.binary_packages['supersonic'].version }}"
+    check_version_cmd: "supersonic --version"
+    dependencies:
+      - libmpv2
+    build_cmds:
+      - sudo make install
