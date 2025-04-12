@@ -32,7 +32,6 @@
 - name: kitty | link icon
   become: true
   file:
-    src:
-      "{{ pkg_spec.extract_dir }}/share/icons/hicolor/256x256/apps/kitty.png"
+    src: "{{ pkg_spec.extract_dir }}/share/icons/hicolor/256x256/apps/kitty.png"
     dest: "/usr/local/share/icons/hicolor/256x256/apps/kitty.png"
     state: link

@@ -107,7 +107,7 @@ binary_packages:
   fd:
     name: fd
     version: 8.7.1
-    type: 'deb'
+    type: "deb"
     checksum: sha256:eb8d4ba36e3c479aa09298a7a8bd7cff1f9c61a5d054bcc5654ee35de64cfdd5
     url:
       https://github.com/sharkdp/fd/releases/download/v{{
@@ -118,7 +118,7 @@ binary_packages:
   zoxide:
     name: zoxide
     version: 0.9.6
-    type: 'deb'
+    type: "deb"
     checksum: sha256:e26117e6ef010f010dbe47cef4f5f72faa6a96dfd8cc723ce535d0614c16bb78
     url:
       https://github.com/ajeetdsouza/zoxide/releases/download/v{{
@@ -129,7 +129,7 @@ binary_packages:
   bottom:
     name: btm
     version: 0.9.6
-    type: 'deb'
+    type: "deb"
     checksum: sha256:34a095029d5c74ee577e2ceb01044a5361c8622f89cdcd24784d2fdfeeb92a53
     url:
       https://github.com/ClementTsang/bottom/releases/download/{{
@@ -162,7 +162,7 @@ binary_packages:
   git-delta:
     name: git-delta
     version: 0.17.0
-    type: 'deb'
+    type: "deb"
     checksum: sha256:e11c201107edc86212a8bfdf5ca51a7b5bd497008f1f57c4319a2746991ff7db
     url:
       https://github.com/dandavison/delta/releases/download/{{
@@ -173,7 +173,7 @@ binary_packages:
   rclone:
     name: rclone
     version: 1.69.0
-    type: 'deb'
+    type: "deb"
     checksum: sha256:5de54f24c74ece8592051b37067055ea155cc60aa3a20ed2a7a301c1f965a9d2
     url:
       https://github.com/rclone/rclone/releases/download/v{{
@@ -184,7 +184,7 @@ binary_packages:
   pacstall:
     name: pacstall
     version: 6.1.0
-    type: 'deb'
+    type: "deb"
     checksum: sha256:3c8436eccaa584fd19884be3ae0297a80d8d884949654d9a365087f9b6f8c3b5
     url:
       https://github.com/pacstall/pacstall/releases/download/{{
@@ -205,7 +205,7 @@ binary_packages:
   navidrome:
     name: navidrome
     version: 0.54.5
-    type: 'deb'
+    type: "deb"
     checksum:
     url:
       https://github.com/navidrome/navidrome/releases/download/v{{
@@ -215,7 +215,7 @@ binary_packages:
 
   ctpv:
     name: ctpv
-    version: '1.1'
+    version: "1.1"
     type: build
     checksum: sha256:29e458fbc822e960f052b47a1550cb149c28768615cc2dddf21facc5c86f7463
     url:
@@ -235,7 +235,8 @@ binary_packages:
     version: 0.40.0
     type: build
     checksum: sha256:041c6fedd9be2f257d64eee41099a19f1ea525c69214ded5e930ff96ccb6b8a4
-    extract_dir: "{{ ansible_env.XDG_SRC_DIR }}/kitty-{{
+    extract_dir:
+      "{{ ansible_env.XDG_SRC_DIR }}/kitty-{{
       vars.binary_packages['kitty'].version }}"
     url:
       https://github.com/kovidgoyal/kitty/releases/download/v{{
@@ -253,7 +254,9 @@ binary_packages:
     url:
       https://github.com/tuurep/windowlist/archive/{{
       vars.binary_packages['windowlist'].git_commit }}.zip
-    check_version_cmd: "sha256sum {{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin/windowlist | awk '{print $1}'"
+    check_version_cmd:
+      "sha256sum {{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin/windowlist | awk
+      '{print $1}'"
     build_cmds:
       - make
       - make install DEST={{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin/windowlist

@@ -26,5 +26,7 @@
       loop_control:
         loop_var: cmd
       args:
-        chdir: "{{ pkg_spec.extract_dir | default(src_dir ~ '/' ~ unarchive_res.files[0]) }}"
+        chdir:
+          "{{ pkg_spec.extract_dir | default(src_dir ~ '/' ~
+          unarchive_res.files[0]) }}"
       when: "pkg_spec.build_cmds is defined"
