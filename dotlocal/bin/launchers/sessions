@@ -18,10 +18,18 @@ main() {
     exit
   fi
 
-  if [ -n "$TMUX" ]; then
-    TMUX="$TMUX" workplace "$selected_session"
+  if tmux has-session -t "$selected_session" 2>/dev/null; then
+    if [ -n "$TMUX" ]; then
+      TMUX="$TMUX" tmux switch-client -t "$selected_session"
+    else
+      "$TERMINAL" -e "$SHELL" -c "tmux attach-session -t $selected_session ; $SHELL"
+    fi
   else
-    "$TERMINAL" --directory "$selected_session" -e "$SHELL" -c "workplace ; $SHELL"
+    if [ -n "$TMUX" ]; then
+      TMUX="$TMUX" workplace "$selected_session"
+    else
+      "$TERMINAL" --directory "$selected_session" -e "$SHELL" -c "workplace ; $SHELL"
+    fi
   fi
 }
 
@@ -45,7 +53,6 @@ get_all_sessions() {
         while IFS= read -r path; do
           name=$(basename "$path" | tr '.:' '_') ## replace dots with underscores
           for exclude in $opened_sessions; do
-            echo "$name" "$exclude" >/dev/tty
             [[ "$name" == "$exclude" ]] && continue 2
           done
           printf '%s\n' "$path"
@@ -76,7 +83,10 @@ select_session() {
     selected=$(sed -n "${selected_idx}p" "$TMPFILE")
   fi
 
-  rofi-frecency update "sessions" "$selected"
+  ## if not eq -- that means it is a path and not a tmux session name
+  if [ "$(basename "$selected")" != "$selected" ]; then
+    rofi-frecency update "sessions" "$selected"
+  fi
 
   if [ -d "$selected/.bare" ]; then
     cd "$selected" || exit
