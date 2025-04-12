@@ -68,13 +68,20 @@ contrib.mason("tree-sitter-cli") -- required by latex ts parser
 -- Other prettier fts
 contrib.formatters({ "graphql", "handlebars" }, { "prettierd", "prettier" })
 
-Plugin("martinlroth/vim-devicetree")
 Plugin("sarmong/lf-vim") -- TODO: remove when in stable - https://github.com/neovim/neovim/pull/30801
 Plugin("sarmong/newsboat.vim")
 Plugin("kovetskiy/sxhkd-vim")
 Plugin("sarmong/conky-syntax.vim")
 Plugin("elkowar/yuck.vim")
 Plugin("fladson/vim-kitty")
+
+contrib.ts_parsers("devicetree")
+autocmd("BufEnter", {
+  pattern = "*.keymap",
+  group = "dts",
+  command = "TSBufDisable highlight"
+})
+Plugin("martinlroth/vim-devicetree")
 Plugin("codethread/qmk.nvim")
 req("qmk").setup({
   name = "meh",
