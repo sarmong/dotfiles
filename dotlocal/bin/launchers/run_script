@@ -31,6 +31,8 @@ commands=(
   "code screenshot from cb"
   "move wins to another screen"
   "update screenlayout"
+  "ff history"
+  "ff bookmarks"
 )
 
 declare -A other
