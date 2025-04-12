@@ -1,0 +1,29 @@
+---
+## WIP, need to copy icon from apm/files
+- name: "{{ item }} | Install {{ item }}"
+  tags:
+    - apm
+  vars:
+    pkg_spec: "{{ binary_packages[item] }}"
+    appimage_path: "{{ ansible_env.XDG_SRC_DIR }}/{{ pkg_spec.name }}"
+  block:
+    - name: "{{ item }} | copy appimage to destination"
+      copy:
+        src: "{{ file_path }}"
+        dest: "{{ appimage_path }}"
+        mode: "0755"
+        remote_src: true
+
+    - name: "{{ item }} | add desktop file"
+      blockinfile:
+        path:
+          "{{ ansible_env.XDG_DATA_HOME }}/applications/{{ pkg_spec.name
+          }}.desktop"
+        block: |
+          [Desktop Entry]
+
+          Type=Application
+          Version={{ pkg_spec.version }}
+          Name={{ pkg_spec.name }}
+          Exec={{ appimage_path }}
+          Icon={{ pkg_spec.name }}

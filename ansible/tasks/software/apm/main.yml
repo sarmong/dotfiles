@@ -55,6 +55,10 @@
         when: pkg_spec.type == 'binary'
         include_tasks: binary.yml
 
+      - name: install appimage
+        when: pkg_spec.type == 'appimage'
+        include_tasks: appimage.yml
+
       - name: "{{ item }} | install debian package"
         when: pkg_spec.type == 'deb'
         become: true
