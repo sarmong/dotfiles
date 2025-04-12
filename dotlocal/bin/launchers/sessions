@@ -2,23 +2,20 @@
 
 launcher="${1:-rofi}"
 
+PIPE="/tmp/sessionsfifo"
+mkfifo "$PIPE"
+TMPFILE="$(mktemp)"
+
 main() {
   TMUX="${TMUX:-$(get_tmux_client_var)}"
 
-  all_sessions="$(get_all_sessions)"
-  selected_session=$(select_session "$all_sessions")
+  get_all_sessions
+  selected_session=$(select_session)
+
+  rm "$PIPE" "$TMPFILE"
 
   if [ -z "$selected_session" ]; then
     exit
-  fi
-
-  ## Changes tmux session name in the form of `worktree[repo]` into `repo/worktree`
-  ## Tightly coupled with what workplace script does
-  ## TODO: decouple
-  if [[ "$selected_session" =~ ^([^[]+)\[([^]]+)\]$ ]]; then
-    dir2="${BASH_REMATCH[1]}"
-    dir1="${BASH_REMATCH[2]}"
-    selected_session="$XDG_DOCUMENTS_DIR/work/$dir1/$dir2"
   fi
 
   if [ -n "$TMUX" ]; then
@@ -34,37 +31,49 @@ get_all_sessions() {
 
   dirs="$work_projects\n$personal"
 
-  opened_sessions=$(tmux ls -F '#{session_name}')
-  sorted=$(echo -e "$dirs" | rofi-frecency get "sessions")
-  sessions_without_dir=$(
-    comm -13 <(echo "$sorted" | xargs -n 1 basename | sort) <(echo "$opened_sessions" | sort) | grep -v "nested-"
-  )
-
-  all=$([ -n "$sessions_without_dir" ] && echo -e "$sessions_without_dir\n$sorted" || echo -e "$sorted")
+  opened_sessions=$(tmux ls -F '#{session_last_attached} #{session_name}' | sort -k 1 -rn | cut -d ' ' -f 2-)
+  sessions_for_display="$opened_sessions"
   if [ -n "$TMUX" ]; then
     session_name="$(tmux display-message -p '#S')"
-    all=$(echo "$all" | grep -v "/\?$session_name\$")
+    sessions_for_display=$(echo "$opened_sessions" | grep -Fxv "$session_name")
   fi
 
-  echo "$all"
+  (
+    {
+      echo "$sessions_for_display"
+      echo -e "$dirs" | rofi-frecency get "sessions" |
+        while IFS= read -r path; do
+          name=$(basename "$path" | tr '.:' '_') ## replace dots with underscores
+          for exclude in $opened_sessions; do
+            echo "$name" "$exclude" >/dev/tty
+            [[ "$name" == "$exclude" ]] && continue 2
+          done
+          printf '%s\n' "$path"
+        done
+    } | tee -a "$TMPFILE" >"$PIPE"
+  ) &
 }
 
 select_session() {
-  all="$1"
-
   if [ "$launcher" = "fzf" ]; then
-    selected=$(echo -e "$all" | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})")
+    selected=$(cat "$PIPE" | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})")
 
     if [ -z "$selected" ]; then
       exit 0
     fi
   else
-    selected_idx=$(echo -e "$all" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d) ## without using {} xargs splits by spaces too
+    if [ -n "$TMUX" ]; then
+      window_id="$(xdotool getactivewindow)"
+      rofi_flags="-w $window_id"
+    fi
+
+    selected_idx=$(cat "$PIPE" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d "$rofi_flags") ## without using {} xargs splits by spaces too
+
     if [ -z "$selected_idx" ] || [ "$selected_idx" -lt 1 ]; then
       exit 0
     fi
 
-    selected=$(echo "$all" | sed -n "${selected_idx}p")
+    selected=$(sed -n "${selected_idx}p" "$TMPFILE")
   fi
 
   rofi-frecency update "sessions" "$selected"
@@ -102,7 +111,7 @@ get_tmux_client_var() {
       if [ "$child_id" -eq "$parent_id" ]; then
         return 0
       fi
-      child_id=$(ps -o ppid= -p "$child_id")
+      child_id=$(ps -o ppid= -p "$child_id" | xargs) ## xargs to delete leading whitespace
     done
     return 1
   }
