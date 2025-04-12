@@ -17,8 +17,6 @@ commands=(
   mkscript
   mounter
   nothis
-  "profile work"
-  "profile home"
   rec
   restart
   search
