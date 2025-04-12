@@ -4,10 +4,7 @@ binary_packages:
     version: 0.24.1
     type: binary
     checksum: sha256:461cacf618e1020dff1d7896248c1c1f2267d5c25fb529755e4b9c43c5d1d4a5
-    url:
-      https://github.com/jesseduffield/lazydocker/releases/download/v{{
-      vars.binary_packages.lazydocker.version }}/lazydocker_{{
-      vars.binary_packages.lazydocker.version }}_Linux_x86_64.tar.gz
+    url: https://github.com/jesseduffield/lazydocker/releases/download/v%%v%%/lazydocker_%%v%%_Linux_x86_64.tar.gz
     check_version_cmd: "lazydocker --version | sed -nE 's/Version: (.*)/\\1/p'"
 
   czkawka-cli:
@@ -15,9 +12,7 @@ binary_packages:
     version: 6.1.0
     type: binary
     checksum: sha256:0b29ae52f7072e76f083715e145a78500e738860597496a09ae334cc6ddde567
-    url:
-      https://github.com/qarmin/czkawka/releases/download/{{
-      vars.binary_packages['czkawka-cli'].version }}/linux_czkawka_cli""
+    url: https://github.com/qarmin/czkawka/releases/download/%%v%%/linux_czkawka_cli
     check_version_cmd: "czkawka-cli --version | sed -nE 's/czkawka (.*)/\\1/p'"
 
   dua-cli:
@@ -25,11 +20,7 @@ binary_packages:
     version: 2.20.1
     type: binary
     checksum: sha256:2bb8b2a9bd3ea051a5f0c30bca6557a475c13794ca04fbc199b2def7f811be6e
-    url:
-      https://github.com/Byron/dua-cli/releases/download/v{{
-      vars.binary_packages['dua-cli'].version }}/dua-v{{
-      vars.binary_packages['dua-cli'].version
-      }}-x86_64-unknown-linux-musl.tar.gz
+    url: https://github.com/Byron/dua-cli/releases/download/v%%v%%/dua-v%%v%%-x86_64-unknown-linux-musl.tar.gz
     check_version_cmd: "dua --version | sed -nE 's/dua (.*)/\\1/p'"
 
   fnm:
@@ -37,9 +28,7 @@ binary_packages:
     version: 1.35.1
     type: binary
     checksum: sha256:cf2d34df1f1ed89742d75eba2920af376a756d1eee5eb319821d6dd1366ed9e1
-    url:
-      https://github.com/Schniz/fnm/releases/download/v{{
-      vars.binary_packages.fnm.version }}/fnm-linux.zip
+    url: https://github.com/Schniz/fnm/releases/download/v%%v%%/fnm-linux.zip
     check_version_cmd: "fnm --version | sed -nE 's/fnm (.*)/\\1/p'"
 
   frece:
@@ -47,9 +36,7 @@ binary_packages:
     version: 1.0.6
     type: binary
     checksum: sha256:64f2b12abc2c64fc03b4d63e661a4a37014f123ff96033af0e529a71849b49c2
-    url:
-      https://github.com/YodaEmbedding/frece/releases/download/v{{
-      vars.binary_packages.frece.version }}/x86_64-unknown-linux-gnu.tar.gz
+    url: https://github.com/YodaEmbedding/frece/releases/download/v%%v%%/x86_64-unknown-linux-gnu.tar.gz
     check_version_cmd: "frece --version | sed -nE 's/frece (.*)/\\1/p'"
 
   fzf:
@@ -57,10 +44,7 @@ binary_packages:
     version: 0.50.0
     type: binary
     checksum: sha256:8fcefbcb085706de98f5fd23955ff343bd75eed826ec0a9c793bacba15ca9932
-    url:
-      https://github.com/junegunn/fzf/releases/download/{{
-      vars.binary_packages.fzf.version }}/fzf-{{
-      vars.binary_packages.fzf.version }}-linux_amd64.tar.gz
+    url: https://github.com/junegunn/fzf/releases/download/%%v%%/fzf-%%v%%-linux_amd64.tar.gz
     check_version_cmd: "fzf --version | sed -nE 's/(.*) \\(\\w+\\)/\\1/p'"
 
   handlr:
@@ -68,9 +52,7 @@ binary_packages:
     version: 0.6.4
     type: binary
     checksum: sha256:287e119d75d8bbdb3416f2b3a0962f2625cd4eec946c67305af2069da31ffc91
-    url:
-      https://github.com/chmln/handlr/releases/download/v{{
-      vars.binary_packages.handlr.version }}/handlr
+    url: https://github.com/chmln/handlr/releases/download/v%%v%%/handlr
     check_version_cmd: "handlr --version | sed -nE 's/handlr (.*)/\\1/p'"
 
   jqp:
@@ -78,9 +60,7 @@ binary_packages:
     version: 0.5.0
     type: binary
     checksum: sha256:6892db2a83f4238cb5cf0b69ceb2318cef5aad1a7144ded27e7ff09dbb39a0b3
-    url:
-      https://github.com/noahgorstein/jqp/releases/download/v{{
-      vars.binary_packages.jqp.version }}/jqp_Linux_x86_64.tar.gz
+    url: https://github.com/noahgorstein/jqp/releases/download/v%%v%%/jqp_Linux_x86_64.tar.gz
     check_version_cmd: "jqp --version | sed -nE 's/jqp version (.*)/\\1/p'"
 
   tokei:
@@ -88,10 +68,7 @@ binary_packages:
     version: 13.0.0-alpha.0
     type: binary
     checksum: sha256:5c039120797e3e00168f245f9ea857001c647315ecaa9bd810dcb6d0b80409d4
-    url:
-      https://github.com/XAMPPRocky/tokei/releases/download/v{{
-      vars.binary_packages.tokei.version
-      }}/tokei-x86_64-unknown-linux-gnu.tar.gz
+    url: https://github.com/XAMPPRocky/tokei/releases/download/v%%v%%/tokei-x86_64-unknown-linux-gnu.tar.gz
     check_version_cmd: "tokei --version | awk '{print $2}'"
 
   lf:
@@ -99,9 +76,7 @@ binary_packages:
     version: r31
     type: binary
     checksum: sha256:db529fbc0c9ba66d426d7acde95a3520ff67c02162b115415ec2c288b2867f02
-    url:
-      https://github.com/gokcehan/lf/releases/download/{{
-      vars.binary_packages.lf.version }}/lf-linux-amd64.tar.gz
+    url: https://github.com/gokcehan/lf/releases/download/%%v%%/lf-linux-amd64.tar.gz
     check_version_cmd: "lf --version | sed -nE 's/(.*)/\\1/p'"
 
   fd:
@@ -109,10 +84,7 @@ binary_packages:
     version: 8.7.1
     type: "deb"
     checksum: sha256:eb8d4ba36e3c479aa09298a7a8bd7cff1f9c61a5d054bcc5654ee35de64cfdd5
-    url:
-      https://github.com/sharkdp/fd/releases/download/v{{
-      vars.binary_packages.fd.version }}/fd_{{ vars.binary_packages.fd.version
-      }}_amd64.deb
+    url: https://github.com/sharkdp/fd/releases/download/v%%v%%/fd_%%v%%_amd64.deb
     check_version_cmd: "fd --version | sed -nE 's/fd (.*)/\\1/p'"
 
   zoxide:
@@ -120,10 +92,7 @@ binary_packages:
     version: 0.9.6
     type: "deb"
     checksum: sha256:e26117e6ef010f010dbe47cef4f5f72faa6a96dfd8cc723ce535d0614c16bb78
-    url:
-      https://github.com/ajeetdsouza/zoxide/releases/download/v{{
-      vars.binary_packages.zoxide.version }}/zoxide_{{
-      vars.binary_packages.zoxide.version }}-1_amd64.deb
+    url: https://github.com/ajeetdsouza/zoxide/releases/download/v%%v%%/zoxide_%%v%%-1_amd64.deb
     check_version_cmd: "zoxide --version | sed -nE 's/zoxide (.*)/\\1/p'"
 
   bottom:
@@ -131,10 +100,7 @@ binary_packages:
     version: 0.9.6
     type: "deb"
     checksum: sha256:34a095029d5c74ee577e2ceb01044a5361c8622f89cdcd24784d2fdfeeb92a53
-    url:
-      https://github.com/ClementTsang/bottom/releases/download/{{
-      vars.binary_packages.bottom.version }}/bottom_{{
-      vars.binary_packages.bottom.version }}_amd64.deb
+    url: https://github.com/ClementTsang/bottom/releases/download/%%v%%/bottom_%%v%%_amd64.deb
     check_version_cmd: "btm --version | sed -nE 's/bottom (.*)/\\1/p'"
 
   onefetch:
@@ -142,9 +108,7 @@ binary_packages:
     version: 2.18.0
     type: binary
     checksum: sha256:414d166e55e045a18d3a908cbe719cca08dabe5bfde45fa8aefce71099305a16
-    url:
-      https://github.com/o2sh/onefetch/releases/download/{{
-      vars.binary_packages.onefetch.version }}/onefetch-linux.tar.gz
+    url: https://github.com/o2sh/onefetch/releases/download/%%v%%/onefetch-linux.tar.gz
     check_version_cmd: "onefetch --version | sed -nE 's/onefetch (.*)/\\1/p'"
 
   lazygit:
@@ -152,10 +116,7 @@ binary_packages:
     version: 0.45.2
     type: binary
     checksum: sha256:ef92a991778545fc3f912213eead3bc42965e039f99b62e069439da08bbdf478
-    url:
-      https://github.com/jesseduffield/lazygit/releases/download/v{{
-      vars.binary_packages.lazygit.version }}/lazygit_{{
-      vars.binary_packages.lazygit.version }}_Linux_x86_64.tar.gz
+    url: https://github.com/jesseduffield/lazygit/releases/download/v%%v%%/lazygit_%%v%%_Linux_x86_64.tar.gz
     check_version_cmd:
       "lazygit --version | sed -nE 's/.*, version=(.*), os.*/\\1/p'"
 
@@ -164,10 +125,7 @@ binary_packages:
     version: 0.17.0
     type: "deb"
     checksum: sha256:e11c201107edc86212a8bfdf5ca51a7b5bd497008f1f57c4319a2746991ff7db
-    url:
-      https://github.com/dandavison/delta/releases/download/{{
-      vars.binary_packages['git-delta'].version }}/git-delta_{{
-      vars.binary_packages['git-delta'].version }}_amd64.deb
+    url: https://github.com/dandavison/delta/releases/download/%%v%%/git-delta_%%v%%_amd64.deb
     check_version_cmd: "delta --version | sed -nE 's/delta (.*)/\\1/p'"
 
   rclone:
@@ -175,10 +133,7 @@ binary_packages:
     version: 1.69.0
     type: "deb"
     checksum: sha256:5de54f24c74ece8592051b37067055ea155cc60aa3a20ed2a7a301c1f965a9d2
-    url:
-      https://github.com/rclone/rclone/releases/download/v{{
-      vars.binary_packages['rclone'].version }}/rclone-v{{
-      vars.binary_packages['rclone'].version }}-linux-amd64.deb
+    url: https://github.com/rclone/rclone/releases/download/v%%v%%/rclone-v%%v%%-linux-amd64.deb
     check_version_cmd: "rclone --version | sed -nE 's/rclone v(.*)/\\1/p'"
 
   pacstall:
@@ -186,10 +141,7 @@ binary_packages:
     version: 6.1.0
     type: "deb"
     checksum: sha256:3c8436eccaa584fd19884be3ae0297a80d8d884949654d9a365087f9b6f8c3b5
-    url:
-      https://github.com/pacstall/pacstall/releases/download/{{
-      vars.binary_packages['pacstall'].version }}/pacstall_{{
-      vars.binary_packages['pacstall'].version }}-pacstall1_all.deb
+    url: https://github.com/pacstall/pacstall/releases/download/%%v%%/pacstall_%%v%%-pacstall1_all.deb
     check_version_cmd: "pacstall --version | awk '{ print $1 }'"
 
   yt-dlp:
@@ -197,9 +149,7 @@ binary_packages:
     version: 2025.03.27
     type: binary
     checksum: sha256:6bf6320292a60e4c1c1021a87a9a7e6f701c368062dedd47cf2207f0c01e6cd6
-    url:
-      https://github.com/yt-dlp/yt-dlp/releases/download/{{
-      vars.binary_packages['yt-dlp'].version }}/yt-dlp_linux
+    url: https://github.com/yt-dlp/yt-dlp/releases/download/%%v%%/yt-dlp_linux
     check_version_cmd: "yt-dlp --version"
 
   navidrome:
@@ -207,10 +157,7 @@ binary_packages:
     version: 0.54.5
     type: "deb"
     checksum:
-    url:
-      https://github.com/navidrome/navidrome/releases/download/v{{
-      vars.binary_packages['navidrome'].version }}/navidrome_{{
-      vars.binary_packages['navidrome'].version }}_linux_amd64.deb
+    url: https://github.com/navidrome/navidrome/releases/download/v%%v%%/navidrome_%%v%%_linux_amd64.deb
     check_version_cmd: "navidrome --version | awk '{ print $1 }'"
 
   ctpv:
@@ -218,9 +165,7 @@ binary_packages:
     version: "1.1"
     type: build
     checksum: sha256:29e458fbc822e960f052b47a1550cb149c28768615cc2dddf21facc5c86f7463
-    url:
-      https://github.com/NikitaIvanovV/ctpv/archive/refs/tags/v{{
-      vars.binary_packages['ctpv'].version }}.tar.gz
+    url: https://github.com/NikitaIvanovV/ctpv/archive/refs/tags/v%%v%%.tar.gz
     check_version_cmd: "ctpv -v | awk '{ print $3 }'"
     dependencies:
       - libmagic-dev
@@ -235,13 +180,8 @@ binary_packages:
     version: 0.40.0
     type: build
     checksum: sha256:041c6fedd9be2f257d64eee41099a19f1ea525c69214ded5e930ff96ccb6b8a4
-    extract_dir:
-      "{{ ansible_env.XDG_SRC_DIR }}/kitty-{{
-      vars.binary_packages['kitty'].version }}"
-    url:
-      https://github.com/kovidgoyal/kitty/releases/download/v{{
-      vars.binary_packages['kitty'].version }}/kitty-{{
-      vars.binary_packages['kitty'].version }}-x86_64.txz
+    extract_dir: "{{ ansible_env.XDG_SRC_DIR }}/kitty-%%v%%"
+    url: https://github.com/kovidgoyal/kitty/releases/download/v%%v%%/kitty-%%v%%-x86_64.txz
     check_version_cmd: "kitty --version | awk '{ print $2 }'"
     post_install_task: post_install/kitty.yml
 
@@ -259,20 +199,16 @@ binary_packages:
       '{print $1}'"
     build_cmds:
       - make
-      - make install DEST={{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin/windowlist
+      - make install DEST={{ ansible_env.XDG_CONFIG_HOME
+        }}/polybar/bin/windowlist
 
   supersonic:
     name: supersonic
     type: build
     version: 0.15.1
     checksum: sha256:9ca2658a4dd17f7b6868b16af798036f844b55d22bb9fa0e640c053f97164c7b
-    url:
-      https://github.com/dweymouth/supersonic/releases/download/v{{
-      vars.binary_packages['supersonic'].version }}/Supersonic-{{
-      vars.binary_packages['supersonic'].version }}-linux-x64-libmpv2.tar.xz
-    extract_dir:
-      "{{ ansible_env.XDG_SRC_DIR }}/supersonic-{{
-      vars.binary_packages['supersonic'].version }}"
+    url: https://github.com/dweymouth/supersonic/releases/download/v%%v%%/Supersonic-%%v%%-linux-x64-libmpv2.tar.xz
+    extract_dir: "{{ ansible_env.XDG_SRC_DIR }}/supersonic-%%v%%"
     check_version_cmd: "supersonic --version"
     dependencies:
       - libmpv2

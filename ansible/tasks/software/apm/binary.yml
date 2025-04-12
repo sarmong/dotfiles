@@ -5,7 +5,7 @@
     pkg_spec: "{{ binary_packages[item] }}"
     pkg_name: "{{ pkg_spec.name }}"
     is_archive:
-      "{{ pkg_spec.url | urlsplit('path') | basename |
+      "{{ url | urlsplit('path') | basename |
       regex_search('\\.(tar\\.gz|tgz|zip|txz)$') is not none }}"
     extract_dir: "/tmp/{{ pkg_name }}"
   block:
