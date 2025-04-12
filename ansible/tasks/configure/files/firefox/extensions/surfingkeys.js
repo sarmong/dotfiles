@@ -9,6 +9,17 @@ api.addSearchAlias(
   },
 );
 
+api.addSearchAlias(
+  "b",
+  "brave",
+  "https://search.brave.com/search?q=",
+  "s",
+  "https://search.brave.com/api/suggest?q=",
+  function (response) {
+    return JSON.parse(response.text)[1];
+  },
+);
+
 api.mapkey("Y", "Md link", function () {
   const removables = [" %E2%80%A2 Instagram photos and videos", " - YouTube"];
   const url = location.href;
