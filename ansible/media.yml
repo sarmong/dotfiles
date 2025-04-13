@@ -29,6 +29,7 @@
           - zoxide
           - rsync
           - jq
+          - fzf
 
     - name: Install media packages
       become: true
