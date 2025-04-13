@@ -80,7 +80,7 @@ select_session() {
       exit 0
     fi
 
-    selected=$(sed -n "${selected_idx}p" "$TMPFILE")
+    selected=$(sed '/^$/d' "$TMPFILE" | sed -n "${selected_idx}p") ## There may be empty leading line for some reason
   fi
 
   ## if not eq -- that means it is a path and not a tmux session name
