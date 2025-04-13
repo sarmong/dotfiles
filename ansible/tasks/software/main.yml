@@ -23,6 +23,8 @@
   apt:
     name:
       - xorg
+      - i3
+      - i3blocks
       - xdotool
       - wmctrl
       - wmname
