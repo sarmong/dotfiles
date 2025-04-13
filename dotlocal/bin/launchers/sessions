@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 launcher="${1:-rofi}"
 
@@ -49,11 +49,11 @@ get_all_sessions() {
   (
     {
       echo "$sessions_for_display"
-      echo -e "$dirs" | rofi-frecency get "sessions" |
+      printf '%b' "$dirs" | rofi-frecency get "sessions" |
         while IFS= read -r path; do
           name=$(basename "$path" | tr '.:' '_') ## replace dots with underscores
           for exclude in $opened_sessions; do
-            [[ "$name" == "$exclude" ]] && continue 2
+            [ "$name" = "$exclude" ] && continue 2
           done
           printf '%s\n' "$path"
         done
@@ -74,7 +74,7 @@ select_session() {
       rofi_flags="-w $window_id"
     fi
 
-    selected_idx=$(cat "$PIPE" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d "$rofi_flags") ## without using {} xargs splits by spaces too
+    selected_idx=$(cat "$PIPE" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d $rofi_flags) ## without using {} xargs splits by spaces too
 
     if [ -z "$selected_idx" ] || [ "$selected_idx" -lt 1 ]; then
       exit 0
@@ -117,8 +117,8 @@ get_tmux_client_var() {
     child_id=$1
     parent_id=$2
 
-    while [ "$child_id" -ne 1 ]; do
-      if [ "$child_id" -eq "$parent_id" ]; then
+    while [ "$child_id" != 1 ]; do
+      if [ "$child_id" = "$parent_id" ]; then
         return 0
       fi
       child_id=$(ps -o ppid= -p "$child_id" | xargs) ## xargs to delete leading whitespace
@@ -128,6 +128,10 @@ get_tmux_client_var() {
 
   window_pid="$(xdotool getactivewindow getwindowpid)"
   clients="$(tmux list-clients -F "#{client_pid} #{pane_pid}")"
+  if [ -z "$clients" ]; then
+    echo ""
+    return
+  fi
 
   echo "$clients" | while read -r client_pid pane_pid; do
     if is_child "$client_pid" "$window_pid"; then
