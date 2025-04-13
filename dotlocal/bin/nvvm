@@ -36,7 +36,7 @@ check_checksum_from_description() {
 
   echo "Getting checksum from description..."
 
-  remote_checksum=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/tags/$version" | jq '.body' | sed 's/\\n/\n/g' | grep -E '\w{64}\s+nvim-linux-x86_64.appimage\\r' | awk '{print $1}')
+  remote_checksum=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/tags/$version" | jq '.body' | sed 's/\\n/\n/g' | grep -E '\w{64}\s+nvim-linux-x86_64.appimage' | grep -v 'zsync' | awk '{print $1}')
 
   local_checksum=$(sha256sum "$lib_dir/$filename" | awk '{print $1}')
 
