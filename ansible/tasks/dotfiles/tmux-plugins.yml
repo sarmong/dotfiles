@@ -18,4 +18,5 @@
         repo: "https://github.com/{{ item.0 }}/{{ item.1 }}.git"
         dest: "{{ ansible_env.XDG_CONFIG_HOME }}/tmux/plugins/{{ item.1 }}"
         version: "{{ item.2 }}"
+        force: true
       loop: "{{ plugins }}"
