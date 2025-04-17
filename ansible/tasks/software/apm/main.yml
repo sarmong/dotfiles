@@ -13,9 +13,12 @@
     check_version_cmd: "{{ pkg_spec.get('check_version_cmd') }}"
     url: "{{ pkg_spec.url | replace('%%v%%', pkg_spec.version ) }}"
     file_path: "/tmp/{{ url | urlsplit('path') | basename }}"
-    extract_dir:
-      "{{ pkg_spec.get('extract_dir') | replace('%%v%%', pkg_spec.version ) }}"
+    _extract_dir: "{{ pkg_spec['extract_dir'] | default('') }}" ## intermediary var because jinja sucks
+    extract_dest: "{{ _extract_dir | replace('%%v%%', pkg_spec.version ) }}"
+
   block:
+    - debug:
+        msg: "{{ extract_dest }}"
     - name: "{{ item }} | check if binary exists and get current version"
       shell: "{{ check_version_cmd }}"
       register: version_check

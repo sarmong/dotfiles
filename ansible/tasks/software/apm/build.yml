@@ -3,18 +3,19 @@
     - binary
   vars:
     src_dir: "~/.local/src"
-    extract_dest: "{{ pkg_spec.extract_dir | default(src_dir) }}"
+    build_extract_dest:
+      "{{ (extract_dest == '') | ternary(src_dir, extract_dest) }}"
   block:
     - name: "{{ item }} | create extract dir"
       file:
-        path: "{{ extract_dest }}"
+        path: "{{ build_extract_dest }}"
         state: directory
         mode: "0755"
 
     - name: "{{ item }} | extract archive to temp directory"
       unarchive:
         src: "{{ file_path }}"
-        dest: "{{ extract_dest }}"
+        dest: "{{ build_extract_dest }}"
         remote_src: true
         mode: "0755"
         list_files: true
@@ -27,6 +28,6 @@
         loop_var: cmd
       args:
         chdir:
-          "{{ pkg_spec.extract_dir | default(src_dir ~ '/' ~
-          unarchive_res.files[0]) }}"
+          "{{ (extract_dest == '') | ternary(src_dir ~ '/' ~
+          unarchive_res.files[0], build_extract_dest) }}"
       when: "pkg_spec.build_cmds is defined"
