@@ -18,10 +18,18 @@ telescope.setup(
 extensions.setup()
 
 map("n", "<C-p>", fns.oldfiles(), "oldfiles")
+
 map("v", "<leader>st", function()
-  telescope.extensions.live_grep_args.live_grep_args({
+  fns.text({
     default_text = get_visual_selection()[1],
-  })
+  })()
+end, "selected text")
+
+map("v", "<leader>sT", function()
+  fns.text({
+    cwd = root_dir.get_project_root(),
+    default_text = get_visual_selection()[1],
+  })()
 end, "selected text")
 
 mapl({
