@@ -183,3 +183,27 @@ autocmd("InsertLeave", {
     end
   end,
 })
+
+local last_layout = nil
+autocmd("ModeChanged", {
+  desc = "Change layout to English when entering normal mode",
+  group = "lang-layout",
+  pattern = "i:n",
+  callback = function()
+    last_layout = tonumber(system("xkblayout-state print %c"):wait().stdout)
+    system("xkblayout-state set 0")
+    vim.defer_fn(function()
+      last_layout = nil
+    end, 10000)
+  end,
+})
+autocmd("ModeChanged", {
+  group = "lang-layout",
+  pattern = "n:i",
+  callback = function()
+    if last_layout then
+      system("xkblayout-state set " .. last_layout)
+    end
+    last_layout = nil
+  end,
+})
