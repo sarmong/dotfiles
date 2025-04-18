@@ -44,3 +44,18 @@ _G.lreq_submodule = function(module_ns)
   })
   return m
 end
+
+--- Use if you want to skip loading some module, but don't want to comment out
+_G.xreq = function(_module_name)
+  local dummy = {}
+  local mt = {
+    __call = function()
+      return dummy
+    end,
+    __index = function()
+      return dummy
+    end,
+  }
+  setmetatable(dummy, mt)
+  return dummy
+end

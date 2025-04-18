@@ -177,6 +177,9 @@ function Plugin(spec)
   req("mini.deps").add(spec)
 end
 
+--- Dummy function to skip loading plugin instead of commenting out
+function xPlugin(_spec) end
+
 curry = req("utils.curry")
 
 a = vim.api
