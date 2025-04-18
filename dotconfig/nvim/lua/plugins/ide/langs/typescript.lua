@@ -7,7 +7,8 @@ contrib.mason(
   "prettierd",
   "vue-language-server",
   "eslint-lsp",
-  "astro-language-server"
+  "astro-language-server",
+  "vtsls"
 )
 contrib.formatters({
   "javascript",
@@ -23,13 +24,25 @@ local get_lsp_root = function(fname)
   return req("modules.root-dir").get_project_root() or vim.fs.dirname(fname)
 end
 
+contrib.lsp("vtsls", function()
+  return {
+    init_options = { hostInfo = "neovim" },
+    autoUseWorkspaceTsdk = true,
+    root_dir = get_lsp_root,
+    on_attach = function(client, _bufnr)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+    autostart = not helpers.isVueProject(),
+  }
+end)
+
 contrib.setup(function()
   Plugin("dmmulroy/ts-error-translator.nvim")
-  Plugin("pmizio/typescript-tools.nvim")
-
   req("ts-error-translator").setup({})
 
-  req("typescript-tools").setup({
+  xPlugin("pmizio/typescript-tools.nvim")
+  xreq("typescript-tools").setup({
     root_dir = get_lsp_root,
     on_attach = function(client, bufnr)
       -- disable formatting with tsserver, so that null-ls will handle it
