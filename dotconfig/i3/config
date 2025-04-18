@@ -87,8 +87,8 @@ bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10
 
-bindsym $mod+s exec ~/.config/i3/bin/switch_ws.py next
-bindsym $mod+w exec ~/.config/i3/bin/switch_ws.py prev
+bindsym $mod+s exec ~/.config/i3/bin/switch_ws.pl next
+bindsym $mod+w exec ~/.config/i3/bin/switch_ws.pl prev
 bindsym $mod+Escape workspace back_and_forth
 
 bindsym $mod+Shift+s move container to workspace next
