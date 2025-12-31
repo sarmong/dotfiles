@@ -33,7 +33,7 @@ run unclutter
 run clipmenud
 run conky
 run flameshot
-run redshift
+run redshift -t 6500:2500
 run safeeyes
 run udiskie --smart-tray
 run volctl
