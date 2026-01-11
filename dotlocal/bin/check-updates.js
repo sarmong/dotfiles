@@ -7,7 +7,7 @@ const exec = util.promisify(require("node:child_process").exec);
 const main = async () => {
   const file = path.join(
     process.env.XDG_DOTFILES_DIR,
-    "/ansible/tasks/software/build/vars/binary_packages.yml",
+    "/ansible/tasks/software/apm/vars/package_specs.yml",
   );
   const json = await exec("yq .binary_packages " + file);
   const pkgs = JSON.parse(json.stdout);
@@ -15,7 +15,13 @@ const main = async () => {
   for (const pkg in pkgs) {
     const pkgSpec = pkgs[pkg];
 
-    const repoSlug = pkgSpec.url.match("https://github.com/(.*)/releases")[1];
+    const repoSlug = pkgSpec.url.match("https://github.com/(.*)/releases")?.[1];
+
+    if (!repoSlug) {
+      console.log(`Failed to get releases for ${pkg} - check manually`);
+      console.log(pkgSpec.url.match("https://github.com/\\w+/\\w+")?.[0]);
+      continue;
+    }
 
     const res = await fetch(
       `https://api.github.com/repos/${repoSlug}/releases/latest`,
