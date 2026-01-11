@@ -45,6 +45,7 @@
           - socat ## needed for mpv socket control
           - bluez
           - blueman
+          - exiftool
 
     - name: Load xdg variables (with new loaded ansible_env)
       tags: always
