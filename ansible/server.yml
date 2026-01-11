@@ -65,6 +65,13 @@
           - trash-cli
           - jq
 
+    - name: Install other packages
+      tags:
+        - apm
+      include_tasks: tasks/software/apm/main.yml
+      loop:
+        - bottom
+
     - name: Set zsh shell
       become: true
       user:
