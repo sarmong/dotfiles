@@ -18,6 +18,14 @@
       - ufw
       - psmisc
 
+- name: Install service DE packages
+  become: true
+  apt:
+    name:
+      - dunst
+      - pipewire-audio
+      - network-manager-gnome
+
 - name: Install DE packages
   become: true
   apt:
@@ -32,7 +40,6 @@
       - xvfb
       - lightdm
       - lightdm-gtk-greeter
-      - dunst
       - picom
       - arandr
       - autorandr
@@ -48,14 +55,12 @@
       - fonts-noto-color-emoji
       - inputplug
       - xbindkeys
-      - pipewire-audio
       - pulsemixer
       - pavucontrol
       - pamixer
       - playerctl
       - bluez
       - blueman
-      - network-manager-gnome
       - gnome-keyring
       - xfce4-power-manager
       - mate-system-monitor
