@@ -51,7 +51,7 @@ autocmd({ "FocusGained", "VimEnter" }, {
     vim.defer_fn(function()
       should_set_system_clip = true
       read_system_clip()
-    end, 200)
+    end, 600)
   end,
 })
 
