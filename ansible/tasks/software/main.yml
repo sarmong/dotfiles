@@ -208,6 +208,7 @@
       - name: git-filter-repo
       - name: beets
       - name: qtile
+      - name: mitmproxy
 
 - name: Install apm packages
   tags:
