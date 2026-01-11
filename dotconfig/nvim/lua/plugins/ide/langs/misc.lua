@@ -75,6 +75,11 @@ Plugin("sarmong/conky-syntax.vim")
 Plugin("elkowar/yuck.vim")
 Plugin("fladson/vim-kitty")
 
+Plugin("nathangrigg/vim-beancount")
+contrib.ts_parsers("beancount")
+contrib.mason("beancount-language-server")
+contrib.lsp("beancount")
+
 contrib.ts_parsers("devicetree")
 autocmd("BufEnter", {
   pattern = "*.keymap",
