@@ -6,7 +6,7 @@
 - name: Copy config
   become: true
   copy:
-    src: lighttpd.toml
+    src: lighttpd.conf
     dest: /etc/lighttpd/lighttpd.conf
     mode: preserve
   register: config_update
