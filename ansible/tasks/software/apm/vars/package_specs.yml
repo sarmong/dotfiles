@@ -214,3 +214,19 @@ binary_packages:
       - libmpv2
     build_cmds:
       - sudo make install
+
+  devtoys:
+    name: devtoys
+    version: 2.0.9
+    type: "deb"
+    checksum: sha256:36dd2896b77d8a25747b3bc7f7d50c85d606de4ca68641a12121b86a97452bf5
+    url: https://github.com/DevToys-app/DevToys/releases/download/v%%v%%.0/devtoys_linux_x64.deb
+    check_version_cmd: "dpkg -s devtoys | grep Version | awk '{ print $2 }'"
+
+  devtoys.cli:
+    name: devtoys.cli
+    version: 2.0.9
+    type: "deb"
+    checksum: sha256:cc5febe9de05823eb4ab0e31747b069d5176b8cf07f2fc154a028a894f64e98a
+    url: https://github.com/DevToys-app/DevToys/releases/download/v%%v%%.0/devtoys.cli_linux_x64.deb
+    check_version_cmd: "dpkg -s devtoys.cli | grep Version | awk '{ print $2 }'"
