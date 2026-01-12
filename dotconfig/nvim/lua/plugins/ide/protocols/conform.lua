@@ -9,13 +9,18 @@ vim.env.PATH = os.getenv("XDG_SRC_DIR")
 local opts = {
   formatters_by_ft = req("plugins.ide.contrib").state.formatters,
 
+  default_format_opts = {
+    timeout_ms = 500,
+    lsp_format = "fallback",
+  },
+
   format_on_save = function(bufnr)
     local bufname = vim.api.nvim_buf_get_name(bufnr)
     if not Pref.ide.format_on_save or bufname:match("/node_modules/") then
       return
     end
 
-    return { timeout_ms = 500, lsp_fallback = true }
+    return {}
   end,
 
   formatters = {
@@ -55,8 +60,12 @@ mapl({
       "[e]nable format on save",
     },
     d = {
-      function()
+      function(silent)
         Pref.ide.format_on_save = false
+
+        if not silent then
+          print("Disabled formatting on save")
+        end
       end,
       "[d]isable format on save",
     },
