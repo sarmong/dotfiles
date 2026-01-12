@@ -75,10 +75,26 @@ Plugin("sarmong/conky-syntax.vim")
 Plugin("elkowar/yuck.vim")
 Plugin("fladson/vim-kitty")
 
-Plugin("nathangrigg/vim-beancount")
+vim.filetype.add({ extension = { bean = "beancount" } })
 contrib.ts_parsers("beancount")
 contrib.mason("beancount-language-server")
-contrib.lsp("beancount")
+contrib.lsp("beancount", function()
+  return {
+    root_markers = { "main.bean", ".git" },
+    init_options = {
+      journal_file = "main.bean",
+      formatting = {
+        prefix_width = 30,
+        currency_column = 60,
+        number_currency_spacing = 1,
+      },
+    },
+    on_attach = function(client, bufnr)
+      client.server_capabilities.textDocumentSync.willSaveWaitUntil = nil
+      client.server_capabilities.semanticTokensProvider = nil -- not a fan of colors
+    end,
+  }
+end)
 
 contrib.ts_parsers("devicetree")
 autocmd("BufEnter", {
