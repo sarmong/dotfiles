@@ -15,6 +15,11 @@ contrib.mason("clangd")
 contrib.lsp("clangd")
 contrib.ts_parsers("c")
 
+-- Rust
+contrib.ts_parsers("rust")
+contrib.mason("rust-analyzer")
+contrib.lsp("rust_analyzer")
+
 -- VimScript
 contrib.mason("vim-language-server")
 contrib.lsp("vimls")
@@ -57,7 +62,6 @@ contrib.ts_parsers(
   "query",
   "rasi",
   "regex",
-  "rust",
   "sql",
   "toml",
   "tsv"

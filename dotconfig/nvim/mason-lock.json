@@ -17,6 +17,7 @@
   "prettierd": "0.25.3",
   "pyright": "1.1.358",
   "python-lsp-server": "1.11.0",
+  "rust-analyzer": "2026-01-05",
   "shellcheck": "v0.10.0",
   "shfmt": "v3.8.0",
   "stylua": "v0.20.0",
