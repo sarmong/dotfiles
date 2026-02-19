@@ -90,5 +90,5 @@
   unpushed = log @{u}..
   rebase-unpushed = rebase -i @{u}
   pr = !xdg-open "https://github.com/$(git remote get-url origin | cut -d : -f 2 | cut -d . -f 1)/pull/new/$(git rev-parse --abbrev-ref HEAD)"
-[merge "ours"]
-	driver = true
+; [merge "ours"]
+; 	driver = true
