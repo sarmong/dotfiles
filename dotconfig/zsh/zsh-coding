@@ -42,3 +42,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if [ -d "$XDG_DATA_HOME"/coursier ]; then
   export PATH="$PATH:$XDG_DATA_HOME/coursier/bin"
 fi
+
+## Java
+## ========
+export SDKMAN_DIR="$XDG_DATA_HOME/sdkman"
+
+[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
