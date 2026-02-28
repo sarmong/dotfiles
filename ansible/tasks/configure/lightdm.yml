@@ -1,5 +1,6 @@
 - name: Configure lightdm
   become: true
+  when: ansible_distribution == "Debian"
   block:
     - name: lightdm | packages
       apt:

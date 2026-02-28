@@ -26,6 +26,13 @@
       - pipewire-audio
       - network-manager-gnome
 
+- name: Install pipewire (Debian only)
+  when: ansible_distribution == "Debian"
+  become: true
+  apt:
+    name:
+      - pipewire-audio
+
 - name: Install DE packages
   become: true
   apt:
@@ -38,8 +45,6 @@
       - wmname
       - xdo
       - xvfb
-      - lightdm
-      - lightdm-gtk-greeter
       - picom
       - arandr
       - autorandr

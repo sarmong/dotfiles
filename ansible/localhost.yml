@@ -38,5 +38,6 @@
         - import_tasks: tasks/configure/ui.yml
         - import_tasks: tasks/configure/sudoers.yml
         - import_tasks: tasks/configure/misc.yml
+        - import_tasks: tasks/configure/ubuntu-debloat.yml
         - import_tasks: tasks/configure/network.yml
         - import_tasks: tasks/configure/gtk.yml

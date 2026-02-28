@@ -86,6 +86,7 @@
       loop:
         - xdg-desktop-portal-gtk ## causes slow startup of gtk apps
         - plasma-xdg-desktop-portal-kde ## slow startup of blueman-manager and tg
+      when: ansible_distribution == "Debian"
 
     - name: Update tldr
       command:

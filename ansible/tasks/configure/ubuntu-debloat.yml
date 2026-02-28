@@ -1,0 +1,44 @@
+---
+- name: Remove Ubuntu bloat packages
+  become: true
+  when: ansible_distribution == "Ubuntu"
+  block:
+    - name: Remove Ubuntu bloat packages
+      apt:
+        name:
+          - snapd # Snap package manager
+          - apport # Crash reporting
+          - whoopsie # Error reporting
+          - popularity-contest # Usage statistics
+          - ubuntu-report # Ubuntu reporting
+          - update-notifier-common # Update notifications
+          - ubuntu-web-launchers # Amazon launchers (if still present)
+          - ubuntu-advantage-tools # Ubuntu Pro (if not needed)
+          # GNOME default apps (remove if not using GNOME desktop)
+          - gnome-calendar # Calendar
+          - gnome-contacts # Contacts
+          - gnome-maps # Maps
+          - gnome-weather # Weather
+          - gnome-music # Music
+          - gnome-videos # Videos
+          - gnome-photos # Photos
+          - gnome-todo # Todo
+          - gnome-getting-started-docs
+          - yelp # Help browser
+          - gnome-user-docs # User documentation
+          - gnome-help # Help system
+          - rhythmbox # Music player
+          - totem # Video player
+          - shotwell # Photo manager
+        state: absent
+        purge: true
+
+    - name: Disable snap services
+      systemd_service:
+        name: "{{ item }}"
+        state: stopped
+        enabled: false
+      loop:
+        - snapd.service
+        - snapd.socket
+        - snapd.seeded.service
