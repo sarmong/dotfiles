@@ -15,8 +15,8 @@
       }}.tar.gz"
     checksum: sha256:ec1dae17e194a4a06fc05b4ceac7090a4aa573fa925132ab987a79dc591ef3e2
     tar_path: "/tmp/{{ version }}.tar.gz"
-    src_base_dir: "{{ XDG_SRC_DIR }}"
-    src_dir: "{{ XDG_SRC_DIR }}/{{ newsboat_name }}"
+    src_base_dir: "{{ ansible_env.XDG_SRC_DIR }}"
+    src_dir: "{{ ansible_env.XDG_SRC_DIR }}/{{ newsboat_name }}"
 
   block:
     - name: Install newsboat build-deps

@@ -17,8 +17,8 @@
       }}.tar.gz"
     checksum: sha256:551ab8dea0bf505c0ad6b7bb35ef567cdde0ccb84357df142c254f35a23e19aa
     tar_path: "/tmp/{{ tmux_name }}.tar.gz"
-    src_base_dir: "{{ XDG_SRC_DIR }}"
-    src_dir: "{{ XDG_SRC_DIR }}/{{ tmux_name }}"
+    src_base_dir: "{{ ansible_env.XDG_SRC_DIR }}"
+    src_dir: "{{ ansible_env.XDG_SRC_DIR }}/{{ tmux_name }}"
 
   block:
     - name: Install tmux build-deps
