@@ -10,6 +10,13 @@
   loop_control:
     loop_var: file
 
+- name: kitty | ensure /usr/local/share/applications exists
+  become: true
+  file:
+    path: /usr/local/share/applications
+    state: directory
+    mode: "0755"
+
 - name: kitty | link desktop files
   become: true
   file:
