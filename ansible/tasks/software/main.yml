@@ -38,6 +38,7 @@
   apt:
     name:
       - xorg
+      - xorg-dev
       - i3
       - i3blocks
       - xdotool
@@ -69,7 +70,7 @@
       - gnome-keyring
       - xfce4-power-manager
       - mate-system-monitor
-      - conky
+      - conky-std
       - udiskie
       - xarchiver
       - ueberzug
@@ -80,21 +81,6 @@
       - mediainfo
       - unclutter
       - sxhkd
-
-- name: pacstall | install DE packages
-  pacstall:
-    name:
-      - wmutils
-      - awesome-git
-      - betterlockscreen
-      # - arc-gruvbox-gtk-theme-git
-      - simp1e-gruvbox-dark-cursor-theme-git
-      - nerd-fonts-jetbrains-mono
-      - nerd-fonts-fira-code
-      - nerd-fonts-fira-mono
-      - keyd
-      - xkblayout-state-git
-      - volctl
 
 - name: Install applications
   become: true
@@ -133,28 +119,6 @@
       - mpdris2
       - lynx
       - firefox
-
-- name: Install applications | pacstall
-  become: true
-  pacstall:
-    name:
-      # - selectdefaultapplication
-      # - rofi-calc
-      - clipmenu-git
-      - libinput-gestures
-      - czkawka-gui-bin
-      - dragon-drop
-      - vscodium-deb
-      - brave-browser-deb
-      # - protonvpn-gui
-      - freetube-deb
-    # - spotify-client-deb
-    # - activitywatch-bin
-    # - monero-gui
-    # - skypeforlinux-stable-bin
-    # - slack-deb
-    # - zoom-deb
-    # - google-chrome-deb
 
 - name: Install CLI utils
   become: true
@@ -245,3 +209,41 @@
     - supersonic
     - devtoys
     - devtoys.cli
+
+## should be after apm installs pacstall
+- name: pacstall | install DE packages
+  pacstall:
+    name:
+      - wmutils
+      - awesome-git
+      - betterlockscreen
+      # - arc-gruvbox-gtk-theme-git
+      - simp1e-gruvbox-dark-cursor-theme-git
+      - nerd-fonts-jetbrains-mono
+      - nerd-fonts-fira-code
+      - nerd-fonts-fira-mono
+      - keyd
+      - xkblayout-state-git
+      - volctl
+
+- name: Install applications | pacstall
+  become: true
+  pacstall:
+    name:
+      # - selectdefaultapplication
+      # - rofi-calc
+      - clipmenu-git
+      - libinput-gestures
+      - czkawka-gui-bin
+      - dragon-drop
+      - vscodium-deb
+      - brave-browser-deb
+      # - protonvpn-gui
+      - freetube-deb
+    # - spotify-client-deb
+    # - activitywatch-bin
+    # - monero-gui
+    # - skypeforlinux-stable-bin
+    # - slack-deb
+    # - zoom-deb
+    # - google-chrome-deb

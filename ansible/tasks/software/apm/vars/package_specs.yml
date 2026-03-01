@@ -201,6 +201,8 @@ binary_packages:
       - make
       - make install DEST={{ ansible_env.XDG_CONFIG_HOME
         }}/polybar/bin/windowlist
+    dependencies:
+      - libx11-dev
 
   supersonic:
     name: supersonic
