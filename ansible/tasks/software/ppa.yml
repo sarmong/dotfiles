@@ -8,13 +8,7 @@
       Package: *
       Pin: origin packages.mozilla.org
       Pin-Priority: 1000
-  register: mozilla_pref
-
-- name: Update apt cache if preferences changed
-  become: true
-  apt:
-    update_cache: true
-  when: mozilla_pref.changed
+  notify: Apt update
 
 - name: Add ppa repos
   vars:
