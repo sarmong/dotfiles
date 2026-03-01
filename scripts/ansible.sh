@@ -18,7 +18,7 @@ VAULT_KEY_FILE="/tmp/ansible-key"
 DEVICE_ROLE_FILE=/var/lib/misc/ansible-role
 
 main() {
-  case "$1" in
+  case "${1:-}" in
     reencrypt)
       shift
       reencrypt_file "$@"
