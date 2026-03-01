@@ -32,13 +32,3 @@
           - shotwell # Photo manager
         state: absent
         purge: true
-
-    - name: Disable snap services
-      systemd_service:
-        name: "{{ item }}"
-        state: stopped
-        enabled: false
-      loop:
-        - snapd.service
-        - snapd.socket
-        - snapd.seeded.service
