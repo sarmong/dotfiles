@@ -152,7 +152,7 @@
 
     - name: firefox | find created *.default-release dir
       find:
-        paths: "{{ ansible_env.HOME }}/.mozilla/firefox"
+        paths: "{{ ansible_env.XDG_CONFIG_HOME }}/mozilla/firefox"
         patterns: "*.default-release"
         file_type: directory
       register: firefox_created_dir
