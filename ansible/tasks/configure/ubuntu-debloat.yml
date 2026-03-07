@@ -6,23 +6,23 @@
     - name: Remove Ubuntu bloat packages
       apt:
         name:
-          - snapd # Snap package manager
+          - snapd
           - apport # Crash reporting
           - whoopsie # Error reporting
           - popularity-contest # Usage statistics
-          - ubuntu-report # Ubuntu reporting
+          - ubuntu-report
           - update-notifier-common # Update notifications
-          - ubuntu-web-launchers # Amazon launchers (if still present)
-          - ubuntu-advantage-tools # Ubuntu Pro (if not needed)
-          # GNOME default apps (remove if not using GNOME desktop)
-          - gnome-calendar # Calendar
-          - gnome-contacts # Contacts
-          - gnome-maps # Maps
-          - gnome-weather # Weather
-          - gnome-music # Music
-          - gnome-videos # Videos
-          - gnome-photos # Photos
-          - gnome-todo # Todo
+          - ubuntu-web-launchers # Amazon launchers
+          - ubuntu-advantage-tools # Ubuntu Pro
+          # GNOME default apps
+          - gnome-calendar
+          - gnome-contacts
+          - gnome-maps
+          - gnome-weather
+          - gnome-music
+          - gnome-videos
+          - gnome-photos
+          - gnome-todo
           - gnome-getting-started-docs
           - yelp # Help browser
           - gnome-user-docs # User documentation
@@ -32,3 +32,68 @@
           - shotwell # Photo manager
         state: absent
         purge: true
+        allow_downgrade: true
+        force_apt_get: true
+        autoremove: true
+        autoclean: true
+
+- name: create swap
+  become: true
+  when: ansible_distribution == "Ubuntu"
+  block:
+    - name: Check if /swap.img is active
+      command: grep -q '/swap.img' /proc/swaps
+      register: swap_img_active
+      failed_when: false
+      changed_when: false
+
+    - name: Disable /swap.img if active
+      command: swapoff /swap.img
+      when: swap_img_active.rc == 0
+      changed_when: swap_img_active.rc == 0
+
+    - name: Remove /swap.img file
+      file:
+        path: /swap.img
+        state: absent
+
+    - name: Remove /swap.img from fstab
+      lineinfile:
+        path: /etc/fstab
+        regexp: '.*swap\.img.*'
+        state: absent
+
+    - name: Create 40GB swapfile
+      command: fallocate -l 40G /swapfile
+      args:
+        creates: /swapfile
+
+    - name: Set correct permissions on swapfile
+      file:
+        path: /swapfile
+        owner: root
+        group: root
+        mode: "0600"
+
+    - name: Check if /swapfile is already active
+      ansible.builtin.command: grep -q '/swapfile' /proc/swaps
+      register: swapfile_active
+      failed_when: false
+      changed_when: false
+
+    - name: Format swapfile
+      ansible.builtin.command: mkswap /swapfile
+      when: swapfile_active.rc != 0
+      changed_when: swapfile_active.rc != 0
+
+    - name: Enable swapfile
+      ansible.builtin.command: swapon /swapfile
+      when: swapfile_active.rc != 0
+      changed_when: swapfile_active.rc != 0
+
+    - name: Add swapfile to fstab
+      ansible.builtin.lineinfile:
+        path: /etc/fstab
+        line: "/swapfile   none   swap   sw   0   0"
+        regexp: ".*swapfile.*"
+        state: present
