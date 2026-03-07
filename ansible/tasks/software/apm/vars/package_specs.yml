@@ -314,6 +314,21 @@ binary_packages:
     check_version_cmd:
       "cat {{ ansible_env.XDG_DATA_HOME }}/apm/xkblayout-state.version"
 
+  libinput-gestures:
+    name: libinput-gestures
+    version: "2.76"
+    type: build
+    checksum: sha256:493de1159c367433cb4a4fe2bb3dc4b53ea837b038a9ba00932080e857cda603
+    url: https://github.com/bulletmark/libinput-gestures/archive/refs/tags/%%v%%.tar.gz
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/libinput-gestures.version"
+    check_version_cmd: "cat {{ ansible_env.XDG_DATA_HOME }}/apm/libinput-gestures.version"
+    dependencies:
+      - wmctrl
+      - xdotool
+      - libinput-tools
+    build_cmds:
+      - sudo ./libinput-gestures-setup install
+
   volctl:
     name: volctl
     version: "0.9.4"

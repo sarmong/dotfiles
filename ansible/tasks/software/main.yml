@@ -225,6 +225,7 @@
     - volctl
     - clipmenu
     - dragon-drop
+    - libinput-gestures
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages
@@ -244,7 +245,6 @@
     name:
       # - selectdefaultapplication
       # - rofi-calc
-      - libinput-gestures
       - vscodium-deb
       - brave-browser-deb
       # - protonvpn-gui
