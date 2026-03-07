@@ -5,6 +5,14 @@
     - apm
   include_vars: vars/package_specs.yml
 
+- name: Create apm data directory
+  tags:
+    - apm
+  file:
+    path: "{{ ansible_env.XDG_DATA_HOME }}/apm"
+    state: directory
+    mode: "0755"
+
 - name: "{{ item }} | Install {{ item }}"
   tags:
     - apm
@@ -74,6 +82,12 @@
         - name: install build
           when: pkg_spec.type == 'build'
           include_tasks: build.yml
+
+        - name: "{{ item }} | write version file"
+          copy:
+            content: "{{ pkg_spec.version }}"
+            dest: "{{ pkg_spec.version_file }}"
+          when: pkg_spec.version_file is defined
 
     - name: "{{ item }} | post_install tasks"
       include_tasks: "{{ pkg_spec.post_install_task }}"

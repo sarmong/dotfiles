@@ -217,12 +217,12 @@
     - supersonic
     - devtoys
     - devtoys.cli
+    - wmutils
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages
   pacstall:
     name:
-      - wmutils
       - awesome-git
       - betterlockscreen
       # - arc-gruvbox-gtk-theme-git

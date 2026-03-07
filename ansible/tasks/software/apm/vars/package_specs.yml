@@ -232,3 +232,19 @@ binary_packages:
     checksum: sha256:cc5febe9de05823eb4ab0e31747b069d5176b8cf07f2fc154a028a894f64e98a
     url: https://github.com/DevToys-app/DevToys/releases/download/v%%v%%.0/devtoys.cli_linux_x64.deb
     check_version_cmd: "dpkg -s devtoys.cli | grep Version | awk '{ print $2 }'"
+
+  wmutils:
+    name: wmutils
+    version: "1.7" ## has to be a string
+    type: build
+    checksum: sha256:b9b70fa38b0b021f7106a7552d877f21ce7a03100564508ef5748e154bfe61b6
+    url: https://github.com/wmutils/core/archive/refs/tags/v%%v%%.zip
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/wmutils.version"
+    check_version_cmd: "cat {{ ansible_env.XDG_DATA_HOME }}/apm/wmutils.version"
+    dependencies:
+      - libxcb1-dev
+      - libxcb-util-dev
+      - libxcb-cursor-dev
+    build_cmds:
+      - make
+      - sudo make install
