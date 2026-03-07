@@ -342,3 +342,16 @@ binary_packages:
     version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/clipmenu.version"
     check_version_cmd:
       "cat {{ ansible_env.XDG_DATA_HOME }}/apm/clipmenu.version"
+
+  dragon-drop:
+    name: dragon-drop
+    version: 1.2.0
+    type: build
+    checksum: sha256:5a89518b554034696923b624b9430c0dc160589e015179ec531d650c6c339133
+    url: https://github.com/mwh/dragon/archive/refs/tags/v%%v%%.zip
+    dependencies:
+      - libgtk-3-dev
+    build_cmds:
+      - make NAME="dragon-drop"
+      - sudo make PREFIX='/usr/local' NAME="dragon-drop" install
+    check_version_cmd: "dragon-drop --version | sed -nE 's/dragon (.*)/\\1/p'"

@@ -223,6 +223,7 @@
     - xkblayout-state
     - volctl
     - clipmenu
+    - dragon-drop
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages
@@ -244,7 +245,6 @@
       # - rofi-calc
       - libinput-gestures
       - czkawka-gui-bin
-      - dragon-drop
       - vscodium-deb
       - brave-browser-deb
       # - protonvpn-gui
