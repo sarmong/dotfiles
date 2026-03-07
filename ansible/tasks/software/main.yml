@@ -222,6 +222,7 @@
     - betterlockscreen
     - xkblayout-state
     - volctl
+    - clipmenu
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages
@@ -241,7 +242,6 @@
     name:
       # - selectdefaultapplication
       # - rofi-calc
-      - clipmenu-git
       - libinput-gestures
       - czkawka-gui-bin
       - dragon-drop

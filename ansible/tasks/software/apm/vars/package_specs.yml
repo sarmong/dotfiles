@@ -328,3 +328,17 @@ binary_packages:
       - sudo install -Dm644 data/apps.volctl.gschema.xml -t
         /usr/share/glib-2.0/schemas/
       - sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+
+  clipmenu:
+    name: clipmenu
+    version: 707b18c4873a6e0c4319e0b9fe4aff64362fd532
+    type: build
+    checksum: sha256:983bbf59b57be2c9f28f9880da7fe818a223def4811ffb93e78f7b5de7a2fe7e
+    url: https://github.com/cdown/clipmenu/archive/%%v%%.zip
+    dependencies:
+      - xsel
+    build_cmds:
+      - sudo make PREFIX="/usr/local" install
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/clipmenu.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/clipmenu.version"
