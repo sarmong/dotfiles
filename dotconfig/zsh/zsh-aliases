@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-exists thefuck && eval "$(thefuck --alias)"
-
 exists batcat && alias bat="batcat" # For Debian
 
 ## Package managers
