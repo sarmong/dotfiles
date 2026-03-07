@@ -221,6 +221,7 @@
     - i3lock-color ## dependency of betterlockscreen
     - betterlockscreen
     - xkblayout-state
+    - volctl
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages
@@ -233,7 +234,6 @@
       - nerd-fonts-fira-code
       - nerd-fonts-fira-mono
       - keyd
-      - volctl
 
 - name: Install applications | pacstall
   become: true

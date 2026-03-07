@@ -303,3 +303,28 @@ binary_packages:
     version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/xkblayout-state.version"
     check_version_cmd:
       "cat {{ ansible_env.XDG_DATA_HOME }}/apm/xkblayout-state.version"
+
+  volctl:
+    name: volctl
+    version: "0.9.4"
+    type: build
+    checksum: sha256:c5f2e5f9cc9ce15938683d65f76ce9eded3616c4f082dcae78e0adfbe6911c46
+    url: https://github.com/buzz/volctl/archive/refs/tags/v%%v%%.zip
+    check_version_cmd:
+      "/usr/local/lib/volctl-env/bin/pip show volctl | grep -oP '(?<=Version:
+      ).*'"
+    dependencies:
+      - python3
+      - python3-venv
+      - python3-setuptools
+      - python3-cairo
+      - python3-gi
+      - libpulse-dev
+    build_cmds:
+      - sudo python3 -m venv --system-site-packages /usr/local/lib/volctl-env
+      - sudo /usr/local/lib/volctl-env/bin/pip install pulsectl
+      - sudo /usr/local/lib/volctl-env/bin/pip install .
+      - sudo ln -sf /usr/local/lib/volctl-env/bin/volctl /usr/local/bin/volctl
+      - sudo install -Dm644 data/apps.volctl.gschema.xml -t
+        /usr/share/glib-2.0/schemas/
+      - sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
