@@ -2,16 +2,18 @@ xkb_keymap {
 	xkb_keycodes  { include "evdev+aliases(qwerty)"	};
 	xkb_types     { 
     include "complete"
-    // 3-level type for the RAlt group-switch key.
-    // Level1=RAlt, Level2=Shift+RAlt, Level3=LCtrl+RAlt
+    // 4-level type for the RAlt group-switch key.
+    // Level1=RAlt, Level2=Shift+RAlt, Level3=LCtrl+RAlt, Level4=Shift+LCtrl+RAlt
     type "CTRL_GROUP_SWITCH" {
       modifiers = Shift+Control;
       map[None]          = Level1;
       map[Shift]         = Level2;
       map[Control]       = Level3;
+      map[Shift+Control] = Level4;
       level_name[Level1] = "Base";
       level_name[Level2] = "Shift";
       level_name[Level3] = "Ctrl";
+      level_name[Level4] = "Shift+Ctrl";
     };
   };
 	xkb_compat    { include "complete"	};
@@ -22,26 +24,41 @@ xkb_keymap {
   //   RAlt                 = English
   //   Shift + RAlt         = Russian
   //   LCtrl + RAlt         = Ukrainian
+  //   Shift + LCtrl + RAlt = Polish
+  //
+  // Right Ctrl: normal Control in groups 1-3, AltGr (Level3) in Polish (group 4)
   //
   // Apply with: xkbcomp ~/.config/xkb/config $DISPLAY
   // Taken from https://habr.com/ru/post/486872/
   //
   // How it works:
   //   XKB assigns each key a "level" based on which modifiers are held.
-  //   CTRL_GROUP_SWITCH maps: none→Level1, Shift→Level2, Ctrl→Level3
+  //   CTRL_GROUP_SWITCH maps: none→Level1, Shift→Level2, Ctrl→Level3, Shift+Ctrl→Level4
   //   actions[groupN] defines what RAlt does WHILE IN that group (same for all groups here).
   //
-  //   Level:           1          2          3
-  //   Modifier:       none       Shift      LCtrl
-  //   → group:       English   Russian   Ukrainian
+  //   Level:           1          2          3            4
+  //   Modifier:       none       Shift      LCtrl        Shift+LCtrl
+  //   → group:       English   Russian   Ukrainian      Polish
 
   xkb_symbols {
-    // Load 3 layouts: English=group1, Russian=group2, Ukrainian=group3
-    include "pc+us+ru:2+ua:3+inet(evdev)"
+    // Load 4 layouts: English=group1, Russian=group2, Ukrainian=group3, Polish=group4
+    include "pc+us+ru:2+ua:3+pl:4+inet(evdev)"
 
     name[group1] = "English (US)";
     name[group2] = "Russian";
     name[group3] = "Ukrainian";
+    name[group4] = "Polish";
+
+    // Right Ctrl: Control in groups 1-3, AltGr (Mod5/Level3) in Polish.
+    // Removed from modifier_map — actions handle the modifier state directly,
+    // so LCtrl+RAlt still triggers Level3 of CTRL_GROUP_SWITCH (→ Ukrainian).
+    key <RCTL> {
+      actions[group1] = [ SetMods(modifiers=Control) ],
+      actions[group2] = [ SetMods(modifiers=Control) ],
+      actions[group3] = [ SetMods(modifiers=Control) ],
+      actions[group4] = [ SetMods(modifiers=Mod5)    ]
+    };
+    modifier_map None { <RCTL> };
 
     // RAlt as layout switcher. type must be set per group — without it, groups
     // fall back to TWO_LEVEL and lose the Ctrl/Shift+Ctrl bindings.
@@ -49,11 +66,13 @@ xkb_keymap {
       type[group1]="CTRL_GROUP_SWITCH",
       type[group2]="CTRL_GROUP_SWITCH",
       type[group3]="CTRL_GROUP_SWITCH",
-      //                Level1               Level2               Level3
-      //                RAlt                 Shift+RAlt           LCtrl+RAlt
-      actions[group1] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3)],
-      actions[group2] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3)],
-      actions[group3] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3)]
+      type[group4]="CTRL_GROUP_SWITCH",
+      //                Level1               Level2               Level3               Level4
+      //                RAlt                 Shift+RAlt           LCtrl+RAlt           Shift+LCtrl+RAlt
+      actions[group1] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3), LockGroup(group=4) ],
+      actions[group2] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3), LockGroup(group=4) ],
+      actions[group3] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3), LockGroup(group=4) ],
+      actions[group4] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3), LockGroup(group=4) ]
     };
   };
 };
