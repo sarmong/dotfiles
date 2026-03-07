@@ -388,3 +388,51 @@ binary_packages:
     checksum: sha256:6f2fad4435e0110484d3f25cdc4bf20129dae03238f32d06ebdd00bdc50ae2ed
     url: https://github.com/tealdeer-rs/tealdeer/releases/download/v%%v%%/tealdeer-linux-x86_64-musl
     check_version_cmd: "tldr --version | sed -nE 's/tealdeer (.*)/\\1/p'"
+
+  nerd-fonts-jetbrains-mono:
+    name: nerd-fonts-jetbrains-mono
+    version: 3.4.0
+    type: build
+    checksum: sha256:ef552a3e638f25125c6ad4c51176a6adcdce295ab1d2ffacf0db060caf8c1582
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v%%v%%/JetBrainsMono.tar.xz
+    extract_dir: "{{ ansible_env.XDG_SRC_DIR }}/nerd-fonts-jetbrains-mono-%%v%%"
+    version_file:
+      "{{ ansible_env.XDG_DATA_HOME }}/apm/nerd-fonts-jetbrains-mono.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/nerd-fonts-jetbrains-mono.version"
+    build_cmds:
+      - sudo install -d /usr/local/share/fonts/TTF
+      - bash -c "sudo install -Dm644 *.ttf /usr/local/share/fonts/TTF/"
+      - sudo fc-cache -f /usr/local/share/fonts/TTF
+
+  nerd-fonts-fira-mono:
+    name: nerd-fonts-fira-mono
+    version: 3.0.2
+    type: build
+    checksum: sha256:8bd1aca6c2abf629d25e1ccf34a92d2ae8d48b2ff21ace473ac7ac0c2d2b3fc6
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v%%v%%/FiraMono.tar.xz
+    extract_dir: "{{ ansible_env.XDG_SRC_DIR }}/nerd-fonts-fira-mono-%%v%%"
+    version_file:
+      "{{ ansible_env.XDG_DATA_HOME }}/apm/nerd-fonts-fira-mono.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/nerd-fonts-fira-mono.version"
+    build_cmds:
+      - sudo install -d /usr/local/share/fonts/OTF
+      - bash -c "sudo install -Dm644 *.otf /usr/local/share/fonts/OTF/"
+      - sudo fc-cache -f /usr/local/share/fonts/OTF
+
+  nerd-fonts-fira-code:
+    name: nerd-fonts-fira-code
+    version: 3.0.2
+    type: build
+    checksum: sha256:8e03d77966236c2d36d1ac3cf8b74f9639dca87bc0765a6a0bd16cfda24ec1c2
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v%%v%%/FiraCode.zip
+    extract_dir: "{{ ansible_env.XDG_SRC_DIR }}/nerd-fonts-fira-code-%%v%%"
+    version_file:
+      "{{ ansible_env.XDG_DATA_HOME }}/apm/nerd-fonts-fira-code.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/nerd-fonts-fira-code.version"
+    build_cmds:
+      - sudo install -d /usr/local/share/fonts/TTF
+      - bash -c "sudo install -Dm644 *.ttf /usr/local/share/fonts/TTF/"
+      - sudo fc-cache -f /usr/local/share/fonts/TTF
