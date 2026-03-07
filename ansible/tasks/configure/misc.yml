@@ -53,7 +53,9 @@
       user:
         name: "{{ username }}"
         shell: /usr/bin/zsh
-        groups: input
+        groups:
+          - input
+          - video ## needed for brightnessctl
         append: true
 
     - name: Use dash as POSIX shell
