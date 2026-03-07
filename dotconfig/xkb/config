@@ -1,29 +1,59 @@
 xkb_keymap {
 	xkb_keycodes  { include "evdev+aliases(qwerty)"	};
-	xkb_types     { include "complete"	};
+	xkb_types     { 
+    include "complete"
+    // 3-level type for the RAlt group-switch key.
+    // Level1=RAlt, Level2=Shift+RAlt, Level3=LCtrl+RAlt
+    type "CTRL_GROUP_SWITCH" {
+      modifiers = Shift+Control;
+      map[None]          = Level1;
+      map[Shift]         = Level2;
+      map[Control]       = Level3;
+      level_name[Level1] = "Base";
+      level_name[Level2] = "Shift";
+      level_name[Level3] = "Ctrl";
+    };
+  };
 	xkb_compat    { include "complete"	};
 	xkb_geometry  { include "pc(pc105)"	};
 
 
-  // Right Alt sets English layout
-  // Shift + Right Alt sets Russian
-  // Use config with xkbcomp ~/.config/xkb/config $DISPLAY
+  // Layout switching via Right Alt:
+  //   RAlt                 = English
+  //   Shift + RAlt         = Russian
+  //   LCtrl + RAlt         = Ukrainian
+  //
+  // Apply with: xkbcomp ~/.config/xkb/config $DISPLAY
   // Taken from https://habr.com/ru/post/486872/
+  //
+  // How it works:
+  //   XKB assigns each key a "level" based on which modifiers are held.
+  //   CTRL_GROUP_SWITCH maps: none→Level1, Shift→Level2, Ctrl→Level3
+  //   actions[groupN] defines what RAlt does WHILE IN that group (same for all groups here).
+  //
+  //   Level:           1          2          3
+  //   Modifier:       none       Shift      LCtrl
+  //   → group:       English   Russian   Ukrainian
 
   xkb_symbols {
+    // Load 3 layouts: English=group1, Russian=group2, Ukrainian=group3
     include "pc+us+ru:2+ua:3+inet(evdev)"
 
     name[group1] = "English (US)";
     name[group2] = "Russian";
     name[group3] = "Ukrainian";
 
+    // RAlt as layout switcher. type must be set per group — without it, groups
+    // fall back to TWO_LEVEL and lose the Ctrl/Shift+Ctrl bindings.
     key <RALT> {
-      type[group1]="LOCAL_EIGHT_LEVEL",
-      type[group2]="LOCAL_EIGHT_LEVEL",
-      type[group3]="LOCAL_EIGHT_LEVEL",
-      symbols[group1] = [ ISO_First_Group, ISO_Last_Group, NoSymbol, NoSymbol, ISO_Prev_Group ],
-      symbols[group2] = [ ISO_First_Group, ISO_Last_Group, NoSymbol, NoSymbol, ISO_Next_Group ],
-      symbols[group3] = [ ISO_First_Group, ISO_Last_Group ]
+      type[group1]="CTRL_GROUP_SWITCH",
+      type[group2]="CTRL_GROUP_SWITCH",
+      type[group3]="CTRL_GROUP_SWITCH",
+      //                Level1               Level2               Level3
+      //                RAlt                 Shift+RAlt           LCtrl+RAlt
+      actions[group1] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3)],
+      actions[group2] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3)],
+      actions[group3] = [ LockGroup(group=1), LockGroup(group=2), LockGroup(group=3)]
     };
   };
 };
