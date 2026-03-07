@@ -80,7 +80,7 @@
         dest: ~/drives
         state: link
 
-    - name: Mask portal services 
+    - name: Mask portal services
       systemd_service:
         name: "{{ item }}"
         masked: true
@@ -126,7 +126,7 @@
   block:
     - name: firefox | check if *.default-release user exists
       find:
-        paths: "{{ ansible_env.HOME }}/.mozilla/firefox"
+        paths: "{{ ansible_env.XDG_CONFIG_HOME }}/mozilla/firefox"
         patterns: "*.default-release"
         file_type: directory
       register: firefox_profile_check
