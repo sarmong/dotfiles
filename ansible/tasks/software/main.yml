@@ -233,27 +233,22 @@
     - simp1e-gruvbox-dark-cursor-theme
     - keyd
 
-## should be after apm installs pacstall
-- name: pacstall | install DE packages
-  pacstall:
-    name:
-      - awesome-git
-      # - arc-gruvbox-gtk-theme-git
-
 - name: Install applications | pacstall
   become: true
+  failed_when: false
   pacstall:
     name:
-      # - selectdefaultapplication
-      # - rofi-calc
       - vscodium-deb
       - brave-browser-deb
-      # - protonvpn-gui
-      - freetube-deb
-    # - spotify-client-deb
-    # - activitywatch-bin
-    # - monero-gui
-    # - skypeforlinux-stable-bin
-    # - slack-deb
-    # - zoom-deb
-    # - google-chrome-deb
+      - spotify-client-deb
+      - telegram-bin
+
+- name: Install work applications | pacstall
+  when: ansible_distribution == "Debian"
+  become: true
+  failed_when: false
+  pacstall:
+    name:
+      - slack-deb
+      - google-chrome-deb
+      - github-cli-bin
