@@ -169,7 +169,6 @@
       - httpie
       - tig
       - zeal
-      - tealdeer
       - shellcheck
       - yad
       - pipx
@@ -227,6 +226,7 @@
     - clipmenu
     - dragon-drop
     - libinput-gestures
+    - tealdeer
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages

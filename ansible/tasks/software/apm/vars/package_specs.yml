@@ -380,3 +380,11 @@ binary_packages:
       - make NAME="dragon-drop"
       - sudo make PREFIX='/usr/local' NAME="dragon-drop" install
     check_version_cmd: "dragon-drop --version | sed -nE 's/dragon (.*)/\\1/p'"
+
+  tealdeer:
+    name: tldr
+    version: 1.8.1
+    type: binary
+    checksum: sha256:6f2fad4435e0110484d3f25cdc4bf20129dae03238f32d06ebdd00bdc50ae2ed
+    url: https://github.com/tealdeer-rs/tealdeer/releases/download/v%%v%%/tealdeer-linux-x86_64-musl
+    check_version_cmd: "tldr --version | sed -nE 's/tealdeer (.*)/\\1/p'"
