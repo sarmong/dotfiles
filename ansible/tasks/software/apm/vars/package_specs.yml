@@ -198,19 +198,15 @@ binary_packages:
   windowlist:
     name: windowlist
     type: build
-    version: c687a564bb618cbdbd54848ad205ebee2985b187eae8bb976feca276cc56befe ## hash of the binary for checking
-    checksum: sha256:1c0c527d18259bf1cb2411a5c6d9ec4bea4288a2cc411a8e89bc4f5e538d16f1
-    git_commit: 662d2a9dec7d6aec3319219d11ac12670197a624
-    url:
-      https://github.com/tuurep/windowlist/archive/{{
-      vars.binary_packages['windowlist'].git_commit }}.zip
+    version: 0.1.0
+    checksum: sha256:de3ad6673d6e36840cac147a4fda276dc92cad1501533a3db4334eb0f99b964f
+    url: https://github.com/tuurep/windowlist/archive/refs/tags/v%%v%%.tar.gz
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/windowlist.version"
     check_version_cmd:
-      "sha256sum {{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin/windowlist | awk
-      '{print $1}'"
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/windowlist.version"
     build_cmds:
       - make
-      - make install DEST={{ ansible_env.XDG_CONFIG_HOME
-        }}/polybar/bin/windowlist
+      - make install BINDIR={{ ansible_env.XDG_CONFIG_HOME }}/polybar/bin
     dependencies:
       - libx11-dev
 
