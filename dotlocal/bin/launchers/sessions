@@ -88,7 +88,7 @@ select_session() {
     rofi-frecency update "sessions" "$selected"
   fi
 
-  if [ -d "$selected/.bare" ]; then
+  if [ "$(git -C "$selected" rev-parse --is-bare-repository)" = "true" ]; then
     cd "$selected" || exit
     worktrees=$(git worktree list | sed 1d)
 
