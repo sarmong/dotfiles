@@ -436,3 +436,21 @@ binary_packages:
       - sudo install -d /usr/local/share/fonts/TTF
       - bash -c "sudo install -Dm644 *.ttf /usr/local/share/fonts/TTF/"
       - sudo fc-cache -f /usr/local/share/fonts/TTF
+
+  simp1e-gruvbox-dark-cursor-theme:
+    name: simp1e-gruvbox-dark-cursor-theme
+    version: f8f8f3c09dd0aa31cc9bc5499c683aad025984be
+    type: git
+    url: https://gitlab.com/cursors/simp1e.git
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/simp1e-gruvbox-dark-cursor-theme.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/simp1e-gruvbox-dark-cursor-theme.version"
+    dependencies:
+      - librsvg2-bin
+      - python3-pil
+      - x11-apps
+    build_cmds:
+      - ./build.sh --include=Simp1e-Gruvbox-Dark.txt
+      - sudo install -d /usr/local/share/icons/Simp1e-Gruvbox-Dark
+      - sudo cp -a built_themes/Simp1e-Gruvbox-Dark/.
+        /usr/local/share/icons/Simp1e-Gruvbox-Dark/
