@@ -288,3 +288,18 @@ binary_packages:
     build_cmds:
       - ./build.sh
       - sudo make -C build install
+
+  xkblayout-state:
+    name: xkblayout-state
+    version: f311779ed95f43f1fdebed0f710ad84057e6fe19
+    type: build
+    checksum: sha256:92033056110b748ccfea4a57aade1422770da107badd2a5aa589b7a716d77fcf
+    url: https://github.com/nonpop/xkblayout-state/archive/%%v%%.zip
+    dependencies:
+      - libx11-dev
+    build_cmds:
+      - make
+      - sudo make PREFIX="/usr/local" install
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/xkblayout-state.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/xkblayout-state.version"

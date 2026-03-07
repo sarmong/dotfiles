@@ -220,6 +220,7 @@
     - wmutils
     - i3lock-color ## dependency of betterlockscreen
     - betterlockscreen
+    - xkblayout-state
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages
@@ -232,7 +233,6 @@
       - nerd-fonts-fira-code
       - nerd-fonts-fira-mono
       - keyd
-      - xkblayout-state-git
       - volctl
 
 - name: Install applications | pacstall
