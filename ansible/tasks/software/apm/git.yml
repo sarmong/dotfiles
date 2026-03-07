@@ -1,0 +1,18 @@
+- name: "{{ item }} | clone repository"
+  vars:
+    git_dest: "{{ (extract_dest == '') | ternary(ansible_env.XDG_SRC_DIR ~ '/' ~ pkg_spec.name, extract_dest) }}"
+  block:
+    - git:
+        repo: "{{ pkg_spec.url }}"
+        dest: "{{ git_dest }}"
+        version: "{{ pkg_spec.version }}"
+        recursive: true
+
+    - name: "{{ item }} | build"
+      command: "{{ cmd }}"
+      loop: "{{ pkg_spec.build_cmds }}"
+      loop_control:
+        loop_var: cmd
+      args:
+        chdir: "{{ git_dest }}"
+      when: pkg_spec.build_cmds is defined

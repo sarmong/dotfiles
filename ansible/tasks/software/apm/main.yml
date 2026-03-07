@@ -64,6 +64,7 @@
             checksum: "{{ pkg_spec.checksum }}"
             mode: "0644"
             timeout: 100
+          when: pkg_spec.type != 'git'
 
         - name: install binary
           when: pkg_spec.type == 'binary'
@@ -82,6 +83,10 @@
         - name: install build
           when: pkg_spec.type == 'build'
           include_tasks: build.yml
+
+        - name: install git
+          when: pkg_spec.type == 'git'
+          include_tasks: git.yml
 
         - name: "{{ item }} | write version file"
           copy:
