@@ -22,7 +22,8 @@ binary_packages:
     checksum: sha256:2f4086b7a88690d804018acdc20a52a6f5d949b979616b3e84201b0e3331a34e
     url: https://github.com/qarmin/czkawka/releases/download/%%v%%/linux_czkawka_gui
     version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/czkawka-gui.version"
-    check_version_cmd: "cat {{ ansible_env.XDG_DATA_HOME }}/apm/czkawka-gui.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/czkawka-gui.version"
     post_install_task: post_install/czkawka-gui.yml
 
   dua-cli:
@@ -330,8 +331,10 @@ binary_packages:
     type: build
     checksum: sha256:493de1159c367433cb4a4fe2bb3dc4b53ea837b038a9ba00932080e857cda603
     url: https://github.com/bulletmark/libinput-gestures/archive/refs/tags/%%v%%.tar.gz
-    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/libinput-gestures.version"
-    check_version_cmd: "cat {{ ansible_env.XDG_DATA_HOME }}/apm/libinput-gestures.version"
+    version_file:
+      "{{ ansible_env.XDG_DATA_HOME }}/apm/libinput-gestures.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/libinput-gestures.version"
     dependencies:
       - wmctrl
       - xdotool
@@ -452,9 +455,12 @@ binary_packages:
     version: f8f8f3c09dd0aa31cc9bc5499c683aad025984be
     type: git
     url: https://gitlab.com/cursors/simp1e.git
-    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/simp1e-gruvbox-dark-cursor-theme.version"
+    version_file:
+      "{{ ansible_env.XDG_DATA_HOME
+      }}/apm/simp1e-gruvbox-dark-cursor-theme.version"
     check_version_cmd:
-      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/simp1e-gruvbox-dark-cursor-theme.version"
+      "cat {{ ansible_env.XDG_DATA_HOME
+      }}/apm/simp1e-gruvbox-dark-cursor-theme.version"
     dependencies:
       - librsvg2-bin
       - python3-pil
