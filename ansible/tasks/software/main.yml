@@ -232,6 +232,7 @@
     - nerd-fonts-fira-mono
     - simp1e-gruvbox-dark-cursor-theme
     - keyd
+    - auto-cpufreq
 
 - name: Install applications | pacstall
   become: true

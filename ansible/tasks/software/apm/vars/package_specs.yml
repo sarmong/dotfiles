@@ -470,3 +470,13 @@ binary_packages:
       - sudo install -d /usr/local/share/icons/Simp1e-Gruvbox-Dark
       - sudo cp -a built_themes/Simp1e-Gruvbox-Dark/.
         /usr/local/share/icons/Simp1e-Gruvbox-Dark/
+
+  auto-cpufreq:
+    name: auto-cpufreq
+    version: v3.0.0
+    type: git
+    url: https://github.com/AdnanHodzic/auto-cpufreq.git
+    check_version_cmd: "auto-cpufreq --version | sed -nE 's/auto-cpufreq version: (.*)/v\\1/p'"
+    build_cmds:
+      - bash -c "yes 'i' | sudo ./auto-cpufreq-installer"
+      - sudo auto-cpufreq --install
