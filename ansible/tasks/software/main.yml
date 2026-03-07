@@ -231,6 +231,7 @@
     - nerd-fonts-fira-code
     - nerd-fonts-fira-mono
     - simp1e-gruvbox-dark-cursor-theme
+    - keyd
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages
@@ -238,7 +239,6 @@
     name:
       - awesome-git
       # - arc-gruvbox-gtk-theme-git
-      - keyd
 
 - name: Install applications | pacstall
   become: true

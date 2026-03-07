@@ -299,6 +299,20 @@ binary_packages:
       - ./build.sh
       - sudo make -C build install
 
+  keyd:
+    name: keyd
+    version: 2.6.0
+    type: build
+    url: https://github.com/rvaiya/keyd/archive/refs/tags/v%%v%%.zip
+    checksum: sha256:88e44dc1d6a75ef6570bd0488aec00ea2ab1d9ef2f7d722ef82695156c02e7dd
+    dependencies:
+      - python3-xlib
+    build_cmds:
+      - make
+      - sudo make PREFIX="/usr/local" install
+      - sudo systemctl enable --now keyd
+    check_version_cmd: "keyd --version | sed -nE 's/keyd v(.*)\\ \\(\\)/\\1/p'"
+
   xkblayout-state:
     name: xkblayout-state
     version: f311779ed95f43f1fdebed0f710ad84057e6fe19
