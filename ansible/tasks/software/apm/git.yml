@@ -1,8 +1,9 @@
-- name: "{{ item }} | clone repository"
+- name: "{{ item }} | install"
   vars:
-    git_dest: "{{ (extract_dest == '') | ternary(ansible_env.XDG_SRC_DIR ~ '/' ~ pkg_spec.name, extract_dest) }}"
+    git_dest: "{{ (extract_dest == '') | ternary(ansible_env.XDG_SRC_DIR ~ '/' ~ pkg_spec.name ~ '-' ~ pkg_spec.version, extract_dest) }}"
   block:
-    - git:
+    - name: "{{ item }} | clone git repo"
+      git:
         repo: "{{ pkg_spec.url }}"
         dest: "{{ git_dest }}"
         version: "{{ pkg_spec.version }}"
