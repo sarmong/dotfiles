@@ -10,7 +10,11 @@ null_ls.setup({
   -- },
 })
 
-null_ls.register(null_ls.builtins.diagnostics.ansiblelint)
+null_ls.register(null_ls.builtins.diagnostics.ansiblelint.with({
+  cwd = function(params)
+    return params.root:match("dotfiles") and params.root .. "/ansible"
+  end,
+}))
 
 local setup_fns = req("plugins.ide.contrib").state.null_ls
 
