@@ -218,13 +218,14 @@
     - devtoys
     - devtoys.cli
     - wmutils
+    - i3lock-color ## dependency of betterlockscreen
+    - betterlockscreen
 
 ## should be after apm installs pacstall
 - name: pacstall | install DE packages
   pacstall:
     name:
       - awesome-git
-      - betterlockscreen
       # - arc-gruvbox-gtk-theme-git
       - simp1e-gruvbox-dark-cursor-theme-git
       - nerd-fonts-jetbrains-mono

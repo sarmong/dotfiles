@@ -248,3 +248,43 @@ binary_packages:
     build_cmds:
       - make
       - sudo make install
+
+  betterlockscreen:
+    name: betterlockscreen
+    version: 4.2.0
+    type: build
+    checksum: sha256:f55ae57c25da8d3e2a0d4ff0043c3876f257b98c1a393e94401330d888b7d22d
+    url: https://github.com/betterlockscreen/betterlockscreen/archive/refs/tags/v%%v%%.tar.gz
+    dependencies:
+      - imagemagick
+      - bc
+    build_cmds:
+      - sudo install -Dm755 betterlockscreen "/usr/local/bin/betterlockscreen"
+      - sudo install -Dm644 system/betterlockscreen@.service
+        /usr/lib/systemd/system/betterlockscreen@.service
+      - sudo systemctl enable betterlockscreen@"$USER"
+
+  i3lock-color:
+    name: i3lock-color
+    version: 2.13.c.5
+    type: build
+    checksum: sha256:46f15cbbf339873266e014f70b5e1ec02177f0295302b615a7bd85bef40d8ad2
+    url: https://github.com/Raymo111/i3lock-color/archive/refs/tags/%%v%%.tar.gz
+    dependencies:
+      - build-essential
+      - autoconf
+      - pkg-config
+      - libpam0g-dev
+      - libcairo2-dev
+      - libxcb-xrm-dev
+      - libxcb-image0-dev
+      - libxcb-composite0-dev
+      - libxkbcommon-x11-dev
+      - libev-dev
+      - libjpeg-dev
+      - libx11-xcb-dev
+      - libxcb-xinerama0-dev
+      - libxcb-randr0-dev
+    build_cmds:
+      - ./build.sh
+      - sudo make -C build install
