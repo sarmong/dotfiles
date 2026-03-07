@@ -1,0 +1,16 @@
+- name: czkawka-gui | install desktop file
+  become: true
+  copy:
+    dest: /usr/local/share/applications/czkawka-gui.desktop
+    mode: "0644"
+    content: |
+      [Desktop Entry]
+      Version=1.0
+      Type=Application
+      Name=Czkawka
+      Comment=Multi functional app to find duplicates, empty folders, similar images etc (GUI)
+      Exec=czkawka-gui
+      Icon=czkawka-gui
+      Terminal=false
+      StartupNotify=false
+      Categories=Utility;Application;

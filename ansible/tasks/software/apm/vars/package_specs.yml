@@ -15,6 +15,16 @@ binary_packages:
     url: https://github.com/qarmin/czkawka/releases/download/%%v%%/linux_czkawka_cli
     check_version_cmd: "czkawka-cli --version | sed -nE 's/czkawka (.*)/\\1/p'"
 
+  czkawka-gui:
+    name: czkawka-gui
+    version: 6.1.0
+    type: binary
+    checksum: sha256:2f4086b7a88690d804018acdc20a52a6f5d949b979616b3e84201b0e3331a34e
+    url: https://github.com/qarmin/czkawka/releases/download/%%v%%/linux_czkawka_gui
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/czkawka-gui.version"
+    check_version_cmd: "cat {{ ansible_env.XDG_DATA_HOME }}/apm/czkawka-gui.version"
+    post_install_task: post_install/czkawka-gui.yml
+
   dua-cli:
     name: dua
     version: 2.20.1

@@ -194,6 +194,7 @@
   loop:
     - lazydocker
     - czkawka-cli
+    - czkawka-gui
     - dua-cli
     - fnm
     - frece
@@ -244,7 +245,6 @@
       # - selectdefaultapplication
       # - rofi-calc
       - libinput-gestures
-      - czkawka-gui-bin
       - vscodium-deb
       - brave-browser-deb
       # - protonvpn-gui
