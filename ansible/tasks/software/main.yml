@@ -1,5 +1,6 @@
 ---
 - name: Enable deb-src in ubuntu.sources ## so that apt module build-deps works
+  when: ansible_distribution == "Ubuntu"
   become: true
   replace:
     path: /etc/apt/sources.list.d/ubuntu.sources
@@ -246,7 +247,7 @@
       - telegram-bin
 
 - name: Install work applications | pacstall
-  when: ansible_distribution == "Debian"
+  when: ansible_distribution == "Ubuntu"
   become: true
   failed_when: false
   pacstall:
