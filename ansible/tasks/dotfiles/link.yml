@@ -20,6 +20,13 @@
       dirs: []
   when: item.itself | default(false)
 
+- name: Backup gtk-3.0 if it is a real directory
+  command: mv "{{ item.dest }}/gtk-3.0" "{{ item.dest }}/gtk-3.0~"
+  when:
+    - item.dest == ansible_env.XDG_CONFIG_HOME
+    - (item.dest + '/gtk-3.0') is directory
+    - not (item.dest + '/gtk-3.0') is link
+
 - name: Create symbolic links for {{ item.dest }}
   file:
     src: "{{ dir_to_link.path }}"
