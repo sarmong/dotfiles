@@ -25,8 +25,6 @@
     extract_dest: "{{ _extract_dir | replace('%%v%%', pkg_spec.version ) }}"
 
   block:
-    - debug:
-        msg: "{{ extract_dest }}"
     - name: "{{ item }} | check if binary exists and get current version"
       shell: "{{ check_version_cmd }}"
       register: version_check
