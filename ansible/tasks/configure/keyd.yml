@@ -1,10 +1,6 @@
 - name: Configure keyd
   become: true
   block:
-    - name: keyd | check packages
-      pacstall:
-        name: keyd
-
     - name: keyd | copy config file
       copy:
         src: keyd-default.conf
