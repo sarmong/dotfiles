@@ -131,13 +131,23 @@
         file_type: directory
       register: firefox_profile_check
 
+    - name: ui | start fake x server
+      shell:
+        cmd: nohup Xvfb >/dev/null 2>&1 &
+        creates: /tmp/.X0-lock
+      when: firefox_profile_check.matched == 0 and ansible_env.get('DISPLAY') == ""
+
     - name: firefox | Create default-release profile
+      environment:
+        DISPLAY: ":0"
       command: firefox --createprofile default-release
       when: firefox_profile_check.matched == 0
 
     - name:
         firefox | Start Firefox in headless mode with default-release profile to
         make it default
+      environment:
+        DISPLAY: ":0"
       shell: "firefox --headless -P default-release &"
       when: firefox_profile_check.matched == 0
 
