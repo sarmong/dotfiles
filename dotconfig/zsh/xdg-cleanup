@@ -27,6 +27,11 @@ export XDG_SRC_DIR="$HOME/.local/src"
 export XDG_DOTFILES_DIR="$HOME/docs/dotfiles"
 export XDG_NC_DIR="$HOME/docs/nc"
 
+## Disables ibus input method on Ubuntu that interferes with xkbcomp
+export GTK_IM_MODULE=xim
+export QT_IM_MODULE=xim
+export XMODIFIERS=@im=none
+
 ## ~/.zshrc
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
