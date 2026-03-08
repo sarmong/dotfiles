@@ -258,10 +258,10 @@ binary_packages:
 
   betterlockscreen:
     name: betterlockscreen
-    version: 4.2.0
+    version: v4.2.0
     type: build
     checksum: sha256:f55ae57c25da8d3e2a0d4ff0043c3876f257b98c1a393e94401330d888b7d22d
-    url: https://github.com/betterlockscreen/betterlockscreen/archive/refs/tags/v%%v%%.tar.gz
+    url: https://github.com/betterlockscreen/betterlockscreen/archive/refs/tags/%%v%%.tar.gz
     dependencies:
       - imagemagick
       - bc
@@ -270,6 +270,8 @@ binary_packages:
       - sudo install -Dm644 system/betterlockscreen@.service
         /usr/lib/systemd/system/betterlockscreen@.service
       - sudo systemctl enable betterlockscreen@"$USER"
+    check_version_cmd:
+      "betterlockscreen --version 2>/dev/null | sed -n '2p' | awk '{print $3}'"
 
   i3lock-color:
     name: i3lock-color
@@ -295,6 +297,7 @@ binary_packages:
     build_cmds:
       - ./build.sh
       - sudo make -C build install
+    check_version_cmd: "i3lock --version 2>&1 | awk '{ print $3 }'"
 
   keyd:
     name: keyd
