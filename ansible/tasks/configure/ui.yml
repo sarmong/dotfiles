@@ -4,8 +4,8 @@
 
   block:
     - name: ui | start fake x server
-      command:
-        cmd: Xvfb
+      shell:
+        cmd: nohup Xvfb >/dev/null 2>&1 &
         creates: /tmp/.X0-lock
       when: display == ""
 
