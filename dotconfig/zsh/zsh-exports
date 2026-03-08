@@ -30,4 +30,7 @@ export MANWIDTH="80"
 # fixes formatting issues
 export MANROFFOPT="-c"
 
-[ -f "$HOME/.config/zsh/zsh-local" ] && . "$HOME/.config/zsh/zsh-local"
+## Should be if. In case of using && - the sourcing script may fail when set -e and the file doesn't exists
+if [ -f "$HOME/.config/zsh/zsh-local" ]; then
+  . "$HOME/.config/zsh/zsh-local"
+fi
