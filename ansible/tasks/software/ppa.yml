@@ -1,3 +1,10 @@
+- name: Remove firefox apt snap
+  when: ansible_distribution == "Ubuntu"
+  become: true
+  apt:
+    name: firefox=1:1snap1-0ubuntu5
+    state: absent
+
 - name: Prefer apt for Firefox ## To not use snap on Ubuntu
   become: true
   blockinfile:
