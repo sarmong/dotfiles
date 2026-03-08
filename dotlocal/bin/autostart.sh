@@ -4,6 +4,8 @@ run() {
   pgrep -u "$USER" -f "$(basename "$1")" >/dev/null || setsid "$@" >/dev/null 2>&1 &
 }
 
+wm=$(wmctrl -m | head -1 | awk -F": " '{print $2}')
+
 ## Essentials
 run dunst
 run lxpolkit
@@ -11,13 +13,15 @@ run nm-applet --indicator # network tray
 run picom --daemon
 
 if ! pidof sxhkd; then
-  wm=$(wmctrl -m | head -1 | awk -F": " '{print $2}')
-
   if [ "$wm" = "bspwm" ]; then
     cat "$XDG_CONFIG_HOME/sxhkd/sxhkdrc" "$XDG_CONFIG_HOME/sxhkd/sxhkdrc-bspwm" | sxhkd -c /dev/stdin &
   else
     sxhkd &
   fi
+fi
+
+if [ "$wm" = "i3" ]; then
+  run "$XDG_CONFIG_HOME"/i3/bin/keyboard_layout_watcher.py
 fi
 
 ## Configurations
