@@ -8,7 +8,8 @@ contrib.mason(
   "vue-language-server",
   "eslint-lsp",
   "astro-language-server",
-  "vtsls"
+  "vtsls",
+  "oxfmt"
 )
 contrib.formatters({
   "javascript",
@@ -17,7 +18,7 @@ contrib.formatters({
   "typescriptreact",
   "vue",
   "astro",
-}, { "prettierd", "prettier" })
+}, { "oxfmt", "prettierd", "prettier" })
 contrib.ts_parsers("javascript", "typescript", "tsx", "jsdoc", "astro")
 
 local get_lsp_root = function(fname)
