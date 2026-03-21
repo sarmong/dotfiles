@@ -1,10 +1,10 @@
 #!/bin/sh
 
-if [ "$BLOCK_BUTTON" = "1" ]; then
+if [ "$BLOCK_BUTTON" = "1" ] || [ "$BLOCK_BUTTON" = "4" ]; then
   xkblayout-state set +1
 fi
 
-if [ "$BLOCK_BUTTON" = "3" ]; then
+if [ "$BLOCK_BUTTON" = "3" ] || [ "$BLOCK_BUTTON" = "5" ]; then
   xkblayout-state set -1
 fi
 
