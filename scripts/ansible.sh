@@ -13,7 +13,7 @@ ANSIBLE_INVENTORY=ansible/inventory.ini
 ANSIBLE_LOG_PATH="log/$(date +"%y-%m")/$(date +"%d")/$(date +"%H-%M-%S").log"
 
 VAULT_ENC_KEY_FILE="$XDG_DATA_HOME/ansible-key"
-VAULT_KEY_FILE="/tmp/ansible-key"
+VAULT_KEY_FILE="$XDG_RUNTIME_DIR/ansible-key"
 
 DEVICE_ROLE_FILE=/var/lib/misc/ansible-role
 
