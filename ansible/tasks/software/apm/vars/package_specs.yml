@@ -157,9 +157,9 @@ binary_packages:
 
   yt-dlp:
     name: yt-dlp
-    version: 2025.12.08
+    version: 2026.03.17
     type: binary
-    checksum: sha256:457f3f2a86f747a5f3b860813b7ac28828c28f92f7c9030c9980b69c6637859f
+    checksum: sha256:c2b0189f581fe4a2ddd41954f1bcb7d327db04b07ed0dea97e4f1b3e09b5dd8e
     url: https://github.com/yt-dlp/yt-dlp/releases/download/%%v%%/yt-dlp_linux
     check_version_cmd: "yt-dlp --version"
 
