@@ -4,8 +4,8 @@ path="${1:-$(pwd)}"
 working_dir=$(realpath "$path")
 repo_or_worktree="$(basename "$working_dir" | tr '.:' '_')" # tmux itself does the replacing
 
-if [ -d "$path/../.bare" ]; then
-  repo="$(basename "$(dirname "$path")")"
+if [ "$(git -C "$path" config --get core.bare)" = "true" ]; then
+  repo="$(basename "$(dirname "$(git -C "$path" rev-parse --git-common-dir)")")"
   session_name="${repo_or_worktree}[${repo}]"
 else
   session_name="$repo_or_worktree"
