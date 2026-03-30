@@ -211,6 +211,7 @@
     - onefetch
     - lazygit
     - git-delta
+    - diffnav
     - rclone
     - pacstall
     - yt-dlp

@@ -501,3 +501,11 @@ binary_packages:
     url: https://github.com/dlvhdr/gh-dash/releases/download/v%%v%%/gh-dash_v%%v%%_linux-amd64
     check_version_cmd:
       "gh-dash --version | grep -oP 'module version: v\\K[0-9.]+'"
+
+  diffnav:
+    name: diffnav
+    version: 0.11.0
+    type: binary
+    checksum: sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4
+    url: https://github.com/dlvhdr/diffnav/releases/download/v%%v%%/diffnav_Linux_x86_64.tar.gz
+    check_version_cmd: "diffnav --version | grep -oP 'v\\K[0-9.]+'"
