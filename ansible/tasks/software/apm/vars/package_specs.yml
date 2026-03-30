@@ -492,3 +492,12 @@ binary_packages:
     url: https://github.com/localsend/localsend/releases/download/v%%v%%/LocalSend-%%v%%-linux-x86-64.deb
     check_version_cmd:
       "dpkg -s localsend | grep Version | awk -F '+| ' '{ print $2 }'"
+
+  gh-dash:
+    name: gh-dash
+    version: 4.23.2
+    type: binary
+    checksum: sha256:fed6b0ae90ce2c32ac029c2ce891cd2ad1a1cdd9a12d21fb14ed25d18dae658b
+    url: https://github.com/dlvhdr/gh-dash/releases/download/v%%v%%/gh-dash_v%%v%%_linux-amd64
+    check_version_cmd:
+      "gh-dash --version | grep -oP 'module version: v\\K[0-9.]+'"

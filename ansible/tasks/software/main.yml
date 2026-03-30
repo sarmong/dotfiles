@@ -236,6 +236,7 @@
     - keyd
     - auto-cpufreq
     - localsend
+    - gh-dash
 
 - name: Install applications | pacstall
   become: true
