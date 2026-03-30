@@ -12,5 +12,5 @@
 - import_tasks: tmux.yml
 # - import_tasks: newsboat.yml
 - import_tasks: rofi-calc.yml
-# - import_tasks: prettierd.yml
+- import_tasks: prettierd.yml
 - import_tasks: telegram.yml
