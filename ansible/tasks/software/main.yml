@@ -235,6 +235,7 @@
     - simp1e-gruvbox-dark-cursor-theme
     - keyd
     - auto-cpufreq
+    - localsend
 
 - name: Install applications | pacstall
   become: true

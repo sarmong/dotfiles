@@ -483,3 +483,12 @@ binary_packages:
     build_cmds:
       - bash -c "yes 'i' | sudo ./auto-cpufreq-installer"
       - sudo auto-cpufreq --install
+
+  localsend:
+    name: localsend
+    version: 1.17.0
+    type: "deb"
+    checksum: sha256:b0244b2c3eacb2a81d61b2662534d6036ab37ace10d6782da36b630c222fa04c
+    url: https://github.com/localsend/localsend/releases/download/v%%v%%/LocalSend-%%v%%-linux-x86-64.deb
+    check_version_cmd:
+      "dpkg -s localsend | grep Version | awk -F '+| ' '{ print $2 }'"
