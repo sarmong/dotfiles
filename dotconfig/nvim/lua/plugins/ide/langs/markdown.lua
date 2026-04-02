@@ -14,7 +14,9 @@ end)
 Plugin("MeanderingProgrammer/render-markdown.nvim")
 -- setup later so that cmp is already available
 vim.schedule(function()
-  require("render-markdown.integ.cmp").setup()
+  req("render-markdown").setup({
+    completions = { lsp = { enabled = true } },
+  })
 end)
 
 -- {
