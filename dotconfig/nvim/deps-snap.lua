@@ -73,7 +73,7 @@ return {
   ["onedarker.nvim"] = "12141dbb59cfa8fbad53e6b8820d85d37c248f4b",
   ["plenary.nvim"] = "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
   ["promise-async"] = "119e8961014c9bfaf1487bf3c2a393d254f337e2",
-  ["qmk.nvim"] = "ad51cb15e607da0983fcf9882d38a2aafac32149",
+  ["qmk.nvim"] = "3c804c1480991e4837514900b22b9358cfd64fa1",
   ["rainbow-delimiters.nvim"] = "50080ed0f44dbc18ae13b81278a01b951a06127a",
   ["refactoring.nvim"] = "6784b54587e6d8a6b9ea199318512170ffb9e418",
   ["render-markdown.nvim"] = "c7188a8f9d2953696b6303caccbf39c51fa2c1b1",
