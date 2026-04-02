@@ -3,12 +3,13 @@ Plugin({
   hooks = {
     post_checkout = cmd.bind("TSUpdate"),
   },
+  checkout = "master",
 })
 
-Plugin("p00f/nvim-ts-rainbow") -- rainbow parantheses
+Plugin("HiPhish/rainbow-delimiters.nvim")
 Plugin("windwp/nvim-ts-autotag")
 Plugin("nvim-treesitter/nvim-treesitter-refactor")
-Plugin("nvim-treesitter/nvim-treesitter-textobjects")
+-- Plugin("nvim-treesitter/nvim-treesitter-textobjects") -- TODO: setup
 Plugin("nvim-treesitter/nvim-treesitter-context")
 Plugin("JoosepAlviste/nvim-ts-context-commentstring")
 
@@ -47,6 +48,7 @@ local opts = {
     end,
   },
 
+  -- TODO: replace setup
   textobjects = {
     -- swappable queries can be found here
     -- https://github.com/atchim/dotsoup/tree/main/nvim/queries
@@ -85,16 +87,7 @@ local opts = {
     },
   },
 
-  autotag = { enable = true },
   -- @TODO causes file to be readonly, seek alternative
-  rainbow = {
-    enable = false,
-    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- colors = {}, -- table of hex strings
-    -- termcolors = {} -- table of colour name strings
-  },
   -- @TODO I don't use other features from this module.
   -- consider finding separate smaller plugin for hightlight definitions (perhaps with native lsp)
   refactor = {
@@ -103,6 +96,15 @@ local opts = {
   },
 }
 req("nvim-treesitter.configs").setup(opts)
+
+---@diagnostic disable-next-line: missing-fields
+req("nvim-ts-autotag").setup({
+  opts = {
+    enable_close = true, -- Auto close tags
+    enable_rename = true, -- Auto rename pairs of tags
+    enable_close_on_slash = false, -- Auto close on trailing </
+  },
+})
 
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
