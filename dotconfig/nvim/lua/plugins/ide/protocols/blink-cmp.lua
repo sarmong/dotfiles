@@ -12,7 +12,7 @@ end
 
 Plugin({
   "saghen/blink.cmp",
-  checkout = "v1.0.0",
+  checkout = "v1.10.1",
   hooks = {
     post_install = build_blink,
     post_checkout = build_blink,
