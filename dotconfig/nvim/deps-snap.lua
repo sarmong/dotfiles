@@ -78,7 +78,7 @@ return {
   ["refactoring.nvim"] = "6784b54587e6d8a6b9ea199318512170ffb9e418",
   ["render-markdown.nvim"] = "c7188a8f9d2953696b6303caccbf39c51fa2c1b1",
   ["scratch.vim"] = "adf826b1ac067cdb4168cb6066431cff3a2d37a3",
-  ["smart-splits.nvim"] = "de1d5ed60c1407b7704495d7b3c8e262358728c9",
+  ["smart-splits.nvim"] = "12426763591f06b865c20990d8423345ea96d44f",
   ["sqlite.lua"] = "50092d60feb242602d7578398c6eb53b4a8ffe7b",
   ["suda.vim"] = "c492741b4679b3cdd4d9e34138209784e061d916",
   ["sxhkd-vim"] = "7b7937ff5c220fbef3bdd883d567513246516e06",
