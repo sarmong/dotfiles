@@ -18,7 +18,7 @@ return {
   cmp_luasnip = "98d9cb5c2c38532bd9bdb481067b20fea8f32e90",
   ["codi.vim"] = "83b9859aaf8066d95892e01eb9c01571a4b325dd",
   ["colorful-menu.nvim"] = "f80feb8a6706f965321aff24d0ed3849f02a7f77",
-  ["conform.nvim"] = "b1a75324ddf96b7bb84963a297b1ed334db087c0",
+  ["conform.nvim"] = "086a40dc7ed8242c03be9f47fbcee68699cc2395",
   ["conky-syntax.vim"] = "c008f3a9208b78f18c55b002eed1d45d0444cff0",
   ["diffview.nvim"] = "4516612fe98ff56ae0415a259ff6361a89419b0a",
   ["dressing.nvim"] = "2d7c2db2507fa3c4956142ee607431ddb2828639",
