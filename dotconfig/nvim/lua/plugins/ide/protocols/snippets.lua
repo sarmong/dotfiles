@@ -1,7 +1,6 @@
 Plugin({
   source = "L3MON4D3/LuaSnip",
   depends = {
-    "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
     "ChristianChiarulli/html-snippets",
     {
