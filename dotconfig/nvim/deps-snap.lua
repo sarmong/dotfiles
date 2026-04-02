@@ -1,7 +1,7 @@
 return {
   CamelCaseMotion = "e69b0024f8f63db10c5d0df26d4920760755d454",
   ["Comment.nvim"] = "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
-  LuaSnip = "c9b9a22904c97d0eb69ccb9bab76037838326817",
+  LuaSnip = "642b0c595e11608b4c18219e93b88d7637af27bc",
   ["aerial.nvim"] = "645d108a5242ec7b378cbe643eb6d04d4223f034",
   ["alpha-nvim"] = "a9d8fb72213c8b461e791409e7feabb74eb6ce73",
   ["barbar.nvim"] = "539d73def39c9172b4d4d769f14090e08f37b29d",
@@ -17,7 +17,7 @@ return {
   ["dressing.nvim"] = "2d7c2db2507fa3c4956142ee607431ddb2828639",
   everforest = "c3b375b5fb2a07c3b75f24fefb8a7031015d8231",
   ["fidget.nvim"] = "d9ba6b7bfe29b3119a610892af67602641da778e",
-  ["friendly-snippets"] = "efff286dd74c22f731cdec26a70b46e5b203c619",
+  ["friendly-snippets"] = "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
   ["git-blame.nvim"] = "5c536e2d4134d064aa3f41575280bc8a2a0e03d7",
   ["gitlinker.nvim"] = "cc59f732f3d043b626c8702cb725c82e54d35c25",
   ["gitsigns.nvim"] = "e1b90b60fb7aa9c0ada8e983b460764b35a05e2e",
