@@ -10,7 +10,10 @@ contrib.mason(
 
 contrib.formatters({ "css", "scss", "less" }, { "prettierd", "prettier" })
 contrib.ts_parsers("css", "scss")
-contrib.lsp({ "cssls", "cssmodules_ls", "tailwindcss" })
+contrib.lsp({
+  "cssls",
+  "cssmodules_ls", --[[ "tailwindcss" ]]
+}) -- TODO: when calling vim.lsp.enable on tailwindcss - ts files take very long to load in odeditor
 
 contrib.ts_parsers("html")
 contrib.formatters("html", { "prettierd", "prettier" })

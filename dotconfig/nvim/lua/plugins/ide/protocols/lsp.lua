@@ -7,7 +7,8 @@ for server, server_config in pairs(servers) do
   local config =
     vim.tbl_deep_extend("force", default_config(), server_config() or {})
 
-  req("lspconfig")[server].setup(config)
+  vim.lsp.config(server, config)
+  vim.lsp.enable(server)
 end
 
 autocmd("LspAttach", {

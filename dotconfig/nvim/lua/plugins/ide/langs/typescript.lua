@@ -21,8 +21,10 @@ contrib.formatters({
 }, { "oxfmt", "prettierd", "prettier" })
 contrib.ts_parsers("javascript", "typescript", "tsx", "jsdoc", "astro")
 
-local get_lsp_root = function(fname)
-  return req("modules.root-dir").get_project_root() or vim.fs.dirname(fname)
+local get_lsp_root = function(fname, ondir)
+  return ondir(
+    req("modules.root-dir").get_project_root() or vim.fs.dirname(fname)
+  )
 end
 
 contrib.lsp("vtsls", function()
@@ -118,28 +120,29 @@ end)
 
 contrib.lsp("astro")
 
-contrib.lsp("volar", function()
-  return {
-    filetypes = {
-      "typescript",
-      "javascript",
-      "javascriptreact",
-      "typescriptreact",
-      "vue",
-      "json",
-    },
-
-    root_dir = get_lsp_root,
-
-    on_attach = function(client, bufnr)
-      -- disable formatting, so that null-ls will handle it
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
-    end,
-
-    autostart = helpers.isVueProject(),
-  }
-end)
+-- TODO: autostart doesn't make sense as it is called on nvim start, reconsider
+-- contrib.lsp("volar", function()
+--   return {
+--     filetypes = {
+--       "typescript",
+--       "javascript",
+--       "javascriptreact",
+--       "typescriptreact",
+--       "vue",
+--       "json",
+--     },
+--
+--     root_dir = get_lsp_root,
+--
+--     on_attach = function(client, bufnr)
+--       -- disable formatting, so that null-ls will handle it
+--       client.server_capabilities.documentFormattingProvider = false
+--       client.server_capabilities.documentRangeFormattingProvider = false
+--     end,
+--
+--     autostart = helpers.isVueProject(),
+--   }
+-- end)
 
 contrib.lsp("eslint", function()
   return {

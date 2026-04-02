@@ -53,7 +53,7 @@ return {
   ["nvim-dap"] = "5a2f7121869394502521c52b2bc581ab22c69447",
   ["nvim-dap-ui"] = "bc81f8d3440aede116f821114547a476b082b319",
   ["nvim-dap-vscode-js"] = "03bd29672d7fab5e515fc8469b7d07cc5994bbf6",
-  ["nvim-lspconfig"] = "6b63bdf2399b9bedf93297d98419550523a9ad68",
+  ["nvim-lspconfig"] = "8e2084bf5e40c79c1f42210a6ef96a0a4793a763",
   ["nvim-metals"] = "5d27f4918ea954772725d6741f84a71cfaff932a",
   ["nvim-nio"] = "21f5324bfac14e22ba26553caf69ec76ae8a7662",
   ["nvim-notify"] = "8701bece920b38ea289b457f902e2ad184131a5d",
