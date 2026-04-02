@@ -76,7 +76,7 @@ load_extension("hierarchy")
 extension_opts.hierarchy = {}
 
 Plugin({
-  "sarmong/telescope-all-recent.nvim",
+  "prochri/telescope-all-recent.nvim",
   depends = { "kkharji/sqlite.lua" },
 })
 req("telescope-all-recent").setup({})
