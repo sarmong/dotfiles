@@ -3,12 +3,11 @@ Plugin({
   hooks = {
     post_checkout = cmd.bind("TSUpdate"),
   },
-  checkout = "master",
+  checkout = "main",
 })
 
 Plugin("HiPhish/rainbow-delimiters.nvim")
 Plugin("windwp/nvim-ts-autotag")
-Plugin("nvim-treesitter/nvim-treesitter-refactor")
 -- Plugin("nvim-treesitter/nvim-treesitter-textobjects") -- TODO: setup
 Plugin("nvim-treesitter/nvim-treesitter-context")
 Plugin("JoosepAlviste/nvim-ts-context-commentstring")
@@ -33,21 +32,6 @@ req("treesitter-context").setup({
 })
 
 local opts = {
-  ensure_installed = req("plugins.ide.contrib").state.ts_parsers,
-  highlight = {
-    enable = true, -- false will disable the whole extension
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = { "org" },
-
-    disable = function()
-      return vim.api.nvim_buf_line_count(0) > 4000
-        or vim.fn.getline(1):len() > 200
-    end,
-  },
-
   -- TODO: replace setup
   textobjects = {
     -- swappable queries can be found here
@@ -86,16 +70,24 @@ local opts = {
       },
     },
   },
-
-  -- @TODO causes file to be readonly, seek alternative
-  -- @TODO I don't use other features from this module.
-  -- consider finding separate smaller plugin for hightlight definitions (perhaps with native lsp)
-  refactor = {
-    highlight_definitions = { enable = true },
-    highlight_current_scope = { enable = true },
-  },
 }
-req("nvim-treesitter.configs").setup(opts)
+req("nvim-treesitter").setup({})
+
+req("nvim-treesitter").install(req("plugins.ide.contrib").state.ts_parsers)
+autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    if
+      vim.api.nvim_buf_line_count(0) > 4000
+      or vim.fn.getline(1):len() > 500
+      or not vim.treesitter.get_parser(nil, nil, { error = false })
+    then
+      return
+    end
+
+    vim.treesitter.start()
+  end,
+})
 
 ---@diagnostic disable-next-line: missing-fields
 req("nvim-ts-autotag").setup({
