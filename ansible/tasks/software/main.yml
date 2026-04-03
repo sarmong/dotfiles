@@ -238,6 +238,7 @@
     - auto-cpufreq
     - localsend
     - gh-dash
+    - tree-sitter-cli
 
 - name: Install applications | pacstall
   become: true
