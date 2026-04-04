@@ -36,6 +36,9 @@ autocmd("FileType", {
 })
 
 req("mini.deps").later(function()
+  local contrib = req("plugins.ide.contrib")
+  contrib.mason("tree-sitter-cli")
+
   local opts = {
     -- TODO: replace setup
     textobjects = {
