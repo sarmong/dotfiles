@@ -1,5 +1,6 @@
 req("plugins.alpha")
 req("plugins.colorschemes")
+req("plugins.ide.protocols.treesitter")
 
 req("mini.deps").later(function()
   req("plugins.notify")
