@@ -89,6 +89,9 @@ autocmd("FileType", {
   end,
 })
 
+req("modules.highlight-definitions").enable()
+req("modules.highlight-scope").enable()
+
 ---@diagnostic disable-next-line: missing-fields
 req("nvim-ts-autotag").setup({
   opts = {
