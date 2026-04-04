@@ -35,8 +35,8 @@ M.find_files = function(options)
     }, options or {}))
   else
     -- Search inside the focused dir in nvim-tree
-    local tree = req("nvim-tree.lib")
-    local node = tree.get_node_at_cursor()
+    local tree = req("nvim-tree.api").tree
+    local node = tree.get_node_under_cursor()
     if node then
       builtins.find_files({
         search_dirs = {
@@ -59,8 +59,8 @@ M.text = function(options)
       }, options or {})
     )
   else
-    local tree = req("nvim-tree.lib")
-    local node = tree.get_node_at_cursor()
+    local tree = req("nvim-tree.api").tree
+    local node = tree.get_node_under_cursor()
     if node then
       req("telescope").extensions.live_grep_args.live_grep_args({
         default_text = current_prompt_text(),
