@@ -26,7 +26,7 @@ local live_multigrep = function(opts)
       end
 
       ---@diagnostic disable-next-line: deprecated
-      return vim.tbl_flatten({
+      return Util.tbl_flatten({
         args,
         {
           "--color=never",

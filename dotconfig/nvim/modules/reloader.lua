@@ -66,7 +66,7 @@ local get_packages = function()
       end)
       :totable()
 
-    return vim.tbl_flatten(path_matcher)
+    return Util.tbl_flatten(path_matcher)
   end
 
   local user_packages = get_user_packages(vim.fn.stdpath("config"))

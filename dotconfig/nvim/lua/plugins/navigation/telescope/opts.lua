@@ -54,7 +54,7 @@ local defaults = {
     vertical = { mirror = false },
   },
   file_sorter = sorters.get_fuzzy_file,
-  file_ignore_patterns = vim.tbl_flatten({
+  file_ignore_patterns = Util.tbl_flatten({
     "node_modules",
     "%.git",
     "yarn.lock",
