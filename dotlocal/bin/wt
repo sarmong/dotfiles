@@ -1,17 +1,388 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-new_wt=$1
+set -euo pipefail
 
-if [ "$(git rev-parse --is-bare-repository)" = "true" ] && [ "$(git rev-parse --is-inside-work-tree)" = "false" ]; then
-  root=$(pwd)
+usage() {
+  echo "usage:"
+  echo "  wt clone <repo-url>              clone bare repo and set up worktrees"
+  echo "  wt list                          list worktrees"
+  echo "  wt reset [worktree-name]         reset a slot to detached default branch"
+  echo "  wt start <branch-name> [<base>]  start work in the current slot"
+  echo "  wt new <worktree-name>           create a new worktree"
+  echo "  wt delete <worktree-name>        remove a worktree slot"
+  echo "  wt sync                          fetch and update all detached slots"
+  echo "  wt rename-session                rename tmux session to match current branch/slot"
+}
+
+main() {
+  if [ -z "${1-}" ]; then
+    usage
+    exit 1
+  fi
+
+  local cmd="$1"
+  shift
+
+  case "$cmd" in
+    clone*) clone "$@" ;;
+    list*) list "$@" ;;
+    reset*) reset_worktree "$@" ;;
+    new*) new "$@" ;;
+    start*) start "$@" ;;
+    delete*) delete_worktree "$@" ;;
+    sync*) sync_worktrees "$@" ;;
+    rename-session*) rename_session "$@" ;;
+    *)
+      err "Unknown subcommand: $cmd"
+      usage >&2
+      exit 1
+      ;;
+  esac
+}
+
+worktrees=(feature-1 feature-2 hotfix code-review misc)
+
+if [ -t 1 ]; then
+  color_reset=$'\033[0m' color_bold=$'\033[1m' color_dim=$'\033[2m'
+  color_green=$'\033[32m' color_yellow=$'\033[33m' color_cyan=$'\033[36m'
 else
-  root="$(git rev-parse --show-toplevel)/.."
+  color_reset='' color_bold='' color_dim='' color_green='' color_yellow='' color_cyan=''
 fi
-default_branch=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
-wt_dir="$root/$new_wt"
-default_dir=$root/$default_branch
 
-git worktree add "$wt_dir" -b "$new_wt" "$default_branch"
+clone() {
+  if [ $# -lt 1 ]; then
+    err "wt clone requires a repo URL"
+    usage >&2
+    exit 1
+  fi
 
-# Well...
-# find "$default_dir" -maxdepth 3 -name "dist" -name "node_modules" -type d -not -path "$default_dir/node_modules/*" -exec realpath -s --relative-to="$default_dir" {} + | rsync --archive --recursive --files-from=- "$default_dir/" "$wt_dir/" --dry-run --verbose
+  repo_url="$1"
+  repo_name=$(basename -s .git "$repo_url")
+  repo_dir="$(pwd)/$repo_name"
+
+  # shellcheck disable=SC2317
+  cleanup_clone_dir() {
+    rm -rf -- "$repo_dir"
+  }
+
+  if [ -e "$repo_dir" ]; then
+    err "Directory already exists: $repo_dir"
+    exit 1
+  fi
+
+  mkdir "$repo_dir"
+
+  trap cleanup_clone_dir INT TERM HUP ERR
+
+  git clone --bare --depth=1 "$repo_url" "$repo_dir/.git"
+  trap - INT TERM HUP ERR
+
+  cd "$repo_dir" || exit 1
+
+  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+  git fetch
+  git remote set-head origin -a
+
+  default_branch=$(_default_branch)
+  for worktree in "${worktrees[@]}"; do
+    git worktree add --detach "$worktree" "origin/$default_branch"
+  done
+}
+
+_list_row() {
+  local path="$1" bref="$2" bare="$3" detached="$4" name_width="$5" branch_width="$6" current_path="$7"
+  local name branch branch_field state commit_info="" marker=" "
+
+  name="$(basename "$path")"
+
+  if [ "$bare" -eq 1 ]; then
+    branch_field="$(printf "%-${branch_width}s" bare)"
+    state="${color_dim}$(printf '%-6s' repo)${color_reset}"
+  else
+    if [ "$detached" -eq 1 ]; then
+      branch="detached"
+    else
+      branch="${bref#refs/heads/}"
+    fi
+    branch_field="$(printf "%-${branch_width}s" "$branch")"
+    [ "$detached" -eq 1 ] && branch_field="${color_cyan}${branch_field}${color_reset}"
+
+    if git -C "$path" diff --quiet && git -C "$path" diff --cached --quiet &&
+      [ -z "$(git -C "$path" ls-files --others --exclude-standard)" ]; then
+      state="${color_green}$(printf '%-6s' clean)${color_reset}"
+    else
+      state="${color_yellow}$(printf '%-6s' dirty)${color_reset}"
+    fi
+
+    if [ "$detached" -eq 0 ]; then
+      commit_info="$(git -C "$path" log -1 --format='%h %s' 2>/dev/null)"
+      [ "${#commit_info}" -gt 68 ] && commit_info="${commit_info:0:67}.."
+      commit_info="${color_dim}${commit_info}${color_reset}"
+    fi
+  fi
+
+  [ "$path" = "$current_path" ] && marker="*"
+  local row
+  row="$(printf "%s %-${name_width}s %s %s" "$marker" "$name" "$branch_field" "$state")"
+  if [ "$marker" = "*" ]; then
+    printf '%s\n' "${color_bold}${row}${color_reset}${commit_info:+  $commit_info}"
+  else
+    printf '%s\n' "${row}${commit_info:+  $commit_info}"
+  fi
+}
+
+list() {
+  local current_path
+  current_path="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+
+  # Parse worktree metadata from porcelain output
+  local -a paths=() brefs=() bare_flags=() detached_flags=()
+  local path="" bref="" is_bare=0 is_detached=0
+
+  while IFS= read -r line; do
+    case "$line" in
+      "")
+        paths+=("$path")
+        brefs+=("$bref")
+        bare_flags+=("$is_bare")
+        detached_flags+=("$is_detached")
+        path="" bref="" is_bare=0 is_detached=0
+        ;;
+      worktree\ *) path="${line#worktree }" ;;
+      branch\ *) bref="${line#branch }" ;;
+      bare) is_bare=1 ;;
+      detached) is_detached=1 ;;
+    esac
+  done < <(git worktree list --porcelain)
+
+  # Compute column widths from actual data
+  local name_width=8 branch_width=8
+  for i in "${!paths[@]}"; do
+    local name branch
+    name="$(basename "${paths[$i]}")"
+    if [ "${bare_flags[$i]}" -eq 1 ]; then
+      branch="bare"
+    elif [ "${detached_flags[$i]}" -eq 1 ]; then
+      branch="detached"
+    else branch="${brefs[$i]#refs/heads/}"; fi
+    [ "${#name}" -gt "$name_width" ] && name_width=${#name}
+    [ "${#branch}" -gt "$branch_width" ] && branch_width=${#branch}
+  done
+
+  # Render rows in parallel into temp files to preserve order
+  tmpdir=$(mktemp -d)
+  trap 'rm -rf "$tmpdir"; trap - RETURN' RETURN
+
+  for i in "${!paths[@]}"; do
+    _list_row "${paths[$i]}" "${brefs[$i]}" "${bare_flags[$i]}" "${detached_flags[$i]}" \
+      "$name_width" "$branch_width" "$current_path" >"$tmpdir/$i" &
+  done
+  wait
+
+  printf '%s\n' \
+    "${color_bold}  $(printf "%-${name_width}s" worktree)  $(printf "%-${branch_width}s" branch)  state   commit${color_reset}" \
+    "  $(printf '%*s' "$name_width" '' | tr ' ' '-')  $(printf '%*s' "$branch_width" '' | tr ' ' '-')  -----  ------"
+  for i in "${!paths[@]}"; do cat "$tmpdir/$i"; done
+}
+
+new() {
+  if [ $# -lt 1 ]; then
+    err "wt new requires a worktree name"
+    usage >&2
+    exit 1
+  fi
+
+  if [ "$(git config --get core.bare)" != "true" ]; then
+    err "Not in a bare repo"
+    exit 1
+  fi
+  new_wt=$1
+
+  wt_dir="$(_repo_root)/$new_wt"
+
+  if [ -e "$wt_dir" ]; then
+    err "Worktree path already exists: $wt_dir"
+    exit 1
+  fi
+
+  git worktree add --detach "$wt_dir" "origin/$(_default_branch)"
+}
+
+reset_worktree() {
+  current_wt="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+
+  if [ -n "$current_wt" ] && [ "$(git config --get core.bare 2>/dev/null)" = "true" ]; then
+    wt_dir="$current_wt"
+    slot_name="$(basename "$wt_dir")"
+  elif [ $# -ge 1 ]; then
+    slot_name="$1"
+    wt_dir="$(_repo_root)/$slot_name"
+  else
+    err "wt reset requires a worktree name when run outside a worktree"
+    usage >&2
+    exit 1
+  fi
+
+  _validate_worktree "$wt_dir"
+
+  if _is_dirty "$wt_dir"; then
+    err "Current worktree has uncommitted changes: $slot_name"
+    exit 1
+  fi
+
+  git -C "$wt_dir" switch --detach "origin/$(_default_branch)"
+
+  [ -n "${TMUX:-}" ] && [ "$wt_dir" = "$current_wt" ] && tmux rename-session "${slot_name}[$(basename "$(_repo_root)")]"
+}
+
+start() {
+  if [ $# -lt 1 ]; then
+    err "wt start requires a branch name"
+    usage >&2
+    exit 1
+  fi
+
+  if [ "$(git config --get core.bare)" != "true" ] || [ "$(git rev-parse --is-inside-work-tree)" != "true" ]; then
+    err "wt start must be run inside a worktree"
+    exit 1
+  fi
+
+  branch_name="$1"
+  base_branch="${2:-}"
+
+  if _is_dirty "$(pwd)"; then
+    err "Current worktree has uncommitted changes"
+    exit 1
+  fi
+
+  if git show-ref --verify --quiet "refs/heads/$branch_name"; then
+    err "Branch already exists: $branch_name"
+    exit 1
+  fi
+
+  git fetch origin
+
+  if git show-ref --verify --quiet "refs/remotes/origin/$branch_name"; then
+    err "Remote branch already exists: origin/$branch_name"
+    exit 1
+  fi
+
+  if [ -n "$base_branch" ]; then
+    if ! git show-ref --verify --quiet "refs/remotes/origin/$base_branch"; then
+      err "Base branch not found: origin/$base_branch"
+      exit 1
+    fi
+    base_ref="origin/$base_branch"
+  else
+    base_ref="origin/$(_default_branch)"
+  fi
+
+  git switch --no-track -c "$branch_name" "$base_ref"
+  [ -n "${TMUX:-}" ] && tmux rename-session "${branch_name}[$(basename "$(_repo_root)")]"
+}
+
+delete_worktree() {
+  if [ $# -lt 1 ]; then
+    err "wt delete requires a worktree name"
+    usage >&2
+    exit 1
+  fi
+
+  slot_name="$1"
+  wt_dir="$(_repo_root)/$slot_name"
+
+  _validate_worktree "$wt_dir"
+
+  current_wt="$(git rev-parse --show-toplevel 2>/dev/null)"
+  if [ "$current_wt" = "$wt_dir" ]; then
+    err "Cannot delete the current worktree: $slot_name"
+    exit 1
+  fi
+
+  if _is_dirty "$wt_dir"; then
+    err "Worktree has uncommitted changes: $slot_name"
+    exit 1
+  fi
+
+  git worktree remove "$wt_dir"
+}
+
+sync_worktrees() {
+  git fetch origin
+
+  default_branch=$(_default_branch)
+  wt_path=""
+  is_detached=0
+
+  flush_wt() {
+    [ -n "$wt_path" ] && [ "$is_detached" -eq 1 ] || return 0
+    slot_name="$(basename "$wt_path")"
+    if _is_dirty "$wt_path"; then
+      echo "skipping $slot_name (dirty)"
+    else
+      git -C "$wt_path" switch --detach "origin/$default_branch" --quiet
+      echo "updated $slot_name"
+    fi
+  }
+
+  while IFS= read -r line; do
+    if [ -z "$line" ]; then
+      flush_wt
+      wt_path="" is_detached=0
+    elif [[ "$line" == worktree\ * ]]; then
+      wt_path="${line#worktree }"
+    elif [ "$line" = detached ]; then
+      is_detached=1
+    fi
+  done < <(git worktree list --porcelain)
+  flush_wt
+}
+
+rename_session() {
+  if [ -z "${TMUX:-}" ]; then
+    err "Not inside a tmux session"
+    exit 1
+  fi
+
+  slot_name="$(basename "$(git rev-parse --show-toplevel)")"
+  branch="$(git symbolic-ref --short HEAD 2>/dev/null || true)"
+
+  if [ -n "$branch" ]; then
+    tmux rename-session "${branch}[$(basename "$(_repo_root)")]"
+  else
+    tmux rename-session "${slot_name}[$(basename "$(_repo_root)")]"
+  fi
+}
+
+err() {
+  echo "$*" >&2
+}
+
+_default_branch() {
+  git rev-parse --abbrev-ref origin/HEAD | sed 's|origin/||'
+}
+
+_repo_root() {
+  common_dir="$(git rev-parse --git-common-dir)"
+  dirname "$(realpath "$common_dir")"
+}
+
+_is_dirty() {
+  ! git -C "$1" diff --quiet ||
+    ! git -C "$1" diff --cached --quiet ||
+    [ -n "$(git -C "$1" ls-files --others --exclude-standard)" ]
+}
+
+_validate_worktree() {
+  wt_dir="$1"
+  if [ ! -d "$wt_dir" ]; then
+    err "Worktree path does not exist: $wt_dir"
+    exit 1
+  fi
+  if ! git -C "$wt_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    err "Not a git worktree: $wt_dir"
+    exit 1
+  fi
+}
+
+main "$@"

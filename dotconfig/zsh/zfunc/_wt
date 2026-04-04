@@ -1,0 +1,52 @@
+#compdef wt
+
+_wt_worktrees() {
+  local -a slots
+  slots=($(git worktree list 2>/dev/null | tail +2 | awk '{print $1}' | xargs -n 1 basename))
+  _describe 'worktree' slots
+}
+
+_wt_remote_branches() {
+  local -a branches
+  branches=($(git branch -r 2>/dev/null | grep -v 'HEAD' | sed 's|.*origin/||' | sed 's/^[[:space:]]*//'))
+  _describe 'remote branch' branches
+}
+
+_wt() {
+  local state
+
+  _arguments \
+    '1: :->subcmd' \
+    '*: :->args'
+
+  case $state in
+    subcmd)
+      local -a subcommands
+      subcommands=(
+        'clone:clone bare repo and set up worktrees'
+        'list:list worktrees'
+        'reset:reset a slot to detached default branch'
+        'start:start work in the current slot'
+        'new:create a new worktree'
+        'delete:remove a worktree slot'
+        'sync:fetch and update all detached slots'
+        'rename-session:rename tmux session to match current branch/slot'
+      )
+      _describe 'subcommand' subcommands
+      ;;
+    args)
+      case $words[2] in
+        reset|delete)
+          _wt_worktrees
+          ;;
+        start)
+          if [[ $CURRENT -eq 4 ]]; then
+            _wt_remote_branches
+          fi
+          ;;
+      esac
+      ;;
+  esac
+}
+
+_wt
