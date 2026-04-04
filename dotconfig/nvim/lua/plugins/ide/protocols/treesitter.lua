@@ -74,6 +74,7 @@ local opts = {
 req("nvim-treesitter").setup({})
 
 req("nvim-treesitter").install(req("plugins.ide.contrib").state.ts_parsers)
+
 autocmd("FileType", {
   pattern = "*",
   callback = function()
@@ -86,6 +87,11 @@ autocmd("FileType", {
     end
 
     vim.treesitter.start()
+
+    vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo[0][0].foldmethod = "expr"
+
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end,
 })
 
@@ -100,11 +106,6 @@ req("nvim-ts-autotag").setup({
     enable_close_on_slash = false, -- Auto close on trailing </
   },
 })
-
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
--- disable at startup
-vim.o.foldenable = false
 
 -- Skip backwards compatibility routines and speed up loading
 vim.g.skip_ts_context_commentstring_module = true
