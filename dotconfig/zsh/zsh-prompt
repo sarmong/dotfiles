@@ -27,14 +27,23 @@ white=$(f 15)
 yellow=$(f 136)
 
 git_status() {
-  # Check for what branch we’re on.
-  # Get the short symbolic ref. If HEAD isn’t a symbolic ref, get a
-  # tracking remote branch or tag. Otherwise, get the
-  # short SHA for the latest commit, or give up.
-  branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-    git describe --all --exact-match HEAD 2> /dev/null || \
-    git rev-parse --short HEAD 2> /dev/null || \
-    echo '(unknown)')";
+  # If HEAD is detached, keep showing exact tags and remote refs, but do not
+  # show exact local branch names from `git describe`: in detached placeholder
+  # worktrees that is misleading, so fall back to detached@<sha> instead.
+  branchName="$(
+    ref="$(git symbolic-ref --quiet --short HEAD 2>/dev/null)" && {
+      printf '%s' "$ref"
+    } || {
+      ref="$(git describe --all --exact-match HEAD 2>/dev/null)" || ref=
+      if [[ "$ref" == heads/* ]]; then
+        printf 'detached@%s' "$(git rev-parse --short HEAD 2>/dev/null)"
+      elif [[ -n "$ref" ]]; then
+        printf '%s' "$ref"
+      else
+        git rev-parse --short HEAD 2>/dev/null || echo '(unknown)'
+      fi
+    }
+  )"
 
   # Check for uncommitted changes in the index.
   if ! $(git diff --quiet --ignore-submodules --cached); then
