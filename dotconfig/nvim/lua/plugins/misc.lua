@@ -13,4 +13,4 @@ Plugin("ariel-frischer/bmessages.nvim")
 req("bmessages").setup()
 
 Plugin("tzachar/highlight-undo.nvim")
-req('highlight-undo').setup({ duration = 300, })
+req("highlight-undo").setup({ duration = 300 })

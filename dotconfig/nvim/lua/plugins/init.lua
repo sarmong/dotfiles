@@ -13,24 +13,16 @@ req("mini.deps").later(function()
   req("plugins.navigation.buffers")
   req("plugins.scroll")
   req("plugins.multicursor")
-  req("plugins.misc")
 
   req("plugins.coding")
   req("plugins.bqf")
   req("plugins.navigation")
   req("plugins.navigation.nvim-tree")
-  -- req("plugins.languages.cmp")
+
   req("plugins.ide")
-  -- req("plugins.languages.formatting")
-  -- req("plugins.languages.null-ls")
 
-  -- req("plugins.languages.lsp")
-  -- req("plugins.languages.debug")
   req("plugins.navigation.telescope")
-  -- req("plugins.languages.markdown")
 
-  -- req("plugins.languages.misc")
-  -- req("plugins.languages.treesitter")
   if not _G.lean_mode then
     req("plugins.git")
     req("plugins.git.gitsigns")
