@@ -28,7 +28,7 @@ contrib.ts_parsers("vim", "vimdoc")
 -- JSON
 contrib.mason("prettierd", "prettierd")
 contrib.formatters({ "json", "jsonc" }, { "prettierd", "prettier" })
-contrib.ts_parsers("json", "json5", "jsonc")
+contrib.ts_parsers("json", "json5")
 
 -- HTMX
 -- TODO: lsp.buf.hover merges output from all lsps in 0.11
