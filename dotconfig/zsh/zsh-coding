@@ -31,11 +31,11 @@ export PATH="$PATH:$GOPATH/bin"
 ## Rust
 ## ========
 
-export RUSTUP_HOME="$XDG_CONFIG_HOME"/rust/rustup
-export CARGO_HOME="$XDG_CONFIG_HOME"/rust/cargo
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
-export PATH="$HOME/.cargo/bin:$PATH"
-[ -f "$XDG_CONFIG_HOME/rust/cargo/env" ] && . "$XDG_CONFIG_HOME/rust/cargo/env"
+export PATH="$CARGO_HOME/bin:$PATH"
+[ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"
 
 ## Scala
 ## ========
