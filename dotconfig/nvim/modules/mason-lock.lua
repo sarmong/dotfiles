@@ -36,23 +36,16 @@ local function save_lockfile()
   local packages = registry.get_installed_packages()
 
   local entries = {}
-  for i, package in pairs(packages) do
-    package:get_installed_version(function(success, version)
-      if not success then
-        vim.notify("Failed get " .. package.name .. " version.")
-      end
+  for _, package in pairs(packages) do
+    local version = package:get_installed_version()
 
-      table.insert(entries, {
-        name = package.name,
-        version = version,
-      })
-
-      if i == #packages then
-        write_file(get_json_string(entries))
-        vim.notify("[mason-lock]: Wrote Mason lockfile")
-      end
-    end)
+    table.insert(entries, {
+      name = package.name,
+      version = version,
+    })
   end
+  write_file(get_json_string(entries))
+  vim.notify("[mason-lock]: Wrote Mason lockfile")
 end
 
 local function get_lockfile()
@@ -96,4 +89,5 @@ end
 return {
   setup_hooks = setup_hooks,
   get_lockfile = get_lockfile,
+  save_lockfile = save_lockfile,
 }
