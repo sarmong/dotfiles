@@ -36,7 +36,7 @@ return {
   ["marks.nvim"] = "f353e8c08c50f39e99a9ed474172df7eddd89b72",
   ["mason-tool-installer.nvim"] = "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc",
   ["mason.nvim"] = "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
-  ["mini.deps"] = "544de24117a7e6355111fd1cf61c16d76a05b421",
+  ["mini.deps"] = "8f6f74a8b68dbad02f1813dff4ddae5afeee92df",
   ["mkdnflow.nvim"] = "4c8890890426d57f20fc6d459c7631e0bbb50975",
   ["mini.notify"] = "e506fb6da26c0a31ee6b1d2eb99626cb147f28ca",
   ["multicursor.nvim"] = "704b99f10a72cc05d370cfeb294ff83412a8ab55",
