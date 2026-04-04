@@ -7,7 +7,7 @@
     is_archive:
       "{{ url | urlsplit('path') | basename |
       regex_search('\\.(tar\\.gz|tgz|zip|txz)$') is not none }}"
-    extract_dir: "/tmp/{{ pkg_name }}"
+    extract_dir: "/tmp/apm/{{ pkg_name }}"
   block:
     - name: "{{ item }} | install from archive"
       when: is_archive

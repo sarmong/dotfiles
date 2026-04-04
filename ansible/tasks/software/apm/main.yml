@@ -5,13 +5,16 @@
     - apm
   include_vars: vars/package_specs.yml
 
-- name: Create apm data directory
+- name: Create apm data and tmp directory
   tags:
     - apm
   file:
-    path: "{{ ansible_env.XDG_DATA_HOME }}/apm"
+    path: "{{ item }}"
     state: directory
     mode: "0755"
+  loop:
+    - "{{ ansible_env.XDG_DATA_HOME }}/apm"
+    - "/tmp/apm"
 
 - name: "{{ item }} | Install {{ item }}"
   tags:
@@ -20,7 +23,7 @@
     pkg_spec: "{{ binary_packages[item] }}"
     check_version_cmd: "{{ pkg_spec.get('check_version_cmd') }}"
     url: "{{ pkg_spec.url | replace('%%v%%', pkg_spec.version ) }}"
-    file_path: "/tmp/{{ url | urlsplit('path') | basename }}"
+    file_path: "/tmp/apm/{{ url | urlsplit('path') | basename }}"
     _extract_dir: "{{ pkg_spec['extract_dir'] | default('') }}" ## intermediary var because jinja sucks
     extract_dest: "{{ _extract_dir | replace('%%v%%', pkg_spec.version ) }}"
 
