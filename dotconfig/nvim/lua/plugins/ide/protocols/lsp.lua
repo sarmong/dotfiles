@@ -55,4 +55,6 @@ mapl({
 })
 
 Plugin("j-hui/fidget.nvim")
-req("fidget").setup({})
+req("fidget").setup({
+  notification = { window = { avoid = { "NvimTree", "aerial" } } },
+})

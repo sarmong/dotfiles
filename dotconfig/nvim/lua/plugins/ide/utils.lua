@@ -31,7 +31,7 @@ end
 local on_attach = function(client, bufnr)
   local opts = { buffer = bufnr }
 
-  if client.supports_method("textDocument/hover") then
+  if client:supports_method("textDocument/hover") then
     map("n", "K", vim.lsp.buf.hover, opts)
   end
 

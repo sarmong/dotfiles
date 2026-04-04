@@ -12,7 +12,7 @@ local function highlight_node(node, bufnr, ns_id, hl_group)
 
   local start_row, start_col, end_row, end_col = node:range()
 
-  vim.highlight.range(
+  vim.hl.range(
     bufnr,
     ns_id,
     hl_group,
