@@ -19,7 +19,7 @@ case "$1" in
     ;;
 esac
 
-dir=$(find "$HOME/.mozilla/firefox" -maxdepth 1 -name "*.default-release" -print -quit)
+dir=$(find "$HOME/.config/mozilla/firefox" -maxdepth 1 -name "*.default-release" -print -quit)
 db="$dir"/places.sqlite
 
 urls=$(sqlite3 "file://${db}?immutable=1" "${query}")
