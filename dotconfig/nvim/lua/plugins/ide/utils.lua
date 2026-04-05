@@ -68,6 +68,7 @@ local on_init = function(client)
   end
 end
 
+---@type fun(): vim.lsp.Config
 local get_default_lsp_config = function()
   return {
     on_attach = on_attach,

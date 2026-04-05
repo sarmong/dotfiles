@@ -1,3 +1,12 @@
+---@class State
+---@field formatters table<string, table | string>
+---@field ts_parsers string[]
+---@field lsp table<string, {setup: (fun(): vim.lsp.Config), opts?: {auto_enable: boolean}}>
+---@field mason string[]
+---@field null_ls function[]
+---@field setup function[]
+
+---@type State
 local state = {
   formatters = {},
   ts_parsers = {},
@@ -33,15 +42,18 @@ local register_formatters = function(filetypes, formatters)
 end
 
 ---@param servers table | string
----@param config? function
-local register_lsp = function(servers, config)
+---@param setup? fun(): vim.lsp.Config
+---@param opts? { auto_enable: boolean } -- defaults to enabled if not provided
+local register_lsp = function(servers, setup, opts)
   if type(servers) ~= "table" then
-    state.lsp[servers] = config or function() end
+    state.lsp[servers] =
+      { setup = setup or function() end, opts = opts or { auto_enable = true } }
     return
   end
 
   for _, server in ipairs(servers) do
-    state.lsp[server] = config or function() end
+    state.lsp[server] =
+      { setup = setup or function() end, opts = opts or { auto_enable = true } }
   end
 end
 

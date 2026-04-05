@@ -5,17 +5,22 @@ local servers = req("plugins.ide.contrib").state.lsp
 
 for server, server_config in pairs(servers) do
   local config =
-    vim.tbl_deep_extend("force", default_config(), server_config() or {})
+    vim.tbl_deep_extend("force", default_config(), server_config.setup() or {})
 
   vim.lsp.config(server, config)
-  vim.lsp.enable(server)
+  if server_config.opts.auto_enable then
+    vim.lsp.enable(server)
+  end
 end
 
 autocmd("LspAttach", {
   group = "LspAttachDefault",
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    default_config().on_attach(client, ev.buf)
+
+    if client then
+      default_config().on_attach(client, ev.buf)
+    end
   end,
 })
 
