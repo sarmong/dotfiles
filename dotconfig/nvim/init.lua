@@ -10,6 +10,7 @@ _G.lean_mode = os.getenv("NVIM_LEAN") or os.getenv("IS_SERVER")
 
 require("utils")
 
+req("ui2")
 req("user-prefs")
 req("deps")
 req("plugins")
