@@ -31,5 +31,6 @@ yt-dlp \
   --embed-thumbnail \
   --embed-chapters \
   --embed-info-json \
+  --js-runtimes node \
   $other_options \
   "$@"
