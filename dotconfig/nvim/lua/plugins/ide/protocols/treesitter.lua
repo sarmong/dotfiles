@@ -20,7 +20,7 @@ autocmd("FileType", {
     if
       vim.api.nvim_buf_line_count(0) > 4000
       or vim.fn.getline(1):len() > 500
-      or not vim.treesitter.get_parser(nil, nil, { error = false })
+      or not vim.treesitter.get_parser()
     then
       return
     end

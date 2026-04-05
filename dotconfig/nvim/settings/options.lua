@@ -15,6 +15,7 @@ local options = {
   splitbelow         =    true,              -- Horizontal splits below
   splitright         =    true,              -- Vertical splits to the right
   splitkeep          =    "screen",
+  confirm            =    true,
 
   undofile           =    true,
   backup             =    true,
@@ -58,7 +59,7 @@ local options = {
   timeoutlen         =    700,
 
   inccommand         =    "split",           -- Show split preview window
-  keywordprg         =    ":help",           -- open help when pressing K
+  keywordprg         =    ":help!",          -- open help when pressing K
   -- updatetime      =    300,               -- Faster completion
 
   guifont            =    "FiraCode Nerd Font:h17",

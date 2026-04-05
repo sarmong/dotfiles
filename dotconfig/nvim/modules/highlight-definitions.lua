@@ -22,7 +22,9 @@ end
 local function node_contains(ancestor, descendant)
   local node = descendant
   while node do
-    if node == ancestor then return true end
+    if node == ancestor then
+      return true
+    end
     node = node:parent()
   end
   return false
@@ -46,11 +48,15 @@ local function find_definition(ref_node, bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
 
   local parser = vim.treesitter.get_parser(bufnr)
-  if not parser then return nil end
+  if not parser then
+    return nil
+  end
 
   local lang = parser:lang()
   local query = vim.treesitter.query.get(lang, "locals")
-  if not query then return nil end
+  if not query then
+    return nil
+  end
 
   local root = parser:parse()[1]:root()
   local ref_text = vim.treesitter.get_node_text(ref_node, bufnr)
@@ -61,7 +67,8 @@ local function find_definition(ref_node, bufnr)
 
   for id, node in query:iter_captures(root, bufnr, 0, -1) do
     local name = query.captures[id]
-    if vim.startswith(name, "local.definition")
+    if
+      vim.startswith(name, "local.definition")
       and vim.treesitter.get_node_text(node, bufnr) == ref_text
     then
       local scope = scope_for_def(node, root, bufnr, query)
@@ -82,14 +89,17 @@ local function find_usages(def_node, scope, bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
   local lang = vim.treesitter.language.get_lang(vim.bo[bufnr].filetype)
   local query = vim.treesitter.query.get(lang, "locals")
-  if not query then return {} end
+  if not query then
+    return {}
+  end
 
   local def_text = vim.treesitter.get_node_text(def_node, bufnr)
   local s_row, _s_col, e_row = scope:range()
 
   local usages = {}
   for id, node in query:iter_captures(scope, bufnr, s_row, e_row + 1) do
-    if query.captures[id] == "local.reference"
+    if
+      query.captures[id] == "local.reference"
       and vim.treesitter.get_node_text(node, bufnr) == def_text
     then
       table.insert(usages, node)
@@ -142,7 +152,7 @@ function M.enable()
   autocmd("CursorHold", {
     group = "NvimTreesitterUsages",
     callback = function(event)
-      if vim.treesitter.get_parser(event.buf, nil, { error = false }) then
+      if vim.treesitter.get_parser(event.buf) then
         M.highlight_usages(event.buf)
       end
     end,
@@ -150,7 +160,7 @@ function M.enable()
   autocmd({ "CursorMoved", "InsertEnter" }, {
     group = "NvimTreesitterUsages",
     callback = function(event)
-      if vim.treesitter.get_parser(event.buf, nil, { error = false }) then
+      if vim.treesitter.get_parser(event.buf) then
         M.clear_usage_highlights(event.buf)
       end
     end,

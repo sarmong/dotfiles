@@ -22,5 +22,3 @@ req("modules.terminal")
 req("modules.vault-files")
 req("modules.bigfile")
 pcall(require, "modules.work")
-
--- vim.cmd("source " .. config_dir .. "/utils/quitdialog.vim")
