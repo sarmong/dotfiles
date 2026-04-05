@@ -48,6 +48,11 @@ mapl({
     a = { vim.lsp.buf.code_action, "action" },
     f = { vim.diagnostic.open_float, "open float" },
     Q = { vim.diagnostic.setloclist, "set loc list" },
+    h = {
+      function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end,
+    },
     v = {
       function()
         vim.diagnostic.config({
