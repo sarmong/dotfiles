@@ -16,6 +16,14 @@ local function write_file(data)
 end
 
 local function get_json_string(packages)
+  if vim.version.ge(vim.version(), "0.12.0") then
+    local p = {}
+    for _, pkg in ipairs(packages) do
+      p[pkg.name] = pkg.version
+    end
+    return vim.json.encode(p, { indent = "  ", sort_keys = true })
+  end
+
   table.sort(packages, function(a, b)
     return a.name:lower() < b.name:lower()
   end)
@@ -28,7 +36,7 @@ local function get_json_string(packages)
     end
   end
 
-  str = str .. "\n}\n"
+  str = str .. "\n}"
   return str
 end
 
