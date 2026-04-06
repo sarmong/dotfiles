@@ -2,9 +2,19 @@
 
 set -euo pipefail
 
+VERSION="0.0.1"
+
 dir=${XDG_DATA_HOME:-$HOME/.local/share}/nvvm
 BIN_DIR=$dir/bin
 LIB_DIR=$dir/lib
+
+_partial_download=""
+
+cleanup() {
+  [ -n "$_partial_download" ] && rm -f "$_partial_download"
+}
+
+trap cleanup EXIT
 
 usage() {
   echo "Usage: nvvm <command> [options]" >&2
@@ -21,19 +31,30 @@ main() {
     exit 1
   fi
 
-  command="$1"
+  case "$1" in
+    --help | -h | help)
+      usage
+      exit 0
+      ;;
+    --version | -v)
+      echo "nvvm $VERSION"
+      exit 0
+      ;;
+  esac
+
+  cmd="$1"
   shift
 
   [ ! -d "$BIN_DIR" ] && mkdir -p "$BIN_DIR"
   [ ! -d "$LIB_DIR" ] && mkdir -p "$LIB_DIR"
 
-  case "$command" in
+  case "$cmd" in
     install) install "$@" ;;
     use) use "$@" ;;
     list) list "$@" ;;
     open) open "$@" ;;
     *)
-      echo -e "Unknown command: $command\n" >&2
+      printf "Unknown command: %s\n\n" "$cmd" >&2
       usage
       exit 1
       ;;
@@ -46,16 +67,33 @@ get_file_url() {
 }
 
 list() {
-  get_releases | jq -r '.[].tag_name'
+  get_releases | jq -r '.[].tag_name' | while read -r version; do
+    if [ "$BIN_DIR/nvim" -ef "$LIB_DIR/$version/bin/nvim" ]; then
+      echo "* $version (current)"
+    elif [ -d "$LIB_DIR/$version" ]; then
+      echo "* $version"
+    else
+      echo "  $version"
+    fi
+  done
 }
 
 use() {
+  if [ -z "${1-}" ]; then
+    echo "Usage: nvvm use <version>" >&2
+    exit 1
+  fi
   version="$1"
   version_file="$BIN_DIR/nvim-$version"
   version_dir="$LIB_DIR/$version"
 
-  if [ ! -f "$version_file" ] && [ ! -d "$version_dir" ]; then
+  if [ ! -d "$version_dir" ]; then
     install "$version"
+  fi
+
+  # Recreate version symlink if stale or missing
+  if [ ! -f "$version_file" ]; then
+    ln -sf "$version_dir/bin/nvim" "$version_file"
   fi
 
   ln -sf "$version_dir/bin/nvim" "$BIN_DIR/nvim"
@@ -64,6 +102,10 @@ use() {
 }
 
 open() {
+  if [ -z "${1-}" ]; then
+    echo "Usage: nvvm open <version> [args...]" >&2
+    exit 1
+  fi
   version="$1"
   version_file="$BIN_DIR/nvim-$version"
 
@@ -72,10 +114,15 @@ open() {
     exit 1
   fi
 
+  shift
   "$version_file" "$@"
 }
 
 install() {
+  if [ -z "${1-}" ]; then
+    echo "Usage: nvvm install <version>" >&2
+    exit 1
+  fi
   version="$1"
   version_number="$version"
 
@@ -98,11 +145,11 @@ install() {
   remote_filename="$(basename "$remote_file_url")"
   default_installed_filepath="$LIB_DIR/$remote_filename" #TODO: use cache dir
 
+  _partial_download="$default_installed_filepath"
   wget --quiet --show-progress --output-document="$default_installed_filepath" "$remote_file_url"
 
   if ! check_checksum "$version" "$default_installed_filepath"; then
     echo "ERROR: Checksum verification failed" >&2
-    # rm "$default_installed_filepath"
     exit 1
   else
     echo "Checksum verification passed"
@@ -114,6 +161,7 @@ install() {
   tar -zxvf "$default_installed_filepath" --directory="$version_dir" --strip-components=1 >/dev/null
 
   rm "$default_installed_filepath"
+  _partial_download=""
 
   ln -sf "$version_dir/bin/nvim" "$version_file"
 
@@ -175,16 +223,22 @@ check_checksum_from_file() {
   version="$1"
   filepath="$2"
 
-  shasum_file=$(get_release "$version" | jq -r --arg filename "$(basename "$filepath")" '.assets[] | select(.name == $filename + ".sha256sum") | .browser_download_url')
+  shasum_url=$(get_release "$version" | jq -r --arg filename "$(basename "$filepath")" '.assets[] | select(.name == $filename + ".sha256sum") | .browser_download_url')
 
-  wget --quiet --show-progress "$shasum_file"
-
-  if ! (cd "$LIB_DIR" && sha256sum --check --strict --status "$shasum_file"); then
-    rm "$shasum_file"
+  if [ -z "$shasum_url" ] || [ "$shasum_url" == "null" ]; then
     return 1
   fi
 
-  rm "$shasum_file"
+  local_shasum_file="$LIB_DIR/$(basename "$shasum_url")"
+
+  wget --quiet --show-progress --output-document="$local_shasum_file" "$shasum_url"
+
+  if ! (cd "$(dirname "$filepath")" && sha256sum --check --strict --status "$local_shasum_file"); then
+    rm "$local_shasum_file"
+    return 1
+  fi
+
+  rm "$local_shasum_file"
 }
 
 check_checksum_from_description() {
