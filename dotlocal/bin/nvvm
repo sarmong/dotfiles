@@ -3,112 +3,83 @@
 set -euo pipefail
 
 dir=${XDG_DATA_HOME:-$HOME/.local/share}/nvvm
-bin_dir=$dir/bin
-lib_dir=$dir/lib
+BIN_DIR=$dir/bin
+LIB_DIR=$dir/lib
 
-[ ! -d "$bin_dir" ] && mkdir -p "$bin_dir"
-[ ! -d "$lib_dir" ] && mkdir -p "$lib_dir"
-
-command="$1"
-
-check_checksum_from_file() {
-  remote_file_url="$1"
-  shasum_file="$lib_dir/$(basename "$remote_file_url").sha256sum"
-
-  wget --quiet --show-progress --output-document="$shasum_file" "$remote_file_url.sha256sum"
-
-  if ! (cd "$lib_dir" && sha256sum --check "$shasum_file"); then
-    rm "$shasum_file"
-    return 1
-  fi
-
-  rm "$shasum_file"
+usage() {
+  echo "Usage: nvvm <command> [options]" >&2
+  echo "Commands:" >&2
+  echo "  install <version>   Install a specific version of neovim (e.g., 'latest', 'stable', '0.5.0')" >&2
+  echo "  use <version>       Use a specific version of neovim (e.g., 'latest', 'stable', '0.5.0')" >&2
+  echo "  list                List available versions of neovim" >&2
+  echo "  open <version>      Open neovim with a specific version (e.g., 'latest', 'stable', '0.5.0')" >&2
 }
 
-check_checksum_from_description() {
-  file_url="$1"
-  version="$2"
-  filename="$(basename "$file_url")"
-
-  if [ "$version" == "latest" ]; then
-    version="stable"
+main() {
+  if [ -z "${1-}" ]; then
+    usage
+    exit 1
   fi
 
-  echo "Getting checksum from description..."
+  command="$1"
+  shift
 
-  remote_checksum=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/tags/$version" | jq '.body' | sed 's/\\n/\n/g' | grep -E '\w{64}\s+nvim-linux-x86_64.appimage' | grep -v 'zsync' | awk '{print $1}')
+  [ ! -d "$BIN_DIR" ] && mkdir -p "$BIN_DIR"
+  [ ! -d "$LIB_DIR" ] && mkdir -p "$LIB_DIR"
 
-  local_checksum=$(sha256sum "$lib_dir/$filename" | awk '{print $1}')
-
-  if [ "$remote_checksum" == "$local_checksum" ]; then
-    return 0
-  else
-    return 1
-  fi
-}
-check_checksum() {
-  url="$1"
-  version="$2"
-
-  if ! check_checksum_from_file "$url"; then
-    check_checksum_from_description "$url" "$version"
-  fi
+  case "$command" in
+    install) install "$@" ;;
+    use) use "$@" ;;
+    list) list "$@" ;;
+    open) open "$@" ;;
+    *)
+      echo -e "Unknown command: $command\n" >&2
+      usage
+      exit 1
+      ;;
+  esac
 }
 
 get_file_url() {
   version="$1"
-  curl -s "https://api.github.com/repos/neovim/neovim/releases/tags/$version" | jq -r '.assets[] | select(.name == "nvim-linux-x86_64.appimage" or .name == "nvim.appimage") | .browser_download_url'
-}
-
-get_latest_version() {
-  version=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | jq -r .tag_name)
-
-  echo "$version"
+  get_release_asset "$version" | jq -r '.browser_download_url'
 }
 
 list() {
-  # gh api --method GET /repos/neovim/neovim/releases
-  gh release list --limit 15 --json tagName -R neovim/neovim | jq -r '.[].tagName' | tac
+  get_releases | jq -r '.[].tag_name'
 }
 
 use() {
   version="$1"
-  version_number="$version"
+  version_file="$BIN_DIR/nvim-$version"
+  version_dir="$LIB_DIR/$version"
 
-  if [ "$version" = "latest" ] || [ "$version" = "stable" ]; then
-    version_number="$(get_latest_version)"
-  fi
-
-  if [ ! -f "$lib_dir/$version_number.appimage" ]; then
+  if [ ! -f "$version_file" ] && [ ! -d "$version_dir" ]; then
     install "$version"
   fi
 
-  ln -sf "$lib_dir/$version.appimage" "$bin_dir/nvim"
-  chmod +x "$bin_dir/nvim"
+  ln -sf "$version_dir/bin/nvim" "$BIN_DIR/nvim"
 
   echo "Now using neovim $version"
 }
 
 open() {
-  name="$1"
-  shift
+  version="$1"
+  version_file="$BIN_DIR/nvim-$version"
 
-  if [ ! -f "$lib_dir/$name.appimage" ]; then
-    install "$name"
+  if [ ! -f "$version_file" ]; then
+    echo "ERROR: Version $version not installed. Install first" >&2
+    exit 1
   fi
 
-  "$lib_dir/$name.appimage" "$@"
+  "$version_file" "$@"
 }
 
 install() {
   version="$1"
   version_number="$version"
 
-  if [ "$version" = "latest" ] || [ "$version" = "stable" ]; then
-    version_number="$(get_latest_version)"
-  fi
-
-  version_file="$lib_dir/$version_number.appimage"
+  version_file="$BIN_DIR/nvim-$version_number"
 
   if [ -f "$version_file" ] && [ "$version" != "nightly" ]; then
     echo "Version $version_number already installed"
@@ -118,44 +89,125 @@ install() {
   echo "Installing $version_number..."
 
   remote_file_url="$(get_file_url "$version_number")"
-  default_installed_filepath="$lib_dir/$(basename "$remote_file_url")"
 
-  wget --quiet --show-progress --output-document="$default_installed_filepath" "$remote_file_url"
-
-  if ! check_checksum "$remote_file_url" "$version"; then
-    echo "ERROR: Checksum verification failed" >&2
-    rm "$default_installed_filepath"
+  if [ -z "$remote_file_url" ] || [ "$remote_file_url" == "null" ]; then
+    echo "ERROR: Could not find download URL for version $version_number" >&2
     exit 1
   fi
 
-  mv "$default_installed_filepath" "$version_file"
+  remote_filename="$(basename "$remote_file_url")"
+  default_installed_filepath="$LIB_DIR/$remote_filename" #TODO: use cache dir
 
-  chmod +x "$version_file"
+  wget --quiet --show-progress --output-document="$default_installed_filepath" "$remote_file_url"
 
-  if [ "$version" = "latest" ] || [ "$version" = "stable" ]; then
-    ln -sf "$version_file" "$lib_dir/stable.appimage"
-    ln -sf "$version_file" "$lib_dir/latest.appimage"
+  if ! check_checksum "$version" "$default_installed_filepath"; then
+    echo "ERROR: Checksum verification failed" >&2
+    # rm "$default_installed_filepath"
+    exit 1
+  else
+    echo "Checksum verification passed"
   fi
 
-  echo "Installed neovim $version_number"
+  version_dir="$LIB_DIR/$version_number"
+  [ ! -d "$version_dir" ] && mkdir -p "$version_dir"
 
-  [ ! -L "$bin_dir/nvim" ] && use "$version"
+  tar -zxvf "$default_installed_filepath" --directory="$version_dir" --strip-components=1 >/dev/null
 
-  exit 0
+  rm "$default_installed_filepath"
+
+  ln -sf "$version_dir/bin/nvim" "$version_file"
+
+  echo "Installed neovim $version_number at $version_file"
+
+  [ ! -L "$BIN_DIR/nvim" ] && use "$version"
 }
 
-shift
-case "$command" in
-  install)
-    install "$@"
-    ;;
-  use)
-    use "$@"
-    ;;
-  list)
-    list "$@"
-    ;;
-  open)
-    open "$@"
-    ;;
-esac
+get_releases() {
+  releases_api_url="https://api.github.com/repos/neovim/neovim/releases"
+  cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}/nvvm
+  cache_file="$cache_dir/releases.json"
+  last_updated_file="$cache_dir/last_updated"
+
+  [ ! -d "$cache_dir" ] && mkdir -p "$cache_dir"
+
+  if [ -f "$cache_file" ] && [ -f "$last_updated_file" ]; then
+    last_updated=$(cat "$last_updated_file")
+    now=$(date +%s)
+
+    # Pull from cache if last updated less than an hour ago
+    if ((now - last_updated < 3600)); then
+      cat "$cache_file"
+      return
+    fi
+  fi
+
+  curl -s "$releases_api_url" --output "$cache_file"
+
+  date +%s >"$last_updated_file"
+
+  cat "$cache_file"
+}
+
+get_release() {
+  version="$1"
+  get_releases | jq --arg version "$version" '.[] | select(.tag_name == $version)'
+}
+
+get_release_asset() {
+  version="$1"
+  get_release "$version" | jq '.assets[] | select(.name == "nvim-linux-x86_64.tar.gz" or .name == "nvim-linux64.tar.gz")'
+}
+
+check_checksum_from_digest() {
+  version="$1"
+  filepath="$2"
+
+  sha256sum=$(get_release_asset "$version" | jq -r '.digest')
+
+  if [ -z "$sha256sum" ] || [ "$sha256sum" == "null" ]; then
+    return 1
+  fi
+
+  echo "${sha256sum:7}  $filepath" | sha256sum --check --strict --status -
+}
+
+check_checksum_from_file() {
+  version="$1"
+  filepath="$2"
+
+  shasum_file=$(get_release "$version" | jq -r --arg filename "$(basename "$filepath")" '.assets[] | select(.name == $filename + ".sha256sum") | .browser_download_url')
+
+  wget --quiet --show-progress "$shasum_file"
+
+  if ! (cd "$LIB_DIR" && sha256sum --check --strict --status "$shasum_file"); then
+    rm "$shasum_file"
+    return 1
+  fi
+
+  rm "$shasum_file"
+}
+
+check_checksum_from_description() {
+  version="$1"
+  filepath="$2"
+  filename="$(basename "$filepath")"
+
+  echo "Getting checksum from description..."
+
+  remote_checksum=$(get_release "$version" | jq '.body' | sed 's/\\n/\n/g' | grep -E "\w{64}\s+$filename" | grep -v 'zsync' | awk '{print $1}')
+
+  echo "$remote_checksum  $filepath" | sha256sum --check --strict --status -
+}
+
+check_checksum() {
+  version="$1"
+  default_installed_filepath="$2"
+
+  if ! check_checksum_from_digest "$version" "$default_installed_filepath"; then
+    if ! check_checksum_from_file "$version" "$default_installed_filepath"; then
+      check_checksum_from_description "$version" "$default_installed_filepath"
+    fi
+  fi
+}
+
+main "$@"
