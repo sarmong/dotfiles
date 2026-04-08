@@ -102,7 +102,7 @@ function flatten_map(table)
         end
       else
         if key == "name" then
-          req("which-key").register({ [path] = value })
+          req("which-key").add({ { path, desc = value } })
         else
           result[newPath] = value
         end

@@ -104,6 +104,6 @@ return {
   ["vim-surround"] = "3d188ed2113431cf8dac77be61b842acb64433d9",
   ["vscode-es7-javascript-react-snippets"] = "185bb91a0b692c54136663464e8225872c434637",
   ["vscode-js-debug"] = "8e8ea7c09c17ec167d3072048756e5f3909a59d5",
-  ["which-key.nvim"] = "4433e5ec9a507e5097571ed55c02ea9658fb268a",
+  ["which-key.nvim"] = "3aab2147e74890957785941f0c1ad87d0a44c15a",
   ["yuck.vim"] = "9b5e0370f70cc30383e1dabd6c215475915fe5c3"
 }
