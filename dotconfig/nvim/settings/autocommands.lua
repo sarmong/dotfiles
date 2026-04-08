@@ -207,3 +207,25 @@ autocmd("ModeChanged", {
     last_layout = nil
   end,
 })
+
+local toggle_relative_number_group = augroup("toggle relative number")
+autocmd("FocusLost", {
+  group = toggle_relative_number_group,
+  callback = function()
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+      if vim.api.nvim_get_option_value("number", { win = win }) then
+        vim.api.nvim_set_option_value("relativenumber", false, { win = win })
+      end
+    end
+  end,
+})
+autocmd("FocusGained", {
+  group = toggle_relative_number_group,
+  callback = function()
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+      if vim.api.nvim_get_option_value("number", { win = win }) then
+        vim.api.nvim_set_option_value("relativenumber", true, { win = win })
+      end
+    end
+  end,
+})
