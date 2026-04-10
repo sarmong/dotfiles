@@ -41,6 +41,7 @@ return {
   ["mkdnflow.nvim"] = "4c8890890426d57f20fc6d459c7631e0bbb50975",
   ["mini.notify"] = "e506fb6da26c0a31ee6b1d2eb99626cb147f28ca",
   ["multicursor.nvim"] = "704b99f10a72cc05d370cfeb294ff83412a8ab55",
+  ["neoconf.nvim"] = "9962671f2a35d8c5e8cc47eab99511280b8b712d",
   neogen = "23e7e9f883d01289ebd90e98025acc860ea26366",
   neogit = "5a7fca171e3ad07380745d573d791e95268b8f3f",
   ["newsboat.vim"] = "5edcb4fd51533363c0e15a903528350a8af2bfc6",
