@@ -5,12 +5,13 @@ launcher="${1:-rofi}"
 PIPE="/tmp/sessionsfifo"
 mkfifo "$PIPE"
 TMPFILE="$(mktemp)"
+ACTION="default"
 
 main() {
-  TMUX="${TMUX:-$(get_tmux_client_var)}"
-
   get_all_sessions
-  selected_session=$(select_session)
+
+  select_session
+  selected_session="$SELECTED"
 
   rm "$PIPE" "$TMPFILE"
 
@@ -18,19 +19,47 @@ main() {
     exit
   fi
 
-  if tmux has-session -t "$selected_session" 2>/dev/null; then
-    if [ -n "$TMUX" ]; then
-      TMUX="$TMUX" tmux switch-client -t "$selected_session"
-    else
-      "$TERMINAL" -e "$SHELL" -c "tmux attach-session -t $selected_session ; $SHELL"
-    fi
+  if [ "$ACTION" = "new_window" ]; then
+    open_new_window "$selected_session"
   else
-    if [ -n "$TMUX" ]; then
-      TMUX="$TMUX" workplace "$selected_session"
-    else
-      "$TERMINAL" --directory "$selected_session" -e "$SHELL" -c "workplace ; $SHELL"
-    fi
+    switch_last_window "$selected_session"
   fi
+}
+
+open_new_window() {
+  selected="$1"
+  if tmux has-session -t "$selected" 2>/dev/null; then
+    "$TERMINAL" -e "$SHELL" -c "tmux attach-session -t $selected ; $SHELL"
+  else
+    "$TERMINAL" --directory "$selected" -e "$SHELL" -c "workplace ; $SHELL"
+  fi
+}
+
+switch_last_window() {
+  selected="$1"
+  session_name="$(basename "$selected" | tr '.:' '_')"
+
+  tmux has-session -t "$session_name" 2>/dev/null || workplace "$selected"
+
+  ## Find window where this session is active
+  client_info=$(tmux list-clients -F "#{client_pid} #{client_tty} #{client_session}" |
+    awk -v s="$session_name" '$3 == s { print; exit }')
+  ## If not active, get most recent client
+  if [ -z "$client_info" ]; then
+    client_info=$(tmux display-message -p "#{client_pid} #{client_tty} #{client_session}")
+  fi
+
+  pid=$(printf '%s' "$client_info" | awk '{print $1}')
+  client_tty=$(printf '%s' "$client_info" | awk '{print $2}')
+
+  window_pid_map=$(wmctrl -l -p | awk '{print $3, $1}')
+  while [ -n "$pid" ] && [ "$pid" != 1 ]; do
+    wid=$(printf '%s\n' "$window_pid_map" | awk -v p="$pid" '$1==p{print $2; exit}')
+    [ -n "$wid" ] && xdotool windowactivate "$wid" && break
+    pid=$(awk '/^PPid:/{print $2; exit}' /proc/"$pid"/status 2>/dev/null)
+  done
+
+  tmux switch-client -c "$client_tty" -t "$session_name"
 }
 
 get_all_sessions() {
@@ -66,7 +95,7 @@ select_session() {
     selected=$(cat "$PIPE" | fzf -d "/" --with-nth -1 --bind "ctrl-x:execute(tmux kill-session -t {})")
 
     if [ -z "$selected" ]; then
-      exit 0
+      return 0
     fi
   else
     if [ -n "$TMUX" ]; then
@@ -74,13 +103,18 @@ select_session() {
       rofi_flags="-w $window_id"
     fi
 
-    selected_idx=$(cat "$PIPE" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d $rofi_flags) ## without using {} xargs splits by spaces too
+    selected_idx=$(cat "$PIPE" | xargs -I {} -n 1 basename {} | rofi -dmenu -i -format d $rofi_flags -kb-accept-alt "" -kb-accept-custom "" -kb-custom-1 "shift+Return" -kb-custom-2 "ctrl+Return") ## without using {} xargs splits by spaces too
+    rofi_exit=$?
 
     if [ -z "$selected_idx" ] || [ "$selected_idx" -lt 1 ]; then
-      exit 0
+      return 0
     fi
 
     selected=$(sed '/^$/d' "$TMPFILE" | sed -n "${selected_idx}p") ## There may be empty leading line for some reason
+
+    if [ "$rofi_exit" = 10 ] || [ "$rofi_exit" = 11 ]; then
+      ACTION="new_window"
+    fi
   fi
 
   ## if not eq -- that means it is a path and not a tmux session name
@@ -88,19 +122,19 @@ select_session() {
     rofi-frecency update "sessions" "$selected"
   fi
 
-  if [ "$(git -C "$selected" rev-parse --is-bare-repository)" = "true" ]; then
-    cd "$selected" || exit
+  if [ "$(git -C "$selected" rev-parse --is-bare-repository)" = "true" ]; then #TODO: errors if tmux here
+    cd "$selected" || return
     wt_list=$(wt list | tail -n +4)
 
     if [ "$launcher" = "fzf" ]; then
       selected_line=$(printf '%s\n' "$wt_list" | fzf)
       if [ -z "$selected_line" ]; then
-        exit 0
+        return 0
       fi
     else
       selected_idx=$(printf '%s\n' "$wt_list" | rofi -dmenu -i -format d)
       if [ -z "$selected_idx" ]; then
-        exit 0
+        return 0
       fi
       selected_line=$(printf '%s\n' "$wt_list" | sed -n "${selected_idx}p")
     fi
@@ -109,7 +143,7 @@ select_session() {
     selected="$selected/$slot"
   fi
 
-  echo "$selected"
+  SELECTED="$selected"
 }
 
 get_tmux_client_var() {

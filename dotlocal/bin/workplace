@@ -25,9 +25,3 @@ if ! tmux has-session -t="$session_name" 2>/dev/null; then
 
   tmux select-window -t 1
 fi
-
-if [ -n "$TMUX" ]; then
-  tmux switch-client -t "$session_name"
-else
-  tmux attach-session -t "$session_name"
-fi
