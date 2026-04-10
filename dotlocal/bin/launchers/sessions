@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 launcher="${1:-rofi}"
 
@@ -8,7 +8,7 @@ TMPFILE="$(mktemp)"
 ACTION="default"
 
 main() {
-  get_all_sessions
+  get_all_sessions &
 
   select_session
   selected_session="$SELECTED"
@@ -68,26 +68,38 @@ get_all_sessions() {
 
   dirs="$work_projects\n$personal"
 
-  opened_sessions=$(tmux ls -F '#{session_last_attached} #{session_name}' | sort -k 1 -rn | cut -d ' ' -f 2-)
-  sessions_for_display="$opened_sessions"
-  if [ -n "$TMUX" ]; then
-    session_name="$(tmux display-message -p '#S')"
-    sessions_for_display=$(echo "$opened_sessions" | grep -Fxv "$session_name")
+  sessions_for_display=$(tmux ls -F '#{session_last_attached} #{session_name}' | sort -k 1 -rn | cut -d ' ' -f 2-)
+  opened_sessions=$sessions_for_display
+
+  active_win_pid=$(xdo pid 2>/dev/null)
+  active_win_name=""
+
+  if [ -n "$active_win_pid" ]; then
+    active_win_name=$(awk '/^Name:/{print $2; exit}' "/proc/$active_win_pid/status" 2>/dev/null)
   fi
 
-  (
-    {
-      echo "$sessions_for_display"
-      printf '%b' "$dirs" | rofi-frecency get "sessions" |
-        while IFS= read -r path; do
-          name=$(basename "$path" | tr '.:' '_') ## replace dots with underscores
-          for exclude in $opened_sessions; do
-            [ "$name" = "$exclude" ] && continue 2
-          done
-          printf '%s\n' "$path"
+  if [ "$active_win_name" = "$TERMINAL" ]; then
+    while read -r client_pid client_session; do
+      if is_child "$client_pid" "$active_win_pid"; then
+        echo "Excluding active session: $client_session" >/dev/tty &
+        sessions_for_display=$(echo "$sessions_for_display" | grep -Fxv "$client_session")
+        break
+      fi
+    done < <(tmux list-clients -F "#{client_pid} #{client_session}")
+  fi
+
+  {
+    echo "$sessions_for_display"
+    printf '%b' "$dirs" | rofi-frecency get "sessions" |
+      while IFS= read -r path; do
+        name=${path##*/}
+        name=${name//[.:]/_}
+        for exclude in $opened_sessions; do
+          [ "$name" = "$exclude" ] && continue 2
         done
-    } | tee -a "$TMPFILE" >"$PIPE"
-  ) &
+        printf '%s\n' "$path"
+      done
+  } | tee -a "$TMPFILE" >>"$PIPE"
 }
 
 select_session() {
@@ -146,34 +158,18 @@ select_session() {
   SELECTED="$selected"
 }
 
-get_tmux_client_var() {
-  is_child() {
-    child_id=$1
-    parent_id=$2
+is_child() {
+  child_id=$1
+  parent_id=$2
 
-    while [ "$child_id" != 1 ]; do
-      if [ "$child_id" = "$parent_id" ]; then
-        return 0
-      fi
-      child_id=$(ps -o ppid= -p "$child_id" | xargs) ## xargs to delete leading whitespace
-    done
-    return 1
-  }
-
-  window_pid="$(xdotool getactivewindow getwindowpid)"
-  clients="$(tmux list-clients -F "#{client_pid} #{pane_pid}")"
-  if [ -z "$clients" ]; then
-    echo ""
-    return
-  fi
-
-  echo "$clients" | while read -r client_pid pane_pid; do
-    if is_child "$client_pid" "$window_pid"; then
-      tmux_var=$(tr '\0' '\n' <"/proc/$pane_pid/environ" | rg "^TMUX=(.*)" -r '$1')
-      echo "$tmux_var"
-      break
+  while [ "$child_id" != 1 ]; do
+    if [ "$child_id" = "$parent_id" ]; then
+      return 0
     fi
+    child_id=$(awk '/^PPid:/{print $2; exit}' /proc/"$child_id"/status 2>/dev/null) || break
   done
+
+  return 1
 }
 
 main "$@"
