@@ -2,7 +2,7 @@
 
 launcher="${1:-rofi}"
 
-PIPE="/tmp/sessionsfifo"
+PIPE="$(mktemp -u /tmp/sessionsfifo.XXXXXX)"
 mkfifo "$PIPE"
 TMPFILE="$(mktemp)"
 ACTION="default"
