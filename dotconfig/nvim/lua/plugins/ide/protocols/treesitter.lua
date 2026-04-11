@@ -39,52 +39,47 @@ req("mini.deps").later(function()
   local contrib = req("plugins.ide.contrib")
   contrib.mason("tree-sitter-cli")
 
-  local opts = {
-    -- TODO: replace setup
-    textobjects = {
-      -- swappable queries can be found here
-      -- https://github.com/atchim/dotsoup/tree/main/nvim/queries
-      swap = {
-        enable = true,
-        swap_next = {
-          ["<leader>ts"] = "@swappable",
-        },
-        swap_previous = {
-          ["<leader>tS"] = "@swappable",
-        },
-      },
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-        },
-        move = {
-          enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
-          goto_next_start = {
-            ["]m"] = "@function.outer",
-          },
-          goto_next_end = {
-            ["]M"] = "@function.outer",
-          },
-          goto_previous_start = {
-            ["[m"] = "@function.outer",
-          },
-          goto_previous_end = {
-            ["[M"] = "@function.outer",
-          },
-        },
-      },
-    },
-  }
-
   Plugin("HiPhish/rainbow-delimiters.nvim")
   Plugin("windwp/nvim-ts-autotag")
-  -- Plugin("nvim-treesitter/nvim-treesitter-textobjects") -- TODO: setup
+  Plugin("nvim-treesitter/nvim-treesitter-textobjects")
   Plugin("nvim-treesitter/nvim-treesitter-context")
   Plugin("JoosepAlviste/nvim-ts-context-commentstring")
+
+  req("nvim-treesitter-textobjects").setup({
+    select = { lookahead = true },
+    move = { set_jumps = true },
+  })
+
+  local to_select = lreq("nvim-treesitter-textobjects.select")
+  local to_swap = lreq("nvim-treesitter-textobjects.swap")
+  local to_move = lreq("nvim-treesitter-textobjects.move")
+
+  map({ "x", "o" }, "af", function()
+    to_select.select_textobject("@function.outer", "textobjects")
+  end)
+  map({ "x", "o" }, "if", function()
+    to_select.select_textobject("@function.inner", "textobjects")
+  end)
+
+  map("n", "<leader>ts", function()
+    to_swap.swap_next("@parameter.inner")
+  end)
+  map("n", "<leader>tS", function()
+    to_swap.swap_previous("@parameter.outer")
+  end)
+
+  map({ "n", "x", "o" }, "]m", function()
+    to_move.goto_next_start("@function.outer", "textobjects")
+  end)
+  map({ "n", "x", "o" }, "]M", function()
+    to_move.goto_next_end("@function.outer", "textobjects")
+  end)
+  map({ "n", "x", "o" }, "[m", function()
+    to_move.goto_previous_start("@function.outer", "textobjects")
+  end)
+  map({ "n", "x", "o" }, "[M", function()
+    to_move.goto_previous_end("@function.outer", "textobjects")
+  end)
 
   req("treesitter-context").setup({
     enable = true,
