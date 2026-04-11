@@ -111,7 +111,6 @@ req("marks").setup({
   },
 })
 
--- Plugin("ThePrimeagen/harpoon")
 Plugin("cbochs/grapple.nvim")
 
 vim.keymap.set("n", "<leader>ma", require("grapple").toggle)

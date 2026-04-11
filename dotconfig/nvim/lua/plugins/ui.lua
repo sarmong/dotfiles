@@ -116,11 +116,6 @@ req("lualine").setup({
   extensions = {},
 })
 
--- Plugin("stevearc/dressing.nvim")
--- req("dressing").setup({
---   { input = { insert_only = false } },
--- })
-
 Plugin("lukas-reineke/indent-blankline.nvim")
 req("ibl").setup({
   indent = {
