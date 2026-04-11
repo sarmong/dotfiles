@@ -29,7 +29,7 @@ return {
   ["html-snippets"] = "6be86366426ae269ff811c7e399300db870e13e4",
   ["indent-blankline.nvim"] = "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
   ["koda.nvim"] = "18a21bcef1b6746d1aaeaae2d1ca54b46f6aa8fe",
-  ["lazydev.nvim"] = "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
+  ["lazydev.nvim"] = "0dd70de85245c7ac916887d0d6d29ccb3ae52c3d",
   ["lf-vim"] = "01929dd7bd95ff24ad5a0c39a5c6f25ecfd4a560",
   ["lualine.nvim"] = "47f91c416daef12db467145e16bed5bbfe00add8",
   ["luvit-meta"] = "cc9b2d412d2fbd30b94a70cfc214c2a3be27a0a2",

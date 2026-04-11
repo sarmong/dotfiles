@@ -1,3 +1,10 @@
 {
-  "diagnostics.globals": ["vim", "use", "require", "package", "os"]
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime": {
+    "version": "LuaJIT",
+    "special": {
+      "req": "require",
+      "lreq": "require"
+    }
+  }
 }

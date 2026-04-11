@@ -4,18 +4,8 @@ contrib.mason("lua-language-server", "stylua")
 contrib.formatters("lua", "stylua")
 contrib.ts_parsers("lua")
 
-Plugin("folke/lazydev.nvim")
+Plugin({ "sarmong/lazydev.nvim", checkout = "sarmong/require-aliases" })
 Plugin("Bilal2453/luvit-meta")
-
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-table.insert(runtime_path, "?/init.lua")
-
-local library = vim.api.nvim_get_runtime_file("", true)
-table.insert(library, "/usr/share/nvim/runtime/lua")
-table.insert(library, "/usr/share/nvim/runtime/lua/lsp")
-table.insert(library, "/usr/share/awesome/lib")
 
 req("lazydev").setup({
   library = {
@@ -28,47 +18,45 @@ req("lazydev").setup({
   enabled = function(root_dir)
     return vim.uv.fs_stat(root_dir .. "/deps-snap.lua")
       or vim.uv.fs_stat(root_dir .. "/pkg.json")
-      or vim.uv.fs_stat(root_dir .. "/init.lua")
+      or vim.uv.fs_stat(root_dir .. "/nvim-pack-lock.json")
   end,
 })
 
 contrib.lsp("lua_ls", function()
   return {
-    on_attach = function(client, bufnr)
-      -- disable formatting with sumneko_lua, so that null-ls will handle it
+    on_attach = function(client, _bufnr)
+      -- disable formatting, so that null-ls will handle it
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+    on_init = function(client)
+      if client.workspace_folders then
+        local path = client.workspace_folders[1].name
+        if
+          vim.fn.resolve(path) == vim.fn.resolve(vim.fn.stdpath("config"))
+          or vim.list_contains(
+            vim.api.nvim_get_runtime_file("", true),
+            vim.fn.resolve(path)
+          )
+        then
+          client.config.settings.Lua =
+            vim.tbl_deep_extend("force", client.config.settings.Lua, {
+              workspace = {
+                checkThirdParty = false,
+                library = { vim.env.VIMRUNTIME },
+              },
+            })
+        end
+      end
     end,
 
     settings = {
       Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT",
-          -- Setup your lua path
-          -- path = runtime_path,
-          special = {
-            req = "require",
-            lreq = "require",
-          },
-        },
         diagnostics = {
-          enable = true,
-          -- Get the language server to recognize the `vim` global
-          globals = { "vim", "use", "awesome", "client", "root" },
           unusedLocalExclude = { "_*" },
         },
-        -- workspace = {
-        --   -- Make the server aware of Neovim runtime files
-        --   library = library,
-        -- },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
-        },
-        completion = {
-          callSnippet = "Replace",
-        },
+        telemetry = { enable = false },
+        completion = { callSnippet = "Replace" },
       },
     },
   }
