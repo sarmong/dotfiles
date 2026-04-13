@@ -1,9 +1,9 @@
 #!/bin/sh
 
-if git rev-parse --abbrev-ref --symbolic-full-name "@{u}"; then
-  echo 'Pushing to the existing branch...'
+if git rev-parse --abbrev-ref --symbolic-full-name "@{u}" >/dev/null 2>&1; then
   git push "$@"
 else
   echo 'Creating new upstream branch...'
+  echo ''
   git push --set-upstream origin "$(git rev-parse --abbrev-ref HEAD)" "$@"
 fi
