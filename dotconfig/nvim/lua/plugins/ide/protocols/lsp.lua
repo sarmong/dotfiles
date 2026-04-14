@@ -52,6 +52,13 @@ mapl({
       function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end,
+      "toggle inlay hints",
+    },
+    c = {
+      function()
+        vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+      end,
+      "toggle codelens",
     },
     v = {
       function()
