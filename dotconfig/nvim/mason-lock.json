@@ -12,6 +12,7 @@
   "eslint-lsp": "4.8.0",
   "gopls": "v0.15.2",
   "lua-language-server": "3.13.6",
+  "markdown-oxide": "v0.25.10",
   "markdownlint": "0.39.0",
   "oxfmt": "0.37.0",
   "prettier": "3.2.5",

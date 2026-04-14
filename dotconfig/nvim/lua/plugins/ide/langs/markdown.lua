@@ -1,8 +1,37 @@
 local contrib = req("plugins.ide.contrib")
 
-contrib.mason("prettierd", "prettier", "markdownlint")
+contrib.mason("prettierd", "prettier", "markdownlint", "markdown-oxide")
 contrib.ts_parsers("markdown", "markdown_inline")
 contrib.formatters({ "markdown", "markdown.mdx" }, { "prettierd", "prettier" })
+
+contrib.lsp("markdown_oxide", function()
+  return {
+    capabilities = vim.tbl_deep_extend(
+      "force",
+      vim.lsp.protocol.make_client_capabilities(),
+      req("blink.cmp").get_lsp_capabilities(),
+      { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
+    ),
+    on_attach = function(client, bufnr)
+      vim.lsp.codelens.enable(true, { bufnr = bufnr })
+
+      autocmd({ "TextChanged", "InsertLeave", "CursorHold", "BufEnter" }, {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.codelens.enable(true, { bufnr = bufnr })
+        end,
+      })
+
+      command("Daily", function(args)
+        client:exec_cmd({
+          command = "jump",
+          arguments = { args.args == "" and "today" or args.args },
+        })
+      end, { desc = "Open daily note", nargs = "*" })
+    end,
+  }
+end)
+
 contrib.null_ls_sources(function()
   req("null-ls").register(
     req("null-ls").builtins.diagnostics.markdownlint.with({
