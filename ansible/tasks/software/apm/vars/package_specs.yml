@@ -453,6 +453,21 @@ binary_packages:
       - bash -c "sudo install -Dm644 *.ttf /usr/local/share/fonts/TTF/"
       - sudo fc-cache -f /usr/local/share/fonts/TTF
 
+  aporetic-fonts:
+    name: aporetic-fonts
+    version: 1.2.0
+    type: build
+    checksum: sha256:76ffe7644729f001583594def5c904ba1aa80b69373b355a3ce196519a13af9c
+    url: https://github.com/protesilaos/aporetic/archive/refs/tags/%%v%%.tar.gz
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/aporetic-fonts.version"
+    check_version_cmd:
+      "cat {{ ansible_env.XDG_DATA_HOME }}/apm/aporetic-fonts.version"
+    build_cmds:
+      - install -d {{ ansible_env.XDG_DATA_HOME }}/fonts
+      - cp -fr aporetic-sans aporetic-sans-mono aporetic-serif
+        aporetic-serif-mono "{{ ansible_env.XDG_DATA_HOME }}/fonts"
+      - fc-cache -f {{ ansible_env.XDG_DATA_HOME }}/fonts
+
   simp1e-gruvbox-dark-cursor-theme:
     name: simp1e-gruvbox-dark-cursor-theme
     version: f8f8f3c09dd0aa31cc9bc5499c683aad025984be
