@@ -64,6 +64,10 @@ local options = {
 
   guifont            =    "FiraCode Nerd Font:h17",
   langmap            =    "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz",
+
+  foldcolumn         =    "0",
+  foldlevelstart     =    99,
+  foldenable         =    false,
 }
 -- stylua: ignore end
 
