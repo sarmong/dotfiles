@@ -1,6 +1,10 @@
-autocmd("BufReadPost", {
+autocmd("BufWinEnter", {
   group = "Jump to the latest edit position",
-  callback = function()
+  callback = function(ev)
+    local is_markdown = ev.file and ev.file:match("%.md$")
+    if is_markdown then
+      return
+    end
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
     if mark[1] > 0 and mark[1] <= lcount then

@@ -13,7 +13,8 @@ contrib.lsp("markdown_oxide", function()
       { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
     ),
     on_attach = function(client, bufnr)
-      vim.lsp.codelens.enable(true, { bufnr = bufnr })
+      -- Weirdly combination of ts foldexpr + foldllevel=0 + nvim-ufo + this line caused neovim to freeze
+      -- vim.lsp.codelens.enable(true, { bufnr = bufnr, client_id = client.id })
 
       autocmd({ "TextChanged", "InsertLeave", "CursorHold", "BufEnter" }, {
         buffer = bufnr,

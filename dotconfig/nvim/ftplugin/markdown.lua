@@ -48,6 +48,12 @@ vim.opt_local.foldlevel = 0
 vim.opt_local.foldcolumn = "1"
 vim.opt_local.foldtext = ""
 
+-- For preview hover popups
+if vim.api.nvim_win_get_config(0).relative ~= "" then
+  vim.opt_local.foldlevelstart = 99
+  vim.opt_local.foldlevel = 99
+end
+
 map("n", "<CR>", function()
   local on_heading = false
   local ok, node = pcall(vim.treesitter.get_node)
