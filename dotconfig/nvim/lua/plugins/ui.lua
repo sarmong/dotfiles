@@ -146,8 +146,11 @@ Plugin({
   depends = { "kevinhwang91/promise-async" },
 })
 
-require("ufo").setup({
+req("ufo").setup({
   provider_selector = function(_bufnr, filetype, _buftype)
+    if filetype == "markdown" then
+      return ""
+    end
     return { "treesitter", "indent" }
   end,
 })
