@@ -27,6 +27,10 @@ main() {
       shift
       gen_vault_pass "$@"
       ;;
+    view)
+      shift
+      view_encrypted_file "$@"
+      ;;
     *)
       run_playbook "$@"
       ;;
@@ -82,7 +86,15 @@ reencrypt_file() {
 
   enc_file=$(grep -oP "(?<=## Encrypted with ansible vault - ).*" "$file")
 
-  ansible-vault encrypt --vault-pass-file $VAULT_KEY_FILE --output "$XDG_DOTFILES_DIR/$enc_file" "$file"
+  ansible-vault encrypt --vault-pass-file "$VAULT_KEY_FILE" --output "$XDG_DOTFILES_DIR/$enc_file" "$file"
+}
+
+view_encrypted_file() {
+  gen_vault_pass
+
+  file="$1"
+
+  ansible-vault view --vault-pass-file "$VAULT_KEY_FILE" "$file"
 }
 
 _get_saved_role() {
