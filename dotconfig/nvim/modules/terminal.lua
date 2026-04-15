@@ -96,7 +96,7 @@ local function create_term()
   local is_in_tmux = os.getenv("TMUX")
 
   if not is_in_tmux then
-    fn.termopen("zsh")
+    fn.jobstart("zsh", { term = true })
   else
     local current_session =
       system("tmux display-message -p #S"):wait().stdout:gsub("\n", "")
@@ -106,9 +106,9 @@ local function create_term()
       system("tmux has-session -t " .. nested_name):wait().code
 
     if nested_session_exists == 0 then
-      fn.termopen("TMUX= tmux attach -t " .. nested_name)
+      fn.jobstart("TMUX= tmux attach -t " .. nested_name, { term = true })
     else
-      fn.termopen("zsh")
+      fn.jobstart("zsh", { term = true })
     end
   end
 
