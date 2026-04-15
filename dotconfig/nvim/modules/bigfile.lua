@@ -40,6 +40,8 @@ autocmd("FileType", {
       vim.cmd([[NoMatchParen]])
     end
 
+    vim.treesitter.stop()
+
     vim.opt_local.foldmethod = "manual"
     vim.opt_local.statuscolumn = ""
     vim.opt_local.conceallevel = 0
