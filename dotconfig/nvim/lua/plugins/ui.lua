@@ -140,17 +140,3 @@ req("ibl").setup({
   -- show_current_context_start = true,
 })
 map("n", "<leader>ai", cmd.bind("IBLToggle"), "[i]ndent-blankline toggle")
-
-Plugin({
-  source = "kevinhwang91/nvim-ufo",
-  depends = { "kevinhwang91/promise-async" },
-})
-
-req("ufo").setup({
-  provider_selector = function(_bufnr, filetype, _buftype)
-    if filetype == "markdown" then
-      return ""
-    end
-    return { "treesitter", "indent" }
-  end,
-})

@@ -1,40 +1,21 @@
+-- Need to have the tree parsed before foldexpr is called
+vim.treesitter.get_parser(0):parse()
+
 function _G.markdown_foldexpr()
   local lnum = vim.v.lnum
-  local line = vim.fn.getline(lnum)
-  local heading = line:match("^(#+)%s")
-  if heading then
-    local level = #heading
+  local heading_level = vim.treesitter
+    .get_node({ pos = { lnum - 1, 0 } })
+    :type()
+    :match("atx_h(%d)_marker")
+
+  if heading_level then
+    local level = tonumber(heading_level)
     if level == 1 then
       return 0 -- H1 is never folded
     elseif level >= 2 and level <= 6 then
       -- Shift by 1 so H2=level1, H3=level2, etc. — avoids skipping from H1's
       -- level 0 to level 2, which Vim interprets as an implicit level-1 fold.
       return ">" .. (level - 1)
-    end
-  end
-  -- For blank lines between sections: if next non-blank line is a shallower
-  -- heading than the previous one, lift the blank line to that heading's level
-  -- so it stays visible when the deeper section is folded.
-  if line:match("^%s*$") then
-    local prev_depth = 0
-    for i = lnum - 1, 1, -1 do
-      local prev_heading = vim.fn.getline(i):match("^(#+)%s")
-      if prev_heading then
-        prev_depth = #prev_heading
-        break
-      end
-    end
-    if prev_depth > 0 then
-      for i = lnum + 1, vim.fn.line("$") do
-        local next_line = vim.fn.getline(i)
-        if next_line:match("%S") then
-          local next_heading = next_line:match("^(#+)%s")
-          if next_heading and #next_heading < prev_depth then
-            return math.max(0, #next_heading - 1)
-          end
-          break
-        end
-      end
     end
   end
   return "="
@@ -47,6 +28,7 @@ vim.opt_local.foldlevelstart = 0
 vim.opt_local.foldlevel = 0
 vim.opt_local.foldcolumn = "1"
 vim.opt_local.foldtext = ""
+vim.opt_local.fillchars = "fold: "
 
 -- For preview hover popups
 if vim.api.nvim_win_get_config(0).relative ~= "" then

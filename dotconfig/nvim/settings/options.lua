@@ -68,6 +68,7 @@ local options = {
   foldcolumn         =    "0",
   foldlevelstart     =    99,
   foldenable         =    false,
+  foldtext           =    "",
 }
 -- stylua: ignore end
 
