@@ -16,12 +16,8 @@ req("nvim-treesitter").install(req("plugins.ide.contrib").state.ts_parsers)
 
 autocmd("FileType", {
   pattern = "*",
-  callback = function()
-    if
-      vim.api.nvim_buf_line_count(0) > 4000
-      or vim.fn.getline(1):len() > 500
-      or not vim.treesitter.get_parser()
-    then
+  callback = function(ev)
+    if ev.match == "bigfile" or not vim.treesitter.get_parser() then
       return
     end
 
