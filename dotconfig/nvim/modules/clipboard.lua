@@ -67,7 +67,7 @@ autocmd({ "FocusLost", "VimLeave" }, {
     if plus_changed_externally and not reg_changed then
       return
     end
-    if should_set_system_clip or reg_changed then
+    if should_set_system_clip and reg_changed then
       set_system_clip()
     end
   end,
