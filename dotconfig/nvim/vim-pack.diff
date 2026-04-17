@@ -1,0 +1,94 @@
+diff -r dotconfig/nvim/lua/plugins/colorschemes.lua dotconfig/nvim-pack/lua/plugins/colorschemes.lua
+3c3
+< req("mini.deps").later(function()
+---
+> vim.schedule(function()
+diff -r dotconfig/nvim/lua/plugins/ide/protocols/treesitter.lua dotconfig/nvim-pack/lua/plugins/ide/protocols/treesitter.lua
+8c8,11
+<     post_checkout = cmd.bind("TSUpdate"),
+---
+>     post_checkout = function()
+>       vim.print("before treesitter post_checkout")
+>       cmd("TSUpdate")
+>     end,
+11a15
+> vim.print("after treesitter install")
+38c42,43
+< req("mini.deps").later(function()
+---
+> vim.schedule(function()
+>   vim.print("in treesitter schedule")
+diff -r dotconfig/nvim/lua/plugins/init.lua dotconfig/nvim-pack/lua/plugins/init.lua
+0a1
+> vim.print("before alpha")
+1a3
+> vim.print("after alpha")
+5c7,8
+< req("mini.deps").later(function()
+---
+> vim.schedule(function()
+>   vim.print("plugins schedule")
+31a35
+> vim.print("plugins end")
+diff -r dotconfig/nvim/lua/user-prefs.lua dotconfig/nvim-pack/lua/user-prefs.lua
+4a5
+> vim.print("after neoconf")
+Only in dotconfig/nvim-pack: nvim-pack-lock.json
+Only in dotconfig/nvim-pack: nvim-pack-lock.json~
+diff -r dotconfig/nvim/settings/init.lua dotconfig/nvim-pack/settings/init.lua
+0a1
+> vim.print("loading settings")
+diff -r dotconfig/nvim/utils/shortcuts.lua dotconfig/nvim-pack/utils/shortcuts.lua
+172a173,181
+> local hooks = {}
+> vim.api.nvim_create_autocmd("PackChanged", {
+>   callback = function(ev)
+>     if hooks[ev.data.spec.name] and hooks[ev.data.spec.name][ev.data.kind] then
+>       hooks[ev.data.spec.name][ev.data.kind]({ path = ev.data.path })
+>     end
+>   end,
+> })
+> 
+173a183,185
+>   if type(spec) == "string" then
+>     spec = { src = spec }
+>   end
+175c187,200
+<     spec.source = spec[1]
+---
+>     spec.src = spec[1]
+>   end
+>   if spec.source then
+>     spec.src = spec.source
+>     spec.source = nil
+>   end
+>   spec.src = vim.startswith(spec.src, "https://") and spec.src
+>     or "https://github.com/" .. spec.src
+> 
+>   if spec.depends then
+>     for _, dep in ipairs(spec.depends) do
+>       Plugin(dep)
+>     end
+>     spec.depends = nil
+177c202,220
+<   req("mini.deps").add(spec)
+---
+> 
+>   if spec.checkout then
+>     spec.version = spec.checkout
+>     spec.checkout = nil
+>   end
+> 
+>   if spec.hooks then
+>     local name = spec.name or vim.fs.basename(spec.src)
+>     hooks[name] = hooks[name] or {}
+>     if spec.hooks.post_checkout then
+>       hooks[name].update = spec.hooks.post_checkout
+>     end
+>     if spec.hooks.post_install then
+>       hooks[name].install = spec.hooks.post_install
+>     end
+>     spec.hooks = nil
+>   end
+> 
+>   vim.pack.add({ spec })
