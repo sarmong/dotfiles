@@ -1,5 +1,5 @@
 - name: rust | get installed version
-  command: rustup -v
+  command: "{{ ansible_env.XDG_DATA_HOME }}/cargo/bin/rustup -v"
   ignore_errors: true
   changed_when: false
   failed_when: false
@@ -18,4 +18,7 @@
     - name: rust | run install script
       command:
         cmd: "/tmp/rustup.sh -y --no-modify-path"
-        creates: "{{ ansible_env.XDG_CONFIG_HOME }}/rust/cargo/bin/rustup"
+        creates: "{{ ansible_env.XDG_DATA_HOME }}/cargo/bin/rustup"
+      environment: ## Align with zsh-coding
+        CARGO_HOME: "{{ ansible_env.XDG_DATA_HOME }}/cargo"
+        RUSTUP_HOME: "{{ ansible_env.XDG_DATA_HOME }}/rustup"
