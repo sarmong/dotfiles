@@ -29,6 +29,7 @@ return {
   ["koda.nvim"] = "18a21bcef1b6746d1aaeaae2d1ca54b46f6aa8fe",
   ["lazydev.nvim"] = "0dd70de85245c7ac916887d0d6d29ccb3ae52c3d",
   ["lf-vim"] = "01929dd7bd95ff24ad5a0c39a5c6f25ecfd4a560",
+  ["link.vim"] = "53e09621fc0dcee54e3231422029be19dab75018",
   ["lualine.nvim"] = "47f91c416daef12db467145e16bed5bbfe00add8",
   ["luvit-meta"] = "cc9b2d412d2fbd30b94a70cfc214c2a3be27a0a2",
   ["markdown-preview.nvim"] = "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",

@@ -41,6 +41,9 @@ contrib.null_ls_sources(function()
   )
 end)
 
+Plugin("qadzek/link.vim")
+vim.g.link_disable_internal_links = 1
+
 Plugin("MeanderingProgrammer/render-markdown.nvim")
 -- setup later so that cmp is already available
 vim.schedule(function()
