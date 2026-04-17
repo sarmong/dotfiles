@@ -177,6 +177,7 @@
       - timewarrior
       - ncal
       - npm
+      - inotify-tools ## recommended by neovim
 
 - name: Install pipx
   include_tasks: tasks/software/build/pipx.yml
