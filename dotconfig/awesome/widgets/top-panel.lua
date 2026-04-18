@@ -5,6 +5,9 @@ local Tag_list = require("widgets.tag-list")
 local Layout_box = require("widgets.layout-box")
 local rec_widget = require("widgets.rec")
 local Clock_widget = require("widgets.clock")
+local luna_widget = require("widgets.luna")
+local timew_widget = require("widgets.timew")
+local mediaplayer_widget = require("widgets.mediaplayer")
 local mat_icon_button = require("lib.material.icon-button")
 local mat_icon = require("lib.material.icon")
 local dpi = require("beautiful").xresources.apply_dpi
@@ -37,6 +40,9 @@ local top_panel = function(s)
       nil,
       {
         layout = wibox.layout.fixed.horizontal,
+        luna_widget,
+        timew_widget,
+        mediaplayer_widget,
         awful.widget.keyboardlayout(),
         systray,
         Layout_box(s),
