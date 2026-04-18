@@ -66,7 +66,11 @@ awful.layout.layouts = {
   awful.layout.suit.floating,
 }
 
-awful.screen.connect_for_each_screen(function(s)
+-- Create tags in a stable order: internal display (eDP-*, LVDS-*) first, external after.
+-- RandR enumerates primary first, which changes on every primary switch —
+-- output-name ordering gives stable _NET_WM_DESKTOP values across restarts
+-- regardless of physical monitor position or which screen is primary.
+local function setup_screen_tags(s)
   for i, tag in pairs(tags) do
     awful.tag.add(i, {
       icon = tag.icon,
@@ -79,7 +83,28 @@ awful.screen.connect_for_each_screen(function(s)
       selected = i == 1,
     })
   end
+end
+local function is_internal(s)
+  for name in pairs(s.outputs) do
+    if name:match("^eDP") or name:match("^LVDS") then
+      return true
+    end
+  end
+  return false
+end
+
+local screens_sorted = {}
+for s in screen do
+  table.insert(screens_sorted, s)
+end
+table.sort(screens_sorted, function(a, b)
+  return is_internal(a) and not is_internal(b)
 end)
+for _, s in ipairs(screens_sorted) do
+  setup_screen_tags(s)
+end
+
+screen.connect_signal("added", setup_screen_tags)
 
 tag.connect_signal("property::layout", function(t)
   local currentLayout = awful.tag.getproperty(t, "layout")
