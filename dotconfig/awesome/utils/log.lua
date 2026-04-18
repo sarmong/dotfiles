@@ -23,7 +23,10 @@ function _G.log(title, text)
 end
 
 function _G.log_to_file(text)
-  local file = io.open("~/awesome.log", "a")
+  local file = io.open(os.getenv("HOME") .. "/awesome.log", "a")
+  if not file then
+    return
+  end
   io.output(file)
   io.write("[" .. os.date() .. "] " .. dump(text) .. "\n")
   io.close(file)
