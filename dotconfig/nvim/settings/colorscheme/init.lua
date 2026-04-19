@@ -18,6 +18,7 @@ end
 autocmd("Signal", {
   group = "Update colorscheme",
   pattern = "SIGUSR1",
+  nested = true,
   callback = function()
     vim.opt.background = Pref.ui.background()
     pcall(vim.cmd.colorscheme, Pref.ui.colorscheme)
