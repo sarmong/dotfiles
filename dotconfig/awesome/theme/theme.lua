@@ -27,6 +27,8 @@ local theme = {
   titlebar_bg_focus = colors.dark2,
   titlebar_fg_normal = colors.theme_titlebar_fg_normal,
   titlebar_fg_focus = colors.theme_titlebar_fg_focus,
+  titlebar_button_hover_bg = colors.dark3,
+  titlebar_close_hover_bg = colors.neutral_red,
 
   border_width = dpi(2),
   border_color_normal = colors.dark1,

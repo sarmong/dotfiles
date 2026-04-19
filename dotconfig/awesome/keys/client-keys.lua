@@ -116,6 +116,15 @@ local local_keys = {
     end,
   },
   {
+    description = "toggle titlebar",
+    modifiers = { super },
+    key = "t",
+    group = "client",
+    on_press = function(c)
+      awful.titlebar.toggle(c)
+    end,
+  },
+  {
     description = "toggle sticky",
     modifiers = { super, ctrl },
     key = "s",
@@ -204,7 +213,8 @@ local local_keys = {
     modifiers = { super, ctrl },
     key = "o",
     on_press = function(c)
-      local alt_screen = require("modules.move-windows").find_alt_screen(c.screen)
+      local alt_screen =
+        require("modules.move-windows").find_alt_screen(c.screen)
       c:move_to_tag(alt_screen.tags[c.first_tag.index])
     end,
     group = "client",

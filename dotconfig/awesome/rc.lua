@@ -15,10 +15,13 @@ require("theme")
 require("utils")
 
 local top_panel = require("widgets.top-panel")
+local titlebars = require("modules.titlebars")
 
 awesome.connect_signal("theme::reload", function()
   for k in pairs(package.loaded) do
-    if k:match("^theme") then package.loaded[k] = nil end
+    if k:match("^theme") then
+      package.loaded[k] = nil
+    end
   end
   require("theme")
   top_panel.reload()
@@ -27,15 +30,7 @@ awesome.connect_signal("theme::reload", function()
       s.selected_tag:emit_signal("property::layout")
     end
   end
-  local beautiful = require("beautiful")
-
-  for _, c in ipairs(client.get()) do
-    if c.has_titlebar then
-      awful.titlebar(c):set_bg(
-        client.focus == c and beautiful.titlebar_bg_focus or beautiful.titlebar_bg_normal
-      )
-    end
-  end
+  titlebars.update_colors()
 end)
 
 require("modules")

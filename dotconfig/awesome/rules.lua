@@ -3,6 +3,10 @@ local ruled = require("ruled")
 
 ruled.client.append_rules({
   {
+    rule_any = { type = { "dialog" } },
+    properties = { titlebars_enabled = true },
+  },
+  {
     -- All clients will match this rule.
     rule = {},
     properties = {
@@ -73,11 +77,11 @@ ruled.client.append_rules({
     },
   },
   {
-    rule = { instance = "telegram-desktop", name = "Media viewer" },
+    rule = { instance = "telegram", name = "Media viewer" },
     properties = {
-      placement = awful.placement.maximize,
       ontop = false,
       floating = false,
+      titlebars_enabled = false,
     },
   },
   {
