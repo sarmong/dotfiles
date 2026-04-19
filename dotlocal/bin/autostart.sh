@@ -7,6 +7,7 @@ run() {
 wm=$(wmctrl -m | head -1 | awk -F": " '{print $2}')
 
 ## Essentials
+run xsettingsd
 run dunst
 run lxpolkit
 run nm-applet --indicator # network tray
@@ -41,5 +42,5 @@ run redshift -t 6500:2500
 run safeeyes
 run udiskie --smart-tray
 run volctl
-run xfce4-power-manager
+GTK_THEME=Adwaita:dark run xfce4-power-manager
 run blueman-applet

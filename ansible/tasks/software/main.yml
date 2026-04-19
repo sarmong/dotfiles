@@ -60,7 +60,6 @@
       - autorandr
       - lxsession
       - lxappearance
-      - papirus-icon-theme
       - qt5ct
       - adwaita-qt6
       - fonts-noto
@@ -90,6 +89,7 @@
       - mediainfo
       - unclutter
       - sxhkd
+      - xsettingsd
 
 - name: Install applications
   become: true

@@ -39,6 +39,7 @@
 - name: set cursor theme
   tags:
     - cursor
+    - gtk
   become: true
   block:
     - name: install breeze theme
@@ -48,3 +49,15 @@
       alternatives:
         name: x-cursor-theme
         path: /etc/X11/cursors/breeze_cursors.theme
+
+- name: install theme packages
+  tags:
+    - gtk
+  become: true
+  apt:
+    name:
+      - breeze-cursor-theme
+      - papirus-icon-theme
+      - yaru-theme-gtk
+      - adwaita-icon-theme
+      - xsettingsd
