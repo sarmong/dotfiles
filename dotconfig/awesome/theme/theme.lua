@@ -1,5 +1,5 @@
 local filesystem = require("gears.filesystem")
-local colors = require("theme.colors.gruvbox")
+local colors = require("theme.colors.current")
 local theme_dir = filesystem.get_configuration_dir() .. "/theme"
 local gears = require("gears")
 local dpi = require("beautiful").xresources.apply_dpi
@@ -10,29 +10,34 @@ local theme = {
   icon_theme = "Papirus-Dark",
 
   --theme.wallpaper = theme_dir .. '/wallpapers/DarkCyan.png'
-  wallpaper = "#e0e0e0",
+  wallpaper = colors.theme_wallpaper,
 
   bg_normal = colors.dark1,
-  bg_focus = "#5a5a5a",
-  bg_urgent = "#3F3F3F",
-  bg_minimize = "#444444",
+  bg_focus = colors.theme_bg_focus,
+  bg_urgent = colors.theme_bg_urgent,
+  bg_minimize = colors.theme_bg_minimize,
   bg_systray = colors.dark1,
 
-  fg_normal = "#ffffffde",
-  fg_focus = "#e4e4e4",
-  fg_urgent = "#CC9393",
-  fg_minimize = "#ffffff",
+  fg_normal = colors.theme_fg,
+  fg_focus = colors.theme_fg_focus,
+  fg_urgent = colors.theme_fg_urgent,
+  fg_minimize = colors.theme_fg_minimize,
+
+  titlebar_bg_normal = colors.dark1,
+  titlebar_bg_focus = colors.dark2,
+  titlebar_fg_normal = colors.theme_titlebar_fg_normal,
+  titlebar_fg_focus = colors.theme_titlebar_fg_focus,
 
   border_width = dpi(2),
   border_color_normal = colors.dark1,
   border_color_active = colors.light2,
-  border_color_marked = "#CC9393",
+  border_color_marked = colors.theme_fg_urgent,
 
   menu_height = dpi(16),
   menu_width = dpi(160),
 
   -- Tooltips
-  tooltip_bg_color = "#232323",
+  tooltip_bg_color = colors.theme_tooltip_bg,
   --theme.tooltip_border_color = '#232323'
   tooltip_border_width = 0,
   tooltip_shape = function(cr, w, h)
@@ -40,8 +45,8 @@ local theme = {
   end,
 
   -- Layout
-  layout_max = theme_dir .. "/icons/layouts/arrow-expand-all.png",
-  layout_tile = theme_dir .. "/icons/layouts/view-quilt.png",
+  layout_max = gears.color.recolor_image(theme_dir .. "/icons/layouts/arrow-expand-all.png", colors.theme_fg),
+  layout_tile = gears.color.recolor_image(theme_dir .. "/icons/layouts/view-quilt.png", colors.theme_fg),
 
   -- Taglist
   taglist_bg_empty = colors.dark1,
@@ -77,13 +82,13 @@ local theme = {
     .. ":0.95,"
     .. colors.dark1
     .. ":0.95,"
-    .. "#AAAAAA"
+    .. colors.theme_tasklist_separator
     .. ":1,"
-    .. "#AAAAAA",
+    .. colors.theme_tasklist_separator,
   tasklist_bg_urgent = colors.faded_green,
-  tasklist_fg_focus = "#DDDDDD",
-  tasklist_fg_urgent = "#AAAAAA",
-  tasklist_fg_normal = "#AAAAAA",
+  tasklist_fg_focus = colors.theme_tasklist_fg_focus,
+  tasklist_fg_urgent = colors.theme_tasklist_fg_urgent,
+  tasklist_fg_normal = colors.theme_tasklist_fg_normal,
 }
 
 return theme

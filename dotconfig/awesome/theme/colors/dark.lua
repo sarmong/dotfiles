@@ -1,3 +1,4 @@
+-- Gruvbox dark
 -- stylua: ignore start
 return {
 dark0_hard     = "#1d2021",
@@ -39,5 +40,22 @@ faded_aqua     = "#427b58",
 bright_orange  = "#fe8019",
 neutral_orange = "#d65d0e",
 faded_orange   = "#af3a03",
+
+theme_fg                 = "#ffffffde",
+theme_fg_focus           = "#e4e4e4",
+theme_fg_urgent          = "#CC9393",
+theme_fg_minimize        = "#ffffff",
+theme_bg_focus           = "#5a5a5a",
+theme_bg_urgent          = "#3F3F3F",
+theme_bg_minimize        = "#444444",
+theme_titlebar_fg_normal = "#AAAAAA",
+theme_titlebar_fg_focus  = "#ffffffde",
+theme_wallpaper          = "#1d2021",
+theme_tooltip_bg         = "#232323",
+theme_tasklist_fg_focus  = "#DDDDDD",
+theme_tasklist_fg_normal = "#AAAAAA",
+theme_tasklist_fg_urgent = "#AAAAAA",
+theme_tasklist_separator = "#AAAAAA",
+theme_bg_systray         = "#1d2021",
 }
 -- stylua: ignore end

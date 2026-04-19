@@ -1,6 +1,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local dpi = require("beautiful").xresources.apply_dpi
+local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 
 local clickable_container = require("lib.material.clickable-container")
 local super = require("keys.mod").super
@@ -87,6 +88,7 @@ local function list_update(w, buttons, label, data, objects)
     bgb:set_bgimage(bg_image)
     if icon then
       ib.image = icon
+      ib.stylesheet = "* { fill: " .. beautiful.fg_normal .. "; }"
     else
       ibm:set_margins(0)
     end

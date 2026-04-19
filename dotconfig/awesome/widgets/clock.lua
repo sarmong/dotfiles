@@ -2,7 +2,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local dpi = require("beautiful").xresources.apply_dpi
 
-local colors = require("theme.colors.gruvbox")
+local colors = require("theme.colors.current")
 
 local format = "%H:%M %a %e %b"
 

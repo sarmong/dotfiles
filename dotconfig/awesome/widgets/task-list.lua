@@ -1,8 +1,11 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local dpi = require("beautiful").xresources.apply_dpi
+local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 local capi = { button = _G.button }
 local gears = require("gears")
+
+local close_icon_path = os.getenv("HOME") .. "/.config/awesome/theme/icons/tag-list/tag/close.png"
 local clickable_container = require("lib.material.clickable-container")
 --- Common method to create buttons.
 -- @tab buttons
@@ -36,6 +39,7 @@ local function list_update(w, buttons, label, data, objects)
   for i, o in ipairs(objects) do
     local cache = data[o]
     local ib, cb, tb, cbm, bgb, tbm, ibm, tt, l, ll, bg_clickable
+    local close_ib
     if cache then
       ib = cache.ib
       tb = cache.tb
@@ -43,20 +47,13 @@ local function list_update(w, buttons, label, data, objects)
       tbm = cache.tbm
       ibm = cache.ibm
       tt = cache.tt
+      close_ib = cache.close_ib
     else
       ib = wibox.widget.imagebox()
       tb = wibox.widget.textbox()
+      close_ib = wibox.widget.imagebox()
       cb = clickable_container(
-        wibox.container.margin(
-          wibox.widget.imagebox(
-            os.getenv("HOME")
-              .. "/.config/awesome/theme/icons/tag-list/tag/close.png"
-          ),
-          4,
-          4,
-          4,
-          4
-        )
+        wibox.container.margin(close_ib, 4, 4, 4, 4)
       )
       cb.shape = gears.shape.circle
       cbm = wibox.container.margin(cb, dpi(4), dpi(4), dpi(4), dpi(4))
@@ -98,8 +95,11 @@ local function list_update(w, buttons, label, data, objects)
         tbm = tbm,
         ibm = ibm,
         tt = tt,
+        close_ib = close_ib,
       }
     end
+
+    close_ib.image = gears.color.recolor_image(close_icon_path, beautiful.fg_normal)
 
     local text, bg, bg_image, icon, args = label(o, tb)
     args = args or {}

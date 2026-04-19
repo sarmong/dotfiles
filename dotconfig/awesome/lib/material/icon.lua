@@ -5,6 +5,7 @@ local setmetatable = setmetatable
 
 -- Commons requirements
 local wibox = require("wibox")
+local beautiful = require("beautiful")
 
 -- Local declarations
 
@@ -60,6 +61,7 @@ local function new(icon, size)
   gtable.crush(ret, mat_list_item, true)
   ret._private.icon = icon
   ret._private.imagebox = wibox.widget.imagebox(icon)
+  ret._private.imagebox.stylesheet = "* { fill: " .. (beautiful.fg_normal or "#ffffff") .. "; }"
   ret._private.size = size
   return ret
 end
