@@ -6,38 +6,52 @@ current_theme=$(cat "$state_file")
 tmux_dir="$XDG_CONFIG_HOME/tmux/colors"
 kitty_dir="$XDG_CONFIG_HOME/kitty/themes"
 nvim_dir="$XDG_CONFIG_HOME/nvim/settings/colorscheme"
+awesome_colors_dir="$XDG_CONFIG_HOME/awesome/theme/colors"
+i3_dir="$XDG_CONFIG_HOME/i3"
+xsettingsd_dir="$XDG_CONFIG_HOME/xsettingsd"
 
-if [ ! -d "$tmux_dir" ] || [ ! -d "$kitty_dir" ] || [ ! -d "$nvim_dir" ]; then
+if [ ! -d "$tmux_dir" ] || [ ! -d "$kitty_dir" ] || [ ! -d "$nvim_dir" ] || [ ! -d "$awesome_colors_dir" ] || [ ! -d "$i3_dir" ] || [ ! -d "$xsettingsd_dir" ]; then
   echo "Dir not found"
   exit 1
 fi
 
 if [ "$current_theme" = "light" ]; then
-  echo "setting dark"
-  ln -sf "$tmux_dir/gruvbox-dark.conf" "$tmux_dir/current-theme.conf"
-
-  ln -sf "$kitty_dir/gruvbox-dark.conf" "$kitty_dir/current-theme.conf"
-
-  ln -sf "$nvim_dir/dark.lua" "$nvim_dir/current.lua"
-
-  echo "dark" >"$state_file"
+  new_theme="dark"
 else
-  echo "setting light"
-  ln -sf "$tmux_dir/gruvbox-light.conf" "$tmux_dir/current-theme.conf"
-
-  ln -sf "$kitty_dir/gruvbox-material-light-soft.conf" "$kitty_dir/current-theme.conf"
-
-  ln -sf "$nvim_dir/light.lua" "$nvim_dir/current.lua"
-
-  echo "light" >"$state_file"
+  new_theme="light"
 fi
 
-kill -USR1 $(pgrep kitty)
+echo "setting $new_theme"
 
-tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
-tmux display 'Config sourced'
+ln -sf "$tmux_dir/gruvbox-$new_theme.conf" "$tmux_dir/current-theme.conf"
+ln -sf "$kitty_dir/$new_theme.conf" "$kitty_dir/current-theme.conf"
+ln -sf "$nvim_dir/$new_theme.lua" "$nvim_dir/current.lua"
+ln -sf "$awesome_colors_dir/$new_theme.lua" "$awesome_colors_dir/current.lua"
+ln -sf "$i3_dir/colors-$new_theme.conf" "$i3_dir/colors.conf"
+ln -sf "$xsettingsd_dir/xsettingsd-$new_theme.conf" "$xsettingsd_dir/xsettingsd.conf"
 
-kill -USR1 $(pgrep nvim)
+echo "$new_theme" >"$state_file"
+
+pgrep -x awesome >/dev/null && echo 'awesome.emit_signal("theme::reload")' | awesome-client &
+
+kill -USR1 $(pgrep kitty) &
+pkill -HUP xsettingsd &
+
+tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf" &
+tmux display 'Config sourced' &
+
+kill -USR1 $(pgrep nvim) &
+
+pgrep -x i3 >/dev/null && i3-msg reload &
+
+pgrep -x volctl >/dev/null && {
+  pkill volctl
+  volctl
+} &
+pgrep -x blueman-applet >/dev/null && {
+  pkill blueman-applet
+  blueman-applet
+} &
 
 # if [ "$(tmux display-message -p '#{@pane-is-vim}')" = 1 ]; then
 #   echo "loading nvim"
