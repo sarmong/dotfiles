@@ -1,1 +1,1 @@
-./dark.lua
+dark.lua

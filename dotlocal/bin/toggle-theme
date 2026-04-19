@@ -23,12 +23,12 @@ fi
 
 echo "setting $new_theme"
 
-ln -sf "$tmux_dir/gruvbox-$new_theme.conf" "$tmux_dir/current-theme.conf"
-ln -sf "$kitty_dir/$new_theme.conf" "$kitty_dir/current-theme.conf"
-ln -sf "$nvim_dir/$new_theme.lua" "$nvim_dir/current.lua"
-ln -sf "$awesome_colors_dir/$new_theme.lua" "$awesome_colors_dir/current.lua"
-ln -sf "$i3_dir/colors-$new_theme.conf" "$i3_dir/colors.conf"
-ln -sf "$xsettingsd_dir/xsettingsd-$new_theme.conf" "$xsettingsd_dir/xsettingsd.conf"
+ln -sf --relative "$tmux_dir/gruvbox-$new_theme.conf" "$tmux_dir/current-theme.conf"
+ln -sf --relative "$kitty_dir/$new_theme.conf" "$kitty_dir/current-theme.conf"
+ln -sf --relative "$nvim_dir/$new_theme.lua" "$nvim_dir/current.lua"
+ln -sf --relative "$awesome_colors_dir/$new_theme.lua" "$awesome_colors_dir/current.lua"
+ln -sf --relative "$i3_dir/colors-$new_theme.conf" "$i3_dir/colors.conf"
+ln -sf --relative "$xsettingsd_dir/xsettingsd-$new_theme.conf" "$xsettingsd_dir/xsettingsd.conf"
 
 echo "$new_theme" >"$state_file"
 
