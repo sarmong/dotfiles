@@ -16,15 +16,15 @@ local icons = require("theme.icons")
 local systray =
   wibox.container.margin(wibox.widget.systray(), dpi(6), dpi(6), dpi(6), dpi(6))
 
-local add_button = mat_icon_button(mat_icon(icons.plus, dpi(24)))
-add_button:buttons(awful.button({}, 1, function()
-  awful.spawn(awful.screen.focused().selected_tag.get_default_app(), {
-    tag = mouse.screen.selected_tag,
-    placement = awful.placement.bottom_right,
-  })
-end))
+local function create_panel(s)
+  local add_button = mat_icon_button(mat_icon(icons.plus, dpi(24)))
+  add_button:buttons(awful.button({}, 1, function()
+    awful.spawn(awful.screen.focused().selected_tag.get_default_app(), {
+      tag = mouse.screen.selected_tag,
+      placement = awful.placement.bottom_right,
+    })
+  end))
 
-local top_panel = function(s)
   return awful.wibar({
     position = "top",
     screen = s,
@@ -54,5 +54,16 @@ local top_panel = function(s)
 end
 
 awful.screen.connect_for_each_screen(function(s)
-  s.top_panel = top_panel(s)
+  s.top_panel = create_panel(s)
 end)
+
+return {
+  reload = function()
+    for s in screen do
+      if s.top_panel then
+        s.top_panel:remove()
+      end
+      s.top_panel = create_panel(s)
+    end
+  end,
+}
