@@ -5,6 +5,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local clickable_container = require("lib.material.clickable-container")
 local super = require("keys.mod").super
+local tag_utils = require("utils.tag")
 
 local function create_buttons(buttons, object)
   if buttons then
@@ -88,7 +89,9 @@ local function list_update(w, buttons, label, data, objects)
     bgb:set_bgimage(bg_image)
     if icon then
       ib.image = icon
-      ib.stylesheet = "* { fill: " .. beautiful.fg_normal .. "; }"
+      local fill = (#o:clients() == 0) and beautiful.tag_empty_fg
+        or beautiful.fg_normal
+      ib.stylesheet = "* { fill: " .. fill .. "; }"
     else
       ibm:set_margins(0)
     end
@@ -122,10 +125,10 @@ local Tag_list = function(s)
         end
       end),
       awful.button({}, 4, function(t)
-        awful.tag.viewprev(t.screen)
+        tag_utils.view_nonempty_tag(t.screen, -1)
       end),
       awful.button({}, 5, function(t)
-        awful.tag.viewnext(t.screen)
+        tag_utils.view_nonempty_tag(t.screen, 1)
       end)
     ),
     update_function = list_update,

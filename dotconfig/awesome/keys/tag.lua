@@ -3,6 +3,7 @@ local gears = require("gears")
 
 local gen_keys = require("keys.gen-keys")
 local super = require("keys.mod").super
+local tag_utils = require("utils.tag")
 local ctrl = require("keys.mod").ctrl
 local shift = require("keys.mod").shift
 local tags = require("tags")
@@ -12,14 +13,18 @@ local keys = {
     description = "View previous tag",
     modifiers = { super },
     key = "w",
-    on_press = awful.tag.viewprev,
+    on_press = function()
+      tag_utils.view_nonempty_tag(awful.screen.focused(), -1)
+    end,
     group = "tag",
   },
   {
     description = "View next tag",
     modifiers = { super },
     key = "s",
-    on_press = awful.tag.viewnext,
+    on_press = function()
+      tag_utils.view_nonempty_tag(awful.screen.focused(), 1)
+    end,
     group = "tag",
   },
   {

@@ -22,6 +22,7 @@ local theme = {
   fg_focus = colors.theme_fg_focus,
   fg_urgent = colors.theme_fg_urgent,
   fg_minimize = colors.theme_fg_minimize,
+  tag_empty_fg = colors.theme_tag_fg_empty,
 
   titlebar_bg_normal = colors.dark1,
   titlebar_bg_focus = colors.dark2,
