@@ -19,6 +19,25 @@ local function Clock(s)
       fg_color = colors.light4,
     },
   })
+
+  local orig_embed = month_calendar.widget:get_fn_embed()
+  month_calendar.widget:set_fn_embed(function(widget, flag, date)
+    local w = orig_embed(widget, flag, date)
+    if flag == "normal" or flag == "focus" then
+      local orig_bg = w.bg
+      w:connect_signal("mouse::enter", function()
+        w.bg = colors.dark2
+        mouse.current_wibox.cursor = "hand2"
+      end)
+      w:connect_signal("mouse::leave", function()
+        w.bg = orig_bg
+        mouse.current_wibox.cursor = "left_ptr"
+      end)
+      w:buttons(awful.util.table.join(awful.button({}, 1, function() end)))
+    end
+    return w
+  end)
+
   month_calendar:attach(textclock)
 
   local clock_widget =
