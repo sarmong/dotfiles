@@ -1,4 +1,4 @@
-vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "folds" }
 
 local get_sessions_dir = function()
   local cwd = vim.uv.cwd()
