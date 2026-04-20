@@ -11,6 +11,7 @@ local tags = {
     get_default_app = function()
       return os.getenv("BROWSER")
     end,
+    default_layout = awful.layout.suit.max,
   },
   {
     icon = icons.code,
@@ -47,6 +48,7 @@ local tags = {
     get_default_app = function()
       return "telegram-desktop"
     end,
+    default_layout = awful.layout.suit.max,
   },
   {
     icon = icons.music,
@@ -75,7 +77,7 @@ local function setup_screen_tags(s)
     awful.tag.add(i, {
       icon = tag.icon,
       icon_only = true,
-      layout = awful.layout.suit.tile,
+      layout = tag.default_layout or awful.layout.suit.tile,
       gap_single_client = false,
       gap = 4,
       screen = s,
