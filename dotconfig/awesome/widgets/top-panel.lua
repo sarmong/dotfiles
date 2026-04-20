@@ -16,6 +16,11 @@ local icons = require("theme.icons")
 local systray =
   wibox.container.margin(wibox.widget.systray(), dpi(6), dpi(6), dpi(6), dpi(6))
 
+local keyboard_layout = awful.widget.keyboardlayout()
+keyboard_layout:add_button(awful.button({}, 3, function()
+  awful.spawn("xkblayout-state set -1")
+end))
+
 local function create_panel(s)
   local add_button = mat_icon_button(mat_icon(icons.plus, dpi(24)))
   add_button:buttons(awful.button({}, 1, function()
@@ -43,7 +48,7 @@ local function create_panel(s)
         luna_widget,
         timew_widget,
         mediaplayer_widget,
-        awful.widget.keyboardlayout(),
+        keyboard_layout,
         systray,
         Layout_box(s),
         rec_widget,
