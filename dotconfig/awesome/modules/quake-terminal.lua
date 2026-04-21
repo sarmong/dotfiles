@@ -34,4 +34,12 @@ local scratch = lain.util.quake({
   end,
 })
 
+local function reset_geometry()
+  dropdown.geometry = {}
+  scratch.geometry = {}
+end
+
+screen.connect_signal("property::geometry", reset_geometry)
+screen.connect_signal("removed", reset_geometry)
+
 return { dropdown = dropdown, scratch = scratch }
