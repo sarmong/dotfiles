@@ -2,6 +2,20 @@
 -- only when nvim is going in/out of focus
 -- Reduces clutter and may speed this up
 
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    -- OSC 52 paste triggers a terminal permission prompt on every FocusGained,
+    -- causing an infinite loop. Use terminal paste (Ctrl+Shift+V) instead.
+    ["+"] = function() return {} end,
+    ["*"] = function() return {} end,
+  },
+}
+
 local should_set_system_clip = true
 local snapshot_on_focus = nil -- value of " at FocusGained, to detect yanks during grace period
 local last_synced_clip = nil -- last value we wrote to +, to detect external clipboard changes
