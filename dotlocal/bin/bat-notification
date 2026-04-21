@@ -1,22 +1,22 @@
 #!/bin/sh
 
 if [ "$(uname)" = "Linux" ]; then
-
   batlvl=$(cat /sys/class/power_supply/BAT0/capacity)
   status=$(cat /sys/class/power_supply/BAT0/status)
-  bat2lvl=$(cat /sys/class/power_supply/BAT1/capacity)
-  bat2status=$(cat /sys/class/power_supply/BAT1/status)
 
   if [ "$batlvl" -lt 30 ] && [ "$status" = "Discharging" ]; then
     /usr/bin/notify-send "Charge your battery ($batlvl%)"
   fi
 
-  if [ "$bat2lvl" -lt 30 ] && [ "$bat2status" = "Discharging" ]; then
-    /usr/bin/notify-send "Charge your battery ($bat2lvl%)"
+  if [ -f "/sys/class/power_supply/BAT1/capacity" ]; then
+    bat2lvl=$(cat /sys/class/power_supply/BAT1/capacity)
+    bat2status=$(cat /sys/class/power_supply/BAT1/status)
+    if [ "$bat2lvl" -lt 30 ] && [ "$bat2status" = "Discharging" ]; then
+      /usr/bin/notify-send "Charge your battery ($bat2lvl%)"
+    fi
   fi
 
 elif [ "$(uname)" = "Darwin" ]; then
-
   batlvl=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
   power=$(pmset -g batt | grep -Eo "(Battery|AC) Power")
 
