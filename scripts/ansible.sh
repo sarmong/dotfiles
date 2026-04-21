@@ -65,6 +65,10 @@ gen_vault_pass() {
 
     encrypted_pass=$(echo "$password" | ansible-vault encrypt -)
 
+    if [ ! -d "$(dirname "$VAULT_ENC_KEY_FILE")" ]; then
+      mkdir -p "$(dirname "$VAULT_ENC_KEY_FILE")"
+    fi
+
     echo "$encrypted_pass" >"$VAULT_ENC_KEY_FILE"
     echo "$password" >"$VAULT_KEY_FILE"
 
