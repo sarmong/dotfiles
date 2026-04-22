@@ -206,6 +206,7 @@
     - jqp
     - tokei
     - lf
+    - yazi
     - fd
     - zoxide
     - bottom

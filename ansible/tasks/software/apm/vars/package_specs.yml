@@ -90,6 +90,14 @@ binary_packages:
     url: https://github.com/gokcehan/lf/releases/download/%%v%%/lf-linux-amd64.tar.gz
     check_version_cmd: "lf --version | sed -nE 's/(.*)/\\1/p'"
 
+  yazi:
+    name: yazi
+    version: 26.1.22
+    type: "deb"
+    checksum: sha256:66cdff864a9d1c7f6316fb17fe2aa2fe03af32791e2c7f660d5978627f37908c
+    url: https://github.com/sxyazi/yazi/releases/download/v%%v%%/yazi-x86_64-unknown-linux-gnu.deb
+    check_version_cmd: "yazi --version | awk '{print $2}'"
+
   fd:
     name: fd
     version: 8.7.1
