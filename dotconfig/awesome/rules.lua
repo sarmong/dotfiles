@@ -116,6 +116,26 @@ ruled.client.append_rules({
   },
 })
 
+-- if there is an activated client - focus it when switching to its tag
+-- handles the issue when activated client goes on top, but another client is focused in maximised layouts
+local pending_focus = {}
+client.connect_signal("request::activate", function(c)
+  local t = c.first_tag
+  if t and not t.selected then
+    pending_focus[t] = c
+  end
+end)
+tag.connect_signal("property::selected", function(t)
+  if t.selected and pending_focus[t] then
+    local c = pending_focus[t]
+    pending_focus[t] = nil
+    if c.valid then
+      client.focus = c
+      c:raise()
+    end
+  end
+end)
+
 local tags = require("tags")
 for i, tag_def in ipairs(tags) do
   if tag_def.app_classes then
