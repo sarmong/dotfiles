@@ -43,7 +43,10 @@ end
 
 _G.Pref = {
   ui = {
-    colorscheme = "gruvbox-material",
+    colorscheme = {
+      dark = "gruvbox-material",
+      light = "koda-glade",
+    },
     background = get_current_theme,
   },
 

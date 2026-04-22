@@ -1,9 +1,9 @@
 Plugin("sainnhe/gruvbox-material")
+Plugin("oskarnurm/koda.nvim")
 
 req("mini.deps").later(function()
   Plugin("sainnhe/everforest")
   Plugin({ "catppuccin/nvim", name = "catppuccin" })
-  Plugin("oskarnurm/koda.nvim")
 
   req("catppuccin").setup({
     integrations = {
