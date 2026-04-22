@@ -32,8 +32,8 @@ local theme = {
   titlebar_close_hover_bg = colors.neutral_red,
 
   border_width = dpi(2),
-  border_color_normal = "#263c3836",
-  border_color_active = "#B3d5c4a1",
+  border_color_normal = colors.dark1,
+  border_color_active = colors.light2,
   border_color_marked = colors.theme_fg_urgent,
 
   menu_height = dpi(16),
