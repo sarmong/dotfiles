@@ -21,6 +21,22 @@ local globalKeys = {
   },
 
   {
+    description = "Toggle calendar",
+    modifiers = { super },
+    key = "k",
+    on_press = function()
+      local s = awful.screen.focused()
+      if s.calendar then
+        local cal = s.calendar
+        if cal then
+          cal:toggle()
+        end
+      end
+    end,
+    group = "awesome",
+  },
+
+  {
     description = "Reveal all windows",
     modifiers = { super, ctrl },
     key = "r",
