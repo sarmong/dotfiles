@@ -12,6 +12,9 @@ local tags = {
       return os.getenv("BROWSER")
     end,
     default_layout = awful.layout.suit.max,
+    app_classes = { "firefox", "Google-chrome" },
+    switch_on_open = true,
+    move_if_exists = false, -- second instance stays on current tag
   },
   {
     icon = icons.code,
@@ -49,15 +52,14 @@ local tags = {
       return "telegram-desktop"
     end,
     default_layout = awful.layout.suit.max,
+    app_classes = { "Slack", "TelegramDesktop" },
+    switch_on_open = true,
   },
   {
     icon = icons.music,
     type = "music",
     -- screen = 1,
     index = 10,
-    get_default_app = function()
-      return "slack"
-    end,
   },
 }
 

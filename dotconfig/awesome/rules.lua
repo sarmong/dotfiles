@@ -115,3 +115,31 @@ ruled.client.append_rules({
     },
   },
 })
+
+local tags = require("tags")
+for i, tag_def in ipairs(tags) do
+  if tag_def.app_classes then
+    ruled.client.append_rule({
+      rule_any = { class = tag_def.app_classes },
+      callback = function(c)
+        local t = c.screen.tags[i]
+        if not t then
+          return
+        end
+
+        if tag_def.move_if_exists == false then
+          for _, existing in ipairs(t:clients()) do
+            if existing ~= c and existing.class == c.class then
+              return
+            end
+          end
+        end
+
+        c:move_to_tag(t)
+        if tag_def.switch_on_open then
+          t:view_only()
+        end
+      end,
+    })
+  end
+end
