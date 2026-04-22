@@ -19,6 +19,8 @@
     - name: software
       tags: software
       block:
+        - import_tasks: tasks/software/ubuntu-debloat.yml
+          when: ansible_distribution == "Ubuntu"
         - import_tasks: tasks/software/build/rust.yml
         - import_tasks: tasks/software/ppa.yml
         - import_tasks: tasks/software/main.yml
@@ -27,8 +29,7 @@
     - name: configuration
       tags: conf
       block:
-        - import_tasks: tasks/configure/ubuntu-debloat.yml
-          when: ansible_distribution == "Ubuntu"
+        - import_tasks: tasks/configure/swap.yml
         - import_tasks: tasks/configure/audio.yml
         - import_tasks: tasks/configure/cron.yml
         - import_tasks: tasks/configure/geoclue.yml

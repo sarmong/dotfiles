@@ -1,0 +1,79 @@
+---
+- name: Remove Ubuntu bloat
+  become: true
+  when: ansible_distribution == "Ubuntu"
+  block:
+    - name: Remove Ubuntu unused packages
+      apt:
+        name:
+          - unattended-upgrades
+          - apport # Crash reporting
+          - whoopsie # Error reporting
+          - popularity-contest # Usage statistics
+          - ubuntu-report
+          - update-notifier-common # Update notifications
+          - ubuntu-web-launchers # Amazon launchers
+          - ubuntu-advantage-tools # Ubuntu Pro
+          - ubuntu-pro-client # Ubuntu Pro
+          # GNOME default apps
+          - gnome-calendar
+          - gnome-contacts
+          - gnome-maps
+          - gnome-weather
+          - gnome-music
+          - gnome-videos
+          - gnome-photos
+          - gnome-todo
+          - gnome-getting-started-docs
+          - yelp # Help browser
+          - gnome-user-docs # User documentation
+          - gnome-help # Help system
+          - rhythmbox # Music player
+          - totem # Video player
+          - shotwell # Photo manager
+        state: absent
+        purge: true
+        allow_downgrade: true
+        force_apt_get: true
+        autoremove: true
+        autoclean: true
+
+    - name: Rid of snap
+      block:
+        - name: Remove firefox snap wrapper
+          apt:
+            name:
+              - firefox=1:1snap1-0ubuntu5
+              - snapd
+            state: absent
+            purge: true
+            allow_downgrade: true
+            force_apt_get: true
+            autoremove: true
+            autoclean: true
+
+        - name: Block snap packages from apt
+          blockinfile:
+            path: /etc/apt/preferences.d/no-snap
+            create: true
+            mode: "0644"
+            block: |
+              Package: firefox
+              Pin: release o=Ubuntu
+              Pin-Priority: -1
+
+              Package: snapd
+              Pin: release o=Ubuntu
+              Pin-Priority: -1
+          notify: Apt update
+
+        - name: Block snapd and firefox from unattended-upgrades
+          blockinfile:
+            path: /etc/apt/apt.conf.d/99block-snap
+            create: true
+            mode: "0644"
+            block: |
+              Unattended-Upgrade::Package-Blacklist {
+                "snapd";
+                "firefox";
+              };
