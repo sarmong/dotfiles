@@ -130,32 +130,6 @@ bindsym $mod+Shift+r mode "resize"
 
 include ~/.config/i3/colors.conf
 
-# class                 border               backgr               text        indicator  child_border
-client.focused          $window_focused_bg   $window_focused_bg   $lightgray  $purple    $darkgray
-client.focused_inactive $window_inactive_bg  $window_inactive_bg  $lightgray  $purple    $darkgray
-client.unfocused        $window_inactive_bg  $window_inactive_bg  $lightgray  $purple    $darkgray
-client.urgent           $red                 $red                 $white      $red       $red
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    tray_output primary
-    position top
-    colors {
-        # bar background color
-        background $bg
-        # text color used for blocks that do not have a color specified.
-        statusline $lightgray
-        # workspaces section            
-        #                    border  backgr. text
-        focused_workspace    $lightgray $lightgray $bg
-        inactive_workspace   $darkgray $darkgray $lightgray
-        active_workspace     $darkgray $darkgray $lightgray
-        urgent_workspace     $red $red $bg
-    }
-}
-
 bindsym $mod+z exec quake.sh term
 bindsym $mod+a exec quake.sh scratch
 
