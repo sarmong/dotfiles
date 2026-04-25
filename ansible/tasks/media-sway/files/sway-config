@@ -1,0 +1,35 @@
+# Minimal sway config for TV session
+# Step 1: prove sway runs, exit cleanly. ags added in Step 2.
+
+### Variables
+set $mod Mod4
+
+### Output
+# quad (mini PC -> TV): adjust port/resolution as needed
+# output HDMI-A-1 resolution 1920x1080
+# laptop testing: leave default
+output * bg #000000 solid_color
+
+### Window rules
+for_window [app_id="mpv"] fullscreen enable
+for_window [class="mpv"] fullscreen enable
+
+### Keybinds (minimal — for debugging during Step 1)
+bindsym $mod+Return exec foot
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+e exec swaymsg exit
+
+# TV remote keys
+bindsym XF86Back exec ags request -i astal 'confirm-exit'
+bindsym XF86VoiceCommand exec sh -c 'pkill -USR2 wvkbd-mobintl || wvkbd-mobintl --layer overlay -L 240 &'
+
+### Idle / screen blank
+exec swayidle -w \
+  timeout 600 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"'
+
+### Autostart
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec systemctl --user start sway-session.target
+exec env GI_TYPELIB_PATH=/usr/local/lib/x86_64-linux-gnu/girepository-1.0 LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu ags run --gtk 4
+# exec /usr/local/bin/bt-connect

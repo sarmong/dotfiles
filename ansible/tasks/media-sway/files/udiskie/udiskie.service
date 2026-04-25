@@ -1,0 +1,15 @@
+[Unit]
+Description=Removable disk auto-mount with media-sway symlink hook
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/udiskie --no-tray --notify --automount
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical-session.target

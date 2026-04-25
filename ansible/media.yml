@@ -98,3 +98,21 @@
     - import_tasks: tasks/media/beets.yml
     - import_tasks: tasks/media/kodi-standalone.yml
     - import_tasks: tasks/media/lighttpd.yml
+
+    - name: sway TV stack
+      tags:
+        - sway
+      block:
+        - name: disable kodi-x11
+          become: true
+          systemd_service:
+            name: kodi-x11
+            enabled: false
+            state: stopped
+            masked: false
+
+        - import_tasks: tasks/media-sway/sway.yml
+        - import_tasks: tasks/media-sway/ags.yml
+        - import_tasks: tasks/media-sway/jellyfin.yml
+        - import_tasks: tasks/media-sway/configuration.yml
+        - import_tasks: tasks/media-sway/autologin.yml

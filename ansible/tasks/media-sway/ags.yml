@@ -1,0 +1,39 @@
+- name: install ags + skeleton home screen
+  tags:
+    - ags
+  block:
+    - name: Install gtk4-layer-shell + astal + ags via apm
+      include_tasks: tasks/software/apm/main.yml
+      loop:
+        - astal
+        - ags
+
+    - name: Ensure ags config dir exists
+      file:
+        path: "{{ ansible_env.HOME }}/.config/ags"
+        state: directory
+        mode: "0755"
+
+    - name: Copy ags skeleton
+      tags:
+        - ags-config
+      synchronize:
+        src: tasks/media-sway/files/ags-home/
+        dest: "{{ ansible_env.HOME }}/.config/ags/"
+        rsync_opts:
+          - "--exclude=node_modules/"
+          - "--exclude=package.json"
+          - "--exclude=package-lock.json"
+
+    - name: Ensure ags node_modules dir exists
+      file:
+        path: "{{ ansible_env.HOME }}/.config/ags/node_modules"
+        state: directory
+        mode: "0755"
+
+    - name: Symlink astal gjs bindings into ags project
+      file:
+        src: /usr/local/share/astal/gjs
+        dest: "{{ ansible_env.HOME }}/.config/ags/node_modules/astal"
+        state: link
+        force: true

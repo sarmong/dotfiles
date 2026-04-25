@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Manages symlinks under $XDG_VIDEOS_DIR for udiskie-mounted devices.
+#
+# Called by udiskie's program_options.event_hook on every device event.
+# Args:
+#   $1 - event name (device_mounted, device_unmounted, device_added, ...)
+#   $2 - mount path, expanded from {mount_path} (empty for non-mount events)
+
+set -euo pipefail
+
+event="${1:-}"
+path="${2:-}"
+
+case "$event" in
+  device_mounted | device_unmounted) ;;
+  *) exit 0 ;;
+esac
+
+[ -n "$path" ] || exit 0
+
+videos_dir="${XDG_VIDEOS_DIR:-$HOME/Videos}"
+label="$(basename "$path")"
+link="$videos_dir/$label"
+
+mkdir -p "$videos_dir"
+
+case "$event" in
+  device_mounted)
+    if [ -e "$link" ] && [ ! -L "$link" ]; then
+      logger -t media-sway-mount-hook "skip: $link exists and is not a symlink"
+      exit 0
+    fi
+    if [ -L "$link" ] && [ "$(readlink "$link")" != "$path" ]; then
+      logger -t media-sway-mount-hook "replacing stale symlink $link -> $path"
+      rm "$link"
+    fi
+    ln -sfn "$path" "$link"
+    logger -t media-sway-mount-hook "linked $link -> $path"
+    ;;
+  device_unmounted)
+    if [ -L "$link" ] && [ "$(readlink "$link")" = "$path" ]; then
+      rm "$link"
+      logger -t media-sway-mount-hook "unlinked $link"
+    fi
+    ;;
+esac

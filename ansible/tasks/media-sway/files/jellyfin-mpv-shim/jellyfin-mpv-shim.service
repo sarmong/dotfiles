@@ -1,0 +1,16 @@
+[Unit]
+Description=Jellyfin mpv-shim cast target
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/jellyfin-mpv-shim
+Restart=on-failure
+RestartSec=5s
+# Keep stdout/err in journal for debugging
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical-session.target

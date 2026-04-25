@@ -1,0 +1,39 @@
+- name: media-sway autologin
+  tags:
+    - autologin
+  block:
+    - name: getty | ensure tty1 drop-in dir
+      become: true
+      file:
+        path: /etc/systemd/system/getty@tty1.service.d
+        state: directory
+        mode: "0755"
+
+    - name: getty | autologin tty1 as primary user
+      become: true
+      copy:
+        dest: /etc/systemd/system/getty@tty1.service.d/override.conf
+        mode: "0644"
+        content: |
+          [Service]
+          ExecStart=
+          ExecStart=-/sbin/agetty --autologin {{ ansible_env.USER }} --noclear %I $TERM
+      register: getty_override
+
+    - name: getty | daemon-reload
+      become: true
+      systemd_service:
+        daemon_reload: true
+      when: getty_override.changed
+
+    - name: zsh | autostart sway on tty1
+      become: true
+      blockinfile:
+        path: /etc/zsh/zprofile
+        create: true
+        mode: "0644"
+        marker: "# {mark} ANSIBLE MANAGED BLOCK media-sway autostart"
+        block: |
+          if [ -z "$WAYLAND_DISPLAY" ] && [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+            command -v sway >/dev/null && exec sway
+          fi

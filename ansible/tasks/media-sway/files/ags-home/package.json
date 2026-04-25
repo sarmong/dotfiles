@@ -1,0 +1,21 @@
+{
+  "name": "ags-home",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "astal": "^0.1.0"
+  },
+  "devDependencies": {
+    "@girs/glib-2.0": "^2.88.0-4.0.0-rc.4",
+    "@girs/gobject-2.0": "^2.88.0-4.0.0-rc.4",
+    "@girs/gtk-4.0": "^4.23.0-4.0.0-rc.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

@@ -532,3 +532,51 @@ binary_packages:
     checksum: sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4
     url: https://github.com/dlvhdr/diffnav/releases/download/v%%v%%/diffnav_Linux_x86_64.tar.gz
     check_version_cmd: "diffnav --version | grep -oP 'v\\K[0-9.]+'"
+
+  astal:
+    name: astal
+    version: 6e49ec972f5d85437ce80e8b511d22b35a91b0df
+    type: git
+    url: https://github.com/Aylur/astal.git
+    dependencies:
+      - meson
+      - ninja-build
+      - pkg-config
+      - valac
+      - valadoc
+      - gobject-introspection
+      - libgirepository1.0-dev
+      - libgtk-4-dev
+      - libgtk4-layer-shell-dev
+    build_cmds:
+      - meson setup --prefix=/usr/local lib/astal/io/build lib/astal/io
+      - sudo meson install -C lib/astal/io/build
+      - meson setup --prefix=/usr/local lib/astal/gtk4/build lib/astal/gtk4
+      - sudo meson install -C lib/astal/gtk4/build
+      - meson setup --prefix=/usr/local lang/gjs/build lang/gjs
+      - sudo meson install -C lang/gjs/build
+      - sudo ldconfig
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/astal.version"
+    check_version_cmd: "cat {{ ansible_env.XDG_DATA_HOME }}/apm/astal.version"
+
+  ags:
+    name: ags
+    version: 3.1.2
+    type: build
+    checksum: sha256:cefed61736acdd0d15fcc191191309d1072dbfb0fe0062b43e5d9730b5408297
+    url: https://github.com/Aylur/ags/releases/download/v%%v%%/ags-v%%v%%.tar.gz
+    dependencies:
+      - npm
+      - meson
+      - ninja-build
+      - pkg-config
+      - golang-go
+      - gjs
+      - gobject-introspection
+      - libgtk-4-dev
+    build_cmds:
+      - meson setup --prefix=/usr/local build
+      - sudo meson install -C build
+    ## --version returns wrong version
+    version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/ags.version"
+    check_version_cmd: "cat {{ ansible_env.XDG_DATA_HOME }}/apm/ags.version"

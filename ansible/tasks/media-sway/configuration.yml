@@ -1,0 +1,97 @@
+- name: media-sway configuration (mounts + osk)
+  tags:
+    - configuration
+  block:
+    - name: configuration | install apt packages
+      become: true
+      apt:
+        name:
+          - udiskie
+          - wvkbd
+        state: present
+
+    - name: udisks2 | ensure system config dir
+      become: true
+      file:
+        path: /etc/udisks2
+        state: directory
+        mode: "0755"
+
+    - name: udisks2 | deploy mount_options.conf (group-readable mounts for fat-family)
+      become: true
+      copy:
+        src: tasks/media-sway/files/udiskie/mount_options.conf
+        dest: /etc/udisks2/mount_options.conf
+        mode: "0644"
+
+    - name: udiskie | ensure config dir
+      file:
+        path: "{{ ansible_env.HOME }}/.config/udiskie"
+        state: directory
+        mode: "0755"
+
+    - name: udiskie | deploy config.yml
+      copy:
+        src: tasks/media-sway/files/udiskie/config.yml
+        dest: "{{ ansible_env.HOME }}/.config/udiskie/config.yml"
+        mode: "0644"
+
+    - name: udiskie | ensure local bin dir
+      file:
+        path: "{{ ansible_env.HOME }}/.local/bin"
+        state: directory
+        mode: "0755"
+
+    - name: udiskie | deploy mount hook
+      copy:
+        src: tasks/media-sway/files/bin/media-sway-mount-hook
+        dest: "{{ ansible_env.HOME }}/.local/bin/media-sway-mount-hook"
+        mode: "0755"
+
+    - name: udiskie | ensure systemd user dir
+      file:
+        path: "{{ ansible_env.HOME }}/.config/systemd/user"
+        state: directory
+        mode: "0755"
+
+    - name: udiskie | deploy systemd user unit
+      copy:
+        src: tasks/media-sway/files/udiskie/udiskie.service
+        dest: "{{ ansible_env.HOME }}/.config/systemd/user/udiskie.service"
+        mode: "0644"
+      register: udiskie_unit
+
+    - name: udiskie | systemctl daemon-reload (user)
+      command: systemctl --user daemon-reload
+      when: udiskie_unit.changed
+      changed_when: udiskie_unit.changed
+
+    - name: udiskie | enable user service
+      systemd_service:
+        name: udiskie.service
+        scope: user
+        enabled: true
+
+    - name: logind | ensure drop-in dir
+      become: true
+      file:
+        path: /etc/systemd/logind.conf.d
+        state: directory
+        mode: "0755"
+
+    - name: logind | ignore power key (TV remote mispress safety)
+      become: true
+      copy:
+        dest: /etc/systemd/logind.conf.d/10-media-sway.conf
+        mode: "0644"
+        content: |
+          [Login]
+          HandlePowerKey=ignore
+      register: logind_dropin
+
+    - name: logind | reload systemd-logind
+      become: true
+      systemd_service:
+        name: systemd-logind
+        state: reloaded
+      when: logind_dropin.changed

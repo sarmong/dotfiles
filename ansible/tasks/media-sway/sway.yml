@@ -1,0 +1,63 @@
+- name: install sway TV session
+  tags:
+    - sway
+  block:
+    - name: Install sway packages
+      become: true
+      apt:
+        name:
+          - sway
+          - swayidle
+          - foot
+          - wl-clipboard
+          - xdg-desktop-portal-wlr
+
+    - name: Ensure sway config dir exists
+      file:
+        path: "{{ ansible_env.HOME }}/.config/sway"
+        state: directory
+        mode: "0755"
+
+    - name: Copy sway config
+      copy:
+        src: tasks/media-sway/files/sway-config
+        dest: "{{ ansible_env.HOME }}/.config/sway/config"
+        mode: "0644"
+
+    - name: Ensure systemd user dir
+      file:
+        path: "{{ ansible_env.HOME }}/.config/systemd/user"
+        state: directory
+        mode: "0755"
+
+    - name: Deploy sway-session.target
+      copy:
+        src: tasks/media-sway/files/sway-session/sway-session.target
+        dest: "{{ ansible_env.HOME }}/.config/systemd/user/sway-session.target"
+        mode: "0644"
+      register: sway_session_target
+
+    - name: systemctl daemon-reload (user) for sway-session.target
+      command: systemctl --user daemon-reload
+      when: sway_session_target.changed
+      changed_when: sway_session_target.changed
+
+    - name: firefox | install kiosk browser
+      become: true
+      apt:
+        name:
+          - firefox-esr
+        state: present
+
+    - name: firefox | ensure profile dir
+      file:
+        path: "{{ ansible_env.HOME }}/.mozilla/firefox/kiosk"
+        state: directory
+        mode: "0700"
+
+    - name: firefox | deploy profiles.ini (preserve if exists)
+      copy:
+        src: tasks/media-sway/files/firefox/profiles.ini
+        dest: "{{ ansible_env.HOME }}/.mozilla/firefox/profiles.ini"
+        mode: "0644"
+        force: false

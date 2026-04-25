@@ -1,0 +1,163 @@
+- name: install jellyfin server + mpv-shim
+  tags:
+    - jellyfin
+  block:
+    - name: jellyfin | ensure apt prerequisites
+      become: true
+      apt:
+        name:
+          - curl
+          - gnupg
+          - apt-transport-https
+        state: present
+
+    - name: jellyfin | add signing key
+      become: true
+      ansible.builtin.get_url:
+        url: https://repo.jellyfin.org/jellyfin_team.gpg.key
+        dest: /etc/apt/keyrings/jellyfin.gpg.key
+        mode: "0644"
+        force: false
+
+    - name: jellyfin | add apt repo
+      become: true
+      ansible.builtin.apt_repository:
+        repo:
+          "deb [signed-by=/etc/apt/keyrings/jellyfin.gpg.key]
+          https://repo.jellyfin.org/{{ ansible_distribution | lower }} {{
+          ansible_distribution_release }} main"
+        filename: jellyfin
+        state: present
+        update_cache: true
+
+    - name: jellyfin | install server
+      become: true
+      apt:
+        name:
+          - jellyfin-server
+          - jellyfin-web
+          - jellyfin-ffmpeg7
+        state: present
+
+    - name: jellyfin | deploy network.xml
+      become: true
+      copy:
+        src: tasks/media-sway/files/jellyfin/network.xml
+        dest: /etc/jellyfin/network.xml
+        mode: "0640"
+        owner: jellyfin
+        group: jellyfin
+      register: jellyfin_network
+
+    - name: jellyfin | enable + start service
+      become: true
+      systemd_service:
+        name: jellyfin
+        enabled: true
+        state: "{{ 'restarted' if jellyfin_network.changed else 'started' }}"
+
+    # - name: mpv-shim | ensure pipx
+    #   become: true
+    #   apt:
+    #     name:
+    #       - pipx
+    #     state: present
+    #
+    # - name: mpv-shim | install via pipx (global)
+    #   include_tasks: tasks/software/build/pipx.yml
+    #   vars:
+    #     pipx_args:
+    #       - name: jellyfin-mpv-shim
+    #         state: present
+    #
+    # - name: mpv-shim | ensure config dir
+    #   file:
+    #     path: "{{ ansible_env.HOME }}/.config/jellyfin-mpv-shim"
+    #     state: directory
+    #     mode: "0755"
+    #
+    # - name: mpv-shim | resolve user uid
+    #   command: id -u
+    #   changed_when: false
+    #   register: user_uid
+    #
+    # - name: mpv-shim | deploy conf.json
+    #   copy:
+    #     src: tasks/media-sway/files/jellyfin-mpv-shim/conf.json
+    #     dest: "{{ ansible_env.HOME }}/.config/jellyfin-mpv-shim/conf.json"
+    #     mode: "0644"
+    #     force: false
+    #
+    # - name: mpv-shim | substitute uid in mpv_ext_options
+    #   replace:
+    #     path: "{{ ansible_env.HOME }}/.config/jellyfin-mpv-shim/conf.json"
+    #     regexp: '/run/user/\{uid\}/'
+    #     replace: "/run/user/{{ user_uid.stdout }}/"
+    #
+    # - name: mpv-shim | symlink mpv.conf
+    #   file:
+    #     src: "{{ ansible_env.HOME }}/.config/mpv/mpv.conf"
+    #     dest: "{{ ansible_env.HOME }}/.config/jellyfin-mpv-shim/mpv.conf"
+    #     state: link
+    #     force: true
+    #
+    # - name: mpv-shim | symlink input.conf
+    #   file:
+    #     src: "{{ ansible_env.HOME }}/.config/mpv/input.conf"
+    #     dest: "{{ ansible_env.HOME }}/.config/jellyfin-mpv-shim/input.conf"
+    #     state: link
+    #     force: true
+    #
+    # - name: mpv-shim | ensure systemd user dir
+    #   file:
+    #     path: "{{ ansible_env.HOME }}/.config/systemd/user"
+    #     state: directory
+    #     mode: "0755"
+    #
+    # - name: mpv-shim | deploy systemd user unit
+    #   copy:
+    #     src: tasks/media-sway/files/jellyfin-mpv-shim/jellyfin-mpv-shim.service
+    #     dest: "{{ ansible_env.HOME }}/.config/systemd/user/jellyfin-mpv-shim.service"
+    #     mode: "0644"
+    #   register: shim_unit
+    #
+    # - name: mpv-shim | systemctl daemon-reload (user)
+    #   command: systemctl --user daemon-reload
+    #   when: shim_unit.changed
+    #   changed_when: shim_unit.changed
+    #
+    # - name: mpv-shim | enable user service
+    #   systemd_service:
+    #     name: jellyfin-mpv-shim.service
+    #     scope: user
+    #     enabled: true
+
+    - name: jellyfin perms | add jellyfin to user's group
+      become: true
+      user:
+        name: jellyfin
+        groups: "{{ ansible_env.USER }}"
+        append: true
+      register: jellyfin_groups
+
+    - name: jellyfin perms | ensure $HOME is group-readable+traversable
+      become: true
+      file:
+        path: "{{ ansible_env.HOME }}"
+        mode: "0750"
+
+    - name: jellyfin perms | ensure /media/$USER exists and is group-readable
+      become: true
+      file:
+        path: "/media/{{ ansible_env.USER }}"
+        state: directory
+        owner: root
+        group: "{{ ansible_env.USER }}"
+        mode: "0750"
+
+    - name: jellyfin perms | restart jellyfin to pick up new group
+      become: true
+      systemd_service:
+        name: jellyfin
+        state: restarted
+      when: jellyfin_groups.changed

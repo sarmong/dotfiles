@@ -1,0 +1,139 @@
+.home {
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+.topbar {
+  padding: 16px 32px;
+}
+
+.clock {
+  font-size: 24px;
+  color: #cccccc;
+}
+
+.close-overlay-win {
+  background-color: transparent;
+}
+
+.close-app {
+  font-size: 18px;
+  background-image: none;
+  background-color: #8a1a1a;
+  color: #ffffff;
+  border: 2px solid #a33;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin: 16px;
+}
+
+.close-app:hover, .close-app:focus {
+  background-image: none;
+  background-color: #a22;
+  border-color: #e55;
+  outline: none;
+}
+
+.close-app > label {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.tile-row {
+  margin-top: 16px;
+}
+
+.tile {
+  min-width: 220px;
+  min-height: 180px;
+  font-size: 32px;
+  background-image: none;
+  background-color: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 16px;
+  padding: 24px;
+  color: #ffffff;
+  box-shadow: none;
+  transition: all 180ms ease;
+}
+
+.tile > label {
+  color: #ffffff;
+  font-size: 32px;
+}
+
+.tile:hover {
+  background-image: none;
+  background-color: #222;
+  border-color: #555;
+}
+
+.tile:focus {
+  background-image: none;
+  background-color: #2a4a8a;
+  border-color: #5aa9ff;
+  outline: none;
+}
+
+.confirm-overlay-win {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.confirm-card {
+  background-color: #181818;
+  border: 2px solid #444;
+  border-radius: 16px;
+  padding: 48px 64px;
+}
+
+.confirm-title {
+  font-size: 56px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.confirm-yes, .confirm-no {
+  min-width: 220px;
+  min-height: 100px;
+  font-size: 32px;
+  background-image: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  border: 2px solid #444;
+  color: #ffffff;
+}
+
+.confirm-yes {
+  background-color: #8a1a1a;
+  border-color: #a33;
+}
+
+.confirm-yes:focus, .confirm-yes:hover {
+  background-image: none;
+  background-color: #a22;
+  border-color: #e55;
+  outline: none;
+}
+
+.confirm-no {
+  background-color: #1a1a1a;
+}
+
+.confirm-no:focus, .confirm-no:hover {
+  background-image: none;
+  background-color: #2a4a8a;
+  border-color: #5aa9ff;
+  outline: none;
+}
+
+.confirm-yes > label, .confirm-no > label {
+  color: #ffffff;
+  font-size: 32px;
+}
