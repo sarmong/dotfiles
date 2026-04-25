@@ -8,6 +8,9 @@
 [help]
   autocorrect = 10
 
+[commit]
+  verbose = true
+
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -15,6 +18,8 @@
   light = false      # set to true if you're in a terminal w/ a light background color
 [diff]
   algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
 
 [merge]
   tool = vimdiff
@@ -26,6 +31,7 @@
   cmd = nvim -d $BASE $LOCAL
 [rerere]
   enabled = true
+  autoupdate = true
 
 [branch]
   autosetuprebase = always
@@ -35,6 +41,11 @@
 [branch "upstream"]
   rebase = true
 
+[tag]
+  sort = version:refname
+
+[pull]
+  rebase = true
 [fetch]
   prune = true # autoremove branches removed on remote
 [push]
