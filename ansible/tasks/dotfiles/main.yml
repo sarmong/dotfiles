@@ -65,75 +65,107 @@
     - src: "dotconfig/git/git-personal-enc.conf"
       dest: "dotconfig/git/git-personal.conf"
 
+- name: smart-browser script
+  when: ansible_env.BROWSER == 'google-chrome-stable'
+  become: true
+  copy:
+    dest: /usr/local/bin/smart-browser
+    content: |
+      #!/bin/sh
+
+      focused=$(xprop -id "$(xdotool getactivewindow 2>/dev/null)" WM_CLASS 2>/dev/null)
+      case "$focused" in
+        *[Tt]elegram*) exec firefox "$@" ;;
+        *)             exec google-chrome-stable "$@" ;;
+      esac
+    mode: "0755"
+
+- name: smart-browser desktop file
+  when: ansible_env.BROWSER == 'google-chrome-stable'
+  copy:
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/smart-browser.desktop"
+    content: |
+      [Desktop Entry]
+      Name=Smart Browser
+      Exec=/usr/local/bin/smart-browser %u
+      Type=Application
+      MimeType=x-scheme-handler/http;x-scheme-handler/https;text/html;application/xhtml+xml;x-scheme-handler/about;x-scheme-handler/unknown;
+      NoDisplay=true
+
+      # vim:ft=dosini
+    mode: "0644"
+
 - name: mimeapps.list
   vars:
     browser:
       "{{ (ansible_env.BROWSER == 'google-chrome-stable') |
-      ternary('google-chrome', 'firefox') }}"
-  lineinfile:
+      ternary('smart-browser', 'firefox') }}"
+  ini_file:
     path: "{{ ansible_env.XDG_CONFIG_HOME }}/mimeapps.list"
-    line: "{{ item }}"
-    mode: "0644"
+    section: Default Applications
+    option: "{{ item.k }}"
+    value: "{{ item.v }}"
+    no_extra_spaces: true
     create: true
+    mode: "0644"
   loop:
-    - "[Default Applications]"
-    - application/javascript=nvim.desktop;
-    - application/pdf=org.pwmt.zathura.desktop;
-    - application/epub+zip=org.pwmt.zathura.desktop;
-    - application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;
-    - application/x-shellscript=nvim.desktop;
-    - application/x-troff-man=nvim.desktop;
-    - text/plain=nvim.desktop;
+    - { k: application/javascript, v: "nvim.desktop;" }
+    - { k: application/pdf, v: "org.pwmt.zathura.desktop;" }
+    - { k: application/epub+zip, v: "org.pwmt.zathura.desktop;" }
+    - { k: application/x-bittorrent, v: "org.qbittorrent.qBittorrent.desktop;" }
+    - { k: application/x-shellscript, v: "nvim.desktop;" }
+    - { k: application/x-troff-man, v: "nvim.desktop;" }
+    - { k: text/plain, v: "nvim.desktop;" }
 
-    - audio/aac=mpv.desktop;
-    - audio/flac=mpv.desktop;
-    - audio/m4a=mpv.desktop;
-    - audio/midi=mpv.desktop;
-    - audio/mp3=mpv.desktop;
-    - audio/mp4=mpv.desktop;
-    - audio/mpeg=mpv.desktop;
-    - audio/mpegurl=mpv.desktop;
-    - audio/mpg=mpv.desktop;
-    - audio/ogg=mpv.desktop;
-    - audio/opus=mpv.desktop;
-    - audio/wav=mpv.desktop;
-    - audio/webm=mpv.desktop;
+    - { k: audio/aac, v: "mpv.desktop;" }
+    - { k: audio/flac, v: "mpv.desktop;" }
+    - { k: audio/m4a, v: "mpv.desktop;" }
+    - { k: audio/midi, v: "mpv.desktop;" }
+    - { k: audio/mp3, v: "mpv.desktop;" }
+    - { k: audio/mp4, v: "mpv.desktop;" }
+    - { k: audio/mpeg, v: "mpv.desktop;" }
+    - { k: audio/mpegurl, v: "mpv.desktop;" }
+    - { k: audio/mpg, v: "mpv.desktop;" }
+    - { k: audio/ogg, v: "mpv.desktop;" }
+    - { k: audio/opus, v: "mpv.desktop;" }
+    - { k: audio/wav, v: "mpv.desktop;" }
+    - { k: audio/webm, v: "mpv.desktop;" }
 
-    - image/bmp=nsxiv.desktop;
-    - image/gif=nsxiv.desktop;
-    - image/jpeg=nsxiv.desktop;
-    - image/jpg=nsxiv.desktop;
-    - image/png=nsxiv.desktop;
-    - image/svg+xml=nsxiv.desktop;
-    - image/svg+xml-compressed=nsxiv.desktop;
-    - image/tiff=nsxiv.desktop;
-    - image/webp=nsxiv.desktop;
-    - image/x-icon=nsxiv.desktop;
-    - image/x-portable-pixmap=feh.desktop;
-    - image/x-tga=nsxiv.desktop;
-    - image/x-xbitmap=nsxiv.desktop;
-    - image/x-xpixmap=nsxiv.desktop;
+    - { k: image/bmp, v: "nsxiv.desktop;" }
+    - { k: image/gif, v: "nsxiv.desktop;" }
+    - { k: image/jpeg, v: "nsxiv.desktop;" }
+    - { k: image/jpg, v: "nsxiv.desktop;" }
+    - { k: image/png, v: "nsxiv.desktop;" }
+    - { k: image/svg+xml, v: "nsxiv.desktop;" }
+    - { k: image/svg+xml-compressed, v: "nsxiv.desktop;" }
+    - { k: image/tiff, v: "nsxiv.desktop;" }
+    - { k: image/webp, v: "nsxiv.desktop;" }
+    - { k: image/x-icon, v: "nsxiv.desktop;" }
+    - { k: image/x-portable-pixmap, v: "feh.desktop;" }
+    - { k: image/x-tga, v: "nsxiv.desktop;" }
+    - { k: image/x-xbitmap, v: "nsxiv.desktop;" }
+    - { k: image/x-xpixmap, v: "nsxiv.desktop;" }
 
-    - inode/directory=caja-folder-handler.desktop;
+    - { k: inode/directory, v: "caja-folder-handler.desktop;" }
 
-    - video/avi=mpv.desktop;
-    - video/flv=mpv.desktop;
-    - video/mkv=mpv.desktop;
-    - video/mp4=mpv.desktop;
-    - video/mp4v-es=mpv.desktop;
-    - video/mpeg=mpv.desktop;
-    - video/mpeg-system=mpv.desktop;
-    - video/ogg=mpv.desktop;
-    - video/quicktime=mpv.desktop;
-    - video/webm=mpv.desktop;
-    - video/x-matroska=mpv.desktop;
+    - { k: video/avi, v: "mpv.desktop;" }
+    - { k: video/flv, v: "mpv.desktop;" }
+    - { k: video/mkv, v: "mpv.desktop;" }
+    - { k: video/mp4, v: "mpv.desktop;" }
+    - { k: video/mp4v-es, v: "mpv.desktop;" }
+    - { k: video/mpeg, v: "mpv.desktop;" }
+    - { k: video/mpeg-system, v: "mpv.desktop;" }
+    - { k: video/ogg, v: "mpv.desktop;" }
+    - { k: video/quicktime, v: "mpv.desktop;" }
+    - { k: video/webm, v: "mpv.desktop;" }
+    - { k: video/x-matroska, v: "mpv.desktop;" }
 
-    - text/html={{ browser }}.desktop;
-    - application/xhtml+xml={{ browser }}.desktop;
-    - x-scheme-handler/about={{ browser }}.desktop;
-    - x-scheme-handler/http={{ browser }}.desktop;
-    - x-scheme-handler/https={{ browser }}.desktop;
-    - x-scheme-handler/unknown={{ browser }}.desktop;
-    - x-scheme-handler/freetube=freetube.desktop
-    - x-scheme-handler/mpv=mpv-opener.desktop
-    - x-scheme-handler/umpv=mpv-opener.desktop
+    - { k: text/html, v: "{{ browser }}.desktop;" }
+    - { k: application/xhtml+xml, v: "{{ browser }}.desktop;" }
+    - { k: x-scheme-handler/about, v: "{{ browser }}.desktop;" }
+    - { k: x-scheme-handler/http, v: "{{ browser }}.desktop;" }
+    - { k: x-scheme-handler/https, v: "{{ browser }}.desktop;" }
+    - { k: x-scheme-handler/unknown, v: "{{ browser }}.desktop;" }
+    - { k: x-scheme-handler/freetube, v: "freetube.desktop" }
+    - { k: x-scheme-handler/mpv, v: "mpv-opener.desktop" }
+    - { k: x-scheme-handler/umpv, v: "mpv-opener.desktop" }
