@@ -178,6 +178,7 @@
       - ncal
       - npm
       - inotify-tools ## recommended by neovim
+      - avahi-daemon ## allows accessing lan devices by hostname
 
 - name: Install pipx
   include_tasks: tasks/software/build/pipx.yml

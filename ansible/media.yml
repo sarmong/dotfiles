@@ -30,6 +30,7 @@
           - rsync
           - jq
           - fzf
+          - avahi-daemon
 
     - name: Install media packages
       become: true
