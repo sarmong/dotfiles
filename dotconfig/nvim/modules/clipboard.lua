@@ -2,19 +2,33 @@
 -- only when nvim is going in/out of focus
 -- Reduces clutter and may speed this up
 
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    -- OSC 52 paste triggers a terminal permission prompt on every FocusGained,
-    -- causing an infinite loop. Use terminal paste (Ctrl+Shift+V) instead.
-    ["+"] = function() return {} end,
-    ["*"] = function() return {} end,
-  },
-}
+local function setOsc52()
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      -- OSC 52 paste triggers a terminal permission prompt on every FocusGained,
+      -- causing an infinite loop. Use terminal paste (Ctrl+Shift+V) instead.
+      ["+"] = function()
+        return {}
+      end,
+      ["*"] = function()
+        return {}
+      end,
+    },
+  }
+end
+
+local function get_is_ssh()
+  if vim.env.SSH_CONNECTION then
+    return true
+  end
+  local is_ssh = vim.fn.system("tmux show -qv @is_ssh"):gsub("%s+", "") == "1"
+  return is_ssh
+end
 
 local should_set_system_clip = true
 local snapshot_on_focus = nil -- value of " at FocusGained, to detect yanks during grace period
@@ -33,6 +47,10 @@ local function set_system_clip()
 end
 
 local function read_system_clip()
+  local is_ssh = get_is_ssh()
+  if is_ssh then
+    return
+  end
   local clip = vim.fn.getreg("+")
 
   if not clip or clip == "" then
@@ -96,6 +114,35 @@ local toggle_should_set_system_clip = function()
   end
 end
 
-command("SysClipToggle", function()
+local debounce_timer = nil
+local is_ssh_group = augroup("is_ssh_group")
+autocmd({ "FocusGained", "VimEnter" }, {
+  group = is_ssh_group,
+  callback = function()
+    if debounce_timer then
+      debounce_timer:stop()
+    end
+    debounce_timer = vim.defer_fn(function()
+      local is_ssh = get_is_ssh()
+      if is_ssh then
+        setOsc52()
+      else
+        vim.g.clipboard = nil
+      end
+      debounce_timer = nil
+    end, 2000)
+  end,
+})
+
+command("ClipToggleSys", function()
   toggle_should_set_system_clip()
+end)
+
+command("ClipToggleOsc", function()
+  local is_ssh = get_is_ssh()
+  if is_ssh then
+    setOsc52()
+  else
+    vim.g.clipboard = nil
+  end
 end)
