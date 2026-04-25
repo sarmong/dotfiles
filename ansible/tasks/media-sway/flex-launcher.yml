@@ -1,0 +1,20 @@
+- name: set up flex-launcher
+  tags:
+    - flex-launcher
+  block:
+    - name: Install flex-launcher
+      include_tasks: tasks/software/apm/main.yml
+      loop:
+        - flex-launcher
+
+    - name: Ensure config dir exists
+      file:
+        path: "{{ ansible_env.HOME }}/.config/flex-launcher"
+        state: directory
+        mode: "0755"
+
+    - name: Copy flex-launcher config dir
+      copy:
+        src: tasks/media-sway/files/flex-launcher/
+        dest: "{{ ansible_env.HOME }}/.config/flex-launcher/"
+        mode: "0644"

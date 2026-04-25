@@ -13,14 +13,40 @@ output * bg #000000 solid_color
 ### Window rules
 for_window [app_id="mpv"] fullscreen enable
 for_window [class="mpv"] fullscreen enable
+for_window [app_id="flex-launcher"] fullscreen enable, border none
 
-### Keybinds (minimal — for debugging during Step 1)
+## There is an issue with flex-launcher and apps don't show up on the same workspace
+## until you switch workspaces back and forth. So move them to 2 immediately. 
+## And assign doesn't work for some reason
+for_window [app_id="com.github.iwalton3.jellyfin-media-player"] move to workspace 2, fullscreen enable, focus
+for_window [app_id="Kodi"] move to workspace 2, fullscreen enable, focus
+
+### Keybinds
 bindsym $mod+Return exec foot
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+e exec swaymsg exit
+bindsym $mod+Tab focus next
+
+# Focus
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+k focus up
+bindsym $mod+j focus down
+
+# Workspaces
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
 
 # TV remote keys
-bindsym XF86Back exec ags request -i astal 'confirm-exit'
+#bindsym XF86Back exec ags request -i astal 'confirm-exit'
 bindsym XF86VoiceCommand exec sh -c 'pkill -USR2 wvkbd-mobintl || wvkbd-mobintl --layer overlay -L 240 &'
 
 ### Idle / screen blank
@@ -31,5 +57,6 @@ exec swayidle -w \
 ### Autostart
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec systemctl --user start sway-session.target
-exec env GI_TYPELIB_PATH=/usr/local/lib/x86_64-linux-gnu/girepository-1.0 LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu ags run --gtk 4
-# exec /usr/local/bin/bt-connect
+exec flex-launcher
+exec /usr/local/bin/bt-connect
+# exec env GI_TYPELIB_PATH=/usr/local/lib/x86_64-linux-gnu/girepository-1.0 LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu ags run --gtk 4

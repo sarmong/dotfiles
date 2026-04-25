@@ -580,3 +580,14 @@ binary_packages:
     ## --version returns wrong version
     version_file: "{{ ansible_env.XDG_DATA_HOME }}/apm/ags.version"
     check_version_cmd: "cat {{ ansible_env.XDG_DATA_HOME }}/apm/ags.version"
+
+  flex-launcher:
+    name: flex-launcher
+    version: "2.2"
+    type: deb
+    dependencies:
+      - libsdl2-image-2.0-0
+      - libsdl2-ttf-2.0-0
+    checksum: sha256:7cc43838b246bf1fda9f25c39e755794e5f29e2d61dd658710f66114a80f74b5
+    url: https://github.com/complexlogic/flex-launcher/releases/download/v%%v%%/flex-launcher_%%v%%_amd64.deb
+    check_version_cmd: "dpkg -s flex-launcher | grep Version | awk '{ print $2 }'"

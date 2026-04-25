@@ -114,5 +114,6 @@
         - import_tasks: tasks/media-sway/sway.yml
         - import_tasks: tasks/media-sway/ags.yml
         - import_tasks: tasks/media-sway/jellyfin.yml
+        - import_tasks: tasks/media-sway/flex-launcher.yml
         - import_tasks: tasks/media-sway/configuration.yml
         - import_tasks: tasks/media-sway/autologin.yml

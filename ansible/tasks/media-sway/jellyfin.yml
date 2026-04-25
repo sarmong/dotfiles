@@ -37,6 +37,7 @@
           - jellyfin-server
           - jellyfin-web
           - jellyfin-ffmpeg7
+          - jellyfin-media-player
         state: present
 
     - name: jellyfin | deploy network.xml
