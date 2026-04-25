@@ -10,7 +10,8 @@
         recursive: true
 
     - name: "{{ item }} | build"
-      command: "{{ cmd }}"
+      command: "{{ cmd | regex_replace('^sudo ', '') }}"
+      become: "{{ cmd.startswith('sudo ') }}"
       loop: "{{ pkg_spec.build_cmds }}"
       loop_control:
         loop_var: cmd
