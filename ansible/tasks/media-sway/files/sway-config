@@ -45,6 +45,11 @@ bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
 
+# Volume
+bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+bindsym XF86AudioLowerVolume exec swayosd-client --output-volume lower
+bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
+
 # TV remote keys
 #bindsym XF86Back exec ags request -i astal 'confirm-exit'
 bindsym XF86VoiceCommand exec sh -c 'pkill -USR2 wvkbd-mobintl || wvkbd-mobintl --layer overlay -L 240 &'
@@ -57,6 +62,7 @@ exec swayidle -w \
 ### Autostart
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec systemctl --user start sway-session.target
+exec swayosd-server
 exec flex-launcher
 exec /usr/local/bin/bt-connect
 # exec env GI_TYPELIB_PATH=/usr/local/lib/x86_64-linux-gnu/girepository-1.0 LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu ags run --gtk 4

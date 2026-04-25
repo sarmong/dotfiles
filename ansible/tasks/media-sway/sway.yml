@@ -11,6 +11,7 @@
           - foot
           - wl-clipboard
           - xdg-desktop-portal-wlr
+          - swayosd
 
     - name: Ensure sway config dir exists
       file:
