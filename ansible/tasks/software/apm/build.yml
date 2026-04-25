@@ -2,7 +2,7 @@
   tags:
     - binary
   vars:
-    src_dir: "~/.local/src"
+    src_dir: "{{ ansible_env.HOME }}/.local/src"
     build_extract_dest:
       "{{ (extract_dest == '') | ternary(src_dir, extract_dest) }}"
   block:
