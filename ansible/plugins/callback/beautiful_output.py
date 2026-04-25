@@ -1135,6 +1135,25 @@ class CallbackModule(CallbackBase, FileSystemEventHandler):
         task_result = to_text("{0}{1} {2} ({3}) [{4}]").format(
             " " * (indent + 2), symbol_char, item_name, task_host, status.upper()
         )
+
+        for key, verbosity in _session_order.items():
+            if (
+                key in result._result
+                and result._result[key]
+                and (self._is_run_verbose(result, verbosity) or status == "failed")
+            ):
+                task_result += self.reindent_session(
+                    _session_title.get(key, key), result._result[key], indent + 4
+                )
+
+        for title, text in result._result.items():
+            if title not in _session_title and text and self._is_run_verbose(result, 2):
+                task_result += self.reindent_session(
+                    title.replace("_", " ").replace(".", " ").capitalize(),
+                    text,
+                    indent + 4,
+                )
+
         return task_result
 
     def _display_summary_table_separator(self, symbol_char):
