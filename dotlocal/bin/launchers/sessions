@@ -19,11 +19,18 @@ main() {
     exit
   fi
 
-  if [ "$ACTION" = "new_window" ]; then
+  if [ "$ACTION" = "new_window" ] || ! has_local_client; then
     open_new_window "$selected_session"
   else
     switch_last_window "$selected_session"
   fi
+}
+
+has_local_client() {
+  while IFS= read -r p; do
+    grep -qza '^SSH_CONNECTION=' "/proc/$p/environ" 2>/dev/null || return 0
+  done < <(tmux list-clients -F '#{client_pid}' 2>/dev/null)
+  return 1
 }
 
 open_new_window() {
@@ -31,7 +38,7 @@ open_new_window() {
   if tmux has-session -t "$selected" 2>/dev/null; then
     "$TERMINAL" -e "$SHELL" -c "tmux attach-session -t $selected ; $SHELL"
   else
-    "$TERMINAL" --directory "$selected" -e "$SHELL" -c "workplace ; $SHELL"
+    "$TERMINAL" --directory "$selected" -e "$SHELL" -c "workplace && tmux attach ; $SHELL"
   fi
 }
 
