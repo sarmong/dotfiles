@@ -59,6 +59,9 @@ exec swayidle -w \
   timeout 600 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"'
 
+# Hide mouse cursor after a period of inactivity.
+seat seat0 hide_cursor 3000
+
 ### Autostart
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec systemctl --user start sway-session.target
