@@ -1,0 +1,11 @@
+[Unit]
+Description=Re-trigger block device mounts after session activation
+After=udiskie.service
+Requires=udiskie.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'sleep 10 && systemctl --user restart udiskie.service'
+
+[Install]
+WantedBy=sway-session.target

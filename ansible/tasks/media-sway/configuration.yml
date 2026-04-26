@@ -72,6 +72,24 @@
         scope: user
         enabled: true
 
+    - name: udiskie | deploy remount oneshot unit
+      copy:
+        src: tasks/media-sway/files/udiskie/udiskie-remount.service
+        dest: "{{ ansible_env.HOME }}/.config/systemd/user/udiskie-remount.service"
+        mode: "0644"
+      register: udiskie_remount_unit
+
+    - name: udiskie | daemon-reload for remount unit
+      command: systemctl --user daemon-reload
+      when: udiskie_remount_unit.changed
+      changed_when: udiskie_remount_unit.changed
+
+    - name: udiskie | enable remount oneshot
+      systemd_service:
+        name: udiskie-remount.service
+        scope: user
+        enabled: true
+
     - name: logind | ensure drop-in dir
       become: true
       file:
