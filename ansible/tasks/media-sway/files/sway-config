@@ -9,6 +9,8 @@ set $mod Mod4
 # output HDMI-A-1 resolution 1920x1080
 # laptop testing: leave default
 output * bg #000000 solid_color
+# TV: 1080p@60Hz so compositor runs at 60fps; GPU can't drive 4K@60Hz (HDMI 1.4)
+output HDMI-A-2 mode 1920x1080@59.940Hz scale 1
 
 ### Window rules
 for_window [app_id="mpv"] fullscreen enable
