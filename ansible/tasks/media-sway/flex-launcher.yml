@@ -17,4 +17,4 @@
       copy:
         src: tasks/media-sway/files/flex-launcher/
         dest: "{{ ansible_env.HOME }}/.config/flex-launcher/"
-        mode: "0644"
+        mode: preserve
