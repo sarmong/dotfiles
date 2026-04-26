@@ -101,8 +101,14 @@
 
     - name: sway TV stack
       tags:
-        - sway
+        - media-sway
       block:
+        - name: Install packages
+          become: true
+          apt:
+            name:
+              - wlr-randr
+
         - name: disable kodi-x11
           become: true
           systemd_service:
