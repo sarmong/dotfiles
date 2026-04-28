@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Idempotency: bail out if a screensaver is already running.
+if [ -f /tmp/media-screensaver.pid ] && kill -0 "$(cat /tmp/media-screensaver.pid)" 2>/dev/null; then
+  exit 0
+fi
+
+# Targeted check for Jellyfin (does not implement Wayland idle inhibitor).
+# Other video apps (mpv, Kodi, browsers) inhibit swayidle directly
+if pw-dump 2>/dev/null | jq -e '.[] | select(
+  .info.props."application.name"? == "jellyfinmediaplayer"
+  and .info.props."media.role"? == "Movie"
+  and .info.state? == "running"
+)' >/dev/null; then
+  exit 0
+fi
+
+# Record the workspace we are switching away from so resume can restore it.
+prev_ws=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused) | .name')
+if [ -z "$prev_ws" ] || [ "$prev_ws" = "10" ]; then
+  prev_ws=1
+fi
+echo "$prev_ws" >/tmp/media-screensaver-prev-ws
+
+swaymsg workspace 10
+
+foot --fullscreen --title tty-clock -- tty-clock -sc &
+echo $! >/tmp/media-screensaver.pid
+
+# Schedule fake-off check in 25 minutes without needing D-Bus/systemd.
+(sleep 25m && media-fake-off-check) &
+echo $! >/tmp/media-fake-off-watcher.pid
+
+# Stop the screensaver on the next workspace event (user pressing a workspace
+# key, or any other workspace switch). The initial swaymsg workspace 10 above
+# has already been emitted before this watcher subscribes, so the next event
+# is by definition something else.
+#
+# `|| true` neutralises the SIGPIPE-induced non-zero exit from swaymsg when
+# head closes the pipe — without it, set -e in the subshell would skip the
+# subsequent media-screensaver-stop call.
+#
+# This subshell's pid is recorded as the watcher; on workspace event we call
+# stop, which sends SIGTERM back to this subshell. The exec'd stop survives
+# as a reparented child. Do not add traps here — they would fire on that
+# SIGTERM and could interfere with stop's pid-file cleanup.
+(
+  swaymsg -t subscribe '["workspace"]' | head -n1 >/dev/null || true
+  media-screensaver-stop --no-return
+) &
+echo $! >/tmp/media-screensaver-ws-watcher.pid

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if pactl list sink-inputs | grep -q 'state: RUNNING'; then
+  # Audio playing — delay fake-off by 5 more minutes
+  (sleep 5m && media-fake-off-check) &
+  echo $! >/tmp/media-fake-off-watcher.pid
+else
+  media-fake-off
+fi

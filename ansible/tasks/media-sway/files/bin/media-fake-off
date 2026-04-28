@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Kill screensaver if running
+if [ -f /tmp/media-screensaver.pid ]; then
+  kill "$(cat /tmp/media-screensaver.pid)" 2>/dev/null || true
+  rm -f /tmp/media-screensaver.pid
+fi
+
+# Cancel fake-off watcher
+if [ -f /tmp/media-fake-off-watcher.pid ]; then
+  kill "$(cat /tmp/media-fake-off-watcher.pid)" 2>/dev/null || true
+  rm -f /tmp/media-fake-off-watcher.pid
+fi
+
+# Cancel workspace-switch watcher
+if [ -f /tmp/media-screensaver-ws-watcher.pid ]; then
+  kill "$(cat /tmp/media-screensaver-ws-watcher.pid)" 2>/dev/null || true
+  rm -f /tmp/media-screensaver-ws-watcher.pid
+fi
+
+rm -f /tmp/media-screensaver-prev-ws
+
+# Kill media apps
+swaymsg '[app_id="com.github.iwalton3.jellyfin-media-player"] kill' 2>/dev/null || true
+swaymsg '[app_id="Kodi"] kill' 2>/dev/null || true
+pkill -x mpv 2>/dev/null || true
+
+# Return to launcher, then cut display
+swaymsg workspace 1
+swaymsg "output * dpms off"

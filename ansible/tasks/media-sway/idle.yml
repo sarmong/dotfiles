@@ -1,0 +1,27 @@
+- name: media-sway idle state
+  tags:
+    - idle
+  block:
+    - name: idle | install tty-clock
+      become: true
+      apt:
+        name: tty-clock
+        state: present
+
+    - name: idle | ensure local bin dir
+      file:
+        path: "{{ ansible_env.HOME }}/.local/bin"
+        state: directory
+        mode: "0755"
+
+    - name: idle | deploy scripts
+      copy:
+        src: "tasks/media-sway/files/bin/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.local/bin/{{ item }}"
+        mode: "0755"
+      loop:
+        - media-fake-off
+        - media-fake-off-check
+        - media-screensaver-start
+        - media-screensaver-stop
+        - media-power-toggle

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DPMS=$(swaymsg -t get_outputs | jq -r '.[0].dpms')
+
+if [ "$DPMS" = "false" ]; then
+  # Currently in fake-off — wake up
+  swaymsg "output * dpms on"
+  swaymsg workspace 1
+else
+  # Active or screensaver — go to fake-off immediately (no audio check)
+  media-fake-off
+fi

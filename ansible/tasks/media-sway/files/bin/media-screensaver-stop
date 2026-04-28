@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+no_return=0
+if [ "${1:-}" = "--no-return" ]; then
+  no_return=1
+fi
+
+screensaver_was_running=0
+
+if [ -f /tmp/media-screensaver.pid ]; then
+  kill "$(cat /tmp/media-screensaver.pid)" 2>/dev/null || true
+  rm -f /tmp/media-screensaver.pid
+  screensaver_was_running=1
+fi
+
+if [ -f /tmp/media-fake-off-watcher.pid ]; then
+  kill "$(cat /tmp/media-fake-off-watcher.pid)" 2>/dev/null || true
+  rm -f /tmp/media-fake-off-watcher.pid
+fi
+
+# When invoked via --no-return, the pid we kill here is our own grandparent
+# (the watcher subshell). We outlive it via reparenting; this is intentional.
+if [ -f /tmp/media-screensaver-ws-watcher.pid ]; then
+  kill "$(cat /tmp/media-screensaver-ws-watcher.pid)" 2>/dev/null || true
+  rm -f /tmp/media-screensaver-ws-watcher.pid
+fi
+
+# Only return to the previous workspace when:
+#  - the caller did not pass --no-return (i.e. user did not just switch ws), AND
+#  - we actually killed a running screensaver (avoids hijacking focus on
+#    speculative stop calls when nothing was active).
+if [ "$no_return" -eq 0 ] && [ "$screensaver_was_running" -eq 1 ]; then
+  prev_ws=1
+  if [ -f /tmp/media-screensaver-prev-ws ]; then
+    prev_ws=$(</tmp/media-screensaver-prev-ws)
+    [ -z "$prev_ws" ] && prev_ws=1
+  fi
+  swaymsg workspace "$prev_ws"
+fi
+
+rm -f /tmp/media-screensaver-prev-ws

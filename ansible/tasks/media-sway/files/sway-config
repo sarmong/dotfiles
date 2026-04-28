@@ -55,11 +55,10 @@ bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
 # TV remote keys
 #bindsym XF86Back exec ags request -i astal 'confirm-exit'
 bindsym XF86VoiceCommand exec sh -c 'pkill -USR2 wvkbd-mobintl || wvkbd-mobintl --layer overlay -L 240 &'
+bindsym XF86PowerOff exec media-power-toggle
 
 ### Idle / screen blank
-exec swayidle -w \
-  timeout 600 'swaymsg "output * dpms off"' \
-  resume 'swaymsg "output * dpms on"'
+exec swayidle -w timeout 600 'media-screensaver-start' resume 'media-screensaver-stop'
 
 # Hide mouse cursor after a period of inactivity.
 seat seat0 hide_cursor 3000
