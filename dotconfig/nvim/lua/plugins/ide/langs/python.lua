@@ -1,7 +1,7 @@
 local contrib = req("plugins.ide.contrib")
 
-contrib.mason("python-lsp-server", "pyright", "black")
+contrib.mason("pyright", "black", "ruff")
 
-contrib.formatters("python", "black") -- @TODO ruff?
+contrib.formatters("python", { "ruff_format" })
 contrib.ts_parsers("python")
-contrib.lsp({ "pylsp", "pyright" })
+contrib.lsp({ "pyright", "ruff" })
