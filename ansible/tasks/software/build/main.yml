@@ -1,6 +1,6 @@
 - name: Use neovim stable
   command:
-    cmd: "{{ ansible_env.XDG_BIN_DIR }}/nvvm use v0.11.0"
+    cmd: "{{ ansible_env.XDG_BIN_DIR }}/nvvm use stable"
     creates: "{{ ansible_env.XDG_DATA_HOME }}/nvvm/bin/nvim"
 
 - name: Create src dir
