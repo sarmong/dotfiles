@@ -1,3 +1,29 @@
+local function in_first_tmux_window_and_pane()
+  local pane = vim.env.TMUX_PANE
+  if not vim.env.TMUX or not pane then
+    return false
+  end
+
+  local win_idx =
+    system("tmux display -p -t " .. pane .. " #{window_index}"):wait().stdout
+  local pane_idx =
+    system("tmux display -p -t " .. pane .. " #{pane_index}"):wait().stdout
+
+  local wbase = system("tmux show-option -gqv base-index"):wait().stdout or "0"
+  local pbase = system("tmux show-option -gqv pane-base-index"):wait().stdout
+    or "0"
+
+  return win_idx == wbase and pane_idx == pbase
+end
+
+req("mini.deps").later(function()
+  Plugin("tpope/vim-obsession")
+
+  if in_first_tmux_window_and_pane() then
+    vim.cmd.Obsession(".")
+  end
+end)
+
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "folds" }
 
 local get_sessions_dir = function()
