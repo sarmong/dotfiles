@@ -13,6 +13,7 @@
     - name: dotfiles
       tags: dotfiles
       block:
+        - import_tasks: tasks/dotfiles/dotfiles.yml
         - import_tasks: tasks/dotfiles/main.yml
         - import_tasks: tasks/dotfiles/tmux-plugins.yml
 

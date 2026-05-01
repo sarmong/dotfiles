@@ -9,6 +9,8 @@ source "$script_dir/dotconfig/zsh/zsh-exports"
 cd "$(dirname "$0")"
 
 init() {
+  git pull
+
   echo "Initializing submodules..."
   git submodule init
   git submodule update
