@@ -1,5 +1,6 @@
 - name: Parse tmux.conf and checkout plugin commits
   tags:
+    - tmux
     - tmux-plugins
   block:
     - name: Read tmux.conf
@@ -20,3 +21,24 @@
         version: "{{ item.2 }}"
         force: true
       loop: "{{ plugins }}"
+
+## https://github.com/tmux-plugins/tmux-continuum/issues/129
+- name: Create tmux.service
+  tags:
+    - tmux
+  copy:
+    dest: "{{ ansible_env.XDG_CONFIG_HOME }}/systemd/user/tmux.service"
+    content: |
+      [Unit]
+      Description=tmux default session (detached)
+      Documentation=man:tmux(1)
+
+      [Service]
+      Type=forking
+      ExecStart=/usr/local/bin/tmux start-server
+
+      ExecStop={{ XDG_CONFIG_HOME }}/tmux/plugins/tmux-resurrect/scripts/save.sh
+      ExecStop=/usr/local/bin/tmux kill-server
+      KillMode=control-group
+
+      RestartSec=2

@@ -44,3 +44,6 @@ run udiskie --smart-tray
 run volctl
 GTK_THEME=Adwaita:dark run xfce4-power-manager
 run blueman-applet
+
+systemctl --user import-environment DISPLAY XAUTHORITY
+systemctl --user start tmux.service
