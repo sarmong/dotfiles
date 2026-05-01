@@ -31,6 +31,10 @@ main() {
       shift
       view_encrypted_file "$@"
       ;;
+    run-lan)
+      shift
+      run_lan_playbook "$@"
+      ;;
     *)
       run_playbook "$@"
       ;;
@@ -54,6 +58,18 @@ run_playbook() {
     --vault-pass-file="$VAULT_KEY_FILE" \
     --inventory "$ANSIBLE_INVENTORY" \
     --ask-become-pass \
+    "$@"
+}
+
+run_lan_playbook() {
+  host="$1"
+  shift
+
+  ANSIBLE_HOST_KEY_CHECKING=False \
+    run_playbook \
+    --ask-pass \
+    -l localhost \
+    -e "ansible_connection=ssh ansible_host=$host" \
     "$@"
 }
 
